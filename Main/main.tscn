@@ -1,0 +1,91 @@
+[gd_scene load_steps=9 format=3 uid="uid://bas5xco4jt2as"]
+
+[ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
+[ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
+[ext_resource type="PackedScene" uid="uid://cedapa6ga120n" path="res://Sidebar/sidebar.tscn" id="1_ji4w0"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="2_qf686"]
+[ext_resource type="Script" path="res://Main/Time/Time.gd" id="3_0qn1y"]
+[ext_resource type="PackedScene" uid="uid://bvnru570cxn8u" path="res://New Task/New Task.tscn" id="5_eynx2"]
+
+[sub_resource type="Gradient" id="Gradient_rknem"]
+colors = PackedColorArray(0.0862745, 0.0862745, 0.0941176, 1, 0.0862745, 0.0862745, 0.0941176, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_ycv7o"]
+gradient = SubResource("Gradient_rknem")
+width = 1152
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_evffp")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_ycv7o")
+expand_mode = 1
+
+[node name="Sidebar" parent="." instance=ExtResource("1_ji4w0")]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.073
+offset_left = 1.0
+offset_right = 1068.9
+
+[node name="Greeting" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Greeting"]
+layout_mode = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Greeting/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Greeting/MarginContainer/HBoxContainer"]
+texture_repeat = 1
+layout_mode = 2
+theme = ExtResource("2_qf686")
+text = "Good Morning Max!"
+
+[node name="Time" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("3_0qn1y")
+
+[node name="MarginContainer" type="MarginContainer" parent="Time"]
+layout_mode = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Time/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Time Label" type="Label" parent="Time/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_qf686")
+text = "9:41"
+
+[node name="Daily Ui" parent="." instance=ExtResource("1_ab27m")]
+layout_mode = 1
+
+[node name="New task" parent="." instance=ExtResource("5_eynx2")]
+layout_mode = 1
+
+[connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]

@@ -1,0 +1,178 @@
+[gd_scene load_steps=14 format=3 uid="uid://cedapa6ga120n"]
+
+[ext_resource type="Texture2D" uid="uid://ctmiab4av8ue" path="res://Sidebar/Textures/Rectangle 76.png" id="1_aop4d"]
+[ext_resource type="Texture2D" uid="uid://cyhqd8huvvppb" path="res://Sidebar/Textures/Home Icon.svg" id="2_iydla"]
+[ext_resource type="Texture2D" uid="uid://ctccnjwtitcfd" path="res://Sidebar/Textures/Overview Icon.png" id="3_ypvnt"]
+[ext_resource type="Texture2D" uid="uid://deexw1xdo8oup" path="res://Sidebar/Textures/Daily Icon.png" id="4_4d04x"]
+[ext_resource type="Texture2D" uid="uid://c6cibylcsroxq" path="res://Sidebar/Textures/Schedualed Icon.svg" id="5_rl55e"]
+[ext_resource type="Texture2D" uid="uid://3arjmr8ikrnj" path="res://Sidebar/Textures/Settings Icon.png" id="6_wy0pj"]
+[ext_resource type="Script" path="res://Debug/Scripts/button debug.gd" id="7_edmby"]
+[ext_resource type="Texture2D" uid="uid://bpfhcy3xecjjt" path="res://Sidebar/Textures/Plus Icon.png" id="7_sxfcb"]
+[ext_resource type="Script" path="res://Sidebar/Scripts/Add.gd" id="8_boi5m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4d324"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_unqxe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yofh5"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6vyrw"]
+
+[node name="Sidebar" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = -1072.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_left = 16.0
+offset_right = 80.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_aop4d")
+
+[node name="Control" type="Control" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 64.0
+grow_vertical = 2
+
+[node name="Upper" type="MarginContainer" parent="TextureRect/Control"]
+layout_mode = 2
+offset_top = 208.0
+offset_right = 64.0
+offset_bottom = 208.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = -212
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/Control/Upper"]
+custom_minimum_size = Vector2(64, 213)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_4d324")
+flat = true
+script = ExtResource("7_edmby")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 60.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_iydla")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Button2" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button2"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 60.0
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_ypvnt")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Button3" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button3"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 60.0
+scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("4_4d04x")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Button4" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button4"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+offset_top = 12.0
+offset_right = 48.0
+offset_bottom = 60.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("5_rl55e")
+expand_mode = 2
+stretch_mode = 2
+
+[node name="Lower" type="MarginContainer" parent="TextureRect/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -106.0
+offset_right = 72.0
+offset_bottom = 0.000854492
+grow_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/Control/Lower"]
+custom_minimum_size = Vector2(64, 106)
+layout_mode = 2
+
+[node name="Settings" type="Button" parent="TextureRect/Control/Lower/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yofh5")
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Lower/VBoxContainer/Settings"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("6_wy0pj")
+
+[node name="Add" type="Button" parent="TextureRect/Control/Lower/VBoxContainer"]
+custom_minimum_size = Vector2(2.08165e-12, 48)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxTexture_6vyrw")
+flat = true
+script = ExtResource("8_boi5m")
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Lower/VBoxContainer/Add"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("7_sxfcb")
