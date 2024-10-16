@@ -28,6 +28,7 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paw.svg"),"Paw",3)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paintbrush.svg"),"Paintbrush",4)
 func _process(delta):
+	
 	colordisplay.texture = load(colorpointer[taskcolor.selected])
 	icondisplay.texture = load(iconpointer[taskicon.selected+1])
 	if Input.is_action_just_pressed("Add"):
@@ -58,6 +59,7 @@ func _on_create_pressed():
 		
 
 func clearsel():
+	taskname.grab_focus()
 	taskname.text = ""
 	taskcolor.selected = 0
 	taskicon.selected = 0

@@ -10,13 +10,13 @@
 [ext_resource type="Texture2D" uid="uid://demx36e56pml4" path="res://Theme/Textures/Button.png" id="7_0eq5o"]
 [ext_resource type="Texture2D" uid="uid://cbr4ue5kbmkc7" path="res://Theme/Textures/Button Highlighted.png" id="8_r17eo"]
 
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khcqx"]
-texture = ExtResource("7_0eq5o")
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5uuqy"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6pq23"]
 texture = ExtResource("8_r17eo")
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5uuqy"]
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_khcqx"]
+texture = ExtResource("7_0eq5o")
 
 [sub_resource type="Animation" id="Animation_pkue2"]
 resource_name = "In"
@@ -423,9 +423,9 @@ custom_minimum_size = Vector2(120, 2.08165e-12)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_qaeyq")
 theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxTexture_khcqx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6pq23")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5uuqy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6pq23")
+theme_override_styles/normal = SubResource("StyleBoxTexture_khcqx")
 text = "Cancel"
 
 [node name="Create" type="Button" parent="TextureRect/HBoxContainer/MarginContainer/HBoxContainer"]
@@ -433,9 +433,9 @@ custom_minimum_size = Vector2(120, 2.08165e-12)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_qaeyq")
 theme_override_font_sizes/font_size = 18
-theme_override_styles/normal = SubResource("StyleBoxTexture_khcqx")
-theme_override_styles/hover = SubResource("StyleBoxTexture_6pq23")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_5uuqy")
+theme_override_styles/hover = SubResource("StyleBoxTexture_6pq23")
+theme_override_styles/normal = SubResource("StyleBoxTexture_khcqx")
 text = "Create"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bas5xco4jt2as"]
+[gd_scene load_steps=10 format=3 uid="uid://bas5xco4jt2as"]
 
 [ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
 [ext_resource type="PackedScene" uid="uid://cedapa6ga120n" path="res://Sidebar/sidebar.tscn" id="1_ji4w0"]
+[ext_resource type="Script" path="res://Main/Scipts/Saving.gd" id="2_8dlu8"]
 [ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="2_qf686"]
 [ext_resource type="Script" path="res://Main/Time/Time.gd" id="3_0qn1y"]
 [ext_resource type="PackedScene" uid="uid://bvnru570cxn8u" path="res://New Task/New Task.tscn" id="5_eynx2"]
@@ -32,13 +33,9 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_ycv7o")
 expand_mode = 1
+script = ExtResource("2_8dlu8")
 
-[node name="Sidebar" parent="." instance=ExtResource("1_ji4w0")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 0.073
-offset_left = 1.0
-offset_right = 1068.9
+[node name="Timer" type="Timer" parent="Background"]
 
 [node name="Greeting" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -85,7 +82,16 @@ text = "9:41"
 [node name="Daily Ui" parent="." instance=ExtResource("1_ab27m")]
 layout_mode = 1
 
+[node name="Sidebar" parent="." instance=ExtResource("1_ji4w0")]
+z_index = 1
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.073
+offset_left = 1.0
+offset_right = 5.904
+
 [node name="New task" parent="." instance=ExtResource("5_eynx2")]
 layout_mode = 1
 
+[connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]

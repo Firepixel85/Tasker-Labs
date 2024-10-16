@@ -12,4 +12,3 @@ func _process(delta):
 		time_label.text = (time[0]+":"+time[1])
 	if Input.is_action_pressed("Exit"):
 		get_tree().quit()
-
