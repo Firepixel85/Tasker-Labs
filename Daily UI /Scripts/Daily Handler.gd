@@ -14,6 +14,7 @@ func add_task(taskname,taskcolor,taskicon):
 	rtv.icondic[str(targetid)] = taskicon +1
 	rtv.donedic[str(targetid)] = false
 	rtv.streakdic[str(targetid)] = 0
+	rtv.comlastlogdic[str(targetid)] = false
 	rtv.lastgivenid = targetid
 	rtv.justcreatedid = rtv.lastgivenid
 	new_task.emit(rtv.lastgivenid)

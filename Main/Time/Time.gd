@@ -4,6 +4,13 @@ extends VBoxContainer
 var time
 var showseconds:bool = false
 
+func _ready() -> void:
+	if rtv.lastlogwasloaded == true and rtv.lastlogd != Time.get_date_string_from_system():
+		var ll = rtv.lastlogd.split("-")
+		caldatedif(int(ll[0]),int(ll[1]),int(ll[2]))
+	else:
+		rtv.streakstatus = "same"
+	
 func _process(delta):
 	time = Time.get_time_string_from_system().split(":")
 	if showseconds == true:
@@ -12,3 +19,15 @@ func _process(delta):
 		time_label.text = (time[0]+":"+time[1])
 	if Input.is_action_pressed("Exit"):
 		get_tree().quit()
+
+func caldatedif(lly,llm,lld):
+	var y = int(Time.get_date_string_from_system().split("-")[0])
+	var m = int(Time.get_date_string_from_system().split("-")[1])
+	var d = int(Time.get_date_string_from_system().split("-")[2])
+	if (d == lld + 1 and lly == y) or (y == lly +1 and llm == 12 and lld == 31 and d == 1 and m == 1) or ((m == llm +1 and d == 1) and (lld == 31 or lld == 30 or lld == 28 or lld == 29) and lly == y):
+		rtv.streakstatus = "hold"
+		print("holdstreak")
+	else: 
+		rtv.streakstatus = "kill"
+		print("killstreak")
+	rtv.lastlogd = Time.get_date_string_from_system()

@@ -1,21 +1,21 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv0dmkcjhl4se"]
+[gd_scene load_steps=13 format=3 uid="uid://c6qv00jqt070e"]
 
-[ext_resource type="Script" path="res://Daily Task/Scripts/Daily Task.gd" id="1_4lly5"]
-[ext_resource type="Texture2D" uid="uid://u4tb5tdlv0fw" path="res://Daily Task/Textures/Container.svg" id="1_rudqk"]
-[ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="2_7s1ya"]
-[ext_resource type="FontFile" uid="uid://cb1fkhwou4qo4" path="res://Theme/Inter font/static/Inter_24pt-Medium.ttf" id="3_lstys"]
-[ext_resource type="Texture2D" uid="uid://d72040x2fk3j" path="res://Daily Task/Textures/Streak Container.svg" id="4_5otr7"]
-[ext_resource type="Texture2D" uid="uid://dmic7twal8bfy" path="res://Daily Task/Textures/Icons/Big/Book.svg" id="4_k8alr"]
-[ext_resource type="Texture2D" uid="uid://clrxri3hw52lv" path="res://Daily Task/Textures/Streak Flame.svg" id="5_cet7u"]
-[ext_resource type="FontFile" uid="uid://b0taxodwoxljs" path="res://Theme/Inter font/static/Inter_24pt-Bold.ttf" id="6_h5v6g"]
-[ext_resource type="Texture2D" uid="uid://beajogrnqo5fo" path="res://Daily Task/Textures/Edit Button.svg" id="7_8kgr0"]
-[ext_resource type="Texture2D" uid="uid://dcv6aab2ye8jq" path="res://Daily Task/Textures/Done Button.svg" id="8_se6m0"]
+[ext_resource type="Script" path="res://Daily Task/Daily Task Done/Scripts/Daily Task Done.gd" id="1_j0l1a"]
+[ext_resource type="Texture2D" uid="uid://u4tb5tdlv0fw" path="res://Daily Task/Textures/Container.svg" id="1_ud3eo"]
+[ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="2_vn0x7"]
+[ext_resource type="Texture2D" uid="uid://dmic7twal8bfy" path="res://Daily Task/Textures/Icons/Big/Book.svg" id="3_uvsoo"]
+[ext_resource type="FontFile" uid="uid://cb1fkhwou4qo4" path="res://Theme/Inter font/static/Inter_24pt-Medium.ttf" id="4_w1mve"]
+[ext_resource type="Texture2D" uid="uid://d72040x2fk3j" path="res://Daily Task/Textures/Streak Container.svg" id="5_r1lqn"]
+[ext_resource type="Texture2D" uid="uid://clrxri3hw52lv" path="res://Daily Task/Textures/Streak Flame.svg" id="6_sipa1"]
+[ext_resource type="FontFile" uid="uid://b0taxodwoxljs" path="res://Theme/Inter font/static/Inter_24pt-Bold.ttf" id="7_ufmxk"]
+[ext_resource type="Texture2D" uid="uid://beajogrnqo5fo" path="res://Daily Task/Textures/Edit Button.svg" id="8_aqm5c"]
+[ext_resource type="Texture2D" uid="uid://pfbhp6wqf5f8" path="res://Daily Task/Textures/X Button.png" id="10_i23do"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8sj1"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mc4g0"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6frp"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_00o71"]
 
-[node name="Daily Task" type="Control"]
+[node name="Control" type="Control"]
 custom_minimum_size = Vector2(112, 112)
 layout_mode = 3
 anchors_preset = 15
@@ -23,7 +23,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_4lly5")
+script = ExtResource("1_j0l1a")
 
 [node name="Container" type="TextureRect" parent="."]
 layout_mode = 1
@@ -31,7 +31,7 @@ anchors_preset = -1
 anchor_right = 0.41
 offset_right = -432.32
 offset_bottom = 40.0
-texture = ExtResource("1_rudqk")
+texture = ExtResource("1_ud3eo")
 
 [node name="Task Left" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -41,7 +41,7 @@ theme_override_constants/separation = 5
 
 [node name="Color" type="TextureRect" parent="Container/Task Left"]
 layout_mode = 2
-texture = ExtResource("2_7s1ya")
+texture = ExtResource("2_vn0x7")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container/Task Left/Color"]
 custom_minimum_size = Vector2(102.7, 107.86)
@@ -60,7 +60,7 @@ alignment = 1
 
 [node name="Icon" type="TextureRect" parent="Container/Task Left/Color/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-texture = ExtResource("4_k8alr")
+texture = ExtResource("3_uvsoo")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Container/Task Left"]
@@ -74,7 +74,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(192.89, 92.25)
 layout_mode = 2
 size_flags_vertical = 1
-theme_override_fonts/font = ExtResource("3_lstys")
+theme_override_fonts/font = ExtResource("4_w1mve")
 theme_override_font_sizes/font_size = 26
 text = "[Dynamic]"
 
@@ -94,7 +94,7 @@ theme_override_constants/margin_top = 6
 
 [node name="Streak Container" type="TextureRect" parent="Container/Task Right/Streak"]
 layout_mode = 2
-texture = ExtResource("4_5otr7")
+texture = ExtResource("5_r1lqn")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Container/Task Right/Streak/Streak Container"]
@@ -124,19 +124,19 @@ layout_mode = 2
 offset_right = 327.0
 offset_bottom = 476.0
 scale = Vector2(0.1, 0.1)
-texture = ExtResource("5_cet7u")
+texture = ExtResource("6_sipa1")
 stretch_mode = 2
 
 [node name="Count" type="Label" parent="Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("6_h5v6g")
+theme_override_fonts/font = ExtResource("7_ufmxk")
 theme_override_font_sizes/font_size = 24
 text = "37"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Container/Task Right/Streak"]
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_p8sj1")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_mc4g0")
 flat = true
 
 [node name="Buttons" type="MarginContainer" parent="Container/Task Right"]
@@ -161,26 +161,26 @@ offset_top = -4.0
 offset_right = 482.0
 offset_bottom = 474.0
 scale = Vector2(0.1, 0.1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_v6frp")
-icon = ExtResource("7_8kgr0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_00o71")
+icon = ExtResource("8_aqm5c")
 flat = true
 
-[node name="Done Container" type="Button" parent="Container/Task Right/Buttons/Buttons"]
+[node name="X Container" type="Button" parent="Container/Task Right/Buttons/Buttons"]
 custom_minimum_size = Vector2(47, 47)
 layout_mode = 2
 disabled = true
 flat = true
 
-[node name="Done" type="Button" parent="Container/Task Right/Buttons/Buttons/Done Container"]
+[node name="X Button" type="Button" parent="Container/Task Right/Buttons/Buttons/X Container"]
 layout_mode = 2
 offset_left = 4.0
 offset_top = 3.0
 offset_right = 482.0
 offset_bottom = 481.0
 scale = Vector2(0.1, 0.1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_v6frp")
-icon = ExtResource("8_se6m0")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_00o71")
+icon = ExtResource("10_i23do")
 flat = true
 
 [connection signal="pressed" from="Container/Task Right/Buttons/Buttons/Edit Container/Edit" to="." method="_on_edit_pressed"]
-[connection signal="pressed" from="Container/Task Right/Buttons/Buttons/Done Container/Done" to="." method="_on_done_pressed"]
+[connection signal="pressed" from="Container/Task Right/Buttons/Buttons/X Container/X Button" to="." method="_on_x_button_pressed"]

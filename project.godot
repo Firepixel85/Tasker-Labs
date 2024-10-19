@@ -21,6 +21,7 @@ rtv="*res://Main/Scipts/rtv.gd"
 
 [display]
 
+window/size/initial_screen=2
 window/size/window_width_override=2304
 window/size/window_height_override=1296
 window/energy_saving/keep_screen_on=false
