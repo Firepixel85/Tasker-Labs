@@ -49,6 +49,9 @@ func _ready():
 		print("Fatal Error: Task data lost!")
 	
 func _process(delta: float) -> void:
+	taskname.text = rtv.namedic[id]
+	taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
+	taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
 	taskstreak.text = str(rtv.streakdic[id])
 	if rtv.donedic[id] == false:
 		visible = true
@@ -65,4 +68,8 @@ func _on_done_pressed() -> void:
 
 
 func _on_edit_pressed() -> void:
-	pass # Replace with function body.
+	Input.action_press("Edit")
+	Input.action_release("Edit")
+	print("sending")
+	rtv.edittarget = id
+	rtv.isediting = true

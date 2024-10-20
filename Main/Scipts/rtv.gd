@@ -12,8 +12,9 @@ var lastlogwasloaded:bool #Were the lastlog vars loaded?
 var streakstatus:String #On run: "hold" can obtain streak "same" can obtain "kill" all streaks lost
 
 #Editing 
-var wantsedit:bool
+var isediting:bool
 var edittarget:String
+
 var namedic:Dictionary
 var colordic:Dictionary
 var icondic:Dictionary

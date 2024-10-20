@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cv0dmkcjhl4se"]
+[gd_scene load_steps=15 format=3 uid="uid://cv0dmkcjhl4se"]
 
 [ext_resource type="Script" path="res://Daily Task/Scripts/Daily Task.gd" id="1_4lly5"]
 [ext_resource type="Texture2D" uid="uid://u4tb5tdlv0fw" path="res://Daily Task/Textures/Container.svg" id="1_rudqk"]
@@ -13,7 +13,11 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_p8sj1"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l0kyq"]
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v6frp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dxnve"]
 
 [node name="Daily Task" type="Control"]
 custom_minimum_size = Vector2(112, 112)
@@ -151,6 +155,7 @@ alignment = 1
 [node name="Edit Container" type="Button" parent="Container/Task Right/Buttons/Buttons"]
 custom_minimum_size = Vector2(47, 47)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l0kyq")
 disabled = true
 flat = true
 
@@ -168,6 +173,7 @@ flat = true
 [node name="Done Container" type="Button" parent="Container/Task Right/Buttons/Buttons"]
 custom_minimum_size = Vector2(47, 47)
 layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_dxnve")
 disabled = true
 flat = true
 

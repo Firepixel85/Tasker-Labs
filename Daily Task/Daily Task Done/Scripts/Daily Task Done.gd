@@ -38,6 +38,9 @@ func _ready():
 	
 
 func _process(delta: float) -> void:
+	taskname.text = rtv.namedic[id]
+	taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
+	taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
 	taskstreak.text = str(rtv.streakdic[id])
 	if rtv.donedic[id] == false:
 		visible = false
@@ -45,8 +48,11 @@ func _process(delta: float) -> void:
 		visible = true
 
 func _on_edit_pressed() -> void:
-	pass # Replace with function body.
-
+	Input.action_press("Edit")
+	Input.action_release("Edit")
+	print("sending")
+	rtv.edittarget = id
+	rtv.isediting = true
 
 func _on_x_button_pressed() -> void:
 	visible = false
