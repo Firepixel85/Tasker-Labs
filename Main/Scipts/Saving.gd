@@ -10,6 +10,8 @@ func _ready() -> void:
 		loadlastlog()
 	else:
 		rtv.lastlogwasloaded = false
+	if FileAccess.file_exists("user://bg.jpg"):
+		texture = ImageTexture.create_from_image(Image.load_from_file("user://bg.jpg"))
 	savetimer.start()
 	
 func savetaskdata(): # Saves task data
