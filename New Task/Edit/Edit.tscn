@@ -172,9 +172,6 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_1xkij")
 theme_override_styles/normal = SubResource("StyleBoxTexture_qx6rl")
 text = "Delete"
 
-[node name="Timer" type="Timer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete"]
-
 [connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Create" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete" to="." method="_on_delete_pressed"]
-[connection signal="timeout" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete/Timer" to="." method="_on_deletetimer_timeout"]

@@ -22,3 +22,5 @@ var icondic:Dictionary
 var donedic:Dictionary
 var streakdic:Dictionary
 var comlastlogdic:Dictionary
+
+var production:bool = true

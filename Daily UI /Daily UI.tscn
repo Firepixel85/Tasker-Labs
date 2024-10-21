@@ -113,3 +113,4 @@ layout_mode = 2
 script = ExtResource("5_obgsm")
 
 [connection signal="new_task" from="." to="Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="new_task"]
+[connection signal="new_task" from="." to="Complete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="_on_new_task"]

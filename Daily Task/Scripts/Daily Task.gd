@@ -71,7 +71,6 @@ func _on_done_pressed() -> void:
 func _on_edit_pressed() -> void:
 	Input.action_press("Edit")
 	Input.action_release("Edit")
-	print("sending")
 	rtv.edittarget = id
 	rtv.isediting = true
 
