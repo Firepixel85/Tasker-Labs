@@ -1,6 +1,6 @@
 extends VBoxContainer
 
-func _ready():
+func _ready(): 
 	if rtv.isloading == true:
 		loadfull()
 
@@ -10,8 +10,9 @@ func new_task(id):
 
 func loadfull():
 	for i in rtv.namedic.size():
+		var array = rtv.iddic.values()
 		rtv.loadcreationstatus = 0
-		rtv.justcreatedid = i + 1
+		rtv.justcreatedid = array[i]
 		add_child(preload("res://Daily Task/Daily Task.tscn").instantiate())
 		await rtv.loadcreationstatus == 1
 		

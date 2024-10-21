@@ -14,8 +14,9 @@ var streakstatus:String #On run: "hold" can obtain streak "same" can obtain "kil
 #Editing 
 var isediting:bool
 var edittarget:String
-
+var deletetarget:String
 var namedic:Dictionary
+var iddic:Dictionary
 var colordic:Dictionary
 var icondic:Dictionary
 var donedic:Dictionary

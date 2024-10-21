@@ -12,6 +12,7 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var edit: Button = $"Container/Task Right/Buttons/Buttons/Edit Container/Edit"
 
 var id:String
+var deleted:bool
 func _ready():
 	if rtv.justcreatedid != -1:
 		id = str(rtv.justcreatedid)
@@ -25,19 +26,14 @@ func _ready():
 			rtv.donedic[id] = false
 			rtv.comlastlogdic[id] = false
 		
-		taskname.text = rtv.namedic[id]
+		taskname.text = rtv. namedic[id]
 		taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
 		taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
 		taskstreak.text = str(rtv.streakdic[id])
 		rtv.loadcreationstatus = 0
 		rtv.iscreating = false
-
-		if rtv.streakdic[id] <= 7:
-			taskflame.modulate = Color8(84,157,246)
-		elif rtv.streakdic[id] > 7 and rtv.streakdic[id] <= 15:
-			taskflame.modulate = Color8(255,159,10)
-		elif rtv.streakdic[id] > 15 :
-			taskflame.modulate = Color8(246,94,84)
+		
+		update_streak_color()
 		
 		if rtv.donedic[id] == false:
 			visible = true
@@ -49,14 +45,19 @@ func _ready():
 		print("Fatal Error: Task data lost!")
 	
 func _process(delta: float) -> void:
-	taskname.text = rtv.namedic[id]
-	taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
-	taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
-	taskstreak.text = str(rtv.streakdic[id])
-	if rtv.donedic[id] == false:
-		visible = true
-	else:
+	if rtv.deletetarget == id:
 		visible = false
+		deleted = true
+	if deleted == false:
+		update_streak_color()
+		taskname.text = rtv.namedic[id]
+		taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
+		taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
+		taskstreak.text = str(rtv.streakdic[id])
+		if rtv.donedic[id] == false:
+			visible = true
+		else:
+			visible = false
 
 
 
@@ -73,3 +74,12 @@ func _on_edit_pressed() -> void:
 	print("sending")
 	rtv.edittarget = id
 	rtv.isediting = true
+
+func update_streak_color(): 
+	if deleted == false:
+		if rtv.streakdic[id] <= 7:
+			taskflame.modulate = Color8(84,157,246)
+		elif rtv.streakdic[id] > 7 and rtv.streakdic[id] <= 15:
+			taskflame.modulate = Color8(255,159,10)
+		elif rtv.streakdic[id] > 15 :
+			taskflame.modulate = Color8(246,94,84)

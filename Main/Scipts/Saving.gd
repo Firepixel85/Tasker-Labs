@@ -10,6 +10,12 @@ func _ready() -> void:
 		loadlastlog()
 	else:
 		rtv.lastlogwasloaded = false
+		var file = FileAccess.open("user://lastlog.json", FileAccess.WRITE)
+		var save:Dictionary
+		save["lastlogd"] = Time.get_date_string_from_system()
+		var json = JSON.stringify(save)
+		file.store_string(json)
+		file.close()
 	if FileAccess.file_exists("user://bg.jpg"):
 		texture = ImageTexture.create_from_image(Image.load_from_file("user://bg.jpg"))
 	savetimer.start()
@@ -18,6 +24,7 @@ func savetaskdata(): # Saves task data
 	var file = FileAccess.open("user://taskdata.json", FileAccess.WRITE)
 	var save:Dictionary
 	save["namedic"] = rtv.namedic
+	save["iddic"] = rtv.iddic 
 	save["colordic"] = rtv.colordic
 	save["icondic"] = rtv.icondic
 	save["donedic"] = rtv.donedic
@@ -33,6 +40,7 @@ func loadtaskdata(): #Loads task data
 	var json = file.get_as_text()
 	var save = JSON.parse_string(json)
 	rtv.namedic = save["namedic"]
+	rtv.iddic = save["iddic"]
 	rtv.colordic = save["colordic"] 
 	rtv.icondic = save["icondic"] 
 	rtv.donedic = save["donedic"] 
@@ -40,6 +48,7 @@ func loadtaskdata(): #Loads task data
 	rtv.lastgivenid = save["lastgivenid"] 
 	rtv.comlastlogdic = save["complastlogdic"]
 	file.close()
+	
 	
 func savelastlog(): # Saves lastlog data
 	var file = FileAccess.open("user://lastlog.json", FileAccess.WRITE)

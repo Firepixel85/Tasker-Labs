@@ -8,6 +8,8 @@ func _ready() -> void:
 	if rtv.lastlogwasloaded == true and rtv.lastlogd != Time.get_date_string_from_system():
 		var ll = rtv.lastlogd.split("-")
 		caldatedif(int(ll[0]),int(ll[1]),int(ll[2]))
+	elif rtv.lastlogwasloaded == false:
+		rtv.lastlogd = Time.get_date_string_from_system()
 	else:
 		rtv.streakstatus = "same"
 	

@@ -7,6 +7,8 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var cancel = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Cancel
 @onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Create
 @onready var daily_handler = $"../Daily Ui"
+@onready var delete = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete
+@onready var deletetimer = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete/Timer
 
 @onready var taskname = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/LineEdit
 @onready var taskcolor = $"TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Color Drop Down"
@@ -15,6 +17,7 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var colordisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color
 @onready var icondisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer/Icon
 
+var delphs1:bool
 func _ready():
 	visible = false
 	taskcolor.add_icon_item(load("res://Daily Task/Textures/Colors/Blue.png"),"Blue",0)
@@ -41,6 +44,7 @@ func _process(delta: float) -> void:
 		taskicon.select(int(rtv.icondic[rtv.edittarget])-1)
 
 func _on_cancel_pressed() -> void:
+	delete.text = "Delete"
 	visible = false
 	rtv.edittarget = "0"
 	rtv.isediting = false
@@ -53,3 +57,28 @@ func _on_create_pressed() -> void:
 	visible = false
 	rtv.edittarget = "0"
 	rtv.isediting = false
+
+
+func _on_delete_pressed() -> void:
+	delphs1 = true
+	delete.text = "Are you sure?"
+	deletetimer.start()
+	await delete.pressed
+	if delphs1 == true:
+		rtv.deletetarget = rtv.edittarget
+		rtv.namedic.erase(rtv.edittarget)
+		rtv.colordic.erase(rtv.edittarget)
+		rtv.icondic.erase(rtv.edittarget)
+		rtv.donedic.erase(rtv.edittarget)
+		rtv.streakdic.erase(rtv.edittarget)
+		rtv.comlastlogdic.erase(rtv.edittarget)
+		rtv.iddic.erase(rtv.edittarget)
+		visible = false
+		rtv.edittarget = "0"
+		rtv.isediting = false
+		delete.text = "Delete"
+	
+func _on_deletetimer_timeout() -> void:
+	delphs1 = false
+	delete.text = "Delete"
+	print(delphs1)
