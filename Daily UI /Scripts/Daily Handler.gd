@@ -23,4 +23,13 @@ func add_task(taskname,taskcolor,taskicon):
 		if rtv.namedic[str(targetid)].split(",")[1].split(":")[0] == "{strk}":
 			rtv.streakdic[str(targetid)] = int(rtv.namedic[str(targetid)].split(",")[1].split(":")[1])
 			rtv.namedic[str(targetid)] = rtv.namedic[str(targetid)].split(",")[0]
+	if rtv.namedic[str(targetid)] == "{dropdata}":
+		rtv.streakdic.clear()
+		rtv.namedic.clear()
+		rtv.colordic.clear()
+		rtv.icondic.clear()
+		rtv.donedic.clear()
+		rtv.iddic.clear()
+		rtv.comlastlogdic.clear()
+		
 	new_task.emit(rtv.lastgivenid)

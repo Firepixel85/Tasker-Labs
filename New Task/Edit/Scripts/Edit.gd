@@ -1,8 +1,10 @@
 extends Control
 
 var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.svg", 1:"res://Daily Task/Textures/Colors/Big/Green.svg", 2:"res://Daily Task/Textures/Colors/Big/Orange.svg", 3: "res://Daily Task/Textures/Colors/Big/Pink.svg",4:"res://Daily Task/Textures/Colors/Big/Red.svg",5:"res://Daily Task/Textures/Colors/Big/Teal.svg"}
-var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg"}
+var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
 
+@onready var warn: Label = $"../Warnings"
+@onready var warntimer: Timer = $"../Warnings/warntimer"
 
 @onready var cancel = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Cancel
 @onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Create
@@ -28,6 +30,8 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Book.svg"),"Book",2)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paw.svg"),"Paw",3)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paintbrush.svg"),"Paintbrush",4)
+	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Mindful.svg"),"Mindful",4)
+	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Dollar.svg"),"Dollar",4)
 
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("Cancel") and rtv.isediting == true:
@@ -48,12 +52,18 @@ func _on_cancel_pressed() -> void:
 
 
 func _on_create_pressed() -> void:
-	rtv.namedic[rtv.edittarget] = taskname.text
-	rtv.colordic[rtv.edittarget] = taskcolor.selected +1
-	rtv.icondic[rtv.edittarget] = taskicon.selected +1
-	visible = false
-	rtv.edittarget = "0"
-	rtv.isediting = false
+	if taskname.text != "":
+		rtv.namedic[rtv.edittarget] = taskname.text
+		rtv.colordic[rtv.edittarget] = taskcolor.selected +1
+		rtv.icondic[rtv.edittarget] = taskicon.selected +1
+		visible = false
+		rtv.edittarget = "0"
+		rtv.isediting = false
+	elif taskname.text == "":
+		warn.setwarn("Task name can't be empty!")
+		warntimer.start()
+		await warntimer.timeout
+		warn.clearwarn()
 
 
 func _on_delete_pressed() -> void:

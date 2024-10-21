@@ -1,13 +1,13 @@
 res://Main/main.tscn
 res://Main/Main Theme.tres
+res://Daily Task/Daily Task Done/Scripts/Daily Task Done.gd
+res://Daily Task/Scripts/Daily Task.gd
+res://New Task/Edit/Scripts/Edit.gd
+res://New Task/Scripts/New Task.gd
 res://New Task/New Task.tscn
 res://Sidebar/sidebar.tscn
 res://Daily Task/Daily Task.tscn
 res://Daily Task/Daily Task Done/Daily Task Done.tscn
 res://Daily UI /Daily UI.tscn
 res://New Task/Edit/Edit.tscn
-res://Daily Task/Scripts/Daily Task.gd
-res://New Task/Edit/Scripts/Edit.gd
-res://Daily UI /Task Done Instantiator.gd
-res://Daily UI /Scripts/Daily Handler.gd
-res://Main/Scipts/rtv.gd
+res://Main/Scipts/Warnings.gd

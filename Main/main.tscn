@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://bas5xco4jt2as"]
+[gd_scene load_steps=13 format=3 uid="uid://bas5xco4jt2as"]
 
 [ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
@@ -8,6 +8,8 @@
 [ext_resource type="Script" path="res://Main/Time/Time.gd" id="3_0qn1y"]
 [ext_resource type="PackedScene" uid="uid://bvnru570cxn8u" path="res://New Task/New Task.tscn" id="5_eynx2"]
 [ext_resource type="PackedScene" uid="uid://b6nm4kqyij8qh" path="res://New Task/Edit/Edit.tscn" id="8_as1ma"]
+[ext_resource type="FontFile" uid="uid://b7srdqmpudkab" path="res://Theme/Inter font/static/Inter_24pt-ExtraBold.ttf" id="9_lq6es"]
+[ext_resource type="Script" path="res://Main/Scipts/Warnings.gd" id="10_ytvsy"]
 
 [sub_resource type="Gradient" id="Gradient_rknem"]
 colors = PackedColorArray(0.0862745, 0.0862745, 0.0941176, 1, 0.0862745, 0.0862745, 0.0941176, 1)
@@ -97,5 +99,21 @@ layout_mode = 1
 [node name="Edit" parent="." instance=ExtResource("8_as1ma")]
 layout_mode = 1
 
+[node name="Warnings" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+offset_left = 556.0
+offset_top = 10.42
+offset_right = -556.0
+offset_bottom = 33.42
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("9_lq6es")
+theme_override_font_sizes/font_size = 24
+script = ExtResource("10_ytvsy")
+
+[node name="warntimer" type="Timer" parent="Warnings"]
+
 [connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
+[connection signal="new_task" from="Daily Ui" to="Daily Ui/Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
