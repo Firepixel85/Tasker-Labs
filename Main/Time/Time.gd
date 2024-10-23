@@ -2,7 +2,6 @@ extends VBoxContainer
 
 @onready var time_label = $"MarginContainer/HBoxContainer/Time Label"
 var time
-var showseconds:bool = false
 
 func _ready() -> void:
 	if rtv.lastlogwasloaded == true and rtv.lastlogd != Time.get_date_string_from_system():
@@ -15,10 +14,12 @@ func _ready() -> void:
 	
 func _process(delta):
 	time = Time.get_time_string_from_system().split(":")
-	if showseconds == true:
+	if rtv.timesetting == 1:
 		time_label.text = (time[0]+":"+time[1]+":"+time[2])
-	else:
+	elif rtv.timesetting == 0:
 		time_label.text = (time[0]+":"+time[1])
+	else:
+		time_label.text = ""
 	if Input.is_action_pressed("Exit"):
 		get_tree().quit()
 

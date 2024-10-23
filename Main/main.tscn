@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bas5xco4jt2as"]
+[gd_scene load_steps=15 format=3 uid="uid://bas5xco4jt2as"]
 
 [ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
@@ -6,10 +6,12 @@
 [ext_resource type="Script" path="res://Main/Scipts/Saving.gd" id="2_8dlu8"]
 [ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="2_qf686"]
 [ext_resource type="Script" path="res://Main/Time/Time.gd" id="3_0qn1y"]
+[ext_resource type="Script" path="res://Main/Scipts/Greeting.gd" id="3_meshi"]
 [ext_resource type="PackedScene" uid="uid://bvnru570cxn8u" path="res://New Task/New Task.tscn" id="5_eynx2"]
 [ext_resource type="PackedScene" uid="uid://b6nm4kqyij8qh" path="res://New Task/Edit/Edit.tscn" id="8_as1ma"]
 [ext_resource type="FontFile" uid="uid://b7srdqmpudkab" path="res://Theme/Inter font/static/Inter_24pt-ExtraBold.ttf" id="9_lq6es"]
 [ext_resource type="Script" path="res://Main/Scipts/Warnings.gd" id="10_ytvsy"]
+[ext_resource type="PackedScene" uid="uid://um6cwu8sn12e" path="res://Orientation/Orientation.tscn" id="11_733n8"]
 
 [sub_resource type="Gradient" id="Gradient_rknem"]
 colors = PackedColorArray(0.0862745, 0.0862745, 0.0941176, 1, 0.0862745, 0.0862745, 0.0941176, 1)
@@ -45,6 +47,7 @@ layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+script = ExtResource("3_meshi")
 
 [node name="MarginContainer" type="MarginContainer" parent="Greeting"]
 layout_mode = 2
@@ -113,6 +116,10 @@ theme_override_font_sizes/font_size = 24
 script = ExtResource("10_ytvsy")
 
 [node name="warntimer" type="Timer" parent="Warnings"]
+
+[node name="Control" parent="." instance=ExtResource("11_733n8")]
+z_index = 19
+layout_mode = 1
 
 [connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]

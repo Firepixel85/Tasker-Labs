@@ -23,4 +23,9 @@ var donedic:Dictionary
 var streakdic:Dictionary
 var comlastlogdic:Dictionary
 
+#Orientation
+var timesetting:int = 0
+var username:String 
+
+
 var production:bool = false

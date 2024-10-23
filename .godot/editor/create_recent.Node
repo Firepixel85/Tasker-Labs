@@ -1,4 +1,13 @@
-Timer
-Label
-Button
+OptionButton
+RichTextLabel
 VBoxContainer
+LineEdit
+AnimationPlayer
+TextureRect
+TextEdit
+Label
+MarginContainer
+Button
+HBoxContainer
+CanvasLayer
+Timer
