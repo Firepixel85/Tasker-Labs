@@ -1,3 +1,5 @@
+Privacy Pledge Tasker 2024
+
 Rosepen Studios and Tasker are commited to protecting user data,
 as such Tasker will never ask for any sensitive data,
 Tasker will also never upload your data to any server,
