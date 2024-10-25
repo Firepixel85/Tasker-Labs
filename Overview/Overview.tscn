@@ -1,0 +1,198 @@
+[gd_scene load_steps=11 format=3 uid="uid://cyq17akq5k48v"]
+
+[ext_resource type="Script" path="res://Overview/Scripts/Overview.gd" id="1_cxxsj"]
+[ext_resource type="Texture2D" uid="uid://c1xx6a5hvtwod" path="res://Overview/Textures/Container.png" id="1_jux3x"]
+[ext_resource type="FontFile" uid="uid://b6etgqa0fr38o" path="res://Theme/Inter font/static/Inter_28pt-Bold.ttf" id="2_nqp6h"]
+[ext_resource type="Texture2D" uid="uid://b7c331q8i6rb1" path="res://Overview/Textures/Under.png" id="3_emlme"]
+[ext_resource type="Texture2D" uid="uid://cf4o8oxrihold" path="res://Overview/Textures/Progress Bar.png" id="4_ouu1u"]
+[ext_resource type="FontFile" uid="uid://x4yjjqdaibsw" path="res://Theme/Inter font/static/Inter_28pt-SemiBold.ttf" id="5_i0s1g"]
+[ext_resource type="Script" path="res://Overview/Scripts/Score.gd" id="6_8r374"]
+[ext_resource type="Texture2D" uid="uid://dhbh7801xqq2x" path="res://Overview/Textures/Overview Container.png" id="6_d87hf"]
+[ext_resource type="FontFile" uid="uid://b4aucabwmunli" path="res://Theme/Inter font/static/Inter_18pt-SemiBold.ttf" id="7_ug3pd"]
+[ext_resource type="Script" path="res://Overview/Scripts/Overview Task Instatiator.gd" id="8_xsquh"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1152.0
+grow_vertical = 2
+script = ExtResource("1_cxxsj")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1152.0
+grow_vertical = 2
+theme_override_constants/margin_left = 96
+theme_override_constants/margin_top = 83
+
+[node name="Control" type="Control" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control"]
+layout_mode = 2
+anchor_bottom = 0.972
+offset_right = 1029.0
+offset_bottom = -0.180054
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("1_jux3x")
+expand_mode = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1015.0
+grow_vertical = 2
+theme_override_constants/margin_left = 22
+theme_override_constants/margin_top = 22
+theme_override_constants/margin_right = 22
+theme_override_constants/margin_bottom = 22
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 18
+
+[node name="Control" type="Control" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(328.43, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control"]
+layout_mode = 2
+anchor_bottom = 1.0
+offset_left = 18.0
+offset_right = 338.0
+
+[node name="Label" type="Label" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_nqp6h")
+theme_override_font_sizes/font_size = 36
+text = "Overview"
+
+[node name="Control" type="Control" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer"]
+custom_minimum_size = Vector2(320, 433.54)
+layout_mode = 2
+
+[node name="Score" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control"]
+custom_minimum_size = Vector2(0, 457.48)
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.059
+offset_right = 318.0
+offset_bottom = -0.118866
+alignment = 1
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control/Score"]
+custom_minimum_size = Vector2(0, 160)
+layout_mode = 2
+size_flags_vertical = 4
+value = 33.0
+fill_mode = 4
+texture_under = ExtResource("3_emlme")
+texture_progress = ExtResource("4_ouu1u")
+script = ExtResource("6_8r374")
+
+[node name="Label" type="Label" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control/Score/TextureProgressBar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("5_i0s1g")
+theme_override_font_sizes/font_size = 70
+text = "33%"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="Control" type="Control" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+custom_minimum_size = Vector2(303, 0)
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_bottom = 1.0
+offset_right = 303.0
+texture = ExtResource("6_d87hf")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ug3pd")
+theme_override_font_sizes/font_size = 24
+text = "Incomplete"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 390)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(0, 390)
+layout_mode = 2
+script = ExtResource("8_xsquh")
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+texture = ExtResource("6_d87hf")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ug3pd")
+theme_override_font_sizes/font_size = 24
+text = "Complete"
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(0, 390)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+script = ExtResource("8_xsquh")
+comp = true

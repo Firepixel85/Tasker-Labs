@@ -6,6 +6,10 @@ var loadcreationstatus:int = -1  #On load: -1 Isn't loading 0 Is loading 1 Done 
 var isloading:bool
 var lastgivenid:int 
 
+#Overview
+var justcreatedid_overview:int
+var loadcreationstatus_overview:int = -1
+
 #Log Control:
 var lastlogd #Last logged date detected by the runtime
 var lastlogwasloaded:bool #Were the lastlog vars loaded?
@@ -24,6 +28,7 @@ var streakdic:Dictionary
 var comlastlogdic:Dictionary
 
 #Orientation
+var orientationcomp:bool
 var timesetting:int = 0
 var username:String 
 

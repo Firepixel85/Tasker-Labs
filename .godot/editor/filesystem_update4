@@ -1,14 +1,12 @@
-res://Main/main.tscn
+res://Sidebar/sidebar.tscn
 res://Main/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
-res://New Task/New Task.tscn
-res://Sidebar/sidebar.tscn
+res://Sidebar/Scripts/Add.gd
+res://Main/main.tscn
 res://Daily Task/Daily Task.tscn
 res://Daily Task/Daily Task Done/Daily Task Done.tscn
 res://Daily UI /Daily UI.tscn
-res://New Task/Edit/Edit.tscn
-res://Orientation/Orientation.tscn
-res://Orientation/Scripts/Orientation.gd
-res://Orientation/Scripts/Privacy Pledge.gd
-res://Main/Scipts/rtv.gd
-res://Main/Time/Time.gd
+res://New Task/New Task.tscn
+res://New Task/Scripts/New Task.gd
+res://Main/Scipts/Warnings.gd
+res://Sidebar/Scripts/Sidebar.gd

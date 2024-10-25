@@ -12,7 +12,7 @@ func _ready() -> void:
 	else:
 		rtv.streakstatus = "same"
 	
-func _process(delta):
+func _process(_delta):
 	time = Time.get_time_string_from_system().split(":")
 	if rtv.timesetting == 1:
 		time_label.text = (time[0]+":"+time[1]+":"+time[2])

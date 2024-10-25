@@ -8,7 +8,7 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 
 @onready var animator = $AnimationPlayer
 @onready var cancel = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Cancel
-@onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Create
+@onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Control/Create
 @onready var daily_handler = $"../Daily Ui"
 
 @onready var taskname = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/LineEdit
@@ -32,11 +32,11 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paintbrush.svg"),"Paintbrush",4)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Mindful.svg"),"Mindful",5)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Dollar.svg"),"Dollar",6)
-func _process(delta):
+func _process(_delta):
 	
 	colordisplay.texture = load(colorpointer[taskcolor.selected])
 	icondisplay.texture = load(iconpointer[taskicon.selected+1])
-	if Input.is_action_just_pressed("Add"):
+	if Input.is_action_just_pressed("Add") and rtv.iscreating == false:
 		clearsel()
 		rtv.iscreating = true
 		visible = true
@@ -56,16 +56,27 @@ func _on_cancel_pressed():
 
 func _on_create_pressed():
 	if rtv.iscreating == true and taskname.text != "":
+		var tween = get_tree().create_tween()
+		tween.tween_property(create,"scale",Vector2(1.1,1.1),0.2)
+		tween.tween_property(create,"scale",Vector2(1,1),0.2)
 		daily_handler.add_task(taskname.text,taskcolor.selected,taskicon.selected)
 		animator.play("Out_Complete")
 		await animator.animation_changed
 		visible = false
 		rtv.iscreating = false
 	elif taskname.text == "":
+		var tween = get_tree().create_tween()
+		create.modulate = Color(1, 0.27, 0.27)
+		tween.tween_property(create,"position",Vector2(15,0),0.08)
+		tween.tween_property(create,"position",Vector2(0,0),0.1)
+		tween.tween_property(create,"position",Vector2(-15,0),0.08)
+		tween.tween_property(create,"position",Vector2(0,0),0.1)
+		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
 		warn.setwarn("Task name can't be empty!")
 		warntimer.start()
 		await warntimer.timeout
 		warn.clearwarn()
+
 		
 
 func clearsel():

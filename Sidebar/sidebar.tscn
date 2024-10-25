@@ -1,9 +1,12 @@
-[gd_scene load_steps=14 format=3 uid="uid://cedapa6ga120n"]
+[gd_scene load_steps=21 format=3 uid="uid://cedapa6ga120n"]
 
+[ext_resource type="Script" path="res://Sidebar/Scripts/Sidebar.gd" id="1_2ga01"]
 [ext_resource type="Texture2D" uid="uid://ctmiab4av8ue" path="res://Sidebar/Textures/Rectangle 76.png" id="1_aop4d"]
 [ext_resource type="Texture2D" uid="uid://cyhqd8huvvppb" path="res://Sidebar/Textures/Home Icon.svg" id="2_iydla"]
+[ext_resource type="Texture2D" uid="uid://buokifw8oechu" path="res://Sidebar/Textures/Selection.png" id="3_0xcps"]
 [ext_resource type="Texture2D" uid="uid://ctccnjwtitcfd" path="res://Sidebar/Textures/Overview Icon.png" id="3_ypvnt"]
 [ext_resource type="Texture2D" uid="uid://deexw1xdo8oup" path="res://Sidebar/Textures/Daily Icon.png" id="4_4d04x"]
+[ext_resource type="Script" path="res://Sidebar/Scripts/Selection.gd" id="4_y0sa7"]
 [ext_resource type="Texture2D" uid="uid://c6cibylcsroxq" path="res://Sidebar/Textures/Schedualed Icon.svg" id="5_rl55e"]
 [ext_resource type="Texture2D" uid="uid://3arjmr8ikrnj" path="res://Sidebar/Textures/Settings Icon.png" id="6_wy0pj"]
 [ext_resource type="Script" path="res://Debug/Scripts/button debug.gd" id="7_edmby"]
@@ -18,6 +21,94 @@
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6vyrw"]
 
+[sub_resource type="Animation" id="Animation_6cqmp"]
+resource_name = "Pressed"
+length = 0.5
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.12, -0.25, 0, 0.25, 0, 0.07, -0.25, 0, 0.25, 0, 0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(0.12, -0.25, 0, 0.25, 0, 0.07, -0.25, 0, 0.25, 0, 0.12, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.2, 0.5)
+}
+
+[sub_resource type="Animation" id="Animation_nl16o"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-216, -218)]
+}
+
+[sub_resource type="Animation" id="Animation_0dqyr"]
+resource_name = "No"
+length = 0.4
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-216, -218), Vector2(-206, -218), Vector2(-216, -218), Vector2(-226, -218), Vector2(-216, -218)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou1qj"]
+_data = {
+"No": SubResource("Animation_0dqyr"),
+"Pressed": SubResource("Animation_6cqmp"),
+"RESET": SubResource("Animation_nl16o")
+}
+
 [node name="Sidebar" type="Control"]
 layout_mode = 3
 anchors_preset = 9
@@ -27,6 +118,7 @@ offset_top = 16.0
 offset_right = 80.0
 offset_bottom = -16.0
 grow_vertical = 2
+script = ExtResource("1_2ga01")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -53,11 +145,27 @@ offset_bottom = 208.0
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -212
 
+[node name="Selection" type="Control" parent="TextureRect/Control/Upper"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/Selection"]
+modulate = Color(0.52549, 0.403922, 0.913725, 1)
+layout_mode = 2
+offset_top = 62.0
+offset_right = 48.0
+offset_bottom = 275.0
+size_flags_horizontal = 0
+texture = ExtResource("3_0xcps")
+stretch_mode = 2
+script = ExtResource("4_y0sa7")
+
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/Control/Upper"]
 custom_minimum_size = Vector2(64, 213)
 layout_mode = 2
 
 [node name="Button" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -76,33 +184,33 @@ texture = ExtResource("2_iydla")
 expand_mode = 2
 stretch_mode = 2
 
-[node name="Button2" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+[node name="Overview" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button2"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Overview"]
 custom_minimum_size = Vector2(2.08165e-12, 48)
 layout_mode = 2
 offset_top = 12.0
-offset_right = 48.0
-offset_bottom = 60.0
+offset_right = 70.0
+offset_bottom = 82.0
 scale = Vector2(0.1, 0.1)
 pivot_offset = Vector2(2.08165e-12, 2.08165e-12)
 texture = ExtResource("3_ypvnt")
 expand_mode = 2
 stretch_mode = 2
 
-[node name="Button3" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+[node name="Daily" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
 flat = true
 
-[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Button3"]
+[node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Daily"]
 custom_minimum_size = Vector2(2.08165e-12, 48)
 layout_mode = 2
 offset_top = 12.0
@@ -115,6 +223,7 @@ expand_mode = 2
 stretch_mode = 2
 
 [node name="Button4" type="Button" parent="TextureRect/Control/Upper/VBoxContainer"]
+visible = false
 custom_minimum_size = Vector2(48, 48)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -155,6 +264,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yofh5")
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Lower/VBoxContainer/Settings"]
+visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -168,9 +278,22 @@ theme_override_styles/focus = SubResource("StyleBoxTexture_6vyrw")
 flat = true
 script = ExtResource("8_boi5m")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="TextureRect/Control/Lower/VBoxContainer/Add"]
+root_node = NodePath("../TextureRect")
+libraries = {
+"": SubResource("AnimationLibrary_ou1qj")
+}
+
 [node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Lower/VBoxContainer/Add"]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = -1
+offset_left = -216.0
+offset_top = -218.0
+offset_right = 264.0
+offset_bottom = 262.0
 scale = Vector2(0.1, 0.1)
+pivot_offset = Vector2(240, 240)
 texture = ExtResource("7_sxfcb")
+
+[connection signal="pressed" from="TextureRect/Control/Upper/VBoxContainer/Overview" to="." method="_on_overview_pressed"]
+[connection signal="pressed" from="TextureRect/Control/Upper/VBoxContainer/Daily" to="." method="_on_daily_pressed"]

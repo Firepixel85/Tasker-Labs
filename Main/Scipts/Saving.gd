@@ -8,6 +8,8 @@ func _ready() -> void:
 	if FileAccess.file_exists("user://lastlog.json"):
 		rtv.lastlogwasloaded = true
 		loadlastlog()
+	if FileAccess.file_exists("user://orientation.json"):
+		loadorientation()
 	else:
 		rtv.lastlogwasloaded = false
 		var file = FileAccess.open("user://lastlog.json", FileAccess.WRITE)
@@ -57,6 +59,16 @@ func savelastlog(): # Saves lastlog data
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
+	
+func saveorientation(): # Saves lastlog data
+	var file = FileAccess.open("user://orientation.json", FileAccess.WRITE)
+	var save:Dictionary
+	save["orientationcomp"] = rtv.orientationcomp
+	save["timesetting"] = rtv.timesetting
+	save["username"] = rtv.username
+	var json = JSON.stringify(save)
+	file.store_string(json)
+	file.close()
 
 func loadlastlog(): #Loads lastlog data
 	var file = FileAccess.open("user://lastlog.json", FileAccess.READ)
@@ -65,7 +77,19 @@ func loadlastlog(): #Loads lastlog data
 	rtv.lastlogd = save["lastlogd"]
 	file.close()
 	
+func loadorientation(): #Loads lastlog data
+	var file = FileAccess.open("user://orientation.json", FileAccess.READ)
+	var json = file.get_as_text()
+	var save = JSON.parse_string(json)
+	rtv.orientationcomp = save["orientationcomp"]
+	rtv.username = save["username"]
+	rtv.timesetting = save["timesetting"]
+	file.close()
+	
 func load_timeout() -> void:
 	savetaskdata()
 	savelastlog()
 	savetimer.start()
+
+func _on_orientationcomp() -> void:
+	saveorientation()

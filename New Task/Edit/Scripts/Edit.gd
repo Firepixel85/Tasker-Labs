@@ -33,7 +33,7 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Mindful.svg"),"Mindful",4)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Dollar.svg"),"Dollar",4)
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Cancel") and rtv.isediting == true:
 		_on_cancel_pressed()
 	colordisplay.texture = load(colorpointer[taskcolor.selected])

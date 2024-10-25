@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://bbnaarjtx64tr"]
+
+[ext_resource type="Script" path="res://Overview/Task/Scripts/Overview Task.gd" id="1_clrxp"]
+[ext_resource type="Texture2D" uid="uid://cl1st1ntlurdy" path="res://Overview/Task/Textures/Task Container.png" id="1_npr2j"]
+[ext_resource type="FontFile" uid="uid://cql10rvrxrm18" path="res://Theme/Inter font/static/Inter_18pt-Medium.ttf" id="2_8somj"]
+
+[node name="Control" type="Control"]
+custom_minimum_size = Vector2(0, 44)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_clrxp")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_npr2j")
+stretch_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8somj")
+theme_override_font_sizes/font_size = 20
+text = "[Dynamic]"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/MarginContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="Label" type="Label" parent="TextureRect/MarginContainer/HBoxContainer2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_8somj")
+theme_override_font_sizes/font_size = 20
+text = "43"

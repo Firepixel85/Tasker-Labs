@@ -3,9 +3,6 @@ extends Control
 signal new_task(id:int)
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func add_task(taskname,taskcolor,taskicon):
 	var targetid = rtv.lastgivenid + 1

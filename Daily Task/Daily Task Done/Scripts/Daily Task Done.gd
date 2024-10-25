@@ -7,8 +7,12 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var taskicon = $"Container/Task Left/Color/VBoxContainer/HBoxContainer/Icon"
 @onready var taskstreak = $"Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox/Count"
 @onready var taskflame= $"Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox/Button"
+@onready var animator: AnimationPlayer = $AnimationPlayer
 var id:String
 var deleted:bool
+var decomplete
+var is_tweening:bool = false
+var wasdone
 func _ready():
 	if rtv.justcreatedid != -1:
 		id = str(rtv.justcreatedid)
@@ -19,9 +23,8 @@ func _ready():
 		taskstreak.text = str(rtv.streakdic[id])
 		rtv.loadcreationstatus = 0
 		rtv.iscreating = false
-		
+		animator.play("Added")
 		update_streak_color()
-			
 		if rtv.donedic[id] == true:
 			visible = true
 		else:
@@ -31,33 +34,38 @@ func _ready():
 		print("Fatal Error: Task data lost!")
 	
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if rtv.deletetarget == id:
-		visible= false
 		deleted = true
+		animator.play("Deleted")
+		await animator.animation_finished
+		visible= false
+		
 	if deleted == false:
 		update_streak_color()
 		taskname.text = rtv.namedic[id]
 		taskcolor.texture = load(colorpointer[int(rtv.colordic[id])])
 		taskicon.texture = load(iconpointer[int(rtv.icondic[id])])
 		taskstreak.text = str(rtv.streakdic[id])
-		if rtv.donedic[id] == false:
-			visible = false
-		else:
-			visible = true
+		if animator.is_playing() == false:
+			if rtv.donedic[id] == true:
+				visible = true
+			else:
+				visible = false
 
 func _on_edit_pressed() -> void:
 	Input.action_press("Edit")
 	Input.action_release("Edit")
-	print("sending")
 	rtv.edittarget = id
 	rtv.isediting = true
 
 func _on_x_button_pressed() -> void:
-	visible = false
 	rtv.streakdic[id] -= 1 
 	rtv.donedic[id] = false
 	rtv.comlastlogdic[id] = false
+
+
+
 
 func update_streak_color():
 	if deleted == false:
