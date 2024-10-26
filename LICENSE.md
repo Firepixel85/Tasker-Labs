@@ -6,7 +6,7 @@ Copyright Rosepen Studios, 2024
 
 This license grants the following permissions to anyone with access to the “Software”:
 
-1. **Indefinite Use:** The software may be used indefinitely without payment and access to current or future versions.
+1. **Indefinite Use:** Current or future versions of the software may be used indefinitely without payment.
 2. **Modification:** The software files may be freely modified.
 3. **Republishing:** The software may be republished with any modifications made. (No modifications are required to republish the software.)
 
