@@ -356,7 +356,6 @@ libraries = {
 }
 
 [connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
-[connection signal="new_task" from="Daily Ui" to="Daily Ui/Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="new_task"]
 [connection signal="new_task" from="Daily Ui" to="Overview" method="_on_new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
 [connection signal="orientationcomp" from="Control" to="Background" method="_on_orientationcomp"]
