@@ -16,6 +16,7 @@ func _process(_delta: float) -> void:
 		deleted = true
 		visible = false
 	if deleted == false:
+		streak.text = str(rtv.streakdic[id])
 		update_streak_color()
 		if rtv.donedic[id] == true:
 			visible = false

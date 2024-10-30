@@ -346,7 +346,6 @@ script = ExtResource("10_ytvsy")
 [node name="warntimer" type="Timer" parent="Warnings"]
 
 [node name="Control" parent="." instance=ExtResource("11_733n8")]
-visible = false
 z_index = 19
 layout_mode = 1
 

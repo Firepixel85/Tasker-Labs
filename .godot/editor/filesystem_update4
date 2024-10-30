@@ -6,3 +6,5 @@ res://Daily Task/Daily Task Done/Daily Task Done.tscn
 res://Daily UI /Daily UI.tscn
 res://Sidebar/sidebar.tscn
 res://New Task/New Task.tscn
+res://Orientation/Orientation.tscn
+res://Main/Time/Time.gd
