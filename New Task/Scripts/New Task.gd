@@ -55,7 +55,8 @@ func _on_cancel_pressed():
 		Input.action_release("Cancel")
 
 func _on_create_pressed():
-	if rtv.iscreating == true and taskname.text != "":
+
+	if rtv.iscreating == true and taskname.text != "" and taskname.text.split("").size() <= 16:
 		var tween = get_tree().create_tween()
 		tween.tween_property(create,"scale",Vector2(1.1,1.1),0.2)
 		tween.tween_property(create,"scale",Vector2(1,1),0.2)
@@ -73,6 +74,18 @@ func _on_create_pressed():
 		tween.tween_property(create,"position",Vector2(0,0),0.1)
 		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
 		warn.setwarn("Task name can't be empty!")
+		warntimer.start()
+		await warntimer.timeout
+		warn.clearwarn()
+	elif taskname.text.split("").size() > 16:
+		var tween = get_tree().create_tween()
+		create.modulate = Color(1, 0.27, 0.27)
+		tween.tween_property(create,"position",Vector2(15,0),0.08)
+		tween.tween_property(create,"position",Vector2(0,0),0.1)
+		tween.tween_property(create,"position",Vector2(-15,0),0.08)
+		tween.tween_property(create,"position",Vector2(0,0),0.1)
+		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
+		warn.setwarn("Task name can't be more than 16 characters!")
 		warntimer.start()
 		await warntimer.timeout
 		warn.clearwarn()
