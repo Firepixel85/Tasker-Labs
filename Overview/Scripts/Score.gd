@@ -1,22 +1,20 @@
 extends TextureProgressBar
 
 @onready var text: Label = $Label
-
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+@onready var timer: Timer = $Timer
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(_delta: float) -> void:
-	var score
-	var count:int
-	for i in rtv.namedic.size():
-		var array = rtv.iddic.values()
-		if rtv.donedic[array[i]] == true:
-			count += 1
+func animate_value():
 	if rtv.iddic.size() != 0:
-		score = (100 * count) / rtv.iddic.size()
-	if score != null:
-		value = score
-		text.text = str(value)+"%"
+		var count:int
+		for i in rtv.namedic.size():
+			var array = rtv.iddic.values()
+			if rtv.donedic[array[i]] == true:
+				count += 1
+		value = 0
+		timer.start()
+		await timer.timeout
+		var tween = get_tree().create_tween()
+		tween.tween_property(self,"value",(100 * count) / rtv.iddic.size(),0.6).set_trans(Tween.TRANS_SINE)
+
+		text.text = str((100 * count) / rtv.iddic.size())+"%"

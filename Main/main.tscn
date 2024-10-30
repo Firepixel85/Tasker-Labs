@@ -357,5 +357,6 @@ libraries = {
 [connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
 [connection signal="new_task" from="Daily Ui" to="Overview" method="_on_new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
+[connection signal="changed_page" from="Sidebar" to="Overview" method="_on_changed_page"]
 [connection signal="orientationcomp" from="Control" to="Background" method="_on_orientationcomp"]
 [connection signal="orientationcomp" from="Control" to="Greeting" method="_on_orientationcomp"]
