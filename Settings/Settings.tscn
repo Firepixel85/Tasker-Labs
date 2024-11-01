@@ -1,0 +1,169 @@
+[gd_scene load_steps=11 format=3 uid="uid://dceb2vqd421g4"]
+
+[ext_resource type="Texture2D" uid="uid://dg1sxtba4r5wl" path="res://Settings/Textures/Container.png" id="1_31h5v"]
+[ext_resource type="Shader" path="res://Orientation/Shaders/blur.gdshader" id="1_qhpvl"]
+[ext_resource type="Texture2D" uid="uid://cqtd8qey73ae0" path="res://Bootscreen High DPI.png" id="2_fh1t0"]
+[ext_resource type="FontFile" uid="uid://b6etgqa0fr38o" path="res://Theme/Inter font/static/Inter_28pt-Bold.ttf" id="4_b8kj3"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="5_wbe3d"]
+[ext_resource type="FontFile" uid="uid://cql10rvrxrm18" path="res://Theme/Inter font/static/Inter_18pt-Medium.ttf" id="6_jgyna"]
+[ext_resource type="Texture2D" uid="uid://cx11qitcd8fy2" path="res://Settings/Textures/Search Icon.png" id="7_kw2u6"]
+[ext_resource type="Theme" uid="uid://den5ruiqg8vi5" path="res://Theme/Settings/Section Title.tres" id="8_jmt85"]
+[ext_resource type="Theme" uid="uid://bccpxb6gby2rq" path="res://Theme/Settings/Setting Name.tres" id="9_bgp7a"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fmji8"]
+shader = ExtResource("1_qhpvl")
+shader_parameter/blur_type = 3
+shader_parameter/blur_amount = 8
+shader_parameter/blur_radius = 8.0
+shader_parameter/blur_direction = Vector2(1, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blur" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_fmji8")
+layout_mode = 2
+offset_left = 48.0
+offset_top = 48.0
+offset_right = 1104.0
+offset_bottom = 600.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_fh1t0")
+expand_mode = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 48
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 48
+theme_override_constants/margin_bottom = 48
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer"]
+layout_mode = 2
+texture = ExtResource("1_31h5v")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/TextureRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="Header" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(0, 39)
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Label" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Header/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_b8kj3")
+theme_override_font_sizes/font_size = 32
+text = "Settings"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Header"]
+custom_minimum_size = Vector2(880, 39)
+layout_mode = 2
+alignment = 2
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Header/HBoxContainer2"]
+custom_minimum_size = Vector2(160.27, 0)
+layout_mode = 2
+theme = ExtResource("5_wbe3d")
+theme_override_fonts/font = ExtResource("6_jgyna")
+theme_override_font_sizes/font_size = 18
+placeholder_text = "Search"
+right_icon = ExtResource("7_kw2u6")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 17
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("8_jmt85")
+text = "Section Title"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_bgp7a")
+text = "				Toggle Setting"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/Label2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="CheckButton" type="CheckButton" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/Label2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_wbe3d")
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_bgp7a")
+text = "				Toggle Setting"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Label2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="OptionButton" type="OptionButton" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Label2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_wbe3d")

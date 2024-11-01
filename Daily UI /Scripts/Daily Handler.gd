@@ -9,7 +9,7 @@ func add_task(taskname,taskcolor,taskicon):
 	
 	rtv.streakdic[str(targetid)] = 0
 	rtv.namedic[str(targetid)] = taskname
-	rtv.colordic[str(targetid)] = taskcolor +1
+	rtv.colordic[str(targetid)] = taskcolor 
 	rtv.icondic[str(targetid)] = taskicon +1
 	rtv.donedic[str(targetid)] = false
 	rtv.iddic[str(targetid)] = str(targetid)

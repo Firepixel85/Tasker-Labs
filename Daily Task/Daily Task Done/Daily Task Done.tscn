@@ -1,15 +1,15 @@
 [gd_scene load_steps=20 format=3 uid="uid://c6qv00jqt070e"]
 
 [ext_resource type="Script" path="res://Daily Task/Daily Task Done/Scripts/Daily Task Done.gd" id="1_j0l1a"]
-[ext_resource type="Texture2D" uid="uid://u4tb5tdlv0fw" path="res://Daily Task/Textures/Container.svg" id="1_ud3eo"]
 [ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="2_vn0x7"]
+[ext_resource type="Texture2D" uid="uid://bh88i30soxtgf" path="res://Daily Task/Textures/Container.png" id="2_yepfj"]
 [ext_resource type="Texture2D" uid="uid://dmic7twal8bfy" path="res://Daily Task/Textures/Icons/Big/Book.svg" id="3_uvsoo"]
 [ext_resource type="FontFile" uid="uid://cb1fkhwou4qo4" path="res://Theme/Inter font/static/Inter_24pt-Medium.ttf" id="4_w1mve"]
-[ext_resource type="Texture2D" uid="uid://d72040x2fk3j" path="res://Daily Task/Textures/Streak Container.svg" id="5_r1lqn"]
+[ext_resource type="Texture2D" uid="uid://bo0nj0wolhled" path="res://Daily Task/Textures/Streak Container.png" id="6_f34pk"]
 [ext_resource type="Texture2D" uid="uid://clrxri3hw52lv" path="res://Daily Task/Textures/Streak Flame.svg" id="6_sipa1"]
 [ext_resource type="FontFile" uid="uid://b0taxodwoxljs" path="res://Theme/Inter font/static/Inter_24pt-Bold.ttf" id="7_ufmxk"]
 [ext_resource type="Texture2D" uid="uid://beajogrnqo5fo" path="res://Daily Task/Textures/Edit Button.svg" id="8_aqm5c"]
-[ext_resource type="Texture2D" uid="uid://pfbhp6wqf5f8" path="res://Daily Task/Textures/X Button.png" id="10_i23do"]
+[ext_resource type="Texture2D" uid="uid://dfm3sk7oyuqpk" path="res://Daily Task/Textures/X Button.svg" id="10_jfsmj"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mc4g0"]
 
@@ -177,7 +177,7 @@ anchors_preset = -1
 anchor_right = 0.41
 offset_right = -432.32
 offset_bottom = 40.0
-texture = ExtResource("1_ud3eo")
+texture = ExtResource("2_yepfj")
 
 [node name="Task Left" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -240,7 +240,7 @@ theme_override_constants/margin_top = 6
 
 [node name="Streak Container" type="TextureRect" parent="Container/Task Right/Streak"]
 layout_mode = 2
-texture = ExtResource("5_r1lqn")
+texture = ExtResource("6_f34pk")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Container/Task Right/Streak/Streak Container"]
@@ -327,7 +327,7 @@ offset_right = 482.0
 offset_bottom = 481.0
 scale = Vector2(0.1, 0.1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_00o71")
-icon = ExtResource("10_i23do")
+icon = ExtResource("10_jfsmj")
 flat = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

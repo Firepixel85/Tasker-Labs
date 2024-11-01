@@ -1,7 +1,7 @@
 [gd_scene load_steps=21 format=3 uid="uid://cedapa6ga120n"]
 
 [ext_resource type="Script" path="res://Sidebar/Scripts/Sidebar.gd" id="1_2ga01"]
-[ext_resource type="Texture2D" uid="uid://ctmiab4av8ue" path="res://Sidebar/Textures/Rectangle 76.png" id="1_aop4d"]
+[ext_resource type="Texture2D" uid="uid://gr3dbsbh51y0" path="res://Sidebar/Textures/Sidebar Container.png" id="2_1tnmn"]
 [ext_resource type="Texture2D" uid="uid://cyhqd8huvvppb" path="res://Sidebar/Textures/Home Icon.svg" id="2_iydla"]
 [ext_resource type="Texture2D" uid="uid://buokifw8oechu" path="res://Sidebar/Textures/Selection.png" id="3_0xcps"]
 [ext_resource type="Texture2D" uid="uid://ctccnjwtitcfd" path="res://Sidebar/Textures/Overview Icon.png" id="3_ypvnt"]
@@ -128,7 +128,7 @@ offset_left = 16.0
 offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_aop4d")
+texture = ExtResource("2_1tnmn")
 
 [node name="Control" type="Control" parent="TextureRect"]
 layout_mode = 1
@@ -146,6 +146,7 @@ theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = -212
 
 [node name="Selection" type="Control" parent="TextureRect/Control/Upper"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 0
 
@@ -192,6 +193,7 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_unqxe")
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Upper/VBoxContainer/Overview"]
+modulate = Color(0.576471, 0.576471, 0.576471, 1)
 custom_minimum_size = Vector2(2.08165e-12, 48)
 layout_mode = 2
 offset_top = 12.0

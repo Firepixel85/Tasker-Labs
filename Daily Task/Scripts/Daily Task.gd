@@ -1,6 +1,6 @@
 extends Control
 
-var colorpointer:Dictionary = {1:"res://Daily Task/Textures/Colors/Big/Blue.svg", 2:"res://Daily Task/Textures/Colors/Big/Green.svg", 3:"res://Daily Task/Textures/Colors/Big/Orange.svg", 4: "res://Daily Task/Textures/Colors/Big/Pink.svg",5:"res://Daily Task/Textures/Colors/Big/Red.svg",6:"res://Daily Task/Textures/Colors/Big/Teal.svg"}
+var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.png", 1:"res://Daily Task/Textures/Colors/Big/Green.png", 2:"res://Daily Task/Textures/Colors/Big/Orange.png", 3: "res://Daily Task/Textures/Colors/Big/Pink.png",4:"res://Daily Task/Textures/Colors/Big/Red.png",5:"res://Daily Task/Textures/Colors/Big/Teal.png"}
 var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
 
 @onready var task: TextureRect = $Container
@@ -84,11 +84,17 @@ func _on_edit_pressed() -> void:
 	rtv.edittarget = id
 	rtv.isediting = true
 
-func update_streak_color(): 
-	if deleted == false:
-		if rtv.streakdic[id] <= 7:
-			taskflame.modulate = Color8(84,157,246)
-		elif rtv.streakdic[id] > 7 and rtv.streakdic[id] <= 15:
-			taskflame.modulate = Color8(255,159,10)
-		elif rtv.streakdic[id] > 15 :
-			taskflame.modulate = Color8(246,94,84)
+const STREAK_COLOR_1 = Color8(84, 157, 246)
+const STREAK_COLOR_2 = Color8(255, 159, 10)
+const STREAK_COLOR_3 = Color8(246, 94, 84)
+
+
+func update_streak_color():
+	if not deleted:
+		var streak_value = rtv.streakdic[id]
+		if streak_value <= 7:
+			taskflame.modulate = STREAK_COLOR_1
+		elif streak_value <= 15:
+			taskflame.modulate = STREAK_COLOR_2
+		else:
+			taskflame.modulate = STREAK_COLOR_3

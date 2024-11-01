@@ -6,14 +6,14 @@
 [ext_resource type="FontFile" uid="uid://x4yjjqdaibsw" path="res://Theme/Inter font/static/Inter_28pt-SemiBold.ttf" id="4_klxxu"]
 [ext_resource type="Texture2D" uid="uid://conpyevb1h6rb" path="res://Theme/Textures/Line Input.svg" id="5_dgpqo"]
 [ext_resource type="FontFile" uid="uid://d4midvuswbpbb" path="res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf" id="6_iqdyv"]
+[ext_resource type="Texture2D" uid="uid://bfy2wak52ixc5" path="res://Theme/Textures/Drop Down Arrow.svg" id="7_eeiba"]
 [ext_resource type="Texture2D" uid="uid://dfp00qxyv3ph7" path="res://Theme/Textures/Drop Down.svg" id="7_j6quj"]
-[ext_resource type="Texture2D" uid="uid://sevwl5nmud63" path="res://Theme/Textures/Drop Down Container.png" id="8_o2elu"]
 [ext_resource type="Texture2D" uid="uid://bvt1h5rvqorj7" path="res://Theme/Textures/Text Input.svg" id="9_odddn"]
 [ext_resource type="Texture2D" uid="uid://biy1spp155c2o" path="res://Theme/Textures/Slider/Grabber.svg" id="10_j4psu"]
 [ext_resource type="Texture2D" uid="uid://dt3nkki1q0fxp" path="res://Theme/Textures/Slider/Tick.svg" id="11_a5ij8"]
 [ext_resource type="Texture2D" uid="uid://d0nrq24h37w0v" path="res://Theme/Textures/Slider/Slider.svg" id="12_dpuck"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_im2k7"]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0d3dn"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nd41a"]
 texture = ExtResource("5_dgpqo")
@@ -30,28 +30,28 @@ texture_margin_right = 12.0
 texture_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nchss"]
-texture = ExtResource("8_o2elu")
+texture = ExtResource("7_j6quj")
 texture_margin_left = 12.0
 texture_margin_top = 6.0
 texture_margin_right = 12.0
 texture_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_22m01"]
-texture = ExtResource("8_o2elu")
+texture = ExtResource("7_j6quj")
 texture_margin_left = 12.0
 texture_margin_top = 6.0
 texture_margin_right = 12.0
 texture_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_itql2"]
-texture = ExtResource("8_o2elu")
+texture = ExtResource("7_j6quj")
 texture_margin_left = 12.0
 texture_margin_top = 6.0
 texture_margin_right = 12.0
 texture_margin_bottom = 6.0
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8s2fj"]
-texture = ExtResource("8_o2elu")
+texture = ExtResource("7_j6quj")
 texture_margin_left = 12.0
 texture_margin_top = 6.0
 texture_margin_right = 12.0
@@ -79,18 +79,18 @@ expand_margin_left = 10.0
 [resource]
 Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_uynt7")
-Button/styles/focus = SubResource("StyleBoxEmpty_im2k7")
 CheckButton/constants/h_separation = 0
 CheckButton/icons/checked = ExtResource("2_utnk0")
 CheckButton/icons/unchecked = ExtResource("3_g72pt")
+CheckButton/styles/focus = SubResource("StyleBoxEmpty_0d3dn")
 Label/font_sizes/font_size = 28
 Label/fonts/font = ExtResource("4_klxxu")
 LineEdit/styles/focus = SubResource("StyleBoxTexture_nd41a")
 LineEdit/styles/normal = SubResource("StyleBoxTexture_pkgvo")
-OptionButton/constants/arrow_margin = 11
+OptionButton/constants/arrow_margin = 7
 OptionButton/font_sizes/font_size = 20
 OptionButton/fonts/font = ExtResource("6_iqdyv")
-OptionButton/icons/arrow = ExtResource("7_j6quj")
+OptionButton/icons/arrow = ExtResource("7_eeiba")
 OptionButton/styles/focus = SubResource("StyleBoxTexture_nchss")
 OptionButton/styles/hover = SubResource("StyleBoxTexture_22m01")
 OptionButton/styles/normal = SubResource("StyleBoxTexture_itql2")

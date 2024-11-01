@@ -775,7 +775,7 @@ flat = true
 
 [node name="Button" type="Button" parent="Next Button/HBoxContainer/MarginContainer/Button2"]
 layout_mode = 2
-offset_right = 112.0
+offset_right = 132.0
 offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -794,8 +794,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -147.5
 offset_top = -200.0
-offset_right = 147.5
-offset_bottom = 200.0
+offset_right = 167.5
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ya840")
@@ -814,7 +814,7 @@ theme_override_constants/margin_bottom = 21
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Page 1/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 23
+theme_override_constants/separation = 13
 
 [node name="Label" type="Label" parent="Page 1/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -851,10 +851,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 66.75
+offset_left = -147.5
 offset_top = -200.0
-offset_right = 361.75
-offset_bottom = 200.0
+offset_right = 167.5
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ya840")
@@ -928,10 +928,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.5
+offset_left = 66.75
 offset_top = -200.0
-offset_right = 147.5
-offset_bottom = 200.0
+offset_right = 381.75
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ya840")
@@ -989,8 +989,8 @@ anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = 66.75
 offset_top = -200.0
-offset_right = 361.75
-offset_bottom = 200.0
+offset_right = 381.75
+offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_ya840")

@@ -1,6 +1,7 @@
 extends Control
 
-var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.svg", 1:"res://Daily Task/Textures/Colors/Big/Green.svg", 2:"res://Daily Task/Textures/Colors/Big/Orange.svg", 3: "res://Daily Task/Textures/Colors/Big/Pink.svg",4:"res://Daily Task/Textures/Colors/Big/Red.svg",5:"res://Daily Task/Textures/Colors/Big/Teal.svg"}
+var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.png", 1:"res://Daily Task/Textures/Colors/Big/Green.png", 2:"res://Daily Task/Textures/Colors/Big/Orange.png", 3: "res://Daily Task/Textures/Colors/Big/Pink.png",4:"res://Daily Task/Textures/Colors/Big/Red.png",5:"res://Daily Task/Textures/Colors/Big/Teal.png"}
+var containerpointer:Dictionary ={0:"res://New Task/Textures/Containers/Blue.png",1:"res://New Task/Textures/Containers/Green.png",2:"res://New Task/Textures/Containers/Orange.png",3:"res://New Task/Textures/Containers/Pink.png",4:"res://New Task/Textures/Containers/Red.png",5:"res://New Task/Textures/Containers/Teal.png"}
 var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
 
 @onready var warn: Label = $"../Warnings"
@@ -16,7 +17,8 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var taskicon = $"TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Icon Drop Down"
 
 @onready var colordisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color
-@onready var icondisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer/Icon
+@onready var icondisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer/VBoxContainer/Icon
+@onready var container: TextureRect = $TextureRect
 
 func _ready():
 	visible = false
@@ -33,7 +35,7 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Mindful.svg"),"Mindful",5)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Dollar.svg"),"Dollar",6)
 func _process(_delta):
-	
+	container.texture = load(containerpointer[taskcolor.selected])
 	colordisplay.texture = load(colorpointer[taskcolor.selected])
 	icondisplay.texture = load(iconpointer[taskicon.selected+1])
 	if Input.is_action_just_pressed("Add") and rtv.iscreating == false:
@@ -55,7 +57,6 @@ func _on_cancel_pressed():
 		Input.action_release("Cancel")
 
 func _on_create_pressed():
-
 	if rtv.iscreating == true and taskname.text != "" and taskname.text.split("").size() <= 16:
 		var tween = get_tree().create_tween()
 		tween.tween_property(create,"scale",Vector2(1.1,1.1),0.2)

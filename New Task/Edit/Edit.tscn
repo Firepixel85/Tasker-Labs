@@ -7,18 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="4_inf8k"]
 [ext_resource type="Texture2D" uid="uid://bptfqvcviqbuu" path="res://Daily Task/Textures/Icons/Big/Paw.svg" id="5_rh3wb"]
 [ext_resource type="FontFile" uid="uid://d4midvuswbpbb" path="res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf" id="6_vsd24"]
-[ext_resource type="Texture2D" uid="uid://ema4dd1i4qqs" path="res://Theme/Textures/Button_144 Highlighted.png" id="8_f4wqt"]
-[ext_resource type="Texture2D" uid="uid://bp6xngspbrbqe" path="res://Theme/Textures/Button_144.png" id="9_iw4c2"]
+[ext_resource type="Texture2D" uid="uid://cbr4ue5kbmkc7" path="res://Theme/Textures/Button Highlighted.png" id="8_d0ybi"]
+[ext_resource type="Texture2D" uid="uid://demx36e56pml4" path="res://Theme/Textures/Button.png" id="9_ss6a5"]
 [ext_resource type="Texture2D" uid="uid://btbkmmfgp78pu" path="res://Theme/Textures/Button Long Highlighted.svg" id="10_8mdlf"]
 [ext_resource type="Texture2D" uid="uid://b57ai0lpwdsux" path="res://Theme/Textures/Button Long.svg" id="11_rglb7"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j8q7g"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_guch3"]
-texture = ExtResource("8_f4wqt")
+texture = ExtResource("8_d0ybi")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h8m5o"]
-texture = ExtResource("9_iw4c2")
+texture = ExtResource("9_ss6a5")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1xkij"]
 texture = ExtResource("10_8mdlf")
@@ -86,7 +86,8 @@ theme = ExtResource("3_08462")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_constants/separation = 8
+theme_override_constants/separation = 16
+alignment = 1
 
 [node name="Control" type="Control" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(107, 107)
@@ -98,7 +99,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 texture = ExtResource("4_inf8k")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color"]
 custom_minimum_size = Vector2(2.08165e-12, 104)
 layout_mode = 1
 anchors_preset = 15
@@ -108,11 +109,11 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_rh3wb")
 stretch_mode = 2
@@ -155,7 +156,7 @@ theme_override_styles/hover = SubResource("StyleBoxTexture_guch3")
 theme_override_styles/normal = SubResource("StyleBoxTexture_h8m5o")
 text = "Cancel"
 
-[node name="Create" type="Button" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
+[node name="Edit" type="Button" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer"]
 custom_minimum_size = Vector2(144, 2.08165e-12)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_vsd24")
@@ -176,5 +177,5 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_qx6rl")
 text = "Delete"
 
 [connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
-[connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Create" to="." method="_on_create_pressed"]
+[connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Edit" to="." method="_on_create_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete" to="." method="_on_delete_pressed"]

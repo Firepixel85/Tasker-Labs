@@ -7,4 +7,7 @@ res://Daily UI /Daily UI.tscn
 res://Sidebar/sidebar.tscn
 res://New Task/New Task.tscn
 res://Overview/Overview.tscn
-res://New Task/Scripts/New Task.gd
+res://New Task/Edit/Edit.tscn
+res://Settings/Settings.tscn
+res://Orientation/Orientation.tscn
+res://Overview/Scripts/Score.gd

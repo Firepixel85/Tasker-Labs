@@ -1,6 +1,7 @@
 extends Control
 
-var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.svg", 1:"res://Daily Task/Textures/Colors/Big/Green.svg", 2:"res://Daily Task/Textures/Colors/Big/Orange.svg", 3: "res://Daily Task/Textures/Colors/Big/Pink.svg",4:"res://Daily Task/Textures/Colors/Big/Red.svg",5:"res://Daily Task/Textures/Colors/Big/Teal.svg"}
+var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.png", 1:"res://Daily Task/Textures/Colors/Big/Green.png", 2:"res://Daily Task/Textures/Colors/Big/Orange.png", 3: "res://Daily Task/Textures/Colors/Big/Pink.png",4:"res://Daily Task/Textures/Colors/Big/Red.png",5:"res://Daily Task/Textures/Colors/Big/Teal.png"}
+var containerpointer:Dictionary ={0:"res://New Task/Textures/Containers/Blue.png",1:"res://New Task/Textures/Containers/Green.png",2:"res://New Task/Textures/Containers/Orange.png",3:"res://New Task/Textures/Containers/Pink.png",4:"res://New Task/Textures/Containers/Red.png",5:"res://New Task/Textures/Containers/Teal.png"}
 var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
 
 @onready var warn: Label = $"../Warnings"
@@ -16,7 +17,8 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var taskicon = $"TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Icon Drop Down"
 
 @onready var colordisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color
-@onready var icondisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer/Icon
+@onready var icondisplay = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer/VBoxContainer/Icon
+@onready var container: TextureRect = $TextureRect
 
 func _ready():
 	visible = false
@@ -38,11 +40,12 @@ func _process(_delta: float) -> void:
 		_on_cancel_pressed()
 	colordisplay.texture = load(colorpointer[taskcolor.selected])
 	icondisplay.texture = load(iconpointer[taskicon.selected+1])
+	container.texture = load(containerpointer[taskcolor.selected])
 	if Input.is_action_just_pressed("Edit"):
 		taskname.grab_focus()
 		visible = true
 		taskname.text = rtv.namedic[rtv.edittarget]
-		taskcolor.select(int(rtv.colordic[rtv.edittarget])-1)
+		taskcolor.select(int(rtv.colordic[rtv.edittarget]))
 		taskicon.select(int(rtv.icondic[rtv.edittarget])-1)
 
 func _on_cancel_pressed() -> void:
@@ -54,7 +57,7 @@ func _on_cancel_pressed() -> void:
 func _on_create_pressed() -> void:
 	if taskname.text != "":
 		rtv.namedic[rtv.edittarget] = taskname.text
-		rtv.colordic[rtv.edittarget] = taskcolor.selected +1
+		rtv.colordic[rtv.edittarget] = taskcolor.selected 
 		rtv.icondic[rtv.edittarget] = taskicon.selected +1
 		visible = false
 		rtv.edittarget = "0"

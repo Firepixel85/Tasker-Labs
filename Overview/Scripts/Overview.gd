@@ -13,14 +13,12 @@ func _on_new_task(id: int) -> void:
 
 
 func _on_page_changed(page: Variant) -> void:
-	print("aaa")
 	if page == "overview":
 		var tween = get_tree().create_tween()
 		score.animate_value()
 
 
 func _on_changed_page(page: String) -> void:
-	print("aaa")
 	if page == "overview":
 		var tween = get_tree().create_tween()
 		score.animate_value()

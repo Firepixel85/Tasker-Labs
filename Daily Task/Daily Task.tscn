@@ -1,12 +1,12 @@
 [gd_scene load_steps=20 format=3 uid="uid://cv0dmkcjhl4se"]
 
 [ext_resource type="Script" path="res://Daily Task/Scripts/Daily Task.gd" id="1_4lly5"]
-[ext_resource type="Texture2D" uid="uid://u4tb5tdlv0fw" path="res://Daily Task/Textures/Container.svg" id="1_rudqk"]
 [ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="2_7s1ya"]
+[ext_resource type="Texture2D" uid="uid://bh88i30soxtgf" path="res://Daily Task/Textures/Container.png" id="2_kltg8"]
 [ext_resource type="FontFile" uid="uid://cb1fkhwou4qo4" path="res://Theme/Inter font/static/Inter_24pt-Medium.ttf" id="3_lstys"]
-[ext_resource type="Texture2D" uid="uid://d72040x2fk3j" path="res://Daily Task/Textures/Streak Container.svg" id="4_5otr7"]
 [ext_resource type="Texture2D" uid="uid://dmic7twal8bfy" path="res://Daily Task/Textures/Icons/Big/Book.svg" id="4_k8alr"]
 [ext_resource type="Texture2D" uid="uid://clrxri3hw52lv" path="res://Daily Task/Textures/Streak Flame.svg" id="5_cet7u"]
+[ext_resource type="Texture2D" uid="uid://bo0nj0wolhled" path="res://Daily Task/Textures/Streak Container.png" id="6_3mxlc"]
 [ext_resource type="FontFile" uid="uid://b0taxodwoxljs" path="res://Theme/Inter font/static/Inter_24pt-Bold.ttf" id="6_h5v6g"]
 [ext_resource type="Texture2D" uid="uid://beajogrnqo5fo" path="res://Daily Task/Textures/Edit Button.svg" id="7_8kgr0"]
 [ext_resource type="Texture2D" uid="uid://dcv6aab2ye8jq" path="res://Daily Task/Textures/Done Button.svg" id="8_se6m0"]
@@ -174,7 +174,7 @@ anchors_preset = -1
 anchor_right = 0.41
 offset_right = -432.32
 offset_bottom = 40.0
-texture = ExtResource("1_rudqk")
+texture = ExtResource("2_kltg8")
 
 [node name="Task Left" type="HBoxContainer" parent="Container"]
 layout_mode = 2
@@ -237,7 +237,7 @@ theme_override_constants/margin_top = 6
 
 [node name="Streak Container" type="TextureRect" parent="Container/Task Right/Streak"]
 layout_mode = 2
-texture = ExtResource("4_5otr7")
+texture = ExtResource("6_3mxlc")
 stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="Container/Task Right/Streak/Streak Container"]

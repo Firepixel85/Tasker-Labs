@@ -15,7 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://um6cwu8sn12e" path="res://Orientation/Orientation.tscn" id="11_733n8"]
 
 [sub_resource type="Gradient" id="Gradient_rknem"]
-colors = PackedColorArray(0.0862745, 0.0862745, 0.0941176, 1, 0.0862745, 0.0862745, 0.0941176, 1)
+offsets = PackedFloat32Array(0.00318471, 1)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_ycv7o"]
 gradient = SubResource("Gradient_rknem")
@@ -253,6 +254,7 @@ grow_vertical = 2
 script = ExtResource("1_evffp")
 
 [node name="Background" type="TextureRect" parent="."]
+modulate = Color(0.0470588, 0.0470588, 0.0470588, 1)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

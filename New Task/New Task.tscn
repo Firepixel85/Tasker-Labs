@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://bnod4wusqsep7" path="res://New Task/Textures/Container.png" id="1_v6mpj"]
 [ext_resource type="FontFile" uid="uid://b6etgqa0fr38o" path="res://Theme/Inter font/static/Inter_28pt-Bold.ttf" id="2_tw60c"]
 [ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="3_2eupn"]
-[ext_resource type="Texture2D" uid="uid://cgkx0vtba7slf" path="res://Debug/Textures/Task Color Debug.png" id="4_cgcp3"]
+[ext_resource type="Texture2D" uid="uid://dqy58arylw1rb" path="res://Daily Task/Textures/Colors/Big/Teal.png" id="5_fgas2"]
 [ext_resource type="Texture2D" uid="uid://bptfqvcviqbuu" path="res://Daily Task/Textures/Icons/Big/Paw.svg" id="6_bsxew"]
 [ext_resource type="FontFile" uid="uid://d4midvuswbpbb" path="res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf" id="6_qaeyq"]
 [ext_resource type="Texture2D" uid="uid://demx36e56pml4" path="res://Theme/Textures/Button.png" id="7_0eq5o"]
@@ -376,9 +376,10 @@ layout_mode = 2
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
-texture = ExtResource("4_cgcp3")
+texture = ExtResource("5_fgas2")
+stretch_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color"]
 custom_minimum_size = Vector2(2.08165e-12, 104)
 layout_mode = 1
 anchors_preset = 15
@@ -388,14 +389,13 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="Icon" type="TextureRect" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/HBoxContainer/VBoxContainer"]
+[node name="Icon" type="TextureRect" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Control/Color/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_bsxew")
-stretch_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(140, 2.08165e-12)

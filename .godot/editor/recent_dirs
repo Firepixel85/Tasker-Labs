@@ -1,3 +1,5 @@
+res://Theme/Settings
+res://Settings
 res://Sidebar/Scripts
 res://Overview/Scripts
 res://Overview/Task/Scripts
@@ -19,4 +21,3 @@ res://Main/Time
 /Users/max/Documents/Godot Projects/Tasker-Labs/Theme/Inter font/static
 /Users/max/Documents/Godot Projects/Tasker-Labs/Theme/Inter font
 /Users/max/Documents/Godot Builds
-res://IOS Icons
