@@ -1,13 +1,11 @@
-res://Main/main.tscn
-res://Main/Main Theme.tres
-res://Orientation/Shaders/blur.gdshader
-res://Daily Task/Daily Task.tscn
-res://Daily Task/Daily Task Done/Daily Task Done.tscn
-res://Daily UI /Daily UI.tscn
-res://Sidebar/sidebar.tscn
-res://New Task/New Task.tscn
-res://Overview/Overview.tscn
-res://New Task/Edit/Edit.tscn
 res://Settings/Settings.tscn
-res://Orientation/Orientation.tscn
-res://Overview/Scripts/Score.gd
+res://Orientation/Shaders/blur.gdshader
+res://Main/Main Theme.tres
+res://Settings/Scripts/Settings.gd
+res://Main/main.tscn
+res://Sidebar/sidebar.tscn
+res://Settings/Scripts/Toggle_Setting.gd
+res://Orientation/Scripts/Orientation.gd
+res://Main/Time/Time.gd
+res://Main/Scipts/Greeting.gd
+res://Main/Scipts/Saving.gd

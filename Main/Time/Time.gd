@@ -14,9 +14,9 @@ func _ready() -> void:
 	
 func _process(_delta):
 	time = Time.get_time_string_from_system().split(":")
-	if rtv.timesetting == 1:
+	if rtv.settings["time_setting"] == 2:
 		time_label.text = (time[0]+":"+time[1]+":"+time[2])
-	elif rtv.timesetting == 0:
+	elif rtv.settings["time_setting"] == 1:
 		time_label.text = (time[0]+":"+time[1])
 	else:
 		time_label.text = ""

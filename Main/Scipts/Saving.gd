@@ -64,8 +64,8 @@ func saveorientation(): # Saves lastlog data
 	var file = FileAccess.open("user://orientation.json", FileAccess.WRITE)
 	var save:Dictionary
 	save["orientationcomp"] = rtv.orientationcomp
-	save["timesetting"] = rtv.timesetting
-	save["username"] = rtv.username
+	save["timesetting"] = rtv.settings["time_setting"] 
+	save["username"] = rtv.settings["username"]
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
@@ -82,8 +82,8 @@ func loadorientation(): #Loads lastlog data
 	var json = file.get_as_text()
 	var save = JSON.parse_string(json)
 	rtv.orientationcomp = save["orientationcomp"]
-	rtv.username = save["username"]
-	rtv.timesetting = save["timesetting"]
+	rtv.settings["username"] = save["username"]
+	rtv.settings["time_setting"]  = save["timesetting"]
 	file.close()
 	
 func load_timeout() -> void:
@@ -92,4 +92,8 @@ func load_timeout() -> void:
 	savetimer.start()
 
 func _on_orientationcomp() -> void:
+	saveorientation()
+
+
+func on_settings_changed() -> void:
 	saveorientation()

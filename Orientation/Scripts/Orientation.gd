@@ -11,12 +11,12 @@ func _ready() -> void:
 		visible = false
 	else:
 		visible = true
-	timesetting.add_item("Yes please, in MM:HH!", 0)
-	timesetting.add_item("Yes please, in MM:HH:SS!", 1)
-	timesetting.add_item("No thanks!", 2)
+	timesetting.add_item("Yes please, in MM:HH!", 1)
+	timesetting.add_item("Yes please, in MM:HH:SS!", 2)
+	timesetting.add_item("No thanks!", 0)
 func _on_next_pressed() -> void:
 	if page == 3:
-		rtv.timesetting = timesetting.selected
+		rtv.settings["time_setting"] = timesetting.selected
 	if page == 4:
 		rtv.orientationcomp = true
 		orientationcomp.emit()
@@ -24,7 +24,7 @@ func _on_next_pressed() -> void:
 		page += 1
 		animator.play("Page"+str(page))
 	elif username.text != "":
-		rtv.username = username.text
+		rtv.settings["username"]  = username.text
 		page += 1
 		animator.play("Page"+str(page))
 		

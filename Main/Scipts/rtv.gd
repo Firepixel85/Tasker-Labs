@@ -32,5 +32,8 @@ var orientationcomp:bool
 var timesetting:int = 0
 var username:String 
 
+#Settings
+var issetting:bool
+var settings:Dictionary = {"time_setting":0,"username":""}
 
 var production:bool = false

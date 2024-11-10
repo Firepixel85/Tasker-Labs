@@ -266,7 +266,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yofh5")
 flat = true
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/Control/Lower/VBoxContainer/Settings"]
-visible = false
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -299,3 +298,4 @@ texture = ExtResource("7_sxfcb")
 
 [connection signal="pressed" from="TextureRect/Control/Upper/VBoxContainer/Overview" to="." method="_on_overview_pressed"]
 [connection signal="pressed" from="TextureRect/Control/Upper/VBoxContainer/Daily" to="." method="_on_daily_pressed"]
+[connection signal="pressed" from="TextureRect/Control/Lower/VBoxContainer/Settings" to="." method="_on_settings_pressed"]

@@ -49,6 +49,8 @@ func _process(_delta):
 		animator.play("Out_Canceled")
 		await animator.animation_changed
 		visible = false
+	if Input.is_action_just_pressed("Enter"):
+		_on_create_pressed()
 		
 	
 func _on_cancel_pressed():

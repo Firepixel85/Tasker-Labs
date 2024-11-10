@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bas5xco4jt2as"]
+[gd_scene load_steps=21 format=3 uid="uid://bas5xco4jt2as"]
 
 [ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
@@ -13,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://b7srdqmpudkab" path="res://Theme/Inter font/static/Inter_24pt-ExtraBold.ttf" id="9_lq6es"]
 [ext_resource type="Script" path="res://Main/Scipts/Warnings.gd" id="10_ytvsy"]
 [ext_resource type="PackedScene" uid="uid://um6cwu8sn12e" path="res://Orientation/Orientation.tscn" id="11_733n8"]
+[ext_resource type="PackedScene" uid="uid://dceb2vqd421g4" path="res://Settings/Settings.tscn" id="13_w7yt8"]
 
 [sub_resource type="Gradient" id="Gradient_rknem"]
 offsets = PackedFloat32Array(0.00318471, 1)
@@ -347,6 +348,9 @@ script = ExtResource("10_ytvsy")
 
 [node name="warntimer" type="Timer" parent="Warnings"]
 
+[node name="Settings" parent="." instance=ExtResource("13_w7yt8")]
+layout_mode = 1
+
 [node name="Control" parent="." instance=ExtResource("11_733n8")]
 z_index = 19
 layout_mode = 1
@@ -360,5 +364,6 @@ libraries = {
 [connection signal="new_task" from="Daily Ui" to="Overview" method="_on_new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
 [connection signal="changed_page" from="Sidebar" to="Overview" method="_on_changed_page"]
+[connection signal="settings_changed" from="Settings" to="Background" method="on_settings_changed"]
 [connection signal="orientationcomp" from="Control" to="Background" method="_on_orientationcomp"]
 [connection signal="orientationcomp" from="Control" to="Greeting" method="_on_orientationcomp"]

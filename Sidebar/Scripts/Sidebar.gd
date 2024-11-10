@@ -5,6 +5,7 @@ extends Control
 @onready var selection: TextureRect = $TextureRect/Control/Upper/Selection/TextureRect
 @onready var overview: TextureRect = $TextureRect/Control/Upper/VBoxContainer/Overview/TextureRect
 @onready var daily: TextureRect = $TextureRect/Control/Upper/VBoxContainer/Daily/TextureRect
+@onready var settings: Control = $"../Settings"
 
 var page:String = "daily"
 var selectionpositions:Dictionary = {1:10,2:62,3:115,4:168}
@@ -30,3 +31,8 @@ func _on_daily_pressed() -> void:
 		animator.play("Daily")
 		page = "daily"
 		changed_page.emit(page)
+
+
+func _on_settings_pressed() -> void:
+	if rtv.iscreating == false and rtv.isediting == false and rtv.issetting == false:
+		settings.enter()

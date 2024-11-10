@@ -10,6 +10,7 @@ func _ready() -> void:
 func _on_new_task(id: int) -> void:
 	instance1.add_task(id)
 	instance2.add_task(id)
+	score.animate_value(true)
 
 
 func _on_page_changed(page: Variant) -> void:
@@ -21,4 +22,4 @@ func _on_page_changed(page: Variant) -> void:
 func _on_changed_page(page: String) -> void:
 	if page == "overview":
 		var tween = get_tree().create_tween()
-		score.animate_value()
+		score.animate_value(false)

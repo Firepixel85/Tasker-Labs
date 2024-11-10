@@ -52,6 +52,8 @@ func _ready():
 		print("Fatal Error: Task data lost!")
 	
 func _process(_delta: float) -> void:
+	if rtv.streakdic[id] < 0:
+		rtv.streakdic[id] = 0
 	if rtv.deletetarget == id:
 		deleted = true
 		animator.play("Deleted")
