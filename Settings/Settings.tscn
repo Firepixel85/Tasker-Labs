@@ -37,21 +37,6 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
-[sub_resource type="Animation" id="Animation_vp5v3"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(1, 1, 1, 1)]
-}
-
 [sub_resource type="Animation" id="Animation_pmwny"]
 resource_name = "Out"
 length = 0.3
@@ -67,6 +52,21 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_vp5v3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5kak6"]
@@ -775,25 +775,25 @@ theme_override_constants/separation = 17
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Label" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Preferences" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("8_jmt85")
 text = "Preferences"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Nickname" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer"]
+[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_bgp7a")
 text = "Nickname"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/Label2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname/Label2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -802,25 +802,25 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Username" type="LineEdit" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer/Label2/HBoxContainer"]
+[node name="Username" type="LineEdit" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname/Label2/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_wbe3d")
 text = "debug"
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+[node name="Show time" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Show time"]
 custom_minimum_size = Vector2(32, 0)
 layout_mode = 2
 
-[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2"]
+[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Show time"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("9_bgp7a")
-text = "Show time"
+text = "Show Time"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Label2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Show time/Label2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -829,12 +829,41 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="Time Setting" type="OptionButton" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/HBoxContainer2/Label2/HBoxContainer"]
+[node name="Time Setting" type="OptionButton" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Show time/Label2/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("5_wbe3d")
 script = ExtResource("11_ns6ly")
 target_setting = "time_setting"
 options = ["Don't Show", "Show in HH:MM", "Show in HH:MM:SS"]
+
+[node name="Sidebar selection style" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection style"]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="Label2" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection style"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("9_bgp7a")
+text = "Sidebar Selection Method"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection style/Label2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="Sidebar Selection" type="OptionButton" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection style/Label2/HBoxContainer"]
+layout_mode = 2
+theme = ExtResource("5_wbe3d")
+script = ExtResource("11_ns6ly")
+target_setting = "time_setting"
+options = ["Highlight", "Selection Box", "Both"]
 
 [node name="Control" type="Control" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 33.05)

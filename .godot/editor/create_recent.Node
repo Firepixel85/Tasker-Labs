@@ -1,3 +1,4 @@
+ColorPicker
 Timer
 AnimationPlayer
 Label
@@ -12,4 +13,3 @@ TextureRect
 VBoxContainer
 CheckButton
 ScrollContainer
-VScrollBar

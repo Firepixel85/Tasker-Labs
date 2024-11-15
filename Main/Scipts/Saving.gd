@@ -66,6 +66,7 @@ func saveorientation(): # Saves lastlog data
 	save["orientationcomp"] = rtv.orientationcomp
 	save["timesetting"] = rtv.settings["time_setting"] 
 	save["username"] = rtv.settings["username"]
+	save["sidebar_selection"] = rtv.settings["sidebar_selection"]
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
@@ -84,6 +85,7 @@ func loadorientation(): #Loads lastlog data
 	rtv.orientationcomp = save["orientationcomp"]
 	rtv.settings["username"] = save["username"]
 	rtv.settings["time_setting"]  = save["timesetting"]
+	rtv.settings["sidebar_selection"] = save["sidebar_selection"]
 	file.close()
 	
 func load_timeout() -> void:

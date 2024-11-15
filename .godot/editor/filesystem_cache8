@@ -1,5 +1,5 @@
 c050361209d5ba8c6808dcd5508f2ab9
-::res://::1731670767
+::res://::1731690363
 Bootscreen High DPI.png::CompressedTexture2D::5935327972786150529::1729536207::1729536212::1::::<><>::
 Bootscreen.png::CompressedTexture2D::3348309905922360247::1729536045::1729536062::1::::<><>::
 export_presets.cfg::TextFile::-1::1729444053::0::1::::<><>::
@@ -97,9 +97,9 @@ Icon_152.png::CompressedTexture2D::9204973178432419819::1728840383::1728840528::
 Icon_167.png::CompressedTexture2D::3872110025421293095::1728840398::1728840528::1::::<><>::
 Icon_180.png::CompressedTexture2D::489824578291442356::1728840326::1728840528::1::::<><>::
 Icon_1024.png::CompressedTexture2D::4677313654555097539::1728840349::1728840528::1::::<><>::
-::res://Main/::1731670668
-Main Theme.tres::Theme::6774181177215732573::1731670668::0::1::::<><>::uid://b4aucabwmunli::::res://Theme/Inter font/static/Inter_18pt-SemiBold.ttf<>uid://b5dqbbvpo66y5::::res://Theme/Textures/Switch/Switch On.svg<>uid://dyvyyc81g62lh::::res://Theme/Textures/Switch/Switch Off.svg<>uid://x4yjjqdaibsw::::res://Theme/Inter font/static/Inter_28pt-SemiBold.ttf<>uid://conpyevb1h6rb::::res://Theme/Textures/Line Input.svg<>uid://d4midvuswbpbb::::res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf<>uid://bfy2wak52ixc5::::res://Theme/Textures/Drop Down Arrow.svg<>uid://dfp00qxyv3ph7::::res://Theme/Textures/Drop Down.svg<>uid://bvt1h5rvqorj7::::res://Theme/Textures/Text Input.svg<>uid://biy1spp155c2o::::res://Theme/Textures/Slider/Grabber.svg<>uid://dt3nkki1q0fxp::::res://Theme/Textures/Slider/Tick.svg<>uid://d0nrq24h37w0v::::res://Theme/Textures/Slider/Slider.svg
-main.tscn::PackedScene::2425442194313377990::1731670668::0::1::::<><>::uid://hdmb3fm5ivt5::::res://Daily UI /Daily UI.tscn<>res://Main/Scipts/rtv.gd<>uid://cedapa6ga120n::::res://Sidebar/sidebar.tscn<>res://Main/Scipts/Saving.gd<>uid://c3rp1lb338sef::::res://Main/Main Theme.tres<>res://Main/Time/Time.gd<>res://Main/Scipts/Greeting.gd<>uid://bvnru570cxn8u::::res://New Task/New Task.tscn<>uid://cyq17akq5k48v::::res://Overview/Overview.tscn<>uid://b6nm4kqyij8qh::::res://New Task/Edit/Edit.tscn<>uid://b7srdqmpudkab::::res://Theme/Inter font/static/Inter_24pt-ExtraBold.ttf<>res://Main/Scipts/Warnings.gd<>uid://um6cwu8sn12e::::res://Orientation/Orientation.tscn<>uid://dceb2vqd421g4::::res://Settings/Settings.tscn
+::res://Main/::1731673626
+Main Theme.tres::Theme::6774181177215732573::1731671485::0::1::::<><>::uid://b4aucabwmunli::::res://Theme/Inter font/static/Inter_18pt-SemiBold.ttf<>uid://b5dqbbvpo66y5::::res://Theme/Textures/Switch/Switch On.svg<>uid://dyvyyc81g62lh::::res://Theme/Textures/Switch/Switch Off.svg<>uid://x4yjjqdaibsw::::res://Theme/Inter font/static/Inter_28pt-SemiBold.ttf<>uid://conpyevb1h6rb::::res://Theme/Textures/Line Input.svg<>uid://d4midvuswbpbb::::res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf<>uid://bfy2wak52ixc5::::res://Theme/Textures/Drop Down Arrow.svg<>uid://dfp00qxyv3ph7::::res://Theme/Textures/Drop Down.svg<>uid://bvt1h5rvqorj7::::res://Theme/Textures/Text Input.svg<>uid://biy1spp155c2o::::res://Theme/Textures/Slider/Grabber.svg<>uid://dt3nkki1q0fxp::::res://Theme/Textures/Slider/Tick.svg<>uid://d0nrq24h37w0v::::res://Theme/Textures/Slider/Slider.svg
+main.tscn::PackedScene::2425442194313377990::1731673626::0::1::::<><>::uid://hdmb3fm5ivt5::::res://Daily UI /Daily UI.tscn<>res://Main/Scipts/rtv.gd<>uid://cedapa6ga120n::::res://Sidebar/sidebar.tscn<>res://Main/Scipts/Saving.gd<>uid://c3rp1lb338sef::::res://Main/Main Theme.tres<>res://Main/Time/Time.gd<>res://Main/Scipts/Greeting.gd<>uid://bvnru570cxn8u::::res://New Task/New Task.tscn<>uid://cyq17akq5k48v::::res://Overview/Overview.tscn<>uid://b6nm4kqyij8qh::::res://New Task/Edit/Edit.tscn<>uid://b7srdqmpudkab::::res://Theme/Inter font/static/Inter_24pt-ExtraBold.ttf<>res://Main/Scipts/Warnings.gd<>uid://um6cwu8sn12e::::res://Orientation/Orientation.tscn<>uid://dceb2vqd421g4::::res://Settings/Settings.tscn
 Schedualed Icon.svgtex.svg::CompressedTexture2D::1458721803846828280::1728735654::1728834850::1::::<><>::
 ::res://Main/Scipts/::1731236748
 Greeting.gd::GDScript::-1::1731236288::0::1::::<>VBoxContainer<>::
@@ -131,8 +131,8 @@ Orientation.tscn::PackedScene::1430436392106691626::1730538597::0::1::::<><>::re
 ::res://Orientation/Scripts/::1731234893
 Orientation.gd::GDScript::-1::1731234893::0::1::::<>Control<>::
 Privacy Pledge.gd::GDScript::-1::1729702910::0::1::::<>RichTextLabel<>::
-::res://Orientation/Shaders/::1731670756
-blur.gdshader::Shader::-1::1731670756::0::1::::<><>::
+::res://Orientation/Shaders/::1731673633
+blur.gdshader::Shader::-1::1731673633::0::1::::<><>::
 Blur.tres::VisualShader::8981402952714861492::1729608408::0::1::::<><>::
 ::res://Orientation/Textures/::1730468307
 Container.png::CompressedTexture2D::842813161302040180::1730467246::1730467249::1::::<><>::
@@ -157,16 +157,17 @@ Container.png::CompressedTexture2D::6646683887454115583::1730397502::1730397509:
 Overview Container.png::CompressedTexture2D::7653132271757281757::1730397549::1730397575::1::::<><>::
 Progress Bar.png::CompressedTexture2D::5184562281182477769::1729781857::1729781859::1::::<><>::
 Under.png::CompressedTexture2D::4638343905480327192::1729781903::1729781905::1::::<><>::
-::res://Settings/::1731670668
-Settings.tscn::PackedScene::7308007310683180889::1731670668::0::1::::<><>::res://Settings/Scripts/Settings.gd<>uid://dg1sxtba4r5wl::::res://Settings/Textures/Container.png<>res://Orientation/Shaders/blur.gdshader<>uid://cqtd8qey73ae0::::res://Bootscreen High DPI.png<>uid://b6etgqa0fr38o::::res://Theme/Inter font/static/Inter_28pt-Bold.ttf<>uid://c3rp1lb338sef::::res://Main/Main Theme.tres<>uid://cql10rvrxrm18::::res://Theme/Inter font/static/Inter_18pt-Medium.ttf<>uid://cx11qitcd8fy2::::res://Settings/Textures/Search Icon.png<>uid://den5ruiqg8vi5::::res://Theme/Settings/Section Title.tres<>uid://bccpxb6gby2rq::::res://Theme/Settings/Setting Name.tres<>res://Settings/Scripts/Toggle_Setting.gd
-::res://Settings/Scripts/::1731236748
-Settings.gd::GDScript::-1::1731236748::0::1::::<>Control<>::
+::res://Settings/::1731673631
+Settings.tscn::PackedScene::7308007310683180889::1731673631::0::1::::<><>::res://Settings/Scripts/Settings.gd<>uid://dg1sxtba4r5wl::::res://Settings/Textures/Container.png<>res://Orientation/Shaders/blur.gdshader<>uid://cqtd8qey73ae0::::res://Bootscreen High DPI.png<>uid://b6etgqa0fr38o::::res://Theme/Inter font/static/Inter_28pt-Bold.ttf<>uid://c3rp1lb338sef::::res://Main/Main Theme.tres<>uid://cql10rvrxrm18::::res://Theme/Inter font/static/Inter_18pt-Medium.ttf<>uid://cx11qitcd8fy2::::res://Settings/Textures/Search Icon.png<>uid://den5ruiqg8vi5::::res://Theme/Settings/Section Title.tres<>uid://bccpxb6gby2rq::::res://Theme/Settings/Setting Name.tres<>res://Settings/Scripts/Toggle_Setting.gd<>res://Settings/warning.gd
+warning.gd::GDScript::-1::1731673143::0::1::::<>Label<>::
+::res://Settings/Scripts/::1731673378
+Settings.gd::GDScript::-1::1731673378::0::1::::<>Control<>::
 Toggle_Setting.gd::GDScript::-1::1731234498::0::1::::<>OptionButton<>::
 ::res://Settings/Textures/::1730405219
 Container.png::CompressedTexture2D::7635203913170575111::1730404913::1730404915::1::::<><>::
 Search Icon.png::CompressedTexture2D::6442466256815176087::1730405218::1730405219::1::::<><>::
-::res://Sidebar/::1731670668
-sidebar.tscn::PackedScene::5059816710271687835::1731670668::0::1::::<><>::res://Sidebar/Scripts/Sidebar.gd<>uid://gr3dbsbh51y0::::res://Sidebar/Textures/Sidebar Container.png<>uid://cyhqd8huvvppb::::res://Sidebar/Textures/Home Icon.svg<>uid://buokifw8oechu::::res://Sidebar/Textures/Selection.png<>uid://ctccnjwtitcfd::::res://Sidebar/Textures/Overview Icon.png<>uid://deexw1xdo8oup::::res://Sidebar/Textures/Daily Icon.png<>res://Sidebar/Scripts/Selection.gd<>uid://c6cibylcsroxq::::res://Sidebar/Textures/Schedualed Icon.svg<>uid://3arjmr8ikrnj::::res://Sidebar/Textures/Settings Icon.png<>res://Debug/Scripts/button debug.gd<>uid://bpfhcy3xecjjt::::res://Sidebar/Textures/Plus Icon.png<>res://Sidebar/Scripts/Add.gd
+::res://Sidebar/::1731673626
+sidebar.tscn::PackedScene::5059816710271687835::1731673626::0::1::::<><>::res://Sidebar/Scripts/Sidebar.gd<>uid://gr3dbsbh51y0::::res://Sidebar/Textures/Sidebar Container.png<>uid://cyhqd8huvvppb::::res://Sidebar/Textures/Home Icon.svg<>uid://buokifw8oechu::::res://Sidebar/Textures/Selection.png<>uid://ctccnjwtitcfd::::res://Sidebar/Textures/Overview Icon.png<>uid://deexw1xdo8oup::::res://Sidebar/Textures/Daily Icon.png<>res://Sidebar/Scripts/Selection.gd<>uid://c6cibylcsroxq::::res://Sidebar/Textures/Schedualed Icon.svg<>uid://3arjmr8ikrnj::::res://Sidebar/Textures/Settings Icon.png<>res://Debug/Scripts/button debug.gd<>uid://bpfhcy3xecjjt::::res://Sidebar/Textures/Plus Icon.png<>res://Sidebar/Scripts/Add.gd
 ::res://Sidebar/Scripts/::1730557231
 Add.gd::GDScript::-1::1729878777::0::1::::<>Button<>::
 Selection.gd::GDScript::-1::1729839630::0::1::::<>TextureRect<>::

@@ -29,6 +29,7 @@ func _ready():
 		elif rtv.streakstatus == "kill":
 			rtv.streakdic[id] = 0
 			rtv.comlastlogdic[id] = false
+			rtv.donedic[id] = false
 		if rtv.streakstatus == "hold":
 			rtv.donedic[id] = false
 			rtv.comlastlogdic[id] = false

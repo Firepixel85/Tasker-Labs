@@ -34,6 +34,6 @@ var username:String
 
 #Settings
 var issetting:bool
-var settings:Dictionary = {"time_setting":0,"username":""}
+var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0}
 
 var production:bool = false
