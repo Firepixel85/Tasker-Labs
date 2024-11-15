@@ -1,14 +1,15 @@
+Timer
+AnimationPlayer
+Label
 LineEdit
 Control
 BoxContainer
 Button
 HBoxContainer
 Container
-AnimationPlayer
 OptionButton
 TextureRect
 VBoxContainer
 CheckButton
-Label
 ScrollContainer
 VScrollBar

@@ -2,10 +2,6 @@ res://Settings/Settings.tscn
 res://Orientation/Shaders/blur.gdshader
 res://Main/Main Theme.tres
 res://Settings/Scripts/Settings.gd
+res://Settings/warning.gd
 res://Main/main.tscn
 res://Sidebar/sidebar.tscn
-res://Settings/Scripts/Toggle_Setting.gd
-res://Orientation/Scripts/Orientation.gd
-res://Main/Time/Time.gd
-res://Main/Scipts/Greeting.gd
-res://Main/Scipts/Saving.gd

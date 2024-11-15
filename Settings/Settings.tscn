@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dceb2vqd421g4"]
+[gd_scene load_steps=23 format=3 uid="uid://dceb2vqd421g4"]
 
 [ext_resource type="Script" path="res://Settings/Scripts/Settings.gd" id="1_6a7mm"]
 [ext_resource type="Texture2D" uid="uid://dg1sxtba4r5wl" path="res://Settings/Textures/Container.png" id="1_31h5v"]
@@ -11,6 +11,7 @@
 [ext_resource type="Theme" uid="uid://den5ruiqg8vi5" path="res://Theme/Settings/Section Title.tres" id="8_jmt85"]
 [ext_resource type="Theme" uid="uid://bccpxb6gby2rq" path="res://Theme/Settings/Setting Name.tres" id="9_bgp7a"]
 [ext_resource type="Script" path="res://Settings/Scripts/Toggle_Setting.gd" id="11_ns6ly"]
+[ext_resource type="Script" path="res://Settings/warning.gd" id="12_8v2n7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fmji8"]
 shader = ExtResource("1_qhpvl")
@@ -18,6 +19,62 @@ shader_parameter/blur_type = 3
 shader_parameter/blur_amount = 8
 shader_parameter/blur_radius = 8.0
 shader_parameter/blur_direction = Vector2(1, 1)
+
+[sub_resource type="Animation" id="Animation_vd0vd"]
+resource_name = "In"
+length = 0.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_vp5v3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_pmwny"]
+resource_name = "Out"
+length = 0.3
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_5kak6"]
+_data = {
+"In": SubResource("Animation_vd0vd"),
+"Out": SubResource("Animation_pmwny"),
+"RESET": SubResource("Animation_vp5v3")
+}
 
 [sub_resource type="Animation" id="Animation_1v8ks"]
 resource_name = "Closed"
@@ -690,6 +747,7 @@ theme_override_font_sizes/font_size = 32
 text = "Settings"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Header"]
+visible = false
 custom_minimum_size = Vector2(880, 39)
 layout_mode = 2
 alignment = 2
@@ -720,7 +778,7 @@ theme_override_constants/separation = 12
 [node name="Label" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("8_jmt85")
-text = "Section Title"
+text = "Preferences"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
@@ -810,7 +868,6 @@ theme = ExtResource("5_wbe3d")
 text = "Done"
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control"]
-visible = false
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -820,11 +877,19 @@ offset_right = 75.0
 grow_vertical = 0
 theme_override_constants/separation = 11
 
-[node name="Button3" type="Button" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer2"]
+[node name="Warning" type="Label" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer2"]
 layout_mode = 2
-size_flags_vertical = 8
 theme = ExtResource("5_wbe3d")
-text = "Cancel"
+theme_override_font_sizes/font_size = 22
+text = "[Dynamic]"
+script = ExtResource("12_8v2n7")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer2/Warning"]
+libraries = {
+"": SubResource("AnimationLibrary_5kak6")
+}
+
+[node name="Timer" type="Timer" parent="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer2/Warning"]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -833,4 +898,3 @@ libraries = {
 
 [connection signal="pressed" from="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer/Button2" to="." method="on_apply_pressed"]
 [connection signal="pressed" from="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer/Button3" to="." method="on_done_pressed"]
-[connection signal="pressed" from="MarginContainer/TextureRect/MarginContainer/VBoxContainer/Control/HBoxContainer2/Button3" to="." method="on_cancel_pressed"]

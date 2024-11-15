@@ -287,7 +287,7 @@ layout_mode = 2
 texture_repeat = 1
 layout_mode = 2
 theme = ExtResource("2_qf686")
-text = "Good Morning Max!"
+text = "[Dynamic]"
 
 [node name="Time" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -309,7 +309,7 @@ alignment = 2
 [node name="Time Label" type="Label" parent="Time/MarginContainer/HBoxContainer"]
 layout_mode = 2
 theme = ExtResource("2_qf686")
-text = "9:41"
+text = "[Dynamic]"
 
 [node name="Daily Ui" parent="." instance=ExtResource("1_ab27m")]
 layout_mode = 1
