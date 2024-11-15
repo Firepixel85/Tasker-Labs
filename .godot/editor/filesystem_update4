@@ -1,11 +1,2 @@
-res://Settings/Settings.tscn
-res://Orientation/Shaders/blur.gdshader
-res://Main/Main Theme.tres
-res://Main/main.tscn
 res://Sidebar/sidebar.tscn
-res://Settings/Scripts/Settings.gd
-res://Main/Scipts/rtv.gd
-res://Main/Scipts/Saving.gd
-res://Sidebar/Scripts/Selection.gd
-res://Sidebar/Scripts/Sidebar.gd
-res://Daily Task/Scripts/Daily Task.gd
+res://Orientation/Shaders/blur.gdshader

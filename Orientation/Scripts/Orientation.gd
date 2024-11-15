@@ -11,9 +11,11 @@ func _ready() -> void:
 		visible = false
 	else:
 		visible = true
+	timesetting.add_item("No thanks!", 0)
 	timesetting.add_item("Yes please, in MM:HH!", 1)
 	timesetting.add_item("Yes please, in MM:HH:SS!", 2)
-	timesetting.add_item("No thanks!", 0)
+	timesetting.select(1)
+	"No thanks!"
 func _on_next_pressed() -> void:
 	if page == 3:
 		rtv.settings["time_setting"] = timesetting.selected
