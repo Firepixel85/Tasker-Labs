@@ -1,15 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://um6cwu8sn12e"]
+[gd_scene load_steps=25 format=3 uid="uid://um6cwu8sn12e"]
 
 [ext_resource type="Shader" path="res://Orientation/Shaders/blur.gdshader" id="1_gugui"]
 [ext_resource type="Script" path="res://Orientation/Scripts/Orientation.gd" id="1_ws0so"]
-[ext_resource type="Texture2D" uid="uid://cqtd8qey73ae0" path="res://Bootscreen High DPI.png" id="2_vqxaf"]
+[ext_resource type="Texture2D" uid="uid://b8l2h0daifhql" path="res://Bootscreen High DPI.png" id="2_vqxaf"]
 [ext_resource type="Texture2D" uid="uid://majalerbyb85" path="res://Orientation/Textures/Container.png" id="3_ya840"]
 [ext_resource type="FontFile" uid="uid://b6etgqa0fr38o" path="res://Theme/Inter font/static/Inter_28pt-Bold.ttf" id="4_4tktt"]
 [ext_resource type="Texture2D" uid="uid://wubt4o2hrb3o" path="res://Orientation/Textures/Next Button.png" id="4_gu68s"]
 [ext_resource type="FontFile" uid="uid://cql10rvrxrm18" path="res://Theme/Inter font/static/Inter_18pt-Medium.ttf" id="5_7xawf"]
+[ext_resource type="Texture2D" uid="uid://bwu260xgfotna" path="res://Orientation/Textures/Next Hint.png" id="5_58u3m"]
+[ext_resource type="Script" path="res://Orientation/Scripts/Next Hint.gd" id="6_ab7bw"]
 [ext_resource type="FontFile" uid="uid://b0taxodwoxljs" path="res://Theme/Inter font/static/Inter_24pt-Bold.ttf" id="6_m3845"]
 [ext_resource type="Texture2D" uid="uid://yu43wxwh4701" path="res://Orientation/Textures/Tasks.png" id="7_wisl4"]
-[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="9_lmsys"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Theme/Main Theme.tres" id="9_lmsys"]
 [ext_resource type="Script" path="res://Orientation/Scripts/Privacy Pledge.gd" id="10_rahix"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_7cyns"]
@@ -20,6 +22,63 @@ shader_parameter/blur_radius = 8.0
 shader_parameter/blur_direction = Vector2(1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hl8m7"]
+
+[sub_resource type="Animation" id="Animation_sd1fv"]
+resource_name = "Pulse"
+step = 0.1
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 0, 0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0, 1.2, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 0.5, 1)
+}
+
+[sub_resource type="Animation" id="Animation_krw7u"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:scale:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jhat7"]
+_data = {
+"Pulse": SubResource("Animation_sd1fv"),
+"RESET": SubResource("Animation_krw7u")
+}
 
 [sub_resource type="Animation" id="Animation_bbpa1"]
 resource_name = "Page2"
@@ -775,7 +834,8 @@ flat = true
 
 [node name="Button" type="Button" parent="Next Button/HBoxContainer/MarginContainer/Button2"]
 layout_mode = 2
-offset_right = 132.0
+offset_left = 9.05246
+offset_right = 141.052
 offset_bottom = 1296.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -785,6 +845,21 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_hl8m7")
 icon = ExtResource("4_gu68s")
 flat = true
 
+[node name="Hint" type="TextureRect" parent="Next Button/HBoxContainer/MarginContainer/Button2/Button"]
+layout_mode = 0
+offset_left = -15.05
+offset_top = 575.27
+offset_right = 126.95
+offset_bottom = 784.27
+pivot_offset = Vector2(71, 73.15)
+texture = ExtResource("5_58u3m")
+script = ExtResource("6_ab7bw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Next Button/HBoxContainer/MarginContainer/Button2/Button/Hint"]
+libraries = {
+"": SubResource("AnimationLibrary_jhat7")
+}
+
 [node name="Page 1" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -792,9 +867,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.5
+offset_left = -361.75
 offset_top = -200.0
-offset_right = 167.5
+offset_right = -46.7497
 offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -851,9 +926,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -147.5
+offset_left = -361.75
 offset_top = -200.0
-offset_right = 167.5
+offset_right = -46.75
 offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -892,10 +967,10 @@ theme_override_fonts/bold_font = ExtResource("6_m3845")
 theme_override_font_sizes/normal_font_size = 22
 theme_override_font_sizes/bold_font_size = 23
 bbcode_enabled = true
-text = "[color=b7b7b7]Let us know how you
+text = "[center][color=b7b7b7]Let us know how you
 want to be called,
 so we can[/color] [b]welcome you
-every day![/b]"
+every day![/b][/center]"
 fit_content = true
 
 [node name="LineEdit" type="LineEdit" parent="Page 2/MarginContainer/VBoxContainer"]
@@ -928,9 +1003,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 66.75
+offset_left = -147.5
 offset_top = -200.0
-offset_right = 381.75
+offset_right = 167.5
 offset_bottom = 220.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1039,5 +1114,6 @@ libraries = {
 }
 
 [connection signal="pressed" from="Next Button/HBoxContainer/MarginContainer/Button2/Button" to="." method="_on_next_pressed"]
+[connection signal="animation_finished" from="Next Button/HBoxContainer/MarginContainer/Button2/Button/Hint/AnimationPlayer" to="Next Button/HBoxContainer/MarginContainer/Button2/Button/Hint" method="_on_animation_player_animation_finished"]
 [connection signal="meta_clicked" from="Page 2/MarginContainer/VBoxContainer2/RichTextLabel" to="Page 2/MarginContainer/VBoxContainer2/RichTextLabel" method="_on_meta_clicked"]
 [connection signal="meta_hover_started" from="Page 2/MarginContainer/VBoxContainer2/RichTextLabel" to="Page 2/MarginContainer/VBoxContainer2/RichTextLabel" method="_on_meta_hover_started"]

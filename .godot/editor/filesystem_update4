@@ -1,2 +1,8 @@
-res://Sidebar/sidebar.tscn
+res://Main/main.tscn
+res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
+res://New Task/Edit/Edit.tscn
+res://Sidebar/sidebar.tscn
+res://Settings/Settings.tscn
+res://Orientation/Orientation.tscn
+res://Main/Scipts/rtv.gd

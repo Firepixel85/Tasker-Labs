@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://New Task/Scripts/New Task.gd" id="1_2gtfr"]
 [ext_resource type="Texture2D" uid="uid://bnod4wusqsep7" path="res://New Task/Textures/Container.png" id="1_v6mpj"]
 [ext_resource type="FontFile" uid="uid://b6etgqa0fr38o" path="res://Theme/Inter font/static/Inter_28pt-Bold.ttf" id="2_tw60c"]
-[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="3_2eupn"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Theme/Main Theme.tres" id="3_2eupn"]
 [ext_resource type="Texture2D" uid="uid://dqy58arylw1rb" path="res://Daily Task/Textures/Colors/Big/Teal.png" id="5_fgas2"]
 [ext_resource type="Texture2D" uid="uid://bptfqvcviqbuu" path="res://Daily Task/Textures/Icons/Big/Paw.svg" id="6_bsxew"]
 [ext_resource type="FontFile" uid="uid://d4midvuswbpbb" path="res://Theme/Inter font/static/Inter_24pt-SemiBold.ttf" id="6_qaeyq"]

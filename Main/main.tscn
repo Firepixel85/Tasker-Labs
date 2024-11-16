@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
 [ext_resource type="PackedScene" uid="uid://cedapa6ga120n" path="res://Sidebar/sidebar.tscn" id="1_ji4w0"]
 [ext_resource type="Script" path="res://Main/Scipts/Saving.gd" id="2_8dlu8"]
-[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="2_qf686"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Theme/Main Theme.tres" id="2_qf686"]
 [ext_resource type="Script" path="res://Main/Time/Time.gd" id="3_0qn1y"]
 [ext_resource type="Script" path="res://Main/Scipts/Greeting.gd" id="3_meshi"]
 [ext_resource type="PackedScene" uid="uid://bvnru570cxn8u" path="res://New Task/New Task.tscn" id="5_eynx2"]
@@ -351,7 +351,7 @@ script = ExtResource("10_ytvsy")
 [node name="Settings" parent="." instance=ExtResource("13_w7yt8")]
 layout_mode = 1
 
-[node name="Control" parent="." instance=ExtResource("11_733n8")]
+[node name="Orientation" parent="." instance=ExtResource("11_733n8")]
 z_index = 19
 layout_mode = 1
 
@@ -364,6 +364,8 @@ libraries = {
 [connection signal="new_task" from="Daily Ui" to="Overview" method="_on_new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
 [connection signal="changed_page" from="Sidebar" to="Overview" method="_on_changed_page"]
+[connection signal="reorientate" from="Settings" to="Orientation" method="_on_settings_reorientate"]
 [connection signal="settings_changed" from="Settings" to="Background" method="on_settings_changed"]
-[connection signal="orientationcomp" from="Control" to="Background" method="_on_orientationcomp"]
-[connection signal="orientationcomp" from="Control" to="Greeting" method="_on_orientationcomp"]
+[connection signal="settings_changed" from="Settings" to="Time" method="_on_settings_settings_changed"]
+[connection signal="orientationcomp" from="Orientation" to="Background" method="_on_orientationcomp"]
+[connection signal="orientationcomp" from="Orientation" to="Greeting" method="_on_orientationcomp"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dgen8gkyo75tt"]
 
-[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Main/Main Theme.tres" id="1_us52u"]
+[ext_resource type="Theme" uid="uid://c3rp1lb338sef" path="res://Theme/Main Theme.tres" id="1_us52u"]
 
 [node name="Control" type="Control"]
 layout_mode = 3

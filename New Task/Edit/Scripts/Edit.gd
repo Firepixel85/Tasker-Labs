@@ -11,6 +11,7 @@ var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1
 @onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Create
 @onready var daily_handler = $"../Daily Ui"
 @onready var delete = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete
+@onready var animator: AnimationPlayer = $AnimationPlayer
 
 @onready var taskname = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer/LineEdit
 @onready var taskcolor = $"TextureRect/HBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Color Drop Down"
@@ -42,16 +43,19 @@ func _process(_delta: float) -> void:
 	icondisplay.texture = load(iconpointer[taskicon.selected+1])
 	container.texture = load(containerpointer[taskcolor.selected])
 	if Input.is_action_just_pressed("Edit"):
-		taskname.grab_focus()
+		animator.play("In")
 		visible = true
 		taskname.text = rtv.namedic[rtv.edittarget]
 		taskcolor.select(int(rtv.colordic[rtv.edittarget]))
 		taskicon.select(int(rtv.icondic[rtv.edittarget])-1)
 
 func _on_cancel_pressed() -> void:
-	visible = false
 	rtv.edittarget = "0"
 	rtv.isediting = false
+	animator.play("Out")
+	await  animator.animation_finished
+	visible = false
+
 
 
 func _on_create_pressed() -> void:
@@ -59,9 +63,12 @@ func _on_create_pressed() -> void:
 		rtv.namedic[rtv.edittarget] = taskname.text
 		rtv.colordic[rtv.edittarget] = taskcolor.selected 
 		rtv.icondic[rtv.edittarget] = taskicon.selected +1
-		visible = false
 		rtv.edittarget = "0"
 		rtv.isediting = false
+		animator.play("Out")
+		await animator.animation_finished
+		visible = false
+
 	elif taskname.text == "":
 		warn.setwarn("Task name can't be empty!")
 		warntimer.start()
@@ -78,6 +85,8 @@ func _on_delete_pressed() -> void:
 	rtv.streakdic.erase(rtv.edittarget)
 	rtv.comlastlogdic.erase(rtv.edittarget)
 	rtv.iddic.erase(rtv.edittarget)
-	visible = false
 	rtv.edittarget = "0"
 	rtv.isediting = false
+	animator.play("Out")
+	await animator.animation_finished
+	visible = false

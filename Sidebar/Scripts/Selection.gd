@@ -7,10 +7,12 @@ var tween
 func _ready() -> void:
 	tween = get_tree().create_tween()
 func _process(delta: float) -> void:
-	if rtv.settings["sidebar_selection"] == 1 or rtv.settings["sidebar_selection"] == 2:
-		selection.visible = true
-	else:
+	if rtv.settings["sidebar_selection"] == 0:
 		selection.visible = false
+	else:
+		selection.visible = true
+		modulate = Color(rtv.settings["sb_selection_color"])
+
 func positionselection(pos):
 	if rtv.settings["sidebar_selection"] == 1 or 2:
 		tween = get_tree().create_tween()
