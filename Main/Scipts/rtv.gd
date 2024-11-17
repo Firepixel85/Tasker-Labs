@@ -34,6 +34,6 @@ var username:String
 
 #Settings
 var issetting:bool
-var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0,"sb_selection_color":"8667E9","use_h_dpi":true}
+var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0,"sb_selection_color":"8667E9"}
 
-var production:bool = true
+var production:bool = false #Should only be true when building new versions
