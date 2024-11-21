@@ -1,8 +1,15 @@
 res://Main/main.tscn
 res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
-res://Main/Scipts/rtv.gd
 res://New Task/Edit/Edit.tscn
 res://Sidebar/sidebar.tscn
 res://Settings/Settings.tscn
 res://Orientation/Orientation.tscn
+res://Daily UI /Daily UI.tscn
+res://Overview/Overview.tscn
+res://Settings/Scripts/Settings.gd
+res://Daily UI /Scripts/Daily Handler.gd
+res://Overview/Scripts/Overview.gd
+res://New Task/Scripts/New Task.gd
+res://Daily Task/Scripts/Daily Task.gd
+res://Daily UI /Scripts/Task Instantiator.gd

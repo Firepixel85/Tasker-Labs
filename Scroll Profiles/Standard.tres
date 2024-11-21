@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="LinearScrollDamper" load_steps=2 format=3 uid="uid://bjqkvs4tc1xwa"]
+
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/linear_scroll_damper.gd" id="1_8374t"]
+
+[resource]
+script = ExtResource("1_8374t")
+friction = 4.0
+rebound_strength = 7.0

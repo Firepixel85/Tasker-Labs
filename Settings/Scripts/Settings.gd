@@ -14,7 +14,6 @@ signal reorientate
 @onready var sb_selection_color: LineEdit = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar Selection Color/Label2/HBoxContainer/Color"
 
 
-
 #-----End-----#
 var past_settings:Dictionary
 var settings:Dictionary
@@ -39,12 +38,12 @@ func begin_setting():
 	applied = false
 	animator.play("In")
 	rtv.issetting = true
-	past_settings = rtv.settings
 	settings = rtv.settings
 	time_setting.select(settings["time_setting"])
 	username.text = settings["username"]
 	sidebar_selection.select(settings["sidebar_selection"])
 	sb_selection_color.text = settings["sb_selection_color"]
+	
 	
 func apply():
 	if  username.text == "" or sb_selection_color.text == "" and sb_selection_color.text.split().size() != 6:

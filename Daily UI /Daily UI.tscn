@@ -1,10 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://hdmb3fm5ivt5"]
+[gd_scene load_steps=10 format=3 uid="uid://hdmb3fm5ivt5"]
 
 [ext_resource type="Texture2D" uid="uid://cyu6hgypsaay1" path="res://Daily UI /Textures/UI Container.png" id="1_3r60q"]
 [ext_resource type="Script" path="res://Daily UI /Scripts/Daily Handler.gd" id="1_oxqdv"]
 [ext_resource type="FontFile" uid="uid://ds4ohnaje2v44" path="res://Theme/Inter font/static/Inter_18pt-Bold.ttf" id="2_hpifb"]
 [ext_resource type="Script" path="res://Daily UI /Scripts/Task Instantiator.gd" id="3_jy2y0"]
-[ext_resource type="Script" path="res://Daily UI /Task Done Instantiator.gd" id="5_obgsm"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_g6ke7"]
+[ext_resource type="Resource" uid="uid://dsg475dsth6tj" path="res://Scroll Profiles/Smooth.tres" id="5_2sb03"]
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/cubic_scroll_damper.gd" id="5_n7vli"]
+[ext_resource type="Script" path="res://Daily UI /Scripts/Task Done Instantiator.gd" id="5_obgsm"]
+
+[sub_resource type="Resource" id="Resource_7tvve"]
+script = ExtResource("5_n7vli")
+friction = 10.0
+rebound_strength = 10.0
 
 [node name="Daily UI" type="Control"]
 layout_mode = 3
@@ -59,8 +67,12 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_g6ke7")
+wheel_scroll_damper = ExtResource("5_2sb03")
+dragging_scroll_damper = ExtResource("5_2sb03")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2"]
 layout_mode = 2
@@ -108,10 +120,13 @@ anchor_bottom = 1.0
 offset_top = 8.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("4_g6ke7")
+wheel_scroll_damper = ExtResource("5_2sb03")
+dragging_scroll_damper = SubResource("Resource_7tvve")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Complete/MarginContainer/VBoxContainer/Control/ScrollContainer2"]
 layout_mode = 2
 script = ExtResource("5_obgsm")
 
+[connection signal="new_task" from="." to="Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="_on_new_task"]
 [connection signal="new_task" from="." to="Incomplete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="new_task"]
-[connection signal="new_task" from="." to="Complete/MarginContainer/VBoxContainer/Control/ScrollContainer2/VBoxContainer" method="_on_new_task"]

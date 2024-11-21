@@ -21,6 +21,7 @@ var complete
 var is_tweening:bool = false
 var wasdone:bool
 func _ready():
+	print("test")
 	if rtv.justcreatedid != -1:
 		id = str(rtv.justcreatedid)
 		rtv.justcreatedid = -1

@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="CubicScrollDamper" load_steps=2 format=3 uid="uid://dsg475dsth6tj"]
+
+[ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/cubic_scroll_damper.gd" id="1_foxij"]
+
+[resource]
+script = ExtResource("1_foxij")
+friction = 4.0
+rebound_strength = 18.0

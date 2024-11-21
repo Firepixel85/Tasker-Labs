@@ -49,7 +49,7 @@ func _process(_delta):
 		animator.play("Out_Canceled")
 		await animator.animation_changed
 		visible = false
-	if Input.is_action_just_pressed("Enter"):
+	if Input.is_action_just_pressed("Enter") and rtv.iscreating == true:
 		_on_create_pressed()
 		
 	

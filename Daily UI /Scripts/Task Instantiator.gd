@@ -16,3 +16,7 @@ func loadfull():
 		add_child(preload("res://Daily Task/Daily Task.tscn").instantiate())
 		await rtv.loadcreationstatus == 1
 		
+
+
+func _on_new_task(id: int) -> void:
+	pass # Replace with function body.

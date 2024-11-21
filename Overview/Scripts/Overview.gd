@@ -4,6 +4,10 @@ extends Control
 @onready var instance2: VBoxContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
 @onready var score: TextureProgressBar = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control/Score/TextureProgressBar
 
+#Smooth Scrolling:
+@onready var scroll_container: SmoothScrollContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer/ScrollContainer
+@onready var scroll_container_done: SmoothScrollContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer/ScrollContainer
+var profile = {"smooth":load("res://Scroll Profiles/Smooth.tres"),"standard":load("res://Scroll Profiles/Standard.tres")}
 func _ready() -> void:
 	visible = false
 

@@ -367,5 +367,7 @@ libraries = {
 [connection signal="reorientate" from="Settings" to="Orientation" method="_on_settings_reorientate"]
 [connection signal="settings_changed" from="Settings" to="Background" method="on_settings_changed"]
 [connection signal="settings_changed" from="Settings" to="Time" method="_on_settings_settings_changed"]
+[connection signal="settings_changed" from="Settings" to="Daily Ui" method="_on_settings_settings_changed"]
+[connection signal="settings_changed" from="Settings" to="Overview" method="_on_settings_settings_changed"]
 [connection signal="orientationcomp" from="Orientation" to="Background" method="_on_orientationcomp"]
 [connection signal="orientationcomp" from="Orientation" to="Greeting" method="_on_orientationcomp"]

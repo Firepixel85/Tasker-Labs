@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="Tasker v0.4"
+config/name="Tasker"
 run/main_scene="res://Main/main.tscn"
 config/features=PackedStringArray("4.3", "Mobile")
 boot_splash/image="res://Bootscreen High DPI.png"
