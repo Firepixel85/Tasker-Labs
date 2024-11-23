@@ -6,6 +6,5 @@ extends OptionButton
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	print(options)
 	for i in options.size():
 		add_item(options[i],i)

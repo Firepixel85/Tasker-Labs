@@ -30,8 +30,6 @@ func caldatedif(lly,llm,lld):
 	var d = int(Time.get_date_string_from_system().split("-")[2])
 	if (d == lld + 1 and lly == y) or (y == lly +1 and llm == 12 and lld == 31 and d == 1 and m == 1) or ((m == llm +1 and d == 1) and (lld == 31 or lld == 30 or lld == 28 or lld == 29) and lly == y):
 		rtv.streakstatus = "hold"
-		print("holdstreak")
 	else: 
 		rtv.streakstatus = "kill"
-		print("killstreak")
 	rtv.lastlogd = Time.get_date_string_from_system()

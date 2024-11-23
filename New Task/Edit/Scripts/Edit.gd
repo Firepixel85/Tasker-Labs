@@ -48,6 +48,7 @@ func _process(_delta: float) -> void:
 		taskname.text = rtv.namedic[rtv.edittarget]
 		taskcolor.select(int(rtv.colordic[rtv.edittarget]))
 		taskicon.select(int(rtv.icondic[rtv.edittarget])-1)
+		print("(Edit) INFO: Edit request accepted")
 
 func _on_cancel_pressed() -> void:
 	rtv.edittarget = "0"
@@ -59,6 +60,7 @@ func _on_cancel_pressed() -> void:
 
 
 func _on_create_pressed() -> void:
+	print("(Edit) INFO: Edit completion requested")
 	if taskname.text != "":
 		rtv.namedic[rtv.edittarget] = taskname.text
 		rtv.colordic[rtv.edittarget] = taskcolor.selected 
@@ -66,17 +68,21 @@ func _on_create_pressed() -> void:
 		rtv.edittarget = "0"
 		rtv.isediting = false
 		animator.play("Out")
+		print("(Edit) INFO: Edit completion accepted")
 		await animator.animation_finished
 		visible = false
+
 
 	elif taskname.text == "":
 		warn.setwarn("Task name can't be empty!")
 		warntimer.start()
+		print("(Edit) INFO: Edit completion aborted")
 		await warntimer.timeout
 		warn.clearwarn()
 
 
 func _on_delete_pressed() -> void:
+	print("(Edit) INFO: Deleting task: "+str(rtv.edittarget))
 	rtv.deletetarget = rtv.edittarget
 	rtv.namedic.erase(rtv.edittarget)
 	rtv.colordic.erase(rtv.edittarget)

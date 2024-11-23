@@ -21,7 +21,6 @@ var complete
 var is_tweening:bool = false
 var wasdone:bool
 func _ready():
-	print("test")
 	if rtv.justcreatedid != -1:
 		id = str(rtv.justcreatedid)
 		rtv.justcreatedid = -1
@@ -53,18 +52,19 @@ func _ready():
 			else:
 				visible = false
 			
-		
+		print("(Daily Task "+str(id)+") INFO: Data loaded")
 	else:
-		print("Fatal Error: Task data lost!")
+		print("(Daily Task "+str(id)+") ERROR: Task ID is invalid")
 	
 func _process(_delta: float) -> void:
 	
 	#Deletes task
-	if rtv.deletetarget == id:
+	if rtv.deletetarget == id and not deleted:
 		deleted = true
 		animator.play("Deleted")
 		await animator.animation_finished
 		visible = false
+		print("(Daily Task "+str(id)+") INFO: Deleting")
 
 	if deleted == false:
 		update_streak_color()
@@ -91,7 +91,7 @@ func _on_done_pressed() -> void: #Completes the task
 	rtv.streakdic[id] += 1
 	rtv.donedic[id] = true
 	rtv.comlastlogdic[id] = true
-
+	print("(Daily Task "+str(id)+") INFO: Complete")
 	
 
 
@@ -100,7 +100,7 @@ func _on_edit_pressed() -> void: #Requests to edit
 	Input.action_release("Edit")
 	rtv.edittarget = id
 	rtv.isediting = true
-
+	print("(Daily Task "+str(id)+") INFO: Requested edit")
 
 
 

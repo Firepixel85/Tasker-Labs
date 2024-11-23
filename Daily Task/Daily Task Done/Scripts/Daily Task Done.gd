@@ -29,17 +29,15 @@ func _ready():
 			visible = true
 		else:
 			visible = false
-		
-	else:
-		print("Fatal Error: Task data lost!")
-	
+
 
 func _process(_delta: float) -> void:
-	if rtv.deletetarget == id:
+	if rtv.deletetarget == id and not deleted:
 		deleted = true
 		animator.play("Deleted")
 		await animator.animation_finished
 		visible= false
+
 		
 	if deleted == false:
 		update_streak_color()
@@ -58,20 +56,29 @@ func _on_edit_pressed() -> void:
 	Input.action_release("Edit")
 	rtv.edittarget = id
 	rtv.isediting = true
+	print("(Daily Task "+str(id)+") INFO: Requested edit")
 
 func _on_x_button_pressed() -> void:
 	rtv.streakdic[id] -= 1 
 	rtv.donedic[id] = false
 	rtv.comlastlogdic[id] = false
+	print("(Daily Task "+str(id)+") INFO: Decomplete")
 
 
 
 
 func update_streak_color():
-	if deleted == false:
-		if rtv.streakdic[id] <= 7:
-			taskflame.modulate = Color8(84,157,246)
-		elif rtv.streakdic[id] > 7 and rtv.streakdic[id] <= 15:
-			taskflame.modulate = Color8(255,159,10)
-		elif rtv.streakdic[id] > 15 :
-			taskflame.modulate = Color8(246,94,84)
+	#Defines streak flame color constants
+	const STREAK_COLD = Color8(84, 157, 246)
+	const STREAK_WARM = Color8(255, 159, 10)
+	const STREAK_HOT = Color8(246, 94, 84)
+	
+	#Updates streak color
+	if not deleted:
+		var streak_value = rtv.streakdic[id]
+		if streak_value <= 7:
+			taskflame.modulate = STREAK_COLD
+		elif streak_value <= 15:
+			taskflame.modulate = STREAK_WARM
+		else:
+			taskflame.modulate = STREAK_HOT

@@ -8,8 +8,8 @@ signal new_task(id:int)
 var profile = {"smooth":load("res://Scroll Profiles/Smooth.tres"),"standard":load("res://Scroll Profiles/Standard.tres")}
 
 func add_task(taskname,taskcolor,taskicon):
+	print("(Daily Handler) INFO: Recieved task data from New task")
 	var targetid = rtv.lastgivenid + 1
-	
 	rtv.streakdic[str(targetid)] = 0
 	rtv.namedic[str(targetid)] = taskname
 	rtv.colordic[str(targetid)] = taskcolor 
@@ -31,5 +31,5 @@ func add_task(taskname,taskcolor,taskicon):
 		rtv.donedic.clear()
 		rtv.iddic.clear()
 		rtv.comlastlogdic.clear()
-		
+	print("(Daily Handler) INFO: Signal sent to instantiators")
 	new_task.emit(rtv.lastgivenid)

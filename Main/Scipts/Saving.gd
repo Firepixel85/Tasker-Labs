@@ -1,6 +1,6 @@
 extends TextureRect
 @onready var savetimer: Timer = $Timer
-
+var console_callouts:bool = true
 func _ready() -> void:
 	if FileAccess.file_exists("user://taskdata.json"):
 		loadtaskdata()
@@ -36,6 +36,8 @@ func savetaskdata(): # Saves task data
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
+	if console_callouts:
+		print("(Saving) INFO: Saved taskdata")
 
 func loadtaskdata(): #Loads task data
 	var file = FileAccess.open("user://taskdata.json", FileAccess.READ)
@@ -50,6 +52,7 @@ func loadtaskdata(): #Loads task data
 	rtv.lastgivenid = save["lastgivenid"] 
 	rtv.comlastlogdic = save["complastlogdic"]
 	file.close()
+
 	
 	
 func savelastlog(): # Saves lastlog data
@@ -59,7 +62,9 @@ func savelastlog(): # Saves lastlog data
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
-	
+	if console_callouts:
+		print("(Saving) INFO: Saved lastlog")
+
 func saveorientation(): # Saves lastlog data
 	var file = FileAccess.open("user://orientation.json", FileAccess.WRITE)
 	var save:Dictionary
@@ -68,6 +73,8 @@ func saveorientation(): # Saves lastlog data
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
+	if console_callouts:
+		print("(Saving) INFO: Saved orientation")
 
 func loadlastlog(): #Loads lastlog data
 	var file = FileAccess.open("user://lastlog.json", FileAccess.READ)

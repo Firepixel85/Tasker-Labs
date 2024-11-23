@@ -34,6 +34,7 @@ func _ready():
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Paintbrush.svg"),"Paintbrush",4)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Mindful.svg"),"Mindful",5)
 	taskicon.add_icon_item(load("res://Daily Task/Textures/Icons/Dollar.svg"),"Dollar",6)
+
 func _process(_delta):
 	container.texture = load(containerpointer[taskcolor.selected])
 	colordisplay.texture = load(colorpointer[taskcolor.selected])
@@ -44,9 +45,11 @@ func _process(_delta):
 		visible = true
 		animator.play("RESET")
 		animator.play("In")
+		print("(New task) INFO: Creating")
 	if Input.is_action_just_pressed("Cancel") and rtv.iscreating == true:
 		rtv.iscreating = false
 		animator.play("Out_Canceled")
+		print("(New task) INFO: Creation canceled")
 		await animator.animation_changed
 		visible = false
 	if Input.is_action_just_pressed("Enter") and rtv.iscreating == true:
@@ -59,17 +62,22 @@ func _on_cancel_pressed():
 		Input.action_release("Cancel")
 
 func _on_create_pressed():
+	print("(New task) INFO: Requested completion")
 	if rtv.iscreating == true and taskname.text != "" and taskname.text.split("").size() <= 16:
+		print("(New task) INFO: Completion request accepted")
 		var tween = get_tree().create_tween()
 		tween.tween_property(create,"scale",Vector2(1.1,1.1),0.2)
 		tween.tween_property(create,"scale",Vector2(1,1),0.2)
+		print("(New task) INFO: Sending task data to Daily Handler")
 		daily_handler.add_task(taskname.text,taskcolor.selected,taskicon.selected)
 		animator.play("Out_Complete")
 		await animator.animation_changed
 		visible = false
 		rtv.iscreating = false
+
 	elif taskname.text == "":
 		var tween = get_tree().create_tween()
+		print("(New task) INFO: Completion aborted")
 		create.modulate = Color(1, 0.27, 0.27)
 		tween.tween_property(create,"position",Vector2(15,0),0.08)
 		tween.tween_property(create,"position",Vector2(0,0),0.1)
@@ -80,7 +88,9 @@ func _on_create_pressed():
 		warntimer.start()
 		await warntimer.timeout
 		warn.clearwarn()
+
 	elif taskname.text.split("").size() > 16:
+		print("(New task) INFO: Completion aborted")
 		var tween = get_tree().create_tween()
 		create.modulate = Color(1, 0.27, 0.27)
 		tween.tween_property(create,"position",Vector2(15,0),0.08)
@@ -100,6 +110,3 @@ func clearsel():
 	taskname.text = ""
 	taskcolor.selected = 0
 	taskicon.selected = 0
-
-func new_task(id):
-	pass # Replace with function body.
