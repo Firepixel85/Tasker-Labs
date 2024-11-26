@@ -1,6 +1,9 @@
 extends TextureRect
 @onready var savetimer: Timer = $Timer
-var console_callouts:bool = true
+@onready var web: HTTPRequest = $Timer/HTTPRequest
+
+var console_callouts:bool = false
+var latest:bool
 func _ready() -> void:
 	if FileAccess.file_exists("user://taskdata.json"):
 		loadtaskdata()
@@ -21,6 +24,14 @@ func _ready() -> void:
 	if FileAccess.file_exists("user://bg.jpg"):
 		texture = ImageTexture.create_from_image(Image.load_from_file("user://bg.jpg"))
 	savetimer.start()
+	
+
+	await  is_latest()
+	if latest == false:
+		print("(System) INFO: Running on older version!")
+	else:
+		print("(System) INFO: Applications is up-to-date")
+
 	
 func savetaskdata(): # Saves task data
 	var file = FileAccess.open("user://taskdata.json", FileAccess.WRITE)
@@ -103,3 +114,14 @@ func _on_orientationcomp() -> void:
 
 func on_settings_changed() -> void:
 	saveorientation()
+
+func is_latest():
+	web.set_download_file("user://latest_version.txt")
+	web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/latest_version.txt")
+	await web.request_completed
+	var latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text()
+	print("(System) INFO: Current vesrion: "+ rtv.version+ " Latest version: "+ latest_version)
+	if latest_version == rtv.version:
+		latest = true
+	else:
+		latest = false

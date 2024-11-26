@@ -3,3 +3,10 @@ res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
 res://latest_version.txt
 res://Main/Scipts/rtv.gd
+res://Main/Scipts/Saving.gd
+res://New Task/Edit/Edit.tscn
+res://Sidebar/sidebar.tscn
+res://Settings/Settings.tscn
+res://Orientation/Orientation.tscn
+res://Daily UI /Daily UI.tscn
+res://Overview/Overview.tscn
