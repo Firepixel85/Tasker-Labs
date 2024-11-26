@@ -36,4 +36,5 @@ var username:String
 var issetting:bool
 var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0,"sb_selection_color":"8667E9","smooth_scroll":true}
 
+var version = "1.0_obd:1"
 var production:bool = false #Should only be true when building new versions

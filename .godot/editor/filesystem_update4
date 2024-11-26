@@ -1,0 +1,5 @@
+res://Main/main.tscn
+res://Theme/Main Theme.tres
+res://Orientation/Shaders/blur.gdshader
+res://latest_version.txt
+res://Main/Scipts/rtv.gd
