@@ -1,18 +1,20 @@
 res://addons/SmoothScroll/debug_font.tres::7f63f6f6a82187471c1bfd5915ce7934::1728729495::res://.godot/exported/133200997/export-088ffdf57c57146017158f09cc8d2871-debug_font.res
 res://Daily Task/Daily Task.tscn::e5d4ffa78b94c5c4e77372521e32b90d::1730538597::res://.godot/exported/133200997/export-833a4a1a3403fe72a9500187ff342645-Daily Task.scn
-res://Daily UI /Daily UI.tscn::86552c9163aeeda30b9b1f39d9e2f8fe::1731843579::res://.godot/exported/133200997/export-3ddf61b5901bc93e08899d812c469414-Daily UI.scn
+res://Daily UI /Daily UI.tscn::0d44b7adf9673279421db93cc5b67631::1732359177::res://.godot/exported/133200997/export-3ddf61b5901bc93e08899d812c469414-Daily UI.scn
 res://Debug/Theme Debug.tscn::833eb8f25d28394599dfccb56e2d80aa::1731707325::res://.godot/exported/133200997/export-0bb1dd6b60f5113ffcc7f4c1915cfc4a-Theme Debug.scn
-res://Main/main.tscn::196937386f544d0b44d3375f873f2c61::1731843579::res://.godot/exported/133200997/export-cdd813ab38d3bd8e260b860aae2a8731-main.scn
+res://Main/main.tscn::139bc9c95479be121030a193637b510e::1732359176::res://.godot/exported/133200997/export-cdd813ab38d3bd8e260b860aae2a8731-main.scn
 res://New Task/New Task.tscn::a30f96eae2352afd28c2d00da689ee1e::1731707325::res://.godot/exported/133200997/export-fda55f00be859fe93d685fea26508f0e-New Task.scn
-res://Sidebar/sidebar.tscn::68c7b399d44f40d2d26e8887f1236d4c::1731843579::res://.godot/exported/133200997/export-3e9a2099729e17271413b3486965b411-sidebar.scn
+res://Sidebar/sidebar.tscn::68c7b399d44f40d2d26e8887f1236d4c::1732359176::res://.godot/exported/133200997/export-3e9a2099729e17271413b3486965b411-sidebar.scn
 res://Daily Task/Daily Task Done/Daily Task Done.tscn::1309dfd9a60d93d893cdda733ba71536::1730538597::res://.godot/exported/133200997/export-cfbcf4d4c92a7b1cb84ae619d6801c4e-Daily Task Done.scn
-res://New Task/Edit/Edit.tscn::4f54f1d69b8f28f3bca5b2e471daf3d1::1731843579::res://.godot/exported/133200997/export-f1e7cb0d7625e879bafd5387f055a88c-Edit.scn
+res://New Task/Edit/Edit.tscn::4f54f1d69b8f28f3bca5b2e471daf3d1::1732359176::res://.godot/exported/133200997/export-f1e7cb0d7625e879bafd5387f055a88c-Edit.scn
 res://Orientation/Shaders/Blur.tres::ffdb5cba0628542d4b62c89e03c00d91::1729608408::res://.godot/exported/133200997/export-d110d21d7e5e96be0abb4875947c48eb-Blur.res
-res://Orientation/Orientation.tscn::229a78f1c4aa2bed6289f109dfb9fb3c::1731843579::res://.godot/exported/133200997/export-f63c263388fb7a6e68e973039d962ef5-Orientation.scn
+res://Orientation/Orientation.tscn::812d5ad04f7f3cd76aebcea2b8299b57::1732359176::res://.godot/exported/133200997/export-f63c263388fb7a6e68e973039d962ef5-Orientation.scn
 res://Overview/Task/Overview Task Done.tscn::dbaa9fd27cfe7ae62cc860c257c0e17e::1729839673::res://.godot/exported/133200997/export-dcc6c77a71b53017ad644a9435d25b76-Overview Task Done.scn
 res://Overview/Task/Overview Task.tscn::698371ac0bce3f1ba3e93097edb281e5::1729839673::res://.godot/exported/133200997/export-94f43ccfa1c080c536082e92e83827ac-Overview Task.scn
-res://Overview/Overview.tscn::2377648b16b0874f06294a49f71a8176::1730538597::res://.godot/exported/133200997/export-5818c38063b4a2582da8a25d7b7fb5c9-Overview.scn
-res://Settings/Settings.tscn::e649a4ad707a579b9f876f5ca7035c09::1731843579::res://.godot/exported/133200997/export-ac80b14a04cbd20012b8d8192440b360-Settings.scn
+res://Overview/Overview.tscn::d260bf15bad3561309edb7d77853fe68::1732359177::res://.godot/exported/133200997/export-5818c38063b4a2582da8a25d7b7fb5c9-Overview.scn
+res://Settings/Settings.tscn::c4a54a4e038db10337c654d50592dce0::1732359176::res://.godot/exported/133200997/export-ac80b14a04cbd20012b8d8192440b360-Settings.scn
 res://Theme/Settings/Section Title.tres::4c2d39a0ed1419da1963b9b7090d42f3::1730405575::res://.godot/exported/133200997/export-12fc929185a264e0e1a5b53449955408-Section Title.res
 res://Theme/Settings/Setting Name.tres::863c44926f5e4e99b66bcce1c0cbe12b::1730405642::res://.godot/exported/133200997/export-30f4fba991fdcfe425b5718ab6edffed-Setting Name.res
-res://Theme/Main Theme.tres::00841b022c65e0e79a1b5824b90cff9b::1731839251::res://.godot/exported/133200997/export-f8d490758b2f9033959f4542289496fe-Main Theme.res
+res://Theme/Main Theme.tres::00841b022c65e0e79a1b5824b90cff9b::1732358263::res://.godot/exported/133200997/export-f8d490758b2f9033959f4542289496fe-Main Theme.res
+res://Scroll Profiles/Smooth.tres::ac9d0864ffcb87d5cd470a877f629867::1732043891::res://.godot/exported/133200997/export-d09e8618f7abf34a969b42504564ddf2-Smooth.res
+res://Scroll Profiles/Standard.tres::775c009446f6e6de44e13c909fe5bfda::1732045741::res://.godot/exported/133200997/export-e4d7e52372da4da413ffacd1229763f3-Standard.res

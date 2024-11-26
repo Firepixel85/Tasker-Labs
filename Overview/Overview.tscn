@@ -41,9 +41,10 @@ layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/Control"]
 layout_mode = 2
+anchor_right = 0.974
 anchor_bottom = 0.972
-offset_right = 1029.0
-offset_bottom = -0.180054
+offset_right = 0.455933
+offset_bottom = -0.180115
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
@@ -138,7 +139,7 @@ anchors_preset = -1
 anchor_bottom = 1.0
 offset_right = 303.0
 texture = ExtResource("6_d87hf")
-expand_mode = 1
+expand_mode = 4
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect"]
 layout_mode = 1
@@ -181,10 +182,9 @@ stretch_mode = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
+anchors_preset = 9
 anchor_bottom = 1.0
-grow_horizontal = 2
+offset_right = 303.0
 grow_vertical = 2
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16

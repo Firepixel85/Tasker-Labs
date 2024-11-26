@@ -110,3 +110,5 @@ func clearsel():
 	taskname.text = ""
 	taskcolor.selected = 0
 	taskicon.selected = 0
+
+var clo = Color(1, 0.5, 0.575, 1)
