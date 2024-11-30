@@ -1,6 +1,8 @@
 extends TextureRect
 @onready var savetimer: Timer = $Timer
 @onready var web: HTTPRequest = $Timer/HTTPRequest
+@onready var pop_up: Control = $"../Pop Up"
+@onready var update: Control = $"../Update"
 
 var console_callouts:bool = false
 var latest:bool
@@ -28,7 +30,12 @@ func _ready() -> void:
 
 	await  is_latest()
 	if latest == false:
-		print("(System) INFO: Running on older version!")
+		if rtv.settings["notify_for_updates"]:
+			print("(System) INFO: Running on older version!")
+			pop_up.make_popup("Notice","You are running an outdated version of Tasker. Click here to update.")
+			await pop_up.clicked
+			rtv.popup_clicked = false
+			update.visible = true
 	else:
 		print("(System) INFO: Applications is up-to-date")
 
@@ -44,6 +51,7 @@ func savetaskdata(): # Saves task data
 	save["streakdic"] = rtv.streakdic
 	save["lastgivenid"] = rtv.lastgivenid
 	save["complastlogdic"] = rtv.comlastlogdic
+	save["version"] = rtv.version
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
@@ -81,6 +89,7 @@ func saveorientation(): # Saves lastlog data
 	var save:Dictionary
 	save["orientationcomp"] = rtv.orientationcomp
 	save["settings"] = rtv.settings
+	
 	var json = JSON.stringify(save)
 	file.store_string(json)
 	file.close()
@@ -119,9 +128,9 @@ func is_latest():
 	web.set_download_file("user://latest_version.txt")
 	web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/latest_version.txt")
 	await web.request_completed
-	var latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text()
-	print("(System) INFO: Current vesrion: "+ rtv.version+ " Latest version: "+ latest_version)
-	if latest_version == rtv.version:
+	rtv.latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text()
+	print("(System) INFO: Current vesrion: "+ rtv.version+ " Latest version: "+ rtv.latest_version)
+	if rtv.latest_version == rtv.version:
 		latest = true
 	else:
 		latest = false

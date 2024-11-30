@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bas5xco4jt2as"]
+[gd_scene load_steps=23 format=3 uid="uid://bas5xco4jt2as"]
 
 [ext_resource type="PackedScene" uid="uid://hdmb3fm5ivt5" path="res://Daily UI /Daily UI.tscn" id="1_ab27m"]
 [ext_resource type="Script" path="res://Main/Scipts/rtv.gd" id="1_evffp"]
@@ -14,6 +14,8 @@
 [ext_resource type="Script" path="res://Main/Scipts/Warnings.gd" id="10_ytvsy"]
 [ext_resource type="PackedScene" uid="uid://um6cwu8sn12e" path="res://Orientation/Orientation.tscn" id="11_733n8"]
 [ext_resource type="PackedScene" uid="uid://dceb2vqd421g4" path="res://Settings/Settings.tscn" id="13_w7yt8"]
+[ext_resource type="Script" path="res://Main/Scipts/Pop Up Instantiator.gd" id="14_3jf7s"]
+[ext_resource type="PackedScene" uid="uid://wlfcfsud3elg" path="res://Update/Update.tscn" id="16_30arf"]
 
 [sub_resource type="Gradient" id="Gradient_rknem"]
 offsets = PackedFloat32Array(0.00318471, 1)
@@ -321,6 +323,34 @@ layout_mode = 1
 offset_top = -648.0
 offset_bottom = -648.0
 
+[node name="Pop Up" type="Control" parent="."]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1120.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("14_3jf7s")
+
+[node name="MarginContainer" type="MarginContainer" parent="Pop Up"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -16.0
+offset_right = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pop Up/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 7
+alignment = 2
+
 [node name="Sidebar" parent="." instance=ExtResource("1_ji4w0")]
 z_index = 1
 layout_mode = 1
@@ -357,6 +387,10 @@ layout_mode = 1
 z_index = 19
 layout_mode = 1
 
+[node name="Update" parent="." instance=ExtResource("16_30arf")]
+visible = false
+layout_mode = 1
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_4rj2f")
@@ -365,6 +399,7 @@ libraries = {
 [connection signal="timeout" from="Background/Timer" to="Background" method="load_timeout"]
 [connection signal="new_task" from="Daily Ui" to="Overview" method="_on_new_task"]
 [connection signal="new_task" from="Daily Ui" to="New task" method="new_task"]
+[connection signal="child_entered_tree" from="Pop Up/MarginContainer/VBoxContainer" to="Pop Up" method="pop_up_made"]
 [connection signal="changed_page" from="Sidebar" to="Overview" method="_on_changed_page"]
 [connection signal="reorientate" from="Settings" to="Orientation" method="_on_settings_reorientate"]
 [connection signal="settings_changed" from="Settings" to="Background" method="on_settings_changed"]

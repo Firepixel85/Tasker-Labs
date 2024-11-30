@@ -5,6 +5,7 @@ var containerpointer:Dictionary ={0:"res://New Task/Textures/Containers/Blue.png
 var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
 
 @onready var warn: Label = $"../Warnings"
+@onready var pop_up: Control = $"../Pop Up"
 @onready var warntimer: Timer = $"../Warnings/warntimer"
 
 @onready var animator = $AnimationPlayer
@@ -84,10 +85,7 @@ func _on_create_pressed():
 		tween.tween_property(create,"position",Vector2(-15,0),0.08)
 		tween.tween_property(create,"position",Vector2(0,0),0.1)
 		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
-		warn.setwarn("Task name can't be empty!")
-		warntimer.start()
-		await warntimer.timeout
-		warn.clearwarn()
+		pop_up.make_popup("Error!","Task name can't be empty.")
 
 	elif taskname.text.split("").size() > 16:
 		print("(New task) INFO: Completion aborted")
@@ -98,10 +96,7 @@ func _on_create_pressed():
 		tween.tween_property(create,"position",Vector2(-15,0),0.08)
 		tween.tween_property(create,"position",Vector2(0,0),0.1)
 		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
-		warn.setwarn("Task name can't be more than 16 characters!")
-		warntimer.start()
-		await warntimer.timeout
-		warn.clearwarn()
+		pop_up.make_popup("Error!","Task name can't be longet than 16 characters.")
 
 		
 

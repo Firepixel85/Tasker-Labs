@@ -12,6 +12,7 @@ signal reorientate
 @onready var username = $MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname/Label2/HBoxContainer/Username
 @onready var sidebar_selection: OptionButton = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection Method/Label2/HBoxContainer/Sidebar Selection"
 @onready var sb_selection_color: LineEdit = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar Selection Color/Label2/HBoxContainer/Color"
+@onready var notify_for_updates: CheckButton = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Notify For Updates/Label2/HBoxContainer/CheckButton"
 
 
 #-----End-----#
@@ -43,6 +44,7 @@ func begin_setting():
 	username.text = settings["username"]
 	sidebar_selection.select(settings["sidebar_selection"])
 	sb_selection_color.text = settings["sb_selection_color"]
+	notify_for_updates.button_pressed = settings["notify_for_updates"]
 	
 	
 func apply():
@@ -50,11 +52,12 @@ func apply():
 		warning.set_warn("1 or more spaces have been left empty!")
 	elif sb_selection_color.text.split().size() != 6:
 		warning.set_warn("Sidebar Selection Color needs to be 6 characters (HEX)")
-	else:
+	else: #Forwards new settings to the settings dictionary
 		settings["sidebar_selection"] = sidebar_selection.selected
 		settings["time_setting"] = time_setting.selected
 		settings["username"] = username.text
 		settings["sb_selection_color"] = sb_selection_color.text  
+		settings["notify_for_updates"] = notify_for_updates.button_pressed
 		applied = true
 		rtv.settings = settings
 
