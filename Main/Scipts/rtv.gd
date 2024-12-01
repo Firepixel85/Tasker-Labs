@@ -47,4 +47,4 @@ var version = "1.0_obd1"
 var latest_version
 var updater_version
 var updater_latest_version
-var production:bool = false #Should only be true when building new versions
+var production:bool = true #Should only be true when building new versions

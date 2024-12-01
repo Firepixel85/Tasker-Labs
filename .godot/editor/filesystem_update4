@@ -1,7 +1,6 @@
 res://Main/main.tscn
 res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
-res://Main/Scipts/rtv.gd
 res://New Task/Edit/Edit.tscn
 res://Sidebar/sidebar.tscn
 res://Settings/Settings.tscn
