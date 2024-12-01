@@ -5,6 +5,7 @@ extends Control
 @onready var desc: Label = $TextureRect/MarginContainer/VBoxContainer/Label2
 
 func _ready() -> void:
+	progress.modulate = Color(rtv.settings["accent_color"])
 	title.text = rtv.pop_up_name
 	desc.text = rtv.pop_up_desc
 	animator.play("In")

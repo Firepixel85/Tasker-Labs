@@ -1,11 +1,13 @@
-res://Main/main.tscn
+res://Settings/Settings.tscn
 res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
+res://Main/Scipts/rtv.gd
+res://Main/main.tscn
 res://New Task/Edit/Edit.tscn
 res://Sidebar/sidebar.tscn
-res://Settings/Settings.tscn
-res://Orientation/Orientation.tscn
-res://Daily UI /Daily UI.tscn
-res://Overview/Overview.tscn
 res://Pop Up/Pop Up.tscn
 res://Update/Update.tscn
+res://New Task/New Task.tscn
+res://Daily Task/Daily Task.tscn
+res://Daily Task/Daily Task Done/Daily Task Done.tscn
+res://Settings/Scripts/Update.gd

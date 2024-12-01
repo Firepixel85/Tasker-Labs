@@ -220,6 +220,7 @@ size_flags_vertical = 1
 theme_override_fonts/font = ExtResource("3_lstys")
 theme_override_font_sizes/font_size = 26
 text = "[Dynamic]"
+autowrap_mode = 3
 
 [node name="Task Right" type="HBoxContainer" parent="Container"]
 layout_mode = 1
@@ -262,19 +263,25 @@ layout_mode = 2
 disabled = true
 flat = true
 
-[node name="Flame" type="TextureRect" parent="Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox/Button"]
-layout_mode = 2
-offset_right = 327.0
+[node name="HBoxContainer" type="HBoxContainer" parent="Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox/Button"]
+layout_mode = 1
+offset_left = -29.0
+offset_right = 931.0
 offset_bottom = 476.0
 scale = Vector2(0.1, 0.1)
+alignment = 1
+
+[node name="Flame" type="TextureRect" parent="Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox/Button/HBoxContainer"]
+layout_mode = 2
 texture = ExtResource("5_cet7u")
 stretch_mode = 2
 
 [node name="Count" type="Label" parent="Container/Task Right/Streak/Streak Container/MarginContainer/Hbox/Vbox"]
+custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("6_h5v6g")
 theme_override_font_sizes/font_size = 24
-text = "37"
+text = "123"
 horizontal_alignment = 1
 
 [node name="Button" type="Button" parent="Container/Task Right/Streak"]

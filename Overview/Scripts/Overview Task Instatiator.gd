@@ -13,13 +13,13 @@ func _ready() -> void:
 			add_child(preload("res://Overview/Task/Overview Task Done.tscn").instantiate())
 		await rtv.loadcreationstatus_overview == 1
 	if not comp:
-		print("(Overview Task Instantiator) INFO: Loaded")
+		print("(Overview Task Instantiator) INFO: Loaded full")
 		
 func add_task(id):
 	rtv.justcreatedid_overview = id
 	if comp == false:
 		print("(Overview Task Instantiator) INFO: Recieved signal from Daily Handler")
 		add_child(preload("res://Overview/Task/Overview Task.tscn").instantiate())
-		print("(Overview Task Instantiator) INFO: Task Instantied")
+		print("(Overview Task Instantiator) INFO: Task Instantiated")
 	else:
 		add_child(preload("res://Overview/Task/Overview Task Done.tscn").instantiate())

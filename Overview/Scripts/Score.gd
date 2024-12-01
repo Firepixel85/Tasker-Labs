@@ -1,10 +1,11 @@
 extends TextureProgressBar
 
-@onready var text: Label = $Label
+@onready var text: Label = $"../Label"
 @onready var timer: Timer = $Timer
 
 
 func animate_value(changed:bool):
+	modulate = Color(rtv.settings["accent_color"])
 	if rtv.iddic.size() != 0:
 		var count:int
 		for i in rtv.namedic.size():

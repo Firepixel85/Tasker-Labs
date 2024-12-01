@@ -64,7 +64,7 @@ func _on_cancel_pressed():
 
 func _on_create_pressed():
 	print("(New task) INFO: Requested completion")
-	if rtv.iscreating == true and taskname.text != "" and taskname.text.split("").size() <= 16:
+	if rtv.iscreating == true and taskname.text != "" and taskname.text.split("").size() <= 36:
 		print("(New task) INFO: Completion request accepted")
 		var tween = get_tree().create_tween()
 		tween.tween_property(create,"scale",Vector2(1.1,1.1),0.2)
@@ -87,7 +87,7 @@ func _on_create_pressed():
 		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
 		pop_up.make_popup("Error!","Task name can't be empty.")
 
-	elif taskname.text.split("").size() > 16:
+	elif taskname.text.split("").size() > 36:
 		print("(New task) INFO: Completion aborted")
 		var tween = get_tree().create_tween()
 		create.modulate = Color(1, 0.27, 0.27)
@@ -96,7 +96,7 @@ func _on_create_pressed():
 		tween.tween_property(create,"position",Vector2(-15,0),0.08)
 		tween.tween_property(create,"position",Vector2(0,0),0.1)
 		tween.tween_property(create,"modulate",Color(1, 1, 1),0.1)
-		pop_up.make_popup("Error!","Task name can't be longet than 16 characters.")
+		pop_up.make_popup("Error!","Task name can't be longet than 36 characters.")
 
 		
 

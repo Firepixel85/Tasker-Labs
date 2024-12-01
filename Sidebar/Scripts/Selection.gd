@@ -11,7 +11,7 @@ func _process(delta: float) -> void:
 		selection.visible = false
 	else:
 		selection.visible = true
-		modulate = Color(rtv.settings["sb_selection_color"])
+		modulate = Color(rtv.settings["accent_color"])
 
 func positionselection(pos):
 	if rtv.settings["sidebar_selection"] == 1 or 2:

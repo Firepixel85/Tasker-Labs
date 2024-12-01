@@ -1,11 +1,11 @@
 HTTPRequest
-Control
 Button
-HBoxContainer
-VBoxContainer
 Label
+VBoxContainer
+HBoxContainer
 MarginContainer
 TextureRect
+Control
 CheckButton
 AnimationPlayer
 TextureProgressBar

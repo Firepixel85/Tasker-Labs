@@ -11,7 +11,7 @@ signal reorientate
 @onready var time_setting = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Show time/Label2/HBoxContainer/Time Setting"
 @onready var username = $MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Nickname/Label2/HBoxContainer/Username
 @onready var sidebar_selection: OptionButton = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar selection Method/Label2/HBoxContainer/Sidebar Selection"
-@onready var sb_selection_color: LineEdit = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Sidebar Selection Color/Label2/HBoxContainer/Color"
+@onready var accent_color: LineEdit = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Accent color/Label2/HBoxContainer/Color"
 @onready var notify_for_updates: CheckButton = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Notify For Updates/Label2/HBoxContainer/CheckButton"
 
 
@@ -43,20 +43,20 @@ func begin_setting():
 	time_setting.select(settings["time_setting"])
 	username.text = settings["username"]
 	sidebar_selection.select(settings["sidebar_selection"])
-	sb_selection_color.text = settings["sb_selection_color"]
+	accent_color.text = settings["accent_color"]
 	notify_for_updates.button_pressed = settings["notify_for_updates"]
 	
 	
 func apply():
-	if  username.text == "" or sb_selection_color.text == "" and sb_selection_color.text.split().size() != 6:
+	if  username.text == "" or accent_color.text == "" and accent_color.text.split().size() != 6:
 		warning.set_warn("1 or more spaces have been left empty!")
-	elif sb_selection_color.text.split().size() != 6:
+	elif accent_color.text.split().size() != 6:
 		warning.set_warn("Sidebar Selection Color needs to be 6 characters (HEX)")
 	else: #Forwards new settings to the settings dictionary
 		settings["sidebar_selection"] = sidebar_selection.selected
 		settings["time_setting"] = time_setting.selected
 		settings["username"] = username.text
-		settings["sb_selection_color"] = sb_selection_color.text  
+		settings["accent_color"] = accent_color.text  
 		settings["notify_for_updates"] = notify_for_updates.button_pressed
 		applied = true
 		rtv.settings = settings
@@ -67,7 +67,7 @@ func on_apply_pressed() -> void:
 
 
 func on_done_pressed() -> void:
-	if (applied == true and username.text != "" and sb_selection_color.text != "") or apply_pass == true:
+	if (applied == true and username.text != "" and accent_color.text != "") or apply_pass == true:
 		animator.play("Out")
 		rtv.issetting = false
 		settings_changed.emit()

@@ -131,7 +131,6 @@ func is_latest():
 	await web.request_completed
 	rtv.latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text().split(",")[0]
 	rtv.updater_latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text().split(",")[1]
-	print(rtv.updater_version)
 	print("(System) INFO: Current vesrion: "+ rtv.version+ " Latest version: "+ rtv.latest_version)
 	if rtv.latest_version == rtv.version:
 		latest = true

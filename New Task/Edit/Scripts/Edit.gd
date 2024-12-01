@@ -3,12 +3,14 @@ extends Control
 var colorpointer:Dictionary = {0:"res://Daily Task/Textures/Colors/Big/Blue.png", 1:"res://Daily Task/Textures/Colors/Big/Green.png", 2:"res://Daily Task/Textures/Colors/Big/Orange.png", 3: "res://Daily Task/Textures/Colors/Big/Pink.png",4:"res://Daily Task/Textures/Colors/Big/Red.png",5:"res://Daily Task/Textures/Colors/Big/Teal.png"}
 var containerpointer:Dictionary ={0:"res://New Task/Textures/Containers/Blue.png",1:"res://New Task/Textures/Containers/Green.png",2:"res://New Task/Textures/Containers/Orange.png",3:"res://New Task/Textures/Containers/Pink.png",4:"res://New Task/Textures/Containers/Red.png",5:"res://New Task/Textures/Containers/Teal.png"}
 var iconpointer:Dictionary = {2:"res://Daily Task/Textures/Icons/Big/Book.svg",1:"res://Daily Task/Textures/Icons/Big/Dumbell.svg",4:"res://Daily Task/Textures/Icons/Big/Paintbrush.svg",3:"res://Daily Task/Textures/Icons/Big/Paw.svg",5:"res://Daily Task/Textures/Icons/Big/Mindful.svg",6:"res://Daily Task/Textures/Icons/Big/Dollar.svg"}
+@onready var pop_up: Control = $"../Pop Up"
 
 @onready var warn: Label = $"../Warnings"
 @onready var warntimer: Timer = $"../Warnings/warntimer"
 
-@onready var cancel = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Cancel
-@onready var create = $TextureRect/HBoxContainer/MarginContainer/HBoxContainer/Create
+@onready var cancel: Button = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Cancel
+@onready var edit: Button = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/HBoxContainer/Edit
+
 @onready var daily_handler = $"../Daily Ui"
 @onready var delete = $TextureRect/HBoxContainer/MarginContainer/VBoxContainer2/Delete
 @onready var animator: AnimationPlayer = $AnimationPlayer
@@ -61,7 +63,7 @@ func _on_cancel_pressed() -> void:
 
 func _on_create_pressed() -> void:
 	print("(Edit) INFO: Edit completion requested")
-	if taskname.text != "":
+	if taskname.text != "" and taskname.text.split("").size() <= 36:
 		rtv.namedic[rtv.edittarget] = taskname.text
 		rtv.colordic[rtv.edittarget] = taskcolor.selected 
 		rtv.icondic[rtv.edittarget] = taskicon.selected +1
@@ -74,12 +76,26 @@ func _on_create_pressed() -> void:
 
 
 	elif taskname.text == "":
-		warn.setwarn("Task name can't be empty!")
-		warntimer.start()
+		var tween = get_tree().create_tween()
 		print("(Edit) INFO: Edit completion aborted")
-		await warntimer.timeout
-		warn.clearwarn()
-
+		edit.modulate = Color(1, 0.27, 0.27)
+		tween.tween_property(edit,"position",Vector2(175,0),0.08)
+		tween.tween_property(edit,"position",Vector2(160,0),0.1)
+		tween.tween_property(edit,"position",Vector2(145,0),0.08)
+		tween.tween_property(edit,"position",Vector2(160,0),0.1)
+		tween.tween_property(edit,"modulate",Color(1, 1, 1),0.1)
+		pop_up.make_popup("Error!","Task name can't be empty.")
+		
+	elif taskname.text.split("").size() > 36:
+		print("(Edit) INFO: Edit completion aborted")
+		var tween = get_tree().create_tween()
+		edit.modulate = Color(1, 0.27, 0.27)
+		tween.tween_property(edit,"position",Vector2(175,0),0.08)
+		tween.tween_property(edit,"position",Vector2(160,0),0.1)
+		tween.tween_property(edit,"position",Vector2(145,0),0.08)
+		tween.tween_property(edit,"position",Vector2(160,0),0.1)
+		tween.tween_property(edit,"modulate",Color(1, 1, 1),0.1)
+		pop_up.make_popup("Error!","Task name can't be longet than 36 characters.")
 
 func _on_delete_pressed() -> void:
 	print("(Edit) INFO: Deleting task: "+str(rtv.edittarget))

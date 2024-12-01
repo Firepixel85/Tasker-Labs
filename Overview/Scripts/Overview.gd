@@ -2,7 +2,7 @@ extends Control
 
 @onready var instance1: VBoxContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
 @onready var instance2: VBoxContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/TextureRect2/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer
-@onready var score: TextureProgressBar = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control/Score/TextureProgressBar
+@onready var score: TextureProgressBar = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/Control/VBoxContainer/Control/Score/Control/TextureProgressBar
 
 #Smooth Scrolling:
 @onready var scroll_container: SmoothScrollContainer = $MarginContainer/Control/TextureRect/MarginContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Control/TextureRect/MarginContainer/VBoxContainer/ScrollContainer

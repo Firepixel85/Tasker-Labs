@@ -34,7 +34,7 @@ var username:String
 
 #Settings
 var issetting:bool
-var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0,"sb_selection_color":"8667E9","smooth_scroll":true,"notify_for_updates":true}
+var settings:Dictionary = {"time_setting":0,"username":"","sidebar_selection":0,"accent_color":"8667E9","smooth_scroll":true,"notify_for_updates":true}
 
 #Pop Up
 var pop_up_name:String
@@ -47,4 +47,4 @@ var version = "1.0_obd1"
 var latest_version
 var updater_version
 var updater_latest_version
-var production:bool = true #Should only be true when building new versions
+var production:bool = false #Should only be true when building new versions
