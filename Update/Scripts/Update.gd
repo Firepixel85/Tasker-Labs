@@ -28,11 +28,8 @@ func _on_update_pressed() -> void:
 			print("found")
 			
 	
-	if not found_updater:
+	if not found_updater or rtv.updater_latest_version != rtv.updater_version:
 		print("not found, downloading")
-
-
-		OS.shell_open("/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.app")
 		web.set_download_file("user://Updater.zip")
 		web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/Updater.Mac.zip")
 		

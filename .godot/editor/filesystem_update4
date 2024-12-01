@@ -2,7 +2,6 @@ res://Main/main.tscn
 res://Theme/Main Theme.tres
 res://Orientation/Shaders/blur.gdshader
 res://Main/Scipts/rtv.gd
-res://Main/Scipts/Saving.gd
 res://New Task/Edit/Edit.tscn
 res://Sidebar/sidebar.tscn
 res://Settings/Settings.tscn
@@ -11,6 +10,3 @@ res://Daily UI /Daily UI.tscn
 res://Overview/Overview.tscn
 res://Pop Up/Pop Up.tscn
 res://Update/Update.tscn
-res://Main/Scipts/Pop Up Instantiator.gd
-res://Pop Up/Scripts/Pop Up.gd
-res://Update/Scripts/Update.gd

@@ -125,10 +125,12 @@ func on_settings_changed() -> void:
 	saveorientation()
 
 func is_latest():
+	rtv.updater_version = FileAccess.open(OS.get_user_data_dir().split("Tasker")[0]+"Tasker Updater/latest.json",FileAccess.READ).get_as_text().split("\"")[1]
 	web.set_download_file("user://latest_version.txt")
 	web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/latest_version.txt")
 	await web.request_completed
-	rtv.latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text()
+	rtv.latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text().split(",")[0]
+	rtv.updater_latest_version = FileAccess.open("user://latest_version.txt",FileAccess.READ).get_as_text().split(",")[1]
 	print("(System) INFO: Current vesrion: "+ rtv.version+ " Latest version: "+ rtv.latest_version)
 	if rtv.latest_version == rtv.version:
 		latest = true
