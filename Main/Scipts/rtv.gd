@@ -43,7 +43,7 @@ var popup_clicked:bool
 
 #System
 var os = "MAC"
-var version = "1.0_obd1"
+var version = "1.0_obd3"
 var latest_version
 var updater_version
 var updater_latest_version
