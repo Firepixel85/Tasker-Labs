@@ -1,9 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://hdmb3fm5ivt5"]
+[gd_scene load_steps=12 format=3 uid="uid://hdmb3fm5ivt5"]
 
 [ext_resource type="Texture2D" uid="uid://cyu6hgypsaay1" path="res://Daily UI /Textures/UI Container.png" id="1_3r60q"]
 [ext_resource type="Script" path="res://Daily UI /Scripts/Daily Handler.gd" id="1_oxqdv"]
 [ext_resource type="FontFile" uid="uid://ds4ohnaje2v44" path="res://Theme/Inter font/static/Inter_18pt-Bold.ttf" id="2_hpifb"]
+[ext_resource type="Material" uid="uid://cwurw8t3txml2" path="res://Theme/Deafult Round Shader.tres" id="2_qtfcs"]
 [ext_resource type="Script" path="res://Daily UI /Scripts/Task Instantiator.gd" id="3_jy2y0"]
+[ext_resource type="Script" path="res://Daily UI /Scripts/Update Shader.gd" id="4_4xv47"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/SmoothScrollContainer.gd" id="4_g6ke7"]
 [ext_resource type="Resource" uid="uid://dsg475dsth6tj" path="res://Scroll Profiles/Smooth.tres" id="5_2sb03"]
 [ext_resource type="Script" path="res://addons/SmoothScroll/scroll_damper/cubic_scroll_damper.gd" id="5_n7vli"]
@@ -26,6 +28,7 @@ grow_vertical = 2
 script = ExtResource("1_oxqdv")
 
 [node name="Incomplete" type="TextureRect" parent="."]
+material = ExtResource("2_qtfcs")
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
@@ -36,6 +39,7 @@ offset_right = 499.0
 offset_bottom = -39.0
 grow_vertical = 2
 texture = ExtResource("1_3r60q")
+script = ExtResource("4_4xv47")
 
 [node name="MarginContainer" type="MarginContainer" parent="Incomplete"]
 layout_mode = 1
@@ -79,6 +83,7 @@ layout_mode = 2
 script = ExtResource("3_jy2y0")
 
 [node name="Complete" type="TextureRect" parent="."]
+material = ExtResource("2_qtfcs")
 layout_direction = 1
 layout_mode = 1
 anchors_preset = -1
@@ -89,6 +94,7 @@ offset_right = 1024.0
 offset_bottom = -39.0
 grow_vertical = 2
 texture = ExtResource("1_3r60q")
+script = ExtResource("4_4xv47")
 
 [node name="MarginContainer" type="MarginContainer" parent="Complete"]
 layout_mode = 0

@@ -1,3 +1,6 @@
+res://Daily UI /Scripts
+res://Theme
+res://Theme/Shaders
 res://Debug/Scripts
 res://Settings/Scripts
 res://Update/Scripts
@@ -11,13 +14,10 @@ res://
 /Users/max/Library/Application Support/Godot
 /Users/max/Downloads
 res://Scroll Profiles
-res://Daily UI /Scripts
 /Users/max/Documents/Godot Builds
 res://Sidebar/Scripts
 res://Orientation/Scripts
 res://Settings
 res://Theme/Settings
 res://Overview/Scripts
-res://Overview/Task/Scripts
-res://Overview/Task
 /Users/max/Documents/Godot Projects/Tasker-Labs

@@ -10,4 +10,9 @@ res://Daily Task/Daily Task.tscn
 res://Daily Task/Daily Task Done/Daily Task Done.tscn
 res://Settings/Settings.tscn
 res://Orientation/Orientation.tscn
+res://Daily UI /Daily UI.tscn
+res://Theme/Shaders/Round Corners.gdshader
+res://Daily UI /Scripts/Update Shader.gd
+res://Theme/Deafult Round Shader.tres
+res://Settings/Scripts/Settings.gd
 res://Settings/Scripts/Update.gd

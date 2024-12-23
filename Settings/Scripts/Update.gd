@@ -22,7 +22,7 @@ func _on_visibility_changed() -> void:
 
 func _on_button_pressed() -> void:
 	var output = []
-	var con = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && cd 'Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker' && ls"],output)
+	var term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && cd 'Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker' && ls"],output)
 	
 
 	text.text = "Downloading updating tool"
@@ -35,17 +35,17 @@ func _on_button_pressed() -> void:
 	
 	if not found_updater or rtv.updater_latest_version != rtv.updater_version:
 		web.set_download_file("user://Updater.zip")
-		
-		var term
-		
+
+		delete_updater()
 		if rtv.os == "MAC":
-			web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/Updater.Mac.zip")
 			
-			term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && rm -rf '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.app'"],output)
+			
+			web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/Updater.Mac.zip")
 			await web.request_completed
 			term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && unzip '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.zip' -d  '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker'"],output)
 			term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && rm '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.zip'"],output)
 		elif rtv.os == "WIN":
+			delete_updater()
 			web.request("https://github.com/Firepixel85/Tasker-Labs/releases/download/latest_pointer/Updater.Mac.zip")
 			await web.request_completed
 			term = OS.execute("POWERSHELL.exe", ["tar -xf C:\\Users\\"+user+"\\AppData\\Roaming\\Godot\\app_userdata\\Tasker\\Updater.zip -C C:\\Users\\"+user+"\\AppData\\Roaming\\Godot\\app_userdata\\Tasker"],output)
@@ -55,3 +55,20 @@ func _on_button_pressed() -> void:
 	
 	OS.shell_open("/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.app")
 	get_tree().quit()
+
+
+func delete_updater():
+	if rtv.os == "MAC":
+		print("(System) INFO: Attempting to delete Updater")
+
+		var output = []
+		var term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && rm -rf '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker/Updater.app'"],output)
+
+		term = OS.execute("/bin/bash",["-c"]+["cd .. && cd .. && cd .. && cd .. && cd .. && cd '/Users/"+user+"/Library/Application Support/Godot/app_userdata/Tasker' && ls"],output)
+
+		for i in str(output).split("\\n").size():
+			if str(output).split("\\n")[i] == "[\"Updater.app":
+				delete_updater()
+				print("(System) INFO: Deletion Failed retrying")
+	elif rtv.os == "WIN":
+		print("(System) ERROR: Failed to delete Updater REASON: This feature is not available on windows")

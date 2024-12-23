@@ -14,8 +14,7 @@ signal reorientate
 @onready var accent_color: LineEdit = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Accent color/Label2/HBoxContainer/Color"
 @onready var notify_for_updates: CheckButton = $"MarginContainer/TextureRect/MarginContainer/VBoxContainer/ScrollContainer/VBoxContainer/VBoxContainer/Notify For Updates/Label2/HBoxContainer/CheckButton"
 
-
-#-----End-----#
+#-----End Settings-----#
 var past_settings:Dictionary
 var settings:Dictionary
 var applied:bool

@@ -1,11 +1,13 @@
-[gd_scene load_steps=28 format=3 uid="uid://cedapa6ga120n"]
+[gd_scene load_steps=31 format=3 uid="uid://cedapa6ga120n"]
 
 [ext_resource type="Script" path="res://Sidebar/Scripts/Sidebar.gd" id="1_2ga01"]
 [ext_resource type="Texture2D" uid="uid://gr3dbsbh51y0" path="res://Sidebar/Textures/Sidebar Container.png" id="2_1tnmn"]
+[ext_resource type="Shader" path="res://Theme/Shaders/Round Corners.gdshader" id="2_biijr"]
 [ext_resource type="Texture2D" uid="uid://cyhqd8huvvppb" path="res://Sidebar/Textures/Home Icon.svg" id="2_iydla"]
 [ext_resource type="Texture2D" uid="uid://buokifw8oechu" path="res://Sidebar/Textures/Selection.png" id="3_0xcps"]
 [ext_resource type="Texture2D" uid="uid://ctccnjwtitcfd" path="res://Sidebar/Textures/Overview Icon.png" id="3_ypvnt"]
 [ext_resource type="Texture2D" uid="uid://deexw1xdo8oup" path="res://Sidebar/Textures/Daily Icon.png" id="4_4d04x"]
+[ext_resource type="Script" path="res://Daily UI /Scripts/Update Shader.gd" id="4_jydxg"]
 [ext_resource type="Script" path="res://Sidebar/Scripts/Selection.gd" id="4_y0sa7"]
 [ext_resource type="Texture2D" uid="uid://c6cibylcsroxq" path="res://Sidebar/Textures/Schedualed Icon.svg" id="5_rl55e"]
 [ext_resource type="Script" path="res://Sidebar/Scripts/Overview.gd" id="6_hebhy"]
@@ -13,6 +15,16 @@
 [ext_resource type="Texture2D" uid="uid://bpfhcy3xecjjt" path="res://Sidebar/Textures/Plus Icon.png" id="7_sxfcb"]
 [ext_resource type="Script" path="res://Sidebar/Scripts/Add.gd" id="8_boi5m"]
 [ext_resource type="Script" path="res://Sidebar/Scripts/Settings.gd" id="9_t5621"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mwo0"]
+shader = ExtResource("2_biijr")
+shader_parameter/radius_scale = 0.2
+shader_parameter/rounded_corner_top_left = true
+shader_parameter/rounded_corner_top_right = true
+shader_parameter/rounded_corner_bottom_left = true
+shader_parameter/rounded_corner_bottom_right = true
+shader_parameter/width = 64.0
+shader_parameter/height = 616.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4d324"]
 
@@ -238,6 +250,7 @@ grow_vertical = 2
 script = ExtResource("1_2ga01")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0mwo0")
 layout_mode = 1
 anchors_preset = -1
 anchor_bottom = 1.0
@@ -246,6 +259,7 @@ offset_right = 80.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_1tnmn")
+script = ExtResource("4_jydxg")
 
 [node name="Control" type="Control" parent="TextureRect"]
 layout_mode = 1
