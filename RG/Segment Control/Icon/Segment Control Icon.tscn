@@ -10,11 +10,12 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 script = ExtResource("1_nd2cy")
+items = ["focus", "home", "tasks"]
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
-offset_right = 30.0
+offset_right = 86.0
 offset_bottom = 30.0
 texture = ExtResource("2_qo6oh")
 patch_margin_left = 14
@@ -49,7 +50,7 @@ theme_override_constants/separation = 4
 [node name="ButtonContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 0
-offset_right = 30.0
+offset_right = 90.0
 offset_bottom = 30.0
 theme_override_constants/separation = 0
 alignment = 1
