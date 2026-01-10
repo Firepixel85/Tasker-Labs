@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dts48c572b8am"]
+
+[ext_resource type="Texture2D" uid="uid://dt3cn6kivfpdr" path="res://icon.svg" id="1_s6sss"]
+[ext_resource type="Script" uid="uid://dc0bfxfrvytyr" path="res://Globals/svgHelpers/svgHelperSprite2D.gd" id="2_hogpa"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(363, 262)
+texture = ExtResource("1_s6sss")
+script = ExtResource("2_hogpa")
+SVGPath = "res://Icons/Home.svg"
+Scale = 5.0

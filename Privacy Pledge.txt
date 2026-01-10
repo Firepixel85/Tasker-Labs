@@ -1,9 +1,0 @@
-Privacy Pledge Tasker 2024
-
-Rosepen Studios and Tasker are commited to protecting user data,
-as such Tasker will never ask for any sensitive data,
-Tasker will also never upload your data to any server,
-so your data will never leave your computer.
-All collected user data is stored on device,
-in .json files and no one without access to your device
-has access to your data.
