@@ -1,15 +1,29 @@
-[gd_scene load_steps=4 format=3 uid="uid://b1hmh3jqy41yo"]
+[gd_scene format=3 uid="uid://b1hmh3jqy41yo"]
 
 [ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://DragZone.gd" id="1_37kl0"]
+[ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://RG/Segment Control/Icon/Segment Control Icon.tscn" id="2_6uqi0"]
+[ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://RG/Segment Control/SegmentControl.tscn" id="2_8uh7m"]
+[ext_resource type="PackedScene" uid="uid://buedo2hdqto7k" path="res://RG/Button/Icon/ButtonIcon.tscn" id="2_ykrsh"]
+[ext_resource type="PackedScene" uid="uid://bo5xe3y556i1g" path="res://RG/Button/Text/ButtonText.tscn" id="3_ppyta"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://RG/Button/TextIcon/ButtonTextIcon.tscn" id="5_vbegm"]
 
-[sub_resource type="Gradient" id="Gradient_mf4mk"]
-offsets = PackedFloat32Array(0.526786)
-colors = PackedColorArray(1, 1, 1, 1)
+[sub_resource type="Gradient" id="Gradient_8uh7m"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 0)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_37kl0"]
-gradient = SubResource("Gradient_mf4mk")
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6uqi0"]
+gradient = SubResource("Gradient_8uh7m")
+height = 45
 
-[node name="Control" type="Control"]
+[sub_resource type="Gradient" id="Gradient_6uqi0"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ppyta"]
+gradient = SubResource("Gradient_6uqi0")
+height = 45
+
+[node name="Control" type="Control" unique_id=1447399367]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,19 +31,66 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="TextureRect" parent="."]
-layout_mode = 2
-offset_right = 1600.0
-offset_bottom = 46.0
-size_flags_vertical = 3
-mouse_filter = 2
-texture = SubResource("GradientTexture1D_37kl0")
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1215370365]
+z_as_relative = false
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="PleaseIgnoreMe" type="TextureRect" parent="VBoxContainer" unique_id=91598843]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_6uqi0")
+expand_mode = 2
+
+[node name="Content" type="VBoxContainer" parent="VBoxContainer" unique_id=231824100]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Content" unique_id=1695688585]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="ButtonText" parent="VBoxContainer/Content/HBoxContainer" unique_id=558219073 instance=ExtResource("3_ppyta")]
+layout_mode = 2
+
+[node name="ButtonIcon" parent="VBoxContainer/Content/HBoxContainer" unique_id=611677477 instance=ExtResource("2_ykrsh")]
+layout_mode = 2
+
+[node name="ButtonTextIcon" parent="VBoxContainer/Content/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_vbegm")]
+custom_minimum_size = Vector2(126, 30)
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer/Content" unique_id=1109672540]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="SegmentControl" parent="VBoxContainer/Content/HBoxContainer2" unique_id=973767052 instance=ExtResource("2_8uh7m")]
+custom_minimum_size = Vector2(124, 30)
+layout_mode = 2
+
+[node name="SegmentControl Icon" parent="VBoxContainer/Content/HBoxContainer2" unique_id=1133264568 instance=ExtResource("2_6uqi0")]
+custom_minimum_size = Vector2(86, 30)
+layout_mode = 2
+
+[node name="DragZone" type="VBoxContainer" parent="." unique_id=1796571422]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_right = 1120.0
-offset_bottom = 46.0
+offset_bottom = 45.0
 grow_horizontal = 2
 script = ExtResource("1_37kl0")
+
+[node name="TextureRect" type="TextureRect" parent="DragZone" unique_id=726762305]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_ppyta")
+expand_mode = 2

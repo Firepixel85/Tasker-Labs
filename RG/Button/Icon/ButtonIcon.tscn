@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://buedo2hdqto7k"]
+
+[ext_resource type="Script" uid="uid://diogrofywpdp2" path="res://RG/Button/Icon/ButtonIcon.gd" id="1_26b70"]
+[ext_resource type="Texture2D" uid="uid://shfypcpupyfq" path="res://RG/Button/BaseGray.png" id="2_pyh5m"]
+[ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://Icons/Home.svg" id="3_pyh5m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_as0w1"]
+
+[node name="ButtonIcon" type="Control" unique_id=611677477]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 3
+anchor_right = 0.023076924
+anchor_bottom = 0.04103967
+script = ExtResource("1_26b70")
+icon = ExtResource("3_pyh5m")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=530261094]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+anchors_preset = -1
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("2_pyh5m")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1150763944]
+layout_mode = 1
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=918377999]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1988567250]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=1649524797]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+texture = ExtResource("3_pyh5m")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=277169004]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_as0w1")
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
+[connection signal="toggled" from="Button" to="." method="_on_toggled"]

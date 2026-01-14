@@ -1,9 +1,9 @@
 extends Control
 
 func _ready() -> void:
-	get_window().size = Vector2(480,270)
+	get_window().size = Vector2(480*2,270*2)
 	center_window()
-	await get_tree().create_timer(1).timeout
+	#await get_tree().create_timer(1).timeout
 	if !Data.file_exists("window"):
 		Data.make_file("window")
 		start_app(false)

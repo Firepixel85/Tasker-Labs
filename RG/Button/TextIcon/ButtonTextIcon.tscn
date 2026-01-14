@@ -1,0 +1,75 @@
+[gd_scene format=3 uid="uid://bb73lbvti8wp6"]
+
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://RG/Button/TextIcon/ButtonTextIcon.gd" id="1_pa7x6"]
+[ext_resource type="Texture2D" uid="uid://shfypcpupyfq" path="res://RG/Button/BaseGray.png" id="2_uaxtl"]
+[ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://Icons/Home.svg" id="3_rbpgo"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
+
+[node name="ButtonTextIcon" type="Control" unique_id=1426858299]
+custom_minimum_size = Vector2(122, 30)
+layout_mode = 3
+anchor_right = 0.096923076
+anchor_bottom = 0.04103967
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_pa7x6")
+icon = ExtResource("3_rbpgo")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=885916875]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 30.0
+texture = ExtResource("2_uaxtl")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1282823819]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_right = 126.0
+offset_bottom = 30.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1312002145]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=506759268]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=594920261]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1888923641]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Button"
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1107408437]
+layout_mode = 2
+texture = ExtResource("3_rbpgo")
+
+[node name="Button" type="Button" parent="." unique_id=1653572253]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ir1hl")
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
+[connection signal="toggled" from="Button" to="." method="_on_toggled"]

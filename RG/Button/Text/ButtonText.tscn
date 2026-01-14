@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bo5xe3y556i1g"]
+
+[ext_resource type="Script" uid="uid://bourm311twk57" path="res://RG/Button/Text/ButtonText.gd" id="1_iweaq"]
+[ext_resource type="Texture2D" uid="uid://shfypcpupyfq" path="res://RG/Button/BaseGray.png" id="2_iweaq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iweaq"]
+
+[node name="ButtonText" type="Control" unique_id=558219073]
+custom_minimum_size = Vector2(98, 30)
+layout_mode = 3
+anchor_right = 0.07538462
+anchor_bottom = 0.04103967
+script = ExtResource("1_iweaq")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=63305514]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 30.0
+texture = ExtResource("2_iweaq")
+patch_margin_left = 15
+patch_margin_top = 15
+patch_margin_right = 15
+patch_margin_bottom = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1238969103]
+custom_minimum_size = Vector2(30, 0)
+layout_mode = 0
+offset_right = 98.0
+offset_bottom = 30.0
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1582145269]
+layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=1724355998]
+layout_mode = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=1545640376]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Button"
+
+[node name="Button" type="Button" parent="." unique_id=1791116400]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_iweaq")
+flat = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]
+[connection signal="toggled" from="Button" to="." method="_on_toggled"]

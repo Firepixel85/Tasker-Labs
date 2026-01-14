@@ -1,6 +1,12 @@
-res://Globals/svgHelpers
-res://RG/Segment Control/Icon
-res://Globals
-res://RG/Segment Control
-res://LoadingScreen
+res://RG/Button/TextIcon/
+res://RG/Button/Icon/
+res://Globals/
+res://RG/Button/Text/
+res://RG/Button/
 res://
+res://RG/Segment Control/
+res://RG/
+res://Icons/
+res://Globals/svgHelpers/
+res://RG/Segment Control/Icon/
+res://LoadingScreen/

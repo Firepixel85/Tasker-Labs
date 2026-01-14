@@ -8,18 +8,23 @@
 
 config_version=5
 
+[animation]
+
+compatibility/default_parent_skeleton_in_mesh_instance_3d=true
+
 [application]
 
-config/name="Tasker 2.0"
+config/name="Tasker"
 run/main_scene="uid://1bvbrmgxa8n7"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svg"
+config/icon="res://icon.svgtex"
 
 [autoload]
 
 Data="*res://Globals/Data.gd"
 Main="*res://Globals/Main.gd"
+Colors="*uid://bbqa440wcdmu1"
 
 [display]
 
@@ -27,7 +32,8 @@ window/size/viewport_width=1300
 window/size/viewport_height=731
 window/size/initial_position_type=3
 window/size/resizable=false
-window/size/borderless=true
+window/size/extend_to_title=true
+window/subwindows/embed_subwindows=false
 window/dpi/allow_hidpi=false
 window/per_pixel_transparency/allowed=true
 
@@ -36,3 +42,7 @@ window/per_pixel_transparency/allowed=true
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.0117647, 0.0117647, 0.0117647, 1)
+
+[svgsprite]
+
+compress=false

@@ -1,13 +1,67 @@
-[gd_scene load_steps=3 format=3 uid="uid://dts48c572b8am"]
+[gd_scene format=3 uid="uid://c247fa4u6vknm"]
 
-[ext_resource type="Texture2D" uid="uid://dt3cn6kivfpdr" path="res://icon.svg" id="1_s6sss"]
-[ext_resource type="Script" uid="uid://dc0bfxfrvytyr" path="res://Globals/svgHelpers/svgHelperSprite2D.gd" id="2_hogpa"]
+[ext_resource type="Script" uid="uid://ca4r05wiqal08" path="res://RG/SegmentControl.gd" id="1_hogpa"]
+[ext_resource type="Texture2D" uid="uid://bu3teprd40oyc" path="res://RG/Segment Control/Container.png" id="2_fs17p"]
+[ext_resource type="Texture2D" uid="uid://4ykank72vn3f" path="res://RG/Segment Control/Selection.png" id="3_hogpa"]
 
-[node name="Node2D" type="Node2D"]
+[node name="SegmentControl" type="Control" unique_id=973767052]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 3
+anchor_right = 0.023076924
+anchor_bottom = 0.04103967
+grow_horizontal = 2
+script = ExtResource("1_hogpa")
+items = ["home", "focus", "test"]
+items_text = {
+"focus": "Focus",
+"home": "Home",
+"test": "Test"
+}
+metadata/_edit_use_anchors_ = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(363, 262)
-texture = ExtResource("1_s6sss")
-script = ExtResource("2_hogpa")
-SVGPath = "res://Icons/Home.svg"
-Scale = 5.0
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=378501407]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+texture = ExtResource("2_fs17p")
+patch_margin_left = 14
+patch_margin_top = 14
+patch_margin_right = 14
+patch_margin_bottom = 14
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=742377853]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=841046573]
+layout_mode = 2
+
+[node name="Selector" type="NinePatchRect" parent="MarginContainer/Control" unique_id=112187516]
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 24.0
+texture = ExtResource("3_hogpa")
+patch_margin_left = 12
+patch_margin_top = 12
+patch_margin_right = 12
+patch_margin_bottom = 12
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=1251649669]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="ButtonContainer" type="HBoxContainer" parent="." unique_id=412220991]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_right = 30.0
+offset_bottom = 30.0
+theme_override_constants/separation = 0
+alignment = 1

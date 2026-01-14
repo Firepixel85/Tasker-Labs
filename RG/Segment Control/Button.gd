@@ -4,5 +4,4 @@ extends Button
 @export var item:String
 
 func _pressed() -> void:
-	print("select")
 	get_parent().get_parent().select(item)
