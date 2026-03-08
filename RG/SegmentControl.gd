@@ -6,7 +6,7 @@ extends Control
 @onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: NinePatchRect = $MarginContainer/Control/Selector
 @export var items:Array = []
-@export var items_text:Dictionary 
+@export var items_text:Dictionary[String, String]
 @export var refresh:bool = false
 var selected:String
 
@@ -48,8 +48,8 @@ func select(item:String):
 	var length := 0
 	for i in index:
 		length += array[i] + 4
-	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.2).set_trans(Tween.TRANS_BOUNCE)
-	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.2).set_trans(Tween.TRANS_BOUNCE)
+	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.2).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 	
 func add_item(item_name:String,item_text:String) -> int:
@@ -60,7 +60,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	text_container.add_child(Label.new())
 	var target:Label = text_container.get_children()[text_container.get_children().size() - 1]
 	target.text = "  "+item_text+"  "
-	target.add_theme_font_size_override("font_size",10)
+	target.theme = load("res://Themes/Text/Secondary.tres")
 	items_text[item_name] = item_text
 	
 	button_container.add_child(Button.new())
@@ -71,13 +71,14 @@ func add_item(item_name:String,item_text:String) -> int:
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(target.size.x,30)
 	_delayed_update()
+	_shade_options()
 	return 201
 	
 func display_item(item_name:String,item_text:String) -> int:
 	text_container.add_child(Label.new())
 	var target:Label = text_container.get_children()[text_container.get_children().size() - 1]
 	target.text = "  "+item_text+"  "
-	target.add_theme_font_size_override("font_size",10)
+	target.theme = load("res://Themes/Text/Secondary.tres")
 	items_text[item_name] = item_text
 	
 	button_container.add_child(Button.new())

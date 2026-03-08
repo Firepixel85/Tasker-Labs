@@ -3,11 +3,12 @@
 [ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://RG/Button/TextIcon/ButtonTextIcon.gd" id="1_pa7x6"]
 [ext_resource type="Texture2D" uid="uid://shfypcpupyfq" path="res://RG/Button/BaseGray.png" id="2_uaxtl"]
 [ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://Icons/Home.svg" id="3_rbpgo"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="4_uaxtl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
 
 [node name="ButtonTextIcon" type="Control" unique_id=1426858299]
-custom_minimum_size = Vector2(122, 30)
+custom_minimum_size = Vector2(120, 30)
 layout_mode = 3
 anchor_right = 0.096923076
 anchor_bottom = 0.04103967
@@ -47,11 +48,15 @@ theme_override_constants/margin_right = 32
 [node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=594920261]
 layout_mode = 2
 theme_override_constants/separation = 4
+alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1888923641]
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
+size_flags_vertical = 1
+theme = ExtResource("4_uaxtl")
 text = "Button"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1107408437]
 layout_mode = 2

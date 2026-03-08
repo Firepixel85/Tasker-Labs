@@ -1,0 +1,112 @@
+[gd_scene format=3 uid="uid://5e0n7poog6ky"]
+
+[ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://RG/Drop Down/Drop Down.gd" id="1_vt2n3"]
+[ext_resource type="Texture2D" uid="uid://bhfnskd8wtiad" path="res://RG/Drop Down/Container.png" id="2_0tlgq"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="3_msi2a"]
+[ext_resource type="Texture2D" uid="uid://o8tx6jhp8jb2" path="res://RG/Drop Down/Arrow.png" id="4_0fpev"]
+[ext_resource type="PackedScene" uid="uid://15wg606cu8b" path="res://RG/Drop Down/Menu Item/menu_item.tscn" id="5_0tlgq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vt2n3"]
+
+[node name="Control" type="Control" unique_id=1673271566]
+custom_minimum_size = Vector2(82, 30)
+layout_mode = 3
+anchor_right = 0.063
+offset_right = 0.099998474
+offset_bottom = 30.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vt2n3")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1767022555]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 0
+offset_right = 82.0
+offset_bottom = 30.0
+texture = ExtResource("2_0tlgq")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=214888023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1231715345]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=678147381]
+layout_mode = 2
+theme = ExtResource("3_msi2a")
+text = "Drop Down"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=399398259]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/HBoxContainer2" unique_id=631322650]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer2/VBoxContainer" unique_id=463451120]
+layout_mode = 2
+texture = ExtResource("4_0fpev")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=927824293]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vt2n3")
+flat = true
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=409913261]
+custom_minimum_size = Vector2(0, 66)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 2.2
+grow_vertical = 2
+texture = ExtResource("2_0tlgq")
+patch_margin_left = 10
+patch_margin_top = 10
+patch_margin_right = 10
+patch_margin_bottom = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect2" unique_id=962069107]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 82.0
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect2/MarginContainer" unique_id=74327576]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Control" parent="NinePatchRect2/MarginContainer/VBoxContainer" unique_id=483749081 instance=ExtResource("5_0tlgq")]
+layout_mode = 2
+
+[node name="Control2" parent="NinePatchRect2/MarginContainer/VBoxContainer" unique_id=854059558 instance=ExtResource("5_0tlgq")]
+layout_mode = 2
+
+[node name="Control3" parent="NinePatchRect2/MarginContainer/VBoxContainer" unique_id=747389235 instance=ExtResource("5_0tlgq")]
+layout_mode = 2

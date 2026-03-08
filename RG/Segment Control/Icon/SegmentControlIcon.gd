@@ -6,7 +6,7 @@ extends Control
 @onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: TextureRect = $MarginContainer/Control/Selector
 @export var items:Array = []
-@export var item_icons:Dictionary 
+@export var item_icons:Dictionary[String, Texture2D]
 @export var refresh:bool = false
 var selected:String
 
@@ -42,21 +42,18 @@ func select(item:String):
 	
 	selected = item
 	var index = _find_index(items,item)
-	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.2).set_trans(Tween.TRANS_BOUNCE)
+	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.2).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 
-func add_item(item_name:String,item_icon:String) -> int:
+func add_item(item_name:String,item_icon:Texture2D) -> int:
 	if _array_has_item(items,item_name):
 		return 400
 	items.append(item_name)
 	
 	icon_container.add_child(TextureRect.new())
 	var target:TextureRect = icon_container.get_children()[icon_container.get_children().size() - 1]
-	target.set_script(load("res://Globals/svgHelpers/svgHelperTextureRect.gd"))
-	target.SVGPath = item_icon
-	target.texture = load(item_icon)
+	target.texture = item_icon
 	item_icons[item_name] = item_icon
-	
 	
 	button_container.add_child(Button.new())
 	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
@@ -66,16 +63,14 @@ func add_item(item_name:String,item_icon:String) -> int:
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(30,30)
 	_delayed_update()
+	_shade_options()
 	return 201
 	
-func display_item(item_name:String,item_icon:String) -> int:
+func display_item(item_name:String,item_icon:Texture2D) -> int:
 	icon_container.add_child(TextureRect.new())
 	var target:TextureRect = icon_container.get_children()[icon_container.get_children().size() - 1]
-	target.set_script(load("res://Globals/svgHelpers/svgHelperTextureRect.gd"))
-	target.SVGPath = item_icon
-	target.texture = load(item_icon)
+	target.texture = item_icon
 	item_icons[item_name] = item_icon
-	
 	
 	button_container.add_child(Button.new())
 	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]

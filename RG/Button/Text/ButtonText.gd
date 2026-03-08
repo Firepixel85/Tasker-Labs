@@ -28,12 +28,16 @@ func _update():
 	label.text = text
 	text_container.size.x = size.x
 	base.size.x = text_container.size.x
-	_mirror_to_button()
 	custom_minimum_size.x = label.size.x+64
+	if disabled:
+		modulate = Color(0.7,0.7,0.7)
+	else:
+		modulate = Color(1,1,1)
 
 func _ready() -> void:
 	change_color(color)
 	_update()
+	_mirror_to_button()
 
 func change_color(new_color:String):
 	color = new_color
@@ -55,11 +59,17 @@ func update_loop():
 		_update()
 
 func _on_button_down() -> void:
-	modulate = Color(0.85,0.85,0.85)
+	if disabled:
+		pass
+	else:
+		modulate = Color(0.85,0.85,0.85)
 	button_down.emit()
 
 func _on_button_up() -> void:
-	modulate = Color(1,1,1)
+	if disabled:
+		modulate = Color(0.7,0.7,0.7)
+	else:
+		modulate = Color(1,1,1)
 	button_up.emit()
 
 func _on_pressed() -> void:
@@ -69,7 +79,13 @@ func _on_toggled(toggled_on: bool) -> void:
 	toggled.emit(toggled_on)
 
 func _on_mouse_entered() -> void:
-	modulate = Color(0.9,0.9,0.9)
+	if disabled:
+		modulate = Color(0.6,0.6,0.6)
+	else:
+		modulate = Color(0.9,0.9,0.9)
 
 func _on_mouse_exited() -> void:
-	modulate = Color(1,1,1)
+	if disabled:
+		modulate = Color(0.7,0.7,0.7)
+	else:
+		modulate = Color(1,1,1)
