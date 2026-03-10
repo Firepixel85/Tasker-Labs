@@ -1,6 +1,6 @@
 @tool
 extends Control
-
+class_name SegmentControlIcon
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var icon_container: HBoxContainer = $MarginContainer/HBoxContainer
 @onready var button_container: HBoxContainer = $ButtonContainer
@@ -42,7 +42,7 @@ func select(item:String):
 	
 	selected = item
 	var index = _find_index(items,item)
-	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.2).set_trans(Tween.TRANS_SINE)
+	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
@@ -64,7 +64,7 @@ func add_item(item_name:String,item_icon:Texture2D) -> int:
 	target2.custom_minimum_size = Vector2(30,30)
 	_delayed_update()
 	_shade_options()
-	return 201
+	return OK
 	
 func display_item(item_name:String,item_icon:Texture2D) -> int:
 	icon_container.add_child(TextureRect.new())
@@ -80,7 +80,7 @@ func display_item(item_name:String,item_icon:Texture2D) -> int:
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(30,30)
 	_delayed_update()
-	return 201
+	return OK
 	
 	
 func _array_has_item(array:Array,item):

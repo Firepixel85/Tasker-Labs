@@ -1,6 +1,6 @@
 @tool
 extends Control
-
+class_name SegmentControl
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var text_container: HBoxContainer = $MarginContainer/HBoxContainer
 @onready var button_container: HBoxContainer = $ButtonContainer
@@ -38,7 +38,7 @@ func _delayed_update():
 
 func select(item:String):
 	if !_array_has_item(items,item):
-		return 404
+		return Error.ERR_DOES_NOT_EXIST
 	
 	selected = item
 	var index = _find_index(items,item)
@@ -48,13 +48,13 @@ func select(item:String):
 	var length := 0
 	for i in index:
 		length += array[i] + 4
-	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.2).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.2).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 	
 func add_item(item_name:String,item_text:String) -> int:
 	if _array_has_item(items,item_name):
-		return 400
+		return Error.ERR_ALREADY_EXISTS
 	items.append(item_name)
 	
 	text_container.add_child(Label.new())
@@ -72,7 +72,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	target2.custom_minimum_size = Vector2(target.size.x,30)
 	_delayed_update()
 	_shade_options()
-	return 201
+	return OK
 	
 func display_item(item_name:String,item_text:String) -> int:
 	text_container.add_child(Label.new())
@@ -89,7 +89,7 @@ func display_item(item_name:String,item_text:String) -> int:
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(target.size.x,30)
 	_delayed_update()
-	return 201
+	return OK
 	
 	
 func _array_has_item(array:Array,item):

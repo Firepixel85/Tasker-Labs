@@ -9,10 +9,10 @@
 [node name="Control" type="Control" unique_id=483749081]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 3
+anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 20.0
 grow_horizontal = 2
-grow_vertical = 2
 size_flags_horizontal = 3
 script = ExtResource("1_y2v4p")
 metadata/_edit_use_anchors_ = true
@@ -28,10 +28,12 @@ theme_override_constants/margin_left = 6
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=129126963]
 layout_mode = 2
+size_flags_horizontal = 0
 alignment = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=1106702351]
 layout_mode = 2
+size_flags_horizontal = 0
 theme_override_constants/separation = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1495116992]
@@ -47,12 +49,21 @@ stretch_mode = 2
 [node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=2054941472]
 layout_mode = 2
 theme = ExtResource("3_ui24h")
-text = "Option 1"
+text = "Opition 1"
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1593493364]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -4.0
 offset_right = 8.0
-offset_bottom = 8.0
+offset_bottom = 4.0
+grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y2v4p")
 flat = true
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_pressed"]

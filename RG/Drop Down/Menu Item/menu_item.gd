@@ -2,15 +2,23 @@ extends Control
 
 @onready var tick: TextureRect = $MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/TextureRect
 @onready var text: Label = $MarginContainer/VBoxContainer/HBoxContainer/Label
-
+@onready var button: Button = $Button
+@onready var min_size_setter: VBoxContainer = $MarginContainer/VBoxContainer
+signal _updated
 var id := 0
 var option_name := "Test"
 var selected := false
 var highlighted := false
-var manager:Control
+var manager:DropDown = DropDown.new()
 
 func _update():
+	custom_minimum_size.x = min_size_setter.size.x+6
 	text.text = option_name
+	if manager.selected == id:
+		selected = true
+	else:
+		selected = false
+		
 	var filename = "res://RG/Drop Down/"
 	if selected:
 		filename += "Selected"
@@ -22,7 +30,25 @@ func _update():
 	
 	filename += ".png"
 	tick.texture = load(filename)
+	button.size=size
+	_updated.emit()
 	
 
 func _ready() -> void:
+	_update()
+
+
+
+func _pressed() -> void:
+	manager.select(id)
+	manager._close()
+
+
+func _on_mouse_entered() -> void:
+	highlighted = true
+	_update()
+
+
+func _on_mouse_exited() -> void:
+	highlighted = false
 	_update()

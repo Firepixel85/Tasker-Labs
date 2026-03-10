@@ -1,5 +1,4 @@
 extends Node
-
 const gray := Color(0.114, 0.114, 0.114)
 const green := Color(0.165, 0.839, 0.18)
 const red := Color(0.843, 0.176, 0.173)

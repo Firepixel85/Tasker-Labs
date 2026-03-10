@@ -16,11 +16,11 @@ offset_bottom = 30.0
 grow_horizontal = 2
 script = ExtResource("1_nd2cy")
 items = ["home", "focus", "check"]
-item_icons = {
+item_icons = Dictionary[String, Texture2D]({
 "check": ExtResource("4_rtvib"),
 "focus": ExtResource("3_gm8h4"),
 "home": ExtResource("2_x0318")
-}
+})
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1579317736]
 custom_minimum_size = Vector2(0, 30)

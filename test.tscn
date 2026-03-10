@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b1hmh3jqy41yo"]
 
+[ext_resource type="Script" uid="uid://cr0ewmwly46m4" path="res://Globals/Debugger.gd" id="1_0m0f1"]
 [ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://DragZone.gd" id="1_37kl0"]
 [ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://RG/Segment Control/Icon/Segment Control Icon.tscn" id="2_6uqi0"]
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://RG/Segment Control/SegmentControl.tscn" id="2_8uh7m"]
@@ -11,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://RG/Toggle/Toggle.tscn" id="6_vbegm"]
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://RG/Text Field/TextField.tscn" id="7_ehkex"]
 [ext_resource type="Theme" uid="uid://cwtyvsax6wyfh" path="res://Themes/Text/FinePrintRound.tres" id="9_xersf"]
+[ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://Drop Down.tscn" id="11_b0q6j"]
 
 [sub_resource type="Gradient" id="Gradient_8uh7m"]
 offsets = PackedFloat32Array(1)
@@ -35,6 +37,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_0m0f1")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1215370365]
 z_as_relative = false
@@ -193,6 +196,12 @@ custom_minimum_size = Vector2(128, 30)
 layout_mode = 2
 placeholder_text = "Password"
 
+[node name="Drop Down" type="HBoxContainer" parent="VBoxContainer/Content" unique_id=146283720]
+layout_mode = 2
+
+[node name="Drop Down" parent="VBoxContainer/Content/Drop Down" unique_id=1673271566 instance=ExtResource("11_b0q6j")]
+layout_mode = 2
+
 [node name="DragZone" type="VBoxContainer" parent="." unique_id=1796571422]
 layout_mode = 1
 anchors_preset = 10
@@ -209,4 +218,4 @@ theme = ExtResource("9_xersf")
 texture = SubResource("GradientTexture2D_ppyta")
 expand_mode = 2
 
-[connection signal="pressed" from="VBoxContainer/Content/ButtonText/ButtonText" to="VBoxContainer/Content/Segment Control" method="_on_button_text_pressed"]
+[connection signal="pressed" from="VBoxContainer/Content/ButtonText/ButtonText" to="." method="_on_button_text_pressed"]

@@ -1,5 +1,6 @@
 @tool
 extends Control
+class_name ButtonIcon
 @onready var base: NinePatchRect = $NinePatchRect
 @onready var text_container: HBoxContainer = $HBoxContainer
 @onready var button: Button = $Button
