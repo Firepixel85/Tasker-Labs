@@ -5,6 +5,7 @@ extends Control
 @onready var button: Button = $Button
 @onready var min_size_setter: VBoxContainer = $MarginContainer/VBoxContainer
 signal _updated
+signal _highlighted(id:int)
 var id := 0
 var option_name := "Test"
 var selected := false
@@ -35,8 +36,8 @@ func _update():
 	
 
 func _ready() -> void:
+	get_parent()._highlighted.connect(change_highlight)
 	_update()
-
 
 
 func _pressed() -> void:
@@ -46,9 +47,15 @@ func _pressed() -> void:
 
 func _on_mouse_entered() -> void:
 	highlighted = true
+	_highlighted.emit(id)
 	_update()
 
 
 func _on_mouse_exited() -> void:
+	_update()
+
+func change_highlight(new_id:int):
+	if id == new_id:
+		return
 	highlighted = false
 	_update()

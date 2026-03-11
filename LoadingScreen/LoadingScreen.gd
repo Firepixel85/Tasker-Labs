@@ -23,7 +23,7 @@ func start_app(window_data_available:bool):
 		get_window().size = Vector2(1300,731)
 		center_window()
 
-	get_tree().change_scene_to_file("res://test.tscn")
+	get_tree().change_scene_to_file("res://Rose Garden Demo.tscn")
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
 

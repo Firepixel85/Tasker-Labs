@@ -6,16 +6,14 @@ class_name DropDown
 @onready var menu_container: NinePatchRect = $NinePatchRect2
 @onready var menu_item_container: VBoxContainer = $NinePatchRect2/MarginContainer/VBoxContainer
 @onready var button: Button = $Button
+@onready var selection: NinePatchRect = $NinePatchRect2/SelectionContainer/Container/Selection
 
+@export var disable_animations:bool = false
 var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
-var _is_open:bool = false
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		#_update()
-		pass
+#var _is_open:bool = false
 
 func _update():
 	if !Engine.is_editor_hint():
@@ -23,10 +21,12 @@ func _update():
 		if !_array_has_item(item_ids,selected) and item_ids !=[]:
 			selected = item_ids[0]
 	container.size = size
-	custom_minimum_size = Vector2(label.size.x+35,30)
-	menu_container.size = Vector2(size.x,menu_item_container.get_child_count()*21.5)
+	#custom_minimum_size = Vector2(label.size.x+35,30)
+	menu_container.size = size
+	custom_minimum_size = size
+	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*26)+6),0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
+	#menu_container.size = Vector2(size.x,(menu_item_container.get_child_count()*26)+6)
 	menu_container.custom_minimum_size.x = size.x
-	#position = Vector2(0,0)
 	button.custom_minimum_size = size
 
 	label.text = items[_find_index(item_ids,selected)]
@@ -81,8 +81,11 @@ func _open():
 	_update()
 
 func _close():
-	menu_container.visible=false
 	button.grab_focus()
+	var tween = create_tween()
+	tween.tween_property(menu_container,"size",size,0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
+	await tween.finished
+	menu_container.visible=false
 
 func _pressed() -> void:
 	_open()
@@ -90,7 +93,7 @@ func _pressed() -> void:
 func select(item_id:int):
 	if !_array_has_item(item_ids,item_id):
 		return Error.ERR_DOES_NOT_EXIST
-	selected = _find_index(item_ids,item_id)
+	selected = item_id
 	_update()
 
 
@@ -101,3 +104,7 @@ func _on_focus_exited() -> void:
 func _new_menu_item(node: Node) -> void:
 	await node._updated
 	_update()
+
+
+func _on_menu_item_highlighted(id: int) -> void:
+	create_tween().tween_property(selection,"position",Vector2(selection.position.x,26*_find_index(item_ids,id)),0.09*int(!disable_animations)).set_trans(Tween.TRANS_SPRING)

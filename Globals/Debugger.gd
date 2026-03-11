@@ -1,11 +1,7 @@
 extends Control
-@onready var drop_down: DropDown = $"VBoxContainer/Content/Drop Down/Drop Down"
+@onready var drop_down: DropDown = $"MarginContainer/VBoxContainer/Content/Drop Down/Drop Down"
 
 func _ready() -> void:
-	print(drop_down.add_item("test",0))
-	print(drop_down.add_item("op",1))
-	print(drop_down.add_item("hipitihopityyyyyyyyyyy",2))
-
-
-func _on_button_text_pressed() -> void:
-	print(drop_down.remove_item(2))
+	drop_down.add_item("Option 1",0)
+	drop_down.add_item("Option 2",1)
+	drop_down.add_item("Option 3",2)

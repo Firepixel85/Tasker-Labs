@@ -20,6 +20,12 @@ signal button_up
 signal pressed
 signal toggled(toggled_on:bool)
 
+const _COLOR_NORMAL = Color(1,1,1)
+const _COLOR_PRESSED = Color(0.83,0.83,0.83)
+const _COLOR_HOVERED = Color(0.9,0.9,0.9)
+const _COLOR_DISABLED = Color(0.7,0.7,0.7)
+const _COLOR_DISABLED_HOVERED = Color(0.6,0.6,0.6)
+
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		change_color(color)
@@ -31,10 +37,9 @@ func _update():
 	base.size.x = text_container.size.x
 	custom_minimum_size.x = label.size.x+64
 	if disabled:
-		modulate = Color(0.7,0.7,0.7)
+		modulate = _COLOR_DISABLED
 	else:
-		modulate = Color(1,1,1)
-
+		modulate = _COLOR_NORMAL
 func _ready() -> void:
 	change_color(color)
 	_update()
@@ -63,14 +68,14 @@ func _on_button_down() -> void:
 	if disabled:
 		pass
 	else:
-		modulate = Color(0.85,0.85,0.85)
+		modulate = _COLOR_PRESSED
 	button_down.emit()
 
 func _on_button_up() -> void:
 	if disabled:
-		modulate = Color(0.7,0.7,0.7)
+		pass
 	else:
-		modulate = Color(1,1,1)
+		modulate = _COLOR_HOVERED
 	button_up.emit()
 
 func _on_pressed() -> void:
@@ -81,12 +86,12 @@ func _on_toggled(toggled_on: bool) -> void:
 
 func _on_mouse_entered() -> void:
 	if disabled:
-		modulate = Color(0.6,0.6,0.6)
+		modulate = _COLOR_DISABLED_HOVERED
 	else:
-		modulate = Color(0.9,0.9,0.9)
+		modulate = _COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
 	if disabled:
-		modulate = Color(0.7,0.7,0.7)
+		modulate = _COLOR_DISABLED
 	else:
-		modulate = Color(1,1,1)
+		modulate = _COLOR_NORMAL

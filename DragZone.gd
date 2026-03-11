@@ -1,10 +1,7 @@
 extends Control
 
-
 var moving
 var mouse_start:Vector2i
-
-
 
 func _ready() -> void:
 	gui_input.connect(move_window)
@@ -22,7 +19,3 @@ func move_window(event:InputEvent):
 		if !moving:
 			mouse_start = get_viewport().get_mouse_position()
 		moving = event.is_pressed()
-
-
-func _on_mouse_entered() -> void:
-	print("test")
