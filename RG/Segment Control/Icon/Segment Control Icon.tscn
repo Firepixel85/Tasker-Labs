@@ -2,10 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvx4gv75pdncd" path="res://RG/Segment Control/Icon/SegmentControlIcon.gd" id="1_nd2cy"]
 [ext_resource type="Texture2D" uid="uid://bu3teprd40oyc" path="res://RG/Segment Control/Container.png" id="2_qo6oh"]
-[ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://Icons/Home.svg" id="2_x0318"]
-[ext_resource type="Texture2D" uid="uid://b6s4mqqehkima" path="res://Icons/Book.svg" id="3_gm8h4"]
 [ext_resource type="Texture2D" uid="uid://b5xngjhbkscft" path="res://RG/Segment Control/Icon/Selector.svg" id="3_qo6oh"]
-[ext_resource type="Texture2D" uid="uid://bj47hidjlap3s" path="res://Icons/Checklist.svg" id="4_rtvib"]
 
 [node name="SegmentControl Icon" type="Control" unique_id=1133264568]
 custom_minimum_size = Vector2(30, 30)
@@ -15,12 +12,6 @@ offset_right = 0.099998474
 offset_bottom = 30.0
 grow_horizontal = 2
 script = ExtResource("1_nd2cy")
-items = ["home", "focus", "check"]
-item_icons = Dictionary[String, Texture2D]({
-"check": ExtResource("4_rtvib"),
-"focus": ExtResource("3_gm8h4"),
-"home": ExtResource("2_x0318")
-})
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1579317736]
 custom_minimum_size = Vector2(0, 30)

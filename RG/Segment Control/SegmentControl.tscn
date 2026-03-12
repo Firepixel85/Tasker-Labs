@@ -11,12 +11,6 @@ anchor_right = 0.023076924
 anchor_bottom = 0.04103967
 grow_horizontal = 2
 script = ExtResource("1_hogpa")
-items = ["home", "focus", "test"]
-items_text = {
-"focus": "Focus",
-"home": "Home",
-"test": "Test"
-}
 metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=378501407]

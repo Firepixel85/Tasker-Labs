@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c6agdxjj70jal"
-path="res://.godot/imported/BaseAccent.png-56b94a55c1b5e23a1896f8002f97ba58.ctex"
+uid="uid://bt50egof82j1a"
+path="res://.godot/imported/BaseOrange.png-c15a0ed76b9f95d7a707e1941af43638.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://RG/Toggle/BaseAccesible/BaseAccent.png"
-dest_files=["res://.godot/imported/BaseAccent.png-56b94a55c1b5e23a1896f8002f97ba58.ctex"]
+source_file="res://RG/Toggle/BaseAccesible/BaseOrange.png"
+dest_files=["res://.godot/imported/BaseOrange.png-c15a0ed76b9f95d7a707e1941af43638.ctex"]
 
 [params]
 

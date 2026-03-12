@@ -3,7 +3,7 @@ extends Control
 @onready var base: TextureRect = $TextureRect
 @onready var ball: TextureRect = $Container/TextureRect
 
-@export_enum("Green","Red","Blue","Accent") var color := "Green"
+@export_enum("Gray","White","Red","Orange","Yellow","Green","Blue","Pink","Purple") var color := "Gray"
 @export var accessible:bool = false
 @export var is_toggled := false
 
@@ -35,7 +35,10 @@ func _update():
 		_show_on()
 	else:
 		_show_off()
-		
+
+func set_color(new_color):
+	color = new_color
+	_update()
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()

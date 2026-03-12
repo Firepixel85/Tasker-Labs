@@ -36,10 +36,11 @@ window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
 window/stretch/aspect="expand"
 window/dpi/allow_hidpi=false
-window/per_pixel_transparency/allowed=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=3
+textures/canvas_textures/default_texture_repeat=1
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.0117647, 0.0117647, 0.0117647, 1)

@@ -1,7 +1,8 @@
+CanvasLayer
 Label
+HBoxContainer
 VBoxContainer
 MarginContainer
-HBoxContainer
 Control
 Container
 NinePatchRect

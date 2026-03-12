@@ -7,7 +7,7 @@ class_name ButtonIcon
 @onready var texture: TextureRect = $MarginContainer/HBoxContainer/VBoxContainer/TextureRect
 
 @export_category("Appearence")
-@export_enum("Gray","Green","Red","Blue","Accent","White") var color := "Gray"
+@export_enum("Gray","White","Red","Orange","Yellow","Green","Blue","Pink","Purple") var color := "Gray"
 @export var icon:Texture2D
 @export_category("Button Controls")
 @export var disabled:bool = false
@@ -27,7 +27,7 @@ const _COLOR_DISABLED_HOVERED = Color(0.6,0.6,0.6)
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
-		change_color(color)
+		set_color(color)
 		_update()
 
 func _update():
@@ -39,10 +39,10 @@ func _update():
 		modulate = _COLOR_NORMAL
 
 func _ready() -> void:
-	change_color(color)
+	set_color(color)
 	_update()
 
-func change_color(new_color:String):
+func set_color(new_color:String):
 	color = new_color
 	base.texture = load("res://RG/Button/Base"+color+".png")
 	if color == "White":

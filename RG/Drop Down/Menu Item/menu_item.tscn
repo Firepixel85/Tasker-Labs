@@ -7,6 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_y2v4p"]
 
 [node name="Control" type="Control" unique_id=483749081]
+z_index = 1
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 3
 anchors_preset = 10
@@ -51,6 +52,7 @@ text = "Opition 1"
 vertical_alignment = 1
 
 [node name="Button" type="Button" parent="." unique_id=1593493364]
+z_index = 1
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5

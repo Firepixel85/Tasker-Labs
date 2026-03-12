@@ -3,17 +3,18 @@ extends Control
 class_name DropDown
 @onready var label: Label = $NinePatchRect/MarginContainer/HBoxContainer/Label
 @onready var container: NinePatchRect = $NinePatchRect
-@onready var menu_container: NinePatchRect = $NinePatchRect2
-@onready var menu_item_container: VBoxContainer = $NinePatchRect2/MarginContainer/VBoxContainer
+@onready var menu_container: NinePatchRect = $CanvasLayer/NinePatchRect2
+@onready var menu_item_container: VBoxContainer = $CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer
 @onready var button: Button = $Button
-@onready var selection: NinePatchRect = $NinePatchRect2/SelectionContainer/Container/Selection
+@onready var selection: NinePatchRect = $CanvasLayer/NinePatchRect2/SelectionContainer/Container/Selection
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 @export var disable_animations:bool = false
 var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
-#var _is_open:bool = false
+signal new_selection(selection)
 
 func _update():
 	if !Engine.is_editor_hint():
@@ -75,14 +76,21 @@ func _find_index(array:Array,item):
 	return index
 
 func _open():
+	menu_container.position = global_position
 	for child in menu_item_container.get_children():
 		child._update()
 	menu_container.visible=true
 	_update()
+	selection.visible = true
+	move_to_front()
+	menu_container.move_to_front()
+
+	
 
 func _close():
 	button.grab_focus()
 	var tween = create_tween()
+	selection.visible = false
 	tween.tween_property(menu_container,"size",size,0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
 	await tween.finished
 	menu_container.visible=false
@@ -94,6 +102,7 @@ func select(item_id:int):
 	if !_array_has_item(item_ids,item_id):
 		return Error.ERR_DOES_NOT_EXIST
 	selected = item_id
+	new_selection.emit(items[item_id])
 	_update()
 
 

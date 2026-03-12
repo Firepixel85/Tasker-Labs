@@ -56,7 +56,6 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1215370365]
-z_as_relative = false
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 theme_override_constants/separation = 0
@@ -68,17 +67,32 @@ mouse_filter = 2
 texture = SubResource("GradientTexture2D_6uqi0")
 expand_mode = 2
 
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=494151123]
+z_index = 100
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1500859948]
+layout_mode = 2
+theme = ExtResource("2_727tw")
+text = "Choose the accent color:"
+
+[node name="Drop Down" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1673271566 instance=ExtResource("13_r6pjg")]
+layout_mode = 2
+
 [node name="Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=231824100]
+z_index = -100
+y_sort_enabled = true
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 8
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=2075824081]
+[node name="Buttons" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=2075824081]
 layout_mode = 2
 theme = ExtResource("2_727tw")
 text = "Buttons"
 
-[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1698874312]
+[node name="Buttons_Text" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1698874312]
 layout_mode = 2
 theme = ExtResource("3_5pddc")
 text = "Text"
@@ -98,19 +112,7 @@ color = "White"
 layout_mode = 2
 color = "Red"
 
-[node name="ButtonText2" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=269036866 instance=ExtResource("4_7opmi")]
-layout_mode = 2
-color = "Green"
-
-[node name="ButtonText4" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=2030190888 instance=ExtResource("4_7opmi")]
-layout_mode = 2
-color = "Blue"
-
-[node name="ButtonText5" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=694102911 instance=ExtResource("4_7opmi")]
-layout_mode = 2
-color = "Accent"
-
-[node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1546633343]
+[node name="Buttons_TextIcon" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1546633343]
 layout_mode = 2
 theme = ExtResource("3_5pddc")
 text = "Text + Icon"
@@ -134,21 +136,7 @@ layout_mode = 2
 color = "Red"
 icon = ExtResource("7_pk5jm")
 
-[node name="ButtonTextIcon2" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=140041674 instance=ExtResource("5_msovi")]
-layout_mode = 2
-color = "Green"
-
-[node name="ButtonTextIcon4" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=382238774 instance=ExtResource("5_msovi")]
-layout_mode = 2
-color = "Blue"
-icon = ExtResource("7_pk5jm")
-
-[node name="ButtonTextIcon5" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=1498419275 instance=ExtResource("5_msovi")]
-layout_mode = 2
-color = "Accent"
-icon = ExtResource("6_wjt47")
-
-[node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=770889121]
+[node name="Buttons_Icon" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=770889121]
 layout_mode = 2
 theme = ExtResource("3_5pddc")
 text = "Icon"
@@ -169,21 +157,7 @@ layout_mode = 2
 color = "Red"
 icon = ExtResource("7_pk5jm")
 
-[node name="ButtonIcon" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=1145147339 instance=ExtResource("8_u8rjl")]
-layout_mode = 2
-color = "Green"
-
-[node name="ButtonIcon3" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=456233315 instance=ExtResource("8_u8rjl")]
-layout_mode = 2
-color = "Blue"
-icon = ExtResource("7_pk5jm")
-
-[node name="ButtonIcon4" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=327544479 instance=ExtResource("8_u8rjl")]
-layout_mode = 2
-color = "Accent"
-icon = ExtResource("6_wjt47")
-
-[node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1990149663]
+[node name="Segment Control Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1990149663]
 layout_mode = 2
 theme = ExtResource("2_727tw")
 text = "Segment Control"
@@ -202,12 +176,12 @@ layout_mode = 2
 [node name="Label5" type="Label" parent="MarginContainer/VBoxContainer/Content/Segment Control" unique_id=2051439828]
 layout_mode = 2
 theme = ExtResource("3_5pddc")
-text = "Icon"
+text = "Icon:"
 
 [node name="SegmentControl Icon" parent="MarginContainer/VBoxContainer/Content/Segment Control" unique_id=1133264568 instance=ExtResource("10_bysg5")]
 layout_mode = 2
 
-[node name="Label6" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1801225389]
+[node name="Toggle Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1801225389]
 layout_mode = 2
 theme = ExtResource("2_727tw")
 text = "Toggle"
@@ -225,20 +199,6 @@ layout_mode = 2
 color = "Red"
 is_toggled = true
 
-[node name="Toggle" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1372621177 instance=ExtResource("11_euskl")]
-layout_mode = 2
-is_toggled = true
-
-[node name="Toggle5" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1899892621 instance=ExtResource("11_euskl")]
-layout_mode = 2
-color = "Blue"
-is_toggled = true
-
-[node name="Toggle6" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1075070962 instance=ExtResource("11_euskl")]
-layout_mode = 2
-color = "Accent"
-is_toggled = true
-
 [node name="Label3" type="Label" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1872186805]
 layout_mode = 2
 theme = ExtResource("3_5pddc")
@@ -250,24 +210,7 @@ color = "Red"
 accessible = true
 is_toggled = true
 
-[node name="Toggle8" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1391110685 instance=ExtResource("11_euskl")]
-layout_mode = 2
-accessible = true
-is_toggled = true
-
-[node name="Toggle3" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=92079589 instance=ExtResource("11_euskl")]
-layout_mode = 2
-color = "Blue"
-accessible = true
-is_toggled = true
-
-[node name="Toggle4" parent="MarginContainer/VBoxContainer/Content/Toggle" unique_id=1701243794 instance=ExtResource("11_euskl")]
-layout_mode = 2
-color = "Accent"
-accessible = true
-is_toggled = true
-
-[node name="Label7" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1588361075]
+[node name="Input Field Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1588361075]
 layout_mode = 2
 theme = ExtResource("2_727tw")
 text = "Input Field"
@@ -307,7 +250,7 @@ layout_mode = 2
 placeholder_text = "Type Here"
 show_hint = true
 
-[node name="Label8" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1150618949]
+[node name="Drop Down Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1150618949]
 layout_mode = 2
 theme = ExtResource("2_727tw")
 text = "Drop Down Menu"
@@ -315,9 +258,8 @@ text = "Drop Down Menu"
 [node name="Drop Down" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content" unique_id=146283720]
 layout_mode = 2
 
-[node name="Drop Down" parent="MarginContainer/VBoxContainer/Content/Drop Down" unique_id=1673271566 instance=ExtResource("13_r6pjg")]
+[node name="Drop Down" parent="MarginContainer/VBoxContainer/Content/Drop Down" unique_id=1414676316 instance=ExtResource("13_r6pjg")]
 layout_mode = 2
-disable_animations = false
 
 [node name="DragZone" type="VBoxContainer" parent="." unique_id=1796571422]
 layout_mode = 1
@@ -360,4 +302,5 @@ theme_override_fonts/font = ExtResource("17_5pddc")
 theme_override_font_sizes/font_size = 14
 text = "    Rose Garden Demo Scene"
 
+[connection signal="new_selection" from="MarginContainer/VBoxContainer/HBoxContainer/Drop Down" to="." method="_on_accent_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/ButtonText/ButtonText" to="." method="_on_button_text_pressed"]

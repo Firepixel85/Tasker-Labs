@@ -18,7 +18,6 @@ offset_bottom = 30.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_vt2n3")
-disable_animations = true
 metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1767022555]
@@ -74,23 +73,26 @@ offset_bottom = 30.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vt2n3")
 flat = true
 
-[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=409913261]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1772360099]
+layer = 10
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="CanvasLayer" unique_id=409913261]
 visible = false
-z_index = 1
+z_index = 100
 custom_minimum_size = Vector2(82, 0)
-layout_mode = 1
 anchors_preset = -1
 offset_right = 82.0
 offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 0
 texture = ExtResource("2_0tlgq")
 patch_margin_left = 10
 patch_margin_top = 10
 patch_margin_right = 10
 patch_margin_bottom = 10
 
-[node name="SelectionContainer" type="MarginContainer" parent="NinePatchRect2" unique_id=687738589]
+[node name="SelectionContainer" type="MarginContainer" parent="CanvasLayer/NinePatchRect2" unique_id=687738589]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,10 +103,10 @@ theme_override_constants/margin_left = 3
 theme_override_constants/margin_top = 3
 theme_override_constants/margin_right = 3
 
-[node name="Container" type="Control" parent="NinePatchRect2/SelectionContainer" unique_id=531892490]
+[node name="Container" type="Control" parent="CanvasLayer/NinePatchRect2/SelectionContainer" unique_id=531892490]
 layout_mode = 2
 
-[node name="Selection" type="NinePatchRect" parent="NinePatchRect2/SelectionContainer/Container" unique_id=116794163]
+[node name="Selection" type="NinePatchRect" parent="CanvasLayer/NinePatchRect2/SelectionContainer/Container" unique_id=116794163]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -116,7 +118,7 @@ patch_margin_top = 13
 patch_margin_right = 13
 patch_margin_bottom = 13
 
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect2" unique_id=962069107]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/NinePatchRect2" unique_id=962069107]
 layout_mode = 1
 offset_right = 133.0
 offset_bottom = 26.0
@@ -125,7 +127,7 @@ theme_override_constants/margin_top = 6
 theme_override_constants/margin_right = 3
 theme_override_constants/margin_bottom = 5
 
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect2/MarginContainer" unique_id=74327576]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NinePatchRect2/MarginContainer" unique_id=74327576]
 z_index = 1
 layout_mode = 2
 theme_override_constants/separation = 6
@@ -133,6 +135,6 @@ script = ExtResource("5_0tlgq")
 
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
 [connection signal="pressed" from="Button" to="." method="_pressed"]
-[connection signal="_highlighted" from="NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_menu_item_highlighted"]
-[connection signal="child_entered_tree" from="NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_new_menu_item"]
-[connection signal="child_entered_tree" from="NinePatchRect2/MarginContainer/VBoxContainer" to="NinePatchRect2/MarginContainer/VBoxContainer" method="_on_child_entered_tree"]
+[connection signal="_highlighted" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_menu_item_highlighted"]
+[connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_new_menu_item"]
+[connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" method="_on_child_entered_tree"]

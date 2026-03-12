@@ -5,9 +5,9 @@ class_name SegmentControl
 @onready var text_container: HBoxContainer = $MarginContainer/HBoxContainer
 @onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: NinePatchRect = $MarginContainer/Control/Selector
-@export var items:Array = []
-@export var items_text:Dictionary[String, String]
-@export var refresh:bool = false
+var items:Array = []
+var items_text:Dictionary[String, String]
+var refresh:bool = false
 var selected:String
 
 func _process(_delta: float) -> void:
@@ -22,7 +22,8 @@ func _ready() -> void:
 	if !Engine.is_editor_hint():
 		_load_items()
 		_update()
-		select(items[0])
+		if !items == []:
+			select(items[0])
 
 func _update():
 	var container_size = text_container.get_parent().size.x
@@ -70,10 +71,29 @@ func add_item(item_name:String,item_text:String) -> int:
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(target.size.x,30)
-	_delayed_update()
+	if selected == "":
+		select(item_name)
+	_update()
 	_shade_options()
 	return OK
-	
+
+func remove_item(item_name:String):
+	if !_array_has_item(items,item_name):
+		return ERR_DOES_NOT_EXIST
+	if selected == item_name:
+		return ERR_LOCKED
+		
+	items.remove_at(_find_index(items,item_name))
+	items_text.erase(item_name)
+	for child in button_container.get_children().size()-1:
+		if button_container.get_child(child).item == item_name:
+			button_container.get_child(child).queue_free()
+			text_container.get_child(child).queue_free()
+			break
+	_update()
+	_shade_options()
+	return OK
+
 func display_item(item_name:String,item_text:String) -> int:
 	text_container.add_child(Label.new())
 	var target:Label = text_container.get_children()[text_container.get_children().size() - 1]

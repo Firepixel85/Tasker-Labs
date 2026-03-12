@@ -5,9 +5,9 @@ class_name SegmentControlIcon
 @onready var icon_container: HBoxContainer = $MarginContainer/HBoxContainer
 @onready var button_container: HBoxContainer = $ButtonContainer
 @onready var selector: TextureRect = $MarginContainer/Control/Selector
-@export var items:Array = []
-@export var item_icons:Dictionary[String, Texture2D]
-@export var refresh:bool = false
+var refresh:bool = false
+var items:Array = []
+var item_icons:Dictionary[String, Texture2D]
 var selected:String
 
 func _process(_delta: float) -> void:
@@ -21,7 +21,8 @@ func _process(_delta: float) -> void:
 func _ready() -> void:
 	if !Engine.is_editor_hint():
 		_load_items()
-		select(items[0])
+		if !items == []:
+			select(items[0])
 		_update()
 
 func _update():
@@ -36,18 +37,18 @@ func _delayed_update():
 	texture.size.x = container_size
 	button_container.size.x = container_size
 
-func select(item:String):
-	if !_array_has_item(items,item):
-		return 404
+func select(item_name:String):
+	if !_array_has_item(items,item_name):
+		return ERR_DOES_NOT_EXIST
 	
-	selected = item
-	var index = _find_index(items,item)
+	selected = item_name
+	var index = _find_index(items,item_name)
 	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
 	if _array_has_item(items,item_name):
-		return 400
+		return ERR_ALREADY_EXISTS
 	items.append(item_name)
 	
 	icon_container.add_child(TextureRect.new())
@@ -57,12 +58,31 @@ func add_item(item_name:String,item_icon:Texture2D) -> int:
 	
 	button_container.add_child(Button.new())
 	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
-	target2.set_script(load("res://RG/Segment Control/Button.gd"))
+	target2.set_script(preload("res://RG/Segment Control/Button.gd"))
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
 	target2.custom_minimum_size = Vector2(30,30)
-	_delayed_update()
+	if selected == "":
+		select(item_name)
+	_update()
+	_shade_options()
+	return OK
+	
+func remove_item(item_name:String):
+	if !_array_has_item(items,item_name):
+		return ERR_DOES_NOT_EXIST
+	if selected == item_name:
+		return ERR_LOCKED
+		
+	items.remove_at(_find_index(items,item_name))
+	item_icons.erase(item_name)
+	for child in button_container.get_children().size()-1:
+		if button_container.get_child(child).item == item_name:
+			button_container.get_child(child).queue_free()
+			icon_container.get_child(child).queue_free()
+			break
+	_update()
 	_shade_options()
 	return OK
 	
