@@ -9,15 +9,15 @@
 [node name="ButtonText" type="Control" unique_id=558219073]
 custom_minimum_size = Vector2(92, 30)
 layout_mode = 3
-anchor_right = 0.07538462
-anchor_bottom = 0.04103967
+anchors_preset = 0
+offset_right = 92.0
+offset_bottom = 30.0
 script = ExtResource("1_iweaq")
-metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=63305514]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 0
-offset_right = 98.0
+offset_right = 92.0
 offset_bottom = 30.0
 texture = ExtResource("2_iweaq")
 patch_margin_left = 15
@@ -28,7 +28,7 @@ patch_margin_bottom = 15
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1238969103]
 custom_minimum_size = Vector2(30, 0)
 layout_mode = 0
-offset_right = 98.0
+offset_right = 92.0
 offset_bottom = 30.0
 alignment = 1
 

@@ -3,11 +3,9 @@
 [ext_resource type="Script" uid="uid://cr0ewmwly46m4" path="res://Globals/Debugger.gd" id="1_m7q2s"]
 [ext_resource type="Theme" uid="uid://cm47ywsogwem6" path="res://Themes/Text/Main.tres" id="2_727tw"]
 [ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="3_5pddc"]
-[ext_resource type="PackedScene" uid="uid://bo5xe3y556i1g" path="res://RG/Button/Text/ButtonText.tscn" id="4_7opmi"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://RG/Button/TextIcon/ButtonTextIcon.tscn" id="5_msovi"]
 [ext_resource type="Texture2D" uid="uid://bj47hidjlap3s" path="res://Icons/Checklist.svg" id="6_wjt47"]
 [ext_resource type="Texture2D" uid="uid://b6s4mqqehkima" path="res://Icons/Book.svg" id="7_pk5jm"]
-[ext_resource type="PackedScene" uid="uid://buedo2hdqto7k" path="res://RG/Button/Icon/ButtonIcon.tscn" id="8_u8rjl"]
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://RG/Segment Control/SegmentControl.tscn" id="9_1toi0"]
 [ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://RG/Segment Control/Icon/Segment Control Icon.tscn" id="10_bysg5"]
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://RG/Toggle/Toggle.tscn" id="11_euskl"]
@@ -101,16 +99,22 @@ text = "Text"
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ButtonText" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=558219073 instance=ExtResource("4_7opmi")]
+[node name="ButtonTextIcon" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=1147294534 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(96, 30)
 layout_mode = 2
+icon = null
 
-[node name="ButtonText6" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=39064981 instance=ExtResource("4_7opmi")]
+[node name="ButtonTextIcon2" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=7960363 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(96, 30)
 layout_mode = 2
 color = "White"
+icon = null
 
-[node name="ButtonText3" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=1120974262 instance=ExtResource("4_7opmi")]
+[node name="ButtonTextIcon3" parent="MarginContainer/VBoxContainer/Content/ButtonText" unique_id=160033591 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(96, 30)
 layout_mode = 2
 color = "Red"
+icon = null
 
 [node name="Buttons_TextIcon" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1546633343]
 layout_mode = 2
@@ -121,17 +125,15 @@ text = "Text + Icon"
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="ButtonTextIcon" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=1426858299 instance=ExtResource("5_msovi")]
-custom_minimum_size = Vector2(118, 30)
+[node name="ButtonTextIcon" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=322880870 instance=ExtResource("5_msovi")]
 layout_mode = 2
-text = "Pause"
 
-[node name="ButtonTextIcon6" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=505664787 instance=ExtResource("5_msovi")]
+[node name="ButtonTextIcon2" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=205794328 instance=ExtResource("5_msovi")]
 layout_mode = 2
 color = "White"
 icon = ExtResource("6_wjt47")
 
-[node name="ButtonTextIcon3" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=1983132477 instance=ExtResource("5_msovi")]
+[node name="ButtonTextIcon3" parent="MarginContainer/VBoxContainer/Content/ButtonTextIcon" unique_id=240633170 instance=ExtResource("5_msovi")]
 layout_mode = 2
 color = "Red"
 icon = ExtResource("7_pk5jm")
@@ -143,18 +145,25 @@ text = "Icon"
 
 [node name="ButtonIcon" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content" unique_id=1853420946]
 layout_mode = 2
+theme_override_constants/separation = 8
 
-[node name="ButtonIcon5" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=611677477 instance=ExtResource("8_u8rjl")]
+[node name="ButtonTextIcon3" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=343947846 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+text = ""
 
-[node name="ButtonIcon6" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=234539903 instance=ExtResource("8_u8rjl")]
+[node name="ButtonTextIcon" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=145205027 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 color = "White"
+text = ""
 icon = ExtResource("6_wjt47")
 
-[node name="ButtonIcon2" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=494187962 instance=ExtResource("8_u8rjl")]
+[node name="ButtonTextIcon2" parent="MarginContainer/VBoxContainer/Content/ButtonIcon" unique_id=159763641 instance=ExtResource("5_msovi")]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 color = "Red"
+text = ""
 icon = ExtResource("7_pk5jm")
 
 [node name="Segment Control Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1990149663]
@@ -303,4 +312,3 @@ theme_override_font_sizes/font_size = 14
 text = "    Rose Garden Demo Scene"
 
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/HBoxContainer/Drop Down" to="." method="_on_accent_changed"]
-[connection signal="pressed" from="MarginContainer/VBoxContainer/Content/ButtonText/ButtonText" to="." method="_on_button_text_pressed"]

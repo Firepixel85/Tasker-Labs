@@ -64,6 +64,7 @@ grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_y2v4p")
 flat = true
 
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_pressed"]

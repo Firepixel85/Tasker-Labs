@@ -14,6 +14,12 @@ signal toggled(toggled_on:bool)
 
 var _texture_path
 
+const _COLOR_NORMAL = Color(1,1,1)
+const _COLOR_PRESSED = Color(0.65,0.65,0.65)
+const _COLOR_HOVERED = Color(0.85,0.85,0.85)
+const _COLOR_DISABLED = Color(0.6,0.6,0.6)
+const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+
 func _on_pressed() -> void:
 	if is_toggled:
 		is_toggled = false
@@ -62,18 +68,18 @@ func toggle():
 
 func _on_button_up() -> void:
 	button_up.emit()
-	modulate = Color(1,1,1)
+	modulate = _COLOR_NORMAL
 
 func _on_button_down() -> void:
 	button_down.emit()
-	modulate = Color(0.85,0.85,0.85)
+	modulate = _COLOR_PRESSED
 
 
 func _on_mouse_entered() -> void:
-	modulate = Color(0.9,0.9,0.9)
+	modulate = _COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
-	modulate = Color(1,1,1)
+	modulate = _COLOR_NORMAL
 
 func _ready() -> void:
 	_update()

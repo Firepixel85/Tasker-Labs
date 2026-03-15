@@ -10,7 +10,7 @@ var id := 0
 var option_name := "Test"
 var selected := false
 var highlighted := false
-var manager:DropDown = DropDown.new()
+var manager:RGDropDown = RGDropDown.new()
 
 func _update():
 	custom_minimum_size.x = min_size_setter.size.x+6
@@ -41,6 +41,7 @@ func _ready() -> void:
 
 
 func _pressed() -> void:
+	
 	manager.select(id)
 	manager._close()
 

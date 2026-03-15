@@ -1,6 +1,6 @@
 @tool
 extends Control
-class_name SegmentControlIcon
+class_name RGSegmentControlIcon
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var icon_container: HBoxContainer = $MarginContainer/HBoxContainer
 @onready var button_container: HBoxContainer = $ButtonContainer
@@ -10,33 +10,6 @@ var items:Array = []
 var item_icons:Dictionary[String, Texture2D]
 var selected:String
 
-func _process(_delta: float) -> void:
-	if refresh:
-		refresh = false
-		_erase_items()
-		_load_items()
-		select(items[0])
-	_update()
-
-func _ready() -> void:
-	if !Engine.is_editor_hint():
-		_load_items()
-		if !items == []:
-			select(items[0])
-		_update()
-
-func _update():
-	var container_size = icon_container.get_parent().size.x
-	texture.size.x = container_size
-	button_container.size.x = container_size
-	custom_minimum_size.x = texture.size.x
-
-func _delayed_update():
-	await get_tree().create_timer(2).timeout
-	var container_size = icon_container.get_parent().size.x
-	texture.size.x = container_size
-	button_container.size.x = container_size
-
 func select(item_name:String):
 	if !_array_has_item(items,item_name):
 		return ERR_DOES_NOT_EXIST
@@ -45,6 +18,7 @@ func select(item_name:String):
 	var index = _find_index(items,item_name)
 	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
+	return OK
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
 	if _array_has_item(items,item_name):
@@ -85,8 +59,40 @@ func remove_item(item_name:String):
 	_update()
 	_shade_options()
 	return OK
+
+##############
+#### STOP #### Here begin private function that should never be called by your code
+##############
+
+func _process(_delta: float) -> void:
+	if refresh:
+		refresh = false
+		_erase_items()
+		_load_items()
+		select(items[0])
+	_update()
+
+func _ready() -> void:
+	if !Engine.is_editor_hint():
+		_load_items()
+		if !items == []:
+			select(items[0])
+		_update()
+
+func _update():
+	var container_size = icon_container.get_parent().size.x
+	texture.size.x = container_size
+	button_container.size.x = container_size
+	custom_minimum_size.x = texture.size.x
+
+func _delayed_update():
+	await get_tree().create_timer(2).timeout
+	var container_size = icon_container.get_parent().size.x
+	texture.size.x = container_size
+	button_container.size.x = container_size
+
 	
-func display_item(item_name:String,item_icon:Texture2D) -> int:
+func _display_item(item_name:String,item_icon:Texture2D) -> int:
 	icon_container.add_child(TextureRect.new())
 	var target:TextureRect = icon_container.get_children()[icon_container.get_children().size() - 1]
 	target.texture = item_icon
@@ -121,7 +127,7 @@ func _find_index(array:Array,item):
 
 func _load_items():
 	for item in items:
-		display_item(item,item_icons[item])
+		_display_item(item,item_icons[item])
 
 func _erase_items():
 	for child in icon_container.get_children():

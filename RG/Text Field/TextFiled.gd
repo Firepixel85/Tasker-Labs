@@ -1,10 +1,10 @@
 @tool
 extends Control
-
+class_name RGTextField
 @onready var text_container: MarginContainer = $NinePatchRect/MarginContainer
 @onready var container: NinePatchRect = $NinePatchRect
 @onready var line_edit: LineEdit = $MarginContainer/LineEdit
-@onready var text: Label = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Label
+@onready var label: Label = $NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer/Label
 @onready var mask: NinePatchRect = $NinePatchRect2
 @onready var hint_text: Label = $MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/Label
 @onready var hint_texture: NinePatchRect = $MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect
@@ -18,6 +18,18 @@ extends Control
 @export var hint := "⌘K"
 @export var secret := false
 
+var text:String
+func get_text():
+	return label.text
+
+func set_text(new_text:String):
+	line_edit.text = new_text
+	_update()
+
+func set_hint(new_hint:String):
+	hint = new_hint
+	_update()
+
 func _update():
 	container.size.x = size.x
 	hint_container.size.x = size.x
@@ -25,7 +37,7 @@ func _update():
 	line_edit.get_parent().size.x = size.x
 	hint_texture.custom_minimum_size.x = hint_text.size.x + 8
 	line_edit.secret = secret
-	if text.size.x > size.x-16:
+	if label.size.x > size.x-16:
 		text_container.layout_direction = Control.LAYOUT_DIRECTION_RTL
 	else:
 		text_container.layout_direction = Control.LAYOUT_DIRECTION_INHERITED
@@ -39,9 +51,10 @@ func _update():
 		hint_container.visible = false
 	hint_text.text = hint
 	_mirror_to_line_edit()
+	text = label.text
 	
 func _process(_delta: float) -> void:
-	text.text = line_edit.text
+	label.text = line_edit.text
 	if secret:
 		var text_array = line_edit.text.split("")
 		var new_text = ""
@@ -49,7 +62,7 @@ func _process(_delta: float) -> void:
 			new_text += "*"
 		if Array(text_array) == [""]:
 			new_text = ""
-		text.text = new_text
+		label.text = new_text
 	if Engine.is_editor_hint():
 		_update()
 

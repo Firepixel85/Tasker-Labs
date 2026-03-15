@@ -1,13 +1,13 @@
 extends Control
-@onready var drop_down: DropDown = $"MarginContainer/VBoxContainer/Content/Drop Down/Drop Down"
-@onready var segment_control: SegmentControl = $"MarginContainer/VBoxContainer/Content/Segment Control/SegmentControl"
-@onready var segment_control_icon: SegmentControlIcon = $"MarginContainer/VBoxContainer/Content/Segment Control/SegmentControl Icon"
-@onready var accent_dropdown: DropDown = $"MarginContainer/VBoxContainer/HBoxContainer/Drop Down"
+@onready var drop_down: RGDropDown = $"MarginContainer/VBoxContainer/Content/Drop Down/Drop Down"
+@onready var segment_control: RGSegmentControl = $"MarginContainer/VBoxContainer/Content/Segment Control/SegmentControl"
+@onready var segment_control_icon: RGSegmentControlIcon = $"MarginContainer/VBoxContainer/Content/Segment Control/SegmentControl Icon"
+@onready var accent_dropdown: RGDropDown = $"MarginContainer/VBoxContainer/HBoxContainer/Drop Down"
 
 #Buttons
-@onready var button_text: ButtonText = $MarginContainer/VBoxContainer/Content/ButtonText/ButtonText3
-@onready var button_text_icon: ButtonIconText = $MarginContainer/VBoxContainer/Content/ButtonTextIcon/ButtonTextIcon3
-@onready var button_icon: ButtonIcon = $MarginContainer/VBoxContainer/Content/ButtonIcon/ButtonIcon2
+@onready var button_text: RGButton = $MarginContainer/VBoxContainer/Content/ButtonText/ButtonTextIcon3
+@onready var button_text_icon: RGButton = $MarginContainer/VBoxContainer/Content/ButtonTextIcon/ButtonTextIcon3
+@onready var button_icon: RGButton = $MarginContainer/VBoxContainer/Content/ButtonIcon/ButtonTextIcon2
 @onready var toggle: Control = $MarginContainer/VBoxContainer/Content/Toggle/Toggle2
 @onready var toggle_acc: Control = $MarginContainer/VBoxContainer/Content/Toggle/Toggle7
 
@@ -29,7 +29,7 @@ func _ready() -> void:
 	accent_dropdown.add_item("Pink",5)
 	accent_dropdown.add_item("Purple",6)
 
-func _on_accent_changed(selection: Variant) -> void:
+func _on_accent_changed(selection:String) -> void:
 	button_text.set_color(selection)
 	button_icon.set_color(selection)
 	button_text_icon.set_color(selection)

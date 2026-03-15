@@ -53,6 +53,10 @@ func set_color(new_color:String):
 	else:
 		label.modulate = Color(1,1,1)
 	_update()
+	
+func set_text(new_text:String):
+	text = new_text
+	_update()
 
 func _mirror_to_button():
 	button.disabled = disabled
