@@ -23,7 +23,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	
 	button_container.add_child(Button.new())
 	var target2:Button = button_container.get_children()[button_container.get_children().size() - 1]
-	target2.set_script(load("res://RG/Segment Control/Button.gd"))
+	target2.set_script(load("res://RG/Segment Control/RGsc_button.gd"))
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name

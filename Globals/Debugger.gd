@@ -15,7 +15,7 @@ func _ready() -> void:
 	segment_control.add_item("home","Home")
 	segment_control.add_item("focus","Focus")
 	segment_control.add_item("tasks","Tasks")
-	segment_control_icon.add_item("home",load("res://Icons/Home.png"))
+	segment_control_icon.add_item("home",load("res://Icons/Home.svg"))
 	segment_control_icon.add_item("focus",load("res://Icons/Book.svg"))
 	segment_control_icon.add_item("tasks",load("res://Icons/Checklist.svg"))
 	drop_down.add_item("Option 1",0)
