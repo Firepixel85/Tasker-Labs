@@ -65,7 +65,7 @@ func _update():
 	content_margin.add_theme_constant_override("margin_left",32)
 	content_margin.add_theme_constant_override("margin_right",32)
 	label.get_parent().add_theme_constant_override("separation",4)
-	
+
 	if text == "":
 		label.get_parent().add_theme_constant_override("separation",0)
 		content_margin.add_theme_constant_override("margin_left",3)
@@ -123,4 +123,3 @@ func _on_mouse_exited() -> void:
 		modulate = _COLOR_DISABLED
 	else:
 		modulate = _COLOR_NORMAL
-	
