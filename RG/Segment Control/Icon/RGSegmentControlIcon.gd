@@ -16,7 +16,7 @@ func select(item_name:String):
 	
 	selected = item_name
 	var index = _find_index(items,item_name)
-	get_tree().create_tween().tween_property(selector,"position",Vector2(28*index,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
+	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 	return OK
 
@@ -36,7 +36,7 @@ func add_item(item_name:String,item_icon:Texture2D) -> int:
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(30,30)
+	target2.custom_minimum_size = Vector2(60,60)
 	if selected == "":
 		select(item_name)
 	_update()
@@ -104,7 +104,7 @@ func _display_item(item_name:String,item_icon:Texture2D) -> int:
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(30,30)
+	target2.custom_minimum_size = Vector2(60,60)
 	_delayed_update()
 	return OK
 	

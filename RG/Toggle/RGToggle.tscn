@@ -7,7 +7,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rkvw"]
 
 [node name="Toggle" type="Control" unique_id=1372621177]
-custom_minimum_size = Vector2(32, 18)
+custom_minimum_size = Vector2(64, 36)
 layout_mode = 3
 anchor_right = 0.024615385
 anchor_bottom = 0.024623804
@@ -24,16 +24,18 @@ stretch_mode = 2
 
 [node name="Container" type="Control" parent="." unique_id=1967267692]
 layout_mode = 1
-anchors_preset = 0
-offset_right = 32.0
-offset_bottom = 18.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Container" unique_id=1465373593]
 layout_mode = 0
-offset_left = 3.0
-offset_top = 3.0
-offset_right = 15.000002
-offset_bottom = 15.0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 30.000006
+offset_bottom = 30.000006
 texture = ExtResource("3_i368a")
 stretch_mode = 2
 
@@ -42,10 +44,11 @@ custom_minimum_size = Vector2(32, 18)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 8.0
+offset_bottom = 36.0
 grow_horizontal = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_0rkvw")
 flat = true
+metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="Button" to="." method="_on_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_up"]

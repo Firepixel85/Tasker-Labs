@@ -4,10 +4,10 @@
 
 [resource]
 Button/colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
-Button/font_sizes/font_size = 10
+Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_xol4v")
 Label/colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
-Label/font_sizes/font_size = 10
+Label/font_sizes/font_size = 20
 Label/fonts/font = ExtResource("1_xol4v")
-LineEdit/font_sizes/font_size = 10
+LineEdit/font_sizes/font_size = 20
 LineEdit/fonts/font = ExtResource("1_xol4v")

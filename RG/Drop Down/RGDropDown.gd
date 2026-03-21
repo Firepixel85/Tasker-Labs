@@ -10,6 +10,7 @@ class_name RGDropDown
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 
 @export var disable_animations:bool = false
+@export var instant_selection:bool = false##Instantly move the selection to the hovered item with no animation
 var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
@@ -64,7 +65,7 @@ func _update():
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
-	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*26)+6),0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
+	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
 	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
 	label.text = items[_find_index(item_ids,selected)]
@@ -113,4 +114,4 @@ func _new_menu_item(node: Node) -> void:
 	_update()
 
 func _on_menu_item_highlighted(id: int) -> void:
-	create_tween().tween_property(selection,"position",Vector2(selection.position.x,26*_find_index(item_ids,id)),0.09*int(!disable_animations)).set_trans(Tween.TRANS_SPRING)
+	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.09*int(not(disable_animations or instant_selection))).set_trans(Tween.TRANS_SPRING)

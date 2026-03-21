@@ -9,7 +9,7 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g27kd"]
 
 [node name="RGTextField" type="Control" unique_id=808777957]
-custom_minimum_size = Vector2(64, 30)
+custom_minimum_size = Vector2(128, 60)
 layout_mode = 3
 anchor_right = 0.04923077
 anchor_bottom = 0.04103967
@@ -21,22 +21,22 @@ metadata/_edit_use_anchors_ = true
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1153994272]
 clip_children = 2
 layout_mode = 1
-offset_right = 64.0
-offset_bottom = 30.0
+offset_right = 128.0
+offset_bottom = 60.0
 texture = ExtResource("2_qvkio")
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=2052940290]
 layout_mode = 1
 offset_right = 64.0
 offset_bottom = 30.0
-theme_override_constants/margin_left = 8
-theme_override_constants/margin_top = 8
-theme_override_constants/margin_right = 8
-theme_override_constants/margin_bottom = 8
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=210281214]
 layout_mode = 2
@@ -51,20 +51,20 @@ theme = ExtResource("5_qvkio")
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=1947557547]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 30.0
+offset_right = 128.0
+offset_bottom = 60.0
 texture = ExtResource("2_ci003")
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1586523401]
 visible = false
 layout_mode = 1
-offset_right = 64.0
-offset_bottom = 30.0
-theme_override_constants/margin_right = 4
+offset_right = 128.0
+offset_bottom = 60.0
+theme_override_constants/margin_right = 8
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=798393836]
 layout_mode = 2
@@ -75,23 +75,24 @@ layout_mode = 2
 alignment = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=282234545]
-custom_minimum_size = Vector2(24, 0)
+custom_minimum_size = Vector2(47, 0)
 layout_mode = 2
 texture = ExtResource("5_4rsp0")
-patch_margin_left = 10
-patch_margin_top = 10
-patch_margin_right = 10
-patch_margin_bottom = 10
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect" unique_id=395745531]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 1
-anchors_preset = 10
+anchors_preset = 15
 anchor_right = 1.0
-offset_bottom = 20.0
+anchor_bottom = 1.0
 grow_horizontal = 2
-theme_override_constants/margin_left = 4
-theme_override_constants/margin_right = 4
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
 
 [node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer" unique_id=1125036769]
 custom_minimum_size = Vector2(0, 20)
@@ -103,10 +104,10 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1244355384]
 layout_mode = 0
-offset_right = 64.0
-offset_bottom = 31.0
-theme_override_constants/margin_left = 6
-theme_override_constants/margin_right = 2
+offset_right = 128.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_right = 4
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer" unique_id=1972748485]
 layout_mode = 2

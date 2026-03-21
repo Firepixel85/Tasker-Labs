@@ -27,7 +27,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(target.size.x,30)
+	target2.custom_minimum_size = Vector2(target.size.x,60)
 	if selected == "":
 		select(item_name)
 	_update()
@@ -62,7 +62,7 @@ func select(item:String):
 	var array = _build_size_array()
 	var length := 0
 	for i in index:
-		length += array[i] + 4
+		length += array[i] + 8
 	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
 	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15).set_trans(Tween.TRANS_SINE)
 	_shade_options()
@@ -111,7 +111,7 @@ func _display_item(item_name:String,item_text:String) -> int:
 	target2.flat = true
 	target2.add_theme_stylebox_override("focus",StyleBoxEmpty.new())
 	target2.item = item_name
-	target2.custom_minimum_size = Vector2(target.size.x,30)
+	target2.custom_minimum_size = Vector2(target.size.x,60)
 	_delayed_update()
 	return OK
 

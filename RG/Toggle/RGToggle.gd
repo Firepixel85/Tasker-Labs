@@ -52,16 +52,16 @@ func _process(_delta: float) -> void:
 func _show_off():
 	base.texture = load(_texture_path+"BaseGray.svg")
 	if Engine.is_editor_hint():
-		ball.position.x = 3
+		ball.position.x = 6
 	else:
-		create_tween().tween_property(ball,"position",Vector2(3,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
 
 func _show_on():
 	base.texture = load(_texture_path+"Base"+color+".svg")
 	if Engine.is_editor_hint():
-		ball.position.x = 17
+		ball.position.x = 34
 	else:
-		create_tween().tween_property(ball,"position",Vector2(17,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
 		
 func toggle():
 	_on_pressed()

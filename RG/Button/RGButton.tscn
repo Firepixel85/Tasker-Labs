@@ -8,30 +8,31 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
 
 [node name="RGButton" type="Control" unique_id=1426858299]
-custom_minimum_size = Vector2(120, 30)
+custom_minimum_size = Vector2(240, 60)
 layout_mode = 3
-anchors_preset = 0
-offset_right = 120.0
-offset_bottom = 30.0
+anchor_right = 0.093
+offset_right = -0.80000305
+offset_bottom = 60.0
 script = ExtResource("1_pa7x6")
 icon = ExtResource("2_rmdqs")
+metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=885916875]
-custom_minimum_size = Vector2(30, 30)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
-offset_right = 120.0
-offset_bottom = 30.0
+offset_right = 241.0
+offset_bottom = 60.0
 texture = ExtResource("3_uaxtl")
-patch_margin_left = 15
-patch_margin_top = 15
-patch_margin_right = 15
-patch_margin_bottom = 15
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1282823819]
 custom_minimum_size = Vector2(30, 30)
-layout_mode = 0
-offset_right = 120.0
-offset_bottom = 30.0
+layout_mode = 1
+offset_right = 241.0
+offset_bottom = 60.0
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1312002145]
@@ -40,12 +41,12 @@ alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer" unique_id=506759268]
 layout_mode = 2
-theme_override_constants/margin_left = 32
-theme_override_constants/margin_right = 32
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_right = 64
 
 [node name="VBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer/MarginContainer" unique_id=594920261]
 layout_mode = 2
-theme_override_constants/separation = 4
+theme_override_constants/separation = 8
 alignment = 1
 
 [node name="Label" type="Label" parent="HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1888923641]
@@ -69,7 +70,6 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ir1hl")
 flat = true
-metadata/_edit_use_anchors_ = true
 
 [connection signal="button_down" from="Button" to="." method="_on_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_up"]

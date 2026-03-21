@@ -32,7 +32,7 @@ const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
 func set_color(new_color:String):
 	color = new_color
 	base.texture = load("res://RG/Button/Base"+color+".svg")
-	if color == "White":
+	if color == "White" or color == "Yellow" or color == "Green":
 		label.modulate = Color(0,0,0)
 		texture.modulate = Color(0,0,0)
 	else:
@@ -60,17 +60,17 @@ func _process(_delta: float) -> void:
 func _update():
 	label.text = text
 	texture.texture = icon
-	custom_minimum_size.x = label.size.x+texture.size.x+68
+	custom_minimum_size.x = label.size.x+texture.size.x+136
 	label.visible = true
-	content_margin.add_theme_constant_override("margin_left",32)
-	content_margin.add_theme_constant_override("margin_right",32)
-	label.get_parent().add_theme_constant_override("separation",4)
+	content_margin.add_theme_constant_override("margin_left",64)
+	content_margin.add_theme_constant_override("margin_right",64)
+	label.get_parent().add_theme_constant_override("separation",8)
 
 	if text == "":
 		label.get_parent().add_theme_constant_override("separation",0)
-		content_margin.add_theme_constant_override("margin_left",3)
-		content_margin.add_theme_constant_override("margin_right",3)
-		custom_minimum_size.x = 30
+		content_margin.add_theme_constant_override("margin_left",6)
+		content_margin.add_theme_constant_override("margin_right",6)
+		custom_minimum_size.x = 60
 		label.visible = false
 	if get_parent().is_class("BoxContainer") and !(size_flags_horizontal & Control.SIZE_EXPAND):
 		size = custom_minimum_size

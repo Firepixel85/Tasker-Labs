@@ -28,14 +28,12 @@ Colors="*uid://bbqa440wcdmu1"
 
 [display]
 
-window/size/viewport_width=1300
-window/size/viewport_height=731
+window/size/viewport_width=2600
+window/size/viewport_height=1462
 window/size/initial_position_type=3
 window/size/resizable=false
 window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
-window/stretch/scale=2.0
-window/stretch/scale_mode="integer"
 
 [rendering]
 

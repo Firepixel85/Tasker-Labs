@@ -31,13 +31,14 @@ func set_hint(new_hint:String):
 	_update()
 
 func _update():
+	hint_text.text = hint
 	container.size.x = size.x
 	hint_container.size.x = size.x
 	mask.size.x = size.x
 	line_edit.get_parent().size.x = size.x
-	hint_texture.custom_minimum_size.x = hint_text.size.x + 8
+	hint_texture.custom_minimum_size.x = hint_text.size.x + 16
 	line_edit.secret = secret
-	if label.size.x > size.x-16:
+	if label.size.x > size.x-32:
 		text_container.layout_direction = Control.LAYOUT_DIRECTION_RTL
 	else:
 		text_container.layout_direction = Control.LAYOUT_DIRECTION_INHERITED
@@ -49,7 +50,6 @@ func _update():
 		hint_container.visible = true
 	else:
 		hint_container.visible = false
-	hint_text.text = hint
 	_mirror_to_line_edit()
 	text = label.text
 	
@@ -67,6 +67,8 @@ func _process(_delta: float) -> void:
 		_update()
 
 func _ready() -> void:
+	_update()
+	await get_tree().create_timer(0.1).timeout #Needs to update two time with a small delay to scale the hint container correctly
 	_update()
 
 func _on_text_changed(_new_text: String) -> void:

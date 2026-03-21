@@ -1,10 +1,10 @@
-<svg width="32" height="18" viewBox="0 0 32 18" fill="none" xmlns="http://www.w3.org/2000/svg">
-<g filter="url(#filter0_i_300_30)">
-<rect width="32" height="18" rx="9" fill="url(#paint0_linear_300_30)"/>
+<svg width="64" height="36" viewBox="0 0 64 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#filter0_i_331_294)">
+<rect width="64" height="36" rx="18" fill="url(#paint0_linear_331_294)"/>
 </g>
-<rect x="0.5" y="0.5" width="31" height="17" rx="8.5" stroke="#FFDC58"/>
+<rect x="1" y="1" width="62" height="34" rx="17" stroke="#FFDC58" stroke-width="2"/>
 <defs>
-<filter id="filter0_i_300_30" x="0" y="-4" width="32" height="22" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_i_331_294" x="0" y="-4" width="64" height="40" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feBlend mode="normal" in="SourceGraphic" in2="BackgroundImageFix" result="shape"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
@@ -12,9 +12,9 @@
 <feGaussianBlur stdDeviation="2"/>
 <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1"/>
 <feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.25 0"/>
-<feBlend mode="normal" in2="shape" result="effect1_innerShadow_300_30"/>
+<feBlend mode="normal" in2="shape" result="effect1_innerShadow_331_294"/>
 </filter>
-<linearGradient id="paint0_linear_300_30" x1="16" y1="0" x2="16" y2="18" gradientUnits="userSpaceOnUse">
+<linearGradient id="paint0_linear_331_294" x1="32" y1="0" x2="32" y2="36" gradientUnits="userSpaceOnUse">
 <stop offset="0.317308" stop-color="#C39F16"/>
 <stop offset="1" stop-color="#FFE06E"/>
 </linearGradient>

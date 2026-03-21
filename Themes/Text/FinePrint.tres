@@ -3,9 +3,9 @@
 [ext_resource type="FontFile" uid="uid://cvkq32x5xwseu" path="res://Fonts/SF Pro/SF-Pro-Display-Light.otf" id="1_2cgu1"]
 
 [resource]
-Button/font_sizes/font_size = 6
+Button/font_sizes/font_size = 12
 Button/fonts/font = ExtResource("1_2cgu1")
-Label/font_sizes/font_size = 6
+Label/font_sizes/font_size = 12
 Label/fonts/font = ExtResource("1_2cgu1")
-LineEdit/font_sizes/font_size = 6
+LineEdit/font_sizes/font_size = 12
 LineEdit/fonts/font = ExtResource("1_2cgu1")
