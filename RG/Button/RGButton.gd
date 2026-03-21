@@ -32,7 +32,7 @@ const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
 func set_color(new_color:String):
 	color = new_color
 	base.texture = load("res://RG/Button/Base"+color+".svg")
-	if color == "White" or color == "Yellow" or color == "Green":
+	if color == "White" or color == "Yelllow" or color == "Greeen":
 		label.modulate = Color(0,0,0)
 		texture.modulate = Color(0,0,0)
 	else:

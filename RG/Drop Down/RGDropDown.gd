@@ -34,7 +34,7 @@ func add_item(item_name:String,item_id:int):
 	_open()
 	_close()
 	return OK
-	
+
 func remove_item(item_id:int):
 	if !_array_has_item(item_ids,item_id):
 		return Error.ERR_DOES_NOT_EXIST
@@ -73,12 +73,11 @@ func _update():
 func _array_has_item(array:Array,item):
 	var found := false
 	for part in array:
-		
 		if part == item:
 			found = true
 			break
 	return found
-	
+
 func _find_index(array:Array,item):
 	var index = 0
 	for i in array.size():
@@ -93,12 +92,9 @@ func _open():
 	menu_container.visible=true
 	_update()
 	selection.visible = true
-	move_to_front()
-	menu_container.move_to_front()
 	opened.emit()
 
 func _close():
-	button.grab_focus()
 	var tween = create_tween()
 	selection.visible = false
 	tween.tween_property(menu_container,"size",size,0.07*int(!disable_animations)).set_trans(Tween.TRANS_SINE)
@@ -115,3 +111,9 @@ func _new_menu_item(node: Node) -> void:
 
 func _on_menu_item_highlighted(id: int) -> void:
 	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.09*int(not(disable_animations or instant_selection))).set_trans(Tween.TRANS_SPRING)
+
+
+func _on_focus_exited() -> void:
+	await get_tree().create_timer(0.05).timeout
+	if !has_focus():
+		_close()

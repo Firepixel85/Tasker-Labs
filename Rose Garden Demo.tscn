@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b1hmh3jqy41yo"]
 
-[ext_resource type="Script" uid="uid://cr0ewmwly46m4" path="res://Globals/Debugger.gd" id="1_m7q2s"]
+[ext_resource type="Script" uid="uid://cr0ewmwly46m4" path="res://Rose Garden Demo.gd" id="1_m7q2s"]
 [ext_resource type="Theme" uid="uid://cm47ywsogwem6" path="res://Themes/Text/Main.tres" id="2_727tw"]
 [ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="3_5pddc"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://RG/Button/RGButton.tscn" id="5_msovi"]

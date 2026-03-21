@@ -142,3 +142,4 @@ script = ExtResource("5_0tlgq")
 [connection signal="_highlighted" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_menu_item_highlighted"]
 [connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_new_menu_item"]
 [connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" method="_on_child_entered_tree"]
+[connection signal="focus_exited" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_focus_exited"]
