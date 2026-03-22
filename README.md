@@ -6,7 +6,7 @@
 
 ![Stamp](https://github.com/user-attachments/assets/f07dfc64-94e4-4a51-8953-888fde447de0) 
 
-<br>
+
 
 # This is Tasker 2.0
 Productiviy like never before!
