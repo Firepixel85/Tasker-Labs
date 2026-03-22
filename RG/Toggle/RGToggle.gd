@@ -3,7 +3,7 @@ extends Control
 @onready var base: TextureRect = $TextureRect
 @onready var ball: TextureRect = $Container/TextureRect
 
-@export_enum("Gray","White","Red","Orange","Yellow","Green","Blue","Pink","Purple") var color := "Gray"
+@export_enum("Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Gray"
 @export var accessible:bool = false
 @export var is_toggled := false
 

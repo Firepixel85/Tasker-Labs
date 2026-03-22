@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://yemav5jwqvo8"]
+
+[ext_resource type="Script" uid="uid://b4j60wv02vq6a" path="res://RG/Tag/RGTag.gd" id="1_3um53"]
+[ext_resource type="Texture2D" uid="uid://ewrku150e0ip" path="res://RG/Tag/Red.svg" id="2_3um53"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="3_yusch"]
+
+[node name="RGTag" type="Control" unique_id=1946555419]
+custom_minimum_size = Vector2(95, 40)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 95.0
+offset_bottom = 40.0
+script = ExtResource("1_3um53")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1143154954]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 40.0
+grow_horizontal = 2
+texture = ExtResource("2_3um53")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1867613676]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_right = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1633716116]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=738038035]
+modulate = Color(0.90588236, 0.2784314, 0.2784314, 1)
+layout_mode = 2
+theme = ExtResource("3_yusch")
+text = "Tag"

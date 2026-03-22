@@ -4,6 +4,7 @@ extends Control
 @onready var segment_control_icon: RGSegmentControlIcon = $"MarginContainer/VBoxContainer/Content/Segment Control/SegmentControl Icon"
 @onready var accent_dropdown: RGDropDown = $"MarginContainer/VBoxContainer/HBoxContainer/Drop Down"
 @onready var rg_section_view: RGSectionView = $"MarginContainer/VBoxContainer/Content/Section View/VBoxContainer/RGSectionView"
+@onready var rg_tag: Control = $MarginContainer/VBoxContainer/Content/HBoxContainer/VBoxContainer/RGTag
 
 #Buttons
 @onready var button_text: RGButton = $MarginContainer/VBoxContainer/Content/ButtonText/RGButton3
@@ -26,10 +27,11 @@ func _ready() -> void:
 	accent_dropdown.add_item("Orange",1)
 	accent_dropdown.add_item("Yellow",2)
 	accent_dropdown.add_item("Green",3)
-	accent_dropdown.add_item("Blue",4)
-	accent_dropdown.add_item("Pink",5)
-	accent_dropdown.add_item("Purple",6)
-	accent_dropdown.add_item("Tasker",7)
+	accent_dropdown.add_item("Teal",4)
+	accent_dropdown.add_item("Blue",5)
+	accent_dropdown.add_item("Pink",6)
+	accent_dropdown.add_item("Purple",7)
+	accent_dropdown.add_item("Tasker",8)
 
 func _on_accent_changed(selection:String) -> void:
 	button_text.set_color(selection)
@@ -37,6 +39,7 @@ func _on_accent_changed(selection:String) -> void:
 	button_text_icon.set_color(selection)
 	toggle.set_color(selection)
 	toggle_acc.set_color(selection)
+	rg_tag.set_color(selection)
 
 
 func _on_rg_button_pressed() -> void:
@@ -46,6 +49,6 @@ func _on_rg_button_pressed() -> void:
 func _on_rg_button_2_pressed() -> void:
 	rg_section_view.select_next()
 
-func _process(_delta: float) -> void:
-	return
-	print(get_viewport().gui_get_focus_owner())
+func _on_tag_text_changed(new_text: String) -> void:
+	rg_tag.set_text(new_text)
+	

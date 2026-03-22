@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://DragZone.gd" id="14_gk1nh"]
 [ext_resource type="Texture2D" uid="uid://dvif5ky5o2blw" path="res://Icons/Next.svg" id="14_msovi"]
 [ext_resource type="Theme" uid="uid://cwtyvsax6wyfh" path="res://Themes/Text/FinePrintRound.tres" id="15_fepx7"]
+[ext_resource type="PackedScene" uid="uid://yemav5jwqvo8" path="res://RG/Tag/RGTag.tscn" id="15_msovi"]
 [ext_resource type="Theme" uid="uid://53rta6wh8cf" path="res://Themes/Text/Large.tres" id="16_727tw"]
 [ext_resource type="FontFile" uid="uid://d0qdmlqtq5rov" path="res://Fonts/SF Pro/SF-Pro-Display-Bold.otf" id="17_5pddc"]
 
@@ -248,7 +249,7 @@ text = "Secret:"
 [node name="TextField2" parent="MarginContainer/VBoxContainer/Content/TextField" unique_id=808777957 instance=ExtResource("12_gtyy6")]
 custom_minimum_size = Vector2(256, 60)
 layout_mode = 2
-placeholder_text = "password"
+placeholder_text = "Password"
 secret = true
 
 [node name="Label4" type="Label" parent="MarginContainer/VBoxContainer/Content/TextField" unique_id=1609324595]
@@ -303,6 +304,27 @@ layout_mode = 2
 text = ""
 icon = ExtResource("14_msovi")
 
+[node name="Section View Label2" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=335339926]
+layout_mode = 2
+theme = ExtResource("2_727tw")
+text = "Tags"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Content" unique_id=2036068270]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGTextField" parent="MarginContainer/VBoxContainer/Content/HBoxContainer" unique_id=1752289519 instance=ExtResource("12_gtyy6")]
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+placeholder_text = "Enter tag name here"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/Content/HBoxContainer" unique_id=2097183621]
+layout_mode = 2
+alignment = 1
+
+[node name="RGTag" parent="MarginContainer/VBoxContainer/Content/HBoxContainer/VBoxContainer" unique_id=1946555419 instance=ExtResource("15_msovi")]
+layout_mode = 2
+
 [node name="DragZone" type="VBoxContainer" parent="." unique_id=1796571422]
 layout_mode = 1
 anchors_preset = 10
@@ -347,3 +369,4 @@ text = "    Rose Garden Demo Scene"
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/HBoxContainer/Drop Down" to="." method="_on_accent_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/RGButton" to="." method="_on_rg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/RGButton2" to="." method="_on_rg_button_2_pressed"]
+[connection signal="text_changed" from="MarginContainer/VBoxContainer/Content/HBoxContainer/RGTextField" to="." method="_on_tag_text_changed"]

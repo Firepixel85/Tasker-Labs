@@ -18,6 +18,8 @@ class_name RGTextField
 @export var hint := "⌘K"
 @export var secret := false
 
+signal text_changed(new_text:String)
+
 var text:String
 func get_text():
 	return label.text
@@ -25,10 +27,13 @@ func get_text():
 func set_text(new_text:String):
 	line_edit.text = new_text
 	_update()
+	text_changed.emit(new_text)
+	return OK
 
 func set_hint(new_hint:String):
 	hint = new_hint
 	_update()
+	return OK
 
 func _update():
 	hint_text.text = hint
@@ -52,7 +57,7 @@ func _update():
 		hint_container.visible = false
 	_mirror_to_line_edit()
 	text = label.text
-	
+
 func _process(_delta: float) -> void:
 	label.text = line_edit.text
 	if secret:
@@ -73,6 +78,7 @@ func _ready() -> void:
 
 func _on_text_changed(_new_text: String) -> void:
 	_update()
+	text_changed.emit(_new_text)
 
 func _on_focus_exited() -> void:
 	_update()

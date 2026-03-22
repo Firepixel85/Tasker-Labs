@@ -1,39 +1,36 @@
 extends Node
-const gray := Color(0.114, 0.114, 0.114)
-const green := Color(0.165, 0.839, 0.18)
-const red := Color(0.843, 0.176, 0.173)
-const blue := Color(0.224, 0.576, 0.925)
-const accent := Color(0.478, 0.247, 0.906)
-const white := Color(1,1,1)
 
-const colors = [
-	gray,
-	green,
-	red,
-	blue,
-	accent,
-	white
-]
+const GRAY_HIGHLIGHT = Color("414141")
+const WHITE_HIGHLIGHT = Color("DADADA")
+const RED_HIGHLIGHT = Color("E74747")
+const ORANGE_HIGHLIGHT = Color("FBA051")
+const YELLOW_HIGHLIGHT = Color("FFDC58")
+const GREEN_HIGHLIGHT = Color("4BF14F")
+const TEAL_HIGHLIGHT = Color("8FFFF2")
+const BLUE_HIGHLIGHT = Color("4B9CED")
+const PINK_HIGHLIGHT = Color("FF85C4")
+const PURPLE_HIGHLIGHT = Color("935CF7")
 
-enum ColorEnum {
-	Gray=0,
-	Green=1,
-	Red=2,
-	Blue=3,
-	Accent=4,
-	White=5
-}
+const GRAY = "Gray"
+const WHITE = "White"
+const RED = "Red"
+const ORANGE = "Orange"
+const YELLOW = "Yellow"
+const GREEN = "Green"
+const TEAL = "Teal"
+const BLUE = "Blue"
+const PINK = "Pink"
+const PURPLE = "Purple"
 
-func get_color(color:String):
-	if color == "gray" or color == "Gray":
-		return gray
-	elif color == "green" or color == "Green":
-		return green
-	elif color == "red" or color == "Red":
-		return red
-	elif color == "blue" or color == "Blue":
-		return blue
-	elif color == "accent" or color == "Accent":
-		return accent
-	elif color == "white" or color == "White":
-		return white
+const COLOR_NORMAL = Color(1,1,1)
+const _COLOR_PRESSED = Color(0.65,0.65,0.65)
+const _COLOR_HOVERED = Color(0.85,0.85,0.85)
+const _COLOR_DISABLED = Color(0.6,0.6,0.6)
+const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+
+func verify_color(color:String):
+	match color:
+		GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE:
+			return OK
+		_:
+			return Error.ERR_INVALID_PARAMETER

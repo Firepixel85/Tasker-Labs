@@ -9,7 +9,7 @@ class_name RGButton
 @onready var content_margin: MarginContainer = $HBoxContainer/VBoxContainer/MarginContainer
 
 @export_category("Appearence")
-@export_enum("Gray","White","Red","Orange","Yellow","Green","Blue","Pink","Purple") var color := "Gray"
+@export_enum("Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Gray"
 @export var text := "Button"
 @export var icon:Texture2D
 
