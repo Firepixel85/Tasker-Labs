@@ -88,3 +88,11 @@ func _mirror_to_line_edit():
 	line_edit.editable = editable
 	line_edit.emoji_menu_enabled = emoji_menu_enabled
 	line_edit.caret_blink = caret_blink
+
+
+func _on_mouse_entered() -> void:
+	modulate = Colors.COLOR_HOVERED
+
+
+func _on_mouse_exited() -> void:
+	modulate = Colors.COLOR_NORMAL

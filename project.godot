@@ -25,6 +25,7 @@ config/icon="res://icon.svgtex"
 Data="*res://Globals/Data.gd"
 Main="*res://Globals/Main.gd"
 Colors="*uid://bbqa440wcdmu1"
+RoseGarden="*uid://hnivujajew1k"
 
 [display]
 

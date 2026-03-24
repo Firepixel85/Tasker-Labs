@@ -52,6 +52,13 @@ func select(item_id:int):
 	selected = item_id
 	new_selection.emit(items[item_id])
 	_update()
+	return OK
+
+func get_selected():
+	return selected
+
+func get_selected_item():
+	return items[_find_index(item_ids,selected)]
 
 ##############
 #### STOP #### Here begin private function that should never be called by your code
@@ -114,6 +121,14 @@ func _on_menu_item_highlighted(id: int) -> void:
 
 
 func _on_focus_exited() -> void:
-	await get_tree().create_timer(0.05).timeout
+	await get_tree().create_timer(0.1).timeout
 	if !has_focus():
 		_close()
+
+
+func _on_mouse_entered() -> void:
+	modulate = Colors.COLOR_HOVERED
+
+
+func _on_mouse_exited() -> void:
+	modulate = Colors.COLOR_NORMAL

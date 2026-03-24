@@ -23,13 +23,10 @@ signal button_up
 signal pressed
 signal toggled(toggled_on:bool)
 
-const _COLOR_NORMAL = Color(1,1,1)
-const _COLOR_PRESSED = Color(0.65,0.65,0.65)
-const _COLOR_HOVERED = Color(0.85,0.85,0.85)
-const _COLOR_DISABLED = Color(0.6,0.6,0.6)
-const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
-
 func set_color(new_color:String):
+	if !Engine.is_editor_hint():
+		if Colors.verify_color(new_color,true) != OK:
+			return ERR_INVALID_PARAMETER
 	color = new_color
 	base.texture = load("res://RG/Button/Base"+color+".svg")
 	if color == "White" or color == "Yelllow" or color == "Greeen":
@@ -47,6 +44,15 @@ func set_icon(new_icon:Texture2D):
 func set_text(new_text:String):
 	text=new_text
 	_update()
+
+func get_color():
+	return color
+
+func get_icon():
+	return icon
+
+func get_text():
+	return text
 
 ##############
 #### STOP #### Here begin private function that should never be called by your code
@@ -78,9 +84,9 @@ func _update():
 	base.size.x = text_container.size.x
 	_mirror_to_button()
 	if disabled:
-		modulate = _COLOR_DISABLED
+		modulate = Colors.COLOR_DISABLED
 	else:
-		modulate = _COLOR_NORMAL
+		modulate = Colors.COLOR_NORMAL
 
 func _ready() -> void:
 	set_color(color)
@@ -96,14 +102,14 @@ func _on_button_down() -> void:
 	if disabled:
 		pass
 	else:
-		modulate = _COLOR_PRESSED
+		modulate = Colors.COLOR_PRESSED
 	button_down.emit()
 
 func _on_button_up() -> void:
 	if disabled:
-		modulate = _COLOR_DISABLED_HOVERED
+		modulate = Colors.COLOR_DISABLED_HOVERED
 	else:
-		modulate = _COLOR_HOVERED
+		modulate = Colors.COLOR_HOVERED
 	button_up.emit()
 
 func _on_pressed() -> void:
@@ -114,12 +120,12 @@ func _on_toggled(toggled_on: bool) -> void:
 
 func _on_mouse_entered() -> void:
 	if disabled:
-		modulate = _COLOR_DISABLED_HOVERED
+		modulate = Colors.COLOR_DISABLED_HOVERED
 	else:
-		modulate = _COLOR_HOVERED
+		modulate = Colors.COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
 	if disabled:
-		modulate = _COLOR_DISABLED
+		modulate = Colors.COLOR_DISABLED
 	else:
-		modulate = _COLOR_NORMAL
+		modulate = Colors.COLOR_NORMAL

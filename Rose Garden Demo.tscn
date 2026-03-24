@@ -18,6 +18,7 @@
 [ext_resource type="Theme" uid="uid://cwtyvsax6wyfh" path="res://Themes/Text/FinePrintRound.tres" id="15_fepx7"]
 [ext_resource type="PackedScene" uid="uid://yemav5jwqvo8" path="res://RG/Tag/RGTag.tscn" id="15_msovi"]
 [ext_resource type="Theme" uid="uid://53rta6wh8cf" path="res://Themes/Text/Large.tres" id="16_727tw"]
+[ext_resource type="Texture2D" uid="uid://dvg823uea5hcf" path="res://RG/Drop Down/Container.svg" id="16_wjt47"]
 [ext_resource type="FontFile" uid="uid://d0qdmlqtq5rov" path="res://Fonts/SF Pro/SF-Pro-Display-Bold.otf" id="17_5pddc"]
 
 [sub_resource type="Gradient" id="Gradient_8uh7m"]
@@ -193,6 +194,37 @@ text = "Icon:"
 [node name="SegmentControl Icon" parent="MarginContainer/VBoxContainer/Content/Segment Control" unique_id=1133264568 instance=ExtResource("10_bysg5")]
 layout_mode = 2
 
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/Content" unique_id=202228345]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+focus_mode = 1
+
+[node name="TextureRect" type="NinePatchRect" parent="MarginContainer/VBoxContainer/Content/Control" unique_id=51980935]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_wjt47")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer/Content/Control/TextureRect" unique_id=397217332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Content/Control/TextureRect/CenterContainer" unique_id=543967772]
+layout_mode = 2
+theme = ExtResource("2_727tw")
+text = "Righ Click Here"
+
 [node name="Toggle Label" type="Label" parent="MarginContainer/VBoxContainer/Content" unique_id=1801225389]
 layout_mode = 2
 theme = ExtResource("2_727tw")
@@ -331,6 +363,7 @@ anchors_preset = 10
 anchor_right = 1.0
 offset_bottom = 30.0
 grow_horizontal = 2
+focus_mode = 1
 script = ExtResource("14_gk1nh")
 
 [node name="TextureRect" type="TextureRect" parent="DragZone" unique_id=726762305]
@@ -366,7 +399,11 @@ theme_override_fonts/font = ExtResource("17_5pddc")
 theme_override_font_sizes/font_size = 28
 text = "    Rose Garden Demo Scene"
 
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=227516102]
+layer = 2
+
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/HBoxContainer/Drop Down" to="." method="_on_accent_changed"]
+[connection signal="gui_input" from="MarginContainer/VBoxContainer/Content/Control" to="." method="_on_control_gui_input"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/RGButton" to="." method="_on_rg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/RGButton2" to="." method="_on_rg_button_2_pressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Content/HBoxContainer/RGTextField" to="." method="_on_tag_text_changed"]

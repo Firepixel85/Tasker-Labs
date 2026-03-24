@@ -14,11 +14,23 @@ signal toggled(toggled_on:bool)
 
 var _texture_path
 
-const _COLOR_NORMAL = Color(1,1,1)
-const _COLOR_PRESSED = Color(0.65,0.65,0.65)
-const _COLOR_HOVERED = Color(0.85,0.85,0.85)
-const _COLOR_DISABLED = Color(0.6,0.6,0.6)
-const _COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+func set_color(new_color):
+	if Colors.verify_color(new_color,true) != OK:
+		return ERR_INVALID_PARAMETER
+	color = new_color
+	_update()
+	return OK
+
+func get_color():
+	return color
+
+func toggle():
+	_on_pressed()
+	return OK
+
+###############
+#### STOP #### Here begin private function that should never be called by your code
+###############
 
 func _on_pressed() -> void:
 	if is_toggled:
@@ -29,22 +41,19 @@ func _on_pressed() -> void:
 		_show_on()
 	pressed.emit()
 	toggled.emit(is_toggled)
-		
+
 
 func _update():
 	if accessible:
 		_texture_path = "res://RG/Toggle/BaseAccesible/"
 	else:
 		_texture_path = "res://RG/Toggle/Base/"
-	
+
 	if is_toggled:
 		_show_on()
 	else:
 		_show_off()
 
-func set_color(new_color):
-	color = new_color
-	_update()
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
@@ -62,24 +71,20 @@ func _show_on():
 		ball.position.x = 34
 	else:
 		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
-		
-func toggle():
-	_on_pressed()
 
 func _on_button_up() -> void:
 	button_up.emit()
-	modulate = _COLOR_NORMAL
+	modulate = Colors.COLOR_NORMAL
 
 func _on_button_down() -> void:
 	button_down.emit()
-	modulate = _COLOR_PRESSED
-
+	modulate = Colors.COLOR_PRESSED
 
 func _on_mouse_entered() -> void:
-	modulate = _COLOR_HOVERED
+	modulate = Colors.COLOR_HOVERED
 
 func _on_mouse_exited() -> void:
-	modulate = _COLOR_NORMAL
+	modulate = Colors.COLOR_NORMAL
 
 func _ready() -> void:
 	_update()

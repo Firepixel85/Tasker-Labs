@@ -1,0 +1,22 @@
+[gd_scene format=3 uid="uid://b5x53papb3mt2"]
+
+[ext_resource type="Script" uid="uid://b03qn3eo7argu" path="res://RG/Right Click Menu/RGRightClickMenu.gd" id="1_pax8f"]
+[ext_resource type="Texture2D" uid="uid://v2xos1hppqd7" path="res://Group.png" id="2_phjwb"]
+
+[node name="RgRighClickMenu" type="Control" unique_id=1014614484]
+custom_minimum_size = Vector2(380, 572)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 43.0
+offset_bottom = 29.0
+focus_mode = 2
+script = ExtResource("1_pax8f")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1951093461]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("2_phjwb")
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
