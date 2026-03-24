@@ -14,6 +14,7 @@ extends Control
 @onready var toggle: Control = $MarginContainer/VBoxContainer/Content/Toggle/Toggle2
 @onready var toggle_acc: Control = $MarginContainer/VBoxContainer/Content/Toggle/Toggle7
 
+var menu = RGmenu.new()
 func _ready() -> void:
 	RoseGarden.set_menu_layer(menu_layer)
 
@@ -38,6 +39,14 @@ func _ready() -> void:
 	accent_dropdown.add_item("Pink",6)
 	accent_dropdown.add_item("Purple",7)
 	accent_dropdown.add_item("Tasker",8)
+	#Build menu:
+	
+	menu.add_action("Home",load("res://Icons/Home.svg"),empty)
+	menu.add_action("Home2",load("res://Icons/Home.svg"),empty)
+	menu.add_action("Home3",load("res://Icons/Home.svg"),empty)
+	menu.add_action("Home4",load("res://Icons/Home.svg"),empty)
+	menu.add_menu("Menu",load("res://Icons/Checklist.svg"),RGmenu.new())
+	menu.add_action("Delete",load("res://Icons/Trash.svg"),empty,[],true)
 
 func _on_accent_changed(selection:String) -> void:
 	button_text.set_color(selection)
@@ -61,4 +70,7 @@ func _on_tag_text_changed(new_text: String) -> void:
 func _on_control_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
-			RoseGarden.create_rc_menu(RGmenu.new(),get_global_mouse_position())
+			RoseGarden.create_rc_menu(menu,get_global_mouse_position())
+
+func empty():
+	pass

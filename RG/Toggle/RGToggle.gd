@@ -88,3 +88,13 @@ func _on_mouse_exited() -> void:
 
 func _ready() -> void:
 	_update()
+
+
+
+func _on_button_gui_input(event: InputEvent) -> void:
+	var menu = RGmenu.new()
+	menu.add_action("Nothing",load("res://Icons/Home.svg"),_update)
+	menu.add_action("Toggle",load("res://Icons/Trash.svg"),toggle,[],true)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
+			RoseGarden.create_rc_menu(menu,get_global_mouse_position())

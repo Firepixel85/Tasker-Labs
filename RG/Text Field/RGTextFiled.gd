@@ -96,3 +96,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	modulate = Colors.COLOR_NORMAL
+
+func clear():
+	line_edit.clear()
+	_update()

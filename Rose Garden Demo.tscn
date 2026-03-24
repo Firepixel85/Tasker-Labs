@@ -81,6 +81,7 @@ text = "Choose the accent color:"
 
 [node name="Drop Down" parent="MarginContainer/VBoxContainer/HBoxContainer" unique_id=1673271566 instance=ExtResource("13_r6pjg")]
 layout_mode = 2
+instant_selection = true
 
 [node name="Content" type="VBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=231824100]
 y_sort_enabled = true

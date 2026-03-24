@@ -18,7 +18,8 @@ config/name="Tasker"
 run/main_scene="uid://1bvbrmgxa8n7"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
-config/icon="res://icon.svgtex"
+config/icon="uid://jlvjwu2xdj7u"
+config/macos_native_icon="res://Labs Logo.icns"
 
 [autoload]
 

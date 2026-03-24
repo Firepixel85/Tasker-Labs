@@ -79,3 +79,12 @@ func _display_section(section:int): #Adds a section without updating vars, used 
 	section_added.emit()
 	custom_minimum_size.x = 20*(_sections-1) + 48
 	return OK
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	var menu = RGmenu.new()
+	menu.add_action("Previous",load("res://Icons/Prev.svg"),select_prev)
+	menu.add_action("Next",load("res://Icons/Next.svg"),select_next,[],)
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
+			RoseGarden.create_rc_menu(menu,get_global_mouse_position())

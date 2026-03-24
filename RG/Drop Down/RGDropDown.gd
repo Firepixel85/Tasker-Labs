@@ -132,3 +132,11 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	modulate = Colors.COLOR_NORMAL
+
+
+func _on_button_up() -> void:
+	modulate = Colors.COLOR_HOVERED
+
+
+func _on_button_down() -> void:
+	modulate = Colors.COLOR_PRESSED

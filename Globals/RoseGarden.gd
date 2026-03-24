@@ -14,9 +14,13 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
 	var position = target_position
 	
+	for item in menu_layout.elements:
+		await menu.add_item(item)
+	
 	if target_position.y+menu.size.y>DisplayServer.window_get_size().y:
-		position.y = DisplayServer.window_get_size().y-menu.size.y
+		position.y = DisplayServer.window_get_size().y-menu.size.y-16
 	if target_position.x +menu.size.x>DisplayServer.window_get_size().x:
 		position.x = target_position.x-menu.size.x
 	
 	menu.position = position
+	
