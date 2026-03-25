@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://RG/Toggle/RGToggle.tscn" id="11_euskl"]
 [ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://RG/Section View/RGSectionView.tscn" id="12_727tw"]
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://RG/Text Field/RGTextField.tscn" id="12_gtyy6"]
-[ext_resource type="Texture2D" uid="uid://be2evf4sisoi3" path="res://Icons/Prev.svg" id="13_7opmi"]
+[ext_resource type="Texture2D" uid="uid://be2evf4sisoi3" path="res://Icons/Previous.svg" id="13_7opmi"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://RG/Drop Down/RGDropDown.tscn" id="13_r6pjg"]
 [ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://DragZone.gd" id="14_gk1nh"]
 [ext_resource type="Texture2D" uid="uid://dvif5ky5o2blw" path="res://Icons/Next.svg" id="14_msovi"]

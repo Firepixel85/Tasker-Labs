@@ -15,6 +15,7 @@ extends Control
 @onready var toggle_acc: Control = $MarginContainer/VBoxContainer/Content/Toggle/Toggle7
 
 var menu = RGmenu.new()
+var submenu = RGmenu.new()
 func _ready() -> void:
 	RoseGarden.set_menu_layer(menu_layer)
 
@@ -22,9 +23,9 @@ func _ready() -> void:
 	segment_control.add_item("focus","Focus")
 	segment_control.add_item("tasks","Tasks")
 
-	segment_control_icon.add_item("home",load("res://Icons/Home.svg"))
-	segment_control_icon.add_item("focus",load("res://Icons/Book.svg"))
-	segment_control_icon.add_item("tasks",load("res://Icons/Checklist.svg"))
+	segment_control_icon.add_item("home",Icons.HOME)
+	segment_control_icon.add_item("focus",Icons.BOOK)
+	segment_control_icon.add_item("tasks",Icons.CHECKLIST)
 
 	drop_down.add_item("Option 1",0)
 	drop_down.add_item("Option 2",1)
@@ -39,14 +40,28 @@ func _ready() -> void:
 	accent_dropdown.add_item("Pink",6)
 	accent_dropdown.add_item("Purple",7)
 	accent_dropdown.add_item("Tasker",8)
-	#Build menu:
 	
-	menu.add_action("Home",load("res://Icons/Home.svg"),empty)
-	menu.add_action("Home2",load("res://Icons/Home.svg"),empty)
-	menu.add_action("Home3",load("res://Icons/Home.svg"),empty)
-	menu.add_action("Home4",load("res://Icons/Home.svg"),empty)
-	menu.add_menu("Menu",load("res://Icons/Checklist.svg"),RGmenu.new())
-	menu.add_action("Delete",load("res://Icons/Trash.svg"),empty,[],true)
+	#Build menus:
+	menu.add_action("Option",Texture2D.new(),empty)
+	menu.add_menu("More",Texture2D.new(),submenu)
+	menu.add_menu("Selected",Texture2D.new(),submenu)
+	menu.add_seperator()
+	menu.add_action("Icon",Icons.SCISSORS,empty)
+	menu.add_menu("More",Icons.SCISSORS,submenu)
+	menu.add_menu("Selected",Icons.SCISSORS,submenu)
+	menu.add_seperator()
+	menu.add_action("Destructive",Texture2D.new(),empty,[],true)
+	menu.add_action("Icon",Icons.TRASH,empty,[],true)
+	menu.add_action("Destructive",Icons.TRASH,empty,[],true)
+	
+	#menu.add_action("Home",Icons.HOME,empty)
+	#menu.add_menu("Menu",Icons.CHECKLIST,submenu)
+	#menu.add_seperator()
+	#menu.add_action("Delete",Icons.TRASH,empty,[],true)
+	
+	submenu.add_action("Test",Icons.HOME,empty)
+	submenu.add_action("Test2",Icons.HOME,empty)
+	submenu.add_action("Test3",Icons.HOME,empty)
 
 func _on_accent_changed(selection:String) -> void:
 	button_text.set_color(selection)
@@ -72,5 +87,5 @@ func _on_control_gui_input(event: InputEvent) -> void:
 		if event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
 			RoseGarden.create_rc_menu(menu,get_global_mouse_position())
 
-func empty():
+func empty():#Placeholder function used for right click menu examples
 	pass

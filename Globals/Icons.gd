@@ -1,0 +1,9 @@
+extends Node
+
+const HOME = preload("res://Icons/Home.svg")
+const BOOK = preload("res://Icons/Book.svg")
+const CHECKLIST = preload("res://Icons/Checklist.svg")
+const TRASH = preload("res://Icons/Trash.svg")
+const PREVIOUS = preload("res://Icons/Previous.svg")
+const NEXT = preload("res://Icons/Next.svg")
+const SCISSORS = preload("res://Icons/Scissors.svg")

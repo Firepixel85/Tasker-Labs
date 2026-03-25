@@ -27,6 +27,7 @@ Data="*res://Globals/Data.gd"
 Main="*res://Globals/Main.gd"
 Colors="*uid://bbqa440wcdmu1"
 RoseGarden="*uid://hnivujajew1k"
+Icons="*uid://dqt20ki8r1q68"
 
 [display]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://be2evf4sisoi3"
-path="res://.godot/imported/Prev.svg-81398b900e91255ec100a2884722bb95.ctex"
+uid="uid://cse6kr18xy4ad"
+path="res://.godot/imported/Seperator.svg-a465a7ed817a9ea4aa080d4b2d3c1f94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Prev.svg"
-dest_files=["res://.godot/imported/Prev.svg-81398b900e91255ec100a2884722bb95.ctex"]
+source_file="res://RG/Right Click Menu/Seperator.svg"
+dest_files=["res://.godot/imported/Seperator.svg-a465a7ed817a9ea4aa080d4b2d3c1f94.ctex"]
 
 [params]
 

@@ -15,7 +15,7 @@ script = ExtResource("1_pax8f")
 custom_minimum_size = Vector2(384, 0)
 layout_mode = 1
 offset_right = 384.0
-offset_bottom = 515.0
+offset_bottom = 56.0
 texture = ExtResource("2_phjwb")
 patch_margin_left = 28
 patch_margin_top = 28
@@ -36,6 +36,7 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/Control" unique_id=1251549522]
+visible = false
 modulate = Color(0.25490198, 0.25490198, 0.25490198, 1)
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1

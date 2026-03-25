@@ -34,6 +34,7 @@ layout_mode = 2
 theme_override_constants/separation = 10
 
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1754383543]
+custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
 texture = ExtResource("1_2541i")
 stretch_mode = 5
@@ -68,4 +69,5 @@ grow_vertical = 2
 flat = true
 
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

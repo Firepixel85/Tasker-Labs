@@ -3,26 +3,30 @@ class_name RGRighClickMenu
 @onready var item_container: VBoxContainer = $NinePatchRect/MarginContainer/VBoxContainer
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var selection: NinePatchRect = $NinePatchRect/MarginContainer/Control/NinePatchRect
+var is_submenu:bool = false
 
-func _ready() -> void:
-	grab_focus()
+func _custom_ready() -> void:
+	if !is_submenu:
+		grab_focus()
+
 
 func _on_focus_exited() -> void:
-	modulate = Color(0,0,0,0)
-	await get_tree().create_timer(0.3).timeout
-	queue_free()
+	RoseGarden._delete_all_menus()
 
 func add_item(data:Array):
+	var message
 	match data[0]:
 		"menu":
-			await  _add_menu(data)
+			message = _add_menu(data)
 		"action":
-			await _add_action(data)
+			message = _add_action(data)
 		"destructive":
-			await _add_destructive(data)
+			message = _add_destructive(data)
+		"seperator":
+			message = _add_seperator()
 		_:
 			return ERR_PARAMETER_RANGE_ERROR
-	return OK
+	return message
 		
 		
 func _add_menu(data:Array):
@@ -30,8 +34,10 @@ func _add_menu(data:Array):
 	var item = item_container.get_child(item_container.get_child_count()-1)
 	item.title = data[1]
 	item.icon = data[2]
+	item.menu = data[3]
 	item.manager = self
 	item.is_menu = true
+	item.is_submenu = is_submenu
 	item.update()
 	_update()
 	return OK
@@ -43,6 +49,7 @@ func _add_action(data:Array):
 	item.icon = data[2]
 	item.action = data[3]
 	item.action_params = data[4]
+	item.is_submenu = is_submenu
 	item.manager = self
 	item.update()
 	_update()
@@ -57,13 +64,19 @@ func _add_destructive(data:Array):
 	item.action_params = data[4]
 	item.manager = self
 	item.is_destructive = true
+	item.is_submenu = is_submenu
 	item.update()
 	_update()
 	return OK
 
+func _add_seperator():
+	item_container.add_child(preload("res://RG/Right Click Menu/RGrcm_seperator.tscn").instantiate())
+	_update()
+	return OK
+
 func _update():
-	size.y = item_container.get_child_count()*68 +8
-	custom_minimum_size.y = item_container.get_child_count()*68 +8
+	size.y  = item_container.get_minimum_size().y +16
+	custom_minimum_size.y = size.y
 	texture.size.y = size.y
 
 func select_position(pos:int,destructive:bool=false):
@@ -72,3 +85,9 @@ func select_position(pos:int,destructive:bool=false):
 		selection.modulate = Color("170707")
 	else:
 		selection.modulate = Color("414141")
+
+func update_selection(is_menu:bool):
+	if is_submenu:
+		return
+	if !is_menu:
+		RoseGarden._delete_submenu()

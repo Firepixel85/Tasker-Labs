@@ -29,5 +29,9 @@ func add_menu(title:String,icon:Texture2D,menu:RGmenu):
 		menu
 	])
 
+func add_seperator():
+	elements.append([
+		"seperator"
+	])
 func _init() -> void:
 	elements = []
