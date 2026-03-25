@@ -90,4 +90,4 @@ func update_selection(is_menu:bool):
 	if is_submenu:
 		return
 	if !is_menu:
-		RoseGarden._delete_submenu()
+		RoseGarden._delete_submenu_instantly()

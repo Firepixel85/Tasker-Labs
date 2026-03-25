@@ -40,7 +40,7 @@ func _on_button_mouse_entered() -> void:
 func _on_button_pressed() -> void:
 	if is_menu:
 		if RoseGarden.submenu != null:
-			RoseGarden._delete_submenu()
+			RoseGarden._delete_submenu_instantly()
 		else:
 			RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(8,8))
 		return
