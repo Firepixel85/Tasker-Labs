@@ -41,7 +41,6 @@ func _ready() -> void:
 
 
 func _pressed() -> void:
-	
 	manager.select(id)
 	manager._close()
 

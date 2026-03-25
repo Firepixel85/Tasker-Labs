@@ -29,7 +29,7 @@ func _on_button_mouse_entered() -> void:
 	@warning_ignore("narrowing_conversion")
 	manager.select_position(position.y,is_destructive)
 	
-	if is_submenu:
+	if is_submenu or manager.modulate == Color(1,1,1,0):
 		return
 		
 	manager.update_selection(is_menu)
