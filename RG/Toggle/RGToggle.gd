@@ -63,14 +63,14 @@ func _show_off():
 	if Engine.is_editor_hint():
 		ball.position.x = 6
 	else:
-		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
 
 func _show_on():
 	base.texture = load(_texture_path+"Base"+color+".svg")
 	if Engine.is_editor_hint():
 		ball.position.x = 34
 	else:
-		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
 
 func _on_button_up() -> void:
 	button_up.emit()

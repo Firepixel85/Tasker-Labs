@@ -104,7 +104,7 @@ func _close():
 	var tween = create_tween()
 	selection.visible = false
 	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
-	await tween.finished
+	await get_tree().create_timer(0.07).timeout
 	menu_container.visible=false
 	closed.emit()
 
