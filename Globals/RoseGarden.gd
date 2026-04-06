@@ -1,7 +1,26 @@
 extends Node
 
+#Accessibility
+class Accessibility:
+	static var disableAnimations:bool = false
+	static var increaseContrast:bool = false
+
+	static func set_disable_animations(value:bool):
+		disableAnimations = value
+
+	static func set_increase_contrast(value:bool):
+		increaseContrast = value
+
+	static func get_disable_animations():
+		return disableAnimations
+
+	static func get_increase_contrast():
+		return increaseContrast
+
+#Right Click Menu Functions
 var menu_layer:CanvasLayer
 var submenu:RGRighClickMenu
+
 func set_menu_layer(layer:CanvasLayer):
 	menu_layer = layer
 
@@ -13,33 +32,37 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	menu_layer.add_child(preload("res://RG/Right Click Menu/RGRighClickMenu.tscn").instantiate())
 	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
 	var position = target_position
-	
+
 	for item in menu_layout.elements:
 		await menu.add_item(item)
-	
+
 	if target_position.y+menu.size.y>DisplayServer.window_get_size().y:
 		position.y = DisplayServer.window_get_size().y-menu.size.y-16
 	if target_position.x +menu.size.x>DisplayServer.window_get_size().x:
 		position.x = target_position.x-menu.size.x
+		menu.pivot_offset.x = menu.size.x
 	menu.position = position
 	menu._custom_ready()
 	return OK
-	
+
+
+
 func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	menu_layer.add_child(preload("res://RG/Right Click Menu/RGRighClickMenu.tscn").instantiate())
 	submenu = menu_layer.get_child(get_child_count()-1)
 	submenu.is_submenu = true
-	
+
 	for item in menu_layout.elements:
 		await submenu.add_item(item)
-	
+
 	target_position.x += submenu.size.x
 	var position = target_position
-	
+
 	if target_position.y+submenu.size.y>DisplayServer.window_get_size().y:
 		position.y = DisplayServer.window_get_size().y-submenu.size.y-16
 	if target_position.x +submenu.size.x>DisplayServer.window_get_size().x:
 		position.x = target_position.x-submenu.size.x*2
+		submenu.pivot_offset.x = submenu.size.x
 	submenu.position = position
 	submenu._custom_ready()
 	return OK

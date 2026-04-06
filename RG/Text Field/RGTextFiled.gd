@@ -18,9 +18,9 @@ class_name RGTextField
 @export var hint := "⌘K"
 @export var secret := false
 
+var text:String
 signal text_changed(new_text:String)
 
-var text:String
 func get_text():
 	return label.text
 

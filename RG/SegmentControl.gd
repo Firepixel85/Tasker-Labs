@@ -65,8 +65,8 @@ func select(item:String):
 	var length := 0
 	for i in index:
 		length += array[i] + 8
-	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15).set_trans(Tween.TRANS_SINE)
-	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
+	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
 	_shade_options()
 	return OK
 

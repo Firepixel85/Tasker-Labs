@@ -4,10 +4,15 @@ class_name RGRighClickMenu
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var selection: NinePatchRect = $NinePatchRect/MarginContainer/Control/NinePatchRect
 var is_submenu:bool = false
+var grow_direction:int = 1 #1 for right, -1 for left. Lets the rcm know which direction to grow in when opening
+
+func _ready() -> void:
+	scale = Vector2(0,0)
 
 func _custom_ready() -> void:
 	if !is_submenu:
 		grab_focus()
+	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
 
 
 func _on_focus_exited() -> void:
@@ -27,8 +32,8 @@ func add_item(data:Array):
 		_:
 			return ERR_PARAMETER_RANGE_ERROR
 	return message
-		
-		
+
+
 func _add_menu(data:Array):
 	item_container.add_child(preload("res://RG/Right Click Menu/RGrcm_item.tscn").instantiate())
 	var item = item_container.get_child(item_container.get_child_count()-1)
@@ -41,7 +46,7 @@ func _add_menu(data:Array):
 	item.update()
 	_update()
 	return OK
-	
+
 func _add_action(data:Array):
 	item_container.add_child(preload("res://RG/Right Click Menu/RGrcm_item.tscn").instantiate())
 	var item = item_container.get_child(item_container.get_child_count()-1)

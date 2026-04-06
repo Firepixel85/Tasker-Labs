@@ -12,6 +12,7 @@ class_name RGButton
 @export_enum("Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Gray"
 @export var text := "Button"
 @export var icon:Texture2D
+@export_enum("None","Left","Right","Both") var connection := "None"
 
 @export_category("Button Controls")
 @export var disabled:bool = false
@@ -28,8 +29,16 @@ func set_color(new_color:String):
 		if Colors.verify_color(new_color,true) != OK:
 			return ERR_INVALID_PARAMETER
 	color = new_color
-	base.texture = load("res://RG/Button/Base"+color+".svg")
-	if color == "White" or color == "Yelllow" or color == "Greeen":
+	match connection:
+		"None":
+			base.texture = load("res://RG/Button/Base/Base"+color+".svg")
+		"Left":
+			base.texture = load("res://RG/Button/BaseLeft/Base"+color+".svg")
+		"Right":
+			base.texture = load("res://RG/Button/BaseRight/Base"+color+".svg")
+		"Both":
+			base.texture = load("res://RG/Button/BaseBoth/Base"+color+".svg")
+	if color == "White" or ((color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
 		label.modulate = Color(0,0,0)
 		texture.modulate = Color(0,0,0)
 	else:
@@ -72,6 +81,7 @@ func _update():
 	content_margin.add_theme_constant_override("margin_right",64)
 	label.get_parent().add_theme_constant_override("separation",8)
 
+
 	if text == "":
 		label.get_parent().add_theme_constant_override("separation",0)
 		content_margin.add_theme_constant_override("margin_left",6)
@@ -87,6 +97,13 @@ func _update():
 		modulate = Colors.COLOR_DISABLED
 	else:
 		modulate = Colors.COLOR_NORMAL
+	match connection:
+		"None","Both":
+			pivot_offset = size/2
+		"Left":
+			pivot_offset = Vector2(0,size.y/2)
+		"Right":
+			pivot_offset = Vector2(size.x,size.y/2)
 
 func _ready() -> void:
 	set_color(color)
@@ -104,13 +121,22 @@ func _on_button_down() -> void:
 	else:
 		modulate = Colors.COLOR_PRESSED
 	button_down.emit()
+	if RoseGarden.Accessibility.get_disable_animations():
+		return
+	if connection != "Both":
+		create_tween().tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+	else:
+		create_tween().tween_property(self,"scale",Vector2(1,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
 
 func _on_button_up() -> void:
 	if disabled:
-		modulate = Colors.COLOR_DISABLED_HOVERED
+		modulate = Colors.COLOR_DISABLED_NORMAL
 	else:
-		modulate = Colors.COLOR_HOVERED
+		modulate = Colors.COLOR_NORMAL
 	button_up.emit()
+	if RoseGarden.Accessibility.get_disable_animations():
+		return
+	create_tween().tween_property(self,"scale",Vector2(1,1),0.1).set_trans(Tween.TRANS_CUBIC)
 
 func _on_pressed() -> void:
 	pressed.emit()

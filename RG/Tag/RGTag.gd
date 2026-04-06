@@ -20,6 +20,7 @@ func get_color():
 
 func set_text(new_text:String):
 	text = new_text
+	await get_tree().create_timer(0.1).timeout
 	_update()
 
 func get_text():
@@ -41,12 +42,12 @@ func _get_color_highlight():
 		"Purple": return Colors.PURPLE_HIGHLIGHT
 
 func _update():
-	custom_minimum_size = Vector2(0,0)
-	custom_minimum_size = Vector2(label_container.get_minimum_size().x,40)
-	container.size.x = custom_minimum_size.x
+	size.x = label_container.get_minimum_size().x
+	container.size.x = size.x
 	label.text = text
 	label.modulate = _get_color_highlight()
 	container.texture = load("res://RG/Tag/" + color + ".svg")
+	position.x = 0
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():

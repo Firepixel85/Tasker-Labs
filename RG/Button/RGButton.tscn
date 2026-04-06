@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://RG/Button/RGButton.gd" id="1_pa7x6"]
 [ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://Icons/Home.svg" id="2_rmdqs"]
-[ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://RG/Button/BaseGray.svg" id="3_uaxtl"]
+[ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://RG/Button/Base/BaseGray.svg" id="3_uaxtl"]
 [ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://Themes/Text/Secondary.tres" id="4_uaxtl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
@@ -13,6 +13,7 @@ layout_mode = 3
 anchor_right = 0.093
 offset_right = -0.80000305
 offset_bottom = 60.0
+pivot_offset = Vector2(120.5, 30)
 script = ExtResource("1_pa7x6")
 icon = ExtResource("2_rmdqs")
 metadata/_edit_use_anchors_ = true

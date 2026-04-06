@@ -18,10 +18,10 @@ func _ready() -> void:
 
 func _update():
 	if manager.get_selected() == id:
-		create_tween().tween_property(self,"custom_minimum_size",Vector2(48,12),0.2).set_trans(Tween.TRANS_SINE)
+		create_tween().tween_property(self,"custom_minimum_size",Vector2(48,12),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
 		modulate = Color(1,1,1)
 	else:
-		create_tween().tween_property(self,"custom_minimum_size",Vector2(12,12),0.2).set_trans(Tween.TRANS_SINE)
+		create_tween().tween_property(self,"custom_minimum_size",Vector2(12,12),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
 		modulate = Color(0.67,0.67,0.67)
 
 @warning_ignore("unused_parameter")

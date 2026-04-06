@@ -35,14 +35,14 @@ func _on_button_mouse_entered() -> void:
 	manager.update_selection(is_menu)
 	if is_menu:
 		RoseGarden._delete_submenu_instantly()
-		RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(8,8))
+		RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(9,8))
 
 func _on_button_pressed() -> void:
 	if is_menu:
 		if RoseGarden.submenu != null:
 			RoseGarden._delete_submenu_instantly()
 		else:
-			RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(8,8))
+			RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(9,8))
 		return
 	if action_params == []:
 		action.call()
