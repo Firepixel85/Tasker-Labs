@@ -4,7 +4,6 @@ class_name RGRighClickMenu
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var selection: NinePatchRect = $NinePatchRect/MarginContainer/Control/NinePatchRect
 var is_submenu:bool = false
-var grow_direction:int = 1 #1 for right, -1 for left. Lets the rcm know which direction to grow in when opening
 
 func _ready() -> void:
 	scale = Vector2(0,0)

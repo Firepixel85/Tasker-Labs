@@ -127,3 +127,4 @@ caret_blink = true
 [connection signal="mouse_entered" from="MarginContainer/LineEdit" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/LineEdit" to="." method="_on_mouse_exited"]
 [connection signal="text_changed" from="MarginContainer/LineEdit" to="." method="_on_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

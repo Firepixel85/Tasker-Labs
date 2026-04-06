@@ -28,6 +28,8 @@ const COLOR_HOVERED = Color(0.85,0.85,0.85)
 const COLOR_DISABLED = Color(0.6,0.6,0.6)
 const COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
 
+const TEXT_SECONDARY = Color("ACACAC")
+
 func verify_color(color:String,use_easter_eggs:bool=false):
 	if !use_easter_eggs:
 		match color:

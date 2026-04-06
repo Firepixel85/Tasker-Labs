@@ -17,9 +17,11 @@ class_name RGTextField
 @export var show_hint:bool = false
 @export var hint := "⌘K"
 @export var secret := false
+@export var incorrect:bool = false
 
 var text:String
 signal text_changed(new_text:String)
+signal text_submitted(new_text:String)
 
 func get_text():
 	return label.text
@@ -34,6 +36,10 @@ func set_hint(new_hint:String):
 	hint = new_hint
 	_update()
 	return OK
+
+func set_inccorrect(is_incorrect:bool):
+	incorrect = is_incorrect
+	_update()
 
 func _update():
 	hint_text.text = hint
@@ -56,6 +62,15 @@ func _update():
 	else:
 		hint_container.visible = false
 	_mirror_to_line_edit()
+	if incorrect:
+		label.modulate = Colors.RED_HIGHLIGHT
+		mask.texture = preload("res://RG/Text Field/MaskIncorrect.png")
+		container.texture = preload("res://RG/Text Field/ContainerIncorrect.svg")
+	else:
+		label.modulate = Color(1,1,1)
+		mask.texture = preload("res://RG/Text Field/Mask.png")
+		container.texture = preload("res://RG/Text Field/Container.svg")
+
 	text = label.text
 
 func _process(_delta: float) -> void:
@@ -100,3 +115,7 @@ func _on_mouse_exited() -> void:
 func clear():
 	line_edit.clear()
 	_update()
+
+
+func _on_line_edit_text_submitted(new_text: String) -> void:
+	text_submitted.emit(new_text)

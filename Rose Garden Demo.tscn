@@ -527,6 +527,7 @@ layer = 2
 [connection signal="new_selection" from="MarginContainer/VBoxContainer/HBoxContainer/Drop Down" to="." method="_on_accent_changed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/ButtonText/RGButton" to="." method="_on_rgggg_button_pressed"]
 [connection signal="gui_input" from="MarginContainer/VBoxContainer/Content/Control" to="." method="_on_control_gui_input"]
+[connection signal="text_submitted" from="MarginContainer/VBoxContainer/Content/TextField/TextField2" to="." method="_on_text_field_2_text_submitted"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/HBoxContainer/RGButton" to="." method="_on_rg_button_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Content/Section View/HBoxContainer/RGButton2" to="." method="_on_rg_button_2_pressed"]
 [connection signal="text_changed" from="MarginContainer/VBoxContainer/Content/HBoxContainer/RGTextField" to="." method="_on_tag_text_changed"]

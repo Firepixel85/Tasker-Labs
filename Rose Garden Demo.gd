@@ -7,6 +7,7 @@ extends Control
 @onready var rg_tag: Control = $MarginContainer/VBoxContainer/Content/HBoxContainer/VBoxContainer/RGTag
 @onready var menu_layer: CanvasLayer = $MenuLayer
 @onready var rg_progress_bar: RGProgressBar = $MarginContainer/VBoxContainer/Content/HBoxContainer2/RGProgressBar
+@onready var text_field: RGTextField = $MarginContainer/VBoxContainer/Content/TextField/TextField2
 
 #Buttons
 @onready var button_text: RGButton = $MarginContainer/VBoxContainer/Content/ButtonText/RGButton3
@@ -92,3 +93,9 @@ func _on_progress_bar_down_pressed() -> void:
 
 func _on_progress_bar_up_pressed() -> void:
 	create_tween().tween_property(rg_progress_bar,"value",rg_progress_bar.value+10,0.3*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
+
+
+func _on_text_field_2_text_submitted(_new_text: String) -> void:
+	text_field.set_inccorrect(true)
+	await get_tree().create_timer(1).timeout
+	text_field.set_inccorrect(false)
