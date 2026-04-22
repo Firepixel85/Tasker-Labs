@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bqphyaa25f4p8"]
+
+[ext_resource type="Texture2D" uid="uid://bevqvp44cf6ji" path="res://addons/RoseGarden/components/SectionView/CurrentSection.svg" id="1_6dx5x"]
+[ext_resource type="Script" uid="uid://but0ic8og4qfb" path="res://addons/RoseGarden/components/SectionView/RGsection.gd" id="2_uhmqs"]
+
+[node name="NinePatchRect" type="NinePatchRect" unique_id=1636268841]
+custom_minimum_size = Vector2(0, 12)
+offset_right = 12.0
+offset_bottom = 12.0
+texture = ExtResource("1_6dx5x")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+script = ExtResource("2_uhmqs")

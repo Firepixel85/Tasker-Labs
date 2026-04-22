@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://5e0n7poog6ky"]
+
+[ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://addons/RoseGarden/components/DropDown/RGDropDown.gd" id="1_vt2n3"]
+[ext_resource type="Texture2D" uid="uid://dvg823uea5hcf" path="res://addons/RoseGarden/components/DropDown/Container.svg" id="2_a1u6v"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_k7wgn"]
+[ext_resource type="Texture2D" uid="uid://b6fn7iu8pyss2" path="res://addons/RoseGarden/components/DropDown/Arrow.svg" id="4_n88wu"]
+[ext_resource type="Texture2D" uid="uid://2gh1svsrklhp" path="res://addons/RoseGarden/components/DropDown/Selection.svg" id="4_qus3v"]
+[ext_resource type="Script" uid="uid://c4cf08m4jd2m" path="res://addons/RoseGarden/components/DropDown/RGmenu_item_container.gd" id="5_0tlgq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vt2n3"]
+
+[node name="RGDrop Down" type="Control" unique_id=1673271566]
+z_index = 1
+custom_minimum_size = Vector2(164, 60)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 164.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 0
+script = ExtResource("1_vt2n3")
+instant_selection = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1767022555]
+texture_filter = 1
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_a1u6v")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=214888023]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1231715345]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/HBoxContainer" unique_id=678147381]
+layout_mode = 2
+theme = ExtResource("3_k7wgn")
+text = "Drop Down"
+vertical_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=399398259]
+layout_mode = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer/HBoxContainer2" unique_id=631322650]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="NinePatchRect/MarginContainer/HBoxContainer2/VBoxContainer" unique_id=463451120]
+layout_mode = 2
+texture = ExtResource("4_n88wu")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=927824293]
+custom_minimum_size = Vector2(82, 30)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vt2n3")
+flat = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1772360099]
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="CanvasLayer" unique_id=409913261]
+visible = false
+z_index = 100
+custom_minimum_size = Vector2(164, 0)
+offset_right = 164.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+texture = ExtResource("2_a1u6v")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="SelectionContainer" type="MarginContainer" parent="CanvasLayer/NinePatchRect2" unique_id=687738589]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+
+[node name="Container" type="Control" parent="CanvasLayer/NinePatchRect2/SelectionContainer" unique_id=531892490]
+layout_mode = 2
+
+[node name="Selection" type="NinePatchRect" parent="CanvasLayer/NinePatchRect2/SelectionContainer/Container" unique_id=116794163]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 26.000008
+grow_horizontal = 2
+texture = ExtResource("4_qus3v")
+patch_margin_left = 26
+patch_margin_top = 26
+patch_margin_right = 26
+patch_margin_bottom = 26
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/NinePatchRect2" unique_id=962069107]
+layout_mode = 1
+offset_right = 133.0
+offset_bottom = 26.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/NinePatchRect2/MarginContainer" unique_id=74327576]
+z_index = 1
+layout_mode = 2
+theme_override_constants/separation = 0
+script = ExtResource("5_0tlgq")
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="focus_exited" from="Button" to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_pressed"]
+[connection signal="_highlighted" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_menu_item_highlighted"]
+[connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_new_menu_item"]
+[connection signal="child_entered_tree" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" method="_on_child_entered_tree"]
+[connection signal="focus_exited" from="CanvasLayer/NinePatchRect2/MarginContainer/VBoxContainer" to="." method="_on_focus_exited"]

@@ -1,0 +1,12 @@
+[gd_resource type="Theme" format=3 uid="uid://cj2kxopcb8c0q"]
+
+[ext_resource type="FontFile" uid="uid://cx0h5q53ujvq5" path="res://CustomThemes/fonts/RoundedRegular.otf" id="1_6c36q"]
+
+[resource]
+Button/font_sizes/font_size = 20
+Button/fonts/font = ExtResource("1_6c36q")
+Label/colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+Label/font_sizes/font_size = 20
+Label/fonts/font = ExtResource("1_6c36q")
+LineEdit/font_sizes/font_size = 20
+LineEdit/fonts/font = ExtResource("1_6c36q")

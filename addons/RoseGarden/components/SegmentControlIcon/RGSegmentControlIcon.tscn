@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://bspdiaf7ktvjm"]
+
+[ext_resource type="Script" uid="uid://cvx4gv75pdncd" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.gd" id="1_nd2cy"]
+[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControlIcon/Container.svg" id="2_n88eo"]
+[ext_resource type="Texture2D" uid="uid://dn3f601pkm6rt" path="res://addons/RoseGarden/components/SegmentControlIcon/Selection.svg" id="3_nd2cy"]
+
+[node name="RGSegmentControlIcon" type="Control" unique_id=1133264568]
+custom_minimum_size = Vector2(60, 30)
+layout_mode = 3
+anchor_right = 0.023000002
+offset_right = 0.099998474
+offset_bottom = 30.0
+grow_horizontal = 2
+script = ExtResource("1_nd2cy")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1579317736]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 0
+offset_right = 60.0
+offset_bottom = 60.0
+texture = ExtResource("2_n88eo")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=936964902]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 1
+offset_right = 60.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="Control" type="Control" parent="MarginContainer" unique_id=1754912446]
+layout_mode = 2
+
+[node name="Selector" type="TextureRect" parent="MarginContainer/Control" unique_id=672932744]
+layout_mode = 0
+offset_right = 48.0
+offset_bottom = 48.0
+texture = ExtResource("3_nd2cy")
+stretch_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=2050243895]
+layout_mode = 2
+theme_override_constants/separation = 8

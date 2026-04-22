@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://dxk0310ghtybp"]
+
+[ext_resource type="FontFile" uid="uid://ccrxsgkvggf1e" path="res://CustomThemes/fonts/RoundedMedium.otf" id="1_uuxiv"]
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_uuxiv")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_uuxiv")
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_uuxiv")

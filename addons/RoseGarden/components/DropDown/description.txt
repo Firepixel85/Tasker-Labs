@@ -1,0 +1,2 @@
+[b]Drop Down [/b]
+A UI element that displays a list of options when activated, allowing the user to select one option from the list.

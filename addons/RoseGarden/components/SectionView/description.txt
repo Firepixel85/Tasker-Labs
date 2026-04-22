@@ -1,0 +1,2 @@
+[b]Section View [/b]
+A simple non-interactive component that can be used to indicate in which section of the UI the user is currently in.

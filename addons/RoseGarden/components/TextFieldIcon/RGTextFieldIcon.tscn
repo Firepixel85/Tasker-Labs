@@ -1,0 +1,155 @@
+[gd_scene format=3 uid="uid://cpyeqq0aqf166"]
+
+[ext_resource type="Script" uid="uid://ctgyan3gnkrp0" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.gd" id="1_0lceu"]
+[ext_resource type="Texture2D" uid="uid://m4f24cvdmhhw" path="res://addons/RoseGarden/icons/Search.svg" id="2_7e48o"]
+[ext_resource type="Texture2D" uid="uid://c53da4it7qoms" path="res://addons/RoseGarden/components/TextFieldIcon/Container.svg" id="2_d8sgs"]
+[ext_resource type="Texture2D" uid="uid://hai2ciareqbb" path="res://addons/RoseGarden/components/TextFieldIcon/Mask.png" id="4_7e48o"]
+[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="4_d8sgs"]
+[ext_resource type="Texture2D" uid="uid://du6cbrypcj8g3" path="res://addons/RoseGarden/components/TextFieldIcon/Keybind Conatiner.svg" id="5_ypgaa"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypgaa"]
+
+[node name="RGTextFieldIcon" type="Control" unique_id=212265237]
+custom_minimum_size = Vector2(128, 60)
+layout_mode = 3
+anchor_right = 0.065000005
+anchor_bottom = 0.045
+offset_right = 0.3399887
+offset_bottom = -0.12000275
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0lceu")
+icon = ExtResource("2_7e48o")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=776066443]
+clip_children = 2
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 60.0
+texture = ExtResource("2_d8sgs")
+patch_margin_left = 30
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1338266349]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 58
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1069305714]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=626604884]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1680541669]
+layout_mode = 2
+theme = ExtResource("4_d8sgs")
+
+[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=913046357]
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 60.0
+texture = ExtResource("4_7e48o")
+patch_margin_left = 58
+patch_margin_top = 30
+patch_margin_right = 30
+patch_margin_bottom = 30
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=225197347]
+visible = false
+layout_mode = 0
+offset_right = 128.0
+offset_bottom = 60.0
+theme_override_constants/margin_right = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=1617381410]
+layout_mode = 2
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=1335573273]
+layout_mode = 2
+alignment = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=1960689698]
+custom_minimum_size = Vector2(47, 0)
+layout_mode = 2
+texture = ExtResource("5_ypgaa")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect" unique_id=662127214]
+custom_minimum_size = Vector2(20, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_right = 8
+
+[node name="Label" type="Label" parent="MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer" unique_id=1194383644]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+theme = ExtResource("4_d8sgs")
+text = "⌘K"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer3" type="MarginContainer" parent="." unique_id=32205494]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer3" unique_id=1813891891]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer3/HBoxContainer" unique_id=554597838]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_7e48o")
+stretch_mode = 3
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1859247177]
+layout_mode = 0
+offset_right = 142.0
+offset_bottom = 60.0
+theme_override_constants/margin_left = 58
+theme_override_constants/margin_right = 4
+
+[node name="LineEdit" type="LineEdit" parent="MarginContainer" unique_id=2106032934]
+layout_mode = 2
+theme = ExtResource("4_d8sgs")
+theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ypgaa")
+context_menu_enabled = false
+selecting_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+flat = true
+caret_blink = true
+
+[connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_update"]
+[connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_update"]
+[connection signal="mouse_entered" from="MarginContainer/LineEdit" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="MarginContainer/LineEdit" to="." method="_on_mouse_exited"]
+[connection signal="text_changed" from="MarginContainer/LineEdit" to="." method="_on_text_changed"]
+[connection signal="text_submitted" from="MarginContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]

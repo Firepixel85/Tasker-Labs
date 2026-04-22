@@ -25,18 +25,22 @@ config/macos_native_icon="res://Labs Logo.icns"
 
 Data="*res://Globals/Data.gd"
 Main="*res://Globals/Main.gd"
-Colors="*uid://bbqa440wcdmu1"
 RoseGarden="*uid://hnivujajew1k"
-Icons="*uid://dqt20ki8r1q68"
+PluginManager="*uid://nuxc2wt3hn54"
+Debug="*uid://bthut2or7p45p"
 
 [display]
 
-window/size/viewport_width=2600
-window/size/viewport_height=1462
+window/size/viewport_width=2272
+window/size/viewport_height=1516
 window/size/initial_position_type=3
 window/size/resizable=false
 window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/RoseGarden/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [rendering]
 

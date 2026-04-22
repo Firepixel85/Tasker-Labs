@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://d1lfrrdkijjyn"]
+
+[ext_resource type="FontFile" uid="uid://dhgf2kuypgq6i" path="res://CustomThemes/fonts/RoundedLight.otf" id="1_1ooab"]
+
+[resource]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_1ooab")
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_1ooab")
+LineEdit/font_sizes/font_size = 12
+LineEdit/fonts/font = ExtResource("1_1ooab")

@@ -16,17 +16,18 @@ func _ready() -> void:
 		start_app(true)
 
 func start_app(window_data_available:bool):
+	PluginManager.scan_available_plugins()
+
 	if window_data_available:
 		get_window().size = Main.window.size
 		get_window().position = Main.window.position
 	else:
-		get_window().size = Vector2(1300,731)
+		get_window().size = Vector2(2272,1516)
 		center_window()
 
-	get_tree().change_scene_to_file("res://Rose Garden Demo.tscn")
+	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
-
 	Main.save_window_data()
 
 func center_window():

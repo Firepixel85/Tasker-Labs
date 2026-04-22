@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bj237tjscq8do"]
+
+[ext_resource type="Script" uid="uid://bjd1ekuua1o6n" path="res://addons/RoseGarden/editor/RGsettings_panel.gd" id="1_ycc5v"]
+
+[node name="Rose Garden" type="PanelContainer" unique_id=111853743]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ycc5v")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=782354094]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=2081137253]
+visible = false
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=971238104]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer/HBoxContainer" unique_id=1030755741]
+layout_mode = 2
+text = "Open \"Create Component\" Dialogue"
+
+[node name="Button" type="Button" parent="VBoxContainer/HBoxContainer" unique_id=1008379444]
+layout_mode = 2
+text = "Shift+Command+G"
+
+[node name="VSeparator" type="VSeparator" parent="VBoxContainer" unique_id=360197701]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=156847471]
+layout_mode = 2
+text = "You can close this panel. Sincerely, Rose Garden."
+autowrap_mode = 3

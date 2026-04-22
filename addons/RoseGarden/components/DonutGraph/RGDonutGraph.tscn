@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c8014ryhcbbsw"]
+
+[ext_resource type="Script" uid="uid://2dw4xo6ssnks" path="res://addons/RoseGarden/components/DonutGraph/RGDonutGraph.gd" id="1_e5xb5"]
+[ext_resource type="Texture2D" uid="uid://btuke4i2x4tcm" path="res://addons/RoseGarden/components/DonutGraph/Base/BaseRed.svg" id="2_eie0l"]
+[ext_resource type="Texture2D" uid="uid://cwolmcf0cja1g" path="res://addons/RoseGarden/components/DonutGraph/Progress/ProgressRed.svg" id="3_grscc"]
+[ext_resource type="Theme" uid="uid://dw45wy4ir66dr" path="res://addons/RoseGarden/themes/Main.tres" id="4_grscc"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_ku0bt"]
+
+[node name="RGDonutGraph" type="Control" unique_id=1144614823]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 400.0
+offset_bottom = 400.0
+script = ExtResource("1_e5xb5")
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=690631529]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+fill_mode = 4
+nine_patch_stretch = true
+stretch_margin_left = 200
+stretch_margin_top = 200
+stretch_margin_right = 200
+stretch_margin_bottom = 200
+texture_under = ExtResource("2_eie0l")
+texture_progress = ExtResource("3_grscc")
+
+[node name="CenterContainer" type="CenterContainer" parent="TextureProgressBar" unique_id=307387817]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureProgressBar/CenterContainer" unique_id=745261493]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureProgressBar/CenterContainer/VBoxContainer" unique_id=1772111470]
+layout_mode = 2
+theme = ExtResource("4_grscc")
+theme_override_font_sizes/font_size = 40
+text = "0%"
+
+[node name="RGText" parent="TextureProgressBar/CenterContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("5_ku0bt")]
+visible = false
+custom_minimum_size = Vector2(27, 25)
+layout_mode = 2
+text = "hrs"
+font_size = "Secondary"
+color = "Custom"
+custom_color = Color(0.84313726, 0.1764706, 0.17254902, 1)
+horizontal_alignment = "Center"

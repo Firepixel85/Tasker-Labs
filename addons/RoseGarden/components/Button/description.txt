@@ -1,0 +1,2 @@
+[b]Button [/b]
+The Button component is a versatile UI element that can be used to trigger actions or navigate to different parts of your application. It has a text property that you can set to display the button's label, and it can be styled with different colors to match your application's design. The Button component also supports various states, such as normal, hovered, and pressed, allowing you to provide visual feedback to users when they interact with it.

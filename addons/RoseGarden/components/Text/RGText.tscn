@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://cmdymajcng2jt"]
+
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="1_6ffch"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="2_25o6v"]
+
+[node name="RGText" type="Control" unique_id=85953319]
+custom_minimum_size = Vector2(43, 29)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 43.0
+offset_bottom = 29.0
+script = ExtResource("1_6ffch")
+
+[node name="Label" type="Label" parent="." unique_id=196531751]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_25o6v")
+theme_override_colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+text = "Text"

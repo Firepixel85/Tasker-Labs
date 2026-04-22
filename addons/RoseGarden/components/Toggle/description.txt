@@ -1,0 +1,2 @@
+[b]Toggle [/b]
+A simple boolean toggle component that can be used to represent an on/off state. It can be used for a variety of purposes, such as turning a setting on or off, or indicating whether a feature is enabled or disabled. The Toggle component can be customized through its color and has an option be be accessible to color impaired users, through visual representation of the on/off state.

@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://cw8a3ogvdskiq"]
+
+[ext_resource type="Script" uid="uid://bgbxminyyyang" path="res://addons/RoseGarden/components/Toggle/RGToggle.gd" id="1_i368a"]
+[ext_resource type="Texture2D" uid="uid://dcot7k0ydkryn" path="res://addons/RoseGarden/components/Toggle/Base/BaseGray.svg" id="2_i368a"]
+[ext_resource type="Texture2D" uid="uid://q5mluj1equb5" path="res://addons/RoseGarden/components/Toggle/Ball.svg" id="3_i368a"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0rkvw"]
+
+[node name="Toggle" type="Control" unique_id=1372621177]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 3
+anchor_right = 0.024615385
+anchor_bottom = 0.024623804
+script = ExtResource("1_i368a")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1036376346]
+custom_minimum_size = Vector2(32, 18)
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 18.0
+texture = ExtResource("2_i368a")
+stretch_mode = 2
+
+[node name="Container" type="Control" parent="." unique_id=1967267692]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="Container" unique_id=1465373593]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 30.000006
+offset_bottom = 30.000006
+texture = ExtResource("3_i368a")
+stretch_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1159485670]
+custom_minimum_size = Vector2(32, 18)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 36.0
+grow_horizontal = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0rkvw")
+flat = true
+metadata/_edit_use_anchors_ = true
+
+[connection signal="button_down" from="Button" to="." method="_on_button_down"]
+[connection signal="button_up" from="Button" to="." method="_on_button_up"]
+[connection signal="gui_input" from="Button" to="." method="_on_button_gui_input"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_pressed"]

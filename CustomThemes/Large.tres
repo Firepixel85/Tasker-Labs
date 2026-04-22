@@ -1,0 +1,21 @@
+[gd_resource type="Theme" format=3 uid="uid://ce50hkvuogixu"]
+
+[ext_resource type="FontFile" uid="uid://bu3e0pv0xd77h" path="res://CustomThemes/fonts/Medium.otf" id="1_62h20"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_62h20")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_62h20")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_62h20")
+ProgressBar/font_sizes/font_size = 32
+ProgressBar/fonts/font = ExtResource("1_62h20")
+TabBar/font_sizes/font_size = 32
+TabBar/fonts/font = ExtResource("1_62h20")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_62h20")
+Tree/font_sizes/font_size = 32
+Tree/font_sizes/title_button_font_size = 32
+Tree/fonts/font = ExtResource("1_62h20")
+Tree/fonts/title_button_font = ExtResource("1_62h20")

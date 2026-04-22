@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://c7f42prh85jp8"]
+
+[ext_resource type="FontFile" uid="uid://cx0h5q53ujvq5" path="res://CustomThemes/fonts/RoundedRegular.otf" id="1_573gy"]
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_573gy")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_573gy")
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("1_573gy")

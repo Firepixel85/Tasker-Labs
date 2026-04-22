@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://n26v0vu3820g"]
+
+[ext_resource type="Script" uid="uid://uutac5sy1b6g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.gd" id="1_s8lpc"]
+
+[node name="RGSectionView" type="Control" unique_id=1182488623]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_s8lpc")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=117774157]
+layout_mode = 0
+offset_right = 12.0
+offset_bottom = 12.0
+theme_override_constants/separation = 8
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

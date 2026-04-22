@@ -1,0 +1,95 @@
+[gd_scene format=3 uid="uid://dbdkxwua1au44"]
+
+[ext_resource type="Script" uid="uid://bd224qiyh1fav" path="res://addons/RoseGarden/editor/RGcomponent_dialogue.gd" id="1_bm80e"]
+
+[sub_resource type="Image" id="Image_bm80e"]
+data = {
+"data": PackedByteArray(0, 0, 0, 255),
+"format": "RGBA8",
+"height": 1,
+"mipmaps": false,
+"width": 1
+}
+
+[sub_resource type="ImageTexture" id="ImageTexture_4c2hp"]
+image = SubResource("Image_bm80e")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jpdfl"]
+
+[node name="Window" type="Window" unique_id=1064574072]
+oversampling_override = 1.0
+title = "Add Rose Garden Component"
+position = Vector2i(0, 36)
+size = Vector2i(1200, 1000)
+exclusive = true
+min_size = Vector2i(1200, 1000)
+script = ExtResource("1_bm80e")
+
+[node name="Background" type="TextureRect" parent="." unique_id=724565897]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("ImageTexture_4c2hp")
+
+[node name="MarginContainer" type="MarginContainer" parent="Background" unique_id=1023279872]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background/MarginContainer" unique_id=373947943]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="LineEdit" type="LineEdit" parent="Background/MarginContainer/VBoxContainer" unique_id=1236295486]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="Background/MarginContainer/VBoxContainer" unique_id=538860738]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxEmpty_jpdfl")
+item_count = 10
+item_0/text = "Drop Down"
+item_1/text = "Segment Control Icon"
+item_2/text = "Text Field"
+item_3/text = "Progress Bar"
+item_4/text = "Toggle"
+item_5/text = "Button"
+item_6/text = "Section View"
+item_7/text = "Text"
+item_8/text = "Tag"
+item_9/text = "Segment Control"
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Background/MarginContainer/VBoxContainer" unique_id=436144396]
+custom_minimum_size = Vector2(0, 300)
+layout_mode = 2
+bbcode_enabled = true
+text = "[b]Rose Garden[/b]
+Select which component you wan to add to your scene tree.
+Rose Garden is a modern UI library designed by Rosepen Studios, you can find the documentation at placeholder.com"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Background/MarginContainer/VBoxContainer" unique_id=1204631581]
+layout_mode = 2
+alignment = 2
+
+[node name="ButtonCancel" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=482217772]
+layout_mode = 2
+text = "Cancel"
+
+[node name="ButtonAdd" type="Button" parent="Background/MarginContainer/VBoxContainer/HBoxContainer" unique_id=419969029]
+layout_mode = 2
+text = "Add"
+
+[connection signal="text_changed" from="Background/MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_changed"]
+[connection signal="text_submitted" from="Background/MarginContainer/VBoxContainer/LineEdit" to="." method="_on_line_edit_text_submitted"]
+[connection signal="item_selected" from="Background/MarginContainer/VBoxContainer/ItemList" to="." method="_on_item_list_item_selected"]

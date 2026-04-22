@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://cpa268pl5g27a"]
+
+[ext_resource type="Texture2D" uid="uid://b0ujtufeok6s2" path="res://addons/RoseGarden/components/Container/Container8.svg" id="1_58bh2"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="1_mrphe"]
+
+[node name="RGContainer" type="Control" unique_id=535912435]
+layout_mode = 3
+anchor_right = 0.15329124
+anchor_bottom = 0.22035928
+offset_right = 0.9360008
+offset_bottom = 0.5999985
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_mrphe")
+metadata/_edit_use_anchors_ = true
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1922727936]
+layout_mode = 0
+offset_right = 302.0
+offset_bottom = 402.97604
+texture = ExtResource("1_58bh2")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28

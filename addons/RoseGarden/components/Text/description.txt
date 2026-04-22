@@ -1,0 +1,2 @@
+[b]Text [/b]
+A simple label, that allows you to display text in your application. The Text component has a text property that you can set to display the desired content. You can also customize the appearance of the text by changing its color and font size to match your needs. The Text component is ideal for displaying static information, such as titles, descriptions, or any other textual content that doesn't require user interaction.

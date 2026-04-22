@@ -1,0 +1,2 @@
+[b]Text Field Icon [/b]
+Similar to the [b]Text Field[/b] component, but with an icon on the left side. The icon can be set to any image, and can be used to indicate the type of input expected (e.g. a search icon for a search field).

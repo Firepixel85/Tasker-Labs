@@ -1,0 +1,2 @@
+[b]Container [/b]
+The base of all UI's, the Container is a simple node that can hold other components inside it. It doesn't have any specific functionality on its own, but it can be used as a parent node for other components to create more complex UI structures. Pair it with a [b] MarginContainer [/b] and it can calculate and show you the correct margin based on the selected rounding.

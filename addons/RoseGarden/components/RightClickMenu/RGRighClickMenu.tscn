@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://b5x53papb3mt2"]
+
+[ext_resource type="Script" uid="uid://b03qn3eo7argu" path="res://addons/RoseGarden/components/RightClickMenu/RGRightClickMenu.gd" id="1_pax8f"]
+[ext_resource type="Texture2D" uid="uid://c62pw1nr5lsgi" path="res://addons/RoseGarden/components/RightClickMenu/Container.svg" id="2_phjwb"]
+[ext_resource type="Texture2D" uid="uid://0sw0n4a73yh" path="res://addons/RoseGarden/components/RightClickMenu/Selection.svg" id="3_41kt2"]
+
+[node name="RGRighClickMenu" type="Control" unique_id=1014614484]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 2
+script = ExtResource("1_pax8f")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1552180063]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 1
+offset_right = 384.0
+offset_bottom = 56.0
+texture = ExtResource("2_phjwb")
+patch_margin_left = 28
+patch_margin_top = 28
+patch_margin_right = 28
+patch_margin_bottom = 28
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1001649018]
+custom_minimum_size = Vector2(384, 0)
+layout_mode = 1
+offset_right = 384.0
+offset_bottom = 16.0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Control" type="Control" parent="NinePatchRect/MarginContainer" unique_id=558662814]
+layout_mode = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/Control" unique_id=1251549522]
+visible = false
+modulate = Color(0.25490198, 0.25490198, 0.25490198, 1)
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 60.0
+grow_horizontal = 2
+texture = ExtResource("3_41kt2")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1480982644]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 8
+
+[connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
+[connection signal="focus_exited" from="." to="." method="_on_focus_exited"]

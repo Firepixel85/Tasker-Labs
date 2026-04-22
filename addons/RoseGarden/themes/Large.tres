@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://c36hffslwtty6"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Label/font_sizes/font_size = 32
+LineEdit/font_sizes/font_size = 32
+ProgressBar/font_sizes/font_size = 32
+TabBar/font_sizes/font_size = 32
+TextEdit/font_sizes/font_size = 32
+Tree/font_sizes/font_size = 32
+Tree/font_sizes/title_button_font_size = 32

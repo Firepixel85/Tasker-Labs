@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://cb8d0jyw05c4p"]
+
+[ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://DragZone.gd" id="1_ftpnl"]
+[ext_resource type="PackedScene" uid="uid://cpyeqq0aqf166" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.tscn" id="1_hi4tc"]
+
+[sub_resource type="Gradient" id="Gradient_ftpnl"]
+offsets = PackedFloat32Array(0.45588234)
+colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vnica"]
+gradient = SubResource("Gradient_ftpnl")
+width = 2
+
+[sub_resource type="Gradient" id="Gradient_kuljs"]
+offsets = PackedFloat32Array(0.6882353)
+colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_hi4tc"]
+gradient = SubResource("Gradient_kuljs")
+width = 2
+
+[node name="MainView" type="Control" unique_id=614983378]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2091975710]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+
+[node name="Sidebar" type="VBoxContainer" parent="HBoxContainer" unique_id=1857969699]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+focus_mode = 1
+
+[node name="DargZone" type="Container" parent="HBoxContainer/Sidebar" unique_id=1015640598]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+script = ExtResource("1_ftpnl")
+
+[node name="SeperatorTexture" type="TextureRect" parent="HBoxContainer" unique_id=1092767801]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_vnica")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=35975690]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=2000360869]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+script = ExtResource("1_ftpnl")
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer2/TopBar" unique_id=1696390877]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="SearchBar" parent="HBoxContainer/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
+z_index = 10
+custom_minimum_size = Vector2(390, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+placeholder_text = "Search..."
+show_hint = true
+hint = "⌘F"
+
+[node name="SeperatorTexture" type="TextureRect" parent="HBoxContainer/VBoxContainer2" unique_id=14582395]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_hi4tc")

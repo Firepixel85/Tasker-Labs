@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://benxpqf0l1b0q"]
+
+[ext_resource type="FontFile" uid="uid://cvkq32x5xwseu" path="res://CustomThemes/fonts/Light.otf" id="1_vumow"]
+
+[resource]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_vumow")
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_vumow")
+LineEdit/font_sizes/font_size = 12
+LineEdit/fonts/font = ExtResource("1_vumow")

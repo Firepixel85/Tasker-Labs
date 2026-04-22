@@ -1,0 +1,2 @@
+[b]Text Field [/b]
+The Text Field component is a simple input field that allows users to enter text. It can be used for a variety of purposes, such as entering a name, email address, or password. The Text Field component can be customized with different properties, such as placeholder text, keybind hints, secret inputs and more.

@@ -1,0 +1,2 @@
+[b]Progress Bar [/b]
+The Progress Bar can be used as a visualy interesting way of displaying the growth of a vlaue from 0 to 100. It has a value property that you can set to any number between 0 and 100, and it will display a bar that fills up based on that value. You can also customize the appearance of the progress bar by changing its color.

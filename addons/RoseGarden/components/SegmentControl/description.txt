@@ -1,0 +1,2 @@
+[b]Segment Control [/b]
+The Segment Control is a UI element that displays multiple segments (or options) and allows the user to select one of them. Each segment can have its own text, and the selected segment will be highlighted. This component is useful for creating tab-like interfaces or for allowing users to switch between different views or modes in your application.

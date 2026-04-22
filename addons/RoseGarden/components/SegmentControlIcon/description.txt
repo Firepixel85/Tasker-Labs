@@ -1,0 +1,2 @@
+[b]Segment Control Icon [/b]
+Similar to the [b]Segment Control[/b] component, displays multiple segments (or options) and allows the user to select one of them. Each segment can have its own icon, and the selected segment will be highlighted. This component is useful for creating tab-like interfaces or for allowing users to switch between different views or modes in your application, while also providing a visual representation of each option through the use of icons.

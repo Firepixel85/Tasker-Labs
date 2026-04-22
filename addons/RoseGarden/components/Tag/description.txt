@@ -1,0 +1,2 @@
+[b]Tag [/b]
+You can use it to display a tag, or a label, in your UI. It has a text property that you can set to whatever you want, and it will display that text inside the tag. You can also customize the appearance of the tag by changing its color. It's a simple component that can be used in many different ways in your UI design.

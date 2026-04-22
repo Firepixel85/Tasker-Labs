@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://emrelbogw7ms"]
+
+[ext_resource type="Texture2D" uid="uid://cse6kr18xy4ad" path="res://addons/RoseGarden/components/RightClickMenu/Seperator.svg" id="1_s4c8t"]
+
+[node name="seperator" type="Control" unique_id=2111731775]
+custom_minimum_size = Vector2(60, 12)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 60.0
+offset_bottom = 20.0
+size_flags_horizontal = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=11322378]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 29
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 29
+
+[node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer" unique_id=708482036]
+layout_mode = 2
+texture = ExtResource("1_s4c8t")
+patch_margin_left = 1
+patch_margin_top = 1
+patch_margin_right = 1
+patch_margin_bottom = 1

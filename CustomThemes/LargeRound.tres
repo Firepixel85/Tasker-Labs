@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://c7msi6m76amy4"]
+
+[ext_resource type="FontFile" uid="uid://ccrxsgkvggf1e" path="res://CustomThemes/fonts/RoundedMedium.otf" id="1_gnp5l"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_gnp5l")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_gnp5l")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_gnp5l")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_gnp5l")
