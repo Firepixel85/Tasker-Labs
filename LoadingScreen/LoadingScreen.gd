@@ -25,10 +25,11 @@ func start_app(window_data_available:bool):
 		get_window().size = Vector2(2272,1516)
 		center_window()
 
-	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
 	Main.save_window_data()
+	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
+	
 
 func center_window():
 	var win_pos := get_window().position

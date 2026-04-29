@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bf3j74y37o3r5"]
+
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_4b5jp"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="2_l1vrv"]
+
+[node name="Control" type="Control" unique_id=1849782823]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1127975625]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RGText" type="Control" parent="CenterContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(85, 29)
+layout_mode = 2
+script = ExtResource("2_l1vrv")
+text = "Console"
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=829980238]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 64
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 64

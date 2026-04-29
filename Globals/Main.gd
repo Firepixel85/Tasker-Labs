@@ -4,7 +4,8 @@ class window:
 	static var size := Vector2(0,0)
 	static var position := Vector2(0,0)
 
-var version := "2.0"
+var version:String = "2.0"
+var developerMode:bool = true
 
 func save_window_data():
 	while true:
@@ -27,10 +28,15 @@ func get_process_name(process_id:String):
 			return "Data"
 		"core.rose_garden":
 			return "RoseGarden"
+		"core.sidebar":
+			return "Sidebar"
 		"unknown":
 			return "Unknown"
 		_:
-			return PluginManager.get_plugin_name(process_id)
+			if int(PluginManager.get_plugin_name(process_id)) == ERR_DOES_NOT_EXIST:
+				return "Unknown"
+			else:
+				return PluginManager.get_plugin_name(process_id)
 
 func get_version():
 	return version

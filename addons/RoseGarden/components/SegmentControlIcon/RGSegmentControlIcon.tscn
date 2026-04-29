@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://dn3f601pkm6rt" path="res://addons/RoseGarden/components/SegmentControlIcon/Selection.svg" id="3_nd2cy"]
 
 [node name="RGSegmentControlIcon" type="Control" unique_id=1133264568]
-custom_minimum_size = Vector2(60, 30)
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 3
 anchor_right = 0.023000002
 offset_right = 0.099998474

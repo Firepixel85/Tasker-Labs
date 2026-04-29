@@ -30,12 +30,13 @@ func set_padding(new_padding:String):
 ###############
 
 func _update():
-	container.size = size
 	container.texture = load(RoseGarden._file_path+"Container/Container"+padding+".svg")
 	container.patch_margin_bottom = patch_margins[padding]
 	container.patch_margin_left = patch_margins[padding]
 	container.patch_margin_right = patch_margins[padding]
 	container.patch_margin_top = patch_margins[padding]
+	await get_tree().create_timer(0.1).timeout
+	container.size = size
 
 func _process(_delta: float) -> void:
 	margin_number = margin_numbers[padding]

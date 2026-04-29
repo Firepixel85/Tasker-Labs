@@ -28,6 +28,7 @@ Main="*res://Globals/Main.gd"
 RoseGarden="*uid://hnivujajew1k"
 PluginManager="*uid://nuxc2wt3hn54"
 Debug="*uid://bthut2or7p45p"
+Sidebar="*uid://ca5s6a1ldm34k"
 
 [display]
 

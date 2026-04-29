@@ -128,6 +128,8 @@ func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	_update_textures()
 	_update_themes()
+	await get_tree().create_timer(0.2).timeout
+	_update()
 
 func _mirror_to_button():
 	button.disabled = disabled

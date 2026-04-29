@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://3ltjo3g7ej2r"
-path="res://.godot/imported/Home.svg-8fc573653b28ec84d0fde53cfca6a006.ctex"
+uid="uid://bmy2l3kc3n8gf"
+path="res://.godot/imported/Sidebar Highlight.svg-249d07cfe6315e562d18f40e1b2afb3c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Icons/Home.svg"
-dest_files=["res://.godot/imported/Home.svg-8fc573653b28ec84d0fde53cfca6a006.ctex"]
+source_file="res://Sidebar/Sidebar Highlight.svg"
+dest_files=["res://.godot/imported/Sidebar Highlight.svg-249d07cfe6315e562d18f40e1b2afb3c.ctex"]
 
 [params]
 
