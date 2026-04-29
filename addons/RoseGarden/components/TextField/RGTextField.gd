@@ -119,12 +119,13 @@ func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	_update_themes()
 	_update()
-	await get_tree().create_timer(0.1).timeout #Needs to update two time with a small delay to scale the hint container correctly
+	await get_tree().create_timer(0.2).timeout #Needs to update two time with a small delay to scale the hint container correctly
 	_update()
 
 func _on_text_changed(_new_text: String) -> void:
 	_update()
 	text_changed.emit(_new_text)
+
 
 func _mirror_to_line_edit():
 	line_edit.placeholder_text = placeholder_text

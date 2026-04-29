@@ -1,8 +1,10 @@
+RichTextLabel
 MarginContainer
-CenterContainer
-Control
-HBoxContainer
 VBoxContainer
+HBoxContainer
+Control
+TextEdit
+CenterContainer
 NinePatchRect
 Button
 TextureRect
@@ -11,4 +13,3 @@ Container
 Label
 TextureProgressBar
 ProgressBar
-Marker2D

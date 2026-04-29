@@ -1,7 +1,24 @@
 [gd_scene format=3 uid="uid://bf3j74y37o3r5"]
 
+[ext_resource type="FontFile" uid="uid://cp4w3byngsnds" path="res://CustomThemes/fonts/MonoMedium.otf" id="1_1bimw"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_4b5jp"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="2_l1vrv"]
+[ext_resource type="Script" uid="uid://cio5mwpuppfd3" path="res://DeveloperPlugin/Console.gd" id="1_438k2"]
+[ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="2_m1ul3"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_n6syd"]
+[ext_resource type="Texture2D" uid="uid://crhv0iusjumb5" path="res://Icons/PaperPlane.svg" id="6_438k2"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="7_jpsgq"]
+[ext_resource type="Texture2D" uid="uid://clgi5cagg3oex" path="res://Icons/Pencil.svg" id="9_438k2"]
+[ext_resource type="Texture2D" uid="uid://5ug1a8qpht01" path="res://Icons/Warning.svg" id="12_jpsgq"]
+[ext_resource type="Texture2D" uid="uid://da1rlidex2vqh" path="res://Icons/SquareX.svg" id="13_scub0"]
+[ext_resource type="Texture2D" uid="uid://bram8qdapso3u" path="res://Icons/Eraser.svg" id="14_lx16d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4b5jp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l1vrv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_438k2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jpsgq"]
 
 [node name="Control" type="Control" unique_id=1849782823]
 layout_mode = 3
@@ -11,20 +28,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
-
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1127975625]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="RGText" type="Control" parent="CenterContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(85, 29)
-layout_mode = 2
-script = ExtResource("2_l1vrv")
-text = "Console"
+script = ExtResource("1_438k2")
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=829980238]
 layout_mode = 1
@@ -33,7 +37,135 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 64
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 64
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_right = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="TextEdit" type="RichTextLabel" parent="MarginContainer" unique_id=1491896702]
+layout_mode = 2
+theme_override_colors/font_selected_color = Color(1, 1, 1, 0)
+theme_override_colors/selection_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/normal_font = ExtResource("1_1bimw")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_4b5jp")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_l1vrv")
+theme_override_styles/background = SubResource("StyleBoxEmpty_438k2")
+theme_override_styles/fill = SubResource("StyleBoxEmpty_jpsgq")
+bbcode_enabled = true
+text = "
+"
+
+[node name="MarginContainer2" type="MarginContainer" parent="." unique_id=434849749]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2" unique_id=2034242087]
+layout_mode = 2
+theme_override_constants/separation = 24
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer" unique_id=2074777311]
+layout_mode = 2
+alignment = 2
+
+[node name="RGContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=535912435 instance=ExtResource("7_jpsgq")]
+custom_minimum_size = Vector2(80, 382)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer" unique_id=349752525]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer" unique_id=1212019468]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="RGButton" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=932926269 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Yellow"
+text = ""
+icon = ExtResource("9_438k2")
+
+[node name="RGText" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="RGButton2" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=142414468 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Orange"
+text = ""
+icon = ExtResource("12_jpsgq")
+
+[node name="RGText2" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=708098416 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="RGButton3" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1349911150 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("13_scub0")
+
+[node name="RGText3" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1131443389 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="RGButton4" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855406265 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("14_lx16d")
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer" unique_id=1491533176]
+visible = false
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 4
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer2/VBoxContainer/MarginContainer" unique_id=1181172639]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="RGTextField" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=808777957 instance=ExtResource("2_m1ul3")]
+z_index = 10
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Enter Command..."
+
+[node name="RGButton" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_n6syd")]
+z_index = 10
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "White"
+text = ""
+icon = ExtResource("6_438k2")
