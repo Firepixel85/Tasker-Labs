@@ -11,9 +11,9 @@ func save_window_data():
 	while true:
 		window.size = get_window().size
 		window.position = get_window().position
-		Data.save_to("size",window.size,"window")
-		Data.save_to("position",window.position,"window")
-		Data.save_file("window")
+		Data.save_to("size",window.size,"WindowData")
+		Data.save_to("position",window.position,"WindowData")
+		Data.save_file("WindowData",true)
 		await get_tree().create_timer(1).timeout
 
 func get_process_name(process_id:String):
@@ -30,6 +30,8 @@ func get_process_name(process_id:String):
 			return "RoseGarden"
 		"core.sidebar":
 			return "Sidebar"
+		"core.settings":
+			return "Settings"
 		"unknown":
 			return "Unknown"
 		_:

@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://cp4w3byngsnds" path="res://CustomThemes/fonts/MonoMedium.otf" id="1_1bimw"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_4b5jp"]
-[ext_resource type="Script" uid="uid://cio5mwpuppfd3" path="res://DeveloperPlugin/Console.gd" id="1_438k2"]
+[ext_resource type="Script" uid="uid://cio5mwpuppfd3" path="res://DeveloperPlugins/Console/Console.gd" id="1_438k2"]
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="2_m1ul3"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_n6syd"]
 [ext_resource type="Texture2D" uid="uid://crhv0iusjumb5" path="res://Icons/PaperPlane.svg" id="6_438k2"]
@@ -99,7 +99,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 6
 
-[node name="RGButton" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=932926269 instance=ExtResource("4_n6syd")]
+[node name="ToggleLogs" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=932926269 instance=ExtResource("4_n6syd")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Yellow"
@@ -112,7 +112,7 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"
 
-[node name="RGButton2" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=142414468 instance=ExtResource("4_n6syd")]
+[node name="ToggleWarns" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=142414468 instance=ExtResource("4_n6syd")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Orange"
@@ -125,7 +125,7 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"
 
-[node name="RGButton3" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1349911150 instance=ExtResource("4_n6syd")]
+[node name="ToggleErrors" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1349911150 instance=ExtResource("4_n6syd")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 color = "Red"
@@ -138,7 +138,7 @@ layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"
 
-[node name="RGButton4" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855406265 instance=ExtResource("4_n6syd")]
+[node name="Clear" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855406265 instance=ExtResource("4_n6syd")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
@@ -169,3 +169,8 @@ layout_mode = 2
 color = "White"
 text = ""
 icon = ExtResource("6_438k2")
+
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleLogs" to="." method="_on_toggle_logs_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleWarns" to="." method="_on_toggle_warns_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleErrors" to="." method="_on_toggle_errors_pressed"]
+[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/Clear" to="." method="_on_clear_pressed"]

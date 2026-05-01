@@ -1,8 +1,8 @@
-res://DeveloperPlugin/
-res://Sidebar/
+res://Settings/
 res://MainView/
-res://Icons/
 res://Globals/
+res://Sidebar/
+res://Icons/
 res://
 res://Globals/svgHelpers/
 res://LoadingScreen/

@@ -91,26 +91,6 @@ class Colors:
 		if !verify_color(color) == OK:
 			return ERR_INVALID_PARAMETER
 		return _color_dic[color]
-#Icons
-class Icons:
-	const icons_path = "res://addons/RoseGarden/icons/"
-
-	const HOME = preload(icons_path+"/Home.svg")
-	const CHECKLIST = preload(icons_path+"/Checklist.svg")
-	const BOOK = preload(icons_path+"/Book.svg")
-	const TRASH = preload(icons_path+"/Trash.svg")
-	const PREVIOUS = preload(icons_path+"/Previous.svg")
-	const NEXT = preload(icons_path+"/Next.svg")
-	const SCISSORS = preload(icons_path+"/Scissors.svg")
-	const UP = preload(icons_path+"/Up.svg")
-	const DOWN = preload(icons_path+"/DOWN.svg")
-	const LOCK = preload(icons_path+"/Lock.svg")
-	const SEARCH = preload(icons_path+"/Search.svg")
-
-	static func get_icon(icon_name:String):
-		if !FileAccess.file_exists(icons_path+icon_name+".svg"):
-			return ERR_DOES_NOT_EXIST
-		return load(icons_path+icon_name+".svg")
 
 #Themes
 class Themes:

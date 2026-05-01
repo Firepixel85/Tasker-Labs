@@ -1,8 +1,9 @@
+Control
+HBoxContainer
+CanvasLayer
 RichTextLabel
 MarginContainer
 VBoxContainer
-HBoxContainer
-Control
 TextEdit
 CenterContainer
 NinePatchRect
@@ -11,5 +12,3 @@ TextureRect
 ScrollContainer
 Container
 Label
-TextureProgressBar
-ProgressBar

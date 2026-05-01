@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="2_hi4tc"]
 [ext_resource type="Script" uid="uid://crxnkn327ll0e" path="res://Sidebar/SidebarClient.gd" id="2_qlysq"]
 [ext_resource type="Texture2D" uid="uid://y3k8vua7s2kr" path="res://MainView/Sidebar Selection.svg" id="2_yduse"]
-[ext_resource type="Texture2D" uid="uid://dye14bkbxhv4b" path="res://Icons/Icon.svg" id="4_jqlkf"]
+[ext_resource type="Texture2D" uid="uid://dye14bkbxhv4b" path="res://Icons/User.svg" id="4_jqlkf"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_v5kho"]
 [ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.tscn" id="7_qlysq"]
 [ext_resource type="Texture2D" uid="uid://cf7n6fktiuki7" path="res://Icons/DownArrowCircle.svg" id="7_rirya"]
@@ -14,6 +14,10 @@
 [ext_resource type="Texture2D" uid="uid://uxqjlt6pd6n5" path="res://Icons/Gear.svg" id="9_burg1"]
 [ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="9_h0v64"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="11_a7d7b"]
+[ext_resource type="Script" uid="uid://c62p4grvevb2b" path="res://MainView/SimpleButtonBehavior.gd" id="14_qlysq"]
+[ext_resource type="Script" uid="uid://djr8cefm3s8g2" path="res://Settings/SettingsClient.gd" id="16_5lyvq"]
+[ext_resource type="Script" uid="uid://dr4s3kh54mb2" path="res://Settings/CategoryHandler.gd" id="17_5lyvq"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="18_5lyvq"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yduse"]
 
@@ -42,7 +46,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2091975710]
+[node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -51,17 +55,17 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="Sidebar" type="VBoxContainer" parent="HBoxContainer" unique_id=1857969699]
+[node name="Sidebar" type="VBoxContainer" parent="MainView" unique_id=1857969699]
 custom_minimum_size = Vector2(480, 0)
 layout_mode = 2
 focus_mode = 1
 
-[node name="DargZone" type="Container" parent="HBoxContainer/Sidebar" unique_id=1015640598]
+[node name="DargZone" type="Container" parent="MainView/Sidebar" unique_id=1015640598]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 script = ExtResource("1_ftpnl")
 
-[node name="Sidebar Bottom" type="MarginContainer" parent="HBoxContainer/Sidebar" unique_id=196451527]
+[node name="Sidebar Bottom" type="MarginContainer" parent="MainView/Sidebar" unique_id=196451527]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
@@ -69,16 +73,16 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom" unique_id=44962775]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom" unique_id=44962775]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Tabs" type="Control" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1909274643]
+[node name="Tabs" type="Control" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1909274643]
 layout_mode = 2
 size_flags_vertical = 3
 script = ExtResource("2_qlysq")
 
-[node name="Selection" type="NinePatchRect" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Tabs" unique_id=686793440]
+[node name="Selection" type="NinePatchRect" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs" unique_id=686793440]
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 10
@@ -91,7 +95,7 @@ patch_margin_top = 20
 patch_margin_right = 20
 patch_margin_bottom = 20
 
-[node name="TabButtons" type="MarginContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Tabs" unique_id=1217409048]
+[node name="TabButtons" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs" unique_id=1217409048]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,28 +105,29 @@ grow_vertical = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_top = 4
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons" unique_id=1377480002]
+[node name="ScrollContainer" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons" unique_id=1377480002]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons/ScrollContainer" unique_id=516417704]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons/ScrollContainer" unique_id=516417704]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 1
 theme_override_constants/separation = 24
 
-[node name="EventSelection" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1133264568 instance=ExtResource("7_qlysq")]
+[node name="EventSelection" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1133264568 instance=ExtResource("7_qlysq")]
 visible = false
 layout_mode = 2
 
-[node name="ExampleEvent" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=535912435 instance=ExtResource("2_hi4tc")]
+[node name="ExampleEvent" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=535912435 instance=ExtResource("2_hi4tc")]
+visible = false
 custom_minimum_size = Vector2(0, 168)
 layout_mode = 2
 padding = "16"
 margin_number = 18
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent" unique_id=1508451828]
+[node name="MarginContainer" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent" unique_id=1508451828]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -134,15 +139,15 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer" unique_id=945233317]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer" unique_id=945233317]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Control" type="Control" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=2091866746]
+[node name="Control" type="Control" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=2091866746]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
-[node name="RGProgressBar" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=1750477034 instance=ExtResource("9_h0v64")]
+[node name="RGProgressBar" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=1750477034 instance=ExtResource("9_h0v64")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -155,7 +160,7 @@ value = 75.0
 color = "Purple"
 text_alignment = "Right"
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=769085249]
+[node name="MarginContainer" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=769085249]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -164,7 +169,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 20
 
-[node name="RGText" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
+[node name="RGText" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
 custom_minimum_size = Vector2(52, 25)
 layout_mode = 2
 text = "55:32"
@@ -172,28 +177,28 @@ font_size = "Secondary"
 rounded = true
 vertical_alignment = "Center"
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=1016345368]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=1016345368]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGButton" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(187, 60)
+[node name="RGButton" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
+custom_minimum_size = Vector2(194, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
 
-[node name="RGButton2" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(181, 60)
+[node name="RGButton2" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
+custom_minimum_size = Vector2(188, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 color = "Purple"
 text = "Done"
 
-[node name="Control Bar" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1991232464 instance=ExtResource("2_hi4tc")]
+[node name="Control Bar" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1991232464 instance=ExtResource("2_hi4tc")]
 custom_minimum_size = Vector2(448, 60)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar" unique_id=1481308489]
+[node name="MarginContainer" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar" unique_id=1481308489]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -203,70 +208,73 @@ grow_vertical = 2
 theme_override_constants/margin_left = 6
 theme_override_constants/margin_right = 6
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer" unique_id=219333705]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer" unique_id=219333705]
 layout_mode = 2
 alignment = 1
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer" unique_id=2146395517]
+[node name="HBoxContainer" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer" unique_id=2146395517]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1699850757]
+[node name="TextureRect" type="TextureRect" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1699850757]
 layout_mode = 2
 texture = ExtResource("4_jqlkf")
 stretch_mode = 3
 
-[node name="RGText" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=356765929 instance=ExtResource("5_v5kho")]
+[node name="RGText" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=356765929 instance=ExtResource("5_v5kho")]
 custom_minimum_size = Vector2(44, 29)
 layout_mode = 2
 text = "Max"
 vertical_alignment = "Center"
 
-[node name="Spacer" type="TextureRect" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=189151995]
+[node name="Spacer" type="TextureRect" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=189151995]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Indications" type="HBoxContainer" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1821460824]
+[node name="Indications" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1821460824]
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="Button2" type="Button" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=965926932]
+[node name="Update" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=965926932]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
 icon = ExtResource("7_rirya")
 flat = true
+script = ExtResource("14_qlysq")
 
-[node name="Button3" type="Button" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=345576706]
+[node name="Plugins" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=345576706]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
 icon = ExtResource("8_ewmin")
 flat = true
+script = ExtResource("14_qlysq")
 
-[node name="Button" type="Button" parent="HBoxContainer/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=874138180]
+[node name="Settings" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=874138180]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
 icon = ExtResource("9_burg1")
 flat = true
+script = ExtResource("14_qlysq")
 
-[node name="SeperatorTexture" type="TextureRect" parent="HBoxContainer" unique_id=1092767801]
+[node name="SeperatorTexture" type="TextureRect" parent="MainView" unique_id=1092767801]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_vnica")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=35975690]
+[node name="VBoxContainer2" type="VBoxContainer" parent="MainView" unique_id=35975690]
 layout_mode = 2
 size_flags_horizontal = 3
 focus_mode = 1
 theme_override_constants/separation = 0
 
-[node name="TopBar" type="HBoxContainer" parent="HBoxContainer/VBoxContainer2" unique_id=2000360869]
+[node name="TopBar" type="HBoxContainer" parent="MainView/VBoxContainer2" unique_id=2000360869]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 script = ExtResource("1_ftpnl")
 
-[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/VBoxContainer2/TopBar" unique_id=1696390877]
+[node name="MarginContainer" type="MarginContainer" parent="MainView/VBoxContainer2/TopBar" unique_id=1696390877]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 16
@@ -274,7 +282,7 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SearchBar" parent="HBoxContainer/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
+[node name="SearchBar" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
 z_index = 10
 custom_minimum_size = Vector2(390, 60)
 layout_mode = 2
@@ -283,11 +291,146 @@ placeholder_text = "Search..."
 show_hint = true
 hint = "⌘F"
 
-[node name="SeperatorTexture" type="TextureRect" parent="HBoxContainer/VBoxContainer2" unique_id=14582395]
+[node name="SeperatorTexture" type="TextureRect" parent="MainView/VBoxContainer2" unique_id=14582395]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_hi4tc")
 
-[node name="SceneContainer" type="Control" parent="HBoxContainer/VBoxContainer2" unique_id=1351976390]
+[node name="SceneContainer" type="Control" parent="MainView/VBoxContainer2" unique_id=1351976390]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 0
+script = ExtResource("16_5lyvq")
+
+[node name="Sidebar" type="VBoxContainer" parent="Settings" unique_id=1527536933]
+custom_minimum_size = Vector2(480, 0)
+layout_mode = 2
+focus_mode = 1
+
+[node name="DargZone" type="Container" parent="Settings/Sidebar" unique_id=999780681]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+script = ExtResource("1_ftpnl")
+
+[node name="Sidebar Bottom" type="MarginContainer" parent="Settings/Sidebar" unique_id=1090129077]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Sidebar/Sidebar Bottom" unique_id=2116343254]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Categories" type="Control" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1265416776]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("17_5lyvq")
+
+[node name="Selection" type="NinePatchRect" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" unique_id=1972672525]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 64.0
+grow_horizontal = 2
+texture = ExtResource("2_yduse")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="CategoryButtons" type="MarginContainer" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" unique_id=1084605362]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 4
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories/CategoryButtons" unique_id=246839859]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories/CategoryButtons/ScrollContainer" unique_id=594634697]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_constants/separation = 24
+
+[node name="Control" type="Control" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1773904020]
+visible = false
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="AboutButton" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Control" unique_id=197314838 instance=ExtResource("11_a7d7b")]
+custom_minimum_size = Vector2(195, 60)
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+pivot_offset = Vector2(93.5, 30)
+text = "About"
+
+[node name="SeperatorTexture" type="TextureRect" parent="Settings" unique_id=1298774704]
+layout_mode = 2
+texture = SubResource("GradientTexture1D_vnica")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Settings" unique_id=916837871]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 1
+theme_override_constants/separation = 0
+
+[node name="TopBar" type="HBoxContainer" parent="Settings/VBoxContainer2" unique_id=239728636]
+custom_minimum_size = Vector2(0, 92)
+layout_mode = 2
+script = ExtResource("1_ftpnl")
+
+[node name="MarginContainer" type="MarginContainer" parent="Settings/VBoxContainer2/TopBar" unique_id=970552167]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer2/TopBar/MarginContainer" unique_id=1500001228]
+layout_mode = 2
+alignment = 2
+
+[node name="CloseButton" parent="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer" unique_id=272925010 instance=ExtResource("11_a7d7b")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("18_5lyvq")
+
+[node name="SeperatorTexture" type="TextureRect" parent="Settings/VBoxContainer2" unique_id=2029841189]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_hi4tc")
+
+[node name="SceneContainer" type="Control" parent="Settings/VBoxContainer2" unique_id=437532020]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RightClickMenuContainer" type="CanvasLayer" parent="." unique_id=1097217257]
+
+[connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer/CloseButton" to="Settings" method="_on_close_button_pressed"]
