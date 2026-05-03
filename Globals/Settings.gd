@@ -38,7 +38,7 @@ func save_settings():
 
 func add_category(display_name:String,icon_path:String,category_id:String):
 	if _settings_list.has(category_id):
-		Debug.log("Attempted to add category with id: "+category_id+" but it already exists",ID)
+		Debug.error("Attempted to add category with id: "+category_id+" but it already exists",ID)
 		return ERR_ALREADY_EXISTS
 
 	_settings_list[category_id] = {}
@@ -53,7 +53,7 @@ func add_category(display_name:String,icon_path:String,category_id:String):
 
 func remove_category(category_id:String):
 	if !_settings_list.has(category_id):
-		Debug.log("Attempted to remove nonexistant category with id: "+category_id,ID)
+		Debug.error("Attempted to remove nonexistant category with id: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_list.erase(category_id)
@@ -67,7 +67,7 @@ func remove_category(category_id:String):
 
 func hide_category(category_id):
 	if !_settings_list.has(category_id):
-		Debug.log("Attempted to hide nonexistant category with id: "+category_id,ID)
+		Debug.error("Attempted to hide nonexistant category with id: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 
 	Debug.log("Category hidden with id: "+category_id,ID)
@@ -76,7 +76,7 @@ func hide_category(category_id):
 
 func show_category(category_id):
 	if !_settings_list.has(category_id):
-		Debug.log("Attempted to show nonexistant category with id: "+category_id,ID)
+		Debug.error("Attempted to show nonexistant category with id: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 
 	Debug.log("Category shown with id: "+category_id,ID)
@@ -108,20 +108,20 @@ func category_exists(category_id:String):
 
 func add_option(category_id:String,option_id:String,option_scene_path:String,default_value):
 	if !_settings_list.has(category_id):
-		Debug.log("Attempted to add option to nonexistant category: "+category_id,ID)
+		Debug.error("Attempted to add option to nonexistant category: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
-		Debug.log("Attempted to add option with id: "+option_id+" to category: "+category_id+" but it already exists",ID)
+		Debug.error("Attempted to add option with id: "+option_id+" to category: "+category_id+" but it already exists",ID)
 		return ERR_ALREADY_EXISTS
 	if !load(option_scene_path) is PackedScene:
-		Debug.log("Attempted to add option with invalid scene path: "+option_scene_path,ID)
+		Debug.error("Attempted to add option with invalid scene path: "+option_scene_path,ID)
 		return ERR_INVALID_PARAMETER
 	var instance = load(option_scene_path).instantiate()
 	if !instance.has_method("set_value"):
-		Debug.log("Attempted to add option with scene path: "+option_scene_path+" but it does not have a set_value method",ID)
+		Debug.error("Attempted to add option with scene path: "+option_scene_path+" but it does not have a set_value method",ID)
 		return ERR_METHOD_NOT_FOUND
 	if !instance.has_method("get_value"):
-		Debug.log("Attempted to add option with scene path: "+option_scene_path+" but it does not have a get_value method",ID)
+		Debug.error("Attempted to add option with scene path: "+option_scene_path+" but it does not have a get_value method",ID)
 		return ERR_METHOD_NOT_FOUND
 
 	_settings_list[category_id][option_id] = option_scene_path
@@ -133,15 +133,15 @@ func add_option(category_id:String,option_id:String,option_scene_path:String,def
 
 func remove_option(option_path:String):
 	if option_path.split("/").size() != 2:
-		Debug.log("Attempted to remove option with invalid path: "+option_path,ID)
+		Debug.error("Attempted to remove option with invalid path: "+option_path,ID)
 		return ERR_INVALID_PARAMETER
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.log("Attempted to remove option from nonexistant category: "+category_id,ID)
+		Debug.error("Attempted to remove option from nonexistant category: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
-		Debug.log("Attempted to remove nonexistant option with option path: "+option_path,ID)
+		Debug.error("Attempted to remove nonexistant option with option path: "+option_path,ID)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_list[category_id].erase(option_id)
@@ -164,12 +164,15 @@ func get_option_value(option_path:String):
 
 func set_option_value(option_path:String,new_value):
 	if option_path.split("/").size() != 2:
+		Debug.error("Attempted to set option value with invalid path: "+option_path,ID)
 		return ERR_INVALID_PARAMETER
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
+		Debug.error("Attempted to set option value for nonexistant category: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 	if !_settings_list[category_id].has(option_id):
+		Debug.error("Attempted to set option value for nonexistant option with path: "+option_path,ID)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_values[category_id][option_id] = new_value

@@ -39,14 +39,19 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 24
 theme_override_constants/margin_top = 24
-theme_override_constants/margin_right = 24
-theme_override_constants/margin_bottom = 24
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
 
-[node name="TextEdit" type="RichTextLabel" parent="MarginContainer" unique_id=1491896702]
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=12898572]
 layout_mode = 2
+
+[node name="TextEdit" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1491896702]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_colors/font_selected_color = Color(1, 1, 1, 0)
 theme_override_colors/selection_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/line_separation = 16
 theme_override_fonts/normal_font = ExtResource("1_1bimw")
 theme_override_font_sizes/normal_font_size = 22
 theme_override_styles/normal = SubResource("StyleBoxEmpty_4b5jp")
@@ -56,8 +61,80 @@ theme_override_styles/fill = SubResource("StyleBoxEmpty_jpsgq")
 bbcode_enabled = true
 text = "
 "
+scroll_following = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1156376320]
+layout_mode = 2
+alignment = 2
+
+[node name="RGContainer" parent="MarginContainer/HBoxContainer/VBoxContainer" unique_id=535912435 instance=ExtResource("7_jpsgq")]
+custom_minimum_size = Vector2(80, 382)
+layout_mode = 2
+size_flags_horizontal = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer" unique_id=227161561]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer" unique_id=1255436567]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="ToggleLogs" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1426858299 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Yellow"
+text = ""
+icon = ExtResource("9_438k2")
+
+[node name="RGText" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="ToggleWarns" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=911886694 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Orange"
+text = ""
+icon = ExtResource("12_jpsgq")
+
+[node name="RGText2" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1949239894 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="ToggleErrors" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1838399216 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+color = "Red"
+text = ""
+icon = ExtResource("13_scub0")
+
+[node name="RGText3" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855666169 instance=ExtResource("1_4b5jp")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+horizontal_alignment = "Center"
+
+[node name="Clear" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1166868991 instance=ExtResource("4_n6syd")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("14_lx16d")
 
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=434849749]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -78,72 +155,6 @@ alignment = 2
 layout_mode = 2
 alignment = 2
 
-[node name="RGContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=535912435 instance=ExtResource("7_jpsgq")]
-custom_minimum_size = Vector2(80, 382)
-layout_mode = 2
-size_flags_horizontal = 8
-
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer" unique_id=349752525]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer" unique_id=1212019468]
-layout_mode = 2
-theme_override_constants/separation = 6
-
-[node name="ToggleLogs" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=932926269 instance=ExtResource("4_n6syd")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-color = "Yellow"
-text = ""
-icon = ExtResource("9_438k2")
-
-[node name="RGText" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
-layout_mode = 2
-text = "0"
-horizontal_alignment = "Center"
-
-[node name="ToggleWarns" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=142414468 instance=ExtResource("4_n6syd")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-color = "Orange"
-text = ""
-icon = ExtResource("12_jpsgq")
-
-[node name="RGText2" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=708098416 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
-layout_mode = 2
-text = "0"
-horizontal_alignment = "Center"
-
-[node name="ToggleErrors" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1349911150 instance=ExtResource("4_n6syd")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-color = "Red"
-text = ""
-icon = ExtResource("13_scub0")
-
-[node name="RGText3" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1131443389 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
-layout_mode = 2
-text = "0"
-horizontal_alignment = "Center"
-
-[node name="Clear" parent="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855406265 instance=ExtResource("4_n6syd")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-text = ""
-icon = ExtResource("14_lx16d")
-
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer2/VBoxContainer" unique_id=1491533176]
 visible = false
 layout_mode = 2
@@ -162,7 +173,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 placeholder_text = "Enter Command..."
 
-[node name="RGButton" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_n6syd")]
+[node name="RGButton" parent="MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer" unique_id=213861115 instance=ExtResource("4_n6syd")]
 z_index = 10
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
@@ -170,7 +181,7 @@ color = "White"
 text = ""
 icon = ExtResource("6_438k2")
 
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleLogs" to="." method="_on_toggle_logs_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleWarns" to="." method="_on_toggle_warns_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleErrors" to="." method="_on_toggle_errors_pressed"]
-[connection signal="pressed" from="MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleLogs" to="." method="_on_toggle_logs_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleWarns" to="." method="_on_toggle_warns_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleErrors" to="." method="_on_toggle_errors_pressed"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/Clear" to="." method="_on_clear_pressed"]

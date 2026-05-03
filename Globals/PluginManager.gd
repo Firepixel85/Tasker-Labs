@@ -58,7 +58,7 @@ func scan_available_plugins():
 				Debug.log("Found plugin: "+get_plugin_name(plugin_status),ID)
 		folder_name = dir.get_next()
 	dir.list_dir_end()
-	
+
 	#Developer Plugins
 	if !Main.developerMode:
 		return OK
@@ -87,31 +87,31 @@ func _verify_plugin(plugin_name:String,file_path:String="user://plugins/"):
 	var plugin_info:Dictionary = JSON.parse_string(file.get_as_text())
 
 	if plugin_info == null:
-		Debug.log("Plugin "+plugin_name+" has invalid info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" has invalid info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if plugin_info["target_version"] != Main.get_version():
-		Debug.log("Plugin "+plugin_name+" is not compatible with current version of Tasker, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" is not compatible with current version of Tasker, skipping...",ID)
 		return ERR_INVALID_DATA
 	if plugin_info["name"] == null:
-		Debug.log("Plugin "+plugin_name+" is missing name field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" is missing name field in info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if plugin_info["version"] == null:
-		Debug.log("Plugin "+plugin_name+" is missing version field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" is missing version field in info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if plugin_info["author"] == null:
-		Debug.log("Plugin "+plugin_name+" is missing author field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" is missing author field in info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if !plugin_info.has("plugin_id"):
-		Debug.log("Plugin "+plugin_name+" is missing plugin_id field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" is missing plugin_id field in info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].begins_with("com."):
-		Debug.log("Plugin "+plugin_name+" has invalid plugin_id field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" has invalid plugin_id field in info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].split(".").size() == 3:
-		Debug.log("Plugin "+plugin_name+" has invalid plugin_id filed in info.json, skipping...",ID)
+		Debug.error("Plugin "+plugin_name+" has invalid plugin_id filed in info.json, skipping...",ID)
 		return ERR_INVALID_DATA
 	if _plugins.has(plugin_info["plugin_id"]):
-		Debug.log("Plugin "+plugin_name+" has the same id as a previous plugin",ID)
+		Debug.error("Plugin "+plugin_name+" has the same id as a previous plugin",ID)
 		return ERR_INVALID_DATA
 	return plugin_info["plugin_id"]
 
@@ -125,6 +125,7 @@ func load_plugin(plugin_id):
 		_loaded_plugins.append(plugin_id)
 		return OK
 	else:
+		Debug.error("Could't load plugin with id: "+plugin_id+", plugin not found",ID)
 		return ERR_DOES_NOT_EXIST
 
 func is_developer_plugin(plugin_id):

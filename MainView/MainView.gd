@@ -30,8 +30,6 @@ func _ready():
 	if !Settings.option_exists("core.appearance/accent_color"):
 		Settings.add_option("core.appearance","accent_color","res://Settings/CoreOptions/Appearance/AccentColor/CoreOption_AccentColor.tscn","Purple")
 
-
-
 func _on_settings_pressed() -> void:
 	settings_open = true
 	mainview_screen.visible = false

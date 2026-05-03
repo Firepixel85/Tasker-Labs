@@ -36,7 +36,7 @@ size_flags_horizontal = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=1907305224]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 4
 
 [node name="Button" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=965904471]
 layout_mode = 2

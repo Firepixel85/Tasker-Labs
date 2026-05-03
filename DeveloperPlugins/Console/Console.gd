@@ -1,18 +1,18 @@
 extends Control
-@onready var text: RichTextLabel = $MarginContainer/TextEdit
+@onready var text: RichTextLabel = $MarginContainer/HBoxContainer/TextEdit
 @onready var command_input: RGTextField = $MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/RGTextField
 @onready var command_send: RGButton = $MarginContainer2/VBoxContainer/MarginContainer/HBoxContainer/RGButton
 
-@onready var log_toggle: RGButton = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleLogs
-@onready var log_count: RGText = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText
+@onready var log_toggle: RGButton = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleLogs
+@onready var log_count: RGText = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText
 
-@onready var warn_toggle: RGButton = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleWarns
-@onready var warn_count: RGText = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText2
+@onready var warn_toggle: RGButton = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleWarns
+@onready var warn_count: RGText = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText2
 
-@onready var error_toggle: RGButton = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleErrors
-@onready var error_count: RGText = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText3
+@onready var error_toggle: RGButton = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/ToggleErrors
+@onready var error_count: RGText = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/RGText3
 
-@onready var clear_button: RGButton = $MarginContainer2/VBoxContainer/HBoxContainer/RGContainer/MarginContainer/VBoxContainer/Clear
+@onready var clear_button: RGButton = $MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer/Clear
 
 var show_logs:bool = true
 var show_warns:bool = true
