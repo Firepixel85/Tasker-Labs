@@ -37,11 +37,11 @@ func _update_logs():
 				if show_errors:
 					text.append_text("[color=D72D2C]"+Debug.get_logs()[i]+" [/color]")
 					text.newline()
-		
+
 	log_count.set_text(str(Debug.log_count))
 	warn_count.set_text(str(Debug.warn_count))
 	error_count.set_text(str(Debug.error_count))
-	
+
 
 func _on_toggle_logs_pressed() -> void:
 	if show_logs:
@@ -73,3 +73,9 @@ func _on_toggle_errors_pressed() -> void:
 func _on_clear_pressed() -> void:
 	Debug.clear_logs()
 	_update_logs()
+
+func get_value():
+	pass
+
+func set_value():
+	pass

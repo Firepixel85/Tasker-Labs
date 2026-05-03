@@ -64,7 +64,7 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(selection.position.x,80*_find_index(tabs,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	if scene_container.get_child_count()>0:
 		scene_container.get_child(0).queue_free()

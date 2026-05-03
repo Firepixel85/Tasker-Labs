@@ -33,6 +33,10 @@ func toggle():
 func is_hovered():
 	return _hovered
 
+func set_state(state:bool):
+	is_toggled = state
+	_update()
+
 ###############
 #### STOP #### Here begin private functions that should never be called by your code
 ###############

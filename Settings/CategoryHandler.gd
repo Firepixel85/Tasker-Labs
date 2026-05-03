@@ -5,6 +5,8 @@ extends Control
 var categories = []
 var selected:String
 
+signal category_selected(category_id)
+
 func _add_category(title:String,icon:Texture2D,category_id:String):
 	if categories.has(category_id):
 		return ERR_ALREADY_EXISTS
@@ -53,8 +55,9 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(selection.position.x,80*_find_index(categories,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(categories,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_categories()
+	category_selected.emit(selection_id)
 	#Display options logic placeholder
 	Sidebar.tab_selected.emit(selection_id)
 	return OK

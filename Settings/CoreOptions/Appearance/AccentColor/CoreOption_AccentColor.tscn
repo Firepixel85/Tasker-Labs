@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://cob0vbqpu5v8n"]
+
+[ext_resource type="Script" uid="uid://cw4a8e4416vyy" path="res://Settings/CoreOptions/Appearance/AccentColor/CoreOption_AccentColor.gd" id="1_vg6px"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_nnhey"]
+[ext_resource type="Script" uid="uid://cte108eii5hye" path="res://Settings/CoreOptions/Appearance/AccentColor/Color.gd" id="4_nudxv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_er0nk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vg6px"]
+
+[node name="ToggleOption" type="Control" unique_id=506169743]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_vg6px")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=872462836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_nnhey")]
+custom_minimum_size = Vector2(131, 29)
+layout_mode = 2
+text = "Accent color"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1827030005]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=1907305224]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=965904471]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Yellow"
+
+[node name="Button2" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=259175989]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Orange"
+
+[node name="Button3" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=383844153]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Green"
+
+[node name="Button4" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=1804566213]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Teal"
+
+[node name="Button5" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=653949713]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Blue"
+
+[node name="Button6" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=960348545]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_er0nk")
+flat = true
+script = ExtResource("4_nudxv")
+
+[node name="Button7" type="Button" parent="HBoxContainer/HBoxContainer" unique_id=1561576398]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vg6px")
+flat = true
+script = ExtResource("4_nudxv")
+color = "Purple"
