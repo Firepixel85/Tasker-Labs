@@ -1,9 +1,15 @@
+res://MainView/
+res://Settings/CoreOptions/Accessibility/SymbolIndicators/
+res://Settings/CoreOptions/Accessibility/DisableAnimations/
+res://Settings/CoreOptions/Accessibility/IncreaseContrast/
+res://Plugins/
+res://Sidebar/
+res://AppIcons/
+res://Settings/CoreOptions/Developer/DevTools/
 res://Settings/CoreOptions/Appearance/AccentColor/
 res://
 res://Settings/
-res://MainView/
 res://Globals/
-res://Sidebar/
 res://Icons/
 res://Globals/svgHelpers/
 res://LoadingScreen/

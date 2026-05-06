@@ -1,6 +1,7 @@
 @tool
 extends Node
 
+signal update_components
 func _ready() -> void:
 	custom_themes_changed.connect(Themes._update_themes)
 	await get_tree().create_timer(0.1).timeout
@@ -17,6 +18,8 @@ class Accessibility:
 
 	static func set_increase_contrast(value:bool):
 		increaseContrast = value
+		print("test")
+		RoseGarden.update_components.emit()
 
 	static func get_disable_animations():
 		return disableAnimations

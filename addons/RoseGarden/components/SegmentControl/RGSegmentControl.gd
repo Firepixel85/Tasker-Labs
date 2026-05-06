@@ -21,7 +21,7 @@ func add_item(item_name:String,item_text:String) -> int:
 
 	text_container.add_child(Label.new())
 	var target:Label = text_container.get_children()[text_container.get_children().size() - 1]
-	target.text = "  "+item_text+"  "
+	target.text = "   "+item_text+"   "
 	target.theme = RoseGarden.Themes.Secondary
 	items_text[item_name] = item_text
 	

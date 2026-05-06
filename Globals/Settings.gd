@@ -6,6 +6,7 @@ var _settings_values = {}
 var _category_names = {}
 var _category_list = []
 var _category_icons = {}
+var _option_order = {}
 
 signal category_added(category_id)
 signal option_added(option_id,category_id)
@@ -20,9 +21,12 @@ func load_settings():
 		_category_names = data["category_names"]
 		_category_list = data["category_list"]
 		_category_icons = data["category_icons"]
+		_option_order = data["option_order"]
 	else:
 		Data.make_file("SettingsData")
 		save_settings()
+	_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
+	_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
 	settings_loaded.emit()
 	return OK
 
@@ -32,6 +36,7 @@ func save_settings():
 	Data.save_to("category_names",_category_names,"SettingsData")
 	Data.save_to("category_list",_category_list,"SettingsData")
 	Data.save_to("category_icons",_category_icons,"SettingsData")
+	Data.save_to("option_order",_option_order,"SettingsData")
 	Data.save_file("SettingsData")
 
 # Category functions #
@@ -43,6 +48,7 @@ func add_category(display_name:String,icon_path:String,category_id:String):
 
 	_settings_list[category_id] = {}
 	_settings_values[category_id] = {}
+	_option_order[category_id] = []
 	_category_list.append(category_id)
 	_category_names[category_id] = display_name
 	_category_icons[category_id] = icon_path
@@ -61,6 +67,7 @@ func remove_category(category_id:String):
 	_category_list.erase(category_id)
 	_category_names.erase(category_id)
 	_category_icons.erase(category_id)
+	_option_order.erase(category_id)
 	save_settings()
 	Debug.log("Category removed with id: "+category_id,ID)
 	return OK
@@ -126,7 +133,9 @@ func add_option(category_id:String,option_id:String,option_scene_path:String,def
 
 	_settings_list[category_id][option_id] = option_scene_path
 	_settings_values[category_id][option_id] = default_value
+	_option_order[category_id].append(option_id)
 	option_added.emit(option_id,category_id)
+	setting_changed.emit(category_id+"/"+option_id,default_value)
 	Debug.log("Option added under path: "+category_id+"/"+option_id,ID)
 	save_settings()
 	return OK
@@ -146,6 +155,7 @@ func remove_option(option_path:String):
 
 	_settings_list[category_id].erase(option_id)
 	_settings_values[category_id].erase(option_id)
+	_option_order[category_id].erase(option_id)
 	save_settings()
 	Debug.log("Option removed at path: "+option_path,ID)
 	return OK
@@ -176,6 +186,7 @@ func set_option_value(option_path:String,new_value):
 		return ERR_DOES_NOT_EXIST
 
 	_settings_values[category_id][option_id] = new_value
+	_sync_with_rg(option_path,new_value)
 	Debug.log("Setting changed at path: "+option_path+" to value: "+str(new_value),ID)
 	setting_changed.emit(option_path,new_value)
 	save_settings()
@@ -183,10 +194,17 @@ func set_option_value(option_path:String,new_value):
 
 func option_exists(option_path:String):
 	if option_path.split("/").size() != 2:
-		return ERR_INVALID_PARAMETER
+		return false
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		return ERR_DOES_NOT_EXIST
+		return false
 
 	return _settings_list[category_id].has(option_id)
+
+#Helper functions
+func _sync_with_rg(option_path:String,new_value):
+	if option_path == "core.accessibility/disable_animations":
+		RoseGarden.Accessibility.set_disable_animations(new_value)
+	if option_path == "core.accessibility/increase_contrast":
+		RoseGarden.Accessibility.set_increase_contrast(new_value)

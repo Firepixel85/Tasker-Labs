@@ -72,7 +72,7 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
 	_value_update()
-		
+
 func _update():
 	bar.texture_progress = load(RoseGarden._file_path+"DonutGraph/Progress/Progress"+color+".svg")
 	bar.texture_under = load(RoseGarden._file_path+"DonutGraph/Base/Base"+color+".svg")

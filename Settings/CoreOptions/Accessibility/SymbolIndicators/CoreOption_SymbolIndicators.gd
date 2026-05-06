@@ -24,3 +24,4 @@ func _update_color(option_path,new_value):
 		toggle.set_color(new_value)
 	if option_path == "core.accessibility/symbol_indicators":
 		toggle.set_accessible(new_value)
+	

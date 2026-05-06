@@ -27,7 +27,10 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.id = tab_id
 	tab._ready()
 	if selected == "":
+		selection.visible = true
 		selected = tabs[0]
+		for child in scene_container.get_children():
+			child.queue_free()
 		scene_container.add_child(_tab_scenes[tabs[0]].instantiate())
 	_shade_tabs()
 	Debug.log("Tab added by process: "+Main.get_process_name(tab_id),id)
@@ -48,6 +51,8 @@ func _remove_tab(tab_id:String):
 	return OK
 
 func _ready() -> void:
+	selection.visible = false
+	scene_container.add_child(preload("res://Sidebar/NoPluginsLoaded.tscn").instantiate())
 	Sidebar._client = self
 	Sidebar.ready.emit()
 
@@ -66,8 +71,8 @@ func _select(selection_id:String):
 	selection.visible = true
 	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
-	if scene_container.get_child_count()>0:
-		scene_container.get_child(0).queue_free()
+	for child in scene_container.get_children():
+		child.queue_free()
 	scene_container.add_child(_tab_scenes[selection_id].instantiate())
 	Sidebar.tab_selected.emit(selection_id)
 	return OK

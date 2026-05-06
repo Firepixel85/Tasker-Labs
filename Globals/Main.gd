@@ -1,5 +1,7 @@
 extends Node
 
+var main_view:Control
+
 class window:
 	static var size := Vector2(0,0)
 	static var position := Vector2(0,0)
@@ -42,3 +44,9 @@ func get_process_name(process_id:String):
 
 func get_version():
 	return version
+
+func get_current_view():
+	return main_view._current_view
+
+func get_view_node():
+	return main_view.view_nodes[main_view._current_view]

@@ -37,6 +37,10 @@ func set_state(state:bool):
 	is_toggled = state
 	_update()
 
+func set_accessible(is_accessible:bool):
+	accessible = is_accessible
+	_update()
+
 ###############
 #### STOP #### Here begin private functions that should never be called by your code
 ###############

@@ -13,13 +13,13 @@ func setup():
 
 
 func _on_close_button_pressed() -> void:
-	main_view.close_settings()
+	main_view.open_mainview()
 
 
 func _on_category_selected(category_id: Variant) -> void:
 	for child in option_handler.get_children():
 		child.queue_free()
-	for option in Settings.get_category(category_id):
+	for option in Settings._option_order[category_id]:
 		var option_node = option_handler.add_option(option,load(Settings.get_category(category_id)[option]))
 		option_node.set_value(Settings.get_option_value(category_id+"/"+option))
 		option_node.name = option

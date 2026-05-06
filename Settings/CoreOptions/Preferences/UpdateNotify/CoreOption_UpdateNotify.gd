@@ -16,8 +16,11 @@ func _on_toggled(toggled_on: bool) -> void:
 
 func _ready() -> void:
 	toggle.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	toggle.set_accessible(Settings.get_option_value("core.accessibility/symbol_indicators"))
 	Settings.setting_changed.connect(_update_color)
 
 func _update_color(option_path,new_value):
 	if option_path == "core.appearance/accent_color":
 		toggle.set_color(new_value)
+	if option_path == "core.accessibility/symbol_indicators":
+		toggle.set_accessible(new_value)

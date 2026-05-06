@@ -48,6 +48,7 @@ layout_mode = 2
 [node name="TextEdit" type="RichTextLabel" parent="MarginContainer/HBoxContainer" unique_id=1491896702]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 theme_override_colors/font_selected_color = Color(1, 1, 1, 0)
 theme_override_colors/selection_color = Color(1, 1, 1, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)

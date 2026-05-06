@@ -46,7 +46,6 @@ func set_color(new_color:String):
 	else:
 		label.modulate = Color(1,1,1)
 		texture.modulate = Color(1,1,1)
-	_update()
 	return OK
 
 func set_icon(new_icon:Texture2D):
@@ -120,12 +119,14 @@ func _update():
 			pivot_offset = Vector2(0,size.y/2)
 		"Right":
 			pivot_offset = Vector2(size.x,size.y/2)
+	set_color(color)
 
 func _ready() -> void:
 	set_color(color)
 	_update()
 	RoseGarden.custom_textures_changed.connect(_update_textures)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
+	RoseGarden.update_components.connect(_update)
 	_update_textures()
 	_update_themes()
 	await get_tree().create_timer(0.2).timeout
