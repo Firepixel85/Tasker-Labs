@@ -25,8 +25,11 @@ func load_settings():
 	else:
 		Data.make_file("SettingsData")
 		save_settings()
-	_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
-	_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
+
+	if option_exists("core.accessibility/disable_animations"):
+		_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
+	if option_exists("core.accessibility/increase_contrast"):
+		_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
 	settings_loaded.emit()
 	return OK
 

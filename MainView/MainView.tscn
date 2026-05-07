@@ -194,13 +194,13 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="RGButton" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(187, 60)
+custom_minimum_size = Vector2(194, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
 
 [node name="RGButton2" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(181, 60)
+custom_minimum_size = Vector2(188, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 color = "Purple"
@@ -394,7 +394,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="AboutButton" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Control" unique_id=197314838 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(187, 60)
+custom_minimum_size = Vector2(195, 60)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
@@ -482,7 +482,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("20_a7d7b")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Plugins" unique_id=375203496]
+[node name="Container" type="VBoxContainer" parent="Plugins" unique_id=375203496]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -491,21 +491,21 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Plugins/VBoxContainer" unique_id=76324675]
+[node name="HBoxContainer" type="HBoxContainer" parent="Plugins/Container" unique_id=76324675]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Spacer" type="Control" parent="Plugins/VBoxContainer/HBoxContainer" unique_id=833729629]
+[node name="Spacer" type="Control" parent="Plugins/Container/HBoxContainer" unique_id=833729629]
 custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 
-[node name="Seperator" type="TextureRect" parent="Plugins/VBoxContainer/HBoxContainer" unique_id=209442765]
+[node name="Seperator" type="TextureRect" parent="Plugins/Container/HBoxContainer" unique_id=209442765]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_m4t2q")
 
-[node name="MarginContainer" type="MarginContainer" parent="Plugins/VBoxContainer/HBoxContainer" unique_id=1502520246]
+[node name="MarginContainer" type="MarginContainer" parent="Plugins/Container/HBoxContainer" unique_id=1502520246]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/margin_left = 32
@@ -513,25 +513,32 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="RGText" parent="Plugins/VBoxContainer/HBoxContainer/MarginContainer" unique_id=1010173551 instance=ExtResource("5_v5kho")]
+[node name="RGText" parent="Plugins/Container/HBoxContainer/MarginContainer" unique_id=1010173551 instance=ExtResource("5_v5kho")]
 custom_minimum_size = Vector2(101, 39)
 layout_mode = 2
 text = "Plugins"
 font_size = "Large"
 vertical_alignment = "Center"
 
-[node name="Seperator" type="TextureRect" parent="Plugins/VBoxContainer" unique_id=1364221804]
+[node name="Seperator" type="TextureRect" parent="Plugins/Container" unique_id=1364221804]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_m4t2q")
 
+[node name="ViewContainer" type="MarginContainer" parent="Plugins/Container" unique_id=1241853280]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
 [node name="TopBar" type="VBoxContainer" parent="Plugins" unique_id=535743029]
 layout_mode = 1
-anchors_preset = 15
+anchors_preset = 10
 anchor_right = 1.0
-anchor_bottom = 1.0
+offset_bottom = 92.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Plugins/TopBar" unique_id=1491174215]
@@ -575,4 +582,5 @@ icon = ExtResource("18_5lyvq")
 [connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Settings" to="." method="open_settings"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]
 [connection signal="pressed" from="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer/CloseButton" to="Settings" method="_on_close_button_pressed"]
+[connection signal="item_selected" from="Plugins/TopBar/HBoxContainer/MarginContainer/HBoxContainer/RGSegmentControl" to="Plugins" method="_on_tab_selected"]
 [connection signal="pressed" from="Plugins/TopBar/HBoxContainer/MarginContainer/HBoxContainer/Close" to="Plugins" method="_on_close_pressed"]

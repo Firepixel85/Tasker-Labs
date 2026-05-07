@@ -16,7 +16,7 @@ func _ready() -> void:
 		start_app(true)
 
 func start_app(window_data_available:bool):
-	PluginManager.scan_available_plugins()
+	await PluginManager.scan_available_plugins()
 
 	if window_data_available:
 		get_window().size = Main.window.size
@@ -30,7 +30,7 @@ func start_app(window_data_available:bool):
 	Main.save_window_data()
 	await Settings.load_settings()
 	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
-	
+
 
 func center_window():
 	var win_pos := get_window().position
@@ -47,4 +47,3 @@ func center_window():
 	@warning_ignore("integer_division")
 	var new_pos := screen_rect.position + (screen_rect.size - win_size) / 2
 	get_window().position = new_pos
-		

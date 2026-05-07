@@ -23,6 +23,8 @@ signal button_down
 signal button_up
 signal pressed
 signal toggled(toggled_on:bool)
+signal hovered
+signal de_hovered
 
 var _hovered:bool = false
 
@@ -77,6 +79,10 @@ func press():
 	_on_button_up()
 	pressed.emit()
 
+func set_disabled(is_disabled:bool):
+	disabled = is_disabled
+	_mirror_to_button()
+	_update()
 
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
@@ -181,6 +187,7 @@ func _on_toggled(toggled_on: bool) -> void:
 
 func _on_mouse_entered() -> void:
 	_hovered = true
+	hovered.emit()
 	if disabled:
 		modulate = RoseGarden.Colors.COLOR_DISABLED_HOVERED
 	else:
@@ -188,6 +195,7 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	_hovered = false
+	de_hovered.emit()
 	if disabled:
 		modulate = RoseGarden.Colors.COLOR_DISABLED
 	else:

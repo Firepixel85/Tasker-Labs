@@ -67,3 +67,23 @@ func _shade_categories():
 			child.modulate = RoseGarden.Colors.TEXT_MAIN
 		else:
 			child.modulate = RoseGarden.Colors.TEXT_SECONDARY
+
+func _process(_delta:float) -> void:
+	if Input.is_action_just_pressed("cmd_1") and Main.get_current_view() == "settings":
+		_select(categories[0])
+	elif Input.is_action_just_pressed("cmd_2") and Main.get_current_view() == "settings":
+		_select(categories[1])
+	elif Input.is_action_just_pressed("cmd_3") and Main.get_current_view() == "settings":
+		_select(categories[2])
+	elif Input.is_action_just_pressed("cmd_4") and Main.get_current_view() == "settings":
+		_select(categories[3])
+	elif Input.is_action_just_pressed("cmd_5") and Main.get_current_view() == "settings":
+		_select(categories[4])
+	elif Input.is_action_just_pressed("cmd_6") and Main.get_current_view() == "settings":
+		_select(categories[5])
+	elif Input.is_action_just_pressed("cmd_7") and Main.get_current_view() == "settings":
+		_select(categories[6])
+	elif Input.is_action_just_pressed("cmd_8") and Main.get_current_view() == "settings":
+		_select(categories[7])
+	elif Input.is_action_just_pressed("cmd_9") and Main.get_current_view() == "settings":
+		_select(categories[8])

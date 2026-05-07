@@ -7,7 +7,7 @@ extends Control
 const id = "core.sidebar"
 var tabs = []
 var _tab_scenes = {}
-var selected:String 
+var selected:String
 
 func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	if tabs.has(tab_id):
@@ -45,15 +45,20 @@ func _remove_tab(tab_id:String):
 			tabs.remove_at(_find_index(tabs,tab_id))
 			_tab_scenes.erase(tab_id)
 			if selected == tab_id:
-				selected = tabs[0]
+				if tabs.size()>0:
+					_select(tabs[0])
+				else:
+					selected = ""
+					scene_container.get_child(0).queue_free()
+					_ready()
 			_shade_tabs()
 			break
 	return OK
 
 func _ready() -> void:
+	Sidebar._client = self
 	selection.visible = false
 	scene_container.add_child(preload("res://Sidebar/NoPluginsLoaded.tscn").instantiate())
-	Sidebar._client = self
 	Sidebar.ready.emit()
 
 
@@ -83,4 +88,23 @@ func _shade_tabs():
 			child.modulate = RoseGarden.Colors.TEXT_MAIN
 		else:
 			child.modulate = RoseGarden.Colors.TEXT_SECONDARY
-	
+
+func _process(_delta:float) -> void:
+	if Input.is_action_just_pressed("cmd_1") and Main.get_current_view() == "mainview":
+		_select(tabs[0])
+	elif Input.is_action_just_pressed("cmd_2") and Main.get_current_view() == "mainview" and tabs.size() > 1:
+		_select(tabs[1])
+	elif Input.is_action_just_pressed("cmd_3") and Main.get_current_view() == "mainview" and tabs.size() > 2:
+		_select(tabs[2])
+	elif Input.is_action_just_pressed("cmd_4") and Main.get_current_view() == "mainview" and tabs.size() > 3:
+		_select(tabs[3])
+	elif Input.is_action_just_pressed("cmd_5") and Main.get_current_view() == "mainview" and tabs.size() > 4:
+		_select(tabs[4])
+	elif Input.is_action_just_pressed("cmd_6") and Main.get_current_view() == "mainview" and tabs.size() > 5:
+		_select(tabs[5])
+	elif Input.is_action_just_pressed("cmd_7") and Main.get_current_view() == "mainview" and tabs.size() > 6:
+		_select(tabs[6])
+	elif Input.is_action_just_pressed("cmd_8") and Main.get_current_view() == "mainview" and tabs.size() > 7:
+		_select(tabs[7])
+	elif Input.is_action_just_pressed("cmd_9") and Main.get_current_view() == "mainview" and tabs.size() > 8:
+		_select(tabs[8])

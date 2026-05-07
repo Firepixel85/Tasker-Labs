@@ -18,7 +18,6 @@ class Accessibility:
 
 	static func set_increase_contrast(value:bool):
 		increaseContrast = value
-		print("test")
 		RoseGarden.update_components.emit()
 
 	static func get_disable_animations():
