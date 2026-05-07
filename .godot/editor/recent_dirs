@@ -1,3 +1,4 @@
+res://Settings/
 res://Plugins/
 res://MainView/
 res://Settings/CoreOptions/Accessibility/SymbolIndicators/
@@ -8,7 +9,6 @@ res://AppIcons/
 res://Settings/CoreOptions/Developer/DevTools/
 res://Settings/CoreOptions/Appearance/AccentColor/
 res://
-res://Settings/
 res://Globals/
 res://Icons/
 res://Globals/svgHelpers/

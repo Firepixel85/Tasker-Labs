@@ -16,7 +16,7 @@ func _ready() -> void:
 		start_app(true)
 
 func start_app(window_data_available:bool):
-	await PluginManager.scan_available_plugins()
+	Settings.load_settings()#Plugin scanning is done in settings loading since it needs to check if dev tools are enabled
 
 	if window_data_available:
 		get_window().size = Main.window.size
@@ -28,7 +28,6 @@ func start_app(window_data_available:bool):
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
 	Main.save_window_data()
-	await Settings.load_settings()
 	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
 
 

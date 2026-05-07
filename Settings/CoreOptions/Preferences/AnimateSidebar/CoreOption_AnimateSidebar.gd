@@ -4,9 +4,11 @@ extends Control
 @onready var title: RGText = $HBoxContainer/RGText
 
 signal value_changed(option_id,new_value)
+var first_value_set:bool = false
 
 func set_value(value:bool):
-	toggle.set_state(value)
+	toggle.set_state(value,true)
+	toggle._update()
 
 func get_value():
 	return toggle.is_toggled

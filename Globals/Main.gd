@@ -7,7 +7,6 @@ class window:
 	static var position := Vector2(0,0)
 
 var version:String = "2.0"
-var developerMode:bool = true
 
 func save_window_data():
 	while true:

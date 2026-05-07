@@ -17,15 +17,16 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 25
 
 [node name="Enabled" parent="VBoxContainer" unique_id=85953319 instance=ExtResource("1_f23au")]
-custom_minimum_size = Vector2(84, 29)
+custom_minimum_size = Vector2(90, 29)
 layout_mode = 2
-text = "Enabled"
-color = "Secondary"
+text = "Enabled:"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=446218147]
 custom_minimum_size = Vector2(0, 256)
@@ -36,10 +37,9 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Disabled" parent="VBoxContainer" unique_id=341248368 instance=ExtResource("1_f23au")]
-custom_minimum_size = Vector2(91, 29)
+custom_minimum_size = Vector2(97, 29)
 layout_mode = 2
-text = "Disabled"
-color = "Secondary"
+text = "Disabled:"
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer" unique_id=835354093]
 custom_minimum_size = Vector2(0, 256)

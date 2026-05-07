@@ -35,7 +35,7 @@ func _update():
 	container.patch_margin_left = patch_margins[padding]
 	container.patch_margin_right = patch_margins[padding]
 	container.patch_margin_top = patch_margins[padding]
-	#await get_tree().create_timer(0.1).timeout
+	await get_tree().process_frame
 	container.size = size
 
 func _process(_delta: float) -> void:

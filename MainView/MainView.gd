@@ -97,8 +97,6 @@ func _settings_changed(option_path,new_value):
 	if option_path == "core.preferences/display_name":
 		user_name.set_text(new_value)
 	if option_path == "core.developer/dev_tools":
-		Main.developerMode = new_value
 		for plugin_id in PluginManager.get_all_plugins():
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):
 				PluginManager.unload_plugin(plugin_id)
-		print(Main.developerMode)

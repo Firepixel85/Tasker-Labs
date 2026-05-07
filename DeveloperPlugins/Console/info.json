@@ -3,5 +3,6 @@
 	"version": "1.0.0",
 	"target_versions": ["2.0"],
 	"author": "Rosepen Studios",
-	"plugin_id": "com.rosepen.console"
+	"plugin_id": "com.rosepen.console",
+	"description": "A built-in debugging tool, used for viewing runtime logs. This plugin is part of Tasker's development tools that can be toggled through the settings menu."
 }

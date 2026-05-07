@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c32dqg5nub4xt"]
+
+[ext_resource type="Texture2D" uid="uid://blbv4fawyyl5a" path="res://Settings/Love Letter.png" id="1_05xlx"]
+[ext_resource type="Script" uid="uid://cgvm7t2o10haw" path="res://Settings/about_view.gd" id="1_lce6o"]
+
+[node name="AboutView" type="Control" unique_id=182374212]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+script = ExtResource("1_lce6o")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=967448878]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_05xlx")
+expand_mode = 3
+stretch_mode = 5

@@ -46,6 +46,8 @@ func set_text(new_text:String):
 func _ready():
 	RoseGarden.custom_themes_changed.connect(_update)
 	_update()
+	await get_tree().process_frame
+	_update()
 
 func _update():
 	var theme_path = str(RoseGarden._theme_path)+font_size

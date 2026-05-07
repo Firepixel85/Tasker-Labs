@@ -12,7 +12,7 @@ class_name RGButton
 @export_enum("Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Gray"
 @export var text := "Button"
 @export var icon:Texture2D
-@export_enum("None","Left","Right","Both") var connection := "None"
+@export_enum("None","Left","Right","BothHorizontal","Up","Down","BothVertical") var connection := "None"
 
 @export_category("Button Controls")
 @export var disabled:bool = false
@@ -33,15 +33,7 @@ func set_color(new_color:String):
 		if RoseGarden.Colors.verify_color(new_color,true) != OK:
 			return ERR_INVALID_PARAMETER
 	color = new_color
-	match connection:
-		"None":
-			base.texture = load(RoseGarden._get_file_path()+"Button/Base/Base"+color+".svg")
-		"Left":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseLeft/Base"+color+".svg")
-		"Right":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseRight/Base"+color+".svg")
-		"Both":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseBoth/Base"+color+".svg")
+	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
 	if color == "White" or ((color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
 		label.modulate = Color(0,0,0)
 		texture.modulate = Color(0,0,0)
@@ -101,8 +93,6 @@ func _update():
 	content_margin.add_theme_constant_override("margin_left",64)
 	content_margin.add_theme_constant_override("margin_right",64)
 	label.get_parent().add_theme_constant_override("separation",8)
-
-
 	if text == "":
 		label.get_parent().add_theme_constant_override("separation",0)
 		content_margin.add_theme_constant_override("margin_left",6)
@@ -135,7 +125,7 @@ func _ready() -> void:
 	RoseGarden.update_components.connect(_update)
 	_update_textures()
 	_update_themes()
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().process_frame
 	_update()
 
 func _mirror_to_button():
@@ -202,15 +192,7 @@ func _on_mouse_exited() -> void:
 		modulate = RoseGarden.Colors.COLOR_NORMAL
 
 func _update_textures():
-	match connection:
-		"None":
-			base.texture = load(RoseGarden._get_file_path()+"Button/Base/Base"+color+".svg")
-		"Left":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseLeft/Base"+color+".svg")
-		"Right":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseRight/Base"+color+".svg")
-		"Both":
-			base.texture = load(RoseGarden._get_file_path()+"Button/BaseBoth/Base"+color+".svg")
+	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
 
 func _update_themes():
 	label.theme = load(RoseGarden._theme_path+"Secondary.tres")

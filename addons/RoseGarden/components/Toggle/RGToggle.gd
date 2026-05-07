@@ -15,7 +15,7 @@ signal toggled(toggled_on:bool)
 
 var _texture_path
 var _hovered:bool = false
-
+var dont_animate:bool = false
 func set_color(new_color):
 	if RoseGarden.Colors.verify_color(new_color,false) != OK:
 		return ERR_INVALID_PARAMETER
@@ -33,8 +33,9 @@ func toggle():
 func is_hovered():
 	return _hovered
 
-func set_state(state:bool):
+func set_state(state:bool,no_animation:bool=false):
 	is_toggled = state
+	dont_animate = no_animation
 	_update()
 
 func set_accessible(is_accessible:bool):
@@ -76,14 +77,16 @@ func _show_off():
 	if Engine.is_editor_hint():
 		ball.position.x = 6
 	else:
-		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)).set_trans(Tween.TRANS_SPRING)
+	dont_animate = false
 
 func _show_on():
 	base.texture = load(_texture_path+"Base"+color+".svg")
 	if Engine.is_editor_hint():
 		ball.position.x = 34
 	else:
-		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)).set_trans(Tween.TRANS_SPRING)
+	dont_animate = false
 
 func _on_button_up() -> void:
 	button_up.emit()

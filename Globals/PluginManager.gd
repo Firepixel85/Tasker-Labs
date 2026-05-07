@@ -108,7 +108,7 @@ func scan_available_plugins():
 	dir.list_dir_end()
 
 	#Developer Plugins
-	if !Main.developerMode:
+	if !Settings.get_option_value("core.developer/dev_tools"):
 		return OK
 	dir = DirAccess.open("res://DeveloperPlugins")
 	dir.list_dir_begin()
@@ -181,26 +181,27 @@ func load_plugin(plugin_id):
 		Debug.log("Loading developer plugin: "+get_plugin_name(plugin_id),ID)
 		_loaded_plugin_scripts[plugin_id] = load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/plugin.gd").new()
 		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
+			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
 		_loaded_plugins.append(plugin_id)
 		save_data()
 		return OK
 	else:
-		Debug.error("Could't load plugin with id: "+plugin_id+", plugin not found",ID)
+		Debug.error("Could't load plugin with id: "+plugin_id+", didn't load",ID)
 		return ERR_DOES_NOT_EXIST
 
 func unload_plugin(plugin_id:String):
-	if _loaded_plugins.has(plugin_id):
-		_loaded_plugins.erase(plugin_id)
-		_loaded_plugin_scripts[plugin_id].stop()
-		_loaded_plugin_scripts.erase(plugin_id)
-		Debug.log("Unloaded plugin: "+get_plugin_name(plugin_id),ID)
-		save_data()
-		return OK
-	else:
+	if !_loaded_plugins.has(plugin_id):
 		Debug.error("Could't unload plugin with id: "+plugin_id+", plugin not found or not loaded",ID)
 		return ERR_DOES_NOT_EXIST
+
+	_loaded_plugins.erase(plugin_id)
+	_loaded_plugin_scripts[plugin_id].stop()
+	_loaded_plugin_scripts.erase(plugin_id)
+	Debug.log("Unloaded plugin: "+get_plugin_name(plugin_id),ID)
+	save_data()
+	return OK
 
 func is_developer_plugin(plugin_id):
 	if _developer_plugins.has(plugin_id):
@@ -219,10 +220,6 @@ func is_plugin_loaded(plugin_id):
 		return true
 	else:
 		return false
-
-
-func _start_load():#Called during startup
-	pass
 
 func get_all_plugins():
 	var plugin_list = []

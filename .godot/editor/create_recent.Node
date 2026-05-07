@@ -1,9 +1,10 @@
+TextureRect
+Sprite2D
+MarginContainer
 VBoxContainer
 HBoxContainer
 Control
 Label
-TextureRect
-MarginContainer
 ScrollContainer
 CenterContainer
 Button
@@ -11,4 +12,3 @@ CanvasLayer
 RichTextLabel
 TextEdit
 NinePatchRect
-Container

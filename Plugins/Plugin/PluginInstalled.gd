@@ -28,7 +28,7 @@ func update():
 	if PluginManager.is_plugin_version_controlled(plugin_id):
 		version_controlled_tag.visible = true
 	else:		version_controlled_tag.visible = false
-	toggle.set_state(PluginManager.is_plugin_loaded(plugin_id))
+	toggle.set_state(PluginManager.is_plugin_loaded(plugin_id),true)
 	toggle.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	Settings.setting_changed.connect(_on_setting_changed)
 	return OK
