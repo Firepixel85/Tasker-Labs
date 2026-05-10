@@ -52,10 +52,10 @@ func _find_index(array:Array,item):
 
 func _select(selection_id:String):
 	if !categories.has(selection_id):
-		return ERR_DOES_NOT_EXIST
+		return ERR_DOES_NOT_EXIST 
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(categories,selection_id)),0.15*int(Sidebar.doAnimation)*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(categories,selection_id)),0.15*int(Settings.get_option_value("core.preferences/animate_sidebar"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_categories()
 	category_selected.emit(selection_id)
 	Sidebar.tab_selected.emit(selection_id)

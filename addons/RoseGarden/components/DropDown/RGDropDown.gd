@@ -66,7 +66,7 @@ func get_selected_item():
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
-##
+
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update_textures)
 	RoseGarden.custom_themes_changed.connect(_update_themes)

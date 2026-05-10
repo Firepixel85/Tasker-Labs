@@ -1,6 +1,7 @@
 extends Control
 
 @onready var rcm_container: CanvasLayer = $RightClickMenuContainer
+@onready var tooltip_container: CanvasLayer = $TooltipContainer
 
 #MainView
 @onready var mainview_screen: HBoxContainer = $MainView
@@ -25,7 +26,8 @@ func _ready():
 	if Settings.option_exists("core.preferences/display_name"):
 		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
 	Settings.setting_changed.connect(_settings_changed)
-	RoseGarden.menu_layer = rcm_container
+	RoseGarden.set_menu_layer(rcm_container) 
+	RoseGarden.set_tooltip_layer(tooltip_container)
 	PluginManager._load_data()
 	open_mainview()
 	#Add settings:

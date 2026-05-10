@@ -109,12 +109,16 @@ func _update():
 	else:
 		modulate = RoseGarden.Colors.COLOR_NORMAL
 	match connection:
-		"None","Both":
+		"None","BothHorizontal","BothVertical":
 			pivot_offset = size/2
 		"Left":
 			pivot_offset = Vector2(0,size.y/2)
 		"Right":
 			pivot_offset = Vector2(size.x,size.y/2)
+		"Up":
+			pivot_offset = Vector2(size.x/2,0)
+		"Down":
+			pivot_offset = Vector2(size.x/2,size.y)
 	set_color(color)
 
 func _ready() -> void:
@@ -143,10 +147,12 @@ func _on_button_down() -> void:
 	button_down.emit()
 	if RoseGarden.Accessibility.get_disable_animations():
 		return
-	if connection != "Both":
-		tween.tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
+	if connection == "BothHorizontal":
+		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC) 
+	elif connection == "BothVertical":
+		tween.tween_property(self,"scale",Vector2(0.9,1),0.1).set_trans(Tween.TRANS_CUBIC)
 	else:
-		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"scale",Vector2(0.95,0.95),0.1).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	return
 

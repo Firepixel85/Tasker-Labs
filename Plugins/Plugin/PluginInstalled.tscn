@@ -125,6 +125,12 @@ custom_minimum_size = Vector2(209, 60)
 layout_mode = 2
 text = "Uninstall"
 
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_exited"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_exited"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_exited"]
 [connection signal="toggled" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_toggled"]
 [connection signal="de_hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_de_hovered"]
 [connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_hovered"]

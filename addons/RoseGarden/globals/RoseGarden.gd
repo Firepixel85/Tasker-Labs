@@ -186,7 +186,7 @@ func get_menu_layer():
 func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
-	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGRighClickMenu.tscn").instantiate())
+	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
 	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
 	var position = target_position
 
@@ -206,7 +206,7 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
-	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGRighClickMenu.tscn").instantiate())
+	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
 	submenu = menu_layer.get_child(get_child_count()-1)
 	submenu.is_submenu = true
 
@@ -248,3 +248,37 @@ func _delete_submenu_instantly():
 	for child in menu_layer.get_children():
 		if child.is_submenu:
 			child.queue_free()
+
+#Tooltip functions
+var tooltip_layer:CanvasLayer
+
+func set_tooltip_layer(layer:CanvasLayer):
+	tooltip_layer = layer
+
+func create_tooltip(tooltip:RGTooltip,position:Vector2):
+	if tooltip_layer.get_class() != "CanvasLayer":
+		return ERR_DOES_NOT_EXIST
+	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RGtooltip.tscn").instantiate())
+	var tooltip_object = tooltip_layer.get_child(get_child_count()-1)
+	tooltip_object.set_text(tooltip.text)
+	tooltip_object.set_show_keybind(tooltip.show_keybind)
+	tooltip_object.set_keybind(tooltip.keybind)
+	tooltip_object._ready()
+	tooltip_object.modulate = Color(1,1,1,0)
+	await get_tree().process_frame
+	var target_position = position + Vector2(16,16)
+	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x:
+		target_position.x = position.x - tooltip_object.size.x - 16
+	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y:
+		target_position.y = position.y - tooltip_object.size.y - 16
+	tooltip_object.position = target_position
+	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.065*int(!RoseGarden.Accessibility.get_disable_animations()))
+	return OK
+
+func clear_tooltips():
+	for child in tooltip_layer.get_children():
+		var tween = create_tween()
+		tween.tween_property(child,"modulate",Color(1,1,1,0),0.065*int(!RoseGarden.Accessibility.get_disable_animations()))
+		await tween.finished
+		child.queue_free()
+	return OK

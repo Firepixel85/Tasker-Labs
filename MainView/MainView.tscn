@@ -195,13 +195,13 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="RGButton" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(194, 60)
+custom_minimum_size = Vector2(187, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
 
 [node name="RGButton2" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(188, 60)
+custom_minimum_size = Vector2(181, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 color = "Purple"
@@ -569,6 +569,8 @@ text = ""
 icon = ExtResource("18_5lyvq")
 
 [node name="RightClickMenuContainer" type="CanvasLayer" parent="." unique_id=1097217257]
+
+[node name="TooltipContainer" type="CanvasLayer" parent="." unique_id=869070150]
 
 [connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Plugins" to="." method="open_plugins"]
 [connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Settings" to="." method="open_settings"]

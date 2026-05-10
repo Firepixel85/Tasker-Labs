@@ -1,0 +1,71 @@
+[gd_scene format=3 uid="uid://bsyg787v8iek0"]
+
+[ext_resource type="Script" uid="uid://dtylcxldc7rnl" path="res://addons/RoseGarden/components/Tooltip/RGtooltip.gd" id="1_vtjhh"]
+[ext_resource type="Texture2D" uid="uid://b2qqmp2jblyot" path="res://addons/RoseGarden/components/Tooltip/Container.svg" id="2_5g3c0"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_hy75m"]
+
+[node name="RGTooltip" type="Control" unique_id=352779523]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_vtjhh")
+text = "This is a tooltip with a keybind!"
+show_keybind = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2083171305]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="TextContainer" type="NinePatchRect" parent="HBoxContainer" unique_id=526868477]
+custom_minimum_size = Vector2(273, 0)
+layout_mode = 2
+texture = ExtResource("2_5g3c0")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/TextContainer" unique_id=1124944989]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Text" parent="HBoxContainer/TextContainer/CenterContainer" unique_id=85953319 instance=ExtResource("3_hy75m")]
+custom_minimum_size = Vector2(253, 25)
+layout_mode = 2
+mouse_filter = 2
+text = "This is a tooltip with a keybind!"
+font_size = "Secondary"
+
+[node name="KeybindContainer" type="NinePatchRect" parent="HBoxContainer" unique_id=2050099533]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+texture = ExtResource("2_5g3c0")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/KeybindContainer" unique_id=447506492]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="KeybindText" parent="HBoxContainer/KeybindContainer/CenterContainer" unique_id=1245523840 instance=ExtResource("3_hy75m")]
+custom_minimum_size = Vector2(31, 25)
+layout_mode = 2
+mouse_filter = 2
+text = "⌘K"
+font_size = "Secondary"

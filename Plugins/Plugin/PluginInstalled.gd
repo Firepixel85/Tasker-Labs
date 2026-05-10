@@ -4,12 +4,17 @@ class_name PluginInstalled
 @onready var icon: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Icon
 @onready var display_name: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Name
 @onready var version: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Version
-@onready var developer_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag
-@onready var trusted_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag
-@onready var version_controlled_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag
 @onready var toggle: RGToggle = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle
 @onready var uninstall: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall
 @onready var description: Label = $RGContainer/MarginContainer/VBoxContainer/Description
+
+#Tags
+@onready var developer_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag
+var developer_tag_hovered:bool = false
+@onready var trusted_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag
+var trusted_tag_hovered:bool = false
+@onready var version_controlled_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag
+var version_controlled_tag_hovered:bool = false
 
 var plugin_id:String = ""
 signal state_changed(plugin_id:String)
@@ -52,3 +57,44 @@ func _on_toggle_toggled(toggled_on: bool) -> void:
 func _on_setting_changed(option_path:String,new_value) -> void:
 	if option_path == "core.appearance/accent_color":
 		toggle.set_color(new_value)
+
+
+func _on_developer_tag_mouse_entered() -> void:
+	developer_tag_hovered = true
+	await get_tree().create_timer(1).timeout
+	if !developer_tag_hovered:
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text("Developer plugin")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on_developer_tag_mouse_exited() -> void:
+	developer_tag_hovered = false
+	RoseGarden.clear_tooltips()
+
+func _on_trusted_tag_mouse_entered() -> void:
+	trusted_tag_hovered = true
+	await get_tree().create_timer(1).timeout
+	if !trusted_tag_hovered:
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text("Trusted plugin developer")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on_trusted_tag_mouse_exited() -> void:
+	trusted_tag_hovered = false
+	RoseGarden.clear_tooltips()
+
+func _on_version_controlled_tag_mouse_entered() -> void:
+	version_controlled_tag_hovered = true
+	await get_tree().create_timer(1).timeout
+	if !version_controlled_tag_hovered:
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text("Version controlled plugin")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+
+func _on_version_controlled_tag_mouse_exited() -> void:
+	version_controlled_tag_hovered = false
+	RoseGarden.clear_tooltips()
