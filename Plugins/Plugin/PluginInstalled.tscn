@@ -12,13 +12,13 @@
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_0w7ew"]
 
 [node name="Control" type="Control" unique_id=804456938]
-custom_minimum_size = Vector2(512, 256)
+clip_children = 2
+custom_minimum_size = Vector2(512, 0)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_l1wwd")
 
 [node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_af81a")]
-custom_minimum_size = Vector2(512, 256)
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0

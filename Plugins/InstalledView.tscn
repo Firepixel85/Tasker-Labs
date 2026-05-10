@@ -48,3 +48,5 @@ layout_mode = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer2" unique_id=966286440]
 layout_mode = 2
 theme_override_constants/separation = 16
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1633290228]

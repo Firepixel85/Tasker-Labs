@@ -1,3 +1,4 @@
+CanvasLayer
 TextureRect
 Sprite2D
 MarginContainer
@@ -8,7 +9,6 @@ Label
 ScrollContainer
 CenterContainer
 Button
-CanvasLayer
 RichTextLabel
 TextEdit
 NinePatchRect

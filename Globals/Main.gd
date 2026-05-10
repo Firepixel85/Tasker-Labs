@@ -6,7 +6,8 @@ class window:
 	static var size := Vector2(0,0)
 	static var position := Vector2(0,0)
 
-var version:String = "2.0"
+const version:String = "2.0"
+const plugin_api_version:String = "1.0"
 
 func save_window_data():
 	while true:
@@ -43,6 +44,9 @@ func get_process_name(process_id:String):
 
 func get_version():
 	return version
+
+func get_plugin_api_version():
+	return plugin_api_version
 
 func get_current_view():
 	return main_view._current_view

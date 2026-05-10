@@ -12,9 +12,9 @@ class_name PluginInstalled
 @onready var description: Label = $RGContainer/MarginContainer/VBoxContainer/Description
 
 var plugin_id:String = ""
-signal state_changed
+signal state_changed(plugin_id:String)
 
-func update():
+func setup():
 	display_name.set_text(PluginManager.get_plugin_name(plugin_id))
 	version.set_text("v"+PluginManager.get_plugin_version(plugin_id))
 	description.text = PluginManager.get_plugin_description(plugin_id)
@@ -47,7 +47,7 @@ func _on_toggle_toggled(toggled_on: bool) -> void:
 		PluginManager.load_plugin(plugin_id)
 	else:
 		PluginManager.unload_plugin(plugin_id)
-	state_changed.emit()
+	state_changed.emit(plugin_id)
 
 func _on_setting_changed(option_path:String,new_value) -> void:
 	if option_path == "core.appearance/accent_color":

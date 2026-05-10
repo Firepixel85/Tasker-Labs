@@ -42,9 +42,9 @@ func get_plugin_author(plugin_id:String):
 
 func get_plugin_target_versions(plugin_id:String):
 	if _plugins.has(plugin_id):
-		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_version"]
+		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_api_version"]
 	elif _developer_plugins.has(plugin_id):
-		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_version"]
+		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_api_version"]
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_description(plugin_id:String):
@@ -146,8 +146,8 @@ func _verify_plugin(plugin_name:String,file_path:String="user://plugins/"):
 	if plugin_info == null:
 		Debug.error("Plugin "+plugin_name+" has invalid info.json file, skipping...",ID)
 		return ERR_INVALID_DATA
-	if !plugin_info["target_versions"].has(Main.get_version()):
-		Debug.error("Plugin "+plugin_name+" is not compatible with current version of Tasker, skipping...",ID)
+	if !plugin_info["target_api_versions"].has(Main.get_plugin_api_version()):
+		Debug.error("Plugin "+plugin_name+" is not compatible with current version of Tasker's plugin API, skipping...",ID)
 		return ERR_INVALID_DATA
 	if plugin_info["name"] == null:
 		Debug.error("Plugin "+plugin_name+" is missing name field in info.json file, skipping...",ID)
