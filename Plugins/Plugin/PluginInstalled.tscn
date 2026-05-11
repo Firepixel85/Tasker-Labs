@@ -11,6 +11,8 @@
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="7_tsylt"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_0w7ew"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqet5"]
+
 [node name="Control" type="Control" unique_id=804456938]
 clip_children = 2
 custom_minimum_size = Vector2(512, 0)
@@ -76,20 +78,23 @@ vertical_alignment = "Center"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeveloperTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=850466764]
+[node name="DeveloperTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1109569185]
 layout_mode = 2
-texture = ExtResource("4_l1wwd")
-stretch_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("4_l1wwd")
+flat = true
 
-[node name="TrustedTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=640991878]
+[node name="TrustedTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=442714636]
 layout_mode = 2
-texture = ExtResource("5_haqhc")
-stretch_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("5_haqhc")
+flat = true
 
-[node name="VersionControlledTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=269471812]
+[node name="VersionControlledTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1609555717]
 layout_mode = 2
-texture = ExtResource("6_y4jfl")
-stretch_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("6_y4jfl")
+flat = true
 
 [node name="Spacer2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1893405780]
 layout_mode = 2
@@ -127,10 +132,13 @@ text = "Uninstall"
 
 [connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_entered"]
 [connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_pressed"]
 [connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_entered"]
 [connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_pressed"]
 [connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_entered"]
 [connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_pressed"]
 [connection signal="toggled" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_toggled"]
 [connection signal="de_hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_de_hovered"]
 [connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_hovered"]

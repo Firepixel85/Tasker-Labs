@@ -2,6 +2,8 @@ extends Control
 
 @onready var rcm_container: CanvasLayer = $RightClickMenuContainer
 @onready var tooltip_container: CanvasLayer = $TooltipContainer
+@onready var popup_container: CenterContainer = $PopupContainer
+@onready var popup_fade: TextureRect = $PopupFade
 
 #MainView
 @onready var mainview_screen: HBoxContainer = $MainView
@@ -23,6 +25,8 @@ signal view_changed(new_view:String)
 
 func _ready():
 	Main.main_view = self
+	Popups.popup_container = popup_container
+	Popups.popup_fade = popup_fade
 	if Settings.option_exists("core.preferences/display_name"):
 		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
 	Settings.setting_changed.connect(_settings_changed)

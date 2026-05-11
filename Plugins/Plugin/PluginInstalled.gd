@@ -9,11 +9,11 @@ class_name PluginInstalled
 @onready var description: Label = $RGContainer/MarginContainer/VBoxContainer/Description
 
 #Tags
-@onready var developer_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag
+@onready var developer_tag: Button = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag
 var developer_tag_hovered:bool = false
-@onready var trusted_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag
+@onready var trusted_tag: Button = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag
 var trusted_tag_hovered:bool = false
-@onready var version_controlled_tag: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag
+@onready var version_controlled_tag: Button = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag
 var version_controlled_tag_hovered:bool = false
 
 var plugin_id:String = ""
@@ -98,3 +98,14 @@ func _on_version_controlled_tag_mouse_entered() -> void:
 func _on_version_controlled_tag_mouse_exited() -> void:
 	version_controlled_tag_hovered = false
 	RoseGarden.clear_tooltips()
+
+
+func _on_developer_tag_pressed() -> void:
+	print("test")
+	Popups.add_popup(preload("res://Plugins/Plugin/Popups/Developer.tscn"))
+
+func _on_trusted_tag_pressed() -> void:
+	Popups.add_popup(preload("res://Plugins/Plugin/Popups/Trusted.tscn"))
+
+func _on_version_controlled_tag_pressed() -> void:
+	Popups.add_popup(preload("res://Plugins/Plugin/Popups/VersionControlled.tscn"))

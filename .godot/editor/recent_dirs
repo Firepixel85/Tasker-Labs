@@ -1,3 +1,5 @@
+res://Plugins/Plugin/Popups/
+res://Globals/
 res://Settings/
 res://Plugins/
 res://MainView/
@@ -9,7 +11,6 @@ res://AppIcons/
 res://Settings/CoreOptions/Developer/DevTools/
 res://Settings/CoreOptions/Appearance/AccentColor/
 res://
-res://Globals/
 res://Icons/
 res://Globals/svgHelpers/
 res://LoadingScreen/

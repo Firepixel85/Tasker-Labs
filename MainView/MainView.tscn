@@ -49,6 +49,13 @@ colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
 gradient = SubResource("Gradient_h0v64")
 width = 2
 
+[sub_resource type="Gradient" id="Gradient_52bp6"]
+offsets = PackedFloat32Array(0.5235294)
+colors = PackedColorArray(0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_42b22"]
+gradient = SubResource("Gradient_52bp6")
+
 [node name="MainView" type="Control" unique_id=614983378]
 layout_mode = 3
 anchors_preset = 15
@@ -567,6 +574,26 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("18_5lyvq")
+
+[node name="PopupFade" type="TextureRect" parent="." unique_id=1982176613]
+visible = false
+modulate = Color(1, 1, 1, 0.627451)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_42b22")
+
+[node name="PopupContainer" type="CenterContainer" parent="." unique_id=200258608]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="RightClickMenuContainer" type="CanvasLayer" parent="." unique_id=1097217257]
 

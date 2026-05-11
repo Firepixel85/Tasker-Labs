@@ -34,6 +34,8 @@ func get_process_name(process_id:String):
 			return "Sidebar"
 		"core.settings":
 			return "Settings"
+		"core.popups":
+			return "Popups"
 		"unknown":
 			return "Unknown"
 		_:
