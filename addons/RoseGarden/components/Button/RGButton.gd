@@ -81,6 +81,8 @@ func set_disabled(is_disabled:bool):
 ##############
 
 func _process(_delta: float) -> void:
+	if base.size.x != size.x: #Update desync failsafe
+		_update()
 	if Engine.is_editor_hint():
 		set_color(color)
 		_update()
@@ -148,7 +150,7 @@ func _on_button_down() -> void:
 	if RoseGarden.Accessibility.get_disable_animations():
 		return
 	if connection == "BothHorizontal":
-		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC) 
+		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC)
 	elif connection == "BothVertical":
 		tween.tween_property(self,"scale",Vector2(0.9,1),0.1).set_trans(Tween.TRANS_CUBIC)
 	else:

@@ -101,7 +101,6 @@ func _on_version_controlled_tag_mouse_exited() -> void:
 
 
 func _on_developer_tag_pressed() -> void:
-	print("test")
 	Popups.add_popup(preload("res://Plugins/Plugin/Popups/Developer.tscn"))
 
 func _on_trusted_tag_pressed() -> void:

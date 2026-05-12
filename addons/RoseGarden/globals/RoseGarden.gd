@@ -267,10 +267,10 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	tooltip_object.modulate = Color(1,1,1,0)
 	await get_tree().process_frame
 	var target_position = position + Vector2(16,16)
-	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x:
-		target_position.x = position.x - tooltip_object.size.x - 16
-	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y:
-		target_position.y = position.y - tooltip_object.size.y - 16
+	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x-30:
+		target_position.x = position.x - tooltip_object.size.x - 46
+	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-30:
+		target_position.y = position.y - tooltip_object.size.y - 46
 	tooltip_object.position = target_position
 	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.065*int(!RoseGarden.Accessibility.get_disable_animations()))
 	return OK

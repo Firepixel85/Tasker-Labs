@@ -26,6 +26,7 @@ signal view_changed(new_view:String)
 func _ready():
 	Main.main_view = self
 	Popups.popup_container = popup_container
+	Popups._ready()
 	Popups.popup_fade = popup_fade
 	if Settings.option_exists("core.preferences/display_name"):
 		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
@@ -92,6 +93,11 @@ func open_plugins() -> void:
 	settings_screen.visible = false
 
 func _process(_delta: float) -> void:
+	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
+		Popups.remove_popup()
+		return
+	elif Popups.is_popup_active():
+		return
 	if Input.is_action_just_pressed("settings_open") and !_current_view == "settings":
 		open_settings()
 	if Input.is_action_just_pressed("plugin_open") and !_current_view == "plugins":

@@ -22,7 +22,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 40.0
 padding = "16"
 margin_number = 18
 
@@ -84,6 +84,7 @@ icon = ExtResource("5_is50w")
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme = ExtResource("6_7mmro")
+theme_override_font_sizes/font_size = 22
 text = "This Plugin has provided Tasker a link to it’s source files, so it can automatically be updated. Go to Plugins>Installed and press the “Update” button on the bottom right of your screen to update plugins."
 horizontal_alignment = 1
 autowrap_mode = 2

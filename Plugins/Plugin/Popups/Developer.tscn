@@ -20,7 +20,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_right = 0.0
-offset_bottom = 0.0
+offset_bottom = 10.0
 padding = "16"
 margin_number = 18
 
@@ -72,18 +72,19 @@ icon = ExtResource("5_0wwyf")
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme = ExtResource("6_v26lw")
-text = "This is a special type of plugin, embedded into Tasker’s files, mostly used by developers working on Tasker. If you don’t know what you are doing, don’t enable this type of plugins"
+theme_override_font_sizes/font_size = 22
+text = "This is a special type of plugin, embedded into Tasker’s files, mostly used by developers working on Tasker. If you don’t know what you are doing, don’t enable this type of plugins."
 horizontal_alignment = 1
 autowrap_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1655972974]
 layout_mode = 2
 
-[node name="Close2" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=198522931 instance=ExtResource("4_xoga8")]
+[node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=198522931 instance=ExtResource("4_xoga8")]
 custom_minimum_size = Vector2(187, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Got it!"
 
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
-[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Close2" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Close" to="." method="_on_close_pressed"]

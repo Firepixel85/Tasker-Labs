@@ -1,5 +1,5 @@
 extends HBoxContainer
-@onready var about_button: RGButton = $"Sidebar/Sidebar Bottom/VBoxContainer/AboutButton"
+
 @onready var category_handler: Control = $"Sidebar/Sidebar Bottom/VBoxContainer/Categories"
 @onready var option_handler: VBoxContainer = $VBoxContainer2/SceneContainer/MarginContainer/OptionHandler
 
@@ -13,8 +13,6 @@ func setup():
 	if _opened_category == "":
 		category_handler._select(Settings._category_list[0])
 	category_handler._select(_opened_category)
-	await get_tree().process_frame
-	about_button._update()
 
 func _on_close_button_pressed() -> void:
 	main_view.open_mainview()
