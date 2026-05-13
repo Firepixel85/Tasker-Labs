@@ -29,8 +29,10 @@ layout_mode = 2
 text = "Enabled:"
 
 [node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=446218147]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 266)
 layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1804441917]
 layout_mode = 2
@@ -42,8 +44,10 @@ layout_mode = 2
 text = "Disabled:"
 
 [node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer" unique_id=835354093]
-custom_minimum_size = Vector2(0, 256)
+custom_minimum_size = Vector2(0, 260)
 layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer2" unique_id=966286440]
 layout_mode = 2

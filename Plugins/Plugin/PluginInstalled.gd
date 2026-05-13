@@ -2,11 +2,12 @@ extends Control
 class_name PluginInstalled
 
 @onready var icon: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Icon
-@onready var display_name: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Name
-@onready var version: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Version
+@onready var display_name: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Name
+@onready var version: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Version
 @onready var toggle: RGToggle = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle
 @onready var uninstall: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall
 @onready var description: Label = $RGContainer/MarginContainer/VBoxContainer/Description
+@onready var author: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/Author
 
 #Tags
 @onready var developer_tag: Button = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag
@@ -23,6 +24,7 @@ func setup():
 	display_name.set_text(PluginManager.get_plugin_name(plugin_id))
 	version.set_text("v"+PluginManager.get_plugin_version(plugin_id))
 	description.text = PluginManager.get_plugin_description(plugin_id)
+	author.set_text(PluginManager.get_plugin_author(plugin_id))
 	if PluginManager.is_developer_plugin(plugin_id):
 		uninstall.set_disabled(true)
 		developer_tag.visible = true
@@ -41,10 +43,20 @@ func setup():
 func _on_uninstall_de_hovered() -> void:
 	if !PluginManager.is_developer_plugin(plugin_id):
 		uninstall.set_color("Gray")
+	RoseGarden.clear_tooltips()
 
 func _on_uninstall_hovered() -> void:
 	if !PluginManager.is_developer_plugin(plugin_id):
 		uninstall.set_color("Red")
+	await get_tree().create_timer(1).timeout
+	if !uninstall.is_hovered():
+		return
+	var tooltip = RGTooltip.new()
+	if PluginManager.is_developer_plugin(plugin_id):
+		tooltip.set_text("Developer plugins can't be uninstalled")
+	else:
+		tooltip.set_text("Uninstall "+PluginManager.get_plugin_name(plugin_id)+" plugin")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
 
 
 func _on_toggle_toggled(toggled_on: bool) -> void:
@@ -108,3 +120,19 @@ func _on_trusted_tag_pressed() -> void:
 
 func _on_version_controlled_tag_pressed() -> void:
 	Popups.add_popup(preload("res://Plugins/Plugin/Popups/VersionControlled.tscn"))
+
+
+func _on_toggle_hovered() -> void:
+	await get_tree().create_timer(1).timeout
+	if !toggle.is_hovered():
+		return
+	var tooltip = RGTooltip.new()
+	if PluginManager.is_plugin_loaded(plugin_id):
+		tooltip.set_text("Disable "+PluginManager.get_plugin_name(plugin_id)+" plugin")
+	else:
+		tooltip.set_text("Enable "+PluginManager.get_plugin_name(plugin_id)+" plugin")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+
+func _on_toggle_dehovered() -> void:
+	RoseGarden.clear_tooltips()

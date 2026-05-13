@@ -12,6 +12,8 @@ signal button_down
 signal button_up
 signal pressed
 signal toggled(toggled_on:bool)
+signal hovered
+signal dehovered
 
 var _texture_path
 var _hovered:bool = false
@@ -102,10 +104,12 @@ func _on_button_down() -> void:
 func _on_mouse_entered() -> void:
 	_hovered = true
 	modulate = RoseGarden.Colors.COLOR_HOVERED
+	hovered.emit()
 
 func _on_mouse_exited() -> void:
 	_hovered = false
 	modulate = RoseGarden.Colors.COLOR_NORMAL
+	dehovered.emit()
 
 func _ready() -> void:
 	_update()

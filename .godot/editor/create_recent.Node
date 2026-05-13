@@ -1,6 +1,6 @@
-TextureRect
-VBoxContainer
 HBoxContainer
+VBoxContainer
+TextureRect
 Label
 Control
 MarginContainer

@@ -16,13 +16,16 @@ func add_popup(popup_scene:Resource):
 	if !popup_scene is PackedScene:
 		Debug.error("Attempted to add popup with resource that is not a PackedScene",ID)
 		return ERR_INVALID_PARAMETER
+	RoseGarden.clear_tooltips()
 	popup_container.visible = true
 	popup_container.add_child(popup_scene.instantiate())
+	return OK
 
 
 func remove_popup():
 	if popup == null:
 		Debug.error("Attempted to remove popup when no popup is active",ID)
+		return ERR_DOES_NOT_EXIST
 	var tween = create_tween()
 	tween.parallel().tween_property(popup,"scale",Vector2(0.8,0.8),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -34,6 +37,7 @@ func remove_popup():
 	popup = null
 	popup_removed.emit()
 	Debug.log("Popup removed",ID)
+	return OK
 
 func get_popup():
 	return popup
