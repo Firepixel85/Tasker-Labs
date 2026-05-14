@@ -7,6 +7,8 @@ extends HBoxContainer
 
 var _opened_category = ""
 
+func _ready() -> void:
+	Settings._client = self
 func setup():
 	for id in Settings._category_list:
 		category_handler._add_category(Settings.get_category_name(id),Settings.get_category_icon(id),id)
@@ -15,7 +17,7 @@ func setup():
 	category_handler._select(_opened_category)
 
 func _on_close_button_pressed() -> void:
-	main_view.open_mainview()
+	main_view.open_view("mainview")
 
 
 func _on_category_selected(category_id: String) -> void:

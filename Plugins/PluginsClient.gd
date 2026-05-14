@@ -10,7 +10,7 @@ func _ready() -> void:
 	tabs.add_item("installed","Installed")
 
 func _on_close_pressed() -> void:
-	main_view.open_mainview()
+	main_view.open_view("mainview")
 
 func _process(_delta:float) -> void:
 	if Input.is_action_just_pressed("cmd_1") and Main.get_current_view() == "plugins":

@@ -7,6 +7,7 @@ var _category_names = {}
 var _category_list = []
 var _category_icons = {}
 var _option_order = {}
+var _client = null
 
 signal category_added(category_id)
 signal option_added(option_id,category_id)
@@ -25,7 +26,7 @@ func load_settings():
 	else:
 		Data.make_file("SettingsData")
 		save_settings()
-
+	settings_loaded.emit()
 	if option_exists("core.accessibility/disable_animations"):
 		_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
 	if option_exists("core.accessibility/increase_contrast"):
@@ -204,6 +205,14 @@ func option_exists(option_path:String):
 		return false
 
 	return _settings_list[category_id].has(option_id)
+
+func open_category(category_id:String):
+	if !_settings_list.has(category_id):
+		Debug.error("Attempted to open nonexistant category with id: "+category_id,ID)
+		return ERR_DOES_NOT_EXIST
+	Main.main_view.open_view("settings")
+	_client.category_handler._select(category_id)
+	return OK
 
 #Helper functions
 func _sync_with_rg(option_path:String,new_value):

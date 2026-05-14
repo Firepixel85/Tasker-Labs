@@ -1,8 +1,13 @@
 extends Button
+@onready var main_view: Control = $"../../../../../../../../../.."
 
 var keybinds := {
 	"Settings":"⌘,",
 	"Plugins":"⌘P"
+}
+var view_names := {
+	"Settings":"settings",
+	"Plugins":"plugins"
 }
 var hovered := false
 func _ready() -> void:
@@ -25,3 +30,6 @@ func _mouse_exited():
 	modulate = RoseGarden.Colors.TEXT_SECONDARY
 	hovered = false
 	RoseGarden.clear_tooltips()
+
+func _pressed() -> void:
+	main_view.open_view(view_names[name])

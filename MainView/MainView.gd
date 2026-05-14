@@ -6,35 +6,40 @@ extends Control
 @onready var popup_fade: TextureRect = $PopupFade
 
 #MainView
-@onready var mainview_screen: HBoxContainer = $MainView
+@onready var main_view: HBoxContainer = $MainView
 @onready var user_name: RGText = $"MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer/RGText"
 
 #Settings
-@onready var settings_screen: HBoxContainer = $Settings
+@onready var settings_view: HBoxContainer = $Settings
 
 #Plugins
-@onready var plugins: Control = $Plugins
+@onready var plugins_view: Control = $Plugins
 
-var _current_view:String = "mainview"
+const ID = "core.main_view"
+var _current_view:String = ""
 var view_nodes := {
-	"mainview":self,
-	"settings":settings_screen,
-	"plugins":plugins
+	"":Control.new(), #Used for startup where no view is selected
+	"mainview":null,
+	"settings":null,
+	"plugins":null
 }
 signal view_changed(new_view:String)
 
 func _ready():
 	Main.main_view = self
 	Popups.popup_container = popup_container
-	Popups._ready()
 	Popups.popup_fade = popup_fade
+	Popups._ready()
+	view_nodes["settings"] = settings_view
+	view_nodes["plugins"] = plugins_view
+	view_nodes["mainview"] = main_view
 	if Settings.option_exists("core.preferences/display_name"):
 		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
 	Settings.setting_changed.connect(_settings_changed)
-	RoseGarden.set_menu_layer(rcm_container) 
+	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	PluginManager._load_data()
-	open_mainview()
+	open_view("mainview")
 	#Add settings:
 
 	#Preferences
@@ -69,28 +74,22 @@ func _ready():
 	if !Settings.option_exists("core.developer/dev_tools"):
 		Settings.add_option("core.developer","dev_tools","res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn",true)
 
-
-func open_settings() -> void:
-	_current_view = "settings"
-	view_changed.emit("settings")
-	settings_screen.visible = true
-	mainview_screen.visible = false
-	plugins.visible = false
-	settings_screen.setup()
-
-func open_mainview():
-	_current_view = "mainview"
-	view_changed.emit("mainview")
-	mainview_screen.visible = true
-	settings_screen.visible = false
-	plugins.visible = false
-
-func open_plugins() -> void:
-	_current_view = "plugins"
-	view_changed.emit("plugins")
-	plugins.visible = true
-	mainview_screen.visible = false
-	settings_screen.visible = false
+func open_view(view_name:String):
+	if !view_nodes.has(view_name):
+		return ERR_ALREADY_EXISTS
+	if view_name == "settings":
+		settings_view.setup()
+	view_nodes[view_name].modulate = Color(1,1,1,0)
+	view_nodes[view_name].visible = true
+	var tween = create_tween()
+	tween.parallel().tween_property(view_nodes[view_name],"modulate",Color(1,1,1,1),0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(view_nodes[_current_view],"modulate",Color(1,1,1,0),0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	for key in view_nodes.keys():
+		if key != view_name:
+			view_nodes[key].visible = false
+	view_changed.emit(view_name)
+	_current_view = view_name
 
 func _process(_delta: float) -> void:
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
@@ -99,11 +98,11 @@ func _process(_delta: float) -> void:
 	elif Popups.is_popup_active():
 		return
 	if Input.is_action_just_pressed("settings_open") and !_current_view == "settings":
-		open_settings()
+		open_view("settings")
 	if Input.is_action_just_pressed("plugin_open") and !_current_view == "plugins":
-		open_plugins()
+		open_view("plugins")
 	if Input.is_action_just_pressed("view_close") and !_current_view == "mainview":
-		open_mainview()
+		open_view("mainview")
 
 func _settings_changed(option_path,new_value):
 	if option_path == "core.preferences/display_name":

@@ -66,7 +66,6 @@ grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,6 +324,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,8 +599,6 @@ grow_vertical = 2
 
 [node name="TooltipContainer" type="CanvasLayer" parent="." unique_id=869070150]
 
-[connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Plugins" to="." method="open_plugins"]
-[connection signal="pressed" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications/Settings" to="." method="open_settings"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]
 [connection signal="pressed" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/AboutButton" to="Settings" method="_on_about_button_pressed"]
 [connection signal="pressed" from="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer/CloseButton" to="Settings" method="_on_close_button_pressed"]

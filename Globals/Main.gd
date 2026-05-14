@@ -36,10 +36,12 @@ func get_process_name(process_id:String):
 			return "Settings"
 		"core.popups":
 			return "Popups"
+		"core.main_view":
+			return "MainView"
 		"unknown":
 			return "Unknown"
 		_:
-			if int(PluginManager.get_plugin_name(process_id)) == ERR_DOES_NOT_EXIST:
+			if int(PluginManager.get_plugin_name(process_id)) == int(ERR_DOES_NOT_EXIST):
 				return "Unknown"
 			else:
 				return PluginManager.get_plugin_name(process_id)
