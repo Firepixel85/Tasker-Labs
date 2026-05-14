@@ -12,7 +12,12 @@
 Tasker is a productivity powerhouse, designed to be fully plugin driven, allowing you to customize and extend its functionality to suit your unique workflow. Choose the features that suit you best and ingore the rest, making Tasker your own personal productivity dashboard.
 
 ### Installation
-Tasker 2.0 is currently in an early stage of development. However, since this is an open-source project and we believe in always giving you options you can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest test build to try for yourself. Please note that these builds are not stable and may contain bugs, so we recommend using them for testing purposes only. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find.
+Tasker 2.0 is currently in an early stage of development. However, since this is an open-source project and we believe in always giving you options you can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest test build to try for yourself. Please note that these builds are not stable and may contain bugs, so we recommend using them for testing purposes only. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. To install the latest preview build:
+1) Go to the [latest release](https://github.com/Firepixel85/Tasker-Labs/releases/tag/2.0pb1)
+2) Download the “Tasker.zip" file
+3) Extract the contents of the zip file
+4) Move the “Tasker” app to your Mac’s Applications folder
+5) Run the app!
 
 ### Documentation
 As Tasker is still in an early stage of development, we have not yet created comprehensive documentation. However, we are actively working on it and plan to have it available soon.
