@@ -29,8 +29,7 @@ On the bottom of the page, you will find a stamp that says "No AI". We would lik
 <br>
 <div align="center">
   
-![No AI Stamp SVG](https://github.com/user-attachments/assets/958a7e8a-f903-4403-be26-3f47712992e5)
-
+<img width="192" height="192" alt="No AI Stamp Github" src="https://github.com/user-attachments/assets/16c80169-de83-4ce8-9a30-1ef9bf5fe235" />
 
 Developed by Rosepen Studios
 </div>
