@@ -20,6 +20,11 @@ As Tasker is still in an early stage of development, we have not yet created com
 ### Tasker for developers
 Tasker is built with developers in mind, and we want to make it as easy as possible for you to contribute and create plugins. We are currently working on creating the needed documentation and resources to help you get started with plugin development. Rest assured, on realease, Tasker 2.0 will be a developer-friendly platform with plenty of resources and an easy to use plugin API to help you create the amazing plugins that power Tasker.
 
+### Screenshots
+<img width="1248" height="870" alt="Screenshot 2026-05-14 at 6 30 41 PM" src="https://github.com/user-attachments/assets/024ca281-bf3d-48b9-bc0b-ef78a7d8af37" />
+<img width="1248" height="870" alt="Screenshot 2026-05-14 at 6 30 47 PM" src="https://github.com/user-attachments/assets/94f5dccb-c5c3-41de-b665-9a8702427100" />
+<img width="1248" height="870" alt="Screenshot 2026-05-14 at 6 30 50 PM" src="https://github.com/user-attachments/assets/0708d4ba-0990-43a2-93e5-419c4a900eca" />
+
 ### License
 We use a custom license for Tasker called FUL (Free Use License), which you can view [here](https://github.com/Firepixel85/Tasker-Labs/blob/main/LICENSE.md). This license gives you the freedom to use, modify, and distribute Tasker as you see fit, while also ensuring that our code may never be used to generate cash profit for anyone. We believe in the power of open-source software and want to make sure that Tasker remains free and accessible to everyone.
 
