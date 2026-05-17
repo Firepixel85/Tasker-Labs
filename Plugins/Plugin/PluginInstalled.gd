@@ -136,3 +136,20 @@ func _on_toggle_hovered() -> void:
 
 func _on_toggle_dehovered() -> void:
 	RoseGarden.clear_tooltips()
+
+func _on_uninstall_pressed() -> void:
+	pass # Replace with function body.
+
+func copy_id():
+	DisplayServer.clipboard_set(plugin_id)
+
+
+func _on_rg_container_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
+		var menu = RGmenu.new()
+		menu.add_action("Toggle plugin",Icons.TOGGLE,toggle.toggle)
+		menu.add_action("Copy plugin ID",Icons.CODE,copy_id)
+		if !PluginManager.is_developer_plugin(plugin_id):
+			menu.add_seperator()
+			menu.add_action("Delete plugin",Icons.TRASH,_on_uninstall_pressed,[],true)
+		RoseGarden.create_rc_menu(menu,get_global_mouse_position())

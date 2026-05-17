@@ -1,9 +1,9 @@
+Control
 HBoxContainer
 VBoxContainer
 TextureRect
-Label
-Control
 MarginContainer
+Label
 Button
 CenterContainer
 CanvasLayer

@@ -31,7 +31,6 @@ func update():
 		icon_container.modulate = Color("E74747")
 
 func _on_button_mouse_entered() -> void:
-	manager.selection.visible = true
 	@warning_ignore("narrowing_conversion")
 	manager.select_position(position.y,is_destructive)
 
@@ -42,6 +41,7 @@ func _on_button_mouse_entered() -> void:
 	if is_menu:
 		RoseGarden._delete_submenu_instantly()
 		RoseGarden._create_rc_submenu(menu,get_global_transform().origin-Vector2(9,8))
+
 
 func _on_button_pressed() -> void:
 	if is_menu:
@@ -56,7 +56,7 @@ func _on_button_pressed() -> void:
 		action.call(action_params)
 
 func _on_button_mouse_exited() -> void:
-	manager.selection.visible = false
+	pass
 
 func _update_textures():
 	title_label.theme = RoseGarden.Themes.Main

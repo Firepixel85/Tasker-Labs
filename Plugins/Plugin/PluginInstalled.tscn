@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_af81a"]
 [ext_resource type="Script" uid="uid://cn6ur0kph4bh2" path="res://Plugins/Plugin/PluginInstalled.gd" id="1_l1wwd"]
-[ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/Book.svg" id="2_hv1du"]
+[ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="2_hv1du"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_0pp08"]
 [ext_resource type="Texture2D" uid="uid://c7yuanhdy8u5c" path="res://Plugins/Plugin/Developer.svg" id="4_l1wwd"]
 [ext_resource type="Texture2D" uid="uid://bk23k06rso3e3" path="res://Plugins/Plugin/Trusted.svg" id="5_haqhc"]
@@ -10,15 +10,15 @@
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="7_0pp08"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="7_tsylt"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_0w7ew"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="9_p1vhr"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqet5"]
 
 [node name="PluginInstalled" type="Control" unique_id=804456938]
 clip_children = 2
-custom_minimum_size = Vector2(512, 0)
+custom_minimum_size = Vector2(512, 256)
 layout_mode = 3
 anchors_preset = 0
+focus_mode = 1
 script = ExtResource("1_l1wwd")
 
 [node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_af81a")]
@@ -30,6 +30,7 @@ offset_right = 512.0
 offset_bottom = 256.0
 grow_horizontal = 1
 grow_vertical = 1
+focus_mode = 1
 padding = "16"
 margin_number = 18
 
@@ -79,10 +80,9 @@ rounded = true
 color = "Secondary"
 vertical_alignment = "Center"
 
-[node name="Author" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1235354987 instance=ExtResource("3_0pp08")]
+[node name="Author" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1235354987 instance=ExtResource("3_0pp08")]
 custom_minimum_size = Vector2(57, 25)
 layout_mode = 2
-script = ExtResource("9_p1vhr")
 text = "Author"
 font_size = "Secondary"
 color = "Secondary"
@@ -144,6 +144,7 @@ custom_minimum_size = Vector2(209, 60)
 layout_mode = 2
 text = "Uninstall"
 
+[connection signal="gui_input" from="RGContainer" to="." method="_on_rg_container_gui_input"]
 [connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_entered"]
 [connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_exited"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_pressed"]
@@ -158,3 +159,4 @@ text = "Uninstall"
 [connection signal="toggled" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_toggled"]
 [connection signal="de_hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_de_hovered"]
 [connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_hovered"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_pressed"]

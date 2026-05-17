@@ -4,14 +4,14 @@ class_name RGRighClickMenu
 @onready var texture: NinePatchRect = $NinePatchRect
 @onready var selection: NinePatchRect = $NinePatchRect/MarginContainer/Control/NinePatchRect
 var is_submenu:bool = false
-
+var _mouse_inside := false
 func _ready() -> void:
 	scale = Vector2(0,0)
 
 func _custom_ready() -> void:
 	if !is_submenu:
 		grab_focus()
-	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SPRING)
+	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.RightClickMenu.animateAppearance)).set_trans(Tween.TRANS_SPRING)
 
 
 func _on_focus_exited() -> void:
@@ -84,7 +84,8 @@ func _update():
 	texture.size.y = size.y
 
 func select_position(pos:int,destructive:bool=false):
-	selection.position.y = pos
+	create_tween().tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	#selection.position.y = pos
 	if destructive:
 		selection.modulate = Color("170707")
 	else:
@@ -95,3 +96,26 @@ func update_selection(is_menu:bool):
 		return
 	if !is_menu:
 		RoseGarden._delete_submenu_instantly()
+
+
+func _on_mouse_entered() -> void:
+	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,1),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection))
+
+
+func _on_mouse_exited() -> void:
+	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,0),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection))
+
+func _process(_delta: float) -> void:
+	var currently_inside = is_mouse_inside()
+
+	if currently_inside and not _mouse_inside:
+		_mouse_inside = true
+		_on_mouse_entered()
+	elif not currently_inside and _mouse_inside:
+		_mouse_inside = false
+		_on_mouse_exited()
+
+func is_mouse_inside() -> bool:
+	var mouse_pos = get_viewport().get_mouse_position()
+	var rect = Rect2(global_position, size)
+	return rect.has_point(mouse_pos)

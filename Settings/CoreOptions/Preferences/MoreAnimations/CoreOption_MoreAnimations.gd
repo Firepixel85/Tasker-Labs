@@ -4,6 +4,7 @@ extends Control
 @onready var title: RGText = $HBoxContainer/RGText
 
 signal value_changed(option_id,new_value)
+var hovered:bool = false
 var first_value_set:bool = false
 
 func set_value(value:bool):
@@ -26,3 +27,17 @@ func _update_color(option_path,new_value):
 		toggle.set_color(new_value)
 	if option_path == "core.accessibility/symbol_indicators":
 		toggle.set_accessible(new_value)
+
+
+func _on_mouse_entered() -> void:
+	hovered = true
+	await get_tree().create_timer(1).timeout
+	if !hovered:
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text("Increase the amount of small animations in Tasker")
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on_mouse_exited() -> void:
+	hovered = false
+	RoseGarden.clear_tooltips()

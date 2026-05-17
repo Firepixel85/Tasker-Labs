@@ -66,6 +66,7 @@ grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -472,7 +473,6 @@ theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
 [node name="Plugins" type="Control" parent="." unique_id=971450490]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -493,6 +493,7 @@ theme_override_constants/separation = 0
 [node name="HBoxContainer" type="HBoxContainer" parent="Plugins/Container" unique_id=76324675]
 custom_minimum_size = Vector2(0, 92)
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/separation = 0
 
 [node name="Spacer" type="Control" parent="Plugins/Container/HBoxContainer" unique_id=833729629]

@@ -4,7 +4,7 @@ extends Control
 @onready var selection: NinePatchRect = $Selection
 @onready var scene_container: Control = $"../../../../VBoxContainer2/SceneContainer"
 
-const id = "core.sidebar"
+const ID = "core.sidebar"
 var tabs = []
 var _tab_scenes = {}
 var selected:String
@@ -20,6 +20,7 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.text = title
 	tab.icon = icon
 	tab.flat = true
+	tab.custom_minimum_size.y = 56
 	tab.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	tab.theme = preload("res://CustomThemes/Main.tres")
 	tab.add_theme_stylebox_override("Focus",StyleBoxEmpty.new())
@@ -33,7 +34,7 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 			child.queue_free()
 		scene_container.add_child(_tab_scenes[tabs[0]].instantiate())
 	_shade_tabs()
-	Debug.log("Tab added by process: "+Main.get_process_name(tab_id),id)
+	Debug.log("Tab added by process: "+Main.get_process_name(tab_id),ID)
 	return OK
 
 func _remove_tab(tab_id:String):
@@ -74,7 +75,7 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.preferences/animate_sidebar"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.preferences/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	for child in scene_container.get_children():
 		child.queue_free()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2tjyhx4rxxhl"]
 
-[ext_resource type="Script" uid="uid://hybh6rn57ic0" path="res://Settings/CoreOptions/Preferences/AnimateSidebar/CoreOption_AnimateSidebar.gd" id="1_hikx6"]
+[ext_resource type="Script" uid="uid://hybh6rn57ic0" path="res://Settings/CoreOptions/Preferences/MoreAnimations/CoreOption_MoreAnimations.gd" id="1_hikx6"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_07aj8"]
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_xcsu2"]
 
@@ -21,9 +21,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_07aj8")]
-custom_minimum_size = Vector2(168, 29)
+custom_minimum_size = Vector2(171, 29)
 layout_mode = 2
-text = "Animate sidebar"
+text = "More animations"
 vertical_alignment = "Center"
 
 [node name="Control" type="Control" parent="HBoxContainer" unique_id=1827030005]
@@ -37,4 +37,6 @@ alignment = 1
 [node name="Toggle" parent="HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("3_xcsu2")]
 layout_mode = 2
 
+[connection signal="mouse_entered" from="HBoxContainer/RGText" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/RGText" to="." method="_on_mouse_exited"]
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggled"]

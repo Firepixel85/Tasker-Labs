@@ -39,6 +39,7 @@ func _ready():
 	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	PluginManager._load_data()
+	_update_setting_values()
 	open_view("mainview")
 	#Add settings:
 
@@ -49,8 +50,8 @@ func _ready():
 		Settings.add_option("core.preferences","display_name","res://Settings/CoreOptions/Preferences/DisplayName/CoreOption_DisplayName.tscn","Name")
 	if !Settings.option_exists("core.preferences/update_notify"):
 		Settings.add_option("core.preferences","update_notify","res://Settings/CoreOptions/Preferences/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
-	if !Settings.option_exists("core.preferences/animate_sidebar"):
-		Settings.add_option("core.preferences","animate_sidebar","res://Settings/CoreOptions/Preferences/AnimateSidebar/CoreOption_AnimateSidebar.tscn",false)
+	if !Settings.option_exists("core.preferences/more_animations"):
+		Settings.add_option("core.preferences","more_animations","res://Settings/CoreOptions/Preferences/MoreAnimations/CoreOption_MoreAnimations.tscn",false)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
@@ -82,8 +83,8 @@ func open_view(view_name:String):
 	view_nodes[view_name].modulate = Color(1,1,1,0)
 	view_nodes[view_name].visible = true
 	var tween = create_tween()
-	tween.parallel().tween_property(view_nodes[view_name],"modulate",Color(1,1,1,1),0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(view_nodes[_current_view],"modulate",Color(1,1,1,0),0.15).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(view_nodes[view_name],"modulate",Color(1,1,1,1),0.15*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(view_nodes[_current_view],"modulate",Color(1,1,1,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	for key in view_nodes.keys():
 		if key != view_name:
@@ -94,15 +95,19 @@ func open_view(view_name:String):
 func _process(_delta: float) -> void:
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
 		Popups.remove_popup()
+		RoseGarden._delete_all_menus()
 		return
 	elif Popups.is_popup_active():
 		return
 	if Input.is_action_just_pressed("settings_open") and !_current_view == "settings":
 		open_view("settings")
+		RoseGarden._delete_all_menus()
 	if Input.is_action_just_pressed("plugin_open") and !_current_view == "plugins":
 		open_view("plugins")
+		RoseGarden._delete_all_menus()
 	if Input.is_action_just_pressed("view_close") and !_current_view == "mainview":
 		open_view("mainview")
+		RoseGarden._delete_all_menus()
 
 func _settings_changed(option_path,new_value):
 	if option_path == "core.preferences/display_name":
@@ -111,3 +116,11 @@ func _settings_changed(option_path,new_value):
 		for plugin_id in PluginManager.get_all_plugins():
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):
 				PluginManager.unload_plugin(plugin_id)
+	if option_path == "core.preferences/more_animations":
+		RoseGarden.RightClickMenu.animateSelection = new_value
+		RoseGarden.DropdownMenu.animateSelection = new_value
+
+func _update_setting_values():
+	user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
+	RoseGarden.RightClickMenu.animateSelection = Settings.get_option_value("core.preferences/more_animations")
+	RoseGarden.DropdownMenu.animateSelection = Settings.get_option_value("core.preferences/more_animations")

@@ -36,7 +36,6 @@ theme_override_constants/margin_bottom = 8
 layout_mode = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="NinePatchRect/MarginContainer/Control" unique_id=1251549522]
-visible = false
 modulate = Color(0.25490198, 0.25490198, 0.25490198, 1)
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 1
@@ -57,3 +56,5 @@ theme_override_constants/separation = 8
 
 [connection signal="focus_entered" from="." to="." method="_on_focus_entered"]
 [connection signal="focus_exited" from="." to="." method="_on_focus_exited"]
+[connection signal="mouse_entered" from="NinePatchRect" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="NinePatchRect" to="." method="_on_mouse_exited"]

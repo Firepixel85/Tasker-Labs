@@ -94,6 +94,12 @@ class Colors:
 			return ERR_INVALID_PARAMETER
 		return _color_dic[color]
 
+class RightClickMenu:
+	static var animateSelection:bool = true
+	static var animateAppearance:bool = true
+
+class DropdownMenu:
+	static var animateSelection:bool = false
 #Themes
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
@@ -186,6 +192,9 @@ func get_menu_layer():
 func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
+	if menu_layer.get_child_count() > 0:
+		_delete_all_menus()
+		return ERR_ALREADY_EXISTS
 	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
 	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
 	var position = target_position
@@ -238,8 +247,11 @@ func _delete_submenu():
 func _delete_all_menus():
 	var menus = menu_layer.get_children()
 	for child in menus:
-		child.modulate = Color(1,1,1,0)
-	await get_tree().create_timer(0.3).timeout
+		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(RightClickMenu.animateAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		await get_tree().create_timer(0.2).timeout
+		if child != null:
+			child.modulate = Color(1,1,1,0)
+	await get_tree().create_timer(0.1).timeout
 	for child in menus:
 		if child != null:
 			child.queue_free()

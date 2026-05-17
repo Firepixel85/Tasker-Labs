@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://87s34j4gek8g" path="res://addons/RoseGarden/components/RightClickMenu/RGrcm_item.gd" id="1_1671h"]
 [ext_resource type="Texture2D" uid="uid://c4u5gv4vtcy7x" path="res://addons/RoseGarden/icons/Home.svg" id="1_2541i"]
-[ext_resource type="Theme" path="res://addons/RoseGarden/themes/Main.tres" id="2_u3d8l"]
+[ext_resource type="Theme" uid="uid://dw45wy4ir66dr" path="res://addons/RoseGarden/themes/Main.tres" id="2_u3d8l"]
 [ext_resource type="FontFile" uid="uid://n0eesastugb5" path="res://CustomThemes/fonts/Regular.otf" id="3_1671h"]
 [ext_resource type="Texture2D" uid="uid://lewiwnhpwnhu" path="res://addons/RoseGarden/components/RightClickMenu/Arrow.svg" id="4_u3d8l"]
 

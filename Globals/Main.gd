@@ -7,6 +7,7 @@ class window:
 	static var position := Vector2(0,0)
 
 const version:String = "2.0"
+const version_sufix:String = "pb1"
 const plugin_api_version:String = "1.0"
 
 func save_window_data():
@@ -38,6 +39,8 @@ func get_process_name(process_id:String):
 			return "Popups"
 		"core.main_view":
 			return "MainView"
+		"core.icons":
+			return "Icons"
 		"unknown":
 			return "Unknown"
 		_:
@@ -48,6 +51,9 @@ func get_process_name(process_id:String):
 
 func get_version():
 	return version
+
+func get_version_sufix():
+	return version_sufix
 
 func get_plugin_api_version():
 	return plugin_api_version

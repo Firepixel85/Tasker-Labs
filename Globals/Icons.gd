@@ -1,7 +1,8 @@
 extends Node
 
+const ID = "core.icons"
 const HOME = preload("res://Icons/Home.svg")
-const BOOK = preload("res://Icons/Book.svg")
+const CHECKBOOK = preload("res://Icons/CheckBook.svg")
 const CHECKLIST = preload("res://Icons/Checklist.svg")
 const TRASH = preload("res://Icons/Trash.svg")
 const LEFT = preload("res://Icons/Left.svg")
@@ -9,6 +10,20 @@ const RIGHT = preload("res://Icons/Right.svg")
 const SCISSORS = preload("res://Icons/Scissors.svg")
 const UP = preload("res://Icons/Up.svg")
 const DOWN = preload("res://Icons/DOWN.svg")
-
-func get_icon(icon_name:String):
-	return load("res://Icons/"+icon_name+".svg")
+const TERMINAL = preload("res://Icons/Terminal.svg")
+const CODE = preload("res://Icons/Code.svg")
+const X = preload("res://Icons/X.svg")
+const USER = preload("res://Icons/User.svg")
+const PALETTE = preload("res://Icons/Palette.svg")
+const PERSON = preload("res://Icons/Person.svg")
+const GEAR = preload("res://Icons/Gear.svg")
+const PUZZLE = preload("res://Icons/Puzzle.svg")
+const SEARCH = preload("res://Icons/Search.svg")
+const SQUAREX = preload("res://Icons/SquareX.svg")
+const PAPERPLANE = preload("res://Icons/PaperPlane.svg")
+const PENCIL = preload("res://Icons/Pencil.svg")
+const ERASER = preload("res://Icons/Eraser.svg")
+const WARNING = preload("res://Icons/Warning.svg")
+const LOCK = preload("res://Icons/Lock.svg")
+const DOWNARROWCIRCLE = preload("res://Icons/DownArrowCircle.svg")
+const TOGGLE = preload("res://Icons/Toggle.svg")

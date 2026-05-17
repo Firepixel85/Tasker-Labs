@@ -2,6 +2,9 @@
 
 [ext_resource type="Texture2D" uid="uid://blbv4fawyyl5a" path="res://Settings/Love Letter.png" id="1_05xlx"]
 [ext_resource type="Script" uid="uid://cgvm7t2o10haw" path="res://Settings/about_view.gd" id="1_lce6o"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_cy7fj"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_0hufl"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="7_0hufl"]
 
 [node name="AboutView" type="Control" unique_id=182374212]
 layout_mode = 3
@@ -13,7 +16,149 @@ grow_vertical = 2
 size_flags_vertical = 3
 script = ExtResource("1_lce6o")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=967448878]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=2001409466]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=1853318401]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(123, 29)
+layout_mode = 2
+text = "App version"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1695967851]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="App Version" parent="VBoxContainer/HBoxContainer" unique_id=1783896512 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(35, 29)
+layout_mode = 2
+text = "2.0"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="VBoxContainer" unique_id=1089237388]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer2" unique_id=113582502 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(79, 29)
+layout_mode = 2
+text = "Build ID"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer2" unique_id=670036622]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Build ID" parent="VBoxContainer/HBoxContainer2" unique_id=121091451 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(73, 29)
+layout_mode = 2
+text = "2.0pb1"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer" unique_id=1047760679]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer3" unique_id=1659064629 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(116, 29)
+layout_mode = 2
+text = "API version"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer3" unique_id=744836884]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="API Version" parent="VBoxContainer/HBoxContainer3" unique_id=1622091120 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(32, 29)
+layout_mode = 2
+text = "1.0"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="VBoxContainer" unique_id=653530304]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer4" unique_id=658456251 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(173, 29)
+layout_mode = 2
+text = "Available plugins"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer4" unique_id=1314630726]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Available Plugins" parent="VBoxContainer/HBoxContainer4" unique_id=1664700552 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer5" type="HBoxContainer" parent="VBoxContainer" unique_id=385586612]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer5" unique_id=1455293752 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(158, 29)
+layout_mode = 2
+text = "Loaded plugins"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer5" unique_id=1728521283]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Loaded plugins" parent="VBoxContainer/HBoxContainer5" unique_id=436930821 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(15, 29)
+layout_mode = 2
+text = "0"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer6" type="HBoxContainer" parent="VBoxContainer" unique_id=987735260]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer6" unique_id=959284475 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(267, 29)
+layout_mode = 2
+text = "Open app_userdata folder"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer6" unique_id=1295688814]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Open User Folder" parent="VBoxContainer/HBoxContainer6" unique_id=1426858299 instance=ExtResource("4_0hufl")]
+custom_minimum_size = Vector2(183, 60)
+layout_mode = 2
+text = "Open"
+
+[node name="Control" type="Control" parent="VBoxContainer" unique_id=327161730]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer7" type="HBoxContainer" parent="VBoxContainer" unique_id=51422649]
+layout_mode = 2
+alignment = 1
+
+[node name="Open Love Letter" parent="VBoxContainer/HBoxContainer7" unique_id=366409557 instance=ExtResource("4_0hufl")]
+custom_minimum_size = Vector2(280, 60)
+layout_mode = 2
+text = "Open Love Letter"
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1205748727]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,3 +168,26 @@ grow_vertical = 2
 texture = ExtResource("1_05xlx")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="." unique_id=209113081]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer2" unique_id=1865431670]
+layout_mode = 2
+alignment = 2
+
+[node name="Close LL" parent="VBoxContainer2/HBoxContainer" unique_id=909173428 instance=ExtResource("4_0hufl")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_0hufl")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer6/Open User Folder" to="." method="_on_open_user_folder_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer7/Open Love Letter" to="." method="_on_open_love_letter_pressed"]
+[connection signal="pressed" from="VBoxContainer2/HBoxContainer/Close LL" to="." method="_on_close_ll_pressed"]
