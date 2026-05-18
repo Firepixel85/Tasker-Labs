@@ -94,12 +94,11 @@ class Colors:
 			return ERR_INVALID_PARAMETER
 		return _color_dic[color]
 
-class RightClickMenu:
-	static var animateSelection:bool = true
-	static var animateAppearance:bool = true
+class Animations:
+	static var rcmSelection:bool = false
+	static var rcmAppearance:bool = true
+	static var ddmSelection:bool = false
 
-class DropdownMenu:
-	static var animateSelection:bool = false
 #Themes
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
@@ -247,7 +246,7 @@ func _delete_submenu():
 func _delete_all_menus():
 	var menus = menu_layer.get_children()
 	for child in menus:
-		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(RightClickMenu.animateAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		await get_tree().create_timer(0.2).timeout
 		if child != null:
 			child.modulate = Color(1,1,1,0)

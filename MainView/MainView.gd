@@ -117,10 +117,10 @@ func _settings_changed(option_path,new_value):
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):
 				PluginManager.unload_plugin(plugin_id)
 	if option_path == "core.preferences/more_animations":
-		RoseGarden.RightClickMenu.animateSelection = new_value
-		RoseGarden.DropdownMenu.animateSelection = new_value
+		RoseGarden.Animations.rcmSelection = new_value
+		RoseGarden.Animations.ddmSelection = new_value
 
 func _update_setting_values():
 	user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
-	RoseGarden.RightClickMenu.animateSelection = Settings.get_option_value("core.preferences/more_animations")
-	RoseGarden.DropdownMenu.animateSelection = Settings.get_option_value("core.preferences/more_animations")
+	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.preferences/more_animations")
+	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.preferences/more_animations")

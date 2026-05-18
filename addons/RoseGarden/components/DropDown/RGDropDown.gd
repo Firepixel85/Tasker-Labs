@@ -131,7 +131,7 @@ func _new_menu_item(node: Node) -> void:
 
 func _on_menu_item_highlighted(id: int) -> void:
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.DropdownMenu.animateSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 
 func _on_focus_exited() -> void:

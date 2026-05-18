@@ -11,7 +11,7 @@ func _ready() -> void:
 func _custom_ready() -> void:
 	if !is_submenu:
 		grab_focus()
-	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.RightClickMenu.animateAppearance)).set_trans(Tween.TRANS_SPRING)
+	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.rcmAppearance)).set_trans(Tween.TRANS_SPRING)
 
 
 func _on_focus_exited() -> void:
@@ -84,7 +84,7 @@ func _update():
 	texture.size.y = size.y
 
 func select_position(pos:int,destructive:bool=false):
-	create_tween().tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	#selection.position.y = pos
 	if destructive:
 		selection.modulate = Color("170707")
@@ -99,11 +99,11 @@ func update_selection(is_menu:bool):
 
 
 func _on_mouse_entered() -> void:
-	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,1),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection))
+	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,1),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection))
 
 
 func _on_mouse_exited() -> void:
-	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,0),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.RightClickMenu.animateSelection))
+	create_tween().tween_property(selection,"modulate",Color(selection.modulate.r,selection.modulate.g,selection.modulate.b,0),0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection))
 
 func _process(_delta: float) -> void:
 	var currently_inside = is_mouse_inside()
