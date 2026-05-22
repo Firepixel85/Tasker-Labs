@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="11_a7d7b"]
 [ext_resource type="Script" uid="uid://c62p4grvevb2b" path="res://MainView/SimpleButtonBehavior.gd" id="14_qlysq"]
 [ext_resource type="Script" uid="uid://djr8cefm3s8g2" path="res://Settings/SettingsClient.gd" id="16_5lyvq"]
+[ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="16_42b22"]
 [ext_resource type="Script" uid="uid://dr4s3kh54mb2" path="res://Settings/CategoryHandler.gd" id="17_5lyvq"]
 [ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="18_5lyvq"]
 [ext_resource type="Texture2D" uid="uid://dwe0vi0kcf2e0" path="res://Icons/ICircle.svg" id="19_42b22"]
@@ -66,7 +67,6 @@ grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -190,7 +190,7 @@ grow_vertical = 2
 theme_override_constants/margin_left = 20
 
 [node name="RGText" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
-custom_minimum_size = Vector2(52, 25)
+custom_minimum_size = Vector2(52, 28)
 layout_mode = 2
 text = "55:32"
 font_size = "Secondary"
@@ -202,13 +202,13 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="RGButton" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(187, 60)
+custom_minimum_size = Vector2(194, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
 
 [node name="RGButton2" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(181, 60)
+custom_minimum_size = Vector2(188, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 color = "Purple"
@@ -246,7 +246,7 @@ texture = ExtResource("4_jqlkf")
 stretch_mode = 3
 
 [node name="RGText" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=356765929 instance=ExtResource("5_v5kho")]
-custom_minimum_size = Vector2(108, 29)
+custom_minimum_size = Vector2(117, 34)
 layout_mode = 2
 text = "[Dynamic]"
 vertical_alignment = "Center"
@@ -312,6 +312,7 @@ custom_minimum_size = Vector2(390, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 placeholder_text = "Search..."
+icon = ExtResource("16_42b22")
 show_hint = true
 hint = "⌘F"
 
@@ -397,7 +398,7 @@ focus_mode = 1
 theme_override_constants/separation = 24
 
 [node name="AboutButton" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1549654276 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(235, 60)
+custom_minimum_size = Vector2(243, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "About"
@@ -429,7 +430,7 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 
 [node name="RGText" parent="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer" unique_id=2040068234 instance=ExtResource("5_v5kho")]
-custom_minimum_size = Vector2(115, 39)
+custom_minimum_size = Vector2(124, 45)
 layout_mode = 2
 text = "Settings"
 font_size = "Large"
@@ -473,6 +474,7 @@ theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
 [node name="Plugins" type="Control" parent="." unique_id=971450490]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -514,7 +516,7 @@ theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
 [node name="RGText" parent="Plugins/Container/HBoxContainer/MarginContainer" unique_id=1010173551 instance=ExtResource("5_v5kho")]
-custom_minimum_size = Vector2(101, 39)
+custom_minimum_size = Vector2(111, 45)
 layout_mode = 2
 text = "Plugins"
 font_size = "Large"

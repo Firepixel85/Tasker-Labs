@@ -10,7 +10,6 @@ class_name RGDropDown
 @onready var canvas_layer: CanvasLayer = $CanvasLayer
 @onready var arrow: TextureRect = $NinePatchRect/MarginContainer/HBoxContainer2/VBoxContainer/TextureRect
 
-@export var instant_selection:bool = false##Instantly move the selection to the hovered item with no animation
 var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
@@ -81,7 +80,7 @@ func _update():
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
-	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
+	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmAppearance)).set_trans(Tween.TRANS_SINE)
 	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
 	label.text = items[_find_index(item_ids,selected)]

@@ -24,7 +24,7 @@ func add_item(item_name:String,item_text:String) -> int:
 	target.text = "   "+item_text+"   "
 	target.theme = RoseGarden.Themes.Secondary
 	items_text[item_name] = item_text
-	
+
 	target.add_child(Button.new())
 	var target2:Button = target.get_child(0)
 	target2.set_script(load("res://addons/RoseGarden/components/SegmentControl/RGsc_button.gd"))
@@ -70,8 +70,8 @@ func select(item:String):
 	var length := 0
 	for i in index:
 		length += array[i] + 8
-	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(selector,"position",Vector2(length,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.sgSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(selector,"size",Vector2(array[index],selector.size.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.sgSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_options()
 	item_selected.emit(item)
 	return OK

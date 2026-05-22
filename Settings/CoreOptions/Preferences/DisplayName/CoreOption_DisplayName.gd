@@ -13,3 +13,6 @@ func get_value():
 
 func _on_text_changed(new_text: String) -> void:
 	value_changed.emit(name,new_text)
+
+func interact():
+	text_field.edit()

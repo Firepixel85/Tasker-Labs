@@ -2,6 +2,8 @@ extends Control
 
 func _ready() -> void:
 	get_window().size = Vector2(960,540)
+	while !Data._ready_to_load:
+		pass
 	await get_tree().create_timer(0.3).timeout
 	if !Data.file_exists("WindowData"):
 		Data.make_file("WindowData")
@@ -15,6 +17,7 @@ func _ready() -> void:
 		start_app(true)
 
 func start_app(window_data_available:bool):
+	RoseGarden.enable_custom_themes("res://CustomThemes")
 	Settings.load_settings()#Plugin scanning is done in settings loading since it needs to check if dev tools are enabled
 
 	if window_data_available:

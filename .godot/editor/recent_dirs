@@ -1,3 +1,15 @@
+res://DeveloperPlugins/Console/Settings/ShowTimestamps/
+res://Settings/CoreOptions/RoseGarden/tooltipAppearance/
+res://Settings/CoreOptions/RoseGarden/togglePress/
+res://Settings/CoreOptions/RoseGarden/toastAppearance/
+res://Settings/CoreOptions/RoseGarden/svChange/
+res://Settings/CoreOptions/RoseGarden/sgSelection/
+res://Settings/CoreOptions/RoseGarden/rcmSelection/
+res://Settings/CoreOptions/RoseGarden/rcmAppearance/
+res://Settings/CoreOptions/RoseGarden/ddmSelection/
+res://Settings/CoreOptions/RoseGarden/ddmAppearance/
+res://Settings/CoreOptions/RoseGarden/buttonPress/
+res://Settings/CoreOptions/Developer/RGOptions/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
 res://AppIcons/
 res://LoadingScreen/
@@ -9,9 +21,3 @@ res://MainView/
 res://Settings/CoreOptions/Accessibility/SymbolIndicators/
 res://Settings/CoreOptions/Accessibility/DisableAnimations/
 res://Settings/CoreOptions/Accessibility/IncreaseContrast/
-res://Sidebar/
-res://Settings/CoreOptions/Developer/DevTools/
-res://Settings/CoreOptions/Appearance/AccentColor/
-res://
-res://Icons/
-res://Globals/svgHelpers/

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://gbq38iqagftm"]
 
-[ext_resource type="Script" uid="uid://chjsggww8s5gl" path="res://Settings/CoreOptions/Accessibility/DisableAnimations/CoreOption_DisableAnimations.gd" id="1_b63bw"]
+[ext_resource type="Script" uid="uid://chjsggww8s5gl" path="res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.gd" id="1_b63bw"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_do0tk"]
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_jc3vm"]
 
@@ -21,7 +21,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_do0tk")]
-custom_minimum_size = Vector2(195, 29)
+custom_minimum_size = Vector2(222, 34)
 layout_mode = 2
 text = "Disable animations"
 vertical_alignment = "Center"

@@ -147,7 +147,7 @@ func _on_button_down() -> void:
 	else:
 		modulate = RoseGarden.Colors.COLOR_PRESSED
 	button_down.emit()
-	if RoseGarden.Accessibility.get_disable_animations():
+	if RoseGarden.Accessibility.get_disable_animations() or !RoseGarden.Animations.buttonPress:
 		return
 	if connection == "BothHorizontal":
 		tween.tween_property(self,"scale",Vector2(1,0.9),0.1).set_trans(Tween.TRANS_CUBIC)

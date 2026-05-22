@@ -13,9 +13,9 @@ func _on_close_pressed() -> void:
 	main_view.open_view("mainview")
 
 func _process(_delta:float) -> void:
-	if Input.is_action_just_pressed("cmd_1") and Main.get_current_view() == "plugins":
+	if Input.is_action_just_pressed("1") and Input.is_key_pressed(KEY_META) and Main.get_current_view() == "plugins":
 		tabs.select("explore")
-	elif Input.is_action_just_pressed("cmd_2") and Main.get_current_view() == "plugins":
+	elif Input.is_action_just_pressed("2") and Input.is_key_pressed(KEY_META) and Main.get_current_view() == "plugins":
 		tabs.select("installed")
 
 

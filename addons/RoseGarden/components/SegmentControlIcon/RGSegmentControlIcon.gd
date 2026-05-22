@@ -20,7 +20,7 @@ func select(item_name:String):
 
 	selected = item_name
 	var index = _find_index(items,item_name)
-	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.sgSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	item_selected.emit(item_name)
 	return OK
 

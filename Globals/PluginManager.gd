@@ -173,6 +173,9 @@ func _verify_plugin(plugin_name:String,file_path:String="user://plugins/"):
 	return plugin_info["plugin_id"]
 
 func load_plugin(plugin_id):
+	if !get_all_plugins().has(plugin_id):
+		Debug.error("Could't load plugin with id: "+plugin_id+", plugin not found",ID)
+		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
 		Debug.log("Loaded plugin: "+get_plugin_name(plugin_id),ID)
 		save_data()
@@ -187,9 +190,8 @@ func load_plugin(plugin_id):
 		_loaded_plugins.append(plugin_id)
 		save_data()
 		return OK
-	else:
-		Debug.error("Could't load plugin with id: "+plugin_id+", didn't load",ID)
-		return ERR_DOES_NOT_EXIST
+	Debug.error("Could't load plugin with id: "+plugin_id+", because developer plugins are disabled",ID)
+	return ERR_LOCKED
 
 func unload_plugin(plugin_id:String):
 	if !_loaded_plugins.has(plugin_id):

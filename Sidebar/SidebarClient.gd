@@ -91,21 +91,8 @@ func _shade_tabs():
 			child.modulate = RoseGarden.Colors.TEXT_SECONDARY
 
 func _process(_delta:float) -> void:
-	if Input.is_action_just_pressed("cmd_1") and Main.get_current_view() == "mainview":
-		_select(tabs[0])
-	elif Input.is_action_just_pressed("cmd_2") and Main.get_current_view() == "mainview" and tabs.size() > 1:
-		_select(tabs[1])
-	elif Input.is_action_just_pressed("cmd_3") and Main.get_current_view() == "mainview" and tabs.size() > 2:
-		_select(tabs[2])
-	elif Input.is_action_just_pressed("cmd_4") and Main.get_current_view() == "mainview" and tabs.size() > 3:
-		_select(tabs[3])
-	elif Input.is_action_just_pressed("cmd_5") and Main.get_current_view() == "mainview" and tabs.size() > 4:
-		_select(tabs[4])
-	elif Input.is_action_just_pressed("cmd_6") and Main.get_current_view() == "mainview" and tabs.size() > 5:
-		_select(tabs[5])
-	elif Input.is_action_just_pressed("cmd_7") and Main.get_current_view() == "mainview" and tabs.size() > 6:
-		_select(tabs[6])
-	elif Input.is_action_just_pressed("cmd_8") and Main.get_current_view() == "mainview" and tabs.size() > 7:
-		_select(tabs[7])
-	elif Input.is_action_just_pressed("cmd_9") and Main.get_current_view() == "mainview" and tabs.size() > 8:
-		_select(tabs[8])
+	if Main.get_current_view() != "mianview":
+		return
+	for i in range(10):
+		if Input.is_action_just_pressed(str(i)) and Input.is_key_pressed(KEY_META) and tabs.size()>=i:
+			_select(str(i+1))

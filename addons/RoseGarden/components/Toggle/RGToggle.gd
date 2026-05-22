@@ -79,7 +79,7 @@ func _show_off():
 	if Engine.is_editor_hint():
 		ball.position.x = 6
 	else:
-		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(6,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)*int(RoseGarden.Animations.togglePress)).set_trans(Tween.TRANS_SPRING)
 	dont_animate = false
 
 func _show_on():
@@ -87,7 +87,7 @@ func _show_on():
 	if Engine.is_editor_hint():
 		ball.position.x = 34
 	else:
-		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)).set_trans(Tween.TRANS_SPRING)
+		create_tween().tween_property(ball,"position",Vector2(34,ball.position.y),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(!dont_animate)*int(RoseGarden.Animations.togglePress)).set_trans(Tween.TRANS_SPRING)
 	dont_animate = false
 
 func _on_button_up() -> void:

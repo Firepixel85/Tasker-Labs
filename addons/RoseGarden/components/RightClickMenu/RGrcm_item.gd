@@ -55,8 +55,5 @@ func _on_button_pressed() -> void:
 	else:
 		action.call(action_params)
 
-func _on_button_mouse_exited() -> void:
-	pass
-
 func _update_textures():
 	title_label.theme = RoseGarden.Themes.Main

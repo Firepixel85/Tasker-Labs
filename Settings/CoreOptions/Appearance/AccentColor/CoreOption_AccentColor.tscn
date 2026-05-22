@@ -25,7 +25,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_nnhey")]
-custom_minimum_size = Vector2(131, 29)
+custom_minimum_size = Vector2(143, 34)
 layout_mode = 2
 text = "Accent color"
 vertical_alignment = "Center"

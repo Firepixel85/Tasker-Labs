@@ -11,8 +11,13 @@ func _ready() -> void:
 func _custom_ready() -> void:
 	if !is_submenu:
 		grab_focus()
-	create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.rcmAppearance)).set_trans(Tween.TRANS_SPRING)
-
+		create_tween().tween_property(self,"scale",Vector2(1,1),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.rcmAppearance)).set_trans(Tween.TRANS_SPRING)
+	else:
+		scale = Vector2(1,1)
+	if item_container.get_child(0).is_destructive:
+		selection.modulate = Color("17070700")
+	else:
+		selection.modulate = Color("41414100")
 
 func _on_focus_exited() -> void:
 	RoseGarden._delete_all_menus()
@@ -84,8 +89,13 @@ func _update():
 	texture.size.y = size.y
 
 func select_position(pos:int,destructive:bool=false):
-	create_tween().tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	#selection.position.y = pos
+	if destructive:
+		selection.modulate = Color("170707")
+	else:
+		selection.modulate = Color("414141")
+	var tween = create_tween()
+	tween.tween_property(selection,"position:y",pos,0.07*int(!RoseGarden.Accessibility.disableAnimations)*int(RoseGarden.Animations.rcmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().create_timer(0.1).timeout
 	if destructive:
 		selection.modulate = Color("170707")
 	else:

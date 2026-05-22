@@ -38,9 +38,7 @@ func _ready():
 	Settings.setting_changed.connect(_settings_changed)
 	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
-	PluginManager._load_data()
-	_update_setting_values()
-	open_view("mainview")
+
 	#Add settings:
 
 	#Preferences
@@ -73,7 +71,37 @@ func _ready():
 	if !Settings.category_exists("core.developer"):
 		Settings.add_category("Developer","res://Icons/Code.svg","core.developer")
 	if !Settings.option_exists("core.developer/dev_tools"):
-		Settings.add_option("core.developer","dev_tools","res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn",true)
+		Settings.add_option("core.developer","dev_tools","res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn",false)
+	if !Settings.option_exists("core.developer/rg_options"):
+		Settings.add_option("core.developer","rg_options","res://Settings/CoreOptions/Developer/RGOptions/CoreOption_RGOptions.tscn",false)
+
+	#Rose Garden
+	if !Settings.category_exists("core.rose_garden"):
+		Settings.add_category("Rose Garden","res://Icons/RG.png","core.rose_garden")
+	if !Settings.option_exists("core.rose_garden/button_press"):
+		Settings.add_option("core.rose_garden","button_press","res://Settings/CoreOptions/RoseGarden/buttonPress/CoreOption_buttonPress.tscn",true)
+	if !Settings.option_exists("core.rose_garden/toggle_press"):
+		Settings.add_option("core.rose_garden","toggle_press","res://Settings/CoreOptions/RoseGarden/togglePress/CoreOption_togglePress.tscn",true)
+	if !Settings.option_exists("core.rose_garden/sg_selection"):
+		Settings.add_option("core.rose_garden","sg_selection","res://Settings/CoreOptions/RoseGarden/sgSelection/CoreOption_sgSelection.tscn",true)
+	if !Settings.option_exists("core.rose_garden/sv_change"):
+		Settings.add_option("core.rose_garden","sv_change","res://Settings/CoreOptions/RoseGarden/svChange/CoreOption_svChange.tscn",true)
+	if !Settings.option_exists("core.rose_garden/rcm_selection"):
+		Settings.add_option("core.rose_garden","rcm_selection","res://Settings/CoreOptions/RoseGarden/rcmSelection/CoreOption_rcmSelection.tscn",false)
+	if !Settings.option_exists("core.rose_garden/rcm_appearance"):
+		Settings.add_option("core.rose_garden","rcm_appearance","res://Settings/CoreOptions/RoseGarden/rcmAppearance/CoreOption_rcmAppearance.tscn",true)
+	if !Settings.option_exists("core.rose_garden/ddm_appearance"):
+		Settings.add_option("core.rose_garden","ddm_appearance","res://Settings/CoreOptions/RoseGarden/ddmAppearance/CoreOption_ddmAppearance.tscn",true)
+	if !Settings.option_exists("core.rose_garden/ddm_selection"):
+		Settings.add_option("core.rose_garden","ddm_selection","res://Settings/CoreOptions/RoseGarden/ddmSelection/CoreOption_ddmSelection.tscn",false)
+	if !Settings.option_exists("core.rose_garden/toast_appearance"):
+		Settings.add_option("core.rose_garden","toast_appearance","res://Settings/CoreOptions/RoseGarden/toastAppearance/CoreOption_toastAppearance.tscn",true)
+	if !Settings.option_exists("core.rose_garden/tooltip_appearance"):
+		Settings.add_option("core.rose_garden","tooltip_appearance","res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.tscn",true)
+
+	PluginManager._load_data()
+	_update_setting_values()
+	open_view("mainview")
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):
@@ -119,8 +147,50 @@ func _settings_changed(option_path,new_value):
 	if option_path == "core.preferences/more_animations":
 		RoseGarden.Animations.rcmSelection = new_value
 		RoseGarden.Animations.ddmSelection = new_value
+	if option_path == "core.rose_garden/button_press":
+		RoseGarden.Animations.buttonPress = new_value
+	if option_path == "core.rose_garden/toggle_press":
+		RoseGarden.Animations.togglePress = new_value
+	if option_path == "core.rose_garden/sg_selection":
+		RoseGarden.Animations.sgSelection = new_value
+	if option_path == "core.rose_garden/sv_change":
+		RoseGarden.Animations.svChange = new_value
+	if option_path == "core.rose_garden/rcm_selection":
+		RoseGarden.Animations.rcmSelection = new_value
+	if option_path == "core.rose_garden/rcm_appearance":
+		RoseGarden.Animations.rcmAppearance = new_value
+	if option_path == "core.rose_garden/ddm_appearance":
+		RoseGarden.Animations.ddmAppearance = new_value
+	if option_path == "core.rose_garden/ddm_selection":
+		RoseGarden.Animations.ddmSelection = new_value
+	if option_path == "core.rose_garden/toast_appearance":
+		RoseGarden.Animations.toastAppearance = new_value
+	if option_path == "core.rose_garden/tooltip_appearance":
+		RoseGarden.Animations.tooltipAppearance = new_value
+	if option_path == "core.developer/rg_options":
+		if new_value:
+			Settings.show_category("core.rose_garden")
+		else:
+			Settings.hide_category("core.rose_garden")
 
 func _update_setting_values():
-	user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
+	if Settings.option_exists("core.preferences/display_name"):
+		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
 	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.preferences/more_animations")
 	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.preferences/more_animations")
+
+	RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
+	RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")
+	RoseGarden.Animations.sgSelection = Settings.get_option_value("core.rose_garden/sg_selection")
+	RoseGarden.Animations.svChange = Settings.get_option_value("core.rose_garden/sv_change")
+	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.rose_garden/rcm_selection")
+	RoseGarden.Animations.rcmAppearance = Settings.get_option_value("core.rose_garden/rcm_appearance")
+	RoseGarden.Animations.ddmAppearance = Settings.get_option_value("core.rose_garden/ddm_appearance")
+	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
+	RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
+	RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")
+
+	if Settings.get_option_value("core.developer/rg_options"):
+		Settings.show_category("core.rose_garden")
+	else:
+		Settings.hide_category("core.rose_garden")

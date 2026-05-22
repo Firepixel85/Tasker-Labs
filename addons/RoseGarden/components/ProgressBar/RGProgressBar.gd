@@ -28,6 +28,9 @@ func set_color(new_color:String):
 	if !RoseGarden.Colors.verify_color(new_color) == OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
+	bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
+	bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
+	bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
 	_value_update()
 
 func get_color():
