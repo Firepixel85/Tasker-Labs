@@ -1,6 +1,6 @@
 {
 	"name": "Dev Test",
-	"version": "1.0.0",
+	"version": "1.0",
 	"target_api_versions": ["1.0"],
 	"author": "Rosepen Studios",
 	"plugin_id": "com.rosepen.dev_test",

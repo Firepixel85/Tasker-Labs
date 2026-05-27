@@ -67,13 +67,13 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="Name" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=85953319 instance=ExtResource("3_0pp08")]
-custom_minimum_size = Vector2(62, 29)
+custom_minimum_size = Vector2(69, 34)
 layout_mode = 2
 text = "Name"
 vertical_alignment = "Center"
 
 [node name="Version" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=326331907 instance=ExtResource("3_0pp08")]
-custom_minimum_size = Vector2(47, 29)
+custom_minimum_size = Vector2(47, 34)
 layout_mode = 2
 text = "v0.3"
 rounded = true
@@ -81,7 +81,7 @@ color = "Secondary"
 vertical_alignment = "Center"
 
 [node name="Author" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1235354987 instance=ExtResource("3_0pp08")]
-custom_minimum_size = Vector2(57, 25)
+custom_minimum_size = Vector2(68, 28)
 layout_mode = 2
 text = "Author"
 font_size = "Secondary"
@@ -140,7 +140,7 @@ theme_override_constants/separation = 16
 alignment = 2
 
 [node name="Uninstall" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1426858299 instance=ExtResource("8_0w7ew")]
-custom_minimum_size = Vector2(209, 60)
+custom_minimum_size = Vector2(223, 60)
 layout_mode = 2
 text = "Uninstall"
 

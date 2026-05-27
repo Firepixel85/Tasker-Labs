@@ -1,7 +1,9 @@
 extends Node
 
+const ID = "com.rosepen.dev_test"
+
 func start():
-	pass
+	Sidebar.add_tab("Dev Test",Icons.FLASK,load("res://DeveloperPlugins/Test/TestPlugin.tscn"),ID)
 
 func stop():
-	pass
+	Sidebar.remove_tab(ID)

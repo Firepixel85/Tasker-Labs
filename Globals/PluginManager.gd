@@ -50,24 +50,49 @@ func get_plugin_target_versions(plugin_id:String):
 func get_plugin_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
 		return ERR_DOES_NOT_EXIST
+	if !plugin_has_description(plugin_id):
+		return ""
 
 	if _plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
-		if plugin_info.has("description"):
-			return plugin_info["description"]
-		else:
-			return ""
+		return plugin_info["description"]
 	elif _developer_plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
-		if plugin_info.has("description"):
-			return plugin_info["description"]
-		else:
-			return ""
+		return plugin_info["description"]
+
+	return ERR_DOES_NOT_EXIST
+
+func get_plugin_icon(plugin_id:String):
+	if !is_plugin_available(plugin_id):
+		return ERR_DOES_NOT_EXIST
+	if !plugin_has_icon(plugin_id):
+		return ERR_FILE_NOT_FOUND
+
+	if _plugins.has(plugin_id):
+		return ImageTexture.create_from_image(Image.load_from_file(OS.get_user_data_dir()+"/plugins/"+_plugins[plugin_id]+"/icon.png"))
+	elif _developer_plugins.has(plugin_id):
+		return ImageTexture.create_from_image(Image.load_from_file("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png"))
+
+	return ERR_DOES_NOT_EXIST
+
+func get_plugin_repo(plugin_id:String):
+	if !is_plugin_available(plugin_id):
+		return ERR_DOES_NOT_EXIST
+	if !is_plugin_version_controlled(plugin_id):
+		return ERR_FILE_NOT_FOUND
+
+	if _plugins.has(plugin_id):
+		var plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
+		return plugin_info["repo"]
+	elif _developer_plugins.has(plugin_id):
+		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
+		return plugin_info["repo"]
+
 	return ERR_DOES_NOT_EXIST
 
 func plugin_has_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
-		return false
+		return ERR_DOES_NOT_EXIST
 
 	if _plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
@@ -75,6 +100,15 @@ func plugin_has_description(plugin_id:String):
 	elif _developer_plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
 		return plugin_info.has("description")
+
+func plugin_has_icon(plugin_id:String):
+	if !is_plugin_available(plugin_id):
+		return ERR_DOES_NOT_EXIST
+
+	if _plugins.has(plugin_id):
+		return FileAccess.file_exists("user://plugins/"+_plugins[plugin_id]+"/icon.png")
+	elif _developer_plugins.has(plugin_id):
+		return FileAccess.file_exists("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png")
 
 func is_plugin_trusted(plugin_id:String):
 	if trusted_developers.has(plugin_id.split(".")[1]):

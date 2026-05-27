@@ -8,11 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://y3k8vua7s2kr" path="res://MainView/Sidebar Selection.svg" id="2_yduse"]
 [ext_resource type="Texture2D" uid="uid://dye14bkbxhv4b" path="res://Icons/User.svg" id="4_jqlkf"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_v5kho"]
+[ext_resource type="Script" uid="uid://bijxdi610xx3r" path="res://Sidebar/EventsClient.gd" id="6_42b22"]
 [ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.tscn" id="7_qlysq"]
 [ext_resource type="Texture2D" uid="uid://cf7n6fktiuki7" path="res://Icons/DownArrowCircle.svg" id="7_rirya"]
 [ext_resource type="Texture2D" uid="uid://g38e8vhwlcma" path="res://Icons/Puzzle.svg" id="8_ewmin"]
 [ext_resource type="Texture2D" uid="uid://uxqjlt6pd6n5" path="res://Icons/Gear.svg" id="9_burg1"]
-[ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="9_h0v64"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="11_a7d7b"]
 [ext_resource type="Script" uid="uid://c62p4grvevb2b" path="res://MainView/SimpleButtonBehavior.gd" id="14_qlysq"]
 [ext_resource type="Script" uid="uid://djr8cefm3s8g2" path="res://Settings/SettingsClient.gd" id="16_5lyvq"]
@@ -140,79 +140,19 @@ theme_override_constants/separation = 24
 visible = false
 layout_mode = 2
 
-[node name="ExampleEvent" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=535912435 instance=ExtResource("2_hi4tc")]
+[node name="Events" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1215686585]
 visible = false
 custom_minimum_size = Vector2(0, 168)
 layout_mode = 2
-padding = "16"
-margin_number = 18
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+script = ExtResource("6_42b22")
 
-[node name="MarginContainer" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent" unique_id=1508451828]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer" unique_id=945233317]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="Control" type="Control" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=2091866746]
-custom_minimum_size = Vector2(0, 60)
-layout_mode = 2
-
-[node name="RGProgressBar" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=1750477034 instance=ExtResource("9_h0v64")]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
-value = 75.0
-color = "Purple"
-text_alignment = "Right"
-
-[node name="MarginContainer" type="MarginContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control" unique_id=769085249]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 20
-
-[node name="RGText" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/Control/MarginContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
-custom_minimum_size = Vector2(52, 28)
-layout_mode = 2
-text = "55:32"
-font_size = "Secondary"
-rounded = true
-vertical_alignment = "Center"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer" unique_id=1016345368]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="RGButton" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(194, 60)
+[node name="Event Container" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" unique_id=526174092]
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Pause"
-
-[node name="RGButton2" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/ExampleEvent/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1464999619 instance=ExtResource("11_a7d7b")]
-custom_minimum_size = Vector2(188, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-color = "Purple"
-text = "Done"
+size_flags_vertical = 3
+theme_override_constants/separation = 0
 
 [node name="Control Bar" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1991232464 instance=ExtResource("2_hi4tc")]
 custom_minimum_size = Vector2(448, 60)
@@ -468,8 +408,16 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="OptionHandler" type="VBoxContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer" unique_id=84552781]
+[node name="HBoxContainer" type="HBoxContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer" unique_id=1983139348]
 layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=1312218204]
+layout_mode = 2
+
+[node name="OptionHandler" type="VBoxContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=84552781]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
@@ -602,6 +550,7 @@ grow_vertical = 2
 
 [node name="TooltipContainer" type="CanvasLayer" parent="." unique_id=869070150]
 
+[connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]
 [connection signal="pressed" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/AboutButton" to="Settings" method="_on_about_button_pressed"]
 [connection signal="pressed" from="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer/CloseButton" to="Settings" method="_on_close_button_pressed"]

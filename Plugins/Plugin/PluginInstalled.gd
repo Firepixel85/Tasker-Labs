@@ -35,6 +35,10 @@ func setup():
 	if PluginManager.is_plugin_version_controlled(plugin_id):
 		version_controlled_tag.visible = true
 	else:		version_controlled_tag.visible = false
+	if PluginManager.plugin_has_icon(plugin_id):
+		icon.texture = PluginManager.get_plugin_icon(plugin_id)
+	else:
+		icon.hide()
 	toggle.set_state(PluginManager.is_plugin_loaded(plugin_id),true)
 	toggle.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	Settings.setting_changed.connect(_on_setting_changed)
@@ -138,7 +142,9 @@ func _on_toggle_dehovered() -> void:
 	RoseGarden.clear_tooltips()
 
 func _on_uninstall_pressed() -> void:
-	pass # Replace with function body.
+	Popups.add_popup(load("res://Plugins/DeletePopup.tscn"))
+	await Popups.popup_added
+	Popups.get_popup().plugin_id = plugin_id
 
 func copy_id():
 	DisplayServer.clipboard_set(plugin_id)

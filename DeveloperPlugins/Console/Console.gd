@@ -20,6 +20,7 @@ var show_errors:bool = true
 
 func _ready() -> void:
 	Debug.logs_changed.connect(_update_logs)
+	_update_logs()
 
 func _update_logs():
 	text.clear()

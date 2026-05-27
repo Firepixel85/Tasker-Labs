@@ -274,7 +274,7 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 		return ERR_DOES_NOT_EXIST
 	if tooltip_layer.get_class() != "CanvasLayer":
 		return ERR_DOES_NOT_EXIST
-	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RGtooltip.tscn").instantiate())
+	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
 	var tooltip_object = tooltip_layer.get_child(get_child_count()-1)
 	tooltip_object.set_text(tooltip.text)
 	tooltip_object.set_show_keybind(tooltip.show_keybind)
@@ -288,6 +288,7 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-30:
 		target_position.y = position.y - tooltip_object.size.y - 46
 	tooltip_object.position = target_position
+	tooltip_object.visible = true
 	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
 	return OK
 
@@ -315,7 +316,7 @@ func create_toast(text:String,color:String,clear_time:float=4.0):
 		return ERR_INVALID_PARAMETER
 	if toast_layer.get_child_count() > 0:
 		return ERR_ALREADY_EXISTS
-	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RGtoast.tscn").instantiate())
+	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RG_toast.tscn").instantiate())
 	_toast = toast_layer.get_child(get_child_count()-1)
 	_toast.set_text(text)
 	_toast.set_color(color)

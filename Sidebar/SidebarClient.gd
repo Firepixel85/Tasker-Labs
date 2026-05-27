@@ -91,8 +91,8 @@ func _shade_tabs():
 			child.modulate = RoseGarden.Colors.TEXT_SECONDARY
 
 func _process(_delta:float) -> void:
-	if Main.get_current_view() != "mianview":
+	if Main.get_current_view() != "mainview":
 		return
-	for i in range(10):
-		if Input.is_action_just_pressed(str(i)) and Input.is_key_pressed(KEY_META) and tabs.size()>=i:
-			_select(str(i+1))
+	for i in range(9):
+		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_META) and tab_container.get_child_count()>i:
+			_select(tabs[i])

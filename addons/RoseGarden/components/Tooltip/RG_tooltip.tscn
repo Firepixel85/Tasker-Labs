@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_hy75m"]
 
 [node name="RGTooltip" type="Control" unique_id=352779523]
+visible = false
 layout_mode = 3
 anchors_preset = 0
 mouse_filter = 2
@@ -21,7 +22,7 @@ mouse_filter = 2
 theme_override_constants/separation = 8
 
 [node name="TextContainer" type="NinePatchRect" parent="HBoxContainer" unique_id=526868477]
-custom_minimum_size = Vector2(273, 0)
+custom_minimum_size = Vector2(318, 0)
 layout_mode = 2
 texture = ExtResource("2_5g3c0")
 patch_margin_left = 20
@@ -39,14 +40,14 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="Text" parent="HBoxContainer/TextContainer/CenterContainer" unique_id=85953319 instance=ExtResource("3_hy75m")]
-custom_minimum_size = Vector2(253, 25)
+custom_minimum_size = Vector2(298, 28)
 layout_mode = 2
 mouse_filter = 2
 text = "This is a tooltip with a keybind!"
 font_size = "Secondary"
 
 [node name="KeybindContainer" type="NinePatchRect" parent="HBoxContainer" unique_id=2050099533]
-custom_minimum_size = Vector2(51, 0)
+custom_minimum_size = Vector2(52, 0)
 layout_mode = 2
 texture = ExtResource("2_5g3c0")
 patch_margin_left = 20
@@ -64,7 +65,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="KeybindText" parent="HBoxContainer/KeybindContainer/CenterContainer" unique_id=1245523840 instance=ExtResource("3_hy75m")]
-custom_minimum_size = Vector2(31, 25)
+custom_minimum_size = Vector2(32, 28)
 layout_mode = 2
 mouse_filter = 2
 text = "⌘K"

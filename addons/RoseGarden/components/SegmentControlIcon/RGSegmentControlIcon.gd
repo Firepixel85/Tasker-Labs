@@ -71,12 +71,14 @@ func select_next():
 	if selected == items[items.size()-1]:
 		return ERR_DOES_NOT_EXIST
 	select(items[_find_index(items,selected)+1])
+	_shade_options()
 	return OK
 
 func select_prev():
 	if selected == items[0]:
 		return ERR_DOES_NOT_EXIST
 	select(items[_find_index(items,selected)-1])
+	_shade_options()
 	return OK
 
 ##############

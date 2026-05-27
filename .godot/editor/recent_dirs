@@ -1,3 +1,5 @@
+res://Globals/
+res://Sidebar/
 res://DeveloperPlugins/Console/Settings/ShowTimestamps/
 res://Settings/CoreOptions/RoseGarden/tooltipAppearance/
 res://Settings/CoreOptions/RoseGarden/togglePress/
@@ -14,10 +16,8 @@ res://Settings/CoreOptions/Developer/RGOptions/
 res://AppIcons/
 res://LoadingScreen/
 res://Plugins/Plugin/Popups/
-res://Globals/
 res://Settings/
 res://Plugins/
 res://MainView/
 res://Settings/CoreOptions/Accessibility/SymbolIndicators/
 res://Settings/CoreOptions/Accessibility/DisableAnimations/
-res://Settings/CoreOptions/Accessibility/IncreaseContrast/

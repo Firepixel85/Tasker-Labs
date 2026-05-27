@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://drfivm4rdq6tb" path="res://addons/RoseGarden/components/TextField/RGTextField.gd" id="1_ci003"]
 [ext_resource type="Texture2D" uid="uid://be8mbleceyjln" path="res://addons/RoseGarden/components/TextField/Mask.png" id="2_ci003"]
 [ext_resource type="Texture2D" uid="uid://so4a64ajrdth" path="res://addons/RoseGarden/components/TextField/Container.svg" id="2_qvkio"]
-[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_l4s1n"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_l4s1n"]
 [ext_resource type="Texture2D" uid="uid://521a1ywe1m3l" path="res://addons/RoseGarden/components/TextField/Keybind Conatiner.svg" id="5_4rsp0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g27kd"]
@@ -23,7 +23,7 @@ metadata/_edit_use_anchors_ = true
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1153994272]
 clip_children = 2
 layout_mode = 1
-offset_right = 196.0
+offset_right = 226.79999
 offset_bottom = 60.0
 texture = ExtResource("2_qvkio")
 patch_margin_left = 30
@@ -56,7 +56,7 @@ theme = ExtResource("3_l4s1n")
 
 [node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=1947557547]
 layout_mode = 0
-offset_right = 196.0
+offset_right = 226.79999
 offset_bottom = 60.0
 texture = ExtResource("2_ci003")
 patch_margin_left = 30
@@ -67,7 +67,7 @@ patch_margin_bottom = 30
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1586523401]
 visible = false
 layout_mode = 1
-offset_right = 196.0
+offset_right = 226.79999
 offset_bottom = 60.0
 theme_override_constants/margin_right = 8
 
@@ -80,7 +80,7 @@ layout_mode = 2
 alignment = 2
 
 [node name="NinePatchRect" type="NinePatchRect" parent="MarginContainer2/VBoxContainer/HBoxContainer" unique_id=282234545]
-custom_minimum_size = Vector2(47, 0)
+custom_minimum_size = Vector2(48, 0)
 layout_mode = 2
 texture = ExtResource("5_4rsp0")
 patch_margin_left = 20
@@ -109,7 +109,7 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1244355384]
 layout_mode = 0
-offset_right = 196.0
+offset_right = 226.79999
 offset_bottom = 60.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 4
@@ -126,6 +126,8 @@ drag_and_drop_selection_enabled = false
 flat = true
 caret_blink = true
 
+[connection signal="editing_toggled" from="MarginContainer/LineEdit" to="." method="_on_line_edit_editing_toggled"]
+[connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_on_focus_entered"]
 [connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_update"]
 [connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_on_focus_exited"]
 [connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_update"]

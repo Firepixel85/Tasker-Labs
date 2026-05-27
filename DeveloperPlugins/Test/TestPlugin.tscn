@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://bdu6le5xkepp6"]
+
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_483d7"]
+[ext_resource type="Script" uid="uid://4gvmaihgwid6" path="res://DeveloperPlugins/Test/TestPlugin.gd" id="1_v4aov"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="2_v4aov"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_by5gf"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_vbiv1"]
+
+[node name="TestPlugin" type="Control" unique_id=1427262098]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v4aov")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=2026307189]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer" unique_id=582013288]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer" unique_id=510823261]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="EventsTitle" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(102, 45)
+layout_mode = 2
+script = ExtResource("2_v4aov")
+text = "Events"
+font_size = "Large"
+
+[node name="CreateEvent" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1332719466]
+layout_mode = 2
+
+[node name="RGText" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1355547912 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(148, 34)
+layout_mode = 2
+script = ExtResource("2_v4aov")
+text = "Create event"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1349385946]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateEvent" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1426858299 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("4_vbiv1")
+color = "Purple"
+text = "Create"
+metadata/_edit_use_anchors_ = true
+
+[node name="RemoveEvent" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=799761573]
+layout_mode = 2
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent" unique_id=438004175 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(164, 34)
+layout_mode = 2
+text = "Remove event"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent" unique_id=1329064752]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RemoveEvent" parent="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent" unique_id=2063978384 instance=ExtResource("3_by5gf")]
+modulate = Color(0.6, 0.6, 0.6, 1)
+custom_minimum_size = Vector2(214, 60)
+layout_mode = 2
+color = "Purple"
+text = "Remove"
+disabled = true
+
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent/CreateEvent" to="." method="_on_create_event_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent/RemoveEvent" to="." method="_on_remove_event_pressed"]

@@ -7,7 +7,15 @@ extends Control
 signal value_changed(option_id,new_value)
 
 var current_value
-
+var next_color = {
+	"Yellow":"Orange",
+	"Orange":"Green",
+	"Green":"Teal",
+	"Teal":"Blue",
+	"Blue":"Pink",
+	"Pink":"Purple",
+	"Purple":"Yellow"
+}
 func set_value(value:String):
 	current_value = value
 	for color in colors.get_children():
@@ -20,13 +28,5 @@ func _on_selected(new_color):
 	value_changed.emit(name,new_color)
 
 func interact():
-	if current_value+1>colors.get_child_count():
-		current_value = colors.get_child(0).color
-	else:
-		for i in colors.get_child_count():
-			if colors.get_child(i).color == current_value:
-				current_value = colors.get_child(i+1)
-				break
-			else:
-				pass
+	set_value(next_color[current_value])
 	value_changed.emit(name,current_value)

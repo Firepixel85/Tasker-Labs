@@ -81,8 +81,8 @@ func hide_category(category_id):
 		Debug.error("Attempted to hide nonexistant category with id: "+category_id,ID)
 		return ERR_DOES_NOT_EXIST
 
-	Debug.log("Category hidden with id: "+category_id,ID)
 	_category_list.erase(category_id)
+	Debug.log("Category hidden with id: "+category_id,ID)
 	return OK
 
 func show_category(category_id):
@@ -91,6 +91,8 @@ func show_category(category_id):
 		return ERR_DOES_NOT_EXIST
 
 	Debug.log("Category shown with id: "+category_id,ID)
+	if _category_list.has(category_id):
+		return OK
 	_category_list.append(category_id)
 	return OK
 

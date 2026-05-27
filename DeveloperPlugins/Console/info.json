@@ -1,6 +1,6 @@
 {
 	"name": "Console",
-	"version": "1.0.0",
+	"version": "1.0",
 	"target_api_versions": ["1.0"],
 	"author": "Rosepen Studios",
 	"plugin_id": "com.rosepen.console",

@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://babbob4k1flsg"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_i3j1s"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_gvgcl"]
+
+[node name="Control" type="Control" unique_id=2138493143]
+custom_minimum_size = Vector2(448, 168)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 448.0
+offset_bottom = 168.0
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_i3j1s")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="CenterContainer" type="CenterContainer" parent="RGContainer" unique_id=1332940570]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RGText" parent="RGContainer/CenterContainer" unique_id=85953319 instance=ExtResource("3_gvgcl")]
+custom_minimum_size = Vector2(214, 34)
+layout_mode = 2
+text = "This is a test event"

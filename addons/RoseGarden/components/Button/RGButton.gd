@@ -76,6 +76,10 @@ func set_disabled(is_disabled:bool):
 	_mirror_to_button()
 	_update()
 
+func grab_focus(bool = true) -> void:
+	button.grab_focus(bool)
+	button.grab_click_focus()
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############

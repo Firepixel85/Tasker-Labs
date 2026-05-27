@@ -31,7 +31,8 @@ func remove_popup():
 	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(popup,"modulate",Color(1,1,1,0),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
-	popup_container.get_child(0).queue_free()
+	if popup_container.get_child_count()>0:
+		popup_container.get_child(0).queue_free()
 	popup_fade.visible = false
 	popup_container.visible = false
 	popup = null

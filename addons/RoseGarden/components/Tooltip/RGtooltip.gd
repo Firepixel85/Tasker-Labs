@@ -35,6 +35,10 @@ func _update():
 	text_container.custom_minimum_size.x = text_text.size.x + 20
 	keybind_container.custom_minimum_size.x = keybind_text.size.x + 20
 	keybind_container.visible = show_keybind
+	if text == "":
+		text_container.visible = false
+	else:
+		text_container.visible = true
 
 func _update_textures():
 	text_container.texture = load(RoseGarden._get_file_path()+"Tooltip/Container.svg")

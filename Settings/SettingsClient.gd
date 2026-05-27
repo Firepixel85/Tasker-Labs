@@ -1,12 +1,14 @@
 extends HBoxContainer
 
 @onready var category_handler: Control = $"Sidebar/Sidebar Bottom/VBoxContainer/Categories"
-@onready var option_handler: VBoxContainer = $VBoxContainer2/SceneContainer/MarginContainer/OptionHandler
+@onready var option_handler: VBoxContainer = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/OptionHandler
+@onready var keybind_spacer: Control = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/Control
 
 @onready var main_view: Control = $".."
 
 var _opened_category = ""
 
+var _checked_for_shift_held:bool = false ##Stops the process loop from spamming check_shift_held()
 func _ready() -> void:
 	Settings._client = self
 func setup():
@@ -55,7 +57,11 @@ func _process(_delta: float) -> void:
 	if Main.get_current_view() != "settings":
 		return
 	if !Input.is_physical_key_pressed(KEY_SHIFT):
+		_close_keybinds()
 		return
+	if !_checked_for_shift_held:
+		_checked_for_shift_held = true
+		check_shift_held()
 	for i in range(10):
 		var new_i = i-1
 		if i == 0:
@@ -65,3 +71,33 @@ func _process(_delta: float) -> void:
 				Debug.warn("Option "+_opened_category+"/"+option_handler.get_child(new_i).name+" can't be interacted with, because it doesn't have an interact method","core.settings")
 				return
 			option_handler.get_child(new_i).interact()
+
+func check_shift_held():
+	await get_tree().create_timer(0.5).timeout
+	_checked_for_shift_held = false
+	if Input.is_key_pressed(KEY_SHIFT):
+		_open_keybinds()
+
+func _open_keybinds():
+	if keybind_spacer.custom_minimum_size.x == 70:
+		return
+	var tween = create_tween()
+	tween.tween_property(keybind_spacer,"custom_minimum_size:x",70,0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	for i in range(option_handler.get_child_count()):
+		if i>9:
+			break
+		keybind_spacer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
+		var keybind = keybind_spacer.get_child(keybind_spacer.get_child_count()-1)
+		keybind.set_text("")
+		keybind.set_keybind(str(i+1))
+		keybind.set_show_keybind(true)
+		keybind.position = Vector2(0,option_handler.get_child(i).position.y+10)
+	await get_tree().process_frame
+	for keybind in keybind_spacer.get_children():
+		keybind.visible = true
+
+func _close_keybinds():
+	var tween = create_tween()
+	tween.tween_property(keybind_spacer,"custom_minimum_size:x",0,0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	for child in keybind_spacer.get_children():
+		child.queue_free()

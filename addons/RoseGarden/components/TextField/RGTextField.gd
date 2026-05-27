@@ -23,6 +23,8 @@ class_name RGTextField
 var text:String = ""
 signal text_changed(new_text:String)
 signal text_submitted(new_text:String)
+signal edit_exited
+signal edit_entered
 
 func get_text():
 	return label.text
@@ -126,13 +128,11 @@ func _on_text_changed(_new_text: String) -> void:
 	_update()
 	text_changed.emit(_new_text)
 
-
 func _mirror_to_line_edit():
 	line_edit.placeholder_text = placeholder_text
 	line_edit.editable = editable
 	line_edit.emoji_menu_enabled = emoji_menu_enabled
 	line_edit.caret_blink = caret_blink
-
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
@@ -151,3 +151,9 @@ func _update_themes():
 	line_edit.theme = RoseGarden.Themes.Secondary
 	label.theme = RoseGarden.Themes.Secondary
 	hint_text.theme = RoseGarden.Themes.Secondary
+
+func _on_focus_exited() -> void:
+	edit_entered.emit()
+
+func _on_focus_entered() -> void:
+	edit_entered.emit()
