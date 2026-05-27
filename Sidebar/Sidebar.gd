@@ -13,7 +13,7 @@ func remove_tab(tab_id:String):
 	return _client._remove_tab(tab_id)
 
 func select_tab(selection_id:String):
-	return _client.select(selection_id)
+	return _client._select(selection_id)
 
 func get_selected_tab():
 	return _client.selected

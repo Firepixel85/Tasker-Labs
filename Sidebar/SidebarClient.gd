@@ -47,6 +47,7 @@ func _remove_tab(tab_id:String):
 			_tab_scenes.erase(tab_id)
 			if selected == tab_id:
 				if tabs.size()>0:
+					print("yep")
 					_select(tabs[0])
 				else:
 					selected = ""
@@ -75,7 +76,7 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.preferences/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	for child in scene_container.get_children():
 		child.queue_free()

@@ -547,8 +547,11 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="RightClickMenuContainer" type="CanvasLayer" parent="." unique_id=1097217257]
+layer = 3
 
 [node name="TooltipContainer" type="CanvasLayer" parent="." unique_id=869070150]
+
+[node name="ToastLayer" type="CanvasLayer" parent="." unique_id=1968475343]
 
 [connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]

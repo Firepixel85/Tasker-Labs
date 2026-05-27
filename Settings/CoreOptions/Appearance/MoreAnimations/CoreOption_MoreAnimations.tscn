@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b2tjyhx4rxxhl"]
 
-[ext_resource type="Script" uid="uid://hybh6rn57ic0" path="res://Settings/CoreOptions/Preferences/MoreAnimations/CoreOption_MoreAnimations.gd" id="1_hikx6"]
+[ext_resource type="Script" uid="uid://hybh6rn57ic0" path="res://Settings/CoreOptions/Appearance/MoreAnimations/CoreOption_MoreAnimations.gd" id="1_hikx6"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_07aj8"]
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_xcsu2"]
 

@@ -53,7 +53,7 @@ func _on_button_pressed() -> void:
 	if action_params == []:
 		action.call()
 	else:
-		action.call(action_params)
+		action.callv(action_params)
 
 func _update_textures():
 	title_label.theme = RoseGarden.Themes.Main

@@ -2,6 +2,7 @@ extends Control
 
 @onready var rcm_container: CanvasLayer = $RightClickMenuContainer
 @onready var tooltip_container: CanvasLayer = $TooltipContainer
+@onready var toast_layer: CanvasLayer = $ToastLayer
 @onready var popup_container: CenterContainer = $PopupContainer
 @onready var popup_fade: TextureRect = $PopupFade
 
@@ -33,29 +34,30 @@ func _ready():
 	view_nodes["settings"] = settings_view
 	view_nodes["plugins"] = plugins_view
 	view_nodes["mainview"] = main_view
-	if Settings.option_exists("core.preferences/display_name"):
-		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
+	if Settings.option_exists("core.general/display_name"):
+		user_name.set_text(Settings.get_option_value("core.general/display_name"))
 	Settings.setting_changed.connect(_settings_changed)
 	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
+	RoseGarden.set_toast_layer(toast_layer)
 
 	#Add settings:
 
-	#Preferences
-	if !Settings.category_exists("core.preferences"):
-		Settings.add_category("Preferences","res://Icons/User.svg","core.preferences")
-	if !Settings.option_exists("core.preferences/display_name"):
-		Settings.add_option("core.preferences","display_name","res://Settings/CoreOptions/Preferences/DisplayName/CoreOption_DisplayName.tscn","Name")
-	if !Settings.option_exists("core.preferences/update_notify"):
-		Settings.add_option("core.preferences","update_notify","res://Settings/CoreOptions/Preferences/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
-	if !Settings.option_exists("core.preferences/more_animations"):
-		Settings.add_option("core.preferences","more_animations","res://Settings/CoreOptions/Preferences/MoreAnimations/CoreOption_MoreAnimations.tscn",false)
+	#General
+	if !Settings.category_exists("core.general"):
+		Settings.add_category("General","res://Icons/User.svg","core.general")
+	if !Settings.option_exists("core.general/display_name"):
+		Settings.add_option("core.general","display_name","res://Settings/CoreOptions/General/DisplayName/CoreOption_DisplayName.tscn","Name")
+	if !Settings.option_exists("core.general/update_notify"):
+		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
 		Settings.add_category("Appearance","res://Icons/Palette.svg","core.appearance")
 	if !Settings.option_exists("core.appearance/accent_color"):
 		Settings.add_option("core.appearance","accent_color","res://Settings/CoreOptions/Appearance/AccentColor/CoreOption_AccentColor.tscn","Purple")
+	if !Settings.option_exists("core.appearance/more_animations"):
+		Settings.add_option("core.appearance","more_animations","res://Settings/CoreOptions/Appearance/MoreAnimations/CoreOption_MoreAnimations.tscn",false)
 
 	#Accessibility
 	if !Settings.category_exists("core.accessibility"):
@@ -138,13 +140,13 @@ func _process(_delta: float) -> void:
 		RoseGarden._delete_all_menus()
 
 func _settings_changed(option_path,new_value):
-	if option_path == "core.preferences/display_name":
+	if option_path == "core.general/display_name":
 		user_name.set_text(new_value)
 	if option_path == "core.developer/dev_tools":
 		for plugin_id in PluginManager.get_all_plugins():
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):
 				PluginManager.unload_plugin(plugin_id)
-	if option_path == "core.preferences/more_animations":
+	if option_path == "core.appearance/more_animations":
 		RoseGarden.Animations.rcmSelection = new_value
 		RoseGarden.Animations.ddmSelection = new_value
 	if option_path == "core.rose_garden/button_press":
@@ -174,10 +176,10 @@ func _settings_changed(option_path,new_value):
 			Settings.hide_category("core.rose_garden")
 
 func _update_setting_values():
-	if Settings.option_exists("core.preferences/display_name"):
-		user_name.set_text(Settings.get_option_value("core.preferences/display_name"))
-	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.preferences/more_animations")
-	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.preferences/more_animations")
+	if Settings.option_exists("core.general/display_name"):
+		user_name.set_text(Settings.get_option_value("core.general/display_name"))
+	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.appearance/more_animations")
+	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.appearance/more_animations")
 
 	RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
 	RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")

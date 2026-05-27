@@ -45,10 +45,10 @@ func _ready() -> void:
 
 func _update():
 	if events.size() == 0:
-		container.visible = false
+		visible = false
 		selection.visible = false
 	elif events.size() == 1:
-		container.visible = true
+		visible = true
 		selection.visible = false
 	else:
 		selection.visible = true
