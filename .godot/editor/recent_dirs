@@ -1,4 +1,6 @@
+res://Notifications/
 res://Globals/
+/Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Sidebar/
 res://DeveloperPlugins/Console/Settings/ShowTimestamps/
 res://Settings/CoreOptions/RoseGarden/tooltipAppearance/
@@ -12,7 +14,6 @@ res://Settings/CoreOptions/RoseGarden/ddmSelection/
 res://Settings/CoreOptions/RoseGarden/ddmAppearance/
 res://Settings/CoreOptions/RoseGarden/buttonPress/
 res://Settings/CoreOptions/Developer/RGOptions/
-/Users/max/Documents/Godot Builds/Tasker 2.0/
 res://AppIcons/
 res://LoadingScreen/
 res://Plugins/Plugin/Popups/
@@ -20,4 +21,3 @@ res://Settings/
 res://Plugins/
 res://MainView/
 res://Settings/CoreOptions/Accessibility/SymbolIndicators/
-res://Settings/CoreOptions/Accessibility/DisableAnimations/

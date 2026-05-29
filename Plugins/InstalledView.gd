@@ -5,6 +5,11 @@ extends Control
 @onready var enabled_text: RGText = $VBoxContainer/Enabled
 @onready var animation_layer: CanvasLayer = $CanvasLayer
 
+var _checked_shift_key_held:bool = false
+var _checked_option_key_held:bool = false
+var shift_keybinds_shown:bool = false
+var option_keybinds_shown:bool = false
+
 func _ready():
 	Settings.setting_changed.connect(_on_setting_changed)
 
@@ -45,8 +50,7 @@ func display_plugins():
 
 
 func _on_setting_changed(option_path:String,_new_value) -> void:
-	if option_path == "core.developer/dev_tools":
-		display_plugins()
+	pass
 
 func move_plugin(plugin_id:String):
 	for child in enabled_container.get_children():
@@ -123,3 +127,66 @@ func move_plugin(plugin_id:String):
 		plugin_enabled.queue_free()
 		plugin_disabled.modulate = Color(1,1,1,1)
 		plugin_disabled.state_changed.connect(move_plugin)
+
+func _process(delta: float) -> void:
+	if Main.get_current_view() != "plugins":
+		return
+	if !Input.is_key_pressed(KEY_SHIFT) and shift_keybinds_shown:
+		_close_keybinds(true)
+	elif !_checked_shift_key_held:
+		_checked_shift_key_held = true
+		_check_shift_held()
+
+	if !Input.is_key_pressed(KEY_ALT) and option_keybinds_shown:
+		_close_keybinds(false)
+	elif !_checked_option_key_held:
+		_checked_option_key_held = true
+		_check_option_held()
+
+	for i in range(9):
+		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_SHIFT) and enabled_container.get_child_count()>i:
+			PluginManager.unload_plugin(enabled_container.get_child(i).plugin_id)
+			move_plugin(enabled_container.get_child(i).plugin_id)
+		elif Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_ALT) and disabled_container.get_child_count()>i:
+			PluginManager.load_plugin(disabled_container.get_child(i).plugin_id)
+			move_plugin(disabled_container.get_child(i).plugin_id)
+
+func _check_shift_held():
+	await get_tree().create_timer(0.5).timeout
+	_checked_shift_key_held = false
+	if Input.is_key_pressed(KEY_SHIFT):
+		_open_keybinds(true)
+
+func _check_option_held():
+	await get_tree().create_timer(0.5).timeout
+	_checked_option_key_held = false
+	if Input.is_key_pressed(KEY_ALT):
+		_open_keybinds(false)
+
+func _open_keybinds(enabled:bool):
+	var container
+	if enabled:
+		shift_keybinds_shown = true
+		container = enabled_container
+	else:
+		option_keybinds_shown = true
+		container = disabled_container
+	for i in range(container.get_child_count()):
+		if i>9:
+			break
+		var plugin_view:PluginInstalled = container.get_child(i)
+		plugin_view.show_keybind(str(i+1))
+
+func _close_keybinds(enabled:bool):
+	var container
+	if enabled:
+		shift_keybinds_shown = false
+		container = enabled_container
+	else:
+		option_keybinds_shown = false
+		container = disabled_container
+	for i in range(container.get_child_count()):
+		if i>9:
+			break
+		var plugin_view:PluginInstalled = container.get_child(i)
+		plugin_view.hide_keybind()

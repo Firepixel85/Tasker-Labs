@@ -4,9 +4,10 @@ extends Control
 @onready var selection: NinePatchRect = $Selection
 @onready var scene_container: Control = $"../../../../VBoxContainer2/SceneContainer"
 
-const ID = "core.sidebar"
-var tabs = []
-var _tab_scenes = {}
+const ID := "core.sidebar"
+var tabs := []
+var _tab_scenes := {}
+var _tab_scene_nodes := {}
 var selected:String
 
 func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
@@ -27,12 +28,15 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.manager = self
 	tab.id = tab_id
 	tab._ready()
+	scene_container.add_child(scene.instantiate())
+	_tab_scene_nodes[tab_id] = scene_container.get_child(scene_container.get_child_count()-1)
+	_tab_scene_nodes[tab_id].hide()
 	if selected == "":
 		selection.visible = true
 		selected = tabs[0]
 		for child in scene_container.get_children():
-			child.queue_free()
-		scene_container.add_child(_tab_scenes[tabs[0]].instantiate())
+			child.hide()
+		_tab_scene_nodes[tab_id].show()
 	_shade_tabs()
 	Debug.log("Tab added by process: "+Main.get_process_name(tab_id),ID)
 	return OK
@@ -47,11 +51,11 @@ func _remove_tab(tab_id:String):
 			_tab_scenes.erase(tab_id)
 			if selected == tab_id:
 				if tabs.size()>0:
-					print("yep")
 					_select(tabs[0])
 				else:
 					selected = ""
-					scene_container.get_child(0).queue_free()
+					_tab_scene_nodes[tab_id].queue_free()
+					_tab_scene_nodes.erase(tab_id)
 					_ready()
 			_shade_tabs()
 			break
@@ -79,8 +83,8 @@ func _select(selection_id:String):
 	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	for child in scene_container.get_children():
-		child.queue_free()
-	scene_container.add_child(_tab_scenes[selection_id].instantiate())
+		child.hide()
+	_tab_scene_nodes[selection_id].show()
 	Sidebar.tab_selected.emit(selection_id)
 	return OK
 

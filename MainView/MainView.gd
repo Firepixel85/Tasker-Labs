@@ -110,6 +110,8 @@ func open_view(view_name:String):
 		return ERR_ALREADY_EXISTS
 	if view_name == "settings":
 		settings_view.setup()
+	if view_name == "plugins":
+		plugins_view.setup()
 	view_nodes[view_name].modulate = Color(1,1,1,0)
 	view_nodes[view_name].visible = true
 	var tween = create_tween()

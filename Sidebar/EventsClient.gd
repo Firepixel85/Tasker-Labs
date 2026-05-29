@@ -40,6 +40,9 @@ func get_event_node(event_id:String):
 		return ERR_DOES_NOT_EXIST
 	return event_nodes[event_id]
 
+func event_exists(event_id:String):
+	return events.has(event_id)
+
 func _ready() -> void:
 	Events._client = self
 
@@ -60,7 +63,7 @@ func _process(delta: float) -> void:
 	if Main.get_current_view() != "mainview":
 		return
 
-	if Input.is_action_just_pressed("event_next"):
+	if Input.is_action_just_pressed("event_next") and events.size()>scroll_horizontal/size.x:
 		selection.select_next()
-	if Input.is_action_just_pressed("event_prev"):
+	if Input.is_action_just_pressed("event_prev")and scroll_horizontal!=0:
 		selection.select_prev()

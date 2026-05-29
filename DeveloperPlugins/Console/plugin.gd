@@ -10,7 +10,9 @@ func start():
 	if !Settings.option_exists("com.rosepen.console/show_timestamps"):
 		Settings.add_option("com.rosepen.console","show_timestamps","res://DeveloperPlugins/Console/Settings/ShowTimestamps/ShowTimestamps.tscn",false)
 	Sidebar.add_tab("Console",Icons.TERMINAL,preload("res://DeveloperPlugins/Console//Console.tscn"),ID)
+	Debug.log("Loaded",ID)
 
 func stop():
+	Debug.log("Unloading",ID)
 	Sidebar.remove_tab(ID)
 	Settings.hide_category("com.rosepen.console")

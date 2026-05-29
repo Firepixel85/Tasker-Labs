@@ -71,7 +71,7 @@ func get_plugin_icon(plugin_id:String):
 	if _plugins.has(plugin_id):
 		return ImageTexture.create_from_image(Image.load_from_file(OS.get_user_data_dir()+"/plugins/"+_plugins[plugin_id]+"/icon.png"))
 	elif _developer_plugins.has(plugin_id):
-		return ImageTexture.create_from_image(Image.load_from_file("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png"))
+		return load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png")
 
 	return ERR_DOES_NOT_EXIST
 

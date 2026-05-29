@@ -1,7 +1,7 @@
 extends Control
 class_name PluginInstalled
 
-@onready var icon: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Icon
+@onready var icon: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/Icon
 @onready var display_name: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Name
 @onready var version: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer/Version
 @onready var toggle: RGToggle = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle
@@ -41,6 +41,7 @@ func setup():
 		icon.hide()
 	toggle.set_state(PluginManager.is_plugin_loaded(plugin_id),true)
 	toggle.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	toggle.set_accessible(Settings.get_option_value("core.accessibility/symbol_indicators"))
 	Settings.setting_changed.connect(_on_setting_changed)
 	return OK
 
@@ -73,6 +74,8 @@ func _on_toggle_toggled(toggled_on: bool) -> void:
 func _on_setting_changed(option_path:String,new_value) -> void:
 	if option_path == "core.appearance/accent_color":
 		toggle.set_color(new_value)
+	if option_path == "core.accessibility/symbol_indicators":
+		toggle.set_accessible(new_value)
 
 
 func _on_developer_tag_mouse_entered() -> void:
@@ -159,3 +162,13 @@ func _on_rg_container_gui_input(event: InputEvent) -> void:
 			menu.add_seperator()
 			menu.add_action("Delete plugin",Icons.TRASH,_on_uninstall_pressed,[],true)
 		RoseGarden.create_rc_menu(menu,get_global_mouse_position())
+
+func show_keybind(keybind_num:String):
+	icon.texture = load("res://Plugins/Plugin/Keybinds/Keybind"+keybind_num+".svg")
+	icon.show()
+
+func hide_keybind():
+	if PluginManager.plugin_has_icon(plugin_id):
+		icon.texture = PluginManager.get_plugin_icon(plugin_id)
+	else:
+		icon.hide()

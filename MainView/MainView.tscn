@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://crxnkn327ll0e" path="res://Sidebar/SidebarClient.gd" id="2_qlysq"]
 [ext_resource type="Texture2D" uid="uid://y3k8vua7s2kr" path="res://MainView/Sidebar Selection.svg" id="2_yduse"]
 [ext_resource type="Texture2D" uid="uid://dye14bkbxhv4b" path="res://Icons/User.svg" id="4_jqlkf"]
+[ext_resource type="Script" uid="uid://cnxeeypdykllf" path="res://Notifications/NotificationsClient.gd" id="5_iwsuo"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_v5kho"]
 [ext_resource type="Script" uid="uid://bijxdi610xx3r" path="res://Sidebar/EventsClient.gd" id="6_42b22"]
 [ext_resource type="PackedScene" uid="uid://bspdiaf7ktvjm" path="res://addons/RoseGarden/components/SegmentControlIcon/RGSegmentControlIcon.tscn" id="7_qlysq"]
@@ -223,6 +224,21 @@ icon = ExtResource("9_burg1")
 flat = true
 script = ExtResource("14_qlysq")
 
+[node name="NotificationContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom" unique_id=2072833671]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="Notifications" type="Control" parent="MainView/Sidebar/Sidebar Bottom/NotificationContainer" unique_id=963946932]
+layout_mode = 2
+size_flags_vertical = 3
+script = ExtResource("5_iwsuo")
+
+[node name="Control" type="Control" parent="MainView/Sidebar/Sidebar Bottom/NotificationContainer" unique_id=1346757655]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+
 [node name="SeperatorTexture" type="TextureRect" parent="MainView" unique_id=1092767801]
 layout_mode = 2
 texture = SubResource("GradientTexture1D_vnica")
@@ -251,10 +267,9 @@ z_index = 10
 custom_minimum_size = Vector2(390, 60)
 layout_mode = 2
 size_flags_horizontal = 0
-placeholder_text = "Search..."
+placeholder_text = "Search command..."
 icon = ExtResource("16_42b22")
 show_hint = true
-hint = "⌘F"
 
 [node name="SeperatorTexture" type="TextureRect" parent="MainView/VBoxContainer2" unique_id=14582395]
 custom_minimum_size = Vector2(0, 2)

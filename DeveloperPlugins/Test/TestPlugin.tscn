@@ -2,9 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_483d7"]
 [ext_resource type="Script" uid="uid://4gvmaihgwid6" path="res://DeveloperPlugins/Test/TestPlugin.gd" id="1_v4aov"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="2_v4aov"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_by5gf"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_vbiv1"]
+[ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="5_gx6r7"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="7_1s46c"]
+[ext_resource type="Texture2D" uid="uid://cdfqxmvucwk6i" path="res://Icons/Down.svg" id="8_1s46c"]
+[ext_resource type="Texture2D" uid="uid://doxcvlyim7fft" path="res://Icons/Up.svg" id="9_838f2"]
 
 [node name="TestPlugin" type="Control" unique_id=1427262098]
 layout_mode = 3
@@ -36,20 +38,18 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="EventsTitle" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_483d7")]
+[node name="EventsTitle" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_483d7")]
 custom_minimum_size = Vector2(102, 45)
 layout_mode = 2
-script = ExtResource("2_v4aov")
 text = "Events"
 font_size = "Large"
 
 [node name="CreateEvent" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1332719466]
 layout_mode = 2
 
-[node name="RGText" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1355547912 instance=ExtResource("1_483d7")]
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1355547912 instance=ExtResource("1_483d7")]
 custom_minimum_size = Vector2(148, 34)
 layout_mode = 2
-script = ExtResource("2_v4aov")
 text = "Create event"
 vertical_alignment = "Center"
 
@@ -57,14 +57,11 @@ vertical_alignment = "Center"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="CreateEvent" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1426858299 instance=ExtResource("3_by5gf")]
+[node name="CreateEvent" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent" unique_id=1426858299 instance=ExtResource("3_by5gf")]
 custom_minimum_size = Vector2(200, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("4_vbiv1")
 color = "Purple"
 text = "Create"
-metadata/_edit_use_anchors_ = true
 
 [node name="RemoveEvent" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=799761573]
 layout_mode = 2
@@ -87,5 +84,89 @@ color = "Purple"
 text = "Remove"
 disabled = true
 
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1460057685 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(198, 45)
+layout_mode = 2
+text = "Notifications"
+font_size = "Large"
+
+[node name="CreateNotification" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=964967709]
+layout_mode = 2
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification" unique_id=174053797 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(217, 34)
+layout_mode = 2
+text = "Create notification"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification" unique_id=2116925557]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=2017209978]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="NotificationTitle" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=808777957 instance=ExtResource("5_gx6r7")]
+layout_mode = 2
+placeholder_text = "Title"
+
+[node name="NotificationDescription" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=1685772128 instance=ExtResource("5_gx6r7")]
+layout_mode = 2
+placeholder_text = "Description"
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=1322947890 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(55, 28)
+layout_mode = 2
+text = "Error:"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=2054638704]
+layout_mode = 2
+alignment = 1
+
+[node name="NotificationError" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("7_1s46c")]
+layout_mode = 2
+color = "Purple"
+
+[node name="NotificationDurationText" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=1910630657 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(142, 34)
+layout_mode = 2
+text = "Duration: 4s"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=587972640]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="NotificationDurationDown" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer" unique_id=456883891 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("8_1s46c")
+connection = "Right"
+
+[node name="NotificationDurationUp" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer" unique_id=1992018225 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("9_838f2")
+connection = "Left"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification" unique_id=1506952453]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateNotification" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification" unique_id=1403435357 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+color = "Purple"
+text = "Create"
+
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent/CreateEvent" to="." method="_on_create_event_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent/RemoveEvent" to="." method="_on_remove_event_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationDown" to="." method="_on_notification_duration_down_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationUp" to="." method="_on_notification_duration_up_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/CreateNotification" to="." method="_on_create_notification_pressed"]

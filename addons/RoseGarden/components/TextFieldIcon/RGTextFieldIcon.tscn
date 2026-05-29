@@ -2,8 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ctgyan3gnkrp0" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.gd" id="1_0lceu"]
 [ext_resource type="Texture2D" uid="uid://c53da4it7qoms" path="res://addons/RoseGarden/components/TextFieldIcon/Container.svg" id="2_d8sgs"]
-[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_0lceu"]
-[ext_resource type="Texture2D" uid="uid://hai2ciareqbb" path="res://addons/RoseGarden/components/TextFieldIcon/Mask.png" id="4_7e48o"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_0lceu"]
 [ext_resource type="Texture2D" uid="uid://du6cbrypcj8g3" path="res://addons/RoseGarden/components/TextFieldIcon/Keybind Conatiner.svg" id="5_ypgaa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypgaa"]
@@ -27,39 +26,6 @@ offset_right = 148.01999
 offset_bottom = 60.0
 texture = ExtResource("2_d8sgs")
 patch_margin_left = 30
-patch_margin_top = 30
-patch_margin_right = 30
-patch_margin_bottom = 30
-
-[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=1338266349]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 58
-theme_override_constants/margin_top = 16
-theme_override_constants/margin_right = 16
-theme_override_constants/margin_bottom = 16
-
-[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1069305714]
-layout_mode = 2
-alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=626604884]
-layout_mode = 2
-
-[node name="Label" type="Label" parent="NinePatchRect/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1680541669]
-layout_mode = 2
-theme = ExtResource("3_0lceu")
-
-[node name="NinePatchRect2" type="NinePatchRect" parent="." unique_id=913046357]
-layout_mode = 0
-offset_right = 148.01999
-offset_bottom = 60.0
-texture = ExtResource("4_7e48o")
-patch_margin_left = 58
 patch_margin_top = 30
 patch_margin_right = 30
 patch_margin_bottom = 30
@@ -126,21 +92,25 @@ layout_mode = 2
 stretch_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1859247177]
-layout_mode = 0
-offset_right = 148.01999
-offset_bottom = 60.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.8025055
+offset_right = 2.8025055
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 58
-theme_override_constants/margin_right = 4
+theme_override_constants/margin_right = 12
 
 [node name="LineEdit" type="LineEdit" parent="MarginContainer" unique_id=2106032934]
 layout_mode = 2
 theme = ExtResource("3_0lceu")
-theme_override_colors/font_color = Color(0.8745098, 0.8745098, 0.8745098, 0)
+theme_override_colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+theme_override_colors/selection_color = Color(0.28627452, 0.53333336, 0.68235296, 1)
+theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ypgaa")
 context_menu_enabled = false
-selecting_enabled = false
-deselect_on_focus_loss_enabled = false
-drag_and_drop_selection_enabled = false
 flat = true
 caret_blink = true
 

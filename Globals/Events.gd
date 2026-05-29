@@ -16,3 +16,8 @@ func get_event_node(event_id:String):
 	if _client == null:
 		return ERR_BUSY
 	return _client.get_event_node(event_id)
+
+func event_exists(event_id:String):
+	if _client == null:
+		return ERR_BUSY
+	return _client.event_exists(event_id)

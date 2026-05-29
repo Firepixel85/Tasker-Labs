@@ -32,3 +32,7 @@ func _on_tab_selected(item_name: String) -> void:
 		selected_tab = "installed"
 		view_container.add_child(preload("res://Plugins/InstalledView.tscn").instantiate())
 		view_container.get_child(0).display_plugins()
+
+func setup():
+	if selected_tab == "installed":
+		view_container.get_child(0).display_plugins()

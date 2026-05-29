@@ -59,7 +59,7 @@ func _process(_delta: float) -> void:
 	if !Input.is_physical_key_pressed(KEY_SHIFT):
 		_close_keybinds()
 		return
-	if !_checked_for_shift_held:
+	elif !_checked_for_shift_held:
 		_checked_for_shift_held = true
 		check_shift_held()
 	for i in range(10):

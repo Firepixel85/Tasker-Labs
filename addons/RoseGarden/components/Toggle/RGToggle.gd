@@ -18,6 +18,7 @@ signal dehovered
 var _texture_path
 var _hovered:bool = false
 var dont_animate:bool = false
+
 func set_color(new_color):
 	if RoseGarden.Colors.verify_color(new_color,false) != OK:
 		return ERR_INVALID_PARAMETER
