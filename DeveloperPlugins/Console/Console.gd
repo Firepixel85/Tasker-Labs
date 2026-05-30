@@ -27,21 +27,24 @@ func _update_logs():
 	for i in Debug.get_logs().size():
 		var log_string:String
 		if Settings.get_option_value("com.rosepen.console/show_timestamps"):
-			log_string = "("+Debug.log_timestamps[i]+") "+Debug.get_logs()[i]
+			log_string = "["+Debug.get_formated_time(Debug.log_seconds[i])+"] "+Debug.get_logs()[i]
 		else:
 			log_string = Debug.get_logs()[i]
+		var log_num = str(i)
+		for e in range(str(Debug.get_logs().size()).split("").size()-str(i).split("").size()):
+			log_num = "0"+log_num
 		match Debug.log_type[i]:
 			"Info":
 				if show_logs:
-					text.append_text(log_string)
+					text.append_text("[color=ACACAC]"+log_num+"[/color] "+log_string)
 					text.newline()
 			"Warn":
 				if show_warns:
-					text.append_text("[color=FBC600]"+log_string+" [/color]")
+					text.append_text("[color=ACACAC]"+log_num+"[/color] [color=FBC600]"+log_string+" [/color]")
 					text.newline()
 			"Error":
 				if show_errors:
-					text.append_text("[color=D72D2C]"+log_string+" [/color]")
+					text.append_text("[color=ACACAC]"+log_num+"[/color] [color=D72D2C]"+log_string+" [/color]")
 					text.newline()
 
 	log_count.set_text(str(Debug.log_count))

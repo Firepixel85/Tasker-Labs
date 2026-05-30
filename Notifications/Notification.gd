@@ -13,19 +13,17 @@ var action_params
 var duration
 
 signal closed
-
+signal sized
 func _update():
-	size.y = margin_container.size.y + 16
-	container.size.x = 448
-	progress.get_parent().size.x = 448
-	button.size.x = 448
-	size.x = 448
-
-func _second_update():
+	await get_tree().process_frame #
+	await get_tree().process_frame #Don't ask me why it need this 2 times, Godot sizing logic is fucked (or i am dumb...)
 	custom_minimum_size.y = margin_container.size.y + 16
+	size = Vector2(448,margin_container.size.y)
 	container._update()
+	sized.emit()
 
 func setup(new_title:String,new_description:String,error:=false,new_action=null,new_action_params:=[],new_duration:=4.0):
+	modulate = Color(1,1,1,0)
 	title.set_text(new_title)
 	description.text = new_description
 	if error:
@@ -37,10 +35,10 @@ func setup(new_title:String,new_description:String,error:=false,new_action=null,
 	action = new_action
 	action_params = new_action_params
 	duration = new_duration
-	enter()
 	_update()
-	await get_tree().process_frame #Needs to update 2 times to properly size
-	_second_update()
+	await sized
+	modulate = Color(1,1,1,1)
+	enter()
 	if duration == 0:
 		return OK
 	var tween = create_tween()
@@ -57,6 +55,7 @@ func close():
 
 
 func enter():
+	position = Vector2(-448,0)
 	var tween = create_tween()
 	tween.tween_property(self,"position:x",0,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	

@@ -33,7 +33,7 @@ func _ready() -> void:
 	notification_error.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	notification_error.set_accessible(Settings.get_option_value("core.accessibility/symbol_indicators"))
 	notification_title.set_text("Test")
-	notification_description.set_text("This is a test notification")
+	notification_description.set_text("This is a test notification's description... It should describe why the user is getting this notification.")
 	if Events.event_exists(ID):
 		create_event.set_disabled(true)
 		remove_event.set_disabled(false)

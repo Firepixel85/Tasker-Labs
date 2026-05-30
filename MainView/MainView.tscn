@@ -25,6 +25,13 @@
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="20_52bp6"]
 [ext_resource type="Script" uid="uid://btugn3kwhhhsh" path="res://Plugins/PluginsClient.gd" id="20_a7d7b"]
 
+[sub_resource type="Gradient" id="Gradient_iwsuo"]
+offsets = PackedFloat32Array(0.5679348)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_wi7n6"]
+gradient = SubResource("Gradient_iwsuo")
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yduse"]
 
 [sub_resource type="Gradient" id="Gradient_ftpnl"]
@@ -137,6 +144,22 @@ size_flags_vertical = 3
 focus_mode = 1
 theme_override_constants/separation = 24
 
+[node name="Notifications" type="Control" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=963946932]
+visible = false
+layout_mode = 2
+size_flags_vertical = 10
+script = ExtResource("5_iwsuo")
+
+[node name="TextureRect" type="TextureRect" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Notifications" unique_id=1162169061]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("GradientTexture1D_wi7n6")
+
 [node name="EventSelection" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1133264568 instance=ExtResource("7_qlysq")]
 visible = false
 layout_mode = 2
@@ -223,21 +246,6 @@ theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
 icon = ExtResource("9_burg1")
 flat = true
 script = ExtResource("14_qlysq")
-
-[node name="NotificationContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom" unique_id=2072833671]
-visible = false
-layout_mode = 2
-theme_override_constants/separation = 0
-alignment = 2
-
-[node name="Notifications" type="Control" parent="MainView/Sidebar/Sidebar Bottom/NotificationContainer" unique_id=963946932]
-layout_mode = 2
-size_flags_vertical = 3
-script = ExtResource("5_iwsuo")
-
-[node name="Control" type="Control" parent="MainView/Sidebar/Sidebar Bottom/NotificationContainer" unique_id=1346757655]
-custom_minimum_size = Vector2(0, 76)
-layout_mode = 2
 
 [node name="SeperatorTexture" type="TextureRect" parent="MainView" unique_id=1092767801]
 layout_mode = 2
