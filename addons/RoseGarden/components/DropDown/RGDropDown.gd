@@ -14,6 +14,7 @@ var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
+var open:bool = false
 signal new_selection(selection:String)
 signal opened
 signal closed
@@ -62,30 +63,39 @@ func get_selected():
 func get_selected_item():
 	return items[_find_index(item_ids,selected)]
 
+func is_open():
+	return open
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
 
 func _ready() -> void:
-	RoseGarden.custom_textures_changed.connect(_update_textures)
+	RoseGarden.custom_textures_changed.connect(_update)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
-	_update_textures()
 	_update_themes()
+	_update()
 
 func _update():
 	if !Engine.is_editor_hint():
 		size.x = menu_item_container._get_min_size()
 		if !_array_has_item(item_ids,selected) and item_ids !=[]:
 			selected = item_ids[0]
+
+	container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
+	arrow.texture = load(RoseGarden._file_path+"DropDown/Arrow.svg")
+	menu_container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
+	selection.texture = load(RoseGarden._file_path+"DropDown/Selection.svg")
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
 	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmAppearance)).set_trans(Tween.TRANS_SINE)
 	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
-	label.text = items[_find_index(item_ids,selected)]
-
-
+	if !items.size()==0:
+		label.text = items[_find_index(item_ids,selected)]
+	else:
+		label.text = ""
 
 func _array_has_item(array:Array,item):
 	var found := false
@@ -103,6 +113,7 @@ func _find_index(array:Array,item):
 	return index
 
 func _open():
+	open = true
 	menu_container.position = global_position
 	for child in menu_item_container.get_children():
 		child._update()
@@ -114,6 +125,7 @@ func _open():
 	opened.emit()
 
 func _close(invisible:bool=false):
+	var open = false
 	var tween = create_tween()
 	selection.visible = false
 	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
@@ -154,11 +166,10 @@ func _on_button_up() -> void:
 func _on_button_down() -> void:
 	modulate = RoseGarden.Colors.COLOR_PRESSED
 
-func _update_textures():
-	container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
-	arrow.texture = load(RoseGarden._file_path+"DropDown/Arrow.svg")
-	menu_container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
-	selection.texture = load(RoseGarden._file_path+"DropDown/Selection.svg")
-
 func _update_themes():
 	label.theme = RoseGarden.Themes.Secondary
+
+func _process(delta: float) -> void:
+	if !open:
+		return
+	menu_container.position = global_position

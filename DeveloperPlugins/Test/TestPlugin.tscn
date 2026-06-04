@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="7_1s46c"]
 [ext_resource type="Texture2D" uid="uid://cdfqxmvucwk6i" path="res://Icons/Down.svg" id="8_1s46c"]
 [ext_resource type="Texture2D" uid="uid://doxcvlyim7fft" path="res://Icons/Up.svg" id="9_838f2"]
+[ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="10_1b803"]
 
 [node name="TestPlugin" type="Control" unique_id=1427262098]
 layout_mode = 3
@@ -36,6 +37,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
+focus_mode = 1
 theme_override_constants/separation = 16
 
 [node name="EventsTitle" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_483d7")]
@@ -84,7 +86,7 @@ color = "Purple"
 text = "Remove"
 disabled = true
 
-[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1460057685 instance=ExtResource("1_483d7")]
+[node name="NotificationsTitle" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1460057685 instance=ExtResource("1_483d7")]
 custom_minimum_size = Vector2(198, 45)
 layout_mode = 2
 text = "Notifications"
@@ -165,8 +167,78 @@ layout_mode = 2
 color = "Purple"
 text = "Create"
 
+[node name="ToastsTitle" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=145884851 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(100, 45)
+layout_mode = 2
+text = "Toasts"
+font_size = "Large"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=503263385]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=891492326 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(143, 34)
+layout_mode = 2
+text = "Create toast"
+vertical_alignment = "Center"
+
+[node name="Spacer2" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=999844718]
+custom_minimum_size = Vector2(32, 0)
+layout_mode = 2
+
+[node name="ToastText" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1285782778 instance=ExtResource("5_gx6r7")]
+layout_mode = 2
+placeholder_text = "Text"
+
+[node name="RGText2" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1172206762 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(68, 34)
+layout_mode = 2
+text = "Color:"
+vertical_alignment = "Center"
+
+[node name="ToastColor" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1673271566 instance=ExtResource("10_1b803")]
+layout_mode = 2
+
+[node name="ToastDurationText" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1205379997 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(142, 34)
+layout_mode = 2
+text = "Duration: 4s"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=565001903]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="ToastDurationDown" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=1644063942 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("8_1s46c")
+connection = "Right"
+
+[node name="ToastDurationUp" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=1310922415 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("9_838f2")
+connection = "Left"
+
+[node name="Spacer" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=1010829348]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CreateToast" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer" unique_id=460183961 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+color = "Purple"
+text = "Create"
+
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent/CreateEvent" to="." method="_on_create_event_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent/RemoveEvent" to="." method="_on_remove_event_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationDown" to="." method="_on_notification_duration_down_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationUp" to="." method="_on_notification_duration_up_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/CreateNotification" to="." method="_on_create_notification_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationDown" to="." method="_on_toast_duration_down_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationUp" to="." method="_on_toast_duration_up_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CreateToast" to="." method="_on_create_toast_pressed"]

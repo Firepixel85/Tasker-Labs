@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://c0ww1cougn0ql"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_af81a"]
+[ext_resource type="Script" uid="uid://cn6ur0kph4bh2" path="res://PluginView/Plugin/PluginInstalled.gd" id="1_l1wwd"]
+[ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="2_hv1du"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_0pp08"]
+[ext_resource type="Texture2D" uid="uid://c7yuanhdy8u5c" path="res://PluginView/Plugin/Developer.svg" id="4_l1wwd"]
+[ext_resource type="Texture2D" uid="uid://bk23k06rso3e3" path="res://PluginView/Plugin/Trusted.svg" id="5_haqhc"]
+[ext_resource type="Texture2D" uid="uid://b5intoxnk6bwd" path="res://PluginView/Plugin/Version Controlled.svg" id="6_y4jfl"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="7_0pp08"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="7_tsylt"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_0w7ew"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fqet5"]
+
+[node name="PluginInstalled" type="Control" unique_id=804456938]
+clip_children = 2
+custom_minimum_size = Vector2(512, 256)
+layout_mode = 3
+anchors_preset = 0
+focus_mode = 1
+script = ExtResource("1_l1wwd")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_af81a")]
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 512.0
+offset_bottom = 256.0
+grow_horizontal = 1
+grow_vertical = 1
+focus_mode = 1
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=1788717825]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=932969187]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1261530501]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=468817861]
+layout_mode = 2
+alignment = 1
+
+[node name="Icon" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3" unique_id=1667651605]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+texture = ExtResource("2_hv1du")
+stretch_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=980931130]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1888320730]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Name" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=85953319 instance=ExtResource("3_0pp08")]
+custom_minimum_size = Vector2(69, 34)
+layout_mode = 2
+text = "Name"
+vertical_alignment = "Center"
+
+[node name="Version" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/HBoxContainer" unique_id=326331907 instance=ExtResource("3_0pp08")]
+custom_minimum_size = Vector2(47, 34)
+layout_mode = 2
+text = "v0.3"
+rounded = true
+color = "Secondary"
+vertical_alignment = "Center"
+
+[node name="Author" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2" unique_id=1235354987 instance=ExtResource("3_0pp08")]
+custom_minimum_size = Vector2(68, 28)
+layout_mode = 2
+text = "Author"
+font_size = "Secondary"
+color = "Secondary"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2119901275]
+layout_mode = 2
+
+[node name="Spacer3" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=723378782]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="DeveloperTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1109569185]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("4_l1wwd")
+flat = true
+
+[node name="TrustedTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=442714636]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("5_haqhc")
+flat = true
+
+[node name="VersionControlledTag" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1609555717]
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_fqet5")
+icon = ExtResource("6_y4jfl")
+flat = true
+
+[node name="Spacer2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1893405780]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=758439556]
+layout_mode = 2
+alignment = 1
+
+[node name="Toggle" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("7_0pp08")]
+layout_mode = 2
+color = "Purple"
+is_toggled = true
+
+[node name="Description" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=94679237]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("7_tsylt")
+text = "Descriptions"
+autowrap_mode = 2
+clip_text = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=461467623]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Uninstall" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1426858299 instance=ExtResource("8_0w7ew")]
+custom_minimum_size = Vector2(223, 60)
+layout_mode = 2
+text = "Uninstall"
+
+[connection signal="gui_input" from="RGContainer" to="." method="_on_rg_container_gui_input"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/DeveloperTag" to="." method="_on_developer_tag_pressed"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TrustedTag" to="." method="_on_trusted_tag_pressed"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag" to="." method="_on_version_controlled_tag_pressed"]
+[connection signal="dehovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_dehovered"]
+[connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_hovered"]
+[connection signal="toggled" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggle_toggled"]
+[connection signal="de_hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_de_hovered"]
+[connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_hovered"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Uninstall" to="." method="_on_uninstall_pressed"]

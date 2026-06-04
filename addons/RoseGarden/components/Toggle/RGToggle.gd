@@ -62,9 +62,9 @@ func _on_pressed() -> void:
 
 func _update():
 	if accessible:
-		_texture_path = "res://addons/RoseGarden/components/Toggle/BaseAccesible/"
+		_texture_path = RoseGarden._get_file_path()+"Toggle/BaseAccesible/"
 	else:
-		_texture_path = "res://addons/RoseGarden/components/Toggle/Base/"
+		_texture_path = RoseGarden._get_file_path()+"Toggle/Base/"
 
 	if is_toggled:
 		_show_on()
@@ -113,4 +113,11 @@ func _on_mouse_exited() -> void:
 	dehovered.emit()
 
 func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update)
+	RoseGarden.flags_changed.connect(_update_flags)
 	_update()
+
+func _update_flags(flag_name:String,new_value:bool):
+	if flag_name == "accessible_toggles":
+		accessible = new_value
+		_update()

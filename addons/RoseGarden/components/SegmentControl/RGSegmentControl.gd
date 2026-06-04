@@ -106,11 +106,15 @@ func _ready() -> void:
 		if !items == []:
 			select(items[0])
 	RoseGarden.custom_themes_changed.connect(_update_themes)
+	RoseGarden.custom_textures_changed.connect(_update)
 
 func _update():
+	texture.texture = load(RoseGarden._get_file_path()+"SegmentControl/Container.svg")
+	selector.texture = load(RoseGarden._get_file_path()+"SegmentControl/Selection.svg")
 	var container_size = text_container.get_parent().size.x
 	texture.size.x = container_size
 	custom_minimum_size.x = texture.size.x
+
 
 func _delayed_update():
 	await get_tree().create_timer(2).timeout

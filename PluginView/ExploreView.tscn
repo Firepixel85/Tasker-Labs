@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://jtvoo5jjc3tw"]
+
+[ext_resource type="Script" uid="uid://btjiid8lcfkvt" path="res://PluginView/PluginStore.gd" id="1_s3a17"]
+[ext_resource type="Texture2D" uid="uid://46s1hg3pjhsy" path="res://PluginView/Coming Soon.svg" id="1_u1j6t"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_wqxkm"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="3_b47fu"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_s3a17"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="5_d4w08"]
+
+[node name="ExploreView" type="Control" unique_id=951042587]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s3a17")
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1139832357]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1368935184]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=309036549]
+layout_mode = 2
+texture = ExtResource("1_u1j6t")
+stretch_mode = 5
+
+[node name="RGText" parent="CenterContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_wqxkm")]
+custom_minimum_size = Vector2(211, 45)
+layout_mode = 2
+text = "Coming Soon!"
+font_size = "Large"
+horizontal_alignment = "Center"
+
+[node name="RGText2" parent="CenterContainer/VBoxContainer" unique_id=1864255225 instance=ExtResource("2_wqxkm")]
+custom_minimum_size = Vector2(494, 34)
+layout_mode = 2
+text = "The plugin store is still under construction."
+horizontal_alignment = "Center"
+
+[node name="RGText3" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1981497466 instance=ExtResource("2_wqxkm")]
+custom_minimum_size = Vector2(568, 34)
+layout_mode = 2
+script = ExtResource("3_b47fu")
+text = "For now you can test out some developer plugins"
+horizontal_alignment = "Center"
+
+[node name="Seperator" type="Control" parent="CenterContainer/VBoxContainer" unique_id=722396492]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1978521195]
+layout_mode = 2
+alignment = 1
+
+[node name="RGButton" type="Control" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_s3a17")]
+custom_minimum_size = Vector2(189, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("5_d4w08")
+color = "White"
+text = "How?"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RGButton" to="." method="_on_rg_button_pressed"]

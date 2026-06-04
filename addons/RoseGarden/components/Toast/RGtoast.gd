@@ -26,6 +26,7 @@ func _update():
 	base.size.x = label.get_minimum_size().x + 120
 	size = base.size
 	button.size = size
+	label.theme = RoseGarden.Themes.Secondary
 
 func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
@@ -34,3 +35,7 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed() -> void:
 	RoseGarden.clear_toast()
+
+func _ready():
+	RoseGarden.custom_themes_changed.connect(_update)
+	RoseGarden.custom_themes_changed.connect(_update)

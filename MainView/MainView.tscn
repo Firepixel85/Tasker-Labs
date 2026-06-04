@@ -23,7 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dwe0vi0kcf2e0" path="res://Icons/ICircle.svg" id="19_42b22"]
 [ext_resource type="Script" uid="uid://cfr1hewna5wpl" path="res://Settings/OptionHandler.gd" id="19_h0v64"]
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="20_52bp6"]
-[ext_resource type="Script" uid="uid://btugn3kwhhhsh" path="res://Plugins/PluginsClient.gd" id="20_a7d7b"]
+[ext_resource type="Script" uid="uid://btugn3kwhhhsh" path="res://PluginView/PluginsClient.gd" id="20_a7d7b"]
 
 [sub_resource type="Gradient" id="Gradient_iwsuo"]
 offsets = PackedFloat32Array(0.5679348)

@@ -7,6 +7,7 @@ class_name Notification
 @onready var margin_container: MarginContainer = $RGContainer/MarginContainer
 @onready var progress: TextureProgressBar = $VBoxContainer/TextureProgressBar
 @onready var button: Button = $Button
+@onready var close_icon: Button = $CloseIcon
 
 var action
 var action_params
@@ -44,15 +45,18 @@ func setup(new_title:String,new_description:String,error:=false,new_action=null,
 	var tween = create_tween()
 	tween.tween_property(progress,"value",0,duration)
 	await tween.finished
-	close()
+	close(false)
 	return OK
 
-func close():
-	var tween = create_tween()
+func close(was_desmised:bool):
+	var tween = create_tween().set_parallel(true)
 	tween.tween_property(self,"modulate",Color(1,1,1,0),0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	if was_desmised:
+		tween.tween_property(self,"scale",Vector2(0,0),0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	else:
+		tween.tween_property(self,"position:x",-448,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	closed.emit()
-
 
 func enter():
 	position = Vector2(-448,0)
@@ -62,4 +66,14 @@ func enter():
 func _on_button_pressed() -> void:
 	if action != null:
 		action.callv(action_params)
-	close()
+	close(true)
+
+func _on_close_icon_mouse_entered() -> void:
+	close_icon.icon = preload("res://Notifications/CloseHovered.svg")
+
+func _on_close_icon_mouse_exited() -> void:
+	close_icon.icon = preload("res://Notifications/Close.svg")
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("notification_dismiss"):
+		close(true)

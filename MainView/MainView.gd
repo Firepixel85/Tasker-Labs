@@ -177,12 +177,12 @@ func _settings_changed(option_path,new_value):
 		else:
 			Settings.hide_category("core.rose_garden")
 
+
 func _update_setting_values():
 	if Settings.option_exists("core.general/display_name"):
 		user_name.set_text(Settings.get_option_value("core.general/display_name"))
 	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.appearance/more_animations")
 	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.appearance/more_animations")
-
 	RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
 	RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")
 	RoseGarden.Animations.sgSelection = Settings.get_option_value("core.rose_garden/sg_selection")
@@ -193,7 +193,6 @@ func _update_setting_values():
 	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
 	RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
 	RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")
-
 	if Settings.get_option_value("core.developer/rg_options"):
 		Settings.show_category("core.rose_garden")
 	else:

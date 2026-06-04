@@ -14,9 +14,11 @@ func _ready() -> void:
 	manager.section_added.connect(_update)
 	manager.section_selected.connect(_median_update)
 	manager.section_removed.connect(_update)
+	RoseGarden.custom_textures_changed.connect(_update)
 	ready.emit()
 
 func _update():
+	texture = load(RoseGarden._get_file_path()+"SectionView/Section.svg")
 	if manager.get_selected() == id:
 		create_tween().tween_property(self,"custom_minimum_size",Vector2(48,12),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.svChange)).set_trans(Tween.TRANS_SINE)
 		modulate = Color(1,1,1)

@@ -3,7 +3,7 @@ extends Node
 const ID = "com.rosepen.dev_test"
 
 func start():
-	Sidebar.add_tab("API Test",Icons.FLASK,load("res://DeveloperPlugins/Test/TestPlugin.tscn"),ID)
+	Sidebar.add_tab("API Test",Icons.FLASK,load(PluginManager.get_plugin_filepath(ID)+"Test/TestPlugin.tscn"),ID)
 	Debug.log("Loaded",ID)
 
 func stop():

@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://ctgyan3gnkrp0" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.gd" id="1_0lceu"]
 [ext_resource type="Texture2D" uid="uid://c53da4it7qoms" path="res://addons/RoseGarden/components/TextFieldIcon/Container.svg" id="2_d8sgs"]
 [ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_0lceu"]
-[ext_resource type="Texture2D" uid="uid://du6cbrypcj8g3" path="res://addons/RoseGarden/components/TextFieldIcon/Keybind Conatiner.svg" id="5_ypgaa"]
+[ext_resource type="Texture2D" uid="uid://du6cbrypcj8g3" path="res://addons/RoseGarden/components/TextFieldIcon/Keybind Container.svg" id="5_ypgaa"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypgaa"]
 

@@ -2,14 +2,14 @@
 
 [ext_resource type="Script" uid="uid://23oijfm1wo24" path="res://addons/RoseGarden/components/Toast/RGtoast.gd" id="1_rv674"]
 [ext_resource type="Texture2D" uid="uid://cy5ix8v70ah78" path="res://addons/RoseGarden/components/Toast/Base/BaseGreen.png" id="2_rv674"]
-[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_oyk45"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_gt3vp"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rv674"]
 
 [node name="RGtoast" type="Control" unique_id=480507705]
 layout_mode = 3
 anchors_preset = 0
-offset_right = 301.0
+offset_right = 327.0
 offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -20,7 +20,7 @@ color = "Green"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=831539513]
 layout_mode = 0
-offset_right = 301.0
+offset_right = 327.0
 offset_bottom = 60.0
 texture = ExtResource("2_rv674")
 patch_margin_left = 30
@@ -38,12 +38,12 @@ grow_vertical = 2
 
 [node name="Label" type="Label" parent="NinePatchRect/CenterContainer" unique_id=761716096]
 layout_mode = 2
-theme = ExtResource("3_oyk45")
+theme = ExtResource("3_gt3vp")
 text = "Focus session started"
 
 [node name="Button" type="Button" parent="." unique_id=209889396]
 layout_mode = 0
-offset_right = 301.0
+offset_right = 327.0
 offset_bottom = 60.0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_rv674")
 flat = true

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c247fa4u6vknm"]
 
 [ext_resource type="Script" uid="uid://ca4r05wiqal08" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.gd" id="1_hogpa"]
-[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControlIcon/Container.svg" id="2_hogpa"]
+[ext_resource type="Texture2D" uid="uid://btwhtoevk81fo" path="res://addons/RoseGarden/components/SegmentControl/Container.svg" id="2_fkhrq"]
 [ext_resource type="Texture2D" uid="uid://buml8wu0eqxal" path="res://addons/RoseGarden/components/SegmentControl/Selection.svg" id="3_fs17p"]
 
 [node name="RGSegmentControl" type="Control" unique_id=973767052]
@@ -21,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_hogpa")
+texture = ExtResource("2_fkhrq")
 patch_margin_left = 28
 patch_margin_top = 28
 patch_margin_right = 28

@@ -11,6 +11,7 @@ var _opened_category = ""
 var _checked_for_shift_held:bool = false ##Stops the process loop from spamming check_shift_held()
 func _ready() -> void:
 	Settings._client = self
+
 func setup():
 	for id in Settings._category_list:
 		category_handler._add_category(Settings.get_category_name(id),Settings.get_category_icon(id),id)

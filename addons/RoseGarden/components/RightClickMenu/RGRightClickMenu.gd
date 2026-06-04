@@ -6,6 +6,7 @@ class_name RGRighClickMenu
 var is_submenu:bool = false
 var _mouse_inside := false
 func _ready() -> void:
+	RoseGarden.custom_textures_changed.connect(_update)
 	scale = Vector2(0,0)
 
 func _custom_ready() -> void:
@@ -84,6 +85,8 @@ func _add_seperator():
 	return OK
 
 func _update():
+	texture.texture = load(RoseGarden._get_file_path()+"RightClickMenu/Container.svg")
+	selection.texture = load(RoseGarden._get_file_path()+"RightClickMenu/Selection.svg")
 	size.y  = item_container.get_minimum_size().y +16
 	custom_minimum_size.y = size.y
 	texture.size.y = size.y

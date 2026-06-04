@@ -56,6 +56,9 @@ func _ready() -> void:
 	_update_themes()
 
 func _update():
+	bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
+	bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
+	bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
 	match text_alignment:
 		"Left":
 			value_container.alignment = BoxContainer.ALIGNMENT_BEGIN
@@ -68,10 +71,6 @@ func _update():
 	value = clamp(value,0,100)
 	bar.value = value
 	value_text.text = str(int(value))+"%"
-
-	bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
-	bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
-	bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
 
 	if custom_minimum_size < Vector2(60,60):
 		custom_minimum_size = Vector2(60,60)

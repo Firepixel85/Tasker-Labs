@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://addons/RoseGarden/components/DropDown/RGDropDown.gd" id="1_vt2n3"]
 [ext_resource type="Texture2D" uid="uid://dvg823uea5hcf" path="res://addons/RoseGarden/components/DropDown/Container.svg" id="2_a1u6v"]
-[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_k7wgn"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="3_k7wgn"]
 [ext_resource type="Texture2D" uid="uid://b6fn7iu8pyss2" path="res://addons/RoseGarden/components/DropDown/Arrow.svg" id="4_n88wu"]
 [ext_resource type="Texture2D" uid="uid://2gh1svsrklhp" path="res://addons/RoseGarden/components/DropDown/Selection.svg" id="4_qus3v"]
 [ext_resource type="Script" uid="uid://c4cf08m4jd2m" path="res://addons/RoseGarden/components/DropDown/RGmenu_item_container.gd" id="5_0tlgq"]
@@ -20,7 +20,6 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
 script = ExtResource("1_vt2n3")
-instant_selection = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1767022555]
 texture_filter = 1

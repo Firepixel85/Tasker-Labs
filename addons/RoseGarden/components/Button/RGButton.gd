@@ -94,6 +94,7 @@ func _process(_delta: float) -> void:
 func _update():
 	label.text = text
 	texture.texture = icon
+	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
 	custom_minimum_size.x = label.size.x+texture.size.x+136
 	label.visible = true
 	content_margin.add_theme_constant_override("margin_left",64)
@@ -130,10 +131,9 @@ func _update():
 func _ready() -> void:
 	set_color(color)
 	_update()
-	RoseGarden.custom_textures_changed.connect(_update_textures)
+	RoseGarden.custom_textures_changed.connect(_update)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	RoseGarden.update_components.connect(_update)
-	_update_textures()
 	_update_themes()
 	await get_tree().process_frame
 	_update()
@@ -202,9 +202,6 @@ func _on_mouse_exited() -> void:
 		modulate = RoseGarden.Colors.COLOR_DISABLED
 	else:
 		modulate = RoseGarden.Colors.COLOR_NORMAL
-
-func _update_textures():
-	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
 
 func _update_themes():
 	label.theme = load(RoseGarden._theme_path+"Secondary.tres")

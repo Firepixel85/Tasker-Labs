@@ -59,6 +59,19 @@ func edit():
 ##############
 
 func _update():
+	if incorrect:
+		line_edit.modulate = RoseGarden.Colors.RED_HIGHLIGHT
+		container.texture = load(RoseGarden._get_file_path()+"TextField/ContainerIncorrect.svg")
+		icon_holder.modulate = RoseGarden.Colors.RED_HIGHLIGHT
+	else:
+		line_edit.modulate = Color(1,1,1)
+		container.texture = load(RoseGarden._get_file_path()+"TextField/Container.svg")
+		if line_edit.has_focus():
+			icon_holder.modulate = Color(1,1,1)
+		else:
+			icon_holder.modulate = RoseGarden.Colors.TEXT_SECONDARY
+
+	hint_texture.texture = load(RoseGarden._get_file_path()+"TextFieldIcon/Keybind Container.svg")
 	hint_text.text = hint
 	container.size.x = size.x
 	hint_container.size.x = size.x
@@ -78,18 +91,6 @@ func _update():
 		hint_container.visible = true
 	else:
 		hint_container.visible = false
-
-	if incorrect:
-		line_edit.modulate = RoseGarden.Colors.RED_HIGHLIGHT
-		container.texture = preload("res://addons/RoseGarden/components/TextFieldIcon/ContainerIncorrect.svg")
-		icon_holder.modulate = RoseGarden.Colors.RED_HIGHLIGHT
-	else:
-		line_edit.modulate = Color(1,1,1)
-		container.texture = preload("res://addons/RoseGarden/components/TextFieldIcon/Container.svg")
-		if line_edit.has_focus():
-			icon_holder.modulate = Color(1,1,1)
-		else:
-			icon_holder.modulate = RoseGarden.Colors.TEXT_SECONDARY
 
 	if secret:
 		line_edit.get_parent().size.y = 74
@@ -113,6 +114,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
+	RoseGarden.custom_textures_changed.connect(_update)
 	_update_themes()
 	_update()
 	await get_tree().create_timer(0.2).timeout

@@ -268,3 +268,11 @@ func get_all_plugins():
 func save_data():
 	Data.save_to("loaded_plugins",_loaded_plugins, "PluginData")
 	Data.save_file("PluginData")
+
+func get_plugin_filepath(plugin_id:String):
+	if !get_all_plugins().has(plugin_id):
+		return ERR_DOES_NOT_EXIST
+	if _plugins.has(plugin_id):
+		return "user://Plugins/"
+	elif _developer_plugins.has(plugin_id):
+		return "res://DeveloperPlugins/"

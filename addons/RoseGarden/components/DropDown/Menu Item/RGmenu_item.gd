@@ -35,14 +35,13 @@ func _update():
 	_updated.emit()
 
 
+
 func _ready() -> void:
 	get_parent()._highlighted.connect(change_highlight)
 	RoseGarden.custom_textures_changed.connect(_update)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	_update()
 	_update_themes()
-
-
 
 func _pressed() -> void:
 	manager.select(id)

@@ -2,6 +2,7 @@
 extends Node
 
 signal update_components
+signal flags_changed(flag_name:String,new_value:bool)
 func _ready() -> void:
 	custom_themes_changed.connect(Themes._update_themes)
 	await get_tree().create_timer(0.1).timeout
@@ -112,6 +113,11 @@ class Themes:
 	static var Large = load("res://addons/RoseGarden/themes/Large.tres")
 	static var Info = load("res://addons/RoseGarden/themes/Info.tres")
 	static var FinePrint = load("res://addons/RoseGarden/themes/FinePrint.tres")
+	static var MainRound = load("res://addons/RoseGarden/themes/MainRound.tres")
+	static var SecondaryRound = load("res://addons/RoseGarden/themes/SecondaryRound.tres")
+	static var LargeRound = load("res://addons/RoseGarden/themes/LargeRound.tres")
+	static var InfoRound = load("res://addons/RoseGarden/themes/InfoRound.tres")
+	static var FinePrintRound = load("res://addons/RoseGarden/themes/FinePrintRound.tres")
 
 	static func _update_themes():
 		Main = load(RoseGarden._theme_path+"Main.tres")
@@ -119,6 +125,19 @@ class Themes:
 		Large = load(RoseGarden._theme_path+"Large.tres")
 		Info = load(RoseGarden._theme_path+"Info.tres")
 		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
+
+class Flags:
+	static var accessible_toggles:bool = false
+
+	static func change_flag(flag_name:String,value:bool):
+		match flag_name:
+			"accessible_toggles":
+				accessible_toggles = value
+				RoseGarden.update_components.emit()
+			_:
+				return ERR_INVALID_PARAMETER
+		RoseGarden.flags_changed.emit(flag_name,value)
+		return OK
 
 #Custom Textures
 var useCustomTextures:bool = false

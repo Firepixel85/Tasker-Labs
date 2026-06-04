@@ -216,9 +216,10 @@ func open_category(category_id:String):
 	_client.category_handler._select(category_id)
 	return OK
 
-#Helper functions
 func _sync_with_rg(option_path:String,new_value):
 	if option_path == "core.accessibility/disable_animations":
 		RoseGarden.Accessibility.set_disable_animations(new_value)
 	if option_path == "core.accessibility/increase_contrast":
 		RoseGarden.Accessibility.set_increase_contrast(new_value)
+	if option_path == "core.accessibility/symbol_indicators":
+		RoseGarden.Flags.change_flag("accessible_toggles",new_value)
