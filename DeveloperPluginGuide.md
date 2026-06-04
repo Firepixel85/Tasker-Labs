@@ -10,7 +10,8 @@ In Tasker current state, only developer plugins can be loaded and fully used. So
 Opening Tasker for the first time, developer plugins will not be available. To enable them: 
 1) Go to settings (<code>⌘,</code> or press the gear icon on the bottom left of the window), navigate to the **Developer** category and enable developer tools.
 2) Once enabled go to the plugins tab (<code>⌘P</code> or close out of settings with the X button (top left) and press the puzzle icon on the bottom left of the window). 
-3) At the top center of the window you should see a control with two menus "Explore" and "Installed". Click on "Installed" (or use <code>⌘2</code>) and you should see a list of plugins. The ones with the "Developer" tag are developer plugins. You can click the toggle on the right side of each plugin to enable or disable them.
+3) At the top center of the window you should see a control with two menus "Explore" and "Installed". Click on "Installed" (or use <code>⌘2</code>) and you should see a list of plugins. The ones with the "Developer" tag (<img width="25" height="25" alt="Developer" src="https://github.com/user-attachments/assets/5f16d1b9-7ba0-4ac4-a27b-4919861e90da" />
+) are developer plugins. You can click the toggle on the right side of each plugin to enable or disable them.
 
 ## What developer plugins are available?
 Currently, we have the following developer plugins available:
