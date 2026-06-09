@@ -87,10 +87,13 @@ func _open_keybinds():
 	for i in range(option_handler.get_child_count()):
 		if i>9:
 			break
+		var new_i = i+1
+		if new_i == 10:
+			new_i = 0
 		keybind_spacer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
 		var keybind = keybind_spacer.get_child(keybind_spacer.get_child_count()-1)
 		keybind.set_text("")
-		keybind.set_keybind(str(i+1))
+		keybind.set_keybind(str(new_i))
 		keybind.set_show_keybind(true)
 		keybind.position = Vector2(0,option_handler.get_child(i).position.y+10)
 	await get_tree().process_frame

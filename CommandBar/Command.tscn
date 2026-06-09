@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://c4l03f5aw47cr"]
+
+[ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="1_70o4j"]
+[ext_resource type="Script" uid="uid://dmwe0gu0ga6xa" path="res://CommandBar/Command.gd" id="1_r8o6v"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="2_r8o6v"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8o6v"]
+
+[node name="Control" type="Control" unique_id=664242332]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_r8o6v")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1244362060]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=427282859]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1277082252]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+texture = ExtResource("1_70o4j")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1569230930]
+layout_mode = 2
+theme = ExtResource("2_r8o6v")
+text = "Command Name"
+
+[node name="Button" type="Button" parent="." unique_id=1296539988]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+theme_override_styles/focus = SubResource("StyleBoxEmpty_r8o6v")
+flat = true
+
+[connection signal="focus_exited" from="Button" to="." method="_on_button_focus_exited"]
+[connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

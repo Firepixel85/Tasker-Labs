@@ -97,7 +97,7 @@ text = ""
 icon = ExtResource("9_438k2")
 
 [node name="RGText" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
+custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"
@@ -110,7 +110,7 @@ text = ""
 icon = ExtResource("12_jpsgq")
 
 [node name="RGText2" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=1949239894 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
+custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"
@@ -123,7 +123,7 @@ text = ""
 icon = ExtResource("13_scub0")
 
 [node name="RGText3" parent="MarginContainer/HBoxContainer/VBoxContainer/RGContainer/MarginContainer/VBoxContainer" unique_id=855666169 instance=ExtResource("1_4b5jp")]
-custom_minimum_size = Vector2(15, 29)
+custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
 horizontal_alignment = "Center"

@@ -9,6 +9,7 @@ class window:
 const version:String = "2.0"
 const version_sufix:String = "pb2"
 const plugin_api_version:String = "1.0"
+signal view_changed
 
 func save_window_data():
 	while true:
@@ -41,8 +42,8 @@ func get_process_name(process_id:String):
 			return "MainView"
 		"core.icons":
 			return "Icons"
-		"core.events":
-			return "Events"
+		"core.event_manager":
+			return "EventManager"
 		"core.notification_manager":
 			return "NotificationManager"
 		"unknown":
@@ -67,3 +68,11 @@ func get_current_view():
 
 func get_view_node():
 	return main_view.view_nodes[main_view._current_view]
+	
+func change_view(new_view:String):
+	return await main_view.open_view(new_view)
+
+func get_main_view():
+	if main_view == null:
+		return ERR_BUSY
+	return main_view

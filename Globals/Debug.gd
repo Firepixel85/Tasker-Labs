@@ -60,7 +60,7 @@ func get_formated_time(time:int):
 	if run_seconds>3600:
 		if hours<10:
 			time_string += "0"
-		time_string += str(hours)
+		time_string += str(hours)+":"
 		if minutes<10:
 			time_string += "0"
 		time_string += str(minutes)

@@ -19,5 +19,6 @@ func set_show_keybind(show:bool):
 	return OK
 
 func set_keybind(new_keybind:String):
+	show_keybind = true
 	keybind = new_keybind
 	return OK

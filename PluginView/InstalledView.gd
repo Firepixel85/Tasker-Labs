@@ -10,8 +10,6 @@ var _checked_option_key_held:bool = false
 var shift_keybinds_shown:bool = false
 var option_keybinds_shown:bool = false
 
-func _ready():
-	Settings.setting_changed.connect(_on_setting_changed)
 
 func display_plugins():
 	for child in enabled_container.get_children():
@@ -48,9 +46,24 @@ func display_plugins():
 		disabled_container.get_parent().visible = false
 		disabled_text.visible = false
 
-
-func _on_setting_changed(option_path:String,_new_value) -> void:
-	pass
+	for i in enabled_container.get_children().size():
+		if i>9:
+			break
+		var new_i
+		if i == 9:
+			new_i = 0
+		else:
+			new_i = i+1
+		enabled_container.get_child(i).keybind_number = new_i
+	for i in disabled_container.get_children().size():
+		if i>9:
+			break
+		var new_i
+		if i == 9:
+			new_i = 0
+		else:
+			new_i = i+1
+		disabled_container.get_child(i).keybind_number = new_i
 
 func move_plugin(plugin_id:String):
 	for child in enabled_container.get_children():
@@ -128,7 +141,26 @@ func move_plugin(plugin_id:String):
 		plugin_disabled.modulate = Color(1,1,1,1)
 		plugin_disabled.state_changed.connect(move_plugin)
 
-func _process(delta: float) -> void:
+	for i in enabled_container.get_children().size():
+		if i>9:
+			break
+		var new_i
+		if i == 9:
+			new_i = 0
+		else:
+			new_i = i+1
+		enabled_container.get_child(i).keybind_number = new_i
+	for i in disabled_container.get_children().size():
+		if i>9:
+			break
+		var new_i
+		if i == 9:
+			new_i = 0
+		else:
+			new_i = i+1
+		disabled_container.get_child(i).keybind_number = new_i
+
+func _process(_delta: float) -> void:
 	if Main.get_current_view() != "plugins":
 		return
 	if !Input.is_key_pressed(KEY_SHIFT) and shift_keybinds_shown:

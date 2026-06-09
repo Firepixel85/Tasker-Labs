@@ -107,13 +107,14 @@ func _ready():
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):
-		return ERR_ALREADY_EXISTS
+		return ERR_DOES_NOT_EXIST
 	if view_name == "settings":
 		settings_view.setup()
 	if view_name == "plugins":
 		plugins_view.setup()
 	view_nodes[view_name].modulate = Color(1,1,1,0)
 	view_nodes[view_name].visible = true
+	view_changed.emit(view_name)
 	var tween = create_tween()
 	tween.parallel().tween_property(view_nodes[view_name],"modulate",Color(1,1,1,1),0.15*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(view_nodes[_current_view],"modulate",Color(1,1,1,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -121,8 +122,8 @@ func open_view(view_name:String):
 	for key in view_nodes.keys():
 		if key != view_name:
 			view_nodes[key].visible = false
-	view_changed.emit(view_name)
 	_current_view = view_name
+	return OK
 
 func _process(_delta: float) -> void:
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
@@ -183,17 +184,18 @@ func _update_setting_values():
 		user_name.set_text(Settings.get_option_value("core.general/display_name"))
 	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.appearance/more_animations")
 	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.appearance/more_animations")
-	RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
-	RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")
-	RoseGarden.Animations.sgSelection = Settings.get_option_value("core.rose_garden/sg_selection")
-	RoseGarden.Animations.svChange = Settings.get_option_value("core.rose_garden/sv_change")
-	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.rose_garden/rcm_selection")
-	RoseGarden.Animations.rcmAppearance = Settings.get_option_value("core.rose_garden/rcm_appearance")
-	RoseGarden.Animations.ddmAppearance = Settings.get_option_value("core.rose_garden/ddm_appearance")
-	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
-	RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
-	RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")
 	if Settings.get_option_value("core.developer/rg_options"):
 		Settings.show_category("core.rose_garden")
 	else:
 		Settings.hide_category("core.rose_garden")
+	if Settings.is_category_shown("core.rose_garden"):
+		RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
+		RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")
+		RoseGarden.Animations.sgSelection = Settings.get_option_value("core.rose_garden/sg_selection")
+		RoseGarden.Animations.svChange = Settings.get_option_value("core.rose_garden/sv_change")
+		RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.rose_garden/rcm_selection")
+		RoseGarden.Animations.rcmAppearance = Settings.get_option_value("core.rose_garden/rcm_appearance")
+		RoseGarden.Animations.ddmAppearance = Settings.get_option_value("core.rose_garden/ddm_appearance")
+		RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
+		RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
+		RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")

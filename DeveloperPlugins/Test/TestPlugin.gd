@@ -37,15 +37,15 @@ func _on_create_event_pressed() -> void:
 	Debug.log("Creating test event",ID)
 	create_event.set_disabled(true)
 	remove_event.set_disabled(false)
-	var response = Events.add_event(ID,load("res://DeveloperPlugins/Test/test_event.tscn"),load("res://DeveloperPlugins/Test/icon.png"))
-	Debug.log("Got response from EventsManager: "+error_string(response),ID)
+	var response = EventManager.add_event(ID,load("res://DeveloperPlugins/Test/test_event.tscn"),load("res://DeveloperPlugins/Test/icon.png"))
+	Debug.log("Got response from EventManager: "+error_string(response),ID)
 
 func _on_remove_event_pressed() -> void:
 	Debug.log("Removing test event",ID)
 	create_event.set_disabled(false)
 	remove_event.set_disabled(true)
-	var response = Events.remove_event(ID)
-	Debug.log("Got response from EventsManager: "+error_string(response),ID)
+	var response = EventManager.remove_event(ID)
+	Debug.log("Got response from EventManager: "+error_string(response),ID)
 
 func _ready() -> void:
 	Settings.setting_changed.connect(_update_buttons)
@@ -58,7 +58,7 @@ func _ready() -> void:
 	notification_title.set_text("Test")
 	notification_description.set_text("This is a test notification's description... It should describe why the user is getting this notification.")
 	toast_text.set_text("This is a toast")
-	if Events.event_exists(ID):
+	if EventManager.event_exists(ID):
 		create_event.set_disabled(true)
 		remove_event.set_disabled(false)
 

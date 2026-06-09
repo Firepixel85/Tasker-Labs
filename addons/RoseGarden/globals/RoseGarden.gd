@@ -3,6 +3,7 @@ extends Node
 
 signal update_components
 signal flags_changed(flag_name:String,new_value:bool)
+signal rcm_closed
 func _ready() -> void:
 	custom_themes_changed.connect(Themes._update_themes)
 	await get_tree().create_timer(0.1).timeout
@@ -269,6 +270,7 @@ func _delete_submenu():
 	submenu = null
 
 func _delete_all_menus():
+	await get_tree().create_timer(0.05).timeout
 	var menus = menu_layer.get_children()
 	for child in menus:
 		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
@@ -276,6 +278,7 @@ func _delete_all_menus():
 	for child in menus:
 		if child != null:
 			child.queue_free()
+	rcm_closed.emit()
 
 func _delete_submenu_instantly():
 	for child in menu_layer.get_children():

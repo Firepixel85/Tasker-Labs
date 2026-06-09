@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="11_a7d7b"]
 [ext_resource type="Script" uid="uid://c62p4grvevb2b" path="res://MainView/SimpleButtonBehavior.gd" id="14_qlysq"]
 [ext_resource type="Script" uid="uid://djr8cefm3s8g2" path="res://Settings/SettingsClient.gd" id="16_5lyvq"]
+[ext_resource type="Script" uid="uid://cvlj523oh4mwf" path="res://CommandBar/CommandBarInput.gd" id="16_30ete"]
 [ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="16_42b22"]
 [ext_resource type="Script" uid="uid://dr4s3kh54mb2" path="res://Settings/CategoryHandler.gd" id="17_5lyvq"]
 [ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="18_5lyvq"]
@@ -24,6 +25,9 @@
 [ext_resource type="Script" uid="uid://cfr1hewna5wpl" path="res://Settings/OptionHandler.gd" id="19_h0v64"]
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="20_52bp6"]
 [ext_resource type="Script" uid="uid://btugn3kwhhhsh" path="res://PluginView/PluginsClient.gd" id="20_a7d7b"]
+[ext_resource type="PackedScene" uid="uid://jtvoo5jjc3tw" path="res://PluginView/ExploreView.tscn" id="24_2ytnv"]
+[ext_resource type="PackedScene" uid="uid://boal3cckjo2n6" path="res://PluginView/InstalledView.tscn" id="25_7x8c6"]
+[ext_resource type="PackedScene" uid="uid://diimuetevof1f" path="res://CommandBar/ComandBar.tscn" id="27_7x8c6"]
 
 [sub_resource type="Gradient" id="Gradient_iwsuo"]
 offsets = PackedFloat32Array(0.5679348)
@@ -75,6 +79,7 @@ grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -270,14 +275,14 @@ theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
 
-[node name="SearchBar" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
+[node name="CommandBar" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
 z_index = 10
 custom_minimum_size = Vector2(390, 60)
 layout_mode = 2
 size_flags_horizontal = 0
+script = ExtResource("16_30ete")
 placeholder_text = "Search command..."
 icon = ExtResource("16_42b22")
-show_hint = true
 
 [node name="SeperatorTexture" type="TextureRect" parent="MainView/VBoxContainer2" unique_id=14582395]
 custom_minimum_size = Vector2(0, 2)
@@ -289,7 +294,6 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -441,6 +445,7 @@ layout_mode = 2
 [node name="OptionHandler" type="VBoxContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=84552781]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
@@ -498,13 +503,33 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_m4t2q")
 
-[node name="ViewContainer" type="MarginContainer" parent="Plugins/Container" unique_id=1241853280]
+[node name="MarginContainer" type="MarginContainer" parent="Plugins/Container" unique_id=1241853280]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
+
+[node name="ViewScroll" type="ScrollContainer" parent="Plugins/Container/MarginContainer" unique_id=1556185016]
+layout_mode = 2
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="ViewContainer" type="HBoxContainer" parent="Plugins/Container/MarginContainer/ViewScroll" unique_id=97082187]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="ExploreView" parent="Plugins/Container/MarginContainer/ViewScroll/ViewContainer" unique_id=951042587 instance=ExtResource("24_2ytnv")]
+custom_minimum_size = Vector2(2208, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Control" parent="Plugins/Container/MarginContainer/ViewScroll/ViewContainer" unique_id=460425033 instance=ExtResource("25_7x8c6")]
+custom_minimum_size = Vector2(2208, 0)
+layout_mode = 2
+size_flags_horizontal = 0
 
 [node name="TopBar" type="VBoxContainer" parent="Plugins" unique_id=535743029]
 layout_mode = 1
@@ -575,6 +600,21 @@ layer = 3
 [node name="TooltipContainer" type="CanvasLayer" parent="." unique_id=869070150]
 
 [node name="ToastLayer" type="CanvasLayer" parent="." unique_id=1968475343]
+
+[node name="CommandBar" type="CanvasLayer" parent="." unique_id=2110537838]
+
+[node name="CommandBar" parent="CommandBar" unique_id=1463763946 instance=ExtResource("27_7x8c6")]
+visible = false
+anchors_preset = -1
+anchor_left = 0.21900001
+anchor_top = 0.07300001
+anchor_right = 0.21900001
+anchor_bottom = 0.07300001
+offset_left = 0.43197632
+offset_top = -0.6680069
+offset_right = 512.432
+offset_bottom = -0.6680069
+metadata/_edit_use_anchors_ = true
 
 [connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]

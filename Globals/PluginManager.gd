@@ -24,6 +24,7 @@ func get_plugin_name(plugin_id:String):
 		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["name"]
 	elif _developer_plugins.has(plugin_id):
 		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["name"]
+	Debug.warn("A process attempted to get the name of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_version(plugin_id:String):
@@ -31,6 +32,7 @@ func get_plugin_version(plugin_id:String):
 		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["version"]
 	elif _developer_plugins.has(plugin_id):
 		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["version"]
+	Debug.warn("A process attempted to get the version of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_author(plugin_id:String):
@@ -38,6 +40,7 @@ func get_plugin_author(plugin_id:String):
 		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["author"]
 	elif _developer_plugins.has(plugin_id):
 		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["author"]
+	Debug.warn("A process attempted to get the author of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_target_versions(plugin_id:String):
@@ -45,10 +48,12 @@ func get_plugin_target_versions(plugin_id:String):
 		return JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_api_version"]
 	elif _developer_plugins.has(plugin_id):
 		return JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())["target_api_version"]
+	Debug.warn("A process attempted to get the target versions of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to get the description of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 	if !plugin_has_description(plugin_id):
 		return ""
@@ -59,26 +64,30 @@ func get_plugin_description(plugin_id:String):
 	elif _developer_plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
 		return plugin_info["description"]
-
+	Debug.warn("A process attempted to get the description of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_icon(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to get the icon of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 	if !plugin_has_icon(plugin_id):
+		Debug.warn("A process attempted to get the icon of a plugin with id: "+plugin_id+" but it doesn't have one",ID)
 		return ERR_FILE_NOT_FOUND
 
 	if _plugins.has(plugin_id):
 		return ImageTexture.create_from_image(Image.load_from_file(OS.get_user_data_dir()+"/plugins/"+_plugins[plugin_id]+"/icon.png"))
 	elif _developer_plugins.has(plugin_id):
 		return load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png")
-
+	Debug.warn("A process attempted to get the icon of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func get_plugin_repo(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to get the repo of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 	if !is_plugin_version_controlled(plugin_id):
+		Debug.warn("A process attempted to get the repo of a plugin with id: "+plugin_id+" but it isn't version controlled",ID)
 		return ERR_FILE_NOT_FOUND
 
 	if _plugins.has(plugin_id):
@@ -88,10 +97,12 @@ func get_plugin_repo(plugin_id:String):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
 		return plugin_info["repo"]
 
+	Debug.warn("A process attempted to get the repo of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
 func plugin_has_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to check if a plugin with id: "+plugin_id+" has a description but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 
 	if _plugins.has(plugin_id):
@@ -103,6 +114,7 @@ func plugin_has_description(plugin_id:String):
 
 func plugin_has_icon(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to check if a plugin with id: "+plugin_id+" has an icon but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 
 	if _plugins.has(plugin_id):
@@ -118,6 +130,7 @@ func is_plugin_trusted(plugin_id:String):
 
 func is_plugin_version_controlled(plugin_id:String):
 	if !is_plugin_available(plugin_id):
+		Debug.warn("A process attempted to check if a plugin with id: "+plugin_id+" is version controlled but it doesn't exist",ID)
 		return false
 
 	if _plugins.has(plugin_id):
@@ -271,8 +284,15 @@ func save_data():
 
 func get_plugin_filepath(plugin_id:String):
 	if !get_all_plugins().has(plugin_id):
+		Debug.warn("A process attempted to get the filepath of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
 		return "user://Plugins/"
 	elif _developer_plugins.has(plugin_id):
 		return "res://DeveloperPlugins/"
+
+func get_plugin_script(plugin_id:String):
+	if !is_plugin_loaded(plugin_id):
+		Debug.warn("A process attempted to get the script of a plugin with id: "+plugin_id+" but it isn't loaded",ID)
+		return ERR_DOES_NOT_EXIST
+	return _loaded_plugin_scripts[plugin_id]

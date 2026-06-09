@@ -18,6 +18,7 @@ var trusted_tag_hovered:bool = false
 var version_controlled_tag_hovered:bool = false
 
 var plugin_id:String = ""
+var keybind_number:int##The number associated with the shown keybind to toggle this plugin
 signal state_changed(plugin_id:String)
 
 func setup():
@@ -136,8 +137,12 @@ func _on_toggle_hovered() -> void:
 	var tooltip = RGTooltip.new()
 	if PluginManager.is_plugin_loaded(plugin_id):
 		tooltip.set_text("Disable "+PluginManager.get_plugin_name(plugin_id)+" plugin")
+		tooltip.set_show_keybind(true)
+		tooltip.set_keybind("⇧"+str(keybind_number))
 	else:
 		tooltip.set_text("Enable "+PluginManager.get_plugin_name(plugin_id)+" plugin")
+		tooltip.set_show_keybind(true)
+		tooltip.set_keybind("⌥"+str(keybind_number))
 	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
 
 
@@ -145,7 +150,7 @@ func _on_toggle_dehovered() -> void:
 	RoseGarden.clear_tooltips()
 
 func _on_uninstall_pressed() -> void:
-	Popups.add_popup(load("res://Plugins/DeletePopup.tscn"))
+	Popups.add_popup(load("res://PluginView/DeletePopup.tscn"))
 	await Popups.popup_added
 	Popups.get_popup().plugin_id = plugin_id
 

@@ -127,10 +127,10 @@ func _open():
 func _close(invisible:bool=false):
 	var open = false
 	var tween = create_tween()
-	selection.visible = false
+	selection.hide()
 	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
 	await get_tree().create_timer(0.07*int(!invisible)).timeout
-	menu_container.visible=false
+	menu_container.hide()
 	closed.emit()
 
 func _pressed() -> void:
@@ -146,7 +146,7 @@ func _on_menu_item_highlighted(id: int) -> void:
 
 
 func _on_focus_exited() -> void:
-	await get_tree().create_timer(0.1).timeout
+	await get_tree().process_frame
 	if !has_focus():
 		_close()
 

@@ -113,6 +113,7 @@ size_flags_horizontal = 0
 [node name="NotificationTitle" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=808777957 instance=ExtResource("5_gx6r7")]
 layout_mode = 2
 placeholder_text = "Title"
+context_menu = true
 
 [node name="NotificationDescription" parent="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer" unique_id=1685772128 instance=ExtResource("5_gx6r7")]
 layout_mode = 2

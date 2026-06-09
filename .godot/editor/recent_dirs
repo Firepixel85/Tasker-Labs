@@ -1,3 +1,4 @@
+res://CommandBar/
 res://Notifications/
 res://Globals/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
@@ -16,8 +17,6 @@ res://Settings/CoreOptions/RoseGarden/buttonPress/
 res://Settings/CoreOptions/Developer/RGOptions/
 res://AppIcons/
 res://LoadingScreen/
-res://Plugins/Plugin/Popups/
 res://Settings/
-res://Plugins/
 res://MainView/
 res://Settings/CoreOptions/Accessibility/SymbolIndicators/

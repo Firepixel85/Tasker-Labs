@@ -15,8 +15,10 @@ class_name RGTextFieldIcon
 @export var caret_blink:bool = true
 @export var show_hint:bool = false
 @export var hint := "⌘K"
+@export var context_menu:bool = true
 @export var secret := false
 @export var incorrect:bool = false
+@export var needs_focus:bool = true##Will this component close when it loses focus
 
 var text:String
 signal text_changed(new_text:String)
@@ -54,6 +56,35 @@ func edit():
 	line_edit.edit()
 	return OK
 
+func exit():
+	line_edit.release_focus()
+	_update()
+
+func cut():
+	if !line_edit.has_selection():
+		return ERR_DOES_NOT_EXIST
+	DisplayServer.clipboard_set(line_edit.get_selected_text())
+	var new_text_before_selection = line_edit.get_selected_text().substr(0, line_edit.get_selection_from_column())
+	var new_text_after_selection = line_edit.get_selected_text().substr(line_edit.get_selection_to_column())
+	line_edit.text = new_text_before_selection + new_text_after_selection
+	line_edit.set_caret_column(line_edit.get_selection_from_column())
+	line_edit.deselect()
+	return OK
+
+func copy():
+	DisplayServer.clipboard_set(get_text())
+	line_edit.select_all()
+	line_edit.set_caret_column(line_edit.get_selection_to_column())
+	line_edit.deselect()
+	return OK
+
+func paste():
+	set_text(get_text()+DisplayServer.clipboard_get())
+	line_edit.select_all()
+	line_edit.set_caret_column(line_edit.get_selection_to_column())
+	line_edit.deselect()
+	return OK
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
@@ -77,13 +108,12 @@ func _update():
 	hint_container.size.x = size.x
 	line_edit.get_parent().size.x = size.x
 	hint_texture.custom_minimum_size.x = hint_text.size.x + 16
-	line_edit.secret = secret
 	icon_holder.texture = icon
 
 	if line_edit.has_focus():
 		create_tween().tween_property(hint_container,"modulate",Color(0,0,0,0),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
 		icon_holder.modulate = Color(1,1,1)
-	else:
+	elif needs_focus:
 		create_tween().tween_property(hint_container,"modulate",Color(1,1,1,1),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
 		icon_holder.modulate = RoseGarden.Colors.TEXT_SECONDARY
 
@@ -92,7 +122,7 @@ func _update():
 	else:
 		hint_container.visible = false
 
-	if secret:
+	if secret and line_edit.text != "":
 		line_edit.get_parent().size.y = 74
 	else:
 		line_edit.get_parent().size.y = 60
@@ -132,6 +162,7 @@ func _mirror_to_line_edit():
 	line_edit.editable = editable
 	line_edit.emoji_menu_enabled = emoji_menu_enabled
 	line_edit.caret_blink = caret_blink
+	line_edit.secret = secret
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
@@ -149,3 +180,32 @@ func _on_line_edit_text_submitted(new_text: String) -> void:
 func _update_themes():
 	line_edit.theme = RoseGarden.Themes.Secondary
 	hint_text.theme = RoseGarden.Themes.Secondary
+
+
+func _on_line_edit_focus_entered() -> void:
+	focus_entered.emit()
+
+func _on_line_edit_focus_exited() -> void:
+	focus_exited.emit()
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if !context_menu:
+		return
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
+		line_edit.deselect_on_focus_loss_enabled = false
+		var menu = RGmenu.new()
+		menu.add_action("Cut",Icons.SCISSORS,cut)
+		menu.add_action("Copy",Icons.COPY,copy)
+		menu.add_action("Paste",Icons.CLIPBOARD,paste)
+		menu.add_seperator()
+		menu.add_action("Select All",Icons.TEXTCURSOR,line_edit.select_all)
+		menu.add_action("Clear",Icons.X,line_edit.clear)
+		menu.add_seperator()
+		menu.add_action("Undo",Icons.UNDO,line_edit.menu_option,[line_edit.MENU_UNDO])
+		menu.add_action("Redo",Icons.REDO,line_edit.menu_option,[line_edit.MENU_REDO])
+		RoseGarden.create_rc_menu(menu,get_global_mouse_position())
+		await RoseGarden.rcm_closed
+		line_edit.edit()
+		await get_tree().process_frame
+		line_edit.deselect_on_focus_loss_enabled = true

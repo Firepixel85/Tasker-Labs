@@ -1,0 +1,67 @@
+[gd_scene format=3 uid="uid://diimuetevof1f"]
+
+[ext_resource type="Texture2D" uid="uid://cws0dgk2p3psu" path="res://CommandBar/Container.svg" id="1_das16"]
+[ext_resource type="Script" uid="uid://dbvbddrb4630h" path="res://CommandBar/CommandBarClient.gd" id="1_gdov5"]
+[ext_resource type="Texture2D" uid="uid://dr63n6h2upi7t" path="res://CommandBar/Selection.svg" id="2_gdov5"]
+
+[node name="Control" type="Control" unique_id=1463763946]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 512.0
+script = ExtResource("1_gdov5")
+commands = 4
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1766281002]
+custom_minimum_size = Vector2(512, 0)
+layout_mode = 0
+offset_right = 512.0
+offset_bottom = 48.0
+texture = ExtResource("1_das16")
+patch_margin_left = 24
+patch_margin_top = 24
+patch_margin_right = 24
+patch_margin_bottom = 24
+
+[node name="MarginContainer" type="MarginContainer" parent="NinePatchRect" unique_id=2103158585]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1089814325]
+layout_mode = 2
+
+[node name="Highlight" type="NinePatchRect" parent="NinePatchRect/MarginContainer/VBoxContainer2" unique_id=393183196]
+modulate = Color(1, 1, 1, 0.5019608)
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+texture = ExtResource("2_gdov5")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=39019910]
+layout_mode = 2
+
+[node name="Selection" type="NinePatchRect" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=66125432]
+custom_minimum_size = Vector2(0, 52)
+layout_mode = 2
+texture = ExtResource("2_gdov5")
+patch_margin_left = 16
+patch_margin_top = 16
+patch_margin_right = 16
+patch_margin_bottom = 16
+
+[node name="CommandContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1800403218]
+z_index = 1
+layout_mode = 2
+theme_override_constants/separation = 8

@@ -1,10 +1,8 @@
 [gd_scene format=3 uid="uid://dhrmlqu3woxx3"]
 
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_axwxf"]
-[ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="2_fplmg"]
-[ext_resource type="Script" uid="uid://c16036jyl7u47" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.gd" id="3_jh4o3"]
-[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_cb2kr"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="5_7u58m"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_50334"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="3_tl4l0"]
 
 [node name="Control" type="Control" unique_id=2138493143]
 custom_minimum_size = Vector2(448, 168)
@@ -23,49 +21,16 @@ offset_bottom = 0.0
 padding = "16"
 margin_number = 18
 
-[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=2095853766]
+[node name="CenterContainer" type="CenterContainer" parent="RGContainer" unique_id=289555918]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 18
-theme_override_constants/margin_top = 18
-theme_override_constants/margin_right = 18
-theme_override_constants/margin_bottom = 18
 
-[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=1137728680]
+[node name="RGText" type="Control" parent="RGContainer/CenterContainer" unique_id=85953319 instance=ExtResource("2_50334")]
+custom_minimum_size = Vector2(214, 34)
 layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="RGProgressBar" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1750477034 instance=ExtResource("2_fplmg")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-script = ExtResource("3_jh4o3")
-value = 55.0
-color = "Purple"
-text_alignment = "Right"
-
-[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=467972727]
-layout_mode = 2
-theme_override_constants/separation = 16
-
-[node name="RGButton" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_cb2kr")]
-custom_minimum_size = Vector2(194, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 2
-script = ExtResource("5_7u58m")
-text = "Pause"
-metadata/_edit_use_anchors_ = true
-
-[node name="RGButton2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=71235284 instance=ExtResource("4_cb2kr")]
-custom_minimum_size = Vector2(188, 60)
-layout_mode = 2
-size_flags_horizontal = 3
-focus_mode = 2
-script = ExtResource("5_7u58m")
-color = "Purple"
-text = "Done"
-metadata/_edit_use_anchors_ = true
+script = ExtResource("3_tl4l0")
+text = "This is a test event"

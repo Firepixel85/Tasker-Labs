@@ -13,6 +13,7 @@ func make_file(file_name:String,exclusive_folder:=""):
 		directory.make_dir(exclusive_folder)
 	if exclusive_folder == "":
 		if FileAccess.file_exists("user://"+file_name+".json"):
+			Debug.warn("A process attempted to create a file with name: "+file_name+" but it already exists",ID)
 			return ERR_ALREADY_EXISTS
 		var file = FileAccess.open("user://"+file_name+".json",FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
@@ -25,6 +26,7 @@ func make_file(file_name:String,exclusive_folder:=""):
 		return OK
 	else:
 		if FileAccess.file_exists("user://"+exclusive_folder+"/"+file_name+".json"):
+			Debug.warn("A process attempted to create a file with name: "+file_name+" in folder: "+exclusive_folder+" but it already exists",ID)
 			return ERR_ALREADY_EXISTS
 		var file = FileAccess.open("user://"+exclusive_folder+"/"+file_name+".json",FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
@@ -37,11 +39,13 @@ func make_file(file_name:String,exclusive_folder:=""):
 
 func save_to(data_name:String,data_value,file_name:String):
 	if !FileAccess.file_exists(actual_file_path[file_name]):
+		Debug.warn("A process attempted to save data to a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
 	all_data[file_name][data_name] = data_value
 
 func save_file(file_name:String,silent=false):
 	if !FileAccess.file_exists(actual_file_path[file_name]):
+		Debug.warn("A process attempted to save a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
 	var file = FileAccess.open(actual_file_path[file_name],FileAccess.WRITE)
 	file.store_string(JSON.stringify(all_data[file_name]))
@@ -51,6 +55,7 @@ func save_file(file_name:String,silent=false):
 
 func load_file(file_name:String):
 	if !FileAccess.file_exists(actual_file_path[file_name]):
+		Debug.warn("A process attempted to load a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
 	var file = FileAccess.open(actual_file_path[file_name],FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
@@ -76,7 +81,7 @@ func _ready() -> void:
 		all_data["Data"] = {}
 		actual_file_path["Data"] = "user://Data.json"
 	await _save()
-	Debug.log("Data is ready to load",ID)
+	Debug.log("Ready to load",ID)
 	_ready_to_load = true
 
 func _save():

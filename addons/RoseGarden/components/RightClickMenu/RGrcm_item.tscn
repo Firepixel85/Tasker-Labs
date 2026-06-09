@@ -35,7 +35,7 @@ theme_override_constants/separation = 10
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1754383543]
 custom_minimum_size = Vector2(52, 52)
 layout_mode = 2
-stretch_mode = 5
+stretch_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=948072402]
 layout_mode = 2
@@ -55,7 +55,7 @@ alignment = 2
 visible = false
 layout_mode = 2
 texture = ExtResource("4_u3d8l")
-stretch_mode = 3
+stretch_mode = 5
 
 [node name="Button" type="Button" parent="." unique_id=1202166193]
 layout_mode = 1

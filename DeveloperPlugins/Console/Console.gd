@@ -17,7 +17,7 @@ extends Control
 var show_logs:bool = true
 var show_warns:bool = true
 var show_errors:bool = true
-
+const ID = "com.rosepen.console"
 func _ready() -> void:
 	Debug.logs_changed.connect(_update_logs)
 	_update_logs()
@@ -50,6 +50,11 @@ func _update_logs():
 	log_count.set_text(str(Debug.log_count))
 	warn_count.set_text(str(Debug.warn_count))
 	error_count.set_text(str(Debug.error_count))
+
+	if Settings.get_option_value(ID+"/notify_errors") and Debug.log_type[Debug.get_logs().size()-1] == "Error":
+		NotificationManager.queue_notification("New Error In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
+	if Settings.get_option_value(ID+"/notify_warns") and Debug.log_type[Debug.get_logs().size()-1] == "Warn":
+		NotificationManager.queue_notification("New Warning In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
 
 
 func _on_toggle_logs_pressed() -> void:
