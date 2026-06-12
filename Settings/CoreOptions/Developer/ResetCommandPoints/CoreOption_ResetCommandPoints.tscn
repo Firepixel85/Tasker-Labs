@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cmldmwiquh5dj" path="res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.gd" id="1_q3rxf"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_qoxet"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_4upqs"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_fsop3"]
 
 [node name="ToggleOption" type="Control" unique_id=506169743]
 custom_minimum_size = Vector2(0, 60)
@@ -35,13 +34,10 @@ size_flags_horizontal = 3
 layout_mode = 2
 alignment = 1
 
-[node name="Reset" type="Control" parent="HBoxContainer/VBoxContainer" unique_id=1426858299 instance=ExtResource("3_4upqs")]
+[node name="Reset" parent="HBoxContainer/VBoxContainer" unique_id=1426858299 instance=ExtResource("3_4upqs")]
 custom_minimum_size = Vector2(190, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("4_fsop3")
 text = "Reset"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="de_hovered" from="HBoxContainer/VBoxContainer/Reset" to="." method="_on_reset_de_hovered"]
 [connection signal="hovered" from="HBoxContainer/VBoxContainer/Reset" to="." method="_on_reset_hovered"]
