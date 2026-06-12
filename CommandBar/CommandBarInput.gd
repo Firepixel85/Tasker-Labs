@@ -13,12 +13,17 @@ func _process(_delta: float) -> void:
 	super._process(_delta)
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
-	close()
+	close(true)
 	super._on_line_edit_text_submitted(new_text)
 
 func _on_line_edit_focus_entered() -> void:
+	if command_bar.is_open():
+		return
 	open()
 	super._on_line_edit_focus_entered()
+
+func _on_text_changed(_new_text: String) -> void:
+	command_bar.update_shown_commands()
 
 func _on_line_edit_focus_exited() -> void:
 	await get_tree().process_frame
@@ -27,16 +32,18 @@ func _on_line_edit_focus_exited() -> void:
 	super._on_line_edit_focus_exited()
 
 func open():
-	command_bar.show()
+	command_bar.open()
 	edit()
 
-func close():
-	command_bar.hide()
+func close(execute:=false):
+	if execute:
+		command_bar.execute_command(command_bar.get_selected())
+	command_bar.close()
+	set_text("")
 	exit()
 
 func _ready():
 	command_bar.input = self
-	command_bar._ready()
 	main_view.view_changed.connect(_close)
 	super._ready()
 

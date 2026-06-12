@@ -40,6 +40,7 @@ func _ready():
 	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	RoseGarden.set_toast_layer(toast_layer)
+	CommandBar.load_commands()
 
 	#Add settings:
 
@@ -50,6 +51,8 @@ func _ready():
 		Settings.add_option("core.general","display_name","res://Settings/CoreOptions/General/DisplayName/CoreOption_DisplayName.tscn","Name")
 	if !Settings.option_exists("core.general/update_notify"):
 		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
+	if !Settings.option_exists("core.general/command_amount"):
+		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
@@ -76,6 +79,8 @@ func _ready():
 		Settings.add_option("core.developer","dev_tools","res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn",false)
 	if !Settings.option_exists("core.developer/rg_options"):
 		Settings.add_option("core.developer","rg_options","res://Settings/CoreOptions/Developer/RGOptions/CoreOption_RGOptions.tscn",false)
+	if !Settings.option_exists("core.developer/reset_command_points"):
+		Settings.add_option("core.developer","reset_command_points","res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.tscn",true)
 
 	#Rose Garden
 	if !Settings.category_exists("core.rose_garden"):

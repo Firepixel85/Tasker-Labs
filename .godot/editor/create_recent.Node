@@ -1,9 +1,9 @@
+HBoxContainer
 Button
 CanvasLayer
 Label
 MarginContainer
 TextureRect
-HBoxContainer
 NinePatchRect
 VBoxContainer
 CenterContainer

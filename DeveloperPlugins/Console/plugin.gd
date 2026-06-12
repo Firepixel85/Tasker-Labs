@@ -8,12 +8,12 @@ func start():
 	else:
 		Settings.show_category(ID)
 	if !Settings.option_exists(ID+"/show_timestamps"):
-		Settings.add_option(ID,"show_timestamps",PluginManager.get_plugin_filepath(ID)+"Console/Settings/ShowTimestamps/ShowTimestamps.tscn",false)
+		Settings.add_option(ID,"show_timestamps",PluginManager.get_plugin_filepath(ID)+"Settings/ShowTimestamps/ShowTimestamps.tscn",false)
 	if !Settings.option_exists(ID+"/notify_warns"):
-		Settings.add_option(ID,"notify_warns",PluginManager.get_plugin_filepath(ID)+"Console/Settings/NotifyWarns/NotifyWarns.tscn",false)
+		Settings.add_option(ID,"notify_warns",PluginManager.get_plugin_filepath(ID)+"Settings/NotifyWarns/NotifyWarns.tscn",false)
 	if !Settings.option_exists(ID+"/notify_errors"):
-		Settings.add_option(ID,"notify_errors",PluginManager.get_plugin_filepath(ID)+"Console/Settings/NotifyErrors/NotifyErrors.tscn",false)
-	Sidebar.add_tab("Console",Icons.TERMINAL,load(PluginManager.get_plugin_filepath(ID)+"Console//Console.tscn"),ID)
+		Settings.add_option(ID,"notify_errors",PluginManager.get_plugin_filepath(ID)+"Settings/NotifyErrors/NotifyErrors.tscn",false)
+	Sidebar.add_tab("Console",Icons.TERMINAL,load(PluginManager.get_plugin_filepath(ID)+"Console.tscn"),ID)
 	Debug.log("Loaded",ID)
 
 func stop():

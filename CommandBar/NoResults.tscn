@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://x2ggu7yo14vw"]
+
+[ext_resource type="Texture2D" uid="uid://b3y4gkj0msy8g" path="res://Icons/QuestionCircle.svg" id="1_m5ao6"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="2_fpfuf"]
+[ext_resource type="FontFile" uid="uid://n0eesastugb5" path="res://CustomThemes/fonts/Regular.otf" id="3_wha47"]
+
+[node name="NoResults" type="Control" unique_id=1608682512]
+custom_minimum_size = Vector2(1, 60)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1174634859]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 6
+theme_override_constants/margin_top = 6
+theme_override_constants/margin_right = 6
+theme_override_constants/margin_bottom = 6
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=479056873]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=476196089]
+custom_minimum_size = Vector2(52, 0)
+layout_mode = 2
+texture = ExtResource("1_m5ao6")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1747079630]
+layout_mode = 2
+theme = ExtResource("2_fpfuf")
+theme_override_fonts/font = ExtResource("3_wha47")
+text = "No commands found..."

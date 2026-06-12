@@ -82,6 +82,15 @@ func get_plugin_icon(plugin_id:String):
 	Debug.warn("A process attempted to get the icon of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 	return ERR_DOES_NOT_EXIST
 
+func get_plugin_filepath(plugin_id:String):
+	if !get_all_plugins().has(plugin_id):
+		Debug.warn("A process attempted to get the filepath of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
+		return ERR_DOES_NOT_EXIST
+	if _plugins.has(plugin_id):
+		return "user://Plugins/"+_plugins[plugin_id]+"/"
+	elif _developer_plugins.has(plugin_id):
+		return "res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/"
+
 func get_plugin_repo(plugin_id:String):
 	if !is_plugin_available(plugin_id):
 		Debug.warn("A process attempted to get the repo of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
@@ -282,14 +291,6 @@ func save_data():
 	Data.save_to("loaded_plugins",_loaded_plugins, "PluginData")
 	Data.save_file("PluginData")
 
-func get_plugin_filepath(plugin_id:String):
-	if !get_all_plugins().has(plugin_id):
-		Debug.warn("A process attempted to get the filepath of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
-		return ERR_DOES_NOT_EXIST
-	if _plugins.has(plugin_id):
-		return "user://Plugins/"
-	elif _developer_plugins.has(plugin_id):
-		return "res://DeveloperPlugins/"
 
 func get_plugin_script(plugin_id:String):
 	if !is_plugin_loaded(plugin_id):

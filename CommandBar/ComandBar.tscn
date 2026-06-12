@@ -10,7 +10,6 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 512.0
 script = ExtResource("1_gdov5")
-commands = 4
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1766281002]
 custom_minimum_size = Vector2(512, 0)
@@ -38,10 +37,11 @@ metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1089814325]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Highlight" type="NinePatchRect" parent="NinePatchRect/MarginContainer/VBoxContainer2" unique_id=393183196]
 modulate = Color(1, 1, 1, 0.5019608)
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 texture = ExtResource("2_gdov5")
 patch_margin_left = 16
@@ -51,9 +51,10 @@ patch_margin_bottom = 16
 
 [node name="VBoxContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=39019910]
 layout_mode = 2
+theme_override_constants/separation = 8
 
 [node name="Selection" type="NinePatchRect" parent="NinePatchRect/MarginContainer/VBoxContainer" unique_id=66125432]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 texture = ExtResource("2_gdov5")
 patch_margin_left = 16

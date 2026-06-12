@@ -11,6 +11,7 @@ class_name RGTextFieldIcon
 @export var placeholder_text:String = ""
 @export var icon:Texture2D
 @export var editable:bool = true
+@export var appear_uneditable:bool = true
 @export var emoji_menu_enabled:bool = true
 @export var caret_blink:bool = true
 @export var show_hint:bool = false
@@ -126,6 +127,11 @@ func _update():
 		line_edit.get_parent().size.y = 74
 	else:
 		line_edit.get_parent().size.y = 60
+
+	if appear_uneditable:
+		line_edit.add_theme_color_override("font_uneditable_color",Color("dfdfdf80"))
+	else:
+		line_edit.add_theme_color_override("font_uneditable_color",Color("f5f5f5"))
 
 	_mirror_to_line_edit()
 	line_edit.caret_blink = !RoseGarden.Accessibility.get_disable_animations()

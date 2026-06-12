@@ -46,6 +46,8 @@ func get_process_name(process_id:String):
 			return "EventManager"
 		"core.notification_manager":
 			return "NotificationManager"
+		"core.command_bar":
+			return "CommandBar"
 		"unknown":
 			return "Unknown"
 		_:
@@ -68,7 +70,7 @@ func get_current_view():
 
 func get_view_node():
 	return main_view.view_nodes[main_view._current_view]
-	
+
 func change_view(new_view:String):
 	return await main_view.open_view(new_view)
 

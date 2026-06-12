@@ -1,6 +1,8 @@
+res://Settings/CoreOptions/Developer/ResetCommandPoints/
+res://Globals/
+res://Settings/CoreOptions/General/CommandAmount/
 res://CommandBar/
 res://Notifications/
-res://Globals/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Sidebar/
 res://DeveloperPlugins/Console/Settings/ShowTimestamps/
@@ -19,4 +21,3 @@ res://AppIcons/
 res://LoadingScreen/
 res://Settings/
 res://MainView/
-res://Settings/CoreOptions/Accessibility/SymbolIndicators/

@@ -2,12 +2,13 @@
 
 [ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="1_70o4j"]
 [ext_resource type="Script" uid="uid://dmwe0gu0ga6xa" path="res://CommandBar/Command.gd" id="1_r8o6v"]
-[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="2_r8o6v"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="3_2j1uw"]
+[ext_resource type="FontFile" uid="uid://n0eesastugb5" path="res://CustomThemes/fonts/Regular.otf" id="4_uhycg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_r8o6v"]
 
 [node name="Control" type="Control" unique_id=664242332]
-custom_minimum_size = Vector2(0, 52)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
@@ -39,7 +40,8 @@ stretch_mode = 5
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer" unique_id=1569230930]
 layout_mode = 2
-theme = ExtResource("2_r8o6v")
+theme = ExtResource("3_2j1uw")
+theme_override_fonts/font = ExtResource("4_uhycg")
 text = "Command Name"
 
 [node name="Button" type="Button" parent="." unique_id=1296539988]

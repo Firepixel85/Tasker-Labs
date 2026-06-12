@@ -79,7 +79,6 @@ grow_vertical = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -283,6 +282,8 @@ size_flags_horizontal = 0
 script = ExtResource("16_30ete")
 placeholder_text = "Search command..."
 icon = ExtResource("16_42b22")
+show_hint = true
+context_menu = false
 
 [node name="SeperatorTexture" type="TextureRect" parent="MainView/VBoxContainer2" unique_id=14582395]
 custom_minimum_size = Vector2(0, 2)
@@ -294,6 +295,7 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

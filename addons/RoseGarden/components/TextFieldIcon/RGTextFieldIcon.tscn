@@ -17,7 +17,6 @@ offset_bottom = -0.12000275
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0lceu")
-needs_focus = false
 metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=776066443]
@@ -107,6 +106,7 @@ theme_override_constants/margin_right = 12
 layout_mode = 2
 theme = ExtResource("3_0lceu")
 theme_override_colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
+theme_override_colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
 theme_override_colors/selection_color = Color(0.28627452, 0.53333336, 0.68235296, 1)
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ypgaa")

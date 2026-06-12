@@ -37,6 +37,7 @@ Settings="*uid://btu7ne5wusvpg"
 Popups="*uid://dq6d0km8frq5m"
 EventManager="*uid://bphsrvnbm3u6f"
 NotificationManager="*uid://dc275eccjc08v"
+CommandBar="*uid://rdal1wqfrpry"
 
 [display]
 

@@ -34,3 +34,11 @@ const REDO = preload("res://Icons/Redo.svg")
 const COPY = preload("res://Icons/Copy.svg")
 const CLIPBOARD = preload("res://Icons/Clipboard.svg")
 const TEXTCURSOR = preload("res://Icons/TextCursor.svg")
+const QUSETIONCIRCLE = preload("res://Icons/QuestionCircle.svg")
+
+func get_icon_path(icon:String) -> String:
+	var path = "res://Icons/"+icon+".svg"
+	if !ResourceLoader.exists(path):
+		Debug.warn("A process attempted to get the path of an icon that does not exist, check the icon name and try again. Icon Name: "+icon,ID)
+		return ""
+	return path
