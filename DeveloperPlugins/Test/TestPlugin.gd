@@ -10,6 +10,7 @@ extends Control
 @onready var notification_description: RGTextField = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/NotificationDescription
 @onready var notification_error: RGToggle = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/VBoxContainer/NotificationError
 @onready var notification_duration_text: RGText = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/NotificationDurationText
+@onready var notification_duration_down: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationDown
 var notification_duration:int = 4
 
 #Toasts
@@ -111,11 +112,14 @@ func _on_create_notification_pressed() -> void:
 func _on_notification_duration_down_pressed() -> void:
 	if notification_duration == 0:
 		return
+	if notification_duration == 1:
+		notification_duration_down.disabled = true
 	notification_duration -=1
 	notification_duration_text.set_text("Duration: "+str(notification_duration)+"s")
 
 func _on_notification_duration_up_pressed() -> void:
 	notification_duration +=1
+	notification_duration_down.disabled = false
 	notification_duration_text.set_text("Duration: "+str(notification_duration)+"s")
 
 func _on_create_toast_pressed() -> void:
@@ -125,11 +129,14 @@ func _on_create_toast_pressed() -> void:
 
 func _on_toast_duration_up_pressed() -> void:
 	toast_duration += 1
-	toast_duration_text.set_text("Duration: "+str(notification_duration)+"s")
+	toast_duration_down.disabled = false
+	toast_duration_text.set_text("Duration: "+str(toast_duration)+"s")
 
 func _on_toast_duration_down_pressed() -> void:
 	if toast_duration == 0:
 		return
+	if toast_duration == 1:
+		toast_duration_down.disabled = true
 	toast_duration -=1
 	toast_duration_text.set_text("Duration: "+str(toast_duration)+"s")
 

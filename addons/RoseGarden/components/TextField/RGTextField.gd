@@ -7,17 +7,47 @@ class_name RGTextField
 @onready var hint_texture: NinePatchRect = $MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect
 @onready var hint_container: MarginContainer = $MarginContainer2
 
-@export var placeholder_text:String = ""
-@export var editable:bool = true
-@export var appear_uneditable:bool = true
-@export var emoji_menu_enabled:bool = true
-@export var caret_blink:bool = true
-@export var show_hint:bool = false
-@export var hint := "⌘K"
+@export var placeholder_text:String = "":
+	set(new_value):
+		placeholder_text = new_value
+		_mirror_to_line_edit()
+@export var editable:bool = true:
+	set(new_value):
+		editable = new_value
+		_update()
+@export var appear_uneditable:bool = true:
+	set(new_value):
+		appear_uneditable = new_value
+		_update()
+@export var emoji_menu_enabled:bool = true:
+	set(new_value):
+		emoji_menu_enabled = new_value
+		_update()
+@export var caret_blink:bool = true:
+	set(new_value):
+		caret_blink = new_value
+		_mirror_to_line_edit()
+@export var show_hint:bool = false:
+	set(new_value):
+		show_hint = new_value
+		_update()
+@export var hint := "⌘K":
+	set(new_value):
+		hint = new_value
+		_update()
 @export var context_menu:bool = true
-@export var secret := false
-@export var incorrect:bool = false
-@export var needs_focus:bool = true##Will this component close when it loses focus
+@export var secret := false:
+	set(new_value):
+		secret = new_value
+		_update()
+@export var incorrect:bool = false:
+	set(new_value):
+		incorrect = new_value
+		_update()
+@export var needs_focus:bool = true:##Will this component close when it loses focus
+	set(new_value):
+		needs_focus = new_value
+		_update()
 
 var text:String = ""
 signal text_changed(new_text:String)
@@ -37,10 +67,6 @@ func set_hint(new_hint:String):
 	_update()
 	return OK
 
-func set_inccorrect(is_incorrect:bool):
-	incorrect = is_incorrect
-	_update()
-	return OK
 
 func edit():
 	line_edit.grab_focus()
@@ -77,6 +103,8 @@ func paste():
 ##############
 
 func _update():
+	if line_edit == null:
+		return
 	if incorrect:
 		line_edit.modulate = RoseGarden.Colors.RED_HIGHLIGHT
 		container.texture = load(RoseGarden._get_file_path()+"TextField/ContainerIncorrect.svg")
@@ -96,14 +124,17 @@ func _update():
 		create_tween().tween_property(hint_container,"modulate",Color(0,0,0,0),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
 	elif needs_focus:
 		create_tween().tween_property(hint_container,"modulate",Color(1,1,1,1),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
+
 	if show_hint:
 		hint_container.visible = true
 	else:
 		hint_container.visible = false
-	if secret and line_edit.text == "":
+
+	if secret and line_edit.text != "":
 		line_edit.get_parent().size.y = 74
 	else:
 		line_edit.get_parent().size.y = 60
+
 	if appear_uneditable:
 		line_edit.add_theme_color_override("font_uneditable_color",Color("dfdfdf80"))
 	else:
@@ -114,16 +145,12 @@ func _update():
 
 func _process(_delta: float) -> void:
 	if secret:
-		if line_edit.text == "":
+		if get_text() == "":
 			line_edit.add_theme_font_size_override("font_size",20)
 		else:
 			line_edit.add_theme_font_size_override("font_size",30)
 	else:
 		line_edit.add_theme_font_size_override("font_size",20)
-
-	if Engine.is_editor_hint():
-		_update()
-
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	RoseGarden.custom_textures_changed.connect(_update)
@@ -137,10 +164,13 @@ func _on_text_changed(_new_text: String) -> void:
 	text_changed.emit(_new_text)
 
 func _mirror_to_line_edit():
+	if line_edit == null:
+		return
 	line_edit.placeholder_text = placeholder_text
 	line_edit.editable = editable
 	line_edit.emoji_menu_enabled = emoji_menu_enabled
 	line_edit.caret_blink = caret_blink
+	line_edit.secret = secret
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
@@ -171,18 +201,17 @@ func _on_gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed:
 		line_edit.deselect_on_focus_loss_enabled = false
 		var menu = RGmenu.new()
-		menu.add_action("Cut",Icons.SCISSORS,cut)
-		menu.add_action("Copy",Icons.COPY,copy)
-		menu.add_action("Paste",Icons.CLIPBOARD,paste)
+		menu.add_action("Cut",load("res://addons/RoseGarden/icons/Scissors.svg"),cut)
+		menu.add_action("Copy",load("res://addons/RoseGarden/icons/Copy.svg"),copy)
+		menu.add_action("Paste",load("res://addons/RoseGarden/icons/Clipboard.svg"),paste)
 		menu.add_seperator()
-		menu.add_action("Select All",Icons.TEXTCURSOR,line_edit.select_all)
-		menu.add_action("Clear",Icons.X,line_edit.clear)
+		menu.add_action("Select All",load("res://addons/RoseGarden/icons/TextCursor.svg"),line_edit.select_all)
+		menu.add_action("Clear",load("res://addons/RoseGarden/icons/X.svg"),line_edit.clear)
 		menu.add_seperator()
-		menu.add_action("Undo",Icons.UNDO,line_edit.menu_option,[line_edit.MENU_UNDO])
-		menu.add_action("Redo",Icons.REDO,line_edit.menu_option,[line_edit.MENU_REDO])
+		menu.add_action("Undo",load("res://addons/RoseGarden/icons/Undo.svg"),line_edit.menu_option,[line_edit.MENU_UNDO])
+		menu.add_action("Redo",load("res://addons/RoseGarden/icons/Redo.svg"),line_edit.menu_option,[line_edit.MENU_REDO])
 		RoseGarden.create_rc_menu(menu,get_global_mouse_position())
 		await RoseGarden.rcm_closed
 		line_edit.edit()
 		await get_tree().process_frame
 		line_edit.deselect_on_focus_loss_enabled = true
-	

@@ -8,13 +8,12 @@
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g27kd"]
 
 [node name="RGTextField" type="Control" unique_id=808777957]
-z_index = -1
 custom_minimum_size = Vector2(196, 60)
 layout_mode = 3
-anchor_right = 0.1
-anchor_bottom = 0.040000003
-offset_right = -0.40000916
-offset_bottom = -0.6400032
+anchor_right = 0.128
+anchor_bottom = 0.055000003
+offset_right = -0.6080017
+offset_bottom = 0.15999603
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ci003")
@@ -23,7 +22,7 @@ metadata/_edit_use_anchors_ = true
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1153994272]
 clip_children = 2
 layout_mode = 1
-offset_right = 226.79999
+offset_right = 196.0
 offset_bottom = 60.0
 texture = ExtResource("2_qvkio")
 patch_margin_left = 30
@@ -34,7 +33,7 @@ patch_margin_bottom = 30
 [node name="MarginContainer2" type="MarginContainer" parent="." unique_id=1586523401]
 visible = false
 layout_mode = 1
-offset_right = 226.79999
+offset_right = 196.0
 offset_bottom = 60.0
 theme_override_constants/margin_right = 8
 
@@ -76,7 +75,7 @@ vertical_alignment = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="." unique_id=1244355384]
 layout_mode = 0
-offset_right = 226.79999
+offset_right = 196.0
 offset_bottom = 60.0
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 12

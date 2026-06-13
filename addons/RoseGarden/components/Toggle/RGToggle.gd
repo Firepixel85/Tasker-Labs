@@ -4,9 +4,20 @@ class_name RGToggle
 @onready var base: TextureRect = $TextureRect
 @onready var ball: TextureRect = $Container/TextureRect
 
-@export_enum("White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red"
-@export var accessible:bool = false
-@export var is_toggled := false
+@export_enum("White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red":
+	set(new_value):
+		if RoseGarden.Colors.verify_color(new_value,false) != OK:
+			return ERR_INVALID_PARAMETER
+		color = new_value
+		_update()
+@export var accessible:bool = false:
+	set(new_value):
+		accessible = new_value
+		_update()
+@export var is_toggled := false:
+	set(new_value):
+		is_toggled = new_value
+		_update()
 
 signal button_down
 signal button_up
@@ -61,6 +72,8 @@ func _on_pressed() -> void:
 
 
 func _update():
+	if base == null:
+		return
 	if accessible:
 		_texture_path = RoseGarden._get_file_path()+"Toggle/BaseAccesible/"
 	else:
@@ -70,10 +83,6 @@ func _update():
 		_show_on()
 	else:
 		_show_off()
-
-func _process(_delta: float) -> void:
-	if Engine.is_editor_hint():
-		_update()
 
 func _show_off():
 	base.texture = load(_texture_path+"BaseGray.svg")
