@@ -45,6 +45,7 @@ window/size/viewport_width=2272
 window/size/viewport_height=1516
 window/size/initial_position_type=4
 window/size/resizable=false
+window/size/borderless=true
 window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
 
@@ -167,3 +168,15 @@ environment/defaults/default_clear_color=Color(0.0117647, 0.0117647, 0.0117647, 
 [svgsprite]
 
 compress=false
+
+[xogot]
+
+project/editorState=[{
+"column": 0,
+"current": true,
+"line": 0,
+"path": "res://MainView/MainView.gd",
+"type": "file"
+}]
+project/breakpoints={}
+project/disabled_breakpoints={}

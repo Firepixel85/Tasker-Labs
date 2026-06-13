@@ -34,9 +34,9 @@ func _display_command(title:String,icon_path:String,path:String):
 	target.init(title,icon_path,path)
 
 func _update():
-
 	size.y = margin_container.get_minimum_size().y
-	container.size.y = margin_container.get_minimum_size().y
+	create_tween().tween_property(container,"size:y",size.y,0.1*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	#container.size.y = margin_container.get_minimum_size().y
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed:
