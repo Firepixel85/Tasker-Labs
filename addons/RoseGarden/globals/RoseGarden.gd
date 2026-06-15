@@ -9,7 +9,10 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
 
-#Accessibility
+#######################
+#### Accessibility ####
+#######################
+
 class Accessibility:
 	static var disableAnimations:bool = false
 	static var increaseContrast:bool = false
@@ -27,7 +30,10 @@ class Accessibility:
 	static func get_increase_contrast():
 		return increaseContrast
 
-#Colors
+################
+#### Colors ####
+################
+
 class Colors:
 
 	const GRAY_HIGHLIGHT = Color("414141")
@@ -107,7 +113,10 @@ class Animations:
 	static var toastAppearance:bool = true
 	static var tooltipAppearance:bool = true
 
-#Themes
+################
+#### Themes ####
+################
+
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
 	static var Secondary = load("res://addons/RoseGarden/themes/Secondary.tres")
@@ -140,7 +149,10 @@ class Flags:
 		RoseGarden.flags_changed.emit(flag_name,value)
 		return OK
 
-#Custom Textures
+#########################
+#### Custom Textures ####
+#########################
+
 var useCustomTextures:bool = false
 var customTexturePath:String = ""
 var _file_path:String = "res://addons/RoseGarden/components/"
@@ -169,7 +181,10 @@ func enable_custom_textures(file_path:String):
 	customTexturePath = file_path+"/"
 	custom_textures_changed.emit()
 
-#Fonts Themes
+######################
+#### Fonts Themes ####
+######################
+
 var useCustomThemes:bool = false
 var customThemePath:String = ""
 signal custom_themes_changed
@@ -202,8 +217,10 @@ func disable_custom_themes():
 func _get_theme_path():
 	return _theme_path
 
+####################################
+#### Right Click Menu Functions ####
+####################################
 
-#Right Click Menu Functions
 var menu_layer:CanvasLayer
 var submenu:RGRighClickMenu
 
@@ -274,6 +291,10 @@ func _delete_all_menus():
 	var menus = menu_layer.get_children()
 	for child in menus:
 		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		if child.is_submenu and child.pivot_offset.x == 0:
+			create_tween().tween_property(child,"position:x",child.position.x-child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		elif child.is_submenu and child.pivot_offset.x == child.size.x:
+			create_tween().tween_property(child,"position:x",child.position.x+child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await get_tree().create_timer(0.1).timeout
 	for child in menus:
 		if child != null:
@@ -285,7 +306,10 @@ func _delete_submenu_instantly():
 		if child.is_submenu:
 			child.queue_free()
 
-#Tooltip functions
+###########################
+#### Tooltip functions ####
+###########################
+
 var tooltip_layer:CanvasLayer
 
 func set_tooltip_layer(layer:CanvasLayer):
@@ -323,7 +347,10 @@ func clear_tooltips():
 			child.queue_free()
 	return OK
 
-#Toast functions
+#########################
+#### Toast functions ####
+#########################
+
 var toast_layer:CanvasLayer
 var _toast:RGtoast = null
 func set_toast_layer(layer:CanvasLayer):

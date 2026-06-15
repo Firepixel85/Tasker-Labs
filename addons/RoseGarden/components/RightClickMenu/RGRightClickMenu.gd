@@ -26,7 +26,8 @@ func _custom_ready() -> void:
 		selection.modulate = Color("41414100")
 
 func _on_focus_exited() -> void:
-	if grace_period:
+	await get_tree().process_frame
+	if grace_period or get_viewport().gui_get_focus_owner().has_method("_add_destructive"): #"_add_destructive" is a method specific to the RGRighClickMenuItem class, which is used for menu items. This check ensures that the focus owner is a menu item before proceeding with the deletion of menus.
 		return
 	RoseGarden._delete_all_menus()
 

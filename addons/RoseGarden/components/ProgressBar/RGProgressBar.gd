@@ -6,10 +6,37 @@ class_name RGProgressBar
 @onready var value_text: Label = $MarginContainer/HBoxContainer/Label
 @onready var value_container: HBoxContainer = $MarginContainer/HBoxContainer
 
-@export var value: float = 0.0
-@export_enum("Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red"
-@export_enum("Left","Center","Right") var text_alignment = "Left"
-@export var show_value: bool = true
+@export var value: float = 0.0:
+	set(new_value):
+		if new_value < 0 or new_value > 100:
+			return
+		if bar == null:
+			return
+		value = new_value
+		value_text.text = str(int(value))+"%"
+		bar.value = new_value
+@export_enum("Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red":
+	set(new_value):
+		if !RoseGarden.Colors.verify_color(new_value) == OK:
+			return
+		color = new_value
+		if bar == null:
+			return
+		bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
+		bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
+		bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
+		_value_update()
+@export_enum("Left","Center","Right") var text_alignment = "Left":
+	set(new_value):
+		if new_value != "Left" and new_value != "Center" and new_value != "Right":
+			push_error("Invalid text alignment: " + new_value)
+			return
+		text_alignment = new_value
+		_update()
+@export var show_value: bool = true:
+	set(new_value):
+		show_value = new_value
+		_update()
 
 signal value_changed(new_value:float)
 
@@ -56,6 +83,8 @@ func _ready() -> void:
 	_update_themes()
 
 func _update():
+	if bar == null:
+		return
 	bar.texture_progress = load(RoseGarden._file_path+"ProgressBar/Progress/Progress "+color+".svg")
 	bar.texture_over = load(RoseGarden._file_path+"ProgressBar/Top/Top "+color+".svg")
 	bar.texture_under = load(RoseGarden._file_path+"ProgressBar/Bottom/Bottom "+color+".svg")
@@ -76,11 +105,6 @@ func _update():
 		custom_minimum_size = Vector2(60,60)
 
 	set_color(color)
-
-func _process(_delta:float) -> void:
-	if Engine.is_editor_hint():
-		_update()
-	_value_update()
 
 
 func _on_texture_progress_bar_value_changed(value: float) -> void:

@@ -35,8 +35,8 @@ func _display_command(title:String,icon_path:String,path:String):
 
 func _update():
 	size.y = margin_container.get_minimum_size().y
+	margin_container.position.y = 0
 	create_tween().tween_property(container,"size:y",size.y,0.1*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	#container.size.y = margin_container.get_minimum_size().y
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed:
@@ -95,22 +95,33 @@ func open():
 
 func update_shown_commands():
 	command_amount = Settings.get_option_value("core.general/command_amount")
-	for child in command_container.get_children():
-		child.queue_free()
 	var command_list = _get_relevant_commands(input.get_text())
 	if command_list.size() == 0:
-		command_container.add_child(preload("res://CommandBar/NoResults.tscn").instantiate())
-		highlight.hide()
+		command_container.get_child(0).set_no_results(true)
 		selection.hide()
-		await get_tree().process_frame
-		await get_tree().process_frame
-		_update()
-		return
-	highlight.show()
-	selection.show()
-	for i in range(command_amount):
-		if i < command_list.size():
+		highlight.hide()
+		for i in range(1,command_container.get_child_count()):
+			command_container.get_child(i).queue_free()
+	elif command_list.size() > command_container.get_child_count():
+		for i in range(command_container.get_child_count()):
+			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+		for i in range(command_container.get_child_count(),command_list.size()):
 			_display_command(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+		selection.show()
+		highlight.show()
+	elif command_list.size() < command_container.get_child_count():
+		for i in range(command_list.size()):
+			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+		for i in range(command_list.size(),command_container.get_child_count()):
+			command_container.get_child(i).queue_free()
+		selection.show()
+		highlight.show()
+	elif command_list.size() == command_container.get_child_count():
+		for i in range(command_list.size()):
+			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+		selection.show()
+		highlight.show()
+
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_update()

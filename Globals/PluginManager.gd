@@ -129,7 +129,7 @@ func plugin_has_icon(plugin_id:String):
 	if _plugins.has(plugin_id):
 		return FileAccess.file_exists("user://plugins/"+_plugins[plugin_id]+"/icon.png")
 	elif _developer_plugins.has(plugin_id):
-		return FileAccess.file_exists("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png")
+		return ResourceLoader.exists("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/icon.png")
 
 func is_plugin_trusted(plugin_id:String):
 	if trusted_developers.has(plugin_id.split(".")[1]):

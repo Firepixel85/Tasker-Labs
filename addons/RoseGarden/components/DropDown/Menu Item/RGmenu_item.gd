@@ -44,7 +44,7 @@ func _ready() -> void:
 	_update_themes()
 
 func _pressed() -> void:
-	await manager.select(id)
+	manager.select(id)
 	manager._close()
 
 

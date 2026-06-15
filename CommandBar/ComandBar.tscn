@@ -65,4 +65,5 @@ patch_margin_bottom = 16
 [node name="CommandContainer" type="VBoxContainer" parent="NinePatchRect/MarginContainer" unique_id=1800403218]
 z_index = 1
 layout_mode = 2
+size_flags_stretch_ratio = 0.0
 theme_override_constants/separation = 8

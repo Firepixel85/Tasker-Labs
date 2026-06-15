@@ -5,11 +5,55 @@ class_name RGDonutGraph
 @onready var value_label: Label = $TextureProgressBar/CenterContainer/VBoxContainer/Label
 @onready var value_name_label: RGText = $TextureProgressBar/CenterContainer/VBoxContainer/RGText
 
-@export var value: int = 0
-@export_enum("Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red"
-@export_enum("Percentage","Value") var mode = "Percentage"
-@export var value_name:String = ""
-@export var percentage:int = 0
+@export var value: int = 0:
+	set(new_value):
+		if bar == null:
+			return
+		if (new_value < 0 or new_value > 100) and mode == "Percentage":
+			return
+		value = new_value
+		if mode == "Percentage":
+			bar.value = value
+		else:
+			bar.value = percentage
+		value_label.text = str(int(value))
+		if mode == "Percentage":
+			value_label.text += "%"
+@export_enum("Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Red":
+	set(new_value):
+		if !RoseGarden.Colors.verify_color(new_value) == OK:
+			return
+		if bar == null:
+			return
+		color = new_value
+		bar.texture_progress = load(RoseGarden._file_path+"DonutGraph/Progress/Progress"+color+".svg")
+		bar.texture_under = load(RoseGarden._file_path+"DonutGraph/Base/Base"+color+".svg")
+		value_name_label.custom_color = RoseGarden.Colors.get_color(color)
+		value_name_label._update()
+@export_enum("Percentage","Value") var mode = "Percentage":
+	set(new_value):
+		if new_value != "Value" and new_value != "Percentage":
+			return
+		mode = new_value
+		_update()
+@export var value_name:String = "":
+	set(new_value):
+		value_name = new_value
+		_update()
+@export var percentage:int = 0:
+	set(new_value):
+		if bar == null:
+			return
+		if (new_value < 0 or new_value > 100):
+			return
+		percentage = new_value
+		if mode == "Percentage":
+			bar.value = value
+		else:
+			bar.value = percentage
+		value_label.text = str(int(value))
+		if mode == "Percentage":
+			value_label.text += "%"
 
 signal value_changed(new_value:float)
 signal mode_chnaged(new_mode:String)
@@ -68,12 +112,10 @@ func tween_value(new_value:int, duration:float,new_perc:int=percentage,trans := 
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	_update()
-func _process(delta: float) -> void:
-	if Engine.is_editor_hint():
-		_update()
-	_value_update()
 
 func _update():
+	if bar == null:
+		return
 	bar.texture_progress = load(RoseGarden._file_path+"DonutGraph/Progress/Progress"+color+".svg")
 	bar.texture_under = load(RoseGarden._file_path+"DonutGraph/Base/Base"+color+".svg")
 	value_name_label.custom_color = RoseGarden.Colors.get_color(color)

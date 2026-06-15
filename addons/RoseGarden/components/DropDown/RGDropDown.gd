@@ -147,7 +147,9 @@ func _on_menu_item_highlighted(id: int) -> void:
 
 func _on_focus_exited() -> void:
 	await get_tree().process_frame
-	await get_tree().process_frame
+	for child in menu_item_container.get_children():
+		if child.button.has_focus():
+			return
 	if !has_focus():
 		_close()
 

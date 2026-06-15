@@ -1,4 +1,5 @@
 extends Control
+class_name RGrcm_item
 @onready var title_label: Label = $MarginContainer/HBoxContainer/Label
 @onready var icon_container: TextureRect = $MarginContainer/HBoxContainer/TextureRect
 @onready var arrow: TextureRect = $MarginContainer/HBoxContainer2/TextureRect

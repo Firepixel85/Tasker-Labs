@@ -8,6 +8,12 @@ class_name RGTextFieldIcon
 @onready var hint_container: MarginContainer = $MarginContainer2
 @onready var icon_holder: TextureRect = $MarginContainer3/HBoxContainer/TextureRect
 
+@export var text:String = "":
+	set(new_value):
+		text = new_value
+		if line_edit != null:
+			line_edit.text = new_value
+		_update()
 @export var placeholder_text:String = "":
 	set(new_value):
 		placeholder_text = new_value
@@ -54,7 +60,6 @@ class_name RGTextFieldIcon
 		needs_focus = new_value
 		_update()
 
-var text:String
 signal text_changed(new_text:String)
 signal text_submitted(new_text:String)
 
