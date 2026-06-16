@@ -30,7 +30,8 @@ func start_app(window_data_available:bool):
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_BORDERLESS, false)
 	DisplayServer.window_set_flag(DisplayServer.WINDOW_FLAG_RESIZE_DISABLED, false)
 	Main.save_window_data()
-	get_tree().change_scene_to_file("res://MainView/MainView.tscn")
+	var mainview = preload("res://MainView/MainView.tscn")
+	get_tree().change_scene_to_packed(mainview)
 
 
 func center_window():

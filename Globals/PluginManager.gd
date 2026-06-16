@@ -193,9 +193,6 @@ func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 	if !FileAccess.file_exists(file_path+plugin_file_name+"/info.json"):
 		Debug.log("Plugin "+plugin_file_name+" is missing info.json file, skipping...",ID)
 		return
-	#if !FileAccess.file_exists("user://plugins"+plugin_file_name+"plugin.pck"):
-	#	Debug.log("Plugin "+plugin_file_name+" is missing plugin.pck file, skipping...",id)
-	#	return
 
 	var file = FileAccess.open(file_path+plugin_file_name+"/info.json",FileAccess.READ)
 	var plugin_info:Dictionary = JSON.parse_string(file.get_as_text())
@@ -237,10 +234,10 @@ func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 		Debug.error("Plugin "+plugin_file_name+" has the same id as a previous plugin",ID)
 		_error_queue.append("Couldn't load "+plugin_name+" because its plugin_id is the same as another plugin")
 		return ERR_INVALID_DATA
-	if !FileAccess.file_exists("user://plugins"+plugin_file_name+"plugin.pck") and file_path == "user://plugins/":
+	if !FileAccess.file_exists("user://plugins/"+plugin_file_name+"/plugin.pck") and file_path == "user://plugins/":
 		_error_queue.append("Couldn't load "+plugin_name+" because it is missing files essential for it to run (plugin.pck)")
-		Debug.log("Plugin "+plugin_file_name+" is missing plugin.pck file, skipping...",id)
-		return
+		Debug.log("Plugin "+plugin_file_name+" is missing plugin.pck file, skipping...",ID)
+		return ERR_INVALID_DATA
 
 	return plugin_info["plugin_id"]
 
@@ -249,11 +246,12 @@ func load_plugin(plugin_id):
 		Debug.error("Could't load plugin with id: "+plugin_id+", plugin not found",ID)
 		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
-		Debug.log("Loaded plugin: "+get_plugin_name(plugin_id),ID)
+		Debug.log("Loading plugin: "+get_plugin_name(plugin_id),ID)
 		ProjectSettings.load_resource_pack("user://plugins/"+_plugins[plugin_id]+"/plugin.pck")
-		_loaded_plugin_scripts[plugin_id] = load("user://Plugins/"+_plugins[plugin_id]+"/plugin.gd").new()
+		_loaded_plugin_scripts[plugin_id] = load("res://Plugins/"+_plugins[plugin_id]+"/plugin.gd").new()
 		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
 			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
+			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
 		_loaded_plugins.append(plugin_id)
@@ -264,6 +262,7 @@ func load_plugin(plugin_id):
 		_loaded_plugin_scripts[plugin_id] = load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/plugin.gd").new()
 		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
 			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
+			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
 		_loaded_plugins.append(plugin_id)

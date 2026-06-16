@@ -36,7 +36,6 @@ func _ready() -> void:
 		CommandBar.link_action(_on_toggle_logs_pressed,ID+"/Toggle Logs")
 	if !CommandBar.command_has_action(ID+"/Toggle Warns"):
 		CommandBar.link_action(_on_toggle_warns_pressed,ID+"/Toggle Warns")
-	if !CommandBar.command_has_action(ID+"/Toggle Errors"):
 		CommandBar.link_action(_on_toggle_errors_pressed,ID+"/Toggle Errors")
 
 func _update_logs():

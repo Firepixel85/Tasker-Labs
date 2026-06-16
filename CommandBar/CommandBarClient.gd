@@ -150,7 +150,8 @@ func add_command(command_name:String,id:String,icon_path:String,action:Callable,
 	command_actions[path] = action
 	command_params[path] = params
 	command_keywords[path] = keywords
-	command_points[path] = 0
+	if !command_points.has(path):
+		command_points[path] = 0
 	command_added.emit(path)
 	save()
 	Debug.log("Command added by process: "+Main.get_process_name(id)+", path is: "+path,ID)
@@ -308,23 +309,13 @@ func get_selected():
 	return commands[0]
 
 func save():
-	Data.save_to("commands",commands,"CommandData")
-	Data.save_to("command_names",command_names,"CommandData")
-	Data.save_to("command_icons",command_icons,"CommandData")
-	Data.save_to("command_params",command_params,"CommandData")
 	Data.save_to("command_points",command_points,"CommandData")
-	Data.save_to("command_keywords",command_keywords,"CommandData")
 	Data.save_file("CommandData")
 
 func load_commands():
 	if Data.file_exists("CommandData"):
 		var data = Data.load_file("CommandData")
-		commands = data["commands"]
-		command_names = data["command_names"]
-		command_icons = data["command_icons"]
-		command_params = data["command_params"]
 		command_points = data["command_points"]
-		command_keywords = data["command_keywords"]
 	else:
 		Data.make_file("CommandData")
 		save()

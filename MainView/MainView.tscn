@@ -280,6 +280,7 @@ custom_minimum_size = Vector2(390, 60)
 layout_mode = 2
 size_flags_horizontal = 0
 script = ExtResource("16_30ete")
+text = "Test"
 placeholder_text = "Search command..."
 icon = ExtResource("16_42b22")
 show_hint = true
