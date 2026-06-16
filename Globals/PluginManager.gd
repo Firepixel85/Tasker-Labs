@@ -8,6 +8,7 @@ var _plugins = {}
 var _developer_plugins = {}
 var _loaded_plugins = []
 var _loaded_plugin_scripts = {}
+var _error_queue = []
 
 func _ready() -> void:
 	if DirAccess.open("user://").dir_exists("plugins"):
@@ -188,44 +189,59 @@ func _load_data():
 		Data.make_file("PluginData")
 		save_data()
 
-func _verify_plugin(plugin_name:String,file_path:String="user://plugins/"):
-	if !FileAccess.file_exists(file_path+plugin_name+"/info.json"):
-		Debug.log("Plugin "+plugin_name+" is missing info.json file, skipping...",ID)
+func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
+	if !FileAccess.file_exists(file_path+plugin_file_name+"/info.json"):
+		Debug.log("Plugin "+plugin_file_name+" is missing info.json file, skipping...",ID)
 		return
-	#if !FileAccess.file_exists("user://plugins"+plugin_name+"plugin.pck"):
-	#	Debug.log("Plugin "+plugin_name+" is missing plugin.pck file, skipping...",id)
+	#if !FileAccess.file_exists("user://plugins"+plugin_file_name+"plugin.pck"):
+	#	Debug.log("Plugin "+plugin_file_name+" is missing plugin.pck file, skipping...",id)
 	#	return
 
-	var file = FileAccess.open(file_path+plugin_name+"/info.json",FileAccess.READ)
+	var file = FileAccess.open(file_path+plugin_file_name+"/info.json",FileAccess.READ)
 	var plugin_info:Dictionary = JSON.parse_string(file.get_as_text())
 
 	if plugin_info == null:
-		Debug.error("Plugin "+plugin_name+" has invalid info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_file_name+" has invalid info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_file_name+" because it is missing required info")
 		return ERR_INVALID_DATA
 	if !plugin_info["target_api_versions"].has(Main.get_plugin_api_version()):
-		Debug.error("Plugin "+plugin_name+" is not compatible with current version of Tasker's plugin API, skipping...",ID)
+		Debug.error("Plugin "+plugin_file_name+" is not compatible with current version of Tasker's plugin API, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_file_name+" because it isn't compatible with the current version of Tasker")
 		return ERR_INVALID_DATA
-	if plugin_info["name"] == null:
-		Debug.error("Plugin "+plugin_name+" is missing name field in info.json file, skipping...",ID)
+	if !plugin_info.has("name"):
+		Debug.error("Plugin "+plugin_file_name+" is missing name field in info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_file_name+" because it is missing name info")
 		return ERR_INVALID_DATA
-	if plugin_info["version"] == null:
-		Debug.error("Plugin "+plugin_name+" is missing version field in info.json file, skipping...",ID)
+	var plugin_name = plugin_info["name"]
+	if !plugin_info.has("version"):
+		Debug.error("Plugin "+plugin_file_name+" is missing version field in info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it is missing version info")
 		return ERR_INVALID_DATA
-	if plugin_info["author"] == null:
-		Debug.error("Plugin "+plugin_name+" is missing author field in info.json file, skipping...",ID)
+	if !plugin_info.has("author"):
+		Debug.error("Plugin "+plugin_file_name+" is missing author field in info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it is missing author info")
 		return ERR_INVALID_DATA
 	if !plugin_info.has("plugin_id"):
-		Debug.error("Plugin "+plugin_name+" is missing plugin_id field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_file_name+" is missing plugin_id field in info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it is missing plugin_id info")
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].begins_with("com."):
-		Debug.error("Plugin "+plugin_name+" has invalid plugin_id field in info.json file, skipping...",ID)
+		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id field in info.json file, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id (must begin with com.)")
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].split(".").size() == 3:
-		Debug.error("Plugin "+plugin_name+" has invalid plugin_id filed in info.json, skipping...",ID)
+		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id filed in info.json, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id (must be in format com.author.plugin_name)")
 		return ERR_INVALID_DATA
 	if _plugins.has(plugin_info["plugin_id"]):
-		Debug.error("Plugin "+plugin_name+" has the same id as a previous plugin",ID)
+		Debug.error("Plugin "+plugin_file_name+" has the same id as a previous plugin",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because its plugin_id is the same as another plugin")
 		return ERR_INVALID_DATA
+	if !FileAccess.file_exists("user://plugins"+plugin_file_name+"plugin.pck") and file_path == "user://plugins/":
+		_error_queue.append("Couldn't load "+plugin_name+" because it is missing files essential for it to run (plugin.pck)")
+		Debug.log("Plugin "+plugin_file_name+" is missing plugin.pck file, skipping...",id)
+		return
+
 	return plugin_info["plugin_id"]
 
 func load_plugin(plugin_id):
@@ -234,6 +250,13 @@ func load_plugin(plugin_id):
 		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
 		Debug.log("Loaded plugin: "+get_plugin_name(plugin_id),ID)
+		ProjectSettings.load_resource_pack("user://plugins/"+_plugins[plugin_id]+"/plugin.pck")
+		_loaded_plugin_scripts[plugin_id] = load("user://Plugins/"+_plugins[plugin_id]+"/plugin.gd").new()
+		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
+			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
+			return ERR_METHOD_NOT_FOUND
+		_loaded_plugin_scripts[plugin_id].start()
+		_loaded_plugins.append(plugin_id)
 		save_data()
 		return OK
 	elif is_developer_plugin(plugin_id) and Settings.get_option_value("core.developer/dev_tools"):
@@ -297,3 +320,8 @@ func get_plugin_script(plugin_id:String):
 		Debug.warn("A process attempted to get the script of a plugin with id: "+plugin_id+" but it isn't loaded",ID)
 		return ERR_DOES_NOT_EXIST
 	return _loaded_plugin_scripts[plugin_id]
+
+func _send_errors():
+	for error in _error_queue:
+		NotificationManager.queue_notification("Plugin Load Error",error,true,null,[],0.0)
+	_error_queue.clear()

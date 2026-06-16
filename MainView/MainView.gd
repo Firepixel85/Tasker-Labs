@@ -41,6 +41,7 @@ func _ready():
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	RoseGarden.set_toast_layer(toast_layer)
 	CommandBar.load_commands()
+	PluginManager._send_errors()
 
 	#Add settings:
 

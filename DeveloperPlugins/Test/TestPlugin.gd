@@ -38,7 +38,7 @@ func _on_create_event_pressed() -> void:
 	Debug.log("Creating test event",ID)
 	create_event.set_disabled(true)
 	remove_event.set_disabled(false)
-	var response = EventManager.add_event(ID,load("res://DeveloperPlugins/Test/test_event.tscn"),load("res://DeveloperPlugins/Test/icon.png"))
+	var response = EventManager.add_event(ID,load(PluginManager.get_plugin_filepath(ID)+"test_event.tscn"),load(PluginManager.get_plugin_filepath(ID)+"icon.png"))
 	Debug.log("Got response from EventManager: "+error_string(response),ID)
 
 func _on_remove_event_pressed() -> void:
