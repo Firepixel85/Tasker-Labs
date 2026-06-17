@@ -3,12 +3,15 @@ extends Control
 @onready var tab_container: VBoxContainer = $TabButtons/ScrollContainer/VBoxContainer
 @onready var selection: NinePatchRect = $Selection
 @onready var scene_container: Control = $"../../../../VBoxContainer2/SceneContainer"
+@onready var scroll_container: ScrollContainer = $TabButtons/ScrollContainer
 
 const ID := "core.sidebar"
 var tabs := []
 var _tab_scenes := {}
 var _tab_scene_nodes := {}
 var selected:String
+var selected_node:Button
+var past_scroll:int = 0
 
 func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	if tabs.has(tab_id):
@@ -28,11 +31,13 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.add_theme_stylebox_override("Focus",StyleBoxEmpty.new())
 	tab.manager = self
 	tab.id = tab_id
+	
 	tab._ready()
 	scene_container.add_child(scene.instantiate())
 	_tab_scene_nodes[tab_id] = scene_container.get_child(scene_container.get_child_count()-1)
 	_tab_scene_nodes[tab_id].hide()
 	if selected == "":
+		selected_node = tab
 		selection.visible = true
 		selected = tabs[0]
 		for child in scene_container.get_children():
@@ -83,7 +88,10 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(tabs,selection_id)),0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	for child in tab_container.get_children():
+		if child.id == selection_id:
+			selected_node = child
+	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-112,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	for child in scene_container.get_children():
 		child.hide()
@@ -104,3 +112,6 @@ func _process(_delta:float) -> void:
 	for i in range(9):
 		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_META) and tab_container.get_child_count()>i:
 			_select(tabs[i])
+	if past_scroll != scroll_container.scroll_vertical:
+		selection.position.y = selected_node.get_global_transform().origin.y-112
+	past_scroll = scroll_container.scroll_vertical

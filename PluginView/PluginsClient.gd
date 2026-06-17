@@ -21,6 +21,10 @@ func _process(_delta:float) -> void:
 		tabs.select("explore")
 	elif Input.is_action_just_pressed("2") and Input.is_key_pressed(KEY_META) and Main.get_current_view() == "plugins":
 		tabs.select("installed")
+	if selected_tab == "explore":
+		view_scroll.set_deferred("scroll_horizontal", 0)
+	elif selected_tab == "installed":
+		view_scroll.set_deferred("scroll_horizontal", view_container.get_child(0).size.x+4)
 
 
 func _on_tab_selected(item_name: String) -> void:
@@ -34,12 +38,11 @@ func _on_tab_selected(item_name: String) -> void:
 		selected_tab = "installed"
 		@warning_ignore("narrowing_conversion")
 		view_scroll.scroll_horizontal = view_scroll.size.x
-		view_container.get_child(1).display_plugins()
+		view_container.get_child(1).refresh()
 
 func setup():
 	_resize_views()
-	if selected_tab == "installed":
-		view_container.get_child(1).display_plugins()
+	view_container.get_child(1).refresh()
 
 func _resize_views():
 	await get_tree().process_frame

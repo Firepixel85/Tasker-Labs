@@ -1,9 +1,12 @@
 extends Control
 @onready var category_container: VBoxContainer = $CategoryButtons/ScrollContainer/VBoxContainer
 @onready var selection: NinePatchRect = $Selection
+@onready var scroll_container: ScrollContainer = $CategoryButtons/ScrollContainer
 
 var categories = []
 var selected:String
+var selected_node
+var past_scroll := 0
 
 signal category_selected(category_id)
 
@@ -24,6 +27,7 @@ func _add_category(title:String,icon:Texture2D,category_id:String):
 	category.id = category_id
 	category._ready()
 	if selected == "":
+		selected_node = category
 		selected = categories[0]
 		#Display options logic placeholder
 	_shade_categories()
@@ -55,7 +59,10 @@ func _select(selection_id:String):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.visible = true
-	create_tween().tween_property(selection,"position",Vector2(0,80*_find_index(categories,selection_id)),0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	for child in category_container.get_children():
+		if child.id == selection_id:
+			selected_node = child
+	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-112,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_categories()
 	category_selected.emit(selection_id)
 	Sidebar.tab_selected.emit(selection_id)
@@ -71,7 +78,9 @@ func _shade_categories():
 func _process(_delta:float) -> void:
 	if Main.get_current_view() != "settings":
 		return
-
 	for i in range(9):
 		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_META) and category_container.get_child_count()>i:
 			_select(categories[i])
+	if past_scroll != scroll_container.scroll_vertical:
+		selection.position.y = selected_node.get_global_transform().origin.y-112
+	past_scroll = scroll_container.scroll_vertical

@@ -151,6 +151,7 @@ func is_plugin_version_controlled(plugin_id:String):
 		return plugin_info.has("repo")
 
 func scan_available_plugins():
+	Debug.log("Scanning for scan_available_plugins...",ID)
 	_plugins.clear()
 	var dir = DirAccess.open("user://plugins")
 	dir.list_dir_begin()

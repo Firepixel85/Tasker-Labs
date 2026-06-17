@@ -2,6 +2,24 @@
 
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_f23au"]
 [ext_resource type="Script" uid="uid://dsb743hj1413a" path="res://PluginView/InstalledView.gd" id="1_ygubm"]
+[ext_resource type="Script" uid="uid://cxypmt0wvca17" path="res://PluginView/grid_container.gd" id="3_hqcmk"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="4_6qbsv"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_6qbsv"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="5_daxqh"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="7_boqkd"]
+[ext_resource type="Texture2D" uid="uid://dodjb42ct6m3l" path="res://Icons/Refresh.svg" id="8_ffun4"]
+[ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="9_wi5hg"]
+
+[sub_resource type="Gradient" id="Gradient_ffun4"]
+offsets = PackedFloat32Array(0.37134504, 0.69590646, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0.77254903, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wi5hg"]
+gradient = SubResource("Gradient_ffun4")
+height = 100
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
 
 [node name="Control" type="Control" unique_id=460425033]
 layout_mode = 3
@@ -13,45 +31,128 @@ grow_vertical = 2
 focus_mode = 1
 script = ExtResource("1_ygubm")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=183260815]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=2136068720]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -1.0
-offset_right = -1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 25
+size_flags_vertical = 3
+theme_override_constants/separation = 16
 
-[node name="Enabled" parent="VBoxContainer" unique_id=85953319 instance=ExtResource("1_f23au")]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1787706081]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 16
+
+[node name="RGText" parent="HBoxContainer/VBoxContainer" unique_id=582220891 instance=ExtResource("1_f23au")]
 custom_minimum_size = Vector2(100, 34)
 layout_mode = 2
 text = "Enabled:"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=446218147]
-custom_minimum_size = Vector2(0, 266)
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=1397590566]
 layout_mode = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1804441917]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer" unique_id=2122350944]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+script = ExtResource("3_hqcmk")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=811618293]
+layout_mode = 2
+size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="Disabled" parent="VBoxContainer" unique_id=341248368 instance=ExtResource("1_f23au")]
+[node name="RGText" parent="HBoxContainer/VBoxContainer2" unique_id=1292616244 instance=ExtResource("1_f23au")]
 custom_minimum_size = Vector2(107, 34)
 layout_mode = 2
 text = "Disabled:"
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="VBoxContainer" unique_id=835354093]
-custom_minimum_size = Vector2(0, 260)
+[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=1807283876]
 layout_mode = 2
-horizontal_scroll_mode = 3
-vertical_scroll_mode = 3
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/ScrollContainer2" unique_id=966286440]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer2" unique_id=1200791974]
 layout_mode = 2
-theme_override_constants/separation = 16
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 16
+theme_override_constants/v_separation = 16
+columns = 2
+script = ExtResource("3_hqcmk")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1633290228]
+
+[node name="Fade" type="TextureRect" parent="." unique_id=580754146]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+focus_behavior_recursive = 1
+mouse_behavior_recursive = 1
+texture = SubResource("GradientTexture2D_wi5hg")
+
+[node name="ActionContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("4_6qbsv")]
+custom_minimum_size = Vector2(465, 80)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.93603516
+offset_top = -0.5999756
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 3
+script = ExtResource("5_daxqh")
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionContainer" unique_id=646617395]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionContainer/MarginContainer" unique_id=1095401736]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Resfresh" type="Control" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_6qbsv")]
+custom_minimum_size = Vector2(268, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("7_boqkd")
+text = "Resfresh"
+icon = ExtResource("8_ffun4")
+metadata/_edit_use_anchors_ = true
+
+[node name="Updates" type="Control" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=845587459 instance=ExtResource("5_6qbsv")]
+custom_minimum_size = Vector2(265, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("7_boqkd")
+text = "Updates"
+icon = ExtResource("9_wi5hg")
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Resfresh" to="." method="refresh"]

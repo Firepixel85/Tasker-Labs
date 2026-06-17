@@ -3,8 +3,17 @@ extends Control
 
 @onready var container:NinePatchRect = $NinePatchRect
 
-@export_enum("8","16","32") var padding := "8"
-@export var margin_number := 10
+@export_enum("8","16","32") var padding := "8":
+	set(new_value):
+		if !patch_margins.has(new_value):
+			return
+		padding = new_value
+		_update()
+@export var margin_number := 10:
+	set(new_value):
+		if new_value != margin_numbers[padding]:
+			return
+		margin_number = new_value
 
 var patch_margins := {
 	"8": 28,
@@ -30,6 +39,8 @@ func set_padding(new_padding:String):
 ###############
 
 func _update():
+	if container == null:
+		return
 	container.texture = load(RoseGarden._file_path+"Container/Container"+padding+".svg")
 	container.patch_margin_bottom = patch_margins[padding]
 	container.patch_margin_left = patch_margins[padding]
@@ -39,7 +50,6 @@ func _update():
 	container.size = size
 
 func _process(_delta: float) -> void:
-	margin_number = margin_numbers[padding]
 	if Engine.is_editor_hint():
 		_update()
 

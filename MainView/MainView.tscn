@@ -140,6 +140,7 @@ theme_override_constants/margin_top = 4
 [node name="ScrollContainer" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons" unique_id=1377480002]
 layout_mode = 2
 size_flags_vertical = 3
+horizontal_scroll_mode = 3
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Tabs/TabButtons/ScrollContainer" unique_id=516417704]
 layout_mode = 2
@@ -334,6 +335,7 @@ size_flags_vertical = 3
 script = ExtResource("17_5lyvq")
 
 [node name="Selection" type="NinePatchRect" parent="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" unique_id=1972672525]
+show_behind_parent = true
 custom_minimum_size = Vector2(0, 64)
 layout_mode = 1
 anchors_preset = 10
@@ -518,6 +520,7 @@ theme_override_constants/margin_bottom = 32
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
+scroll_deadzone = -1
 
 [node name="ViewContainer" type="HBoxContainer" parent="Plugins/Container/MarginContainer/ViewScroll" unique_id=97082187]
 layout_mode = 2

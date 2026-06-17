@@ -1,9 +1,11 @@
 extends Control
-@onready var enabled_container: HBoxContainer = $VBoxContainer/ScrollContainer/HBoxContainer
-@onready var disabled_container: HBoxContainer = $VBoxContainer/ScrollContainer2/HBoxContainer
-@onready var disabled_text: RGText = $VBoxContainer/Disabled
-@onready var enabled_text: RGText = $VBoxContainer/Enabled
+@onready var enabled_container: GridContainer = $HBoxContainer/VBoxContainer/ScrollContainer/GridContainer
+@onready var disabled_container: GridContainer = $HBoxContainer/VBoxContainer2/ScrollContainer2/GridContainer
+@onready var disabled_text: RGText = $HBoxContainer/VBoxContainer2/RGText
+@onready var enabled_text: RGText = $HBoxContainer/VBoxContainer/RGText
 @onready var animation_layer: CanvasLayer = $CanvasLayer
+@onready var action_container: Control = $ActionContainer
+
 
 var _checked_shift_key_held:bool = false
 var _checked_option_key_held:bool = false
@@ -34,18 +36,6 @@ func display_plugins():
 		plugin_view.state_changed.connect(move_plugin)
 		plugin_view.scale = Vector2(1,1)
 
-	await get_tree().process_frame
-	enabled_container.get_parent().visible = true
-	enabled_text.visible = true
-	disabled_container.get_parent().visible = true
-	disabled_text.visible = true
-	if enabled_container.get_child_count() == 0:
-		enabled_container.get_parent().visible = false
-		enabled_text.visible = false
-	if disabled_container.get_child_count() == 0:
-		disabled_container.get_parent().visible = false
-		disabled_text.visible = false
-
 	for i in enabled_container.get_children().size():
 		if i>9:
 			break
@@ -64,6 +54,9 @@ func display_plugins():
 		else:
 			new_i = i+1
 		disabled_container.get_child(i).keybind_number = new_i
+
+	action_container.custom_minimum_size.x = action_container.get_child(1).get_minimum_size().x
+	action_container._update()
 
 func move_plugin(plugin_id:String):
 	for child in enabled_container.get_children():
@@ -160,6 +153,8 @@ func move_plugin(plugin_id:String):
 			new_i = i+1
 		disabled_container.get_child(i).keybind_number = new_i
 
+
+
 func _process(_delta: float) -> void:
 	if Main.get_current_view() != "plugins":
 		return
@@ -222,3 +217,7 @@ func _close_keybinds(enabled:bool):
 			break
 		var plugin_view:PluginInstalled = container.get_child(i)
 		plugin_view.hide_keybind()
+
+func refresh() -> void:
+	await PluginManager.scan_available_plugins()
+	display_plugins()
