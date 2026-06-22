@@ -1,0 +1,49 @@
+[gd_scene format=3 uid="uid://ceh76ujscwe55"]
+
+[ext_resource type="Texture2D" uid="uid://iksbs8dctvbh" path="res://PluginView/UpdatesPopup/SearchX.svg" id="1_an4e1"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_01aqj"]
+
+[node name="NoResults" type="Control" unique_id=176668409]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 3
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1578133771]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1790722533]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=1367877562]
+layout_mode = 2
+texture = ExtResource("1_an4e1")
+stretch_mode = 5
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=973601649]
+layout_mode = 2
+
+[node name="RGText" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_01aqj")]
+custom_minimum_size = Vector2(175, 34)
+layout_mode = 2
+text = "Nothing found!"
+horizontal_alignment = "Center"
+
+[node name="RGText2" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=429609128 instance=ExtResource("2_01aqj")]
+custom_minimum_size = Vector2(470, 34)
+layout_mode = 2
+text = "All plugin in this category are up-to-date."
+color = "Secondary"
+
+[node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=695378379]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2

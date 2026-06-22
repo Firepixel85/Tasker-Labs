@@ -62,7 +62,8 @@ func _select(selection_id:String):
 	for child in category_container.get_children():
 		if child.id == selection_id:
 			selected_node = child
-	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-112,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	await get_tree().process_frame
+	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-116,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_categories()
 	category_selected.emit(selection_id)
 	Sidebar.tab_selected.emit(selection_id)
@@ -82,5 +83,5 @@ func _process(_delta:float) -> void:
 		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_META) and category_container.get_child_count()>i:
 			_select(categories[i])
 	if past_scroll != scroll_container.scroll_vertical:
-		selection.position.y = selected_node.get_global_transform().origin.y-112
+		selection.position.y = selected_node.get_global_transform().origin.y-116
 	past_scroll = scroll_container.scroll_vertical

@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://jtvoo5jjc3tw"]
 
 [ext_resource type="Script" uid="uid://btjiid8lcfkvt" path="res://PluginView/PluginStore.gd" id="1_s3a17"]
-[ext_resource type="Texture2D" uid="uid://46s1hg3pjhsy" path="res://PluginView/Coming Soon.svg" id="1_u1j6t"]
+[ext_resource type="Texture2D" uid="uid://de3svriutb4pv" path="res://Sidebar/Puzzle.svg" id="2_n4n60"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_wqxkm"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_s3a17"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="5_3ah6t"]
+[ext_resource type="Texture2D" uid="uid://dodjb42ct6m3l" path="res://Icons/Refresh.svg" id="6_2eevg"]
+[ext_resource type="Texture2D" uid="uid://bf02cuihtrvdm" path="res://Icons/Folder.svg" id="8_s3kr8"]
 
 [node name="ExploreView" type="Control" unique_id=951042587]
 layout_mode = 3
@@ -28,26 +31,26 @@ theme_override_constants/separation = 16
 
 [node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=309036549]
 layout_mode = 2
-texture = ExtResource("1_u1j6t")
+texture = ExtResource("2_n4n60")
 stretch_mode = 5
 
 [node name="RGText" parent="CenterContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(211, 45)
+custom_minimum_size = Vector2(306, 45)
 layout_mode = 2
-text = "Coming Soon!"
+text = "No Plugins Installed"
 font_size = "Large"
 horizontal_alignment = "Center"
 
 [node name="RGText2" parent="CenterContainer/VBoxContainer" unique_id=1864255225 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(494, 34)
+custom_minimum_size = Vector2(528, 34)
 layout_mode = 2
-text = "The plugin store is still under construction."
+text = "Install some plugins to start taking advantage"
 horizontal_alignment = "Center"
 
 [node name="RGText3" parent="CenterContainer/VBoxContainer" unique_id=1981497466 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(568, 34)
+custom_minimum_size = Vector2(344, 34)
 layout_mode = 2
-text = "For now you can test out some developer plugins"
+text = "of Tasker's powerful features."
 horizontal_alignment = "Center"
 
 [node name="Seperator" type="Control" parent="CenterContainer/VBoxContainer" unique_id=722396492]
@@ -64,4 +67,53 @@ layout_mode = 2
 color = "White"
 text = "How?"
 
+[node name="ActionContainer" parent="." unique_id=535912435 instance=ExtResource("5_3ah6t")]
+custom_minimum_size = Vector2(465, 80)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -0.93603516
+offset_top = -0.5999756
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="ActionContainer" unique_id=1701290463]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="HBoxContainer" type="HBoxContainer" parent="ActionContainer/MarginContainer" unique_id=1862363373]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Refresh" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1859599717 instance=ExtResource("4_s3a17")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("6_2eevg")
+
+[node name="Folder" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1247102221 instance=ExtResource("4_s3a17")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("8_s3kr8")
+
 [connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RGButton" to="." method="_on_rg_button_pressed"]
+[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_clear_tooltips"]
+[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_refresh_hovered"]
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_refresh_pressed"]
+[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_clear_tooltips"]
+[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_hovered"]
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_pressed"]

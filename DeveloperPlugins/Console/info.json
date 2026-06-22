@@ -1,7 +1,7 @@
 {
 	"name": "Console",
 	"version": "1.0",
-	"target_api_versions": ["1.0"],
+	"target_api_version": "1.0",
 	"author": "Rosepen Studios",
 	"plugin_id": "com.rosepen.console",
 	"description": "A built-in debugging tool, used for viewing runtime logs. This plugin is part of Tasker's developer tools that can be toggled through the settings menu."

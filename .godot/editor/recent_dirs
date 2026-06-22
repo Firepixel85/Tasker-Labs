@@ -1,3 +1,4 @@
+res://PluginView/UpdatesPopup/
 res://addons/RoseGarden/components/Container/
 res://PluginView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
@@ -20,4 +21,3 @@ res://Settings/CoreOptions/RoseGarden/ddmAppearance/
 res://Settings/CoreOptions/RoseGarden/buttonPress/
 res://Settings/CoreOptions/Developer/RGOptions/
 res://AppIcons/
-res://LoadingScreen/

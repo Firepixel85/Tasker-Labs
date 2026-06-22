@@ -8,6 +8,7 @@ extends Control
 		if !patch_margins.has(new_value):
 			return
 		padding = new_value
+		margin_number = margin_numbers[new_value]
 		_update()
 @export var margin_number := 10:
 	set(new_value):

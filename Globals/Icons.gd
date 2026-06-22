@@ -35,6 +35,11 @@ const COPY = preload("res://Icons/Copy.svg")
 const CLIPBOARD = preload("res://Icons/Clipboard.svg")
 const TEXTCURSOR = preload("res://Icons/TextCursor.svg")
 const QUSETIONCIRCLE = preload("res://Icons/QuestionCircle.svg")
+const FOLDER = preload("res://Icons/Folder.svg")
+const REFRESH = preload("res://Icons/Refresh.svg")
+const DOWNLOAD = preload("res://Icons/Download.svg")
+const THREEDOTS = preload("res://Icons/ThreeDots.svg")
+const FILETEXT = preload("res://Icons/FileText.svg")
 
 func get_icon_path(icon:String) -> String:
 	var path = "res://Icons/"+icon+".svg"

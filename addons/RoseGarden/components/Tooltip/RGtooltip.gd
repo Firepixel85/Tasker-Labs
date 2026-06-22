@@ -35,20 +35,23 @@ func _update():
 	text_container.custom_minimum_size.x = text_text.size.x + 20
 	keybind_container.custom_minimum_size.x = keybind_text.size.x + 20
 	keybind_container.visible = show_keybind
+	size.x = text_container.size.x + keybind_container.size.x + 8
+	size.y = text_container.size.y
 	if text == "":
 		text_container.visible = false
 	else:
 		text_container.visible = true
+	return OK
 
 func _update_textures():
 	text_container.texture = load(RoseGarden._get_file_path()+"Tooltip/Container.svg")
 	keybind_container.texture = load(RoseGarden._get_file_path()+"Tooltip/Container.svg")
 
-func _physics_process(_delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
 
-func _ready() -> void:
+func _ready():
 	_update()
 	await get_tree().process_frame
 	_update()

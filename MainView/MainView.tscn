@@ -76,9 +76,11 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -455,7 +457,6 @@ theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
 [node name="Plugins" type="Control" parent="." unique_id=971450490]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -532,7 +533,7 @@ custom_minimum_size = Vector2(2208, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="Control" parent="Plugins/Container/MarginContainer/ViewScroll/ViewContainer" unique_id=460425033 instance=ExtResource("25_7x8c6")]
+[node name="InstalledView" parent="Plugins/Container/MarginContainer/ViewScroll/ViewContainer" unique_id=460425033 instance=ExtResource("25_7x8c6")]
 custom_minimum_size = Vector2(2208, 0)
 layout_mode = 2
 size_flags_horizontal = 0
@@ -567,9 +568,11 @@ size_flags_horizontal = 3
 script = ExtResource("2_m4t2q")
 
 [node name="RGSegmentControl" parent="Plugins/TopBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=1308009122 instance=ExtResource("20_52bp6")]
+visible = false
 layout_mode = 2
 
 [node name="Spacer2" type="Control" parent="Plugins/TopBar/HBoxContainer/MarginContainer/HBoxContainer" unique_id=606179721]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 3
 script = ExtResource("2_m4t2q")

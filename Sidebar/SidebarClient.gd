@@ -22,6 +22,7 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab_container.add_child(Button.new())
 	var tab:Button = tab_container.get_child(tab_container.get_child_count()-1)
 	tab.set_script(preload("res://Sidebar/TabButton.gd"))
+	tab.name = tab_id
 	tab.text = title
 	tab.icon = icon
 	tab.flat = true
@@ -31,7 +32,7 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.add_theme_stylebox_override("Focus",StyleBoxEmpty.new())
 	tab.manager = self
 	tab.id = tab_id
-	
+
 	tab._ready()
 	scene_container.add_child(scene.instantiate())
 	_tab_scene_nodes[tab_id] = scene_container.get_child(scene_container.get_child_count()-1)
@@ -56,16 +57,17 @@ func _remove_tab(tab_id:String):
 			child.queue_free()
 			tabs.remove_at(_find_index(tabs,tab_id))
 			_tab_scenes.erase(tab_id)
+			_tab_scene_nodes[tab_id].queue_free()
+			_tab_scene_nodes.erase(tab_id)
 			if selected == tab_id:
 				if tabs.size()>0:
 					_select(tabs[0])
 				else:
 					selected = ""
-					_tab_scene_nodes[tab_id].queue_free()
-					_tab_scene_nodes.erase(tab_id)
 					_ready()
-			_shade_tabs()
 			break
+		_select(selected)
+		_shade_tabs()
 	return OK
 
 func _ready() -> void:
@@ -87,11 +89,14 @@ func _select(selection_id:String):
 		Debug.warn("Process: "+Main.get_process_name(selection_id)+" attempted to select a tab with an id that does not exist: "+selection_id,ID)
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
-	selection.visible = true
+	selection.show()
 	for child in tab_container.get_children():
 		if child.id == selection_id:
 			selected_node = child
-	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-112,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection,"position:y",
+		80*_find_index(tabs,selection_id),
+		0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)
+	).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_tabs()
 	for child in scene_container.get_children():
 		child.hide()
@@ -113,5 +118,5 @@ func _process(_delta:float) -> void:
 		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_META) and tab_container.get_child_count()>i:
 			_select(tabs[i])
 	if past_scroll != scroll_container.scroll_vertical:
-		selection.position.y = selected_node.get_global_transform().origin.y-112
+		selection.position.y = selected_node.get_global_transform().origin.y-116
 	past_scroll = scroll_container.scroll_vertical

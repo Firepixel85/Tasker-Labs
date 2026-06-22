@@ -9,6 +9,9 @@ var _developer_plugins = {}
 var _loaded_plugins = []
 var _loaded_plugin_scripts = {}
 var _error_queue = []
+var outdated_plugins = null
+var _outdated_plugin_latest_tags = {}
+var rate_limited:bool = false
 
 func _ready() -> void:
 	if DirAccess.open("user://").dir_exists("plugins"):
@@ -107,8 +110,17 @@ func get_plugin_repo(plugin_id:String):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
 		return plugin_info["repo"]
 
-	Debug.warn("A process attempted to get the repo of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
-	return ERR_DOES_NOT_EXIST
+func get_plugin_repo_site(plugin_id:String):
+	var repo_url = get_plugin_repo(plugin_id)
+	if int(repo_url) == ERR_DOES_NOT_EXIST or int(repo_url) == ERR_FILE_NOT_FOUND:
+		Debug.warn("A process attempted to get the repo site of a plugin with id: "+plugin_id+" but it doesn't exist or isn't version controlled",ID)
+		return repo_url
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	http_request.request_completed.connect(_on_request_completed)
+	http_request.request(repo_url,["User-Agent: Tasker"])
+	await _request_completed
+	return response["html_url"]
 
 func plugin_has_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
@@ -153,6 +165,8 @@ func is_plugin_version_controlled(plugin_id:String):
 func scan_available_plugins():
 	Debug.log("Scanning for scan_available_plugins...",ID)
 	_plugins.clear()
+	_developer_plugins.clear()
+	outdated_plugins = null
 	var dir = DirAccess.open("user://plugins")
 	dir.list_dir_begin()
 	var folder_name = dir.get_next()
@@ -202,9 +216,14 @@ func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 		Debug.error("Plugin "+plugin_file_name+" has invalid info.json file, skipping...",ID)
 		_error_queue.append("Couldn't load "+plugin_file_name+" because it is missing required info")
 		return ERR_INVALID_DATA
-	if !plugin_info["target_api_versions"].has(Main.get_plugin_api_version()):
-		Debug.error("Plugin "+plugin_file_name+" is not compatible with current version of Tasker's plugin API, skipping...",ID)
-		_error_queue.append("Couldn't load "+plugin_file_name+" because it isn't compatible with the current version of Tasker")
+	if !plugin_info.has("target_api_version"):
+		print(plugin_info)
+		Debug.error("Plugin "+plugin_file_name+" did not specify a compatible API version, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_file_name+" did not specify a compatible API version, skipping...")
+		return ERR_INVALID_DATA
+	if !version_compatible(plugin_info["target_api_version"]):
+		Debug.error("Plugin "+plugin_file_name+" is not compatible with the current API version, skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_file_name+" because it is not compatible with the current API version")
 		return ERR_INVALID_DATA
 	if !plugin_info.has("name"):
 		Debug.error("Plugin "+plugin_file_name+" is missing name field in info.json file, skipping...",ID)
@@ -325,3 +344,113 @@ func _send_errors():
 	for error in _error_queue:
 		NotificationManager.queue_notification("Plugin Load Error",error,true,null,[],0.0)
 	_error_queue.clear()
+
+signal _request_completed
+var response
+func scan_for_updates():
+	Debug.log("Scanning for available updates...",ID)
+	outdated_plugins = []
+	for plugin_id in get_all_plugins():
+		if !is_plugin_version_controlled(plugin_id):
+			continue
+		var repo_url = get_plugin_repo(plugin_id)
+		var plugin_name = get_plugin_name(plugin_id)
+		var plugin_version = get_plugin_version(plugin_id)
+		var http_request = HTTPRequest.new()
+		add_child(http_request)
+		http_request.request_completed.connect(_on_request_completed)
+		http_request.request(repo_url+"/releases",["User-Agent: Tasker"])
+		await _request_completed
+		match response:
+			404:
+				Debug.error("Plugin "+plugin_name+" provided an invalid repository for version control, update check failed (404)",ID)
+				continue
+			403:
+				Debug.error("Plugin "+plugin_name+" appears to have it's repository private or restricted, update check failed (403)",ID)
+				continue
+			null:
+				Debug.error(plugin_name+" plugin's repository sent an invalid respons update check failed",ID)
+				continue
+			000:
+				Debug.error("Plugin "+plugin_name+" update check failed, unknown error",ID)
+				continue
+			_:
+				#latest_version = response["tag_name"]
+				var tags = []
+				for release in response:
+					tags.append(release["tag_name"])
+				if tags[0].split("_")[0] != plugin_version:
+					var latest_compatible_version = ""
+					var latest_compatible_tag = ""
+					for tag in tags:
+						if tag.split("_").size() != 2:
+							break
+						var version = tag.split("_")[0]
+						var target_version = tag.split("_")[1]
+						if version != plugin_version and version_compatible(target_version):
+							latest_compatible_version = version
+							latest_compatible_tag = tag
+							break
+						elif version == plugin_version:
+							latest_compatible_version = version
+							break
+					if latest_compatible_version == "":
+						Debug.log("Encountered an error while checking for updates for plugin "+plugin_name+", no compatible version found",ID)
+					elif latest_compatible_version == plugin_version:
+						Debug.log("No compatible updates found for plugin "+plugin_name+", it is up to date for this version of Tasker",ID)
+					else:
+						outdated_plugins.append(plugin_id)
+						_outdated_plugin_latest_tags[plugin_id] = latest_compatible_tag
+						Debug.log("Plugin "+plugin_name+" has an update available! Current version: "+plugin_version+", Latest version: "+latest_compatible_version,ID)
+				else:
+					Debug.log("Plugin "+plugin_name+" is up to date! Current version: "+plugin_version,ID)
+	return OK
+
+func _on_request_completed(_result, response_code, _headers, body):
+	rate_limited = false
+	if response_code == 404:
+		response = 404
+		_request_completed.emit()
+		return
+	if response_code == 403:
+		if JSON.parse_string(body.get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
+			rate_limited = true
+			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail",ID)
+		response = 403
+		_request_completed.emit()
+		return
+	if response_code != 200:
+		response = 000
+		_request_completed.emit()
+		return
+	response = JSON.parse_string(body.get_string_from_utf8())
+	_request_completed.emit()
+
+func version_compatible(version:String):
+	var target_major_version = version.split(".")[0]
+	var target_minor_version = version.split(".")[1]
+	var current_major_version = Main.get_plugin_api_version().split(".")[0]
+	var current_minor_version = Main.get_plugin_api_version().split(".")[1]
+	if target_major_version != current_major_version:
+		return false
+	if int(target_minor_version) > int(current_minor_version):
+		return false
+	return true
+
+func get_outdated_plugins():
+	return outdated_plugins
+
+func get_plugin_latest_version(plugin_id:String):
+	if !outdated_plugins.has(plugin_id):
+		Debug.warn("A process attempted to get the latest version of a plugin with id: "+plugin_id+" but it isn't outdated",ID)
+		return ERR_DOES_NOT_EXIST
+	return _outdated_plugin_latest_tags[plugin_id].split("_")[0]
+
+func get_plugin_latest_tag(plugin_id:String):
+	if !outdated_plugins.has(plugin_id):
+		Debug.warn("A process attempted to get the latest tag of a plugin with id: "+plugin_id+" but it isn't outdated",ID)
+		return ERR_DOES_NOT_EXIST
+	return _outdated_plugin_latest_tags[plugin_id]
+
+func is_rate_limited():
+	return rate_limited

@@ -31,7 +31,8 @@ func load_settings():
 		_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
 	if option_exists("core.accessibility/increase_contrast"):
 		_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
-	PluginManager.scan_available_plugins()
+	await PluginManager.scan_available_plugins()
+	PluginManager.scan_for_updates()
 	return OK
 
 func save_settings():

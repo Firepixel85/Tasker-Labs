@@ -1,0 +1,8 @@
+{
+	"name": "App Demo",
+	"version": "1.0",
+	"target_api_version": "1.0",
+	"author": "Rosepen Studios",
+	"plugin_id": "com.rosepen.app_demo",
+	"description": "A built-in tool, used for displaying mock images of Tasker for marketing. This plugin is part of Tasker's developer tools that can be toggled through the settings menu.",
+}

@@ -5,9 +5,11 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_hy75m"]
 
 [node name="RGTooltip" type="Control" unique_id=352779523]
-visible = false
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
+offset_right = 378.0
+offset_bottom = 40.0
 mouse_filter = 2
 script = ExtResource("1_vtjhh")
 text = "This is a tooltip with a keybind!"

@@ -83,7 +83,7 @@ func _open_keybinds():
 	if keybind_spacer.custom_minimum_size.x == 70:
 		return
 	var tween = create_tween()
-	tween.tween_property(keybind_spacer,"custom_minimum_size:x",70,0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(keybind_spacer,"custom_minimum_size:x",70,0.25*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	for i in range(option_handler.get_child_count()):
 		if i>9:
 			break
@@ -102,6 +102,6 @@ func _open_keybinds():
 
 func _close_keybinds():
 	var tween = create_tween()
-	tween.tween_property(keybind_spacer,"custom_minimum_size:x",0,0.25).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(keybind_spacer,"custom_minimum_size:x",0,0.25*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	for child in keybind_spacer.get_children():
 		child.queue_free()

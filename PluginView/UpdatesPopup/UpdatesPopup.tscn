@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://c0gu12oqbdrj8"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_r11qp"]
+[ext_resource type="Script" uid="uid://btpkjdwn5w2ry" path="res://PluginView/UpdatesPopup/UpdatesPopup.gd" id="1_ydk5x"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_c7lns"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="5_ydk5x"]
+[ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="6_c1ou8"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="6_c7lns"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_tvuk1"]
+
+[sub_resource type="Gradient" id="Gradient_lccfv"]
+offsets = PackedFloat32Array(0.36842105)
+colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_xn812"]
+gradient = SubResource("Gradient_lccfv")
+
+[sub_resource type="Gradient" id="Gradient_rsoip"]
+offsets = PackedFloat32Array(0.1491228, 1)
+colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 1, 0.11372549, 0.11372549, 0.11372549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_3gohv"]
+gradient = SubResource("Gradient_rsoip")
+height = 120
+fill_from = Vector2(0.5, 1)
+fill_to = Vector2(0.5, 0)
+metadata/_snap_enabled = true
+
+[node name="Control" type="Control" unique_id=2110204207]
+z_index = 1
+custom_minimum_size = Vector2(840, 880)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 420.0
+offset_bottom = 440.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+focus_mode = 1
+script = ExtResource("1_ydk5x")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_r11qp")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=119627301]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 36
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=1514063738]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/separation = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1644111501]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("4_c7lns")]
+custom_minimum_size = Vector2(175, 34)
+layout_mode = 2
+text = "Plugin Updates"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=2115810844]
+layout_mode = 2
+
+[node name="UpdateAll" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1044348265 instance=ExtResource("8_tvuk1")]
+custom_minimum_size = Vector2(237, 60)
+layout_mode = 2
+text = "Update All"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1943309081]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ViewSelector" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=973767052 instance=ExtResource("6_c1ou8")]
+layout_mode = 2
+
+[node name="Seperator" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=765728278]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_xn812")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=413124850]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="PluginContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1986443099]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_constants/separation = 16
+
+[node name="MarginContainer2" type="MarginContainer" parent="RGContainer" unique_id=1894222937]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer2" unique_id=869399833]
+layout_mode = 2
+alignment = 2
+
+[node name="Close" type="Control" parent="RGContainer/MarginContainer2/HBoxContainer" unique_id=1426858299 instance=ExtResource("8_tvuk1")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("5_ydk5x")
+text = ""
+icon = ExtResource("6_c7lns")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=873561302]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 36
+theme_override_constants/margin_right = 36
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1992683921]
+layout_mode = 2
+alignment = 2
+
+[node name="Fade" type="TextureRect" parent="MarginContainer/VBoxContainer" unique_id=410882671]
+layout_mode = 2
+mouse_filter = 2
+texture = SubResource("GradientTexture2D_3gohv")
+
+[connection signal="item_selected" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/ViewSelector" to="." method="_on_view_selector_item_selected"]
+[connection signal="pressed" from="RGContainer/MarginContainer2/HBoxContainer/Close" to="." method="_on_close_pressed"]

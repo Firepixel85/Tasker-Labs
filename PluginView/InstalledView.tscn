@@ -5,9 +5,8 @@
 [ext_resource type="Script" uid="uid://cxypmt0wvca17" path="res://PluginView/grid_container.gd" id="3_hqcmk"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="4_6qbsv"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_6qbsv"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="5_daxqh"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="7_boqkd"]
 [ext_resource type="Texture2D" uid="uid://dodjb42ct6m3l" path="res://Icons/Refresh.svg" id="8_ffun4"]
+[ext_resource type="Texture2D" uid="uid://bf02cuihtrvdm" path="res://Icons/Folder.svg" id="9_ccaag"]
 [ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="9_wi5hg"]
 
 [sub_resource type="Gradient" id="Gradient_ffun4"]
@@ -41,48 +40,47 @@ grow_vertical = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1787706081]
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=811618293]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="HBoxContainer/VBoxContainer" unique_id=582220891 instance=ExtResource("1_f23au")]
+[node name="RGText" parent="HBoxContainer/VBoxContainer" unique_id=1292616244 instance=ExtResource("1_f23au")]
 custom_minimum_size = Vector2(100, 34)
 layout_mode = 2
 text = "Enabled:"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=1397590566]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=1807283876]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer" unique_id=2122350944]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer" unique_id=1200791974]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
-columns = 2
 script = ExtResource("3_hqcmk")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=811618293]
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=35612041]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/separation = 16
 
-[node name="RGText" parent="HBoxContainer/VBoxContainer2" unique_id=1292616244 instance=ExtResource("1_f23au")]
+[node name="RGText" parent="HBoxContainer/VBoxContainer2" unique_id=85953319 instance=ExtResource("1_f23au")]
 custom_minimum_size = Vector2(107, 34)
 layout_mode = 2
 text = "Disabled:"
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=1807283876]
+[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=137012813]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-horizontal_scroll_mode = 0
+horizontal_scroll_mode = 3
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer2" unique_id=1200791974]
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer2" unique_id=494687914]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -106,7 +104,7 @@ focus_behavior_recursive = 1
 mouse_behavior_recursive = 1
 texture = SubResource("GradientTexture2D_wi5hg")
 
-[node name="ActionContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("4_6qbsv")]
+[node name="ActionContainer" parent="." unique_id=535912435 instance=ExtResource("4_6qbsv")]
 custom_minimum_size = Vector2(465, 80)
 layout_mode = 1
 anchors_preset = 3
@@ -116,10 +114,10 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -0.93603516
 offset_top = -0.5999756
+offset_right = 0.0
+offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
-size_flags_horizontal = 3
-script = ExtResource("5_daxqh")
 
 [node name="MarginContainer" type="MarginContainer" parent="ActionContainer" unique_id=646617395]
 layout_mode = 1
@@ -137,22 +135,30 @@ theme_override_constants/margin_bottom = 10
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Resfresh" type="Control" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_6qbsv")]
-custom_minimum_size = Vector2(268, 60)
+[node name="Refresh" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_6qbsv")]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("7_boqkd")
-text = "Resfresh"
+text = ""
 icon = ExtResource("8_ffun4")
-metadata/_edit_use_anchors_ = true
 
-[node name="Updates" type="Control" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=845587459 instance=ExtResource("5_6qbsv")]
-custom_minimum_size = Vector2(265, 60)
+[node name="Updates" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=845587459 instance=ExtResource("5_6qbsv")]
+custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("7_boqkd")
-text = "Updates"
+text = ""
 icon = ExtResource("9_wi5hg")
-metadata/_edit_use_anchors_ = true
 
-[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Resfresh" to="." method="refresh"]
+[node name="Folder" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1122550386 instance=ExtResource("5_6qbsv")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("9_ccaag")
+
+[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_clear_tooltips"]
+[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_resfresh_hovered"]
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="refresh"]
+[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_clear_tooltips"]
+[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_on_updates_hovered"]
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_on_updates_pressed"]
+[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_clear_tooltips"]
+[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_hovered"]
+[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_pressed"]

@@ -6,6 +6,10 @@ extends Control
 @onready var animation_layer: CanvasLayer = $CanvasLayer
 @onready var action_container: Control = $ActionContainer
 
+#Actions
+@onready var updates_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Updates
+@onready var folder_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Folder
+@onready var refresh_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Refresh
 
 var _checked_shift_key_held:bool = false
 var _checked_option_key_held:bool = false
@@ -169,6 +173,13 @@ func _process(_delta: float) -> void:
 	elif !_checked_option_key_held:
 		_checked_option_key_held = true
 		_check_option_held()
+	
+	if Input.is_action_just_pressed("plugins_folder"):
+		folder_button.press()
+	if Input.is_action_just_pressed("plugins_refresh"):
+		refresh_button.press()
+	if Input.is_action_just_pressed("plugins_updates"):
+		updates_button.press()
 
 	for i in range(9):
 		if Input.is_action_just_pressed(str(i+1)) and Input.is_key_pressed(KEY_SHIFT) and enabled_container.get_child_count()>i:
@@ -218,6 +229,45 @@ func _close_keybinds(enabled:bool):
 		var plugin_view:PluginInstalled = container.get_child(i)
 		plugin_view.hide_keybind()
 
-func refresh() -> void:
+func refresh(toast:bool = true) -> void:
 	await PluginManager.scan_available_plugins()
+	PluginManager.scan_for_updates()
 	display_plugins()
+	if toast:
+		RoseGarden.create_toast("Plugins Refreshed","Green",2.0)
+
+
+func _on_folder_pressed() -> void:
+	OS.shell_show_in_file_manager(OS.get_user_data_dir()+"/plugins")
+
+
+func _on_resfresh_hovered() -> void:
+	await get_tree().create_timer(1).timeout
+	if refresh_button.is_hovered():
+		var tooltip = RGTooltip.new()
+		tooltip.set_text("Refresh shown plugins")
+		tooltip.set_keybind("⌘⇧R")
+		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on_folder_hovered() -> void:
+	await get_tree().create_timer(1).timeout
+	if folder_button.is_hovered():
+		var tooltip = RGTooltip.new()
+		tooltip.set_text("Open plugins folder")
+		tooltip.set_keybind("⌘⇧O")
+		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _on_updates_hovered() -> void:
+	await get_tree().create_timer(1).timeout
+	if updates_button.is_hovered():
+		var tooltip = RGTooltip.new()
+		tooltip.set_text("Plugin updates")
+		tooltip.set_keybind("⌘⇧U")
+		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+
+func _clear_tooltips() -> void:
+	RoseGarden.clear_tooltips()
+
+
+func _on_updates_pressed() -> void:
+	Popups.add_popup(preload("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))
