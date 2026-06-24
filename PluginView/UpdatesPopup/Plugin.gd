@@ -3,6 +3,9 @@ extends Control
 @onready var title: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Title
 @onready var author: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer/Author
 @onready var version_diff: RGText = $"RGContainer/MarginContainer/VBoxContainer/HBoxContainer/RGContainer/CenterContainer/MarginContainer/Version Diff"
+@onready var version_diff_container: Control = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/RGContainer
+@onready var update_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Update
+
 @onready var description: Label = $RGContainer/MarginContainer/VBoxContainer/Description
 @onready var container: Control = $RGContainer
 @onready var trusted: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Trusted
@@ -10,10 +13,16 @@ extends Control
 var id:String
 var trusted_hovered:bool = false
 var url
+
+signal updated
+
 func setup():
 	title.text = PluginManager.get_plugin_name(id)
 	author.text = PluginManager.get_plugin_author(id)
 	version_diff.text = PluginManager.get_plugin_version(id) + " → " + PluginManager.get_plugin_latest_version(id)
+	await get_tree().process_frame
+	version_diff_container.custom_minimum_size.x = version_diff.get_parent().get_minimum_size().x
+	version_diff_container._update()
 	if PluginManager.plugin_has_description(id):
 		description.text = PluginManager.get_plugin_description(id)
 	else:
@@ -42,3 +51,13 @@ func _on_more_pressed() -> void:
 	menu.add_action("View source",Icons.CODE,OS.shell_open,[url])
 	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
 	
+
+
+func _on_update_pressed() -> void:
+	update_button.disabled = true
+	update_button.text = "Updating..."
+	await PluginManager.update_plugin(id)
+	update_button.disabled = false
+	update_button.text = "Update"
+	RoseGarden.create_toast("Plugin updated!","Green")
+	updated.emit()

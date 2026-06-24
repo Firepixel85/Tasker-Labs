@@ -173,7 +173,7 @@ func _process(_delta: float) -> void:
 	elif !_checked_option_key_held:
 		_checked_option_key_held = true
 		_check_option_held()
-	
+
 	if Input.is_action_just_pressed("plugins_folder"):
 		folder_button.press()
 	if Input.is_action_just_pressed("plugins_refresh"):
@@ -271,3 +271,6 @@ func _clear_tooltips() -> void:
 
 func _on_updates_pressed() -> void:
 	Popups.add_popup(preload("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))
+	await get_tree().process_frame
+	await get_tree().process_frame
+	Popups.get_popup().updated.connect(refresh)

@@ -98,9 +98,9 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_right = 16
 
 [node name="Version Diff" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/RGContainer/CenterContainer/MarginContainer" unique_id=552581866 instance=ExtResource("4_loc0k")]
-custom_minimum_size = Vector2(104, 34)
+custom_minimum_size = Vector2(159, 34)
 layout_mode = 2
-text = "0.1 → 0.2"
+text = "0.1 → 0.22222"
 vertical_alignment = "Center"
 
 [node name="Description" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1073935416]
@@ -135,3 +135,4 @@ text = "Update"
 [connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Trusted" to="." method="_on_trusted_mouse_entered"]
 [connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Trusted" to="." method="_on_trusted_mouse_exited"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/More" to="." method="_on_more_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Update" to="." method="_on_update_pressed"]

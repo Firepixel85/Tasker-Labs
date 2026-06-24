@@ -80,7 +80,6 @@ mouse_filter = 2
 script = ExtResource("1_u8cj3")
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -457,6 +456,7 @@ theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
 
 [node name="Plugins" type="Control" parent="." unique_id=971450490]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

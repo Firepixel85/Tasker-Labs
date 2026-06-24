@@ -117,10 +117,32 @@ func get_plugin_repo_site(plugin_id:String):
 		return repo_url
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.request_completed.connect(_on_request_completed)
+	http_request.request_completed.connect(_on_request_url_completed)
 	http_request.request(repo_url,["User-Agent: Tasker"])
-	await _request_completed
-	return response["html_url"]
+	await _request_url_completed
+	return _url_response["html_url"]
+
+var _url_response
+signal _request_url_completed
+func _on_request_url_completed(_result, response_code, _headers, body):
+	rate_limited = false
+	if response_code == 404:
+		_url_response = 404
+		_request_completed.emit()
+		return
+	if response_code == 403:
+		if JSON.parse_string(body.get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
+			rate_limited = true
+			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail",ID)
+		_url_response = 403
+		_request_completed.emit()
+		return
+	if response_code != 200:
+		_url_response = 000
+		_request_completed.emit()
+		return
+	_url_response = JSON.parse_string(body.get_string_from_utf8())
+	_request_url_completed.emit()
 
 func plugin_has_description(plugin_id:String):
 	if !is_plugin_available(plugin_id):
@@ -346,7 +368,7 @@ func _send_errors():
 	_error_queue.clear()
 
 signal _request_completed
-var response
+var _response
 func scan_for_updates():
 	Debug.log("Scanning for available updates...",ID)
 	outdated_plugins = []
@@ -361,7 +383,7 @@ func scan_for_updates():
 		http_request.request_completed.connect(_on_request_completed)
 		http_request.request(repo_url+"/releases",["User-Agent: Tasker"])
 		await _request_completed
-		match response:
+		match _response:
 			404:
 				Debug.error("Plugin "+plugin_name+" provided an invalid repository for version control, update check failed (404)",ID)
 				continue
@@ -377,7 +399,7 @@ func scan_for_updates():
 			_:
 				#latest_version = response["tag_name"]
 				var tags = []
-				for release in response:
+				for release in _response:
 					tags.append(release["tag_name"])
 				if tags[0].split("_")[0] != plugin_version:
 					var latest_compatible_version = ""
@@ -409,21 +431,21 @@ func scan_for_updates():
 func _on_request_completed(_result, response_code, _headers, body):
 	rate_limited = false
 	if response_code == 404:
-		response = 404
+		_response = 404
 		_request_completed.emit()
 		return
 	if response_code == 403:
 		if JSON.parse_string(body.get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
 			rate_limited = true
 			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail",ID)
-		response = 403
+		_response = 403
 		_request_completed.emit()
 		return
 	if response_code != 200:
-		response = 000
+		_response = 000
 		_request_completed.emit()
 		return
-	response = JSON.parse_string(body.get_string_from_utf8())
+	_response = JSON.parse_string(body.get_string_from_utf8())
 	_request_completed.emit()
 
 func version_compatible(version:String):
@@ -454,3 +476,127 @@ func get_plugin_latest_tag(plugin_id:String):
 
 func is_rate_limited():
 	return rate_limited
+
+func update_plugin(plugin_id:String):
+	Debug.log("Updating plugin with id: "+plugin_id,ID)
+	var load_again = false
+	if is_plugin_loaded(plugin_id):
+		load_again = true
+		unload_plugin(plugin_id)
+	if !outdated_plugins.has(plugin_id):
+		Debug.warn("A process attempted to update a plugin with id: "+plugin_id+" but it isn't outdated",ID)
+		return ERR_DOES_NOT_EXIST
+
+	var http_request = HTTPRequest.new()
+	add_child(http_request)
+	var url = get_plugin_repo(plugin_id)+"/releases/tags/%s"%get_plugin_latest_tag(plugin_id)
+	http_request.request(url,["User-Agent: Tasker"])
+	var response = await http_request.request_completed
+	var code  = response[1]
+	var body = JSON.parse_string(response[3].get_string_from_utf8())
+	if code == 404:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" provided an invalid repository for version control, update check failed (404)",ID)
+		return ERR_DOES_NOT_EXIST
+	elif  code == 403:
+		if JSON.parse_string(response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
+			rate_limited = true
+			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail",ID)
+			return ERR_LOCKED
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" appears to have it's repository private or restricted, update check failed (403)",ID)
+		return ERR_FILE_NO_PERMISSION
+	elif code != 200:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, unknown error",ID)
+		return ERR_CANT_CONNECT
+	elif body == null:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, server sent invalid response",ID)
+		return ERR_INVALID_DATA
+
+	var download_url := ""
+	for asset in body["assets"]:
+		if asset["name"] == "plugin.zip":
+			download_url = asset["browser_download_url"]
+			break
+
+	if download_url == "":
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, no plugin.zip asset found in release",ID)
+		return ERR_CANT_ACQUIRE_RESOURCE
+
+	var download_http = HTTPRequest.new()
+	add_child(download_http)
+	download_http.download_file = "user://plugin.zip"
+	download_http.request(download_url, ["User-Agent: Tasker"])
+
+	var download_response = await download_http.request_completed
+	download_http.queue_free()
+
+	var download_code: int = download_response[1]
+	if download_code == 404:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, plugin.zip asset not found (404)",ID)
+		return ERR_DOES_NOT_EXIST
+	elif download_code == 403:
+		if JSON.parse_string(download_response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
+			rate_limited = true
+			Debug.warn("GitHub API rate limit exceeded, some plugin update downloads will fail",ID)
+			return ERR_LOCKED
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, access to plugin.zip asset denied (403)",ID)
+		return ERR_FILE_NO_PERMISSION
+	elif download_code != 200:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, unknown error (%s)"%download_code,ID)
+		return ERR_CANT_CONNECT
+
+	Debug.log("Plugin "+get_plugin_name(plugin_id)+" update downloaded successfully, extracting...",ID)
+	var zip = ZIPReader.new()
+
+	var error  = zip.open("user://plugin.zip")
+	if error != OK:
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update extraction failed, unable to open zip file",ID)
+		return ERR_CANT_OPEN
+
+	for path in zip.get_files():
+		var file_data = zip.read_file(path)
+		var dir_path = path.get_base_dir()
+		if not dir_path.is_empty():
+			DirAccess.make_dir_recursive_absolute("user://%s" % dir_path)
+		var output_file = FileAccess.open("user://%s" % path, FileAccess.WRITE)
+		if output_file == null:
+			push_error("Failed to write file: %s" % path)
+			continue
+		output_file.store_buffer(file_data)
+		output_file.close()
+	zip.close()
+
+	var dir = DirAccess.open("user://")
+	if dir == null:
+		Debug.error("Failed to open user directory for deleting zip file",ID)
+		return ERR_CANT_OPEN
+
+	var delete_err = dir.remove("plugin.zip")
+	if delete_err != OK:
+		Debug.error("Failed to delete plugin.zip after extraction, additional clean-up needed",ID)
+	var existing_plugin_path = "user://plugins/%s" % _plugins[plugin_id]
+	if DirAccess.dir_exists_absolute(existing_plugin_path):
+		var delete_dir_err = OS.move_to_trash(ProjectSettings.globalize_path(existing_plugin_path))
+		if delete_dir_err != OK:
+			Debug.error("Failed to move old plugin directory to trash after update, additional clean-up needed",ID)
+			return ERR_CANT_RESOLVE
+
+	var source_path = "user://%s" % _plugins[plugin_id]
+	if not DirAccess.dir_exists_absolute(source_path):
+		Debug.error("Failed to locate extracted plugin directory after update, update failed",ID)
+		return
+
+	if not DirAccess.dir_exists_absolute("user://plugins"):
+		DirAccess.make_dir_recursive_absolute("user://plugins")
+
+	var move_err = dir.rename(
+		ProjectSettings.globalize_path(source_path),
+		ProjectSettings.globalize_path(existing_plugin_path)
+	)
+	if move_err != OK:
+		Debug.error("Failed to move updated plugin directory to plugins folder, update failed",ID)
+		return
+	if load_again:
+		load_plugin(plugin_id)
+	Debug.log("Plugin "+get_plugin_name(plugin_id)+" updated successfully to version "+get_plugin_latest_version(plugin_id),ID)
+	outdated_plugins.erase(plugin_id)
+	return OK

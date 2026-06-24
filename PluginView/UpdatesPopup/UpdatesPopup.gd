@@ -4,6 +4,7 @@ extends Control
 @onready var scroll_container: ScrollContainer = $RGContainer/MarginContainer/VBoxContainer/ScrollContainer
 @onready var fade: TextureRect = $MarginContainer/VBoxContainer/Fade
 
+signal updated(toast:bool)
 func _ready() -> void:
 	view_selector.add_item("all_updates","All Updates")
 	view_selector.add_item("only_trusted","Only Trusted")
@@ -23,6 +24,7 @@ func _ready() -> void:
 		var target = plugin_container.get_child(plugin_container.get_child_count()-1)
 		target.id = plugin
 		target.setup()
+		target.updated.connect(_update_complete)
 	await get_tree().process_frame
 	if plugin_container.get_child_count() == 0:
 		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate())
@@ -32,3 +34,7 @@ func _on_close_pressed() -> void:
 
 func _on_view_selector_item_selected(_item_name: String) -> void:
 	_ready()
+
+func _update_complete() -> void:
+	_ready()
+	updated.emit(false)
