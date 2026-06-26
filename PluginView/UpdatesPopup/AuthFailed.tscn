@@ -1,0 +1,87 @@
+[gd_scene format=3 uid="uid://1dt4i1udcflr"]
+
+[ext_resource type="Script" uid="uid://cb60fey8kcjl5" path="res://PluginView/UpdatesPopup/auth_failed.gd" id="1_tvjw6"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_wjgrg"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_tvjw6"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_wdy2e"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="4_am73g"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="5_uprk1"]
+
+[node name="Control" type="Control" unique_id=1200270220]
+custom_minimum_size = Vector2(412, 297)
+layout_mode = 3
+anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_tvjw6")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_wjgrg")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=1422048446]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=721888105]
+layout_mode = 2
+size_flags_vertical = 0
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=522606219]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("3_wdy2e")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("4_am73g")
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("2_tvjw6")]
+custom_minimum_size = Vector2(214, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Connection Failed!"
+horizontal_alignment = "Center"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1017832214]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=781629442]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("5_uprk1")
+text = "An error ocurred during account connection.  You can retry to connect your account with the button below:"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=170512423]
+custom_minimum_size = Vector2(0, 76)
+layout_mode = 2
+
+[node name="Retry" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=786389832 instance=ExtResource("3_wdy2e")]
+custom_minimum_size = Vector2(188, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 8
+color = "White"
+text = "Retry"
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Retry" to="." method="_on_retry_pressed"]

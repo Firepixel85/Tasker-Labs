@@ -68,7 +68,6 @@ func file_exists(file_name):
 		return FileAccess.file_exists(actual_file_path[file_name])
 	return false
 
-
 func _ready() -> void:
 	if FileAccess.file_exists("user://Data.json"):
 		var data = JSON.parse_string(FileAccess.open("user://Data.json",FileAccess.READ).get_as_text())
@@ -88,3 +87,11 @@ func _save():
 	save_to("actual_file_path",actual_file_path,"Data")
 	save_file("Data")
 	return OK
+
+func remove_file(file_name:String):
+	var dir = DirAccess.open("user://")
+	if dir == null:
+		return ERR_CANT_OPEN
+	print(actual_file_path[file_name].split("user://")[0])
+	var delete_err = dir.remove(actual_file_path[file_name].split("user://")[1])
+	return delete_err

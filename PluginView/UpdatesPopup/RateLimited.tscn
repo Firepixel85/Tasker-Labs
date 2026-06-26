@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://cdihbuxhmm86w"]
 
+[ext_resource type="Script" uid="uid://chn7cg3gapxnd" path="res://PluginView/UpdatesPopup/rate_limited.gd" id="1_hx2kd"]
 [ext_resource type="Texture2D" uid="uid://dnbcxvo7ibxx2" path="res://PluginView/UpdatesPopup/WatchAlert.svg" id="1_mqeqi"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_ij7ka"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="3_ij7ka"]
 
 [node name="Control" type="Control" unique_id=1987551424]
 layout_mode = 3
@@ -11,6 +13,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 3
+script = ExtResource("1_hx2kd")
 
 [node name="CenterContainer" type="CenterContainer" parent="." unique_id=316502297]
 layout_mode = 1
@@ -33,17 +36,21 @@ stretch_mode = 5
 layout_mode = 2
 
 [node name="RGText" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_ij7ka")]
-custom_minimum_size = Vector2(306, 34)
+custom_minimum_size = Vector2(234, 34)
 layout_mode = 2
-text = "You are being rate limited!"
+text = "Rate Limit Exceeded"
 horizontal_alignment = "Center"
 
-[node name="RGText2" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=1324119888 instance=ExtResource("2_ij7ka")]
-custom_minimum_size = Vector2(387, 34)
+[node name="RichTextLabel" type="RichTextLabel" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=81883342]
+custom_minimum_size = Vector2(400, 60)
 layout_mode = 2
-text = "Please try again in a few minutes."
-color = "Secondary"
+theme = ExtResource("3_ij7ka")
+bbcode_enabled = true
+text = "[color=acacac]Please try again in a few minutes. Alternatively, you can:[color=f5f5f5] [url={link}]connect your Github account[/url][/color]"
+horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=1664182170]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+
+[connection signal="meta_clicked" from="CenterContainer/VBoxContainer/VBoxContainer/RichTextLabel" to="." method="_on_rich_text_label_meta_clicked"]

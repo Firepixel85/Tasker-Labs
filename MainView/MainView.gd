@@ -54,6 +54,8 @@ func _ready():
 		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
 	if !Settings.option_exists("core.general/command_amount"):
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
+	if !Settings.option_exists("core.general/github_auth"):
+		Settings.add_option("core.general","github_auth","res://Settings/CoreOptions/General/GitHubAuth/CoreOption_GitHubAuth.tscn",0)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):

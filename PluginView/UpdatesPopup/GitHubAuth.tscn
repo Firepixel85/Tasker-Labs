@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://dmxwvjjpdqh8p"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_6283l"]
+[ext_resource type="Script" uid="uid://bkh5xdgs83nl7" path="res://PluginView/UpdatesPopup/GitHubAuth.gd" id="1_s7mmo"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_gu7sx"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="6_mqlb3"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="8_shktf"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="9_ynu5c"]
+
+[node name="Control" type="Control" unique_id=1557221229]
+custom_minimum_size = Vector2(449, 366)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 449.0
+offset_bottom = 366.0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_s7mmo")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_6283l")]
+custom_minimum_size = Vector2(449, 366)
+layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 449.0
+offset_bottom = 366.0
+grow_horizontal = 1
+grow_vertical = 1
+pivot_offset_ratio = Vector2(0.5, 0.5)
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=692574036]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=1339763906]
+layout_mode = 2
+theme_override_constants/separation = 24
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=21882458]
+layout_mode = 2
+alignment = 2
+
+[node name="Control" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=933747488]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("3_gu7sx")]
+custom_minimum_size = Vector2(285, 34)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Connect GitHub Account"
+vertical_alignment = "Center"
+
+[node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("6_mqlb3")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("8_shktf")
+
+[node name="Account" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1982475238]
+layout_mode = 2
+theme = ExtResource("9_ynu5c")
+bbcode_enabled = true
+text = "[color=acacac]If you are getting rate limited too often, you can connect a GitHub account to avoid this issue. If you don’t have an account you can create one[color=f5f5f5] [url={link}]here[/url][color=acacac]. We will not access any of your data if you connect your account.[/color]"
+fit_content = true
+
+[node name="PP" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=83120040]
+layout_mode = 2
+theme = ExtResource("9_ynu5c")
+bbcode_enabled = true
+text = "[color=acacac][url={link}]Read our Privacy Policy[/url]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1656925587]
+layout_mode = 2
+
+[node name="Auth" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1886300031 instance=ExtResource("6_mqlb3")]
+custom_minimum_size = Vector2(298, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+color = "White"
+text = "Connect account"
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="meta_clicked" from="RGContainer/MarginContainer/VBoxContainer/Account" to="." method="_on_account_meta_clicked"]
+[connection signal="meta_clicked" from="RGContainer/MarginContainer/VBoxContainer/PP" to="." method="_on_pp_meta_clicked"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Auth" to="." method="_authorize"]

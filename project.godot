@@ -38,6 +38,8 @@ Popups="*uid://dq6d0km8frq5m"
 EventManager="*uid://bphsrvnbm3u6f"
 NotificationManager="*uid://dc275eccjc08v"
 CommandBar="*uid://rdal1wqfrpry"
+Vault="*uid://cxdhl7yvdc26o"
+Network="*uid://dybi8258v5732"
 
 [display]
 

@@ -48,6 +48,10 @@ func get_process_name(process_id:String):
 			return "NotificationManager"
 		"core.command_bar":
 			return "CommandBar"
+		"core.network":
+			return "Network"
+		"core.network.githubauth":
+			return "Network/GitHubAuth"
 		"unknown":
 			return "Unknown"
 		_:

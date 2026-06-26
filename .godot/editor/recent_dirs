@@ -1,9 +1,10 @@
+res://Settings/CoreOptions/General/GitHubAuth/
 res://PluginView/UpdatesPopup/
+res://Globals/
 res://addons/RoseGarden/components/Container/
 res://PluginView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Settings/CoreOptions/Developer/ResetCommandPoints/
-res://Globals/
 res://Settings/CoreOptions/General/CommandAmount/
 res://CommandBar/
 res://Notifications/
@@ -20,4 +21,3 @@ res://Settings/CoreOptions/RoseGarden/ddmSelection/
 res://Settings/CoreOptions/RoseGarden/ddmAppearance/
 res://Settings/CoreOptions/RoseGarden/buttonPress/
 res://Settings/CoreOptions/Developer/RGOptions/
-res://AppIcons/

@@ -39,9 +39,10 @@ text = "Nothing found!"
 horizontal_alignment = "Center"
 
 [node name="RGText2" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=429609128 instance=ExtResource("2_01aqj")]
-custom_minimum_size = Vector2(470, 34)
+custom_minimum_size = Vector2(393, 28)
 layout_mode = 2
 text = "All plugin in this category are up-to-date."
+font_size = "Secondary"
 color = "Secondary"
 
 [node name="Spacer" type="Control" parent="CenterContainer/VBoxContainer" unique_id=695378379]
