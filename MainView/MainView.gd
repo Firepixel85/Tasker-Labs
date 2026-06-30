@@ -54,8 +54,6 @@ func _ready():
 		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
 	if !Settings.option_exists("core.general/command_amount"):
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
-	if !Settings.option_exists("core.general/github_auth"):
-		Settings.add_option("core.general","github_auth","res://Settings/CoreOptions/General/GitHubAuth/CoreOption_GitHubAuth.tscn",0)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
@@ -74,6 +72,12 @@ func _ready():
 		Settings.add_option("core.accessibility","increase_contrast","res://Settings/CoreOptions/Accessibility/IncreaseContrast/CoreOption_IncreaseContrast.tscn",false)
 	if !Settings.option_exists("core.accessibility/symbol_indicators"):
 		Settings.add_option("core.accessibility","symbol_indicators","res://Settings/CoreOptions/Accessibility/SymbolIndicators/CoreOption_SymbolIndicators.tscn",false)
+
+	#Integrations
+	if !Settings.category_exists("core.integrations"):
+		Settings.add_category("Integrations","res://Icons/Blocks.svg","core.integrations")
+	if !Settings.option_exists("core.integrations/integrations"):
+		Settings.add_option("core.integrations","integrations","res://Settings/CoreOptions/Integrations/Integrations.tscn",0)
 
 	#Developers
 	if !Settings.category_exists("core.developer"):

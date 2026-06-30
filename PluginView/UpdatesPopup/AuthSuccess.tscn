@@ -45,7 +45,7 @@ theme_override_constants/separation = 16
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1966717045]
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 12
 
 [node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("6_p7i4a")]
 custom_minimum_size = Vector2(60, 60)
@@ -64,6 +64,7 @@ vertical_alignment = "Center"
 [node name="Control" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1820955796]
 custom_minimum_size = Vector2(60, 0)
 layout_mode = 2
+size_flags_horizontal = 3
 
 [node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1999146326]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)

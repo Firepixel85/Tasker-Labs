@@ -40,6 +40,8 @@ const REFRESH = preload("res://Icons/Refresh.svg")
 const DOWNLOAD = preload("res://Icons/Download.svg")
 const THREEDOTS = preload("res://Icons/ThreeDots.svg")
 const FILETEXT = preload("res://Icons/FileText.svg")
+const BLOCKS = preload("res://Icons/Blocks.svg")
+const SHIELDCHECK = preload("res://Icons/ShieldCheck.svg")
 
 func get_icon_path(icon:String) -> String:
 	var path = "res://Icons/"+icon+".svg"

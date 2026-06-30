@@ -75,6 +75,9 @@ func _process(_delta: float) -> void:
 
 func check_shift_held():
 	await get_tree().create_timer(0.5).timeout
+	if _opened_category == "core.integrations":
+		_checked_for_shift_held = false
+		return
 	_checked_for_shift_held = false
 	if Input.is_key_pressed(KEY_SHIFT):
 		_open_keybinds()
@@ -92,9 +95,8 @@ func _open_keybinds():
 			new_i = 0
 		keybind_spacer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
 		var keybind = keybind_spacer.get_child(keybind_spacer.get_child_count()-1)
-		keybind.set_text("")
-		keybind.set_keybind(str(new_i))
-		keybind.set_show_keybind(true)
+		keybind.set_text(str(new_i))
+		keybind._update()
 		keybind.position = Vector2(0,option_handler.get_child(i).position.y+10)
 	await get_tree().process_frame
 	for keybind in keybind_spacer.get_children():

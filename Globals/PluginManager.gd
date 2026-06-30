@@ -3,6 +3,7 @@ extends Node
 const ID = "core.plugin_manager"
 const trusted_developers = ["rosepen"]
 signal ready_to_load
+signal scanned_for_updates
 
 var _plugins = {}
 var _developer_plugins = {}
@@ -118,7 +119,17 @@ func get_plugin_repo_site(plugin_id:String):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	http_request.request_completed.connect(_on_request_url_completed)
-	http_request.request(repo_url,["User-Agent: Tasker"])
+	var headers
+	if Network.GitHubAuth.is_authorized():
+		headers = [
+			"User-Agent: MyGodotApp",
+			"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
+			"Accept: application/vnd.github+json",
+			"X-GitHub-Api-Version: 2022-11-28"
+		]
+	else:
+		headers = ["User-Agent: Tasker"]
+	http_request.request(repo_url,headers)
 	await _request_url_completed
 	return _url_response["html_url"]
 
@@ -381,7 +392,17 @@ func scan_for_updates():
 		var http_request = HTTPRequest.new()
 		add_child(http_request)
 		http_request.request_completed.connect(_on_request_completed)
-		http_request.request(repo_url+"/releases",["User-Agent: Tasker"])
+		var headers
+		if Network.GitHubAuth.is_authorized():
+			headers = [
+				"User-Agent: MyGodotApp",
+				"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
+				"Accept: application/vnd.github+json",
+				"X-GitHub-Api-Version: 2022-11-28"
+			]
+		else:
+			headers = ["User-Agent: Tasker"]
+		http_request.request(repo_url+"/releases",headers)
 		await _request_completed
 		match _response:
 			404:
@@ -426,6 +447,13 @@ func scan_for_updates():
 						Debug.log("Plugin "+plugin_name+" has an update available! Current version: "+plugin_version+", Latest version: "+latest_compatible_version,ID)
 				else:
 					Debug.log("Plugin "+plugin_name+" is up to date! Current version: "+plugin_version,ID)
+	var result := []
+	for item in outdated_plugins:
+		if item not in result:
+			result.append(item)
+	outdated_plugins = result
+	Debug.log("Finished scanning for available updates",ID)
+	scanned_for_updates.emit()
 	return OK
 
 func _on_request_completed(_result, response_code, _headers, body):
@@ -490,7 +518,17 @@ func update_plugin(plugin_id:String):
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
 	var url = get_plugin_repo(plugin_id)+"/releases/tags/%s"%get_plugin_latest_tag(plugin_id)
-	http_request.request(url,["User-Agent: Tasker"])
+	var headers
+	if Network.GitHubAuth.is_authorized():
+		headers = [
+			"User-Agent: MyGodotApp",
+			"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
+			"Accept: application/vnd.github+json",
+			"X-GitHub-Api-Version: 2022-11-28"
+		]
+	else:
+		headers = ["User-Agent: Tasker"]
+	http_request.request(url,headers)
 	var response = await http_request.request_completed
 	var code  = response[1]
 	var body = JSON.parse_string(response[3].get_string_from_utf8())
@@ -524,7 +562,7 @@ func update_plugin(plugin_id:String):
 	var download_http = HTTPRequest.new()
 	add_child(download_http)
 	download_http.download_file = "user://plugin.zip"
-	download_http.request(download_url, ["User-Agent: Tasker"])
+	download_http.request(download_url, headers)
 
 	var download_response = await download_http.request_completed
 	download_http.queue_free()

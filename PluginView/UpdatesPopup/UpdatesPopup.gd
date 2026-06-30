@@ -6,6 +6,7 @@ extends Control
 
 signal updated(toast:bool)
 func _ready() -> void:
+	PluginManager.scanned_for_updates.connect(_ready)
 	view_selector.add_item("all_updates","All Updates")
 	view_selector.add_item("only_trusted","Only Trusted")
 	for child in plugin_container.get_children():
