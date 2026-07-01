@@ -28,6 +28,7 @@ signal view_changed(new_view:String)
 
 func _ready():
 	Main.main_view = self
+	DisplayServer.window_set_min_size(Vector2i(1280, 960))
 	Popups.popup_container = popup_container
 	Popups.popup_fade = popup_fade
 	Popups._ready()
@@ -88,6 +89,8 @@ func _ready():
 		Settings.add_option("core.developer","rg_options","res://Settings/CoreOptions/Developer/RGOptions/CoreOption_RGOptions.tscn",false)
 	if !Settings.option_exists("core.developer/reset_command_points"):
 		Settings.add_option("core.developer","reset_command_points","res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.tscn",true)
+	if !Settings.option_exists("core.developer/reset_window_size"):
+		Settings.add_option("core.developer","reset_window_size","res://Settings/CoreOptions/Developer/ResetWindowSize/CoreOption_ResetWindowSize.tscn",true)
 
 	#Rose Garden
 	if !Settings.category_exists("core.rose_garden"):

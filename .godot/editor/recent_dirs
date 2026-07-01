@@ -1,3 +1,4 @@
+res://Settings/CoreOptions/Developer/ResetWindowPos/
 res://addons/RoseGarden/components/Tooltip/
 res://Settings/CoreOptions/Integrations/GitHub/
 res://
@@ -20,4 +21,3 @@ res://Settings/CoreOptions/RoseGarden/svChange/
 res://Settings/CoreOptions/RoseGarden/sgSelection/
 res://Settings/CoreOptions/RoseGarden/rcmSelection/
 res://Settings/CoreOptions/RoseGarden/rcmAppearance/
-res://Settings/CoreOptions/RoseGarden/ddmSelection/

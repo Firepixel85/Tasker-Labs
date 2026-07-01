@@ -1,14 +1,14 @@
+MarginContainer
 Control
-TextureRect
 VBoxContainer
+ScrollContainer
+TextureRect
 HBoxContainer
 Label
-MarginContainer
 CenterContainer
 NinePatchRect
 GridContainer
 RichTextLabel
-ScrollContainer
 Container
 ItemList
 Button

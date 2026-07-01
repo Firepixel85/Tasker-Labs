@@ -1,8 +1,8 @@
 extends HBoxContainer
 
 @onready var category_handler: Control = $"Sidebar/Sidebar Bottom/VBoxContainer/Categories"
-@onready var option_handler: VBoxContainer = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/OptionHandler
-@onready var keybind_spacer: Control = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/Control
+@onready var option_handler: VBoxContainer = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/ScrollContainer/OptionHandler
+@onready var keybind_spacer: Control = $VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/KeybindSpacer
 
 @onready var main_view: Control = $".."
 

@@ -49,6 +49,7 @@ window/size/initial_position_type=4
 window/size/resizable=false
 window/size/extend_to_title=true
 window/subwindows/embed_subwindows=false
+window/vsync/vsync_mode=0
 
 [editor_plugins]
 

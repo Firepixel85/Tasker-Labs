@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bhjuw4f51jjhf"]
+
+[ext_resource type="Script" uid="uid://qgw25gw8iwaa" path="res://Settings/CoreOptions/Developer/ResetWindowSize/CoreOption_ResetWindowSize.gd" id="1_cm63s"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_8ao7f"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_0wkmf"]
+
+[node name="ToggleOption" type="Control" unique_id=506169743]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+script = ExtResource("1_cm63s")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=872462836]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_8ao7f")]
+custom_minimum_size = Vector2(217, 34)
+layout_mode = 2
+text = "Reset window size "
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1827030005]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer" unique_id=1277136273]
+layout_mode = 2
+alignment = 1
+
+[node name="Reset" parent="HBoxContainer/VBoxContainer" unique_id=1426858299 instance=ExtResource("3_0wkmf")]
+custom_minimum_size = Vector2(190, 60)
+layout_mode = 2
+text = "Reset"
+
+[connection signal="de_hovered" from="HBoxContainer/VBoxContainer/Reset" to="." method="_on_reset_de_hovered"]
+[connection signal="hovered" from="HBoxContainer/VBoxContainer/Reset" to="." method="_on_reset_hovered"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/Reset" to="." method="_on_reset_pressed"]

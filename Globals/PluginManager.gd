@@ -389,6 +389,7 @@ func scan_for_updates():
 		var repo_url = get_plugin_repo(plugin_id)
 		var plugin_name = get_plugin_name(plugin_id)
 		var plugin_version = get_plugin_version(plugin_id)
+
 		var http_request = HTTPRequest.new()
 		add_child(http_request)
 		http_request.request_completed.connect(_on_request_completed)
@@ -404,6 +405,7 @@ func scan_for_updates():
 			headers = ["User-Agent: Tasker"]
 		http_request.request(repo_url+"/releases",headers)
 		await _request_completed
+
 		match _response:
 			404:
 				Debug.error("Plugin "+plugin_name+" provided an invalid repository for version control, update check failed (404)",ID)
@@ -447,11 +449,13 @@ func scan_for_updates():
 						Debug.log("Plugin "+plugin_name+" has an update available! Current version: "+plugin_version+", Latest version: "+latest_compatible_version,ID)
 				else:
 					Debug.log("Plugin "+plugin_name+" is up to date! Current version: "+plugin_version,ID)
+
 	var result := []
 	for item in outdated_plugins:
 		if item not in result:
 			result.append(item)
 	outdated_plugins = result
+
 	Debug.log("Finished scanning for available updates",ID)
 	scanned_for_updates.emit()
 	return OK
@@ -470,6 +474,7 @@ func _on_request_completed(_result, response_code, _headers, body):
 		_request_completed.emit()
 		return
 	if response_code != 200:
+		print("Unexpected response code: ", response_code)
 		_response = 000
 		_request_completed.emit()
 		return

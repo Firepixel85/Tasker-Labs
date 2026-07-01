@@ -1,6 +1,6 @@
 @tool
 extends RGTextFieldIcon
-@onready var command_bar: Control = $"../../../../../CommandBar/CommandBar"
+@onready var command_bar: Control = $"../../../../../CommandBar/Control/MarginContainer/CommandBar"
 @onready var main_view: Control = $"../../../../.."
 
 func _process(_delta: float) -> void:

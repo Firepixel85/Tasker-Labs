@@ -29,7 +29,7 @@ func _add_category(title:String,icon:Texture2D,category_id:String):
 	if selected == "":
 		selected_node = category
 		selected = categories[0]
-		#Display options logic placeholder
+		_select(selected)
 	_shade_categories()
 	return OK
 
