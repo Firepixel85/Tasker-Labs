@@ -142,7 +142,7 @@ func open_view(view_name:String):
 
 func _process(_delta: float) -> void:
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
-		Popups.remove_popup()
+		Popups.clear_popup()
 		RoseGarden._delete_all_menus()
 		return
 	elif Popups.is_popup_active():

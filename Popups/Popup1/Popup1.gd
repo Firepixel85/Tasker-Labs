@@ -1,0 +1,28 @@
+extends Control
+
+@onready var container: MarginContainer = $RGContainer/MarginContainer
+@onready var title_text: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Title
+@onready var description_text: Label = $RGContainer/MarginContainer/VBoxContainer/Description
+@onready var action_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action
+
+var action:Callable
+var action_params:Array
+
+func _on_close_pressed() -> void:
+	Popups.remove_popup()
+
+func _on_action_pressed() -> void:
+	action.callv(action_params)
+	Popups.remove_popup()
+
+func setup(title:String,description:String,new_action:Callable,new_action_params:Array,action_name:String,color:String):
+	title_text.text = title
+	description_text.text = description
+	action = new_action
+	action_params = new_action_params
+	action_button.set_text(action_name)
+	action_button.set_color(color)
+	await get_tree().process_frame
+	await get_tree().process_frame
+	custom_minimum_size.y = container.size.y + 40
+	container.position = Vector2(0,0)

@@ -121,13 +121,13 @@ func _on_version_controlled_tag_mouse_exited() -> void:
 
 
 func _on_developer_tag_pressed() -> void:
-	Popups.add_popup(preload("res://PluginView/Plugin/Popups/Developer.tscn"))
+	Popups.create_popup(preload("res://PluginView/Plugin/Popups/Developer.tscn"))
 
 func _on_trusted_tag_pressed() -> void:
-	Popups.add_popup(preload("res://PluginView/Plugin/Popups/Trusted.tscn"))
+	Popups.create_popup(preload("res://PluginView/Plugin/Popups/Trusted.tscn"))
 
 func _on_version_controlled_tag_pressed() -> void:
-	Popups.add_popup(preload("res://PluginView/Plugin/Popups/VersionControlled.tscn"))
+	Popups.create_popup(preload("res://PluginView/Plugin/Popups/VersionControlled.tscn"))
 
 
 func _on_toggle_hovered() -> void:
@@ -150,7 +150,7 @@ func _on_toggle_dehovered() -> void:
 	RoseGarden.clear_tooltips()
 
 func _on_uninstall_pressed() -> void:
-	Popups.add_popup(load("res://PluginView/DeletePopup.tscn"))
+	Popups.create_popup(load("res://PluginView/DeletePopup.tscn"))
 	await Popups.popup_added
 	Popups.get_popup().plugin_id = plugin_id
 

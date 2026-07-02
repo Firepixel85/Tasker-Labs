@@ -11,7 +11,7 @@ func _on_account_meta_clicked(_meta: Variant) -> void:
 func _authorize():
 	if Network.GitHubAuth.is_authorized():
 		RoseGarden.create_toast("Account already connected","Blue")
-		Popups.remove_popup()
+		Popups.clear_popup()
 		return
 	Network.auth_completed.connect(_success)
 	Network.auth_failed.connect(_fail)
@@ -20,17 +20,28 @@ func _authorize():
 	auth.set_text("Redirecting...")
 
 func _success(_reason:String):
-	Popups.remove_popup()
-	await Popups.popup_removed
-	Popups.add_popup(load("res://PluginView/UpdatesPopup/AuthSuccess.tscn"))
+	Popups.clear_popup()
+	await Popups.popup_cleared
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.NO_ACTION)
+	popup.set_title("Account Connected!")
+	popup.set_description("Your account was connected successfuly! You can disconnect it at any time from Settings>General.")
+	Popups.create_prefab_popup(popup)
 
 func _fail(_reason:String):
-	Popups.remove_popup()
-	await Popups.popup_removed
-	Popups.add_popup(load("res://PluginView/UpdatesPopup/AuthFailed.tscn"))
+	Popups.clear_popup()
+	await Popups.popup_cleared
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.SINGLE_ACTION)
+	popup.set_title("Connection Failed!")
+	popup.set_description("An error ocurred during account connection.  You can retry to connect your account with the button below:")
+	popup.add_action(Popups.add_popup,[load("res://PluginView/UpdatesPopup/GitHubAuth.tscn")])
+	popup.add_action_name("Retry")
+	popup.add_color("White")
+	Popups.create_prefab_popup(popup)
 
 func _on_close_pressed() -> void:
-	Popups.remove_popup()
+	Popups.clear_popup()
 
 func _ready() -> void:
 	get_child(0)._update()

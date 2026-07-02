@@ -270,7 +270,7 @@ func _clear_tooltips() -> void:
 
 
 func _on_updates_pressed() -> void:
-	Popups.add_popup(preload("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))
+	Popups.create_popup(preload("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))
 	await get_tree().process_frame
 	await get_tree().process_frame
 	Popups.get_popup().updated.connect(refresh)

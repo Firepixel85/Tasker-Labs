@@ -36,7 +36,7 @@ func _on_action_pressed() -> void:
 			RoseGarden.create_toast("Account disconnected","Green")
 			action.set_color("Gray")
 	else:
-		Popups.add_popup(load("res://PluginView/UpdatesPopup/GitHubAuth.tscn"))
+		Popups.create_popup(load("res://PluginView/UpdatesPopup/GitHubAuth.tscn"))
 		await Network.auth_completed
 	_ready()
 

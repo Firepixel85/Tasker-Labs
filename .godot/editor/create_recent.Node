@@ -1,10 +1,10 @@
-MarginContainer
-Control
-VBoxContainer
-ScrollContainer
-TextureRect
 HBoxContainer
 Label
+VBoxContainer
+MarginContainer
+Control
+ScrollContainer
+TextureRect
 CenterContainer
 NinePatchRect
 GridContainer

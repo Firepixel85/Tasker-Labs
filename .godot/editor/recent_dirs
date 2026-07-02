@@ -1,4 +1,6 @@
-res://Settings/CoreOptions/Developer/ResetWindowPos/
+res://Popups/Popup2/
+res://Popups/Popup0/
+res://Popups/
 res://addons/RoseGarden/components/Tooltip/
 res://Settings/CoreOptions/Integrations/GitHub/
 res://
@@ -19,5 +21,3 @@ res://Settings/CoreOptions/RoseGarden/togglePress/
 res://Settings/CoreOptions/RoseGarden/toastAppearance/
 res://Settings/CoreOptions/RoseGarden/svChange/
 res://Settings/CoreOptions/RoseGarden/sgSelection/
-res://Settings/CoreOptions/RoseGarden/rcmSelection/
-res://Settings/CoreOptions/RoseGarden/rcmAppearance/
