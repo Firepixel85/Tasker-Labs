@@ -250,7 +250,6 @@ func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 		_error_queue.append("Couldn't load "+plugin_file_name+" because it is missing required info")
 		return ERR_INVALID_DATA
 	if !plugin_info.has("target_api_version"):
-		print(plugin_info)
 		Debug.error("Plugin "+plugin_file_name+" did not specify a compatible API version, skipping...",ID)
 		_error_queue.append("Couldn't load "+plugin_file_name+" did not specify a compatible API version, skipping...")
 		return ERR_INVALID_DATA
@@ -474,7 +473,6 @@ func _on_request_completed(_result, response_code, _headers, body):
 		_request_completed.emit()
 		return
 	if response_code != 200:
-		print("Unexpected response code: ", response_code)
 		_response = 000
 		_request_completed.emit()
 		return

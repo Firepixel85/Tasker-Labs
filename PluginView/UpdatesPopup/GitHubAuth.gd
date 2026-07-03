@@ -35,7 +35,7 @@ func _fail(_reason:String):
 	popup.set_type(TSKPopup.SINGLE_ACTION)
 	popup.set_title("Connection Failed!")
 	popup.set_description("An error ocurred during account connection.  You can retry to connect your account with the button below:")
-	popup.add_action(Popups.add_popup,[load("res://PluginView/UpdatesPopup/GitHubAuth.tscn")])
+	popup.add_action(Popups.add_popup,"Retry",[load("res://PluginView/UpdatesPopup/GitHubAuth.tscn")])
 	popup.add_action_name("Retry")
 	popup.add_color("White")
 	Popups.create_prefab_popup(popup)

@@ -79,13 +79,13 @@ func create_prefab_popup(prefab_popup:TSKPopup):
 		TSKPopup.NO_ACTION:
 			var popup_node = preload("res://Popups/Popup0/Popup0.tscn").instantiate()
 			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description)
+			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.title_alignment)
 		TSKPopup.SINGLE_ACTION:
 			var popup_node = preload("res://Popups/Popup1/Popup1.tscn").instantiate()
 			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions[0],prefab_popup.action_params[0],prefab_popup.action_names[0],prefab_popup.colors[0])
+			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions[0],prefab_popup.action_params[0],prefab_popup.action_names[0],prefab_popup.colors[0],prefab_popup.title_alignment)
 		TSKPopup.DOUBLE_ACTION:
 			var popup_node = preload("res://Popups/Popup2/Popup2.tscn").instantiate()
 			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions,prefab_popup.action_params,prefab_popup.action_names,prefab_popup.colors)
+			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions,prefab_popup.action_params,prefab_popup.action_names,prefab_popup.colors,prefab_popup.title_alignment)
 	return OK

@@ -20,6 +20,12 @@ var notification_duration:int = 4
 @onready var toast_duration_text: RGText = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ToastDurationText
 @onready var toast_duration_down: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationDown
 @onready var toast_duration_up: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationUp
+
+#Popups
+@onready var create_na_popup: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Create_NA_popup
+@onready var create_sa_popup: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3/Create_SA_popup
+@onready var create_da_popup: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4/Create_DA_popup
+
 var toast_duration := 4
 var color_dic = {
 	"Red":0,
@@ -55,6 +61,9 @@ func _ready() -> void:
 	create_notification.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	notification_error.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	create_toast.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	create_na_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	create_sa_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	create_da_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	notification_error.set_accessible(Settings.get_option_value("core.accessibility/symbol_indicators"))
 	notification_title.set_text("Test")
 	notification_description.set_text("This is a test notification's description... It should describe why the user is getting this notification.")
@@ -103,6 +112,9 @@ func _update_buttons(option_path,new_value):
 		create_notification.set_color(new_value)
 		notification_error.set_color(new_value)
 		create_toast.set_color(new_value)
+		create_na_popup.set_color(new_value)
+		create_sa_popup.set_color(new_value)
+		create_da_popup.set_color(new_value)
 
 func _on_create_notification_pressed() -> void:
 	Debug.log("Queuing notification",ID)
@@ -155,3 +167,28 @@ func open_plugins():
 	Input.action_press("plugin_open")
 	await get_tree().process_frame
 	Input.action_release("plugin_open")
+
+func _on_create_na_popup_pressed() -> void:
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.NO_ACTION)
+	popup.set_title("Test Popup")
+	popup.set_description("This is a test popup with no action to test the Popups API")
+	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))
+
+func _on_create_sa_popup_pressed() -> void:
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.SINGLE_ACTION)
+	popup.set_title("Test Popup")
+	popup.title_alignment = TSKPopup.TITLE_ALIGNMENT_CENTER
+	popup.set_description("This is a test popup with a single action to test the Popups API")
+	popup.add_action(empty,"Empty Action")
+	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))
+
+func _on_create_da_popup_pressed() -> void:
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.DOUBLE_ACTION)
+	popup.set_title("Test Popup")
+	popup.set_description("This is a test popup with two actions to test the Popups API")
+	popup.add_action(empty,"Empty1")
+	popup.add_action(empty, "Empty2")
+	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))

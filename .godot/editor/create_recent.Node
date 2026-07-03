@@ -1,8 +1,9 @@
+Control
+CanvasLayer
 HBoxContainer
 Label
 VBoxContainer
 MarginContainer
-Control
 ScrollContainer
 TextureRect
 CenterContainer
@@ -11,4 +12,3 @@ GridContainer
 RichTextLabel
 Container
 ItemList
-Button

@@ -32,9 +32,9 @@ anchor_bottom = 1.0
 offset_bottom = 191.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 24
+theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 18
-theme_override_constants/margin_right = 24
+theme_override_constants/margin_right = 18
 theme_override_constants/margin_bottom = 18
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=90934076]
@@ -54,16 +54,25 @@ icon = ExtResource("6_lfgxu")
 [node name="Title" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("7_2c12e")]
 custom_minimum_size = Vector2(50, 34)
 layout_mode = 2
+size_flags_horizontal = 3
 text = "Title"
+horizontal_alignment = "Center"
 vertical_alignment = "Center"
+
+[node name="TitleSpacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1937129881]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
 
 [node name="Description" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=133515608]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
-size_flags_vertical = 3
+size_flags_vertical = 1
 theme = ExtResource("9_l01nm")
 text = "Popup description..."
 autowrap_mode = 2
+
+[node name="Control" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=2046548204]
+layout_mode = 2
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=2076824273]
 layout_mode = 2

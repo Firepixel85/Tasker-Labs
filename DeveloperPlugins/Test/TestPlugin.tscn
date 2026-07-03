@@ -6,8 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="5_gx6r7"]
 [ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="7_1s46c"]
 [ext_resource type="Texture2D" uid="uid://cdfqxmvucwk6i" path="res://Icons/Down.svg" id="8_1s46c"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="9_1s46c"]
 [ext_resource type="Texture2D" uid="uid://doxcvlyim7fft" path="res://Icons/Up.svg" id="9_838f2"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="10_1b803"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="10_838f2"]
 
 [node name="TestPlugin" type="Control" unique_id=1427262098]
 layout_mode = 3
@@ -234,6 +236,74 @@ layout_mode = 2
 color = "Purple"
 text = "Create"
 
+[node name="RGText" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=610615308 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(115, 45)
+layout_mode = 2
+script = ExtResource("9_1s46c")
+text = "Popups"
+font_size = "Large"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=2018177391]
+layout_mode = 2
+
+[node name="RGText" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1290689676 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(302, 34)
+layout_mode = 2
+script = ExtResource("9_1s46c")
+text = "Create NO_ACTION popup"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=1797822778]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Create_NA_popup" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2" unique_id=2034408801 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("10_838f2")
+color = "Purple"
+text = "Create"
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=1226412832]
+layout_mode = 2
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1707696359 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(347, 34)
+layout_mode = 2
+text = "Create SINGLE_ACTION popup"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1278554571]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Create_SA_popup" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3" unique_id=1896748773 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+color = "Purple"
+text = "Create"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="MarginContainer/ScrollContainer/VBoxContainer" unique_id=643823995]
+layout_mode = 2
+
+[node name="RGText" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=2117438305 instance=ExtResource("1_483d7")]
+custom_minimum_size = Vector2(361, 34)
+layout_mode = 2
+text = "Create DOUBLE_ACTION popup"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=937105802]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Create_DA_popup" parent="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4" unique_id=2133041805 instance=ExtResource("3_by5gf")]
+custom_minimum_size = Vector2(200, 60)
+layout_mode = 2
+color = "Purple"
+text = "Create"
+
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateEvent/CreateEvent" to="." method="_on_create_event_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/RemoveEvent/RemoveEvent" to="." method="_on_remove_event_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationDown" to="." method="_on_notification_duration_down_pressed"]
@@ -242,3 +312,6 @@ text = "Create"
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationDown" to="." method="_on_toast_duration_down_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/HBoxContainer/ToastDurationUp" to="." method="_on_toast_duration_up_pressed"]
 [connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/CreateToast" to="." method="_on_create_toast_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer2/Create_NA_popup" to="." method="_on_create_na_popup_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3/Create_SA_popup" to="." method="_on_create_sa_popup_pressed"]
+[connection signal="pressed" from="MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4/Create_DA_popup" to="." method="_on_create_da_popup_pressed"]

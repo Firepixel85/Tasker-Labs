@@ -3,8 +3,8 @@ extends Control
 @onready var rcm_container: CanvasLayer = $RightClickMenuContainer
 @onready var tooltip_container: CanvasLayer = $TooltipContainer
 @onready var toast_layer: CanvasLayer = $ToastLayer
-@onready var popup_container: CenterContainer = $PopupContainer
-@onready var popup_fade: TextureRect = $PopupFade
+@onready var popup_container: CenterContainer = $PopupCanvasContainer/PopupContainer
+@onready var popup_fade: TextureRect = $PopupCanvasContainer/PopupFade
 
 #MainView
 @onready var main_view: HBoxContainer = $MainView

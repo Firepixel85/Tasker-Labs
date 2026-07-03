@@ -588,10 +588,11 @@ layout_mode = 2
 text = ""
 icon = ExtResource("18_5lyvq")
 
-[node name="PopupFade" type="TextureRect" parent="." unique_id=1982176613]
+[node name="PopupCanvasContainer" type="CanvasLayer" parent="." unique_id=1832252751]
+
+[node name="PopupFade" type="TextureRect" parent="PopupCanvasContainer" unique_id=1982176613]
 visible = false
 modulate = Color(1, 1, 1, 0.627451)
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -599,9 +600,8 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("GradientTexture1D_42b22")
 
-[node name="PopupContainer" type="CenterContainer" parent="." unique_id=200258608]
+[node name="PopupContainer" type="CenterContainer" parent="PopupCanvasContainer" unique_id=200258608]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

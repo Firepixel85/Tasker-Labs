@@ -5,6 +5,10 @@ const NO_ACTION:int = 0
 const SINGLE_ACTION:int = 1
 const DOUBLE_ACTION:int = 2
 
+const TITLE_ALIGNMENT_LEFT:int = 0
+const TITLE_ALIGNMENT_CENTER:int = 1
+const TITLE_ALIGNMENT_RIGHT:int = 2
+
 var type:int = 0:
 	set(value):
 		if value < NO_ACTION or value > DOUBLE_ACTION:
@@ -52,6 +56,11 @@ var colors:Array = []:
 			if RoseGarden.Colors.verify_color(color) != OK:
 				return
 		colors = value
+var title_alignment:int = TITLE_ALIGNMENT_CENTER:
+	set(value):
+		if value < TITLE_ALIGNMENT_LEFT or value > TITLE_ALIGNMENT_RIGHT:
+			return
+		title_alignment = value
 
 func set_title(text:String):
 	title = text
@@ -67,57 +76,29 @@ func set_type(p_type:int):
 	type = p_type
 	return OK
 
-func add_action(action:Callable, params:Array=[]):
+func add_action(action:Callable, name:String, params:Array=[], color:String="White"):
 	if type == NO_ACTION:
 		return ERR_INVALID_PARAMETER
 	if actions.size() >= type:
 		return ERR_ALREADY_EXISTS
-	actions.append(action)
-	action_params.append(params)
-	return OK
-
-func set_action(index:int, action:Callable, params:Array=[]):
-	if type == NO_ACTION:
-		return ERR_INVALID_PARAMETER
-	if index < 0 or index >= type:
-		return ERR_INVALID_PARAMETER
-	actions[index] = action
-	action_params[index] = params
-	return OK
-
-func add_action_name(p_name:String):
-	if type == NO_ACTION:
-		return ERR_INVALID_PARAMETER
-	if action_names.size() >= type:
-		return ERR_ALREADY_EXISTS
-	action_names.append(p_name)
-	return OK
-
-func set_action_name(index:int, p_name:String):
-	if type == NO_ACTION:
-		return ERR_INVALID_PARAMETER
-	if index < 0 or index >= type:
-		return ERR_INVALID_PARAMETER
-	action_names[index] = p_name
-	return OK
-
-func add_color(color:String):
-	if type == NO_ACTION:
-		return ERR_INVALID_PARAMETER
-	if colors.size() >= type:
-		return ERR_ALREADY_EXISTS
 	if RoseGarden.Colors.verify_color(color) != OK:
 		return ERR_INVALID_PARAMETER
+	actions.append(action)
+	action_params.append(params)
+	action_names.append(name)
 	colors.append(color)
 	return OK
 
-func set_color(index:int, color:String):
+func set_action(index:int, action:Callable, name:String, params:Array=[], color:String="White"):
 	if type == NO_ACTION:
 		return ERR_INVALID_PARAMETER
 	if index < 0 or index >= type:
 		return ERR_INVALID_PARAMETER
 	if RoseGarden.Colors.verify_color(color) != OK:
 		return ERR_INVALID_PARAMETER
+	actions[index] = action
+	action_params[index] = params
+	action_names[index] = name
 	colors[index] = color
 	return OK
 
@@ -126,3 +107,6 @@ func _init():
 	action_params = []
 	action_names = []
 	colors = []
+	title_alignment = TITLE_ALIGNMENT_CENTER
+	title = ""
+	description = ""
