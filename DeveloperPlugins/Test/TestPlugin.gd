@@ -173,22 +173,21 @@ func _on_create_na_popup_pressed() -> void:
 	popup.set_type(TSKPopup.NO_ACTION)
 	popup.set_title("Test Popup")
 	popup.set_description("This is a test popup with no action to test the Popups API")
-	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)
 
 func _on_create_sa_popup_pressed() -> void:
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.SINGLE_ACTION)
 	popup.set_title("Test Popup")
-	popup.title_alignment = TSKPopup.TITLE_ALIGNMENT_CENTER
 	popup.set_description("This is a test popup with a single action to test the Popups API")
 	popup.add_action(empty,"Empty Action")
-	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)
 
 func _on_create_da_popup_pressed() -> void:
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.DOUBLE_ACTION)
 	popup.set_title("Test Popup")
 	popup.set_description("This is a test popup with two actions to test the Popups API")
-	popup.add_action(empty,"Empty1")
+	popup.add_action(empty,"Empty1",[],"Gray")
 	popup.add_action(empty, "Empty2")
-	Debug.log("Got response from Popups: ",str(Popups.create_prefab_popup(popup)))
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)

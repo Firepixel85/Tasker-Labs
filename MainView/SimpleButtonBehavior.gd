@@ -5,9 +5,9 @@ var keybinds := {
 	"Settings":"⌘,",
 	"Plugins":"⌘P"
 }
-var view_names := {
-	"Settings":"settings",
-	"Plugins":"plugins"
+var view_keys := {
+	"Settings":"settings_open",
+	"Plugins":"plugin_open"
 }
 var hovered := false
 func _ready() -> void:
@@ -32,4 +32,5 @@ func _mouse_exited():
 	RoseGarden.clear_tooltips()
 
 func _pressed() -> void:
-	main_view.open_view(view_names[name])
+	Input.action_press(view_keys[name])
+	Input.action_release(view_keys[name])

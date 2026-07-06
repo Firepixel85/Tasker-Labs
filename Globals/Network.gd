@@ -124,22 +124,22 @@ class GitHubAuth:
 		return access_token
 
 	static func disconnect_auth():
-		var err = Data.remove_file("Secrets")
+		var err = Data.remove_file("Core/Secrets")
 		if err == OK:
 			access_token = ""
 		return err
 
 func save() -> void:
-	Data.save_to("access_token", GitHubAuth.access_token, "Secrets")
-	Data.save_file("Secrets")
-	
+	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
+	Data.save_file("Core/Secrets")
+
 func _ready() -> void:
 	GitHubAuth.CLIENT_ID = Vault.GITHUB_CLIENT_ID
 	GitHubAuth.CLIENT_SECRET = Vault.GITHUB_CLIENT_SECRET
-	if Data.file_exists("Secrets"):
-		var data = Data.load_file("Secrets")
+	if Data.file_exists("Core/Secrets"):
+		var data = Data.load_file("Core/Secrets")
 		if data.has("access_token"):
 			GitHubAuth.access_token = data["access_token"]
 	else:
-		Data.make_file("Secrets")
+		Data.make_file("Secrets","Core")
 		save()

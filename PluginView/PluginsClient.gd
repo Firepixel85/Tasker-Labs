@@ -59,12 +59,12 @@ func _resize_views():
 
 func _ready() -> void:
 	get_tree().root.size_changed.connect(_resize_views)
-	
+
 func _process(_delta:float) -> void:
 	if PluginManager.get_all_plugins().size() == 0:
 		view_scroll.set_deferred("scroll_horizontal", 0)
 	else:
 		view_scroll.set_deferred("scroll_horizontal", view_container.get_child(0).size.x+4)
-		
+
 func _on_close_pressed() -> void:
 	main_view.open_view("mainview")

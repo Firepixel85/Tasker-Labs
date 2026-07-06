@@ -229,12 +229,12 @@ func scan_available_plugins():
 	return OK
 
 func _load_data():
-	if Data.file_exists("PluginData"):
-		var data = Data.load_file("PluginData")
+	if Data.file_exists("Core/PluginData"):
+		var data = Data.load_file("Core/PluginData")
 		for plugin_id in data["loaded_plugins"]:
 			load_plugin(plugin_id)
 	else:
-		Data.make_file("PluginData")
+		Data.make_file("PluginData","Core")
 		save_data()
 
 func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
@@ -362,8 +362,8 @@ func get_all_plugins():
 	return plugin_list
 
 func save_data():
-	Data.save_to("loaded_plugins",_loaded_plugins, "PluginData")
-	Data.save_file("PluginData")
+	Data.save_to("loaded_plugins",_loaded_plugins, "Core/PluginData")
+	Data.save_file("Core/PluginData")
 
 
 func get_plugin_script(plugin_id:String):

@@ -31,8 +31,8 @@ func make_file(file_name:String,exclusive_folder:=""):
 		var file = FileAccess.open("user://"+exclusive_folder+"/"+file_name+".json",FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
 		file.close()
-		all_data[file_name] = {}
-		actual_file_path[file_name] = "user://"+exclusive_folder+"/"+file_name+".json"
+		all_data[exclusive_folder+"/"+file_name] = {}
+		actual_file_path[exclusive_folder+"/"+file_name] = "user://"+exclusive_folder+"/"+file_name+".json"
 		_save()
 		Debug.log("Exclusive file created: "+exclusive_folder+"/"+file_name,ID)
 		return OK
@@ -69,29 +69,28 @@ func file_exists(file_name):
 	return false
 
 func _ready() -> void:
-	if FileAccess.file_exists("user://Data.json"):
-		var data = JSON.parse_string(FileAccess.open("user://Data.json",FileAccess.READ).get_as_text())
+	if FileAccess.file_exists("user://Core/Data.json"):
+		var data = JSON.parse_string(FileAccess.open("user://Core/Data.json",FileAccess.READ).get_as_text())
 		actual_file_path = data["actual_file_path"]
-		all_data["Data"] = data
+		all_data["Core/Data"] = data
 	else:
-		var file = FileAccess.open("user://Data.json",FileAccess.WRITE)
+		var file = FileAccess.open("user://Core/Data.json",FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
 		file.close()
-		all_data["Data"] = {}
-		actual_file_path["Data"] = "user://Data.json"
+		all_data["Core/Data"] = {}
+		actual_file_path["Core/Data"] = "user://Core/Data.json"
 	await _save()
 	Debug.log("Ready to load",ID)
 	_ready_to_load = true
 
 func _save():
-	save_to("actual_file_path",actual_file_path,"Data")
-	save_file("Data")
+	save_to("actual_file_path",actual_file_path,"Core/Data")
+	save_file("Core/Data")
 	return OK
 
 func remove_file(file_name:String):
 	var dir = DirAccess.open("user://")
 	if dir == null:
 		return ERR_CANT_OPEN
-	print(actual_file_path[file_name].split("user://")[0])
 	var delete_err = dir.remove(actual_file_path[file_name].split("user://")[1])
 	return delete_err

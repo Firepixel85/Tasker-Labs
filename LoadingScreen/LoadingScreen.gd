@@ -5,11 +5,11 @@ func _ready() -> void:
 	while !Data._ready_to_load:
 		pass
 	await get_tree().create_timer(0.3).timeout
-	if !Data.file_exists("WindowData"):
-		Data.make_file("WindowData")
+	if !Data.file_exists("Core/WindowData"):
+		Data.make_file("WindowData","Core")
 		start_app(false)
 	else:
-		var window_data = Data.load_file("WindowData")
+		var window_data = Data.load_file("Core/WindowData")
 		window_data["position"] = window_data["position"].split("(")[1].split(")")[0].split(",")
 		window_data["size"] = window_data["size"].split("(")[1].split(")")[0].split(",")
 		Main.window.size = Vector2(int(window_data["size"][0]),int(window_data["size"][1]))

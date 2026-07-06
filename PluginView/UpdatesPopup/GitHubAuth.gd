@@ -25,7 +25,7 @@ func _success(_reason:String):
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.NO_ACTION)
 	popup.set_title("Account Connected!")
-	popup.set_description("Your account was connected successfuly! You can disconnect it at any time from Settings>General.")
+	popup.set_description("Your account was connected successfuly! You can disconnect it at any time from Settings>Integrations.")
 	Popups.create_prefab_popup(popup)
 
 func _fail(_reason:String):

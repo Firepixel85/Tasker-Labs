@@ -309,15 +309,15 @@ func get_selected():
 	return commands[0]
 
 func save():
-	Data.save_to("command_points",command_points,"CommandData")
-	Data.save_file("CommandData")
+	Data.save_to("command_points",command_points,"Core/CommandData")
+	Data.save_file("Core/CommandData")
 
 func load_commands():
-	if Data.file_exists("CommandData"):
-		var data = Data.load_file("CommandData")
+	if Data.file_exists("Core/CommandData"):
+		var data = Data.load_file("Core/CommandData")
 		command_points = data["command_points"]
 	else:
-		Data.make_file("CommandData")
+		Data.make_file("CommandData","Core")
 		save()
 
 func is_open():

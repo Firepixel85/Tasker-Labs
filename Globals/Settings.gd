@@ -15,8 +15,8 @@ signal setting_changed(option_path,new_value)
 signal settings_loaded
 
 func load_settings():
-	if Data.file_exists("SettingsData"):
-		var data = Data.load_file("SettingsData")
+	if Data.file_exists("Core/SettingsData"):
+		var data = Data.load_file("Core/SettingsData")
 		_settings_list = data["settings_list"]
 		_settings_values = data["settings_values"]
 		_category_names = data["category_names"]
@@ -24,7 +24,7 @@ func load_settings():
 		_category_icons = data["category_icons"]
 		_option_order = data["option_order"]
 	else:
-		Data.make_file("SettingsData")
+		Data.make_file("SettingsData","Core")
 		save_settings()
 	settings_loaded.emit()
 	if option_exists("core.accessibility/disable_animations"):
@@ -36,13 +36,13 @@ func load_settings():
 	return OK
 
 func save_settings():
-	Data.save_to("settings_list",_settings_list,"SettingsData")
-	Data.save_to("settings_values",_settings_values,"SettingsData")
-	Data.save_to("category_names",_category_names,"SettingsData")
-	Data.save_to("category_list",_category_list,"SettingsData")
-	Data.save_to("category_icons",_category_icons,"SettingsData")
-	Data.save_to("option_order",_option_order,"SettingsData")
-	Data.save_file("SettingsData")
+	Data.save_to("settings_list",_settings_list,"Core/SettingsData")
+	Data.save_to("settings_values",_settings_values,"Core/SettingsData")
+	Data.save_to("category_names",_category_names,"Core/SettingsData")
+	Data.save_to("category_list",_category_list,"Core/SettingsData")
+	Data.save_to("category_icons",_category_icons,"Core/SettingsData")
+	Data.save_to("option_order",_option_order,"Core/SettingsData")
+	Data.save_file("Core/SettingsData")
 
 # Category functions #
 
