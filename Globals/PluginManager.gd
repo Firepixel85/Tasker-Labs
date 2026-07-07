@@ -377,6 +377,7 @@ func _send_errors():
 		NotificationManager.queue_notification("Plugin Load Error",error,true,null,[],0.0)
 	_error_queue.clear()
 
+
 signal _request_completed
 var _response
 func scan_for_updates():
