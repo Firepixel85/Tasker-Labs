@@ -22,25 +22,26 @@ const BLUE = "Blue"
 const PINK = "Pink"
 const PURPLE = "Purple"
 
-const COLOR_NORMAL = Color(1,1,1)
-const COLOR_PRESSED = Color(0.65,0.65,0.65)
-const COLOR_HOVERED = Color(0.85,0.85,0.85)
-const COLOR_DISABLED = Color(0.6,0.6,0.6)
-const COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+const COLOR_NORMAL = Color(1, 1, 1)
+const COLOR_PRESSED = Color(0.65, 0.65, 0.65)
+const COLOR_HOVERED = Color(0.85, 0.85, 0.85)
+const COLOR_DISABLED = Color(0.6, 0.6, 0.6)
+const COLOR_DISABLED_HOVERED = Color(0.55, 0.55, 0.55)
 
 const TEXT_SECONDARY = Color("ACACAC")
 
-func verify_color(color:String,use_easter_eggs:bool=false):
+
+func verify_color(color: String, use_easter_eggs: bool = false):
 	if !use_easter_eggs:
 		match color:
-			GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE:
+			GRAY, WHITE, RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PINK, PURPLE:
 				return OK
 			_:
 				return Error.ERR_INVALID_PARAMETER
 
 	else:
 		match color:
-			GRAY,WHITE,RED,ORANGE,YELLOW,GREEN,TEAL,BLUE,PINK,PURPLE,"Tasker":
+			GRAY, WHITE, RED, ORANGE, YELLOW, GREEN, TEAL, BLUE, PINK, PURPLE, "Tasker":
 				return OK
 			_:
 				return Error.ERR_INVALID_PARAMETER

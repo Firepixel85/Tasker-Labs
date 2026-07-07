@@ -12,6 +12,7 @@ var _dialog: Window
 const SettingsScene = preload("res://addons/RoseGarden/editor/RGsettings_panel.tscn")
 var _settings_panel: PanelContainer
 
+
 func _enter_tree() -> void:
 	for name in AUTOLOADS:
 		add_autoload_singleton(name, AUTOLOADS[name])
@@ -25,7 +26,9 @@ func _enter_tree() -> void:
 	_toolbar_button = Button.new()
 	_toolbar_button.name = "AddRoseGardenComponent"
 	_toolbar_button.text = ""
-	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon"+str(randi_range(1,3))+".svg")
+	_toolbar_button.icon = load(
+		"res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg"
+	)
 	_toolbar_button.tooltip_text = "Add Rose Garden Component"
 	_dialog.hide()
 
@@ -51,7 +54,9 @@ func _enter_tree() -> void:
 
 	if not editor_settings.has_setting("addons/rose_garden/open_dialog_shortcut"):
 		editor_settings.set_setting("addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G")
-		editor_settings.set_initial_value("addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G", false)
+		editor_settings.set_initial_value(
+			"addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G", false
+		)
 
 
 func _exit_tree() -> void:
@@ -69,9 +74,10 @@ func _exit_tree() -> void:
 		_settings_panel.queue_free()
 
 
-
 func _on_toolbar_button_pressed() -> void:
-	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon"+str(randi_range(1,3))+".svg")
+	_toolbar_button.icon = load(
+		"res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg"
+	)
 	_dialog.popup_centered()
 	_dialog.search.select_all()
 	_dialog.list.select(0)
@@ -105,6 +111,7 @@ func _on_component_selected(scene_path: String) -> void:
 
 	EditorInterface.get_selection().clear()
 	EditorInterface.get_selection().add_node(instance)
+
 
 func _on_shortcut_changed(new_shortcut: Shortcut) -> void:
 	_toolbar_button.shortcut = new_shortcut

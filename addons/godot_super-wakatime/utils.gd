@@ -1,10 +1,12 @@
 func plugin_print(msg) -> void:
 	"""Print message from plugin"""
 	print("[Godot_Super-Wakatime]: %s" % msg)
-	
+
+
 func plugin_print_err(err) -> void:
 	"""Inform about error from plugin"""
 	push_error("[Godot_Super-Wakatime]: %s" % err)
+
 
 func set_platform():
 	"""Set currently used platform"""
@@ -21,7 +23,7 @@ func set_platform():
 		platform = "android"
 	elif OS.has_feature("ios"):
 		platform = "ios"
-	
+
 	if OS.has_feature("x86_64"):
 		architecture = "amd64"
 	elif OS.has_feature("x86_32"):
@@ -33,9 +35,11 @@ func set_platform():
 
 	return [platform, architecture]
 
+
 func get_waka_build(platform: String, architecture: String) -> String:
 	"""Return wakatime build for current OS"""
 	return "wakatime-cli-%s-%s" % [platform, architecture]
+
 
 func get_ouch_build(system_platform: String) -> String:
 	"""Get build for ouch (compression and decompression tool)"""
@@ -46,7 +50,8 @@ func get_ouch_build(system_platform: String) -> String:
 		platform = "apple-darwin"
 
 	return "ouch-%s-%s" % ["x86_64", platform]
-	
+
+
 func home_directory(platform: String, plugin_path: String) -> String:
 	"""Get home directory from """
 	var home = null
@@ -54,18 +59,21 @@ func home_directory(platform: String, plugin_path: String) -> String:
 		home = OS.get_environment(env)
 		if home:
 			if platform == "windows":
-				home = home.replace("\\", '/')
+				home = home.replace("\\", "/")
 			return home
 	return plugin_path
-	
+
+
 func config_filepath(platform: String, plugin_path: String) -> String:
 	"""Get path to wakatime configuration file"""
 	return "%s/.wakatime.cfg" % home_directory(platform, plugin_path)
-	
+
+
 func wakatime_cli_exists(wakatime_cli) -> bool:
 	"""Return if wakatime cli tool exists already"""
 	return FileAccess.file_exists(wakatime_cli)
-	
+
+
 func wakatime_zip_exists(wakatime_zip: String) -> bool:
 	"Check if wakatime zip file exists"
 	return FileAccess.file_exists(wakatime_zip)

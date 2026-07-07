@@ -10,10 +10,12 @@ const SETTINGS_KEY = "addons/rose_garden/open_dialog_shortcut"
 var _listening := false
 var _current_shortcut: Shortcut
 
+
 func _ready() -> void:
 	_load_shortcut()
 	shortcut_button.pressed.connect(_on_shortcut_button_pressed)
 	shortcut_button.focus_exited.connect(_stop_listening)
+
 
 func _load_shortcut() -> void:
 	var editor_settings := EditorInterface.get_editor_settings()
@@ -31,10 +33,12 @@ func _load_shortcut() -> void:
 
 	_update_button_label()
 
+
 func _on_shortcut_button_pressed() -> void:
 	_listening = true
 	shortcut_button.text = "Press a key combination..."
 	shortcut_button.grab_focus()
+
 
 func _input(event: InputEvent) -> void:
 	if not _listening:
@@ -61,19 +65,23 @@ func _input(event: InputEvent) -> void:
 	_update_button_label()
 	shortcut_changed.emit(new_shortcut)
 
+
 func _stop_listening() -> void:
 	if _listening:
 		_listening = false
 		_update_button_label()
 
+
 func _save_shortcut(shortcut: Shortcut) -> void:
 	EditorInterface.get_editor_settings().set_setting(SETTINGS_KEY, shortcut)
+
 
 func _update_button_label() -> void:
 	if _current_shortcut and not _current_shortcut.events.is_empty():
 		shortcut_button.text = _current_shortcut.events[0].as_text()
 	else:
 		shortcut_button.text = "None"
+
 
 func get_current_shortcut() -> Shortcut:
 	return _current_shortcut

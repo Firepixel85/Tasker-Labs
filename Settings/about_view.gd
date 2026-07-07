@@ -10,15 +10,18 @@ extends Control
 @onready var love_letter: TextureRect = $TextureRect
 @onready var close_ll_container: VBoxContainer = $VBoxContainer2
 
+
 func _ready() -> void:
 	app_version.set_text(Main.get_version())
-	build_id.set_text(Main.get_version()+Main.get_version_sufix())
+	build_id.set_text(Main.get_version() + Main.get_version_sufix())
 	api_version.set_text(Main.get_plugin_api_version())
-	available_plugins.set_text(str((PluginManager.get_all_plugins().size())))
+	available_plugins.set_text(str(PluginManager.get_all_plugins().size()))
 	loaded_plugins.set_text(str(PluginManager._loaded_plugins.size()))
+
 
 func _on_open_user_folder_pressed() -> void:
 	OS.shell_show_in_file_manager(OS.get_user_data_dir())
+
 
 func _on_open_love_letter_pressed():
 	options.visible = false

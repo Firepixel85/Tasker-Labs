@@ -2,9 +2,16 @@ extends Node
 
 class_name RGmenu
 
-var elements:Array
+var elements: Array
 
-func add_action(title:String,icon:Texture2D,action:Callable,action_params:Array=[],destructive:bool=false):
+
+func add_action(
+	title: String,
+	icon: Texture2D,
+	action: Callable,
+	action_params: Array = [],
+	destructive: bool = false
+):
 	var type
 	match destructive:
 		true:
@@ -12,26 +19,17 @@ func add_action(title:String,icon:Texture2D,action:Callable,action_params:Array=
 		false:
 			type = "action"
 
-	elements.append([
-		type,
-		title,
-		icon,
-		action,
-		action_params
-	])
+	elements.append([type, title, icon, action, action_params])
 	return OK
 
-func add_menu(title:String,icon:Texture2D,menu:RGmenu):
-	elements.append([
-		"menu",
-		title,
-		icon,
-		menu
-	])
+
+func add_menu(title: String, icon: Texture2D, menu: RGmenu):
+	elements.append(["menu", title, icon, menu])
+
 
 func add_seperator():
-	elements.append([
-		"seperator"
-	])
+	elements.append(["seperator"])
+
+
 func _init() -> void:
 	elements = []

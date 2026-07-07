@@ -2,9 +2,11 @@ extends GridContainer
 
 const CHILD_WIDTH: float = 512.0
 
+
 func _ready() -> void:
 	resized.connect(_update_columns)
 	_update_columns()
+
 
 func _update_columns() -> void:
 	var available_width: float = get_parent_area_size().x

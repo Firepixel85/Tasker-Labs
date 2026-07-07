@@ -35,7 +35,7 @@ func open():
 	command_bar.open()
 	edit()
 
-func close(execute:=false):
+func close(execute := false):
 	if execute:
 		command_bar.execute_command(command_bar.get_selected())
 	command_bar.close()
