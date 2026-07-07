@@ -112,9 +112,7 @@ func _input(event: InputEvent) -> void:
 		if tab_open == "Script":
 			if event is InputEventKey:
 				var key_event = event as InputEventKey
-				if (key_event.keycode == KEY_UP   || key_event.keycode == KEY_DOWN
-				 || key_event.keycode == KEY_LEFT || key_event.keycode == KEY_RIGHT
-				 || key_event.keycode == KEY_ALT  || key_event.keycode == KEY_SHIFT):
+				if (key_event.keycode == KEY_UP || key_event.keycode == KEY_DOWN || key_event.keycode == KEY_LEFT || key_event.keycode == KEY_RIGHT || key_event.keycode == KEY_ALT || key_event.keycode == KEY_SHIFT):
 					return
 
 				var snapshot = get_coding_data()
@@ -395,33 +393,28 @@ func _decompressor_download_finished(result, status, headers, body) -> void:
 
 	# Save decompressor path, give write permissions to it
 	var decompressor: String = \
-		ProjectSettings.globalize_path(DecompressorUtils.decompressor_cli(decompressor_cli,
-			system_platform, PLUGIN_PATH))
+		ProjectSettings.globalize_path(DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
 
 	if system_platform == "linux" or system_platform == "darwin":
 		OS.execute("chmod", ["+x", decompressor], [], true)
 
 	# Extract files, allowing usage of Ouch!
-	Utils.plugin_print("Ouch! has been installed succesfully! Located at %s" % \
-		DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
+	Utils.plugin_print("Ouch! has been installed succesfully! Located at %s" % DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
 	extract_files(ZIP_PATH, get_waka_dir())
 
 func extract_files(source: String, destination: String) -> void:
 	"""Extract downloaded Wakatime zip"""
 	# If decompression library and wakatime zip folder don't exist, return
-	if not DecompressorUtils.lib_exists(decompressor_cli, system_platform,
-			PLUGIN_PATH) and not Utils.wakatime_zip_exists(ZIP_PATH):
+	if not DecompressorUtils.lib_exists(decompressor_cli, system_platform, PLUGIN_PATH) and not Utils.wakatime_zip_exists(ZIP_PATH):
 		return
 
 	# Get paths as global
 	Utils.plugin_print("Extracting Wakatime...")
 	var decompressor: String
 	if system_platform == "windows":
-		decompressor = ProjectSettings.globalize_path(
-			DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
+		decompressor = ProjectSettings.globalize_path(DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
 	else:
-		decompressor = ProjectSettings.globalize_path("res://" +
-			DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
+		decompressor = ProjectSettings.globalize_path("res://" + DecompressorUtils.decompressor_cli(decompressor_cli, system_platform, PLUGIN_PATH))
 
 	var src: String = ProjectSettings.globalize_path(source)
 	var dest: String = ProjectSettings.globalize_path(destination)

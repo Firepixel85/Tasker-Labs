@@ -17,12 +17,7 @@ class_name RGText
 
 
 func set_color(new_color: String):
-	if (
-		!new_color == "Main"
-		or new_color == "Secondary"
-		or new_color == "Dark"
-		or new_color == "Custom"
-	):
+	if (!new_color == "Main" or new_color == "Secondary" or new_color == "Dark" or new_color == "Custom"):
 		return ERR_INVALID_PARAMETER
 	color = new_color
 	_update()
@@ -30,12 +25,7 @@ func set_color(new_color: String):
 
 
 func set_font_size(new_font_size: String):
-	if (
-		!new_font_size == "Main"
-		or new_font_size == "Secondary"
-		or new_font_size == "Info"
-		or new_font_size == "FinePrint"
-	):
+	if (!new_font_size == "Main" or new_font_size == "Secondary" or new_font_size == "Info" or new_font_size == "FinePrint"):
 		return ERR_INVALID_PARAMETER
 	font_size = new_font_size
 	_update()

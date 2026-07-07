@@ -23,13 +23,9 @@ var color := "Red":
 		color = new_value
 		if bar == null:
 			return
-		bar.texture_progress = load(
-			RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg"
-		)
+		bar.texture_progress = load(RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg")
 		bar.texture_over = load(RoseGarden._file_path + "ProgressBar/Top/Top " + color + ".svg")
-		bar.texture_under = load(
-			RoseGarden._file_path + "ProgressBar/Bottom/Bottom " + color + ".svg"
-		)
+		bar.texture_under = load(RoseGarden._file_path + "ProgressBar/Bottom/Bottom " + color + ".svg")
 		_value_update()
 @export_enum("Left", "Center", "Right") var text_alignment = "Left":
 	set(new_value):
@@ -63,9 +59,7 @@ func set_color(new_color: String):
 	if !RoseGarden.Colors.verify_color(new_color) == OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
-	bar.texture_progress = load(
-		RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg"
-	)
+	bar.texture_progress = load(RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg")
 	bar.texture_over = load(RoseGarden._file_path + "ProgressBar/Top/Top " + color + ".svg")
 	bar.texture_under = load(RoseGarden._file_path + "ProgressBar/Bottom/Bottom " + color + ".svg")
 	_value_update()
@@ -75,21 +69,9 @@ func get_color():
 	return color
 
 
-func tween_value(
-	new_value: float, duration: float, trans := Tween.TRANS_SINE, ease := Tween.EASE_IN_OUT
-):
+func tween_value(new_value: float, duration: float, trans := Tween.TRANS_SINE, ease := Tween.EASE_IN_OUT):
 	var tween = create_tween()
-	(
-		tween
-		. tween_property(
-			self,
-			"value",
-			new_value,
-			duration * int(!RoseGarden.Accessibility.get_disable_animations())
-		)
-		. set_ease(ease)
-		. set_trans(trans)
-	)
+	(tween . tween_property( self, "value", new_value, duration * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_ease(ease) . set_trans(trans))
 	if new_value < 0 or new_value > 100:
 		return ERR_INVALID_PARAMETER
 	return OK
@@ -112,9 +94,7 @@ func _ready() -> void:
 func _update():
 	if bar == null:
 		return
-	bar.texture_progress = load(
-		RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg"
-	)
+	bar.texture_progress = load(RoseGarden._file_path + "ProgressBar/Progress/Progress " + color + ".svg")
 	bar.texture_over = load(RoseGarden._file_path + "ProgressBar/Top/Top " + color + ".svg")
 	bar.texture_under = load(RoseGarden._file_path + "ProgressBar/Bottom/Bottom " + color + ".svg")
 	match text_alignment:
@@ -144,13 +124,7 @@ func _value_update():
 	value = clamp(value, 0, 100)
 	bar.value = value
 	value_text.text = str(int(value)) + "%"
-	if (
-		color == "White"
-		or (
-			(color == "Yellow" or color == "Green" or color == "Teal")
-			and RoseGarden.Accessibility.get_increase_contrast()
-		)
-	):
+	if (color == "White" or ( (color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast() )):
 		match text_alignment:
 			"Left":
 				if value <= 15:

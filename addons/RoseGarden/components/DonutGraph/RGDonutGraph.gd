@@ -27,9 +27,7 @@ var color := "Red":
 		if bar == null:
 			return
 		color = new_value
-		bar.texture_progress = load(
-			RoseGarden._file_path + "DonutGraph/Progress/Progress" + color + ".svg"
-		)
+		bar.texture_progress = load(RoseGarden._file_path + "DonutGraph/Progress/Progress" + color + ".svg")
 		bar.texture_under = load(RoseGarden._file_path + "DonutGraph/Base/Base" + color + ".svg")
 		value_name_label.custom_color = RoseGarden.Colors.get_color(color)
 		value_name_label._update()
@@ -113,38 +111,10 @@ func set_percentage(new_per: int):
 	return OK
 
 
-func tween_value(
-	new_value: int,
-	duration: float,
-	new_perc: int = percentage,
-	trans := Tween.TRANS_SINE,
-	ease := Tween.EASE_IN_OUT
-):
+func tween_value(new_value: int, duration: float, new_perc: int = percentage, trans := Tween.TRANS_SINE, ease := Tween.EASE_IN_OUT):
 	var tween = create_tween()
-	(
-		tween
-		. parallel()
-		. tween_property(
-			self,
-			"value",
-			new_value,
-			duration * int(!RoseGarden.Accessibility.get_disable_animations())
-		)
-		. set_ease(ease)
-		. set_trans(trans)
-	)
-	(
-		tween
-		. parallel()
-		. tween_property(
-			self,
-			"percentage",
-			new_perc,
-			duration * int(!RoseGarden.Accessibility.get_disable_animations())
-		)
-		. set_ease(ease)
-		. set_trans(trans)
-	)
+	(tween . parallel() . tween_property( self, "value", new_value, duration * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_ease(ease) . set_trans(trans))
+	(tween . parallel() . tween_property( self, "percentage", new_perc, duration * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_ease(ease) . set_trans(trans))
 	if new_value < 0 or new_value > 100:
 		return ERR_INVALID_PARAMETER
 	return OK
@@ -158,9 +128,7 @@ func _ready() -> void:
 func _update():
 	if bar == null:
 		return
-	bar.texture_progress = load(
-		RoseGarden._file_path + "DonutGraph/Progress/Progress" + color + ".svg"
-	)
+	bar.texture_progress = load(RoseGarden._file_path + "DonutGraph/Progress/Progress" + color + ".svg")
 	bar.texture_under = load(RoseGarden._file_path + "DonutGraph/Base/Base" + color + ".svg")
 	value_name_label.custom_color = RoseGarden.Colors.get_color(color)
 	value_name_label._update()

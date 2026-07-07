@@ -88,12 +88,8 @@ func cut():
 	if !line_edit.has_selection():
 		return ERR_DOES_NOT_EXIST
 	DisplayServer.clipboard_set(line_edit.get_selected_text())
-	var new_text_before_selection = line_edit.get_selected_text().substr(
-		0, line_edit.get_selection_from_column()
-	)
-	var new_text_after_selection = line_edit.get_selected_text().substr(
-		line_edit.get_selection_to_column()
-	)
+	var new_text_before_selection = line_edit.get_selected_text().substr(0, line_edit.get_selection_from_column())
+	var new_text_after_selection = line_edit.get_selected_text().substr(line_edit.get_selection_to_column())
 	line_edit.text = new_text_before_selection + new_text_after_selection
 	line_edit.set_caret_column(line_edit.get_selection_from_column())
 	line_edit.deselect()
@@ -140,27 +136,9 @@ func _update():
 	line_edit.secret = secret
 
 	if line_edit.has_focus():
-		(
-			create_tween()
-			. tween_property(
-				hint_container,
-				"modulate",
-				Color(0, 0, 0, 0),
-				0.1 * int(!RoseGarden.Accessibility.get_disable_animations())
-			)
-			. set_trans(Tween.TRANS_BOUNCE)
-		)
+		(create_tween() . tween_property( hint_container, "modulate", Color(0, 0, 0, 0), 0.1 * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_trans(Tween.TRANS_BOUNCE))
 	elif needs_focus:
-		(
-			create_tween()
-			. tween_property(
-				hint_container,
-				"modulate",
-				Color(1, 1, 1, 1),
-				0.1 * int(!RoseGarden.Accessibility.get_disable_animations())
-			)
-			. set_trans(Tween.TRANS_BOUNCE)
-		)
+		(create_tween() . tween_property( hint_container, "modulate", Color(1, 1, 1, 1), 0.1 * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_trans(Tween.TRANS_BOUNCE))
 
 	if show_hint:
 		hint_container.visible = true
@@ -248,20 +226,14 @@ func _on_focus_entered() -> void:
 func _on_gui_input(event: InputEvent) -> void:
 	if !context_menu:
 		return
-	if (
-		event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_MASK_RIGHT
-		and event.pressed
-	):
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed):
 		line_edit.deselect_on_focus_loss_enabled = false
 		var menu = RGmenu.new()
 		menu.add_action("Cut", load("res://addons/RoseGarden/icons/Scissors.svg"), cut)
 		menu.add_action("Copy", load("res://addons/RoseGarden/icons/Copy.svg"), copy)
 		menu.add_action("Paste", load("res://addons/RoseGarden/icons/Clipboard.svg"), paste)
 		menu.add_seperator()
-		menu.add_action(
-			"Select All", load("res://addons/RoseGarden/icons/TextCursor.svg"), line_edit.select_all
-		)
+		menu.add_action("Select All", load("res://addons/RoseGarden/icons/TextCursor.svg"), line_edit.select_all)
 		menu.add_action("Clear", load("res://addons/RoseGarden/icons/X.svg"), line_edit.clear)
 		menu.add_seperator()
 		menu.add_action(

@@ -15,9 +15,7 @@ signal section_selected(new_selection)
 
 func add_section():
 	sections += 1
-	section_container.add_child(
-		preload("res://addons/RoseGarden/components/SectionView/RGsection.tscn").instantiate()
-	)
+	section_container.add_child(preload("res://addons/RoseGarden/components/SectionView/RGsection.tscn").instantiate())
 	var target: TextureRect = section_container.get_children()[
 		section_container.get_children().size() - 1
 	]
@@ -79,9 +77,7 @@ func _ready() -> void:
 
 
 func _display_section(section: int):  #Adds a section without updating vars, used for loading orginal sections in _ready()
-	section_container.add_child(
-		preload("res://addons/RoseGarden/components/SectionView/RGsection.tscn").instantiate()
-	)
+	section_container.add_child(preload("res://addons/RoseGarden/components/SectionView/RGsection.tscn").instantiate())
 	var target: NinePatchRect = section_container.get_children()[
 		section_container.get_children().size() - 1
 	]

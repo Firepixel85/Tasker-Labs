@@ -47,201 +47,71 @@ func _ready():
 	if !Settings.category_exists("core.general"):
 		Settings.add_category("General", "res://Icons/User.svg", "core.general")
 	if !Settings.option_exists("core.general/display_name"):
-		Settings.add_option(
-			"core.general",
-			"display_name",
-			"res://Settings/CoreOptions/General/DisplayName/CoreOption_DisplayName.tscn",
-			"Name"
-		)
+		Settings.add_option("core.general", "display_name", "res://Settings/CoreOptions/General/DisplayName/CoreOption_DisplayName.tscn", "Name")
 	if !Settings.option_exists("core.general/update_notify"):
-		Settings.add_option(
-			"core.general",
-			"update_notify",
-			"res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",
-			true
-		)
+		Settings.add_option("core.general", "update_notify", "res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn", true)
 	if !Settings.option_exists("core.general/command_amount"):
-		Settings.add_option(
-			"core.general",
-			"command_amount",
-			"res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",
-			4
-		)
+		Settings.add_option("core.general", "command_amount", "res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn", 4)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
 		Settings.add_category("Appearance", "res://Icons/Palette.svg", "core.appearance")
 	if !Settings.option_exists("core.appearance/accent_color"):
-		Settings.add_option(
-			"core.appearance",
-			"accent_color",
-			"res://Settings/CoreOptions/Appearance/AccentColor/CoreOption_AccentColor.tscn",
-			"Purple"
-		)
+		Settings.add_option("core.appearance", "accent_color", "res://Settings/CoreOptions/Appearance/AccentColor/CoreOption_AccentColor.tscn", "Purple")
 	if !Settings.option_exists("core.appearance/more_animations"):
-		Settings.add_option(
-			"core.appearance",
-			"more_animations",
-			"res://Settings/CoreOptions/Appearance/MoreAnimations/CoreOption_MoreAnimations.tscn",
-			false
-		)
+		Settings.add_option("core.appearance", "more_animations", "res://Settings/CoreOptions/Appearance/MoreAnimations/CoreOption_MoreAnimations.tscn", false)
 
 	#Accessibility
 	if !Settings.category_exists("core.accessibility"):
 		Settings.add_category("Accessibility", "res://Icons/Person.svg", "core.accessibility")
 	if !Settings.option_exists("core.accessibility/disable_animations"):
-		(
-			Settings
-			. add_option(
-				"core.accessibility",
-				"disable_animations",
-				"res://Settings/CoreOptions/Accessibility/DisableAnimations/CoreOption_DisableAnimations.tscn",
-				false
-			)
-		)
+		(Settings . add_option( "core.accessibility", "disable_animations", "res://Settings/CoreOptions/Accessibility/DisableAnimations/CoreOption_DisableAnimations.tscn", false ))
 	if !Settings.option_exists("core.accessibility/increase_contrast"):
-		(
-			Settings
-			. add_option(
-				"core.accessibility",
-				"increase_contrast",
-				"res://Settings/CoreOptions/Accessibility/IncreaseContrast/CoreOption_IncreaseContrast.tscn",
-				false
-			)
-		)
+		(Settings . add_option( "core.accessibility", "increase_contrast", "res://Settings/CoreOptions/Accessibility/IncreaseContrast/CoreOption_IncreaseContrast.tscn", false ))
 	if !Settings.option_exists("core.accessibility/symbol_indicators"):
-		(
-			Settings
-			. add_option(
-				"core.accessibility",
-				"symbol_indicators",
-				"res://Settings/CoreOptions/Accessibility/SymbolIndicators/CoreOption_SymbolIndicators.tscn",
-				false
-			)
-		)
+		(Settings . add_option( "core.accessibility", "symbol_indicators", "res://Settings/CoreOptions/Accessibility/SymbolIndicators/CoreOption_SymbolIndicators.tscn", false ))
 
 	#Integrations
 	if !Settings.category_exists("core.integrations"):
 		Settings.add_category("Integrations", "res://Icons/Blocks.svg", "core.integrations")
 	if !Settings.option_exists("core.integrations/integrations"):
-		Settings.add_option(
-			"core.integrations",
-			"integrations",
-			"res://Settings/CoreOptions/Integrations/Integrations.tscn",
-			0
-		)
+		Settings.add_option("core.integrations", "integrations", "res://Settings/CoreOptions/Integrations/Integrations.tscn", 0)
 
 	#Developers
 	if !Settings.category_exists("core.developer"):
 		Settings.add_category("Developer", "res://Icons/Code.svg", "core.developer")
 	if !Settings.option_exists("core.developer/dev_tools"):
-		Settings.add_option(
-			"core.developer",
-			"dev_tools",
-			"res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn",
-			false
-		)
+		Settings.add_option("core.developer", "dev_tools", "res://Settings/CoreOptions/Developer/DevTools/CoreOption_DevTools.tscn", false)
 	if !Settings.option_exists("core.developer/rg_options"):
-		Settings.add_option(
-			"core.developer",
-			"rg_options",
-			"res://Settings/CoreOptions/Developer/RGOptions/CoreOption_RGOptions.tscn",
-			false
-		)
+		Settings.add_option("core.developer", "rg_options", "res://Settings/CoreOptions/Developer/RGOptions/CoreOption_RGOptions.tscn", false)
 	if !Settings.option_exists("core.developer/reset_command_points"):
-		(
-			Settings
-			. add_option(
-				"core.developer",
-				"reset_command_points",
-				"res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.tscn",
-				true
-			)
-		)
+		(Settings . add_option( "core.developer", "reset_command_points", "res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.tscn", true ))
 	if !Settings.option_exists("core.developer/reset_window_size"):
-		Settings.add_option(
-			"core.developer",
-			"reset_window_size",
-			"res://Settings/CoreOptions/Developer/ResetWindowSize/CoreOption_ResetWindowSize.tscn",
-			true
-		)
+		Settings.add_option("core.developer", "reset_window_size", "res://Settings/CoreOptions/Developer/ResetWindowSize/CoreOption_ResetWindowSize.tscn", true)
 
 	#Rose Garden
 	if !Settings.category_exists("core.rose_garden"):
 		Settings.add_category("Rose Garden", "res://Icons/RG.png", "core.rose_garden")
 	if !Settings.option_exists("core.rose_garden/button_press"):
-		Settings.add_option(
-			"core.rose_garden",
-			"button_press",
-			"res://Settings/CoreOptions/RoseGarden/buttonPress/CoreOption_buttonPress.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "button_press", "res://Settings/CoreOptions/RoseGarden/buttonPress/CoreOption_buttonPress.tscn", true)
 	if !Settings.option_exists("core.rose_garden/toggle_press"):
-		Settings.add_option(
-			"core.rose_garden",
-			"toggle_press",
-			"res://Settings/CoreOptions/RoseGarden/togglePress/CoreOption_togglePress.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "toggle_press", "res://Settings/CoreOptions/RoseGarden/togglePress/CoreOption_togglePress.tscn", true)
 	if !Settings.option_exists("core.rose_garden/sg_selection"):
-		Settings.add_option(
-			"core.rose_garden",
-			"sg_selection",
-			"res://Settings/CoreOptions/RoseGarden/sgSelection/CoreOption_sgSelection.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "sg_selection", "res://Settings/CoreOptions/RoseGarden/sgSelection/CoreOption_sgSelection.tscn", true)
 	if !Settings.option_exists("core.rose_garden/sv_change"):
-		Settings.add_option(
-			"core.rose_garden",
-			"sv_change",
-			"res://Settings/CoreOptions/RoseGarden/svChange/CoreOption_svChange.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "sv_change", "res://Settings/CoreOptions/RoseGarden/svChange/CoreOption_svChange.tscn", true)
 	if !Settings.option_exists("core.rose_garden/rcm_selection"):
-		Settings.add_option(
-			"core.rose_garden",
-			"rcm_selection",
-			"res://Settings/CoreOptions/RoseGarden/rcmSelection/CoreOption_rcmSelection.tscn",
-			false
-		)
+		Settings.add_option("core.rose_garden", "rcm_selection", "res://Settings/CoreOptions/RoseGarden/rcmSelection/CoreOption_rcmSelection.tscn", false)
 	if !Settings.option_exists("core.rose_garden/rcm_appearance"):
-		Settings.add_option(
-			"core.rose_garden",
-			"rcm_appearance",
-			"res://Settings/CoreOptions/RoseGarden/rcmAppearance/CoreOption_rcmAppearance.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "rcm_appearance", "res://Settings/CoreOptions/RoseGarden/rcmAppearance/CoreOption_rcmAppearance.tscn", true)
 	if !Settings.option_exists("core.rose_garden/ddm_appearance"):
-		Settings.add_option(
-			"core.rose_garden",
-			"ddm_appearance",
-			"res://Settings/CoreOptions/RoseGarden/ddmAppearance/CoreOption_ddmAppearance.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "ddm_appearance", "res://Settings/CoreOptions/RoseGarden/ddmAppearance/CoreOption_ddmAppearance.tscn", true)
 	if !Settings.option_exists("core.rose_garden/ddm_selection"):
-		Settings.add_option(
-			"core.rose_garden",
-			"ddm_selection",
-			"res://Settings/CoreOptions/RoseGarden/ddmSelection/CoreOption_ddmSelection.tscn",
-			false
-		)
+		Settings.add_option("core.rose_garden", "ddm_selection", "res://Settings/CoreOptions/RoseGarden/ddmSelection/CoreOption_ddmSelection.tscn", false)
 	if !Settings.option_exists("core.rose_garden/toast_appearance"):
-		Settings.add_option(
-			"core.rose_garden",
-			"toast_appearance",
-			"res://Settings/CoreOptions/RoseGarden/toastAppearance/CoreOption_toastAppearance.tscn",
-			true
-		)
+		Settings.add_option("core.rose_garden", "toast_appearance", "res://Settings/CoreOptions/RoseGarden/toastAppearance/CoreOption_toastAppearance.tscn", true)
 	if !Settings.option_exists("core.rose_garden/tooltip_appearance"):
-		(
-			Settings
-			. add_option(
-				"core.rose_garden",
-				"tooltip_appearance",
-				"res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.tscn",
-				true
-			)
-		)
+		(Settings . add_option( "core.rose_garden", "tooltip_appearance", "res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.tscn", true ))
 
 	PluginManager._load_data()
 	_update_setting_values()
@@ -314,10 +184,7 @@ func _settings_changed(option_path, new_value):
 		user_name.set_text(new_value)
 	if option_path == "core.developer/dev_tools":
 		for plugin_id in PluginManager.get_all_plugins():
-			if (
-				PluginManager.is_plugin_loaded(plugin_id)
-				and PluginManager.is_developer_plugin(plugin_id)
-			):
+			if (PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id)):
 				PluginManager.unload_plugin(plugin_id)
 	if option_path == "core.appearance/more_animations":
 		RoseGarden.Animations.rcmSelection = new_value
@@ -352,42 +219,20 @@ func _settings_changed(option_path, new_value):
 func _update_setting_values():
 	if Settings.option_exists("core.general/display_name"):
 		user_name.set_text(Settings.get_option_value("core.general/display_name"))
-	RoseGarden.Animations.rcmSelection = Settings.get_option_value(
-		"core.appearance/more_animations"
-	)
-	RoseGarden.Animations.ddmSelection = Settings.get_option_value(
-		"core.appearance/more_animations"
-	)
+	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.appearance/more_animations")
+	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.appearance/more_animations")
 	if Settings.get_option_value("core.developer/rg_options"):
 		Settings.show_category("core.rose_garden")
 	else:
 		Settings.hide_category("core.rose_garden")
 	if Settings.is_category_shown("core.rose_garden"):
-		RoseGarden.Animations.buttonPress = Settings.get_option_value(
-			"core.rose_garden/button_press"
-		)
-		RoseGarden.Animations.togglePress = Settings.get_option_value(
-			"core.rose_garden/toggle_press"
-		)
-		RoseGarden.Animations.sgSelection = Settings.get_option_value(
-			"core.rose_garden/sg_selection"
-		)
+		RoseGarden.Animations.buttonPress = Settings.get_option_value("core.rose_garden/button_press")
+		RoseGarden.Animations.togglePress = Settings.get_option_value("core.rose_garden/toggle_press")
+		RoseGarden.Animations.sgSelection = Settings.get_option_value("core.rose_garden/sg_selection")
 		RoseGarden.Animations.svChange = Settings.get_option_value("core.rose_garden/sv_change")
-		RoseGarden.Animations.rcmSelection = Settings.get_option_value(
-			"core.rose_garden/rcm_selection"
-		)
-		RoseGarden.Animations.rcmAppearance = Settings.get_option_value(
-			"core.rose_garden/rcm_appearance"
-		)
-		RoseGarden.Animations.ddmAppearance = Settings.get_option_value(
-			"core.rose_garden/ddm_appearance"
-		)
-		RoseGarden.Animations.ddmSelection = Settings.get_option_value(
-			"core.rose_garden/ddm_selection"
-		)
-		RoseGarden.Animations.toastAppearance = Settings.get_option_value(
-			"core.rose_garden/toast_appearance"
-		)
-		RoseGarden.Animations.tooltipAppearance = Settings.get_option_value(
-			"core.rose_garden/tooltip_appearance"
-		)
+		RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.rose_garden/rcm_selection")
+		RoseGarden.Animations.rcmAppearance = Settings.get_option_value("core.rose_garden/rcm_appearance")
+		RoseGarden.Animations.ddmAppearance = Settings.get_option_value("core.rose_garden/ddm_appearance")
+		RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
+		RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
+		RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")

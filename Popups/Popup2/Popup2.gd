@@ -20,15 +20,7 @@ func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
 
-func setup(
-	title: String,
-	description: String,
-	new_action: Array,
-	new_action_params: Array,
-	action_names: Array,
-	colors: Array,
-	title_alignment: int
-):
+func setup(title: String, description: String, new_action: Array, new_action_params: Array, action_names: Array, colors: Array, title_alignment: int):
 	title_text.text = title
 	description_text.text = description
 	action1 = new_action[0]

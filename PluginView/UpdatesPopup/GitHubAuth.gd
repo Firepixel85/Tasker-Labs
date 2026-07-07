@@ -29,12 +29,7 @@ func _success(_reason: String):
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.NO_ACTION)
 	popup.set_title("Account Connected!")
-	(
-		popup
-		. set_description(
-			"Your account was connected successfuly! You can disconnect it at any time from Settings>Integrations."
-		)
-	)
+	(popup . set_description( "Your account was connected successfuly! You can disconnect it at any time from Settings>Integrations." ))
 	Popups.create_prefab_popup(popup)
 
 
@@ -44,12 +39,7 @@ func _fail(_reason: String):
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.SINGLE_ACTION)
 	popup.set_title("Connection Failed!")
-	(
-		popup
-		. set_description(
-			"An error ocurred during account connection.  You can retry to connect your account with the button below:"
-		)
-	)
+	(popup . set_description( "An error ocurred during account connection. You can retry to connect your account with the button below:" ))
 	popup.add_action(
 		Popups.add_popup, "Retry", [load("res://PluginView/UpdatesPopup/GitHubAuth.tscn")]
 	)

@@ -17,31 +17,23 @@ func _ready() -> void:
 	for child in plugin_container.get_children():
 		child.queue_free()
 	if PluginManager.is_rate_limited():
-		plugin_container.add_child(
-			preload("res://PluginView/UpdatesPopup/RateLimited.tscn").instantiate()
-		)
+		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/RateLimited.tscn").instantiate())
 		return
 	if PluginManager.get_outdated_plugins() == null:
-		plugin_container.add_child(
-			preload("res://PluginView/UpdatesPopup/Scanning.tscn").instantiate()
-		)
+		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/Scanning.tscn").instantiate())
 		await PluginManager.scan_for_updates()
 		plugin_container.get_child(0).queue_free()
 	for plugin in PluginManager.get_outdated_plugins():
 		if !PluginManager.is_plugin_trusted(plugin) and view_selector.selected == "only_trusted":
 			continue
-		plugin_container.add_child(
-			preload("res://PluginView/UpdatesPopup/Plugin.tscn").instantiate()
-		)
+		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/Plugin.tscn").instantiate())
 		var target = plugin_container.get_child(plugin_container.get_child_count() - 1)
 		target.id = plugin
 		target.setup()
 		target.updated.connect(_update_complete)
 	await get_tree().process_frame
 	if plugin_container.get_child_count() == 0:
-		plugin_container.add_child(
-			preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate()
-		)
+		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate())
 
 
 func _on_close_pressed() -> void:

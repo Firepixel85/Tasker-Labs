@@ -176,12 +176,7 @@ func _on_uninstall_pressed() -> void:
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.DOUBLE_ACTION)
 	popup.set_title("Are you sure?")
-	(
-		popup
-		. set_description(
-			"This is a permenant action that will immediately delete all files asscoiated with this plugin. Are you sure?"
-		)
-	)
+	(popup . set_description( "This is a permenant action that will immediately delete all files asscoiated with this plugin. Are you sure?" ))
 	popup.add_action(empty, "Cancel", [], "Gray")
 	popup.add_action(empty, "Uninstall", [], "Red")
 	Popups.create_prefab_popup(popup)
@@ -192,11 +187,7 @@ func copy_id():
 
 
 func _on_rg_container_gui_input(event: InputEvent) -> void:
-	if (
-		event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_MASK_RIGHT
-		and event.pressed
-	):
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed):
 		var menu = RGmenu.new()
 		menu.add_action("Toggle plugin", Icons.TOGGLE, toggle.toggle)
 		menu.add_action("Copy plugin ID", Icons.CODE, copy_id)

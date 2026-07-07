@@ -55,11 +55,7 @@ func _on_create_event_pressed() -> void:
 	Debug.log("Creating test event", ID)
 	create_event.set_disabled(true)
 	remove_event.set_disabled(false)
-	var response = EventManager.add_event(
-		ID,
-		load(PluginManager.get_plugin_filepath(ID) + "test_event.tscn"),
-		load(PluginManager.get_plugin_filepath(ID) + "icon.png")
-	)
+	var response = EventManager.add_event(ID, load(PluginManager.get_plugin_filepath(ID) + "test_event.tscn"), load(PluginManager.get_plugin_filepath(ID) + "icon.png"))
 	Debug.log("Got response from EventManager: " + error_string(response), ID)
 
 
@@ -81,16 +77,9 @@ func _ready() -> void:
 	create_na_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	create_sa_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	create_da_popup.set_color(Settings.get_option_value("core.appearance/accent_color"))
-	notification_error.set_accessible(
-		Settings.get_option_value("core.accessibility/symbol_indicators")
-	)
+	notification_error.set_accessible(Settings.get_option_value("core.accessibility/symbol_indicators"))
 	notification_title.set_text("Test")
-	(
-		notification_description
-		. set_text(
-			"This is a test notification's description... It should describe why the user is getting this notification."
-		)
-	)
+	(notification_description . set_text( "This is a test notification's description... It should describe why the user is getting this notification." ))
 	toast_text.set_text("This is a toast")
 	if EventManager.event_exists(ID):
 		create_event.set_disabled(true)
@@ -172,9 +161,7 @@ func _on_notification_duration_up_pressed() -> void:
 
 func _on_create_toast_pressed() -> void:
 	Debug.log("Creating toast", ID)
-	var response = RoseGarden.create_toast(
-		toast_text.get_text(), toast_color.get_selected_item(), toast_duration
-	)
+	var response = RoseGarden.create_toast(toast_text.get_text(), toast_color.get_selected_item(), toast_duration)
 	Debug.log("Got response from RoseGarden: " + error_string(response), ID)
 
 

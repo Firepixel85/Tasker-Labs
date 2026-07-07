@@ -25,9 +25,7 @@ signal updated
 func setup():
 	title.text = PluginManager.get_plugin_name(id)
 	author.text = PluginManager.get_plugin_author(id)
-	version_diff.text = (
-		PluginManager.get_plugin_version(id) + " → " + PluginManager.get_plugin_latest_version(id)
-	)
+	version_diff.text = (PluginManager.get_plugin_version(id) + " → " + PluginManager.get_plugin_latest_version(id))
 	await get_tree().process_frame
 	version_diff_container.custom_minimum_size.x = version_diff.get_parent().get_minimum_size().x
 	version_diff_container._update()

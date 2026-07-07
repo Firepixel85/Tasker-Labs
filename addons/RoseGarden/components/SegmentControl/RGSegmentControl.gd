@@ -73,32 +73,14 @@ func select(item: String):
 	var length := 0
 	for i in index:
 		length += array[i] + 8
-	(
-		tween
-		. tween_property(
-			selector,
-			"position",
-			Vector2(length, selector.position.y),
-			(
-				0.15
-				* int(!RoseGarden.Accessibility.get_disable_animations())
-				* int(RoseGarden.Animations.sgSelection)
-			)
-		)
-		. set_ease(Tween.EASE_OUT)
-		. set_trans(Tween.TRANS_CUBIC)
-	)
+	(tween . tween_property( selector, "position", Vector2(length, selector.position.y), ( 0.15 * int(!RoseGarden.Accessibility.get_disable_animations()) * int(RoseGarden.Animations.sgSelection) ) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	(
 		tween
 		. tween_property(
 			selector,
 			"size",
 			Vector2(array[index], selector.size.y),
-			(
-				0.15
-				* int(!RoseGarden.Accessibility.get_disable_animations())
-				* int(RoseGarden.Animations.sgSelection)
-			)
+			(0.15 * int(!RoseGarden.Accessibility.get_disable_animations()) * int(RoseGarden.Animations.sgSelection))
 		)
 		. set_ease(Tween.EASE_OUT)
 		. set_trans(Tween.TRANS_CUBIC)

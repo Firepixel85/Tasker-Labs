@@ -27,15 +27,10 @@ func display_plugins():
 	await get_tree().process_frame
 
 	for plugin_id in PluginManager.get_all_plugins():
-		if (
-			PluginManager.is_developer_plugin(plugin_id)
-			and !Settings.get_option_value("core.developer/dev_tools")
-		):
+		if (PluginManager.is_developer_plugin(plugin_id) and !Settings.get_option_value("core.developer/dev_tools")):
 			return
 
-		var plugin_view: PluginInstalled = (
-			preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
-		)
+		var plugin_view: PluginInstalled = (preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 		if PluginManager.is_plugin_loaded(plugin_id):
 			enabled_container.add_child(plugin_view)
 			plugin_view = enabled_container.get_child(enabled_container.get_child_count() - 1)
@@ -83,31 +78,22 @@ func move_plugin(plugin_id: String):
 	var plugin_enabled: PluginInstalled
 	var plugin_disabled: PluginInstalled
 	for plugin in PluginManager.get_all_plugins():
-		if (
-			PluginManager.is_developer_plugin(plugin_id)
-			and !Settings.get_option_value("core.developer/dev_tools")
-		):
+		if (PluginManager.is_developer_plugin(plugin_id) and !Settings.get_option_value("core.developer/dev_tools")):
 			return
 
 		if plugin == plugin_id:
-			enabled_container.add_child(
-				preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
-			)
+			enabled_container.add_child(preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			plugin_enabled = enabled_container.get_child(enabled_container.get_child_count() - 1)
 			plugin_enabled.plugin_id = plugin_id
 			plugin_enabled.setup()
 			plugin_enabled.modulate = Color(0, 1, 0, 0)
-			disabled_container.add_child(
-				preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
-			)
+			disabled_container.add_child(preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			plugin_disabled = disabled_container.get_child(disabled_container.get_child_count() - 1)
 			plugin_disabled.plugin_id = plugin_id
 			plugin_disabled.setup()
 			plugin_disabled.modulate = Color(1, 0, 0, 0)
 		else:
-			var plugin_view: PluginInstalled = (
-				preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
-			)
+			var plugin_view: PluginInstalled = (preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			if PluginManager.is_plugin_loaded(plugin):
 				enabled_container.add_child(plugin_view)
 				plugin_view = enabled_container.get_child(enabled_container.get_child_count() - 1)
@@ -134,69 +120,15 @@ func move_plugin(plugin_id: String):
 	await anim_plugin.setup()
 	anim_plugin.position = init_pos
 	var tween = create_tween()
-	(
-		tween
-		. tween_property(
-			anim_plugin,
-			"position",
-			final_pos,
-			0.3 * int(!RoseGarden.Accessibility.disableAnimations)
-		)
-		. set_ease(Tween.EASE_OUT)
-		. set_trans(Tween.TRANS_CUBIC)
-	)
+	(tween . tween_property( anim_plugin, "position", final_pos, 0.3 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	if PluginManager.is_plugin_loaded(plugin_id):
 		plugin_enabled.custom_minimum_size = Vector2(0, 256)
-		(
-			tween
-			. parallel()
-			. tween_property(
-				plugin_enabled,
-				"custom_minimum_size",
-				Vector2(512, 256),
-				0.3 * int(!RoseGarden.Accessibility.disableAnimations)
-			)
-			. set_ease(Tween.EASE_OUT)
-			. set_trans(Tween.TRANS_CUBIC)
-		)
-		(
-			tween
-			. parallel()
-			. tween_property(
-				plugin_disabled,
-				"custom_minimum_size",
-				Vector2(0, 256),
-				0.3 * int(!RoseGarden.Accessibility.disableAnimations)
-			)
-			. set_ease(Tween.EASE_OUT)
-			. set_trans(Tween.TRANS_CUBIC)
-		)
+		(tween . parallel() . tween_property( plugin_enabled, "custom_minimum_size", Vector2(512, 256), 0.3 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
+		(tween . parallel() . tween_property( plugin_disabled, "custom_minimum_size", Vector2(0, 256), 0.3 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	else:
 		plugin_disabled.custom_minimum_size = Vector2(0, 256)
-		(
-			tween
-			. parallel()
-			. tween_property(
-				plugin_disabled,
-				"custom_minimum_size",
-				Vector2(512, 256),
-				0.3 * int(!RoseGarden.Accessibility.disableAnimations)
-			)
-			. set_ease(Tween.EASE_OUT)
-			. set_trans(Tween.TRANS_CUBIC)
-		)
-		(
-			tween
-			. parallel()
-			. tween_property(
-				plugin_enabled,
-				"custom_minimum_size",
-				Vector2(0, 256),
-				0.3 * int(!RoseGarden.Accessibility.disableAnimations)
-			)
-			. set_ease(Tween.EASE_OUT)
-			. set_trans(Tween.TRANS_CUBIC)
-		)
+		(tween . parallel() . tween_property( plugin_disabled, "custom_minimum_size", Vector2(512, 256), 0.3 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
+		(tween . parallel() . tween_property( plugin_enabled, "custom_minimum_size", Vector2(0, 256), 0.3 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	await tween.finished
 	animation_layer.remove_child(anim_plugin)
 	if PluginManager.is_plugin_loaded(plugin_id):
@@ -251,18 +183,10 @@ func _process(_delta: float) -> void:
 		updates_button.press()
 
 	for i in range(9):
-		if (
-			Input.is_action_just_pressed(str(i + 1))
-			and Input.is_key_pressed(KEY_SHIFT)
-			and enabled_container.get_child_count() > i
-		):
+		if (Input.is_action_just_pressed(str(i + 1)) and Input.is_key_pressed(KEY_SHIFT) and enabled_container.get_child_count() > i):
 			PluginManager.unload_plugin(enabled_container.get_child(i).plugin_id)
 			move_plugin(enabled_container.get_child(i).plugin_id)
-		elif (
-			Input.is_action_just_pressed(str(i + 1))
-			and Input.is_key_pressed(KEY_ALT)
-			and disabled_container.get_child_count() > i
-		):
+		elif (Input.is_action_just_pressed(str(i + 1)) and Input.is_key_pressed(KEY_ALT) and disabled_container.get_child_count() > i):
 			PluginManager.load_plugin(disabled_container.get_child(i).plugin_id)
 			move_plugin(disabled_container.get_child(i).plugin_id)
 

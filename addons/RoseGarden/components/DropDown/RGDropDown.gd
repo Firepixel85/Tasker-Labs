@@ -32,12 +32,7 @@ func add_item(item_name: String, item_id: int):
 		return Error.ERR_ALREADY_EXISTS
 	items.append(item_name)
 	item_ids.append(item_id)
-	menu_item_container.add_child(
-		(
-			preload("res://addons/RoseGarden/components/DropDown/Menu Item/RGmenu_item.tscn")
-			. instantiate()
-		)
-	)
+	menu_item_container.add_child(( preload("res://addons/RoseGarden/components/DropDown/Menu Item/RGmenu_item.tscn") . instantiate() ))
 	var target: Control = menu_item_container.get_children()[
 		menu_item_container.get_children().size() - 1
 	]
@@ -112,20 +107,7 @@ func _update():
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
-	(
-		create_tween()
-		. tween_property(
-			menu_container,
-			"size",
-			Vector2(size.x, (menu_item_container.get_child_count() * 52) + 12),
-			(
-				0.07
-				* int(!RoseGarden.Accessibility.get_disable_animations())
-				* int(RoseGarden.Animations.ddmAppearance)
-			)
-		)
-		. set_trans(Tween.TRANS_SINE)
-	)
+	(create_tween() . tween_property( menu_container, "size", Vector2(size.x, (menu_item_container.get_child_count() * 52) + 12), ( 0.07 * int(!RoseGarden.Accessibility.get_disable_animations()) * int(RoseGarden.Animations.ddmAppearance) ) ) . set_trans(Tween.TRANS_SINE))
 	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
 	if !items.size() == 0:
@@ -169,16 +151,7 @@ func _close(invisible: bool = false):
 	var open = false
 	var tween = create_tween()
 	selection.hide()
-	(
-		tween
-		. tween_property(
-			menu_container,
-			"size",
-			size,
-			0.07 * int(!RoseGarden.Accessibility.get_disable_animations())
-		)
-		. set_trans(Tween.TRANS_SINE)
-	)
+	(tween . tween_property( menu_container, "size", size, 0.07 * int(!RoseGarden.Accessibility.get_disable_animations()) ) . set_trans(Tween.TRANS_SINE))
 	await get_tree().create_timer(0.07 * int(!invisible)).timeout
 	menu_container.hide()
 	closed.emit()
@@ -195,21 +168,7 @@ func _new_menu_item(node: Node) -> void:
 
 func _on_menu_item_highlighted(id: int) -> void:
 	selection.visible = true
-	(
-		create_tween()
-		. tween_property(
-			selection,
-			"position",
-			Vector2(selection.position.x, 52 * _find_index(item_ids, id)),
-			(
-				0.07
-				* int(!RoseGarden.Accessibility.get_disable_animations())
-				* int(RoseGarden.Animations.ddmSelection)
-			)
-		)
-		. set_ease(Tween.EASE_OUT)
-		. set_trans(Tween.TRANS_CUBIC)
-	)
+	(create_tween() . tween_property( selection, "position", Vector2(selection.position.x, 52 * _find_index(item_ids, id)), ( 0.07 * int(!RoseGarden.Accessibility.get_disable_animations()) * int(RoseGarden.Animations.ddmSelection) ) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 
 
 func _on_focus_exited() -> void:

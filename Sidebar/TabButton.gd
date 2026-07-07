@@ -25,11 +25,7 @@ func _mouse_exited():
 
 
 func _gui_input(event: InputEvent):
-	if (
-		event is InputEventMouseButton
-		and event.button_index == MOUSE_BUTTON_MASK_RIGHT
-		and event.pressed
-	):
+	if (event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MASK_RIGHT and event.pressed):
 		var menu: RGmenu = RGmenu.new()
 		menu.add_action("Select", Texture2D.new(), Sidebar.select_tab, [id], false)
 		menu.add_seperator()

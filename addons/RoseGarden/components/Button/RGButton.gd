@@ -17,18 +17,10 @@ var color := "Gray":
 			return
 		color = new_value
 		if base != null:
-			base.texture = load(
-				RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg"
-			)
+			base.texture = load(RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg")
 		if label == null:
 			return
-		if (
-			color == "White"
-			or (
-				(color == "Yellow" or color == "Green" or color == "Teal")
-				and RoseGarden.Accessibility.get_increase_contrast()
-			)
-		):
+		if (color == "White" or ( (color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast() )):
 			label.modulate = Color(0, 0, 0)
 			texture.modulate = Color(0, 0, 0)
 		else:
@@ -83,16 +75,8 @@ func set_color(new_color: String):
 	if !Engine.is_editor_hint() and RoseGarden.Colors.verify_color(new_color, true) != OK:
 		return ERR_INVALID_PARAMETER
 	color = new_color
-	base.texture = load(
-		RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg"
-	)
-	if (
-		color == "White"
-		or (
-			(color == "Yellow" or color == "Green" or color == "Teal")
-			and RoseGarden.Accessibility.get_increase_contrast()
-		)
-	):
+	base.texture = load(RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg")
+	if (color == "White" or ( (color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast() )):
 		label.modulate = Color(0, 0, 0)
 		texture.modulate = Color(0, 0, 0)
 	else:
@@ -163,9 +147,7 @@ func _update():
 		return
 	label.text = text
 	texture.texture = icon
-	base.texture = load(
-		RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg"
-	)
+	base.texture = load(RoseGarden._get_file_path() + "Button/Base" + connection + "/Base" + color + ".svg")
 	custom_minimum_size.x = label.size.x + texture.size.x + 136
 	label.visible = true
 	content_margin.add_theme_constant_override("margin_left", 64)

@@ -26,9 +26,7 @@ func _enter_tree() -> void:
 	_toolbar_button = Button.new()
 	_toolbar_button.name = "AddRoseGardenComponent"
 	_toolbar_button.text = ""
-	_toolbar_button.icon = load(
-		"res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg"
-	)
+	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg")
 	_toolbar_button.tooltip_text = "Add Rose Garden Component"
 	_dialog.hide()
 
@@ -54,9 +52,7 @@ func _enter_tree() -> void:
 
 	if not editor_settings.has_setting("addons/rose_garden/open_dialog_shortcut"):
 		editor_settings.set_setting("addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G")
-		editor_settings.set_initial_value(
-			"addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G", false
-		)
+		editor_settings.set_initial_value("addons/rose_garden/open_dialog_shortcut", "Ctrl+Shift+G", false)
 
 
 func _exit_tree() -> void:
@@ -75,9 +71,7 @@ func _exit_tree() -> void:
 
 
 func _on_toolbar_button_pressed() -> void:
-	_toolbar_button.icon = load(
-		"res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg"
-	)
+	_toolbar_button.icon = load("res://addons/RoseGarden/IconColors/Icon" + str(randi_range(1, 3)) + ".svg")
 	_dialog.popup_centered()
 	_dialog.search.select_all()
 	_dialog.list.select(0)

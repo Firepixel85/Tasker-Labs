@@ -19,9 +19,7 @@ func _ready() -> void:
 
 func setup():
 	for id in Settings._category_list:
-		category_handler._add_category(
-			Settings.get_category_name(id), Settings.get_category_icon(id), id
-		)
+		category_handler._add_category(Settings.get_category_name(id), Settings.get_category_icon(id), id)
 	if _opened_category == "":
 		category_handler._select(Settings._category_list[0])
 	category_handler._select(_opened_category)
@@ -80,22 +78,9 @@ func _process(_delta: float) -> void:
 		var new_i = i - 1
 		if i == 0:
 			new_i = 9
-		if (
-			Input.is_action_just_pressed(str(i))
-			and Input.is_key_pressed(KEY_SHIFT)
-			and option_handler.get_child_count() > new_i
-		):
+		if (Input.is_action_just_pressed(str(i)) and Input.is_key_pressed(KEY_SHIFT) and option_handler.get_child_count() > new_i):
 			if !option_handler.get_child(new_i).has_method("interact"):
-				Debug.warn(
-					(
-						"Option "
-						+ _opened_category
-						+ "/"
-						+ option_handler.get_child(new_i).name
-						+ " can't be interacted with, because it doesn't have an interact method"
-					),
-					"core.settings"
-				)
+				Debug.warn(( "Option " + _opened_category + "/" + option_handler.get_child(new_i).name + " can't be interacted with, because it doesn't have an interact method" ), "core.settings")
 				return
 			option_handler.get_child(new_i).interact()
 
@@ -114,26 +99,14 @@ func _open_keybinds():
 	if keybind_spacer.custom_minimum_size.x == 70:
 		return
 	var tween = create_tween()
-	(
-		tween
-		. tween_property(
-			keybind_spacer,
-			"custom_minimum_size:x",
-			70,
-			0.25 * int(!RoseGarden.Accessibility.disableAnimations)
-		)
-		. set_ease(Tween.EASE_OUT)
-		. set_trans(Tween.TRANS_CUBIC)
-	)
+	(tween . tween_property( keybind_spacer, "custom_minimum_size:x", 70, 0.25 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	for i in range(option_handler.get_child_count()):
 		if i > 9:
 			break
 		var new_i = i + 1
 		if new_i == 10:
 			new_i = 0
-		keybind_spacer.add_child(
-			preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate()
-		)
+		keybind_spacer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
 		var keybind = keybind_spacer.get_child(keybind_spacer.get_child_count() - 1)
 		keybind.set_text(str(new_i))
 		keybind._update()
@@ -145,16 +118,6 @@ func _open_keybinds():
 
 func _close_keybinds():
 	var tween = create_tween()
-	(
-		tween
-		. tween_property(
-			keybind_spacer,
-			"custom_minimum_size:x",
-			0,
-			0.25 * int(!RoseGarden.Accessibility.disableAnimations)
-		)
-		. set_ease(Tween.EASE_OUT)
-		. set_trans(Tween.TRANS_CUBIC)
-	)
+	(tween . tween_property( keybind_spacer, "custom_minimum_size:x", 0, 0.25 * int(!RoseGarden.Accessibility.disableAnimations) ) . set_ease(Tween.EASE_OUT) . set_trans(Tween.TRANS_CUBIC))
 	for child in keybind_spacer.get_children():
 		child.queue_free()

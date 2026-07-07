@@ -86,9 +86,7 @@ class GitHubAuth:
 			"client_id=%s&client_secret=%s&code=%s&redirect_uri=%s"
 			% [CLIENT_ID, CLIENT_SECRET, code.split(" ")[0], REDIRECT_URI]
 		)
-		http.request(
-			"https://github.com/login/oauth/access_token", headers, HTTPClient.METHOD_POST, body
-		)
+		http.request("https://github.com/login/oauth/access_token", headers, HTTPClient.METHOD_POST, body)
 		var response = await http.request_completed
 		http.queue_free()
 		var response_code: int = response[1]
