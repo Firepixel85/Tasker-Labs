@@ -4,7 +4,7 @@ extends NinePatchRect
 #### STOP #### This is a support script for RGSectionView, it should not be used by your code directly
 ##############
 
-var id:int
+var id: int
 var manager
 
 
@@ -17,15 +17,43 @@ func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update)
 	ready.emit()
 
+
 func _update():
-	texture = load(RoseGarden._get_file_path()+"SectionView/Section.svg")
+	texture = load(RoseGarden._get_file_path() + "SectionView/Section.svg")
 	if manager.get_selected() == id:
-		create_tween().tween_property(self,"custom_minimum_size",Vector2(48,12),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.svChange)).set_trans(Tween.TRANS_SINE)
-		modulate = Color(1,1,1)
+		(
+			create_tween()
+			. tween_property(
+				self,
+				"custom_minimum_size",
+				Vector2(48, 12),
+				(
+					0.2
+					* int(!RoseGarden.Accessibility.get_disable_animations())
+					* int(RoseGarden.Animations.svChange)
+				)
+			)
+			. set_trans(Tween.TRANS_SINE)
+		)
+		modulate = Color(1, 1, 1)
 	else:
-		create_tween().tween_property(self,"custom_minimum_size",Vector2(12,12),0.2*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.svChange)).set_trans(Tween.TRANS_SINE)
-		modulate = Color(0.67,0.67,0.67)
+		(
+			create_tween()
+			. tween_property(
+				self,
+				"custom_minimum_size",
+				Vector2(12, 12),
+				(
+					0.2
+					* int(!RoseGarden.Accessibility.get_disable_animations())
+					* int(RoseGarden.Animations.svChange)
+				)
+			)
+			. set_trans(Tween.TRANS_SINE)
+		)
+		modulate = Color(0.67, 0.67, 0.67)
+
 
 @warning_ignore("unused_parameter")
-func _median_update(new_selection): #The section_selected signal has a property attachted that is not used by _update, this just removes the need for that property
+func _median_update(new_selection):  #The section_selected signal has a property attachted that is not used by _update, this just removes the need for that property
 	_update()

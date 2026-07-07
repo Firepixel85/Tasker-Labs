@@ -2,25 +2,29 @@
 extends Node
 
 signal update_components
-signal flags_changed(flag_name:String,new_value:bool)
+signal flags_changed(flag_name: String, new_value: bool)
 signal rcm_closed
+
+
 func _ready() -> void:
 	custom_themes_changed.connect(Themes._update_themes)
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
 
+
 #######################
 #### Accessibility ####
 #######################
 
-class Accessibility:
-	static var disableAnimations:bool = false
-	static var increaseContrast:bool = false
 
-	static func set_disable_animations(value:bool):
+class Accessibility:
+	static var disableAnimations: bool = false
+	static var increaseContrast: bool = false
+
+	static func set_disable_animations(value: bool):
 		disableAnimations = value
 
-	static func set_increase_contrast(value:bool):
+	static func set_increase_contrast(value: bool):
 		increaseContrast = value
 		RoseGarden.update_components.emit()
 
@@ -30,12 +34,13 @@ class Accessibility:
 	static func get_increase_contrast():
 		return increaseContrast
 
+
 ################
 #### Colors ####
 ################
 
-class Colors:
 
+class Colors:
 	const GRAY_HIGHLIGHT = Color("414141")
 	const WHITE_HIGHLIGHT = Color("DADADA")
 	const RED_HIGHLIGHT = Color("E74747")
@@ -58,64 +63,67 @@ class Colors:
 	const PINK = "Pink"
 	const PURPLE = "Purple"
 
-	const COLOR_NORMAL = Color(1,1,1)
-	const COLOR_PRESSED = Color(0.65,0.65,0.65)
-	const COLOR_HOVERED = Color(0.85,0.85,0.85)
-	const COLOR_DISABLED = Color(0.6,0.6,0.6)
-	const COLOR_DISABLED_HOVERED = Color(0.55,0.55,0.55)
+	const COLOR_NORMAL = Color(1, 1, 1)
+	const COLOR_PRESSED = Color(0.65, 0.65, 0.65)
+	const COLOR_HOVERED = Color(0.85, 0.85, 0.85)
+	const COLOR_DISABLED = Color(0.6, 0.6, 0.6)
+	const COLOR_DISABLED_HOVERED = Color(0.55, 0.55, 0.55)
 
 	const TEXT_MAIN = Color("F5F5F5")
 	const TEXT_SECONDARY = Color("ACACAC")
 	const TEXT_DARK = Color("0A0A0A")
 
 	static var _color_dic = {
-		"Gray":Color("1D1D1D"),
-		"White":Color("FDFDFD"),
-		"Red":Color("D72D2C"),
-		"Orange":Color("F7821C"),
-		"Yellow":Color("FBC600"),
-		"Green":Color("2AD62E"),
-		"Teal":Color("49DAC9"),
-		"Blue":Color("3993EC"),
-		"Pink":Color("F167AE"),
-		"Purple":Color("7A3FE7")
+		"Gray": Color("1D1D1D"),
+		"White": Color("FDFDFD"),
+		"Red": Color("D72D2C"),
+		"Orange": Color("F7821C"),
+		"Yellow": Color("FBC600"),
+		"Green": Color("2AD62E"),
+		"Teal": Color("49DAC9"),
+		"Blue": Color("3993EC"),
+		"Pink": Color("F167AE"),
+		"Purple": Color("7A3FE7")
 	}
 
-	static func verify_color(color:String,use_easter_eggs:bool=false):
+	static func verify_color(color: String, use_easter_eggs: bool = false):
 		if !use_easter_eggs:
 			match color:
-				"Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple":
+				"Gray", "White", "Red", "Orange", "Yellow", "Green", "Teal", "Blue", "Pink", "Purple":
 					return OK
 				_:
 					return Error.ERR_INVALID_PARAMETER
 
 		else:
 			match color:
-				"Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple","Tasker":
+				"Gray", "White", "Red", "Orange", "Yellow", "Green", "Teal", "Blue", "Pink", "Purple", "Tasker":
 					return OK
 				_:
 					return Error.ERR_INVALID_PARAMETER
 
-	static func get_color(color:String):
+	static func get_color(color: String):
 		if !verify_color(color) == OK:
 			return ERR_INVALID_PARAMETER
 		return _color_dic[color]
 
+
 class Animations:
-	static var buttonPress:bool = true
-	static var togglePress:bool = true
-	static var sgSelection:bool = true #sg: SegmentedControl
-	static var svChange:bool = true #sv: SectionView
-	static var rcmSelection:bool = false #rcm: RightClickMenu
-	static var rcmAppearance:bool = true
-	static var ddmSelection:bool = false #ddm: DropDownMenu
-	static var ddmAppearance:bool = true
-	static var toastAppearance:bool = true
-	static var tooltipAppearance:bool = true
+	static var buttonPress: bool = true
+	static var togglePress: bool = true
+	static var sgSelection: bool = true  #sg: SegmentedControl
+	static var svChange: bool = true  #sv: SectionView
+	static var rcmSelection: bool = false  #rcm: RightClickMenu
+	static var rcmAppearance: bool = true
+	static var ddmSelection: bool = false  #ddm: DropDownMenu
+	static var ddmAppearance: bool = true
+	static var toastAppearance: bool = true
+	static var tooltipAppearance: bool = true
+
 
 ################
 #### Themes ####
 ################
+
 
 class Themes:
 	static var Main = load("res://addons/RoseGarden/themes/Main.tres")
@@ -130,43 +138,48 @@ class Themes:
 	static var FinePrintRound = load("res://addons/RoseGarden/themes/FinePrintRound.tres")
 
 	static func _update_themes():
-		Main = load(RoseGarden._theme_path+"Main.tres")
-		Secondary = load(RoseGarden._theme_path+"Secondary.tres")
-		Large = load(RoseGarden._theme_path+"Large.tres")
-		Info = load(RoseGarden._theme_path+"Info.tres")
-		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
+		Main = load(RoseGarden._theme_path + "Main.tres")
+		Secondary = load(RoseGarden._theme_path + "Secondary.tres")
+		Large = load(RoseGarden._theme_path + "Large.tres")
+		Info = load(RoseGarden._theme_path + "Info.tres")
+		FinePrint = load(RoseGarden._theme_path + "FinePrint.tres")
+
 
 class Flags:
-	static var accessible_toggles:bool = false
+	static var accessible_toggles: bool = false
 
-	static func change_flag(flag_name:String,value:bool):
+	static func change_flag(flag_name: String, value: bool):
 		match flag_name:
 			"accessible_toggles":
 				accessible_toggles = value
 				RoseGarden.update_components.emit()
 			_:
 				return ERR_INVALID_PARAMETER
-		RoseGarden.flags_changed.emit(flag_name,value)
+		RoseGarden.flags_changed.emit(flag_name, value)
 		return OK
+
 
 #########################
 #### Custom Textures ####
 #########################
 
-var useCustomTextures:bool = false
-var customTexturePath:String = ""
-var _file_path:String = "res://addons/RoseGarden/components/"
+var useCustomTextures: bool = false
+var customTexturePath: String = ""
+var _file_path: String = "res://addons/RoseGarden/components/"
 signal custom_textures_changed
 
-func set_custom_texture_path(path:String):
+
+func set_custom_texture_path(path: String):
 	if !FileAccess.file_exists(path):
 		push_error("RoseGarden: The provided custom texture path does not exist.")
 		return
 	customTexturePath = path
-	_file_path = path+"/"
+	_file_path = path + "/"
+
 
 func _get_file_path():
 	return _file_path
+
 
 func disable_custom_textures():
 	useCustomTextures = false
@@ -174,39 +187,45 @@ func disable_custom_textures():
 	_file_path = "res://addons/RoseGarden/components/"
 	custom_textures_changed.emit()
 
-func enable_custom_textures(file_path:String):
+
+func enable_custom_textures(file_path: String):
 	useCustomTextures = true
 	if !FileAccess.file_exists(file_path):
 		push_error("RoseGarden: The provided custom texture path does not exist.")
-	customTexturePath = file_path+"/"
+	customTexturePath = file_path + "/"
 	custom_textures_changed.emit()
+
 
 ######################
 #### Fonts Themes ####
 ######################
 
-var useCustomThemes:bool = false
-var customThemePath:String = ""
+var useCustomThemes: bool = false
+var customThemePath: String = ""
 signal custom_themes_changed
-var _theme_path:String = "res://addons/RoseGarden/themes/"
+var _theme_path: String = "res://addons/RoseGarden/themes/"
 
-func set_use_custom_themes(value:bool):
+
+func set_use_custom_themes(value: bool):
 	useCustomThemes = value
 
-func set_custom_theme_path(file_path:String):
+
+func set_custom_theme_path(file_path: String):
 	if !FileAccess.file_exists(file_path):
 		push_error("RoseGarden: The provided custom theme path does not exist.")
 	customThemePath = file_path
-	_theme_path = file_path+"/"
+	_theme_path = file_path + "/"
 	custom_themes_changed.emit()
 
-func enable_custom_themes(theme_path:String):
+
+func enable_custom_themes(theme_path: String):
 	if !FileAccess.file_exists(theme_path):
 		push_error("RoseGarden: The provided custom theme path does not exist.")
 	useCustomThemes = true
 	customThemePath = theme_path
-	_theme_path = theme_path+"/"
+	_theme_path = theme_path + "/"
 	custom_themes_changed.emit()
+
 
 func disable_custom_themes():
 	useCustomThemes = false
@@ -214,31 +233,41 @@ func disable_custom_themes():
 	_theme_path = "res://addons/RoseGarden/themes/"
 	custom_themes_changed.emit()
 
+
 func _get_theme_path():
 	return _theme_path
+
 
 ####################################
 #### Right Click Menu Functions ####
 ####################################
 
-var menu_layer:CanvasLayer
-var submenu:RGRighClickMenu
+var menu_layer: CanvasLayer
+var submenu: RGRighClickMenu
 
-func set_menu_layer(layer:CanvasLayer):
+
+func set_menu_layer(layer: CanvasLayer):
 	menu_layer = layer
+
 
 func get_menu_layer():
 	return menu_layer
 
+
 @warning_ignore("unused_parameter")
-func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
+func create_rc_menu(menu_layout: RGmenu, target_position: Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
 	if menu_layer.get_child_count() > 0:
 		_delete_all_menus()
 		return ERR_ALREADY_EXISTS
-	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
-	var menu:RGRighClickMenu = menu_layer.get_child(get_child_count()-1)
+	menu_layer.add_child(
+		(
+			preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn")
+			. instantiate()
+		)
+	)
+	var menu: RGRighClickMenu = menu_layer.get_child(get_child_count() - 1)
 	var position = target_position
 
 	for item in menu_layout.elements:
@@ -247,18 +276,24 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	if target_position.y + menu.size.y > DisplayServer.window_get_size().y:
 		position.y = target_position.y - menu.size.y
 		menu.pivot_offset.y = menu.size.y
-	if target_position.x +menu.size.x > DisplayServer.window_get_size().x:
+	if target_position.x + menu.size.x > DisplayServer.window_get_size().x:
 		position.x = target_position.x - menu.size.x
 		menu.pivot_offset.x = menu.size.x
 	menu.position = position
 	menu._custom_ready()
 	return OK
 
-func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
+
+func _create_rc_submenu(menu_layout: RGmenu, target_position: Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
-	menu_layer.add_child(preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn").instantiate())
-	submenu = menu_layer.get_child(get_child_count()-1)
+	menu_layer.add_child(
+		(
+			preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn")
+			. instantiate()
+		)
+	)
+	submenu = menu_layer.get_child(get_child_count() - 1)
 	submenu.is_submenu = true
 
 	for item in menu_layout.elements:
@@ -270,93 +305,167 @@ func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	if target_position.y + submenu.size.y > DisplayServer.window_get_size().y:
 		position.y = DisplayServer.window_get_size().y - submenu.size.y - 16
 	if target_position.x + submenu.size.x > DisplayServer.window_get_size().x:
-		position.x = target_position.x - submenu.size.x*2 + 4
+		position.x = target_position.x - submenu.size.x * 2 + 4
 		submenu.pivot_offset.x = submenu.size.x
 	submenu.position = position
 	submenu._custom_ready()
 	return OK
 
+
 func _delete_submenu():
 	for child in menu_layer.get_children():
 		if child.is_submenu:
-			child.modulate = Color(1,1,1,0)
+			child.modulate = Color(1, 1, 1, 0)
 	await get_tree().create_timer(0.3).timeout
 	for child in menu_layer.get_children():
 		if child.is_submenu:
 			child.queue_free()
 	submenu = null
 
+
 func _delete_all_menus():
 	await get_tree().create_timer(0.05).timeout
 	var menus = menu_layer.get_children()
 	for child in menus:
-		create_tween().tween_property(child,"scale",Vector2(0,0),0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		(
+			create_tween()
+			. tween_property(
+				child,
+				"scale",
+				Vector2(0, 0),
+				(
+					0.15
+					* int(!RoseGarden.Accessibility.disableAnimations)
+					* int(Animations.rcmAppearance)
+				)
+			)
+			. set_ease(Tween.EASE_OUT)
+			. set_trans(Tween.TRANS_CUBIC)
+		)
 		if child.is_submenu and child.pivot_offset.x == 0:
-			create_tween().tween_property(child,"position:x",child.position.x-child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			(
+				create_tween()
+				. tween_property(
+					child,
+					"position:x",
+					child.position.x - child.size.x,
+					(
+						0.15
+						* int(!RoseGarden.Accessibility.disableAnimations)
+						* int(Animations.rcmAppearance)
+					)
+				)
+				. set_ease(Tween.EASE_OUT)
+				. set_trans(Tween.TRANS_CUBIC)
+			)
 		elif child.is_submenu and child.pivot_offset.x == child.size.x:
-			create_tween().tween_property(child,"position:x",child.position.x+child.size.x,0.15*int(!RoseGarden.Accessibility.disableAnimations)*int(Animations.rcmAppearance)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			(
+				create_tween()
+				. tween_property(
+					child,
+					"position:x",
+					child.position.x + child.size.x,
+					(
+						0.15
+						* int(!RoseGarden.Accessibility.disableAnimations)
+						* int(Animations.rcmAppearance)
+					)
+				)
+				. set_ease(Tween.EASE_OUT)
+				. set_trans(Tween.TRANS_CUBIC)
+			)
 	await get_tree().create_timer(0.1).timeout
 	for child in menus:
 		if child != null:
 			child.queue_free()
 	rcm_closed.emit()
 
+
 func _delete_submenu_instantly():
 	for child in menu_layer.get_children():
 		if child.is_submenu:
 			child.queue_free()
 
+
 ###########################
 #### Tooltip functions ####
 ###########################
 
-var tooltip_layer:CanvasLayer
+var tooltip_layer: CanvasLayer
 
-func set_tooltip_layer(layer:CanvasLayer):
+
+func set_tooltip_layer(layer: CanvasLayer):
 	tooltip_layer = layer
 
-func create_tooltip(tooltip:RGTooltip,position:Vector2):
+
+func create_tooltip(tooltip: RGTooltip, position: Vector2):
 	if tooltip_layer == null:
 		return ERR_DOES_NOT_EXIST
 	if tooltip_layer.get_class() != "CanvasLayer":
 		return ERR_DOES_NOT_EXIST
-	tooltip_layer.add_child(preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate())
-	var tooltip_object = tooltip_layer.get_child(get_child_count()-1)
+	tooltip_layer.add_child(
+		preload("res://addons/RoseGarden/components/Tooltip/RG_tooltip.tscn").instantiate()
+	)
+	var tooltip_object = tooltip_layer.get_child(get_child_count() - 1)
 	tooltip_object.set_text(tooltip.text)
 	tooltip_object.set_show_keybind(tooltip.show_keybind)
 	tooltip_object.set_keybind(tooltip.keybind)
-	await tooltip_object._update() # Please don't ask, please don't remove one
-	await tooltip_object._update() #
-	var target_position = position + Vector2(16,16)
-	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y-16:
+	await tooltip_object._update()  # Please don't ask, please don't remove one
+	await tooltip_object._update()  #
+	var target_position = position + Vector2(16, 16)
+	if target_position.y + tooltip_object.size.y > DisplayServer.window_get_size().y - 16:
 		target_position.y = position.y - tooltip_object.size.y
-	if target_position.x +tooltip_object.size.x > DisplayServer.window_get_size().x-16:
+	if target_position.x + tooltip_object.size.x > DisplayServer.window_get_size().x - 16:
 		target_position.x = position.x - tooltip_object.size.x
 
 	tooltip_object.position = target_position
 	tooltip_object.show()
-	create_tween().tween_property(tooltip_object,"modulate",Color(1,1,1,1),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance))
+	create_tween().tween_property(
+		tooltip_object,
+		"modulate",
+		Color(1, 1, 1, 1),
+		(
+			0.09
+			* int(!RoseGarden.Accessibility.get_disable_animations())
+			* int(Animations.tooltipAppearance)
+		)
+	)
 	return OK
 
-func clear_tooltips(no_animation:bool = false):
+
+func clear_tooltips(no_animation: bool = false):
 	for child in tooltip_layer.get_children():
 		var tween = create_tween()
-		tween.tween_property(child,"modulate",Color(1,1,1,0),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance)*int(!no_animation))
+		tween.tween_property(
+			child,
+			"modulate",
+			Color(1, 1, 1, 0),
+			(
+				0.09
+				* int(!RoseGarden.Accessibility.get_disable_animations())
+				* int(Animations.tooltipAppearance)
+				* int(!no_animation)
+			)
+		)
 		await tween.finished
 		if child != null:
 			child.queue_free()
 	return OK
 
+
 #########################
 #### Toast functions ####
 #########################
 
-var toast_layer:CanvasLayer
-var _toast:RGtoast = null
-func set_toast_layer(layer:CanvasLayer):
+var toast_layer: CanvasLayer
+var _toast: RGtoast = null
+
+
+func set_toast_layer(layer: CanvasLayer):
 	toast_layer = layer
 
-func create_toast(text:String,color:String,clear_time:float=4.0):
+
+func create_toast(text: String, color: String, clear_time: float = 4.0):
 	if toast_layer == null:
 		return ERR_DOES_NOT_EXIST
 	if toast_layer.get_class() != "CanvasLayer":
@@ -365,44 +474,173 @@ func create_toast(text:String,color:String,clear_time:float=4.0):
 		return ERR_INVALID_PARAMETER
 	if toast_layer.get_child_count() > 0:
 		return ERR_ALREADY_EXISTS
-	toast_layer.add_child(preload("res://addons/RoseGarden/components/Toast/RG_toast.tscn").instantiate())
-	_toast = toast_layer.get_child(get_child_count()-1)
+	toast_layer.add_child(
+		preload("res://addons/RoseGarden/components/Toast/RG_toast.tscn").instantiate()
+	)
+	_toast = toast_layer.get_child(get_child_count() - 1)
 	_toast.set_text(text)
 	_toast.set_color(color)
-	_toast.position = Vector2(DisplayServer.window_get_size().x/2-_toast.size.x/2,DisplayServer.window_get_size().y)
-	_toast.modulate = Color(1,1,1,0)
-	_toast.scale = Vector2(0,0)
+	_toast.position = Vector2(
+		DisplayServer.window_get_size().x / 2 - _toast.size.x / 2, DisplayServer.window_get_size().y
+	)
+	_toast.modulate = Color(1, 1, 1, 0)
+	_toast.scale = Vector2(0, 0)
 	var tween = create_tween().set_parallel(true)
 	var curve = preload("res://addons/RoseGarden/components/Toast/anim_curve.tres")
 	var start_pos = _toast.position
 	var start_scale = _toast.scale
-	tween.tween_method(func(t): _toast.position = start_pos.lerp(Vector2(DisplayServer.window_get_size().x/2-_toast.size.x/2,DisplayServer.window_get_size().y-100), curve.sample(t)), 0.0, 1.0, 0.4*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations()))
-	tween.tween_method(func(t): _toast.scale = start_scale.lerp(Vector2(1,1), curve.sample(t)), 0.0, 1.0, 0.4*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations()))
-	tween.tween_property(_toast,"modulate",Color(1,1,1,1),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_method(
+		func(t):
+			_toast.position = start_pos.lerp(
+				Vector2(
+					DisplayServer.window_get_size().x / 2 - _toast.size.x / 2,
+					DisplayServer.window_get_size().y - 100
+				),
+				curve.sample(t)
+			),
+		0.0,
+		1.0,
+		(
+			0.4
+			* int(Animations.toastAppearance)
+			* int(!RoseGarden.Accessibility.get_disable_animations())
+		)
+	)
+	tween.tween_method(
+		func(t): _toast.scale = start_scale.lerp(Vector2(1, 1), curve.sample(t)),
+		0.0,
+		1.0,
+		(
+			0.4
+			* int(Animations.toastAppearance)
+			* int(!RoseGarden.Accessibility.get_disable_animations())
+		)
+	)
+	(
+		tween
+		. tween_property(
+			_toast,
+			"modulate",
+			Color(1, 1, 1, 1),
+			(
+				0.3
+				* int(Animations.toastAppearance)
+				* int(!RoseGarden.Accessibility.get_disable_animations())
+			)
+		)
+		. set_ease(Tween.EASE_OUT)
+		. set_trans(Tween.TRANS_CUBIC)
+	)
 	if clear_time > 0:
 		_clear_toast_timer(clear_time)
 	return OK
 
-func _clear_toast_timer(time:float):
+
+func _clear_toast_timer(time: float):
 	await get_tree().create_timer(time).timeout
 	if _toast == null:
 		return
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(_toast,"position:y",DisplayServer.window_get_size().y,0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(_toast,"scale",Vector2(0,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.tween_property(_toast,"modulate",Color(1,1,1,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	(
+		tween
+		. tween_property(
+			_toast,
+			"position:y",
+			DisplayServer.window_get_size().y,
+			(
+				0.3
+				* int(Animations.toastAppearance)
+				* int(!RoseGarden.Accessibility.get_disable_animations())
+			)
+		)
+		. set_ease(Tween.EASE_OUT)
+		. set_trans(Tween.TRANS_CUBIC)
+	)
+	(
+		tween
+		. tween_property(
+			_toast,
+			"scale",
+			Vector2(0, 0),
+			(
+				0.3
+				* int(Animations.toastAppearance)
+				* int(!RoseGarden.Accessibility.get_disable_animations())
+			)
+		)
+		. set_ease(Tween.EASE_OUT)
+		. set_trans(Tween.TRANS_CUBIC)
+	)
+	(
+		tween
+		. tween_property(
+			_toast,
+			"modulate",
+			Color(1, 1, 1, 0),
+			(
+				0.3
+				* int(Animations.toastAppearance)
+				* int(!RoseGarden.Accessibility.get_disable_animations())
+			)
+		)
+		. set_ease(Tween.EASE_OUT)
+		. set_trans(Tween.TRANS_CUBIC)
+	)
 	await tween.finished
 	if _toast != null:
 		_toast.queue_free()
 		_toast = null
 
+
 func clear_toast():
 	_toast = null
 	var tween = create_tween().set_parallel(true)
 	for child in toast_layer.get_children():
-		tween.tween_property(child,"position:y",DisplayServer.window_get_size().y,0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tween.tween_property(child,"scale",Vector2(0,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tween.tween_property(child,"modulate",Color(1,1,1,0),0.3*int(Animations.toastAppearance)*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		(
+			tween
+			. tween_property(
+				child,
+				"position:y",
+				DisplayServer.window_get_size().y,
+				(
+					0.3
+					* int(Animations.toastAppearance)
+					* int(!RoseGarden.Accessibility.get_disable_animations())
+				)
+			)
+			. set_ease(Tween.EASE_OUT)
+			. set_trans(Tween.TRANS_CUBIC)
+		)
+		(
+			tween
+			. tween_property(
+				child,
+				"scale",
+				Vector2(0, 0),
+				(
+					0.3
+					* int(Animations.toastAppearance)
+					* int(!RoseGarden.Accessibility.get_disable_animations())
+				)
+			)
+			. set_ease(Tween.EASE_OUT)
+			. set_trans(Tween.TRANS_CUBIC)
+		)
+		(
+			tween
+			. tween_property(
+				child,
+				"modulate",
+				Color(1, 1, 1, 0),
+				(
+					0.3
+					* int(Animations.toastAppearance)
+					* int(!RoseGarden.Accessibility.get_disable_animations())
+				)
+			)
+			. set_ease(Tween.EASE_OUT)
+			. set_trans(Tween.TRANS_CUBIC)
+		)
 		await tween.finished
 		if child != null:
 			child.queue_free()

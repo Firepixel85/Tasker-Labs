@@ -3,20 +3,33 @@ extends Control
 @onready var container: MarginContainer = $RGContainer/MarginContainer
 @onready var title_text: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Title
 @onready var description_text: Label = $RGContainer/MarginContainer/VBoxContainer/Description
-@onready var action_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action
-@onready var title_spacer: Control = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TitleSpacer
+@onready
+var action_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action
+@onready
+var title_spacer: Control = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TitleSpacer
 
-var action:Callable
-var action_params:Array
+var action: Callable
+var action_params: Array
+
 
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
+
 
 func _on_action_pressed() -> void:
 	action.callv(action_params)
 	Popups.clear_popup()
 
-func setup(title:String,description:String,new_action:Callable,new_action_params:Array,action_name:String,color:String,title_alignment:int):
+
+func setup(
+	title: String,
+	description: String,
+	new_action: Callable,
+	new_action_params: Array,
+	action_name: String,
+	color: String,
+	title_alignment: int
+):
 	title_text.text = title
 	description_text.text = description
 	action = new_action
@@ -37,7 +50,8 @@ func setup(title:String,description:String,new_action:Callable,new_action_params
 	custom_minimum_size.y = container.get_minimum_size().y
 	container.get_parent()._update()
 	title_text._update()
-	container.position = Vector2(0,0)
+	container.position = Vector2(0, 0)
+
 
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_confirm"):

@@ -9,13 +9,15 @@ const COMPONENTS_ROOT = "res://addons/RoseGarden/components/"
 @onready var search: LineEdit = $Background/MarginContainer/VBoxContainer/LineEdit
 @onready var list: ItemList = $Background/MarginContainer/VBoxContainer/ItemList
 @onready var btn_add: Button = $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonAdd
-@onready var btn_cancel: Button	= $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel
+@onready
+var btn_cancel: Button = $Background/MarginContainer/VBoxContainer/HBoxContainer/ButtonCancel
 @onready var background: TextureRect = $Background
 @onready var description: RichTextLabel = $Background/MarginContainer/VBoxContainer/RichTextLabel
 
 # lated in _ready by scanning the components folder
 var _all_components: Array[Dictionary] = []
 var _component_by_index: Dictionary = {}
+
 
 func _ready() -> void:
 	var image = Image.create(1, 1, false, Image.FORMAT_RGBA8)
@@ -43,9 +45,14 @@ func _scan_components() -> void:
 			var scene_path_array = (COMPONENTS_ROOT + entry + "/RG" + entry + ".tscn").split(" ")
 
 			if ResourceLoader.exists(scene_path):
-				_all_components.append({"name": _to_display_name(entry),"path": scene_path})
+				_all_components.append({"name": _to_display_name(entry), "path": scene_path})
 			else:
-				push_warning("RoseGarden: Found folder '%s' but no matching .tscn at: %s" % [entry, scene_path])
+				push_warning(
+					(
+						"RoseGarden: Found folder '%s' but no matching .tscn at: %s"
+						% [entry, scene_path]
+					)
+				)
 		entry = dir.get_next()
 	dir.list_dir_end()
 
@@ -59,16 +66,18 @@ func _populate_list(filter: String) -> void:
 		if filter.is_empty() or comp["name"].to_lower().contains(filter.to_lower()):
 			_component_by_index[list.add_item(comp["name"])] = comp
 
+
 func _to_display_name(folder_name: String) -> String:
 	# "rg_text_field" → "RGTextField"
 	var words: Array = Array(folder_name.split("_"))
-	return words.map(func(w): return w.capitalize()) \
-				.reduce(func(a, b): return a + b)
+	return words.map(func(w): return w.capitalize()).reduce(func(a, b): return a + b)
+
 
 func _on_search_changed(text: String) -> void:
 	_populate_list(text)
 	if list.item_count > 0:
 		list.select(0)
+
 
 func _on_add_pressed() -> void:
 	var selected := list.get_selected_items()
@@ -83,8 +92,8 @@ func _on_add_pressed() -> void:
 
 
 func _on_item_list_item_selected(index: int) -> void:
-	var text:String
-	var path:String = "res://addons/RoseGarden/components/"
+	var text: String
+	var path: String = "res://addons/RoseGarden/components/"
 	var path_split = _component_by_index[index]["name"].split(" ")
 	for item in path_split:
 		path += item
@@ -96,17 +105,20 @@ func _on_item_list_item_selected(index: int) -> void:
 	var file = FileAccess.open(path, FileAccess.READ)
 	description.text = file.get_as_text()
 
+
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
-				KEY_ENTER, KEY_KP_ENTER:
-					_on_add_pressed()
-				KEY_ESCAPE:
-					hide()
+			KEY_ENTER, KEY_KP_ENTER:
+				_on_add_pressed()
+			KEY_ESCAPE:
+				hide()
+
 
 func _on_line_edit_text_submitted(new_text: String) -> void:
 	list.select(0)
 	_on_add_pressed()
+
 
 func _input(event: InputEvent) -> void:
 	if not visible:

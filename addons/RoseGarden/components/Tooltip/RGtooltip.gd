@@ -5,28 +5,33 @@ extends Control
 @onready var keybind_container: NinePatchRect = $HBoxContainer/KeybindContainer
 @onready var keybind_text: RGText = $HBoxContainer/KeybindContainer/CenterContainer/KeybindText
 
-@export var text:String = "Text"
-@export var show_keybind:bool = false
-@export var keybind:String = "⌘K"
+@export var text: String = "Text"
+@export var show_keybind: bool = false
+@export var keybind: String = "⌘K"
 
-func set_text(new_text:String):
+
+func set_text(new_text: String):
 	text = new_text
 	_update()
 	return OK
 
-func set_show_keybind(show:bool):
+
+func set_show_keybind(show: bool):
 	show_keybind = show
 	_update()
 	return OK
 
-func set_keybind(new_keybind:String):
+
+func set_keybind(new_keybind: String):
 	keybind = new_keybind
 	_update()
 	return OK
 
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
+
 
 func _update():
 	text_text.set_text(text)
@@ -43,13 +48,16 @@ func _update():
 		text_container.visible = true
 	return OK
 
+
 func _update_textures():
-	text_container.texture = load(RoseGarden._get_file_path()+"Tooltip/Container.svg")
-	keybind_container.texture = load(RoseGarden._get_file_path()+"Tooltip/Container.svg")
+	text_container.texture = load(RoseGarden._get_file_path() + "Tooltip/Container.svg")
+	keybind_container.texture = load(RoseGarden._get_file_path() + "Tooltip/Container.svg")
+
 
 func _process(_delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
+
 
 func _ready():
 	_update()

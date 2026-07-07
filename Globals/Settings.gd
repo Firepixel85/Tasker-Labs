@@ -10,9 +10,10 @@ var _option_order = {}
 var _client = null
 
 signal category_added(category_id)
-signal option_added(option_id,category_id)
-signal setting_changed(option_path,new_value)
+signal option_added(option_id, category_id)
+signal setting_changed(option_path, new_value)
 signal settings_loaded
+
 
 func load_settings():
 	if Data.file_exists("Core/SettingsData"):
@@ -24,31 +25,47 @@ func load_settings():
 		_category_icons = data["category_icons"]
 		_option_order = data["option_order"]
 	else:
-		Data.make_file("SettingsData","Core")
+		Data.make_file("SettingsData", "Core")
 		save_settings()
 	settings_loaded.emit()
 	if option_exists("core.accessibility/disable_animations"):
-		_sync_with_rg("core.accessibility/disable_animations",get_option_value("core.accessibility/disable_animations"))
+		_sync_with_rg(
+			"core.accessibility/disable_animations",
+			get_option_value("core.accessibility/disable_animations")
+		)
 	if option_exists("core.accessibility/increase_contrast"):
-		_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
+		_sync_with_rg(
+			"core.accessibility/increase_contrast",
+			get_option_value("core.accessibility/increase_contrast")
+		)
 	await PluginManager.scan_available_plugins()
 	PluginManager.scan_for_updates()
 	return OK
 
+
 func save_settings():
-	Data.save_to("settings_list",_settings_list,"Core/SettingsData")
-	Data.save_to("settings_values",_settings_values,"Core/SettingsData")
-	Data.save_to("category_names",_category_names,"Core/SettingsData")
-	Data.save_to("category_list",_category_list,"Core/SettingsData")
-	Data.save_to("category_icons",_category_icons,"Core/SettingsData")
-	Data.save_to("option_order",_option_order,"Core/SettingsData")
+	Data.save_to("settings_list", _settings_list, "Core/SettingsData")
+	Data.save_to("settings_values", _settings_values, "Core/SettingsData")
+	Data.save_to("category_names", _category_names, "Core/SettingsData")
+	Data.save_to("category_list", _category_list, "Core/SettingsData")
+	Data.save_to("category_icons", _category_icons, "Core/SettingsData")
+	Data.save_to("option_order", _option_order, "Core/SettingsData")
 	Data.save_file("Core/SettingsData")
+
 
 # Category functions #
 
-func add_category(display_name:String,icon_path:String,category_id:String):
+
+func add_category(display_name: String, icon_path: String, category_id: String):
 	if _settings_list.has(category_id):
-		Debug.warn("A process attempted to add a category with id: "+category_id+" but it already exists",ID)
+		Debug.warn(
+			(
+				"A process attempted to add a category with id: "
+				+ category_id
+				+ " but it already exists"
+			),
+			ID
+		)
 		return ERR_ALREADY_EXISTS
 
 	_settings_list[category_id] = {}
@@ -58,13 +75,16 @@ func add_category(display_name:String,icon_path:String,category_id:String):
 	_category_names[category_id] = display_name
 	_category_icons[category_id] = icon_path
 	category_added.emit(category_id)
-	Debug.log("Category added with id: "+category_id,ID)
+	Debug.log("Category added with id: " + category_id, ID)
 	save_settings()
 	return OK
 
-func remove_category(category_id:String):
+
+func remove_category(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to remove a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			"A process attempted to remove a nonexistant category with id: " + category_id, ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_list.erase(category_id)
@@ -74,146 +94,256 @@ func remove_category(category_id:String):
 	_category_icons.erase(category_id)
 	_option_order.erase(category_id)
 	save_settings()
-	Debug.log("Category removed with id: "+category_id,ID)
+	Debug.log("Category removed with id: " + category_id, ID)
 	return OK
+
 
 func hide_category(category_id):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to hide a nonexistant category with id: "+category_id,ID)
+		Debug.warn("A process attempted to hide a nonexistant category with id: " + category_id, ID)
 		return ERR_DOES_NOT_EXIST
 	if !_category_list.has(category_id):
-		Debug.warn("A process attempted to hide a category with id: "+category_id+" but it is already hidden",ID)
+		Debug.warn(
+			(
+				"A process attempted to hide a category with id: "
+				+ category_id
+				+ " but it is already hidden"
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	_category_list.erase(category_id)
-	Debug.log("Category hidden with id: "+category_id,ID)
+	Debug.log("Category hidden with id: " + category_id, ID)
 	return OK
+
 
 func show_category(category_id):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to show a nonexistant category with id: "+category_id,ID)
+		Debug.warn("A process attempted to show a nonexistant category with id: " + category_id, ID)
 		return ERR_DOES_NOT_EXIST
 	if _category_list.has(category_id):
-		Debug.warn("A process attempted to show a category with id: "+category_id+" but it is already shown",ID)
+		Debug.warn(
+			(
+				"A process attempted to show a category with id: "
+				+ category_id
+				+ " but it is already shown"
+			),
+			ID
+		)
 		return ERR_ALREADY_EXISTS
 	_category_list.append(category_id)
-	Debug.log("Category shown with id: "+category_id,ID)
+	Debug.log("Category shown with id: " + category_id, ID)
 	return OK
 
-func is_category_shown(category_id:String):
+
+func is_category_shown(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to check if a nonexistant category with id: "+category_id+" is shown",ID)
+		Debug.warn(
+			(
+				"A process attempted to check if a nonexistant category with id: "
+				+ category_id
+				+ " is shown"
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	return _category_list.has(category_id)
 
-func get_category(category_id:String):
+
+func get_category(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to access a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			"A process attempted to access a nonexistant category with id: " + category_id, ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	return _settings_list[category_id]
 
-func get_category_name(category_id:String):
+
+func get_category_name(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to get the category name of a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			(
+				"A process attempted to get the category name of a nonexistant category with id: "
+				+ category_id
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	return _category_names[category_id]
 
-func get_category_icon(category_id:String):
+
+func get_category_icon(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to get the icon of a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			"A process attempted to get the icon of a nonexistant category with id: " + category_id,
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	return load(_category_icons[category_id])
 
-func category_exists(category_id:String):
+
+func category_exists(category_id: String):
 	return _settings_list.has(category_id)
+
 
 # Option functions #
 
-func add_option(category_id:String,option_id:String,option_scene_path:String,default_value):
+
+func add_option(category_id: String, option_id: String, option_scene_path: String, default_value):
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to add an option to a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			(
+				"A process attempted to add an option to a nonexistant category with id: "
+				+ category_id
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
-		Debug.warn("A process attempted to add an option with id: "+option_id+" to category: "+category_id+" but it already exists",ID)
+		Debug.warn(
+			(
+				"A process attempted to add an option with id: "
+				+ option_id
+				+ " to category: "
+				+ category_id
+				+ " but it already exists"
+			),
+			ID
+		)
 		return ERR_ALREADY_EXISTS
 	if !load(option_scene_path) is PackedScene:
-		Debug.warn("A process attempted to add an option with invalid scene path: "+option_scene_path,ID)
+		Debug.warn(
+			"A process attempted to add an option with invalid scene path: " + option_scene_path, ID
+		)
 		return ERR_INVALID_PARAMETER
 	var instance = load(option_scene_path).instantiate()
 	if !instance.has_method("set_value"):
-		Debug.warn("A process attempted to add an option with scene path: "+option_scene_path+" but it does not have a set_value method",ID)
+		Debug.warn(
+			(
+				"A process attempted to add an option with scene path: "
+				+ option_scene_path
+				+ " but it does not have a set_value method"
+			),
+			ID
+		)
 		return ERR_METHOD_NOT_FOUND
 	if !instance.has_method("get_value"):
-		Debug.warn("A process attempted to add an option with scene path: "+option_scene_path+" but it does not have a get_value method",ID)
+		Debug.warn(
+			(
+				"A process attempted to add an option with scene path: "
+				+ option_scene_path
+				+ " but it does not have a get_value method"
+			),
+			ID
+		)
 		return ERR_METHOD_NOT_FOUND
 
 	_settings_list[category_id][option_id] = option_scene_path
 	_settings_values[category_id][option_id] = default_value
 	_option_order[category_id].append(option_id)
-	option_added.emit(option_id,category_id)
-	setting_changed.emit(category_id+"/"+option_id,default_value)
-	Debug.log("Option added under path: "+category_id+"/"+option_id,ID)
+	option_added.emit(option_id, category_id)
+	setting_changed.emit(category_id + "/" + option_id, default_value)
+	Debug.log("Option added under path: " + category_id + "/" + option_id, ID)
 	save_settings()
 	return OK
 
-func remove_option(option_path:String):
+
+func remove_option(option_path: String):
 	if option_path.split("/").size() != 2:
-		Debug.warn("A process attempted to remove an option with invalid path: "+option_path,ID)
+		Debug.warn("A process attempted to remove an option with invalid path: " + option_path, ID)
 		return ERR_INVALID_PARAMETER
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to remove an option from a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			(
+				"A process attempted to remove an option from a nonexistant category with id: "
+				+ category_id
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
-		Debug.warn("A process attempted to remove a nonexistant option with option path: "+option_path,ID)
+		Debug.warn(
+			"A process attempted to remove a nonexistant option with option path: " + option_path,
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_list[category_id].erase(option_id)
 	_settings_values[category_id].erase(option_id)
 	_option_order[category_id].erase(option_id)
 	save_settings()
-	Debug.log("Option removed at path: "+option_path,ID)
+	Debug.log("Option removed at path: " + option_path, ID)
 	return OK
 
-func get_option_value(option_path:String):
+
+func get_option_value(option_path: String):
 	if option_path.split("/").size() != 2:
-		Debug.warn("A process attempted to get an option value with invalid path: "+option_path,ID)
+		Debug.warn(
+			"A process attempted to get an option value with invalid path: " + option_path, ID
+		)
 		return ERR_INVALID_PARAMETER
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to get an option value from a nonexistant category with id: "+category_id,ID)
+		Debug.warn(
+			(
+				"A process attempted to get an option value from a nonexistant category with id: "
+				+ category_id
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	if !_settings_list[category_id].has(option_id):
-		Debug.warn("A process attempted to get an option value for a nonexistant option with path: "+option_path,ID)
+		Debug.warn(
+			(
+				"A process attempted to get an option value for a nonexistant option with path: "
+				+ option_path
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	return _settings_values[category_id][option_id]
 
-func set_option_value(option_path:String,new_value):
+
+func set_option_value(option_path: String, new_value):
 	if option_path.split("/").size() != 2:
-		Debug.warn("A process attempted to set an option value with an invalid path: "+option_path,ID)
+		Debug.warn(
+			"A process attempted to set an option value with an invalid path: " + option_path, ID
+		)
 		return ERR_INVALID_PARAMETER
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.warn("A process attempted to set an option value for a nonexistant category: "+category_id,ID)
+		Debug.warn(
+			"A process attempted to set an option value for a nonexistant category: " + category_id,
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 	if !_settings_list[category_id].has(option_id):
-		Debug.warn("A process attempted to set an option value for a nonexistant option with path: "+option_path,ID)
+		Debug.warn(
+			(
+				"A process attempted to set an option value for a nonexistant option with path: "
+				+ option_path
+			),
+			ID
+		)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_values[category_id][option_id] = new_value
-	_sync_with_rg(option_path,new_value)
-	Debug.log("Setting changed at path: "+option_path+" to value: "+str(new_value),ID)
-	setting_changed.emit(option_path,new_value)
+	_sync_with_rg(option_path, new_value)
+	Debug.log("Setting changed at path: " + option_path + " to value: " + str(new_value), ID)
+	setting_changed.emit(option_path, new_value)
 	save_settings()
 	return OK
 
-func option_exists(option_path:String):
+
+func option_exists(option_path: String):
 	if option_path.split("/").size() != 2:
 		return false
 	var category_id = option_path.split("/")[0]
@@ -223,18 +353,22 @@ func option_exists(option_path:String):
 
 	return _settings_list[category_id].has(option_id)
 
-func open_category(category_id:String):
+
+func open_category(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.error("A process attempted to open a nonexistant category with id: "+category_id,ID)
+		Debug.error(
+			"A process attempted to open a nonexistant category with id: " + category_id, ID
+		)
 		return ERR_DOES_NOT_EXIST
 	Main.main_view.open_view("settings")
 	_client.category_handler._select(category_id)
 	return OK
 
-func _sync_with_rg(option_path:String,new_value):
+
+func _sync_with_rg(option_path: String, new_value):
 	if option_path == "core.accessibility/disable_animations":
 		RoseGarden.Accessibility.set_disable_animations(new_value)
 	if option_path == "core.accessibility/increase_contrast":
 		RoseGarden.Accessibility.set_increase_contrast(new_value)
 	if option_path == "core.accessibility/symbol_indicators":
-		RoseGarden.Flags.change_flag("accessible_toggles",new_value)
+		RoseGarden.Flags.change_flag("accessible_toggles", new_value)
