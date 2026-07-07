@@ -165,13 +165,13 @@ func add_command(
 ):
 	var path = id + "/" + command_name
 	if commands.has(path):
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to add a command that already exists: " + path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to add a command that already exists: " + path , ID)
 		return ERR_ALREADY_EXISTS
 	if !ResourceLoader.exists(icon_path):
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to add a command with an invalid icon path: " + icon_path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to add a command with an invalid icon path: " + icon_path , ID)
 		return ERR_FILE_NOT_FOUND
 	if !load(icon_path) is CompressedTexture2D:
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to add a command with an icon path that isn't a texture: " + path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to add a command with an icon path that isn't a texture: " + path , ID)
 		return ERR_INVALID_DATA
 	commands.append(path)
 	command_names[path] = command_name
@@ -190,7 +190,7 @@ func add_command(
 func remove_command(path: String):
 	var id = path.split("/")[0]
 	if !commands.has(path):
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to remove a command that doesn't exist: " + path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to remove a command that doesn't exist: " + path , ID)
 		return ERR_DOES_NOT_EXIST
 	commands.erase(path)
 	command_names.erase(path)
@@ -207,7 +207,7 @@ func remove_command(path: String):
 func hide_command(path: String):
 	var id = path.split("/")[0]
 	if !commands.has(path):
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to hide a command that doesn't exist: " + path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to hide a command that doesn't exist: " + path , ID)
 		return ERR_DOES_NOT_EXIST
 	commands.erase(path)
 	command_hidden.emit(path)
@@ -219,7 +219,7 @@ func hide_command(path: String):
 func show_command(path: String):
 	var id = path.split("/")[0]
 	if commands.has(path):
-		Debug.warn(( "Process: " + Main.get_process_name(id) + " tried to show a command that doesn't exist: " + path ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(id) + " tried to show a command that doesn't exist: " + path , ID)
 		return ERR_ALREADY_EXISTS
 	commands.append(path)
 	command_shown.emit(path)

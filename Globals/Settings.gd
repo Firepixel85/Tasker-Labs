@@ -52,7 +52,7 @@ func save_settings():
 
 func add_category(display_name: String, icon_path: String, category_id: String):
 	if _settings_list.has(category_id):
-		Debug.warn(( "A process attempted to add a category with id: " + category_id + " but it already exists" ), ID)
+		Debug.warn( "A process attempted to add a category with id: " + category_id + " but it already exists" , ID)
 		return ERR_ALREADY_EXISTS
 
 	_settings_list[category_id] = {}
@@ -88,7 +88,7 @@ func hide_category(category_id):
 		Debug.warn("A process attempted to hide a nonexistant category with id: " + category_id, ID)
 		return ERR_DOES_NOT_EXIST
 	if !_category_list.has(category_id):
-		Debug.warn(( "A process attempted to hide a category with id: " + category_id + " but it is already hidden" ), ID)
+		Debug.warn( "A process attempted to hide a category with id: " + category_id + " but it is already hidden" , ID)
 		return ERR_DOES_NOT_EXIST
 	_category_list.erase(category_id)
 	Debug.log("Category hidden with id: " + category_id, ID)
@@ -100,7 +100,7 @@ func show_category(category_id):
 		Debug.warn("A process attempted to show a nonexistant category with id: " + category_id, ID)
 		return ERR_DOES_NOT_EXIST
 	if _category_list.has(category_id):
-		Debug.warn(( "A process attempted to show a category with id: " + category_id + " but it is already shown" ), ID)
+		Debug.warn( "A process attempted to show a category with id: " + category_id + " but it is already shown" , ID)
 		return ERR_ALREADY_EXISTS
 	_category_list.append(category_id)
 	Debug.log("Category shown with id: " + category_id, ID)
@@ -109,7 +109,7 @@ func show_category(category_id):
 
 func is_category_shown(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn(( "A process attempted to check if a nonexistant category with id: " + category_id + " is shown" ), ID)
+		Debug.warn( "A process attempted to check if a nonexistant category with id: " + category_id + " is shown" , ID)
 		return ERR_DOES_NOT_EXIST
 	return _category_list.has(category_id)
 
@@ -124,7 +124,7 @@ func get_category(category_id: String):
 
 func get_category_name(category_id: String):
 	if !_settings_list.has(category_id):
-		Debug.warn(( "A process attempted to get the category name of a nonexistant category with id: " + category_id ), ID)
+		Debug.warn( "A process attempted to get the category name of a nonexistant category with id: " + category_id , ID)
 		return ERR_DOES_NOT_EXIST
 
 	return _category_names[category_id]
@@ -147,20 +147,20 @@ func category_exists(category_id: String):
 
 func add_option(category_id: String, option_id: String, option_scene_path: String, default_value):
 	if !_settings_list.has(category_id):
-		Debug.warn(( "A process attempted to add an option to a nonexistant category with id: " + category_id ), ID)
+		Debug.warn( "A process attempted to add an option to a nonexistant category with id: " + category_id , ID)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
-		Debug.warn(( "A process attempted to add an option with id: " + option_id + " to category: " + category_id + " but it already exists" ), ID)
+		Debug.warn( "A process attempted to add an option with id: " + option_id + " to category: " + category_id + " but it already exists" , ID)
 		return ERR_ALREADY_EXISTS
 	if !load(option_scene_path) is PackedScene:
 		Debug.warn("A process attempted to add an option with invalid scene path: " + option_scene_path, ID)
 		return ERR_INVALID_PARAMETER
 	var instance = load(option_scene_path).instantiate()
 	if !instance.has_method("set_value"):
-		Debug.warn(( "A process attempted to add an option with scene path: " + option_scene_path + " but it does not have a set_value method" ), ID)
+		Debug.warn( "A process attempted to add an option with scene path: " + option_scene_path + " but it does not have a set_value method" , ID)
 		return ERR_METHOD_NOT_FOUND
 	if !instance.has_method("get_value"):
-		Debug.warn(( "A process attempted to add an option with scene path: " + option_scene_path + " but it does not have a get_value method" ), ID)
+		Debug.warn( "A process attempted to add an option with scene path: " + option_scene_path + " but it does not have a get_value method" , ID)
 		return ERR_METHOD_NOT_FOUND
 
 	_settings_list[category_id][option_id] = option_scene_path
@@ -180,7 +180,7 @@ func remove_option(option_path: String):
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.warn(( "A process attempted to remove an option from a nonexistant category with id: " + category_id ), ID)
+		Debug.warn( "A process attempted to remove an option from a nonexistant category with id: " + category_id , ID)
 		return ERR_DOES_NOT_EXIST
 	if _settings_list[category_id].has(option_id):
 		Debug.warn("A process attempted to remove a nonexistant option with option path: " + option_path, ID)
@@ -201,10 +201,10 @@ func get_option_value(option_path: String):
 	var category_id = option_path.split("/")[0]
 	var option_id = option_path.split("/")[1]
 	if !_settings_list.has(category_id):
-		Debug.warn(( "A process attempted to get an option value from a nonexistant category with id: " + category_id ), ID)
+		Debug.warn( "A process attempted to get an option value from a nonexistant category with id: " + category_id , ID)
 		return ERR_DOES_NOT_EXIST
 	if !_settings_list[category_id].has(option_id):
-		Debug.warn(( "A process attempted to get an option value for a nonexistant option with path: " + option_path ), ID)
+		Debug.warn( "A process attempted to get an option value for a nonexistant option with path: " + option_path , ID)
 		return ERR_DOES_NOT_EXIST
 
 	return _settings_values[category_id][option_id]
@@ -220,7 +220,7 @@ func set_option_value(option_path: String, new_value):
 		Debug.warn("A process attempted to set an option value for a nonexistant category: " + category_id, ID)
 		return ERR_DOES_NOT_EXIST
 	if !_settings_list[category_id].has(option_id):
-		Debug.warn(( "A process attempted to set an option value for a nonexistant option with path: " + option_path ), ID)
+		Debug.warn( "A process attempted to set an option value for a nonexistant option with path: " + option_path , ID)
 		return ERR_DOES_NOT_EXIST
 
 	_settings_values[category_id][option_id] = new_value

@@ -42,7 +42,7 @@ func setup(
 		progress.texture_progress = load("res://Notifications/GlowRed.png")
 	else:
 		icon.texture = Icons.BELL
-		progress.texture_progress = load(( "res://Notifications/Glow" + Settings.get_option_value("core.appearance/accent_color") + ".png" ))
+		progress.texture_progress = load( "res://Notifications/Glow" + Settings.get_option_value("core.appearance/accent_color") + ".png" )
 	action = new_action
 	action_params = new_action_params
 	duration = new_duration

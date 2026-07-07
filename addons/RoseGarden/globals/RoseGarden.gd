@@ -261,7 +261,7 @@ func create_rc_menu(menu_layout: RGmenu, target_position: Vector2):
 	if menu_layer.get_child_count() > 0:
 		_delete_all_menus()
 		return ERR_ALREADY_EXISTS
-	menu_layer.add_child(( preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn") . instantiate() ))
+	menu_layer.add_child( preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn") . instantiate() )
 	var menu: RGRighClickMenu = menu_layer.get_child(get_child_count() - 1)
 	var position = target_position
 
@@ -282,7 +282,7 @@ func create_rc_menu(menu_layout: RGmenu, target_position: Vector2):
 func _create_rc_submenu(menu_layout: RGmenu, target_position: Vector2):
 	if menu_layer == null:
 		return ERR_DOES_NOT_EXIST
-	menu_layer.add_child(( preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn") . instantiate() ))
+	menu_layer.add_child( preload("res://addons/RoseGarden/components/RightClickMenu/RGright_click_menu.tscn") . instantiate() )
 	submenu = menu_layer.get_child(get_child_count() - 1)
 	submenu.is_submenu = true
 

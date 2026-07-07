@@ -96,7 +96,7 @@ func _add_destructive(data: Array):
 
 
 func _add_seperator():
-	item_container.add_child(( preload("res://addons/RoseGarden/components/RightClickMenu/RGrcm_seperator.tscn") . instantiate() ))
+	item_container.add_child( preload("res://addons/RoseGarden/components/RightClickMenu/RGrcm_seperator.tscn") . instantiate() )
 	_update()
 	return OK
 

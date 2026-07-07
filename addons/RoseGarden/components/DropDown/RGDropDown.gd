@@ -32,7 +32,7 @@ func add_item(item_name: String, item_id: int):
 		return Error.ERR_ALREADY_EXISTS
 	items.append(item_name)
 	item_ids.append(item_id)
-	menu_item_container.add_child(( preload("res://addons/RoseGarden/components/DropDown/Menu Item/RGmenu_item.tscn") . instantiate() ))
+	menu_item_container.add_child( preload("res://addons/RoseGarden/components/DropDown/Menu Item/RGmenu_item.tscn") . instantiate() )
 	var target: Control = menu_item_container.get_children()[
 		menu_item_container.get_children().size() - 1
 	]

@@ -80,7 +80,7 @@ func _process(_delta: float) -> void:
 			new_i = 9
 		if (Input.is_action_just_pressed(str(i)) and Input.is_key_pressed(KEY_SHIFT) and option_handler.get_child_count() > new_i):
 			if !option_handler.get_child(new_i).has_method("interact"):
-				Debug.warn(( "Option " + _opened_category + "/" + option_handler.get_child(new_i).name + " can't be interacted with, because it doesn't have an interact method" ), "core.settings")
+				Debug.warn( "Option " + _opened_category + "/" + option_handler.get_child(new_i).name + " can't be interacted with, because it doesn't have an interact method" , "core.settings")
 				return
 			option_handler.get_child(new_i).interact()
 

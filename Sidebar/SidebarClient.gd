@@ -16,7 +16,7 @@ var past_scroll: int = 0
 
 func _add_tab(title: String, icon: Texture2D, scene: Resource, tab_id: String):
 	if tabs.has(tab_id):
-		Debug.warn(( "Process: " + Main.get_process_name(tab_id) + " attempted to add a tab with an id that already exists: " + tab_id ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(tab_id) + " attempted to add a tab with an id that already exists: " + tab_id , ID)
 		return ERR_ALREADY_EXISTS
 	tabs.append(tab_id)
 	_tab_scenes[tab_id] = scene
@@ -52,7 +52,7 @@ func _add_tab(title: String, icon: Texture2D, scene: Resource, tab_id: String):
 
 func _remove_tab(tab_id: String):
 	if !tabs.has(tab_id):
-		Debug.warn(( "Process: " + Main.get_process_name(tab_id) + " attempted to remove a tab with an id that does not exist: " + tab_id ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(tab_id) + " attempted to remove a tab with an id that does not exist: " + tab_id , ID)
 		return ERR_DOES_NOT_EXIST
 	for child in tab_container.get_children():
 		if child.id == tab_id:
@@ -90,7 +90,7 @@ func _find_index(array: Array, item):
 
 func _select(selection_id: String):
 	if !tabs.has(selection_id):
-		Debug.warn(( "Process: " + Main.get_process_name(selection_id) + " attempted to select a tab with an id that does not exist: " + selection_id ), ID)
+		Debug.warn( "Process: " + Main.get_process_name(selection_id) + " attempted to select a tab with an id that does not exist: " + selection_id , ID)
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
 	selection.show()

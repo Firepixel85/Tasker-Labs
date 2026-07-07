@@ -14,7 +14,7 @@ func make_file(file_name: String, exclusive_folder := ""):
 		directory.make_dir(exclusive_folder)
 	if exclusive_folder == "":
 		if FileAccess.file_exists("user://" + file_name + ".json"):
-			Debug.warn(( "A process attempted to create a file with name: " + file_name + " but it already exists" ), ID)
+			Debug.warn( "A process attempted to create a file with name: " + file_name + " but it already exists" , ID)
 			return ERR_ALREADY_EXISTS
 		var file = FileAccess.open("user://" + file_name + ".json", FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
@@ -27,7 +27,7 @@ func make_file(file_name: String, exclusive_folder := ""):
 		return OK
 	else:
 		if FileAccess.file_exists("user://" + exclusive_folder + "/" + file_name + ".json"):
-			Debug.warn(( "A process attempted to create a file with name: " + file_name + " in folder: " + exclusive_folder + " but it already exists" ), ID)
+			Debug.warn( "A process attempted to create a file with name: " + file_name + " in folder: " + exclusive_folder + " but it already exists" , ID)
 			return ERR_ALREADY_EXISTS
 		var file = FileAccess.open("user://" + exclusive_folder + "/" + file_name + ".json", FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))

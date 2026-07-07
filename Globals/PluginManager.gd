@@ -52,7 +52,7 @@ func get_plugin_name(plugin_id: String):
 				)
 			)["name"]
 		)
-	Debug.warn(( "A process attempted to get the name of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the name of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
@@ -82,7 +82,7 @@ func get_plugin_version(plugin_id: String):
 				)
 			)["version"]
 		)
-	Debug.warn(( "A process attempted to get the version of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the version of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
@@ -112,7 +112,7 @@ func get_plugin_author(plugin_id: String):
 				)
 			)["author"]
 		)
-	Debug.warn(( "A process attempted to get the author of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the author of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
@@ -142,13 +142,13 @@ func get_plugin_target_versions(plugin_id: String):
 				)
 			)["target_api_version"]
 		)
-	Debug.warn(( "A process attempted to get the target versions of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the target versions of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
 func get_plugin_description(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to get the description of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to get the description of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 	if !plugin_has_description(plugin_id):
 		return ""
@@ -174,16 +174,16 @@ func get_plugin_description(plugin_id: String):
 			)
 		)
 		return plugin_info["description"]
-	Debug.warn(( "A process attempted to get the description of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the description of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
 func get_plugin_icon(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 	if !plugin_has_icon(plugin_id):
-		Debug.warn(( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't have one" ), ID)
+		Debug.warn( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't have one" , ID)
 		return ERR_FILE_NOT_FOUND
 
 	if _plugins.has(plugin_id):
@@ -194,13 +194,13 @@ func get_plugin_icon(plugin_id: String):
 		)
 	elif _developer_plugins.has(plugin_id):
 		return load("res://DeveloperPlugins/" + _developer_plugins[plugin_id] + "/icon.png")
-	Debug.warn(( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+	Debug.warn( "A process attempted to get the icon of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 	return ERR_DOES_NOT_EXIST
 
 
 func get_plugin_filepath(plugin_id: String):
 	if !get_all_plugins().has(plugin_id):
-		Debug.warn(( "A process attempted to get the filepath of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to get the filepath of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
 		return "user://Plugins/" + _plugins[plugin_id] + "/"
@@ -210,10 +210,10 @@ func get_plugin_filepath(plugin_id: String):
 
 func get_plugin_repo(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to get the repo of a plugin with id: " + plugin_id + " but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to get the repo of a plugin with id: " + plugin_id + " but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 	if !is_plugin_version_controlled(plugin_id):
-		Debug.warn(( "A process attempted to get the repo of a plugin with id: " + plugin_id + " but it isn't version controlled" ), ID)
+		Debug.warn( "A process attempted to get the repo of a plugin with id: " + plugin_id + " but it isn't version controlled" , ID)
 		return ERR_FILE_NOT_FOUND
 
 	if _plugins.has(plugin_id):
@@ -242,7 +242,7 @@ func get_plugin_repo(plugin_id: String):
 func get_plugin_repo_site(plugin_id: String):
 	var repo_url = get_plugin_repo(plugin_id)
 	if int(repo_url) == ERR_DOES_NOT_EXIST or int(repo_url) == ERR_FILE_NOT_FOUND:
-		Debug.warn(( "A process attempted to get the repo site of a plugin with id: " + plugin_id + " but it doesn't exist or isn't version controlled" ), ID)
+		Debug.warn( "A process attempted to get the repo site of a plugin with id: " + plugin_id + " but it doesn't exist or isn't version controlled" , ID)
 		return repo_url
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
@@ -289,7 +289,7 @@ func _on_request_url_completed(_result, response_code, _headers, body):
 
 func plugin_has_description(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to check if a plugin with id: " + plugin_id + " has a description but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to check if a plugin with id: " + plugin_id + " has a description but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 
 	if _plugins.has(plugin_id):
@@ -317,7 +317,7 @@ func plugin_has_description(plugin_id: String):
 
 func plugin_has_icon(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to check if a plugin with id: " + plugin_id + " has an icon but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to check if a plugin with id: " + plugin_id + " has an icon but it doesn't exist" , ID)
 		return ERR_DOES_NOT_EXIST
 
 	if _plugins.has(plugin_id):
@@ -337,7 +337,7 @@ func is_plugin_trusted(plugin_id: String):
 
 func is_plugin_version_controlled(plugin_id: String):
 	if !is_plugin_available(plugin_id):
-		Debug.warn(( "A process attempted to check if a plugin with id: " + plugin_id + " is version controlled but it doesn't exist" ), ID)
+		Debug.warn( "A process attempted to check if a plugin with id: " + plugin_id + " is version controlled but it doesn't exist" , ID)
 		return false
 
 	if _plugins.has(plugin_id):
@@ -421,11 +421,11 @@ func _verify_plugin(plugin_file_name: String, file_path: String = "user://plugin
 		return ERR_INVALID_DATA
 	if !plugin_info.has("target_api_version"):
 		Debug.error("Plugin " + plugin_file_name + " did not specify a compatible API version, skipping...", ID)
-		_error_queue.append(( "Couldn't load " + plugin_file_name + " did not specify a compatible API version, skipping..." ))
+		_error_queue.append( "Couldn't load " + plugin_file_name + " did not specify a compatible API version, skipping..." )
 		return ERR_INVALID_DATA
 	if !version_compatible(plugin_info["target_api_version"]):
-		Debug.error(( "Plugin " + plugin_file_name + " is not compatible with the current API version, skipping..." ), ID)
-		_error_queue.append(( "Couldn't load " + plugin_file_name + " because it is not compatible with the current API version" ))
+		Debug.error( "Plugin " + plugin_file_name + " is not compatible with the current API version, skipping..." , ID)
+		_error_queue.append( "Couldn't load " + plugin_file_name + " because it is not compatible with the current API version" )
 		return ERR_INVALID_DATA
 	if !plugin_info.has("name"):
 		Debug.error("Plugin " + plugin_file_name + " is missing name field in info.json file, skipping...", ID)
@@ -433,31 +433,31 @@ func _verify_plugin(plugin_file_name: String, file_path: String = "user://plugin
 		return ERR_INVALID_DATA
 	var plugin_name = plugin_info["name"]
 	if !plugin_info.has("version"):
-		Debug.error(( "Plugin " + plugin_file_name + " is missing version field in info.json file, skipping..." ), ID)
+		Debug.error( "Plugin " + plugin_file_name + " is missing version field in info.json file, skipping..." , ID)
 		_error_queue.append("Couldn't load " + plugin_name + " because it is missing version info")
 		return ERR_INVALID_DATA
 	if !plugin_info.has("author"):
-		Debug.error(( "Plugin " + plugin_file_name + " is missing author field in info.json file, skipping..." ), ID)
+		Debug.error( "Plugin " + plugin_file_name + " is missing author field in info.json file, skipping..." , ID)
 		_error_queue.append("Couldn't load " + plugin_name + " because it is missing author info")
 		return ERR_INVALID_DATA
 	if !plugin_info.has("plugin_id"):
-		Debug.error(( "Plugin " + plugin_file_name + " is missing plugin_id field in info.json file, skipping..." ), ID)
+		Debug.error( "Plugin " + plugin_file_name + " is missing plugin_id field in info.json file, skipping..." , ID)
 		_error_queue.append("Couldn't load " + plugin_name + " because it is missing plugin_id info")
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].begins_with("com."):
-		Debug.error(( "Plugin " + plugin_file_name + " has invalid plugin_id field in info.json file, skipping..." ), ID)
-		_error_queue.append(( "Couldn't load " + plugin_name + " because it has an invalid plugin_id (must begin with com.)" ))
+		Debug.error( "Plugin " + plugin_file_name + " has invalid plugin_id field in info.json file, skipping..." , ID)
+		_error_queue.append( "Couldn't load " + plugin_name + " because it has an invalid plugin_id (must begin with com.)" )
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].split(".").size() == 3:
 		Debug.error("Plugin " + plugin_file_name + " has invalid plugin_id filed in info.json, skipping...", ID)
-		_error_queue.append(( "Couldn't load " + plugin_name + " because it has an invalid plugin_id (must be in format com.author.plugin_name)" ))
+		_error_queue.append( "Couldn't load " + plugin_name + " because it has an invalid plugin_id (must be in format com.author.plugin_name)" )
 		return ERR_INVALID_DATA
 	if _plugins.has(plugin_info["plugin_id"]):
 		Debug.error("Plugin " + plugin_file_name + " has the same id as a previous plugin", ID)
 		_error_queue.append("Couldn't load " + plugin_name + " because its plugin_id is the same as another plugin")
 		return ERR_INVALID_DATA
 	if (!FileAccess.file_exists("user://plugins/" + plugin_file_name + "/plugin.pck") and file_path == "user://plugins/"):
-		_error_queue.append(( "Couldn't load " + plugin_name + " because it is missing files essential for it to run (plugin.pck)" ))
+		_error_queue.append( "Couldn't load " + plugin_name + " because it is missing files essential for it to run (plugin.pck)" )
 		Debug.log("Plugin " + plugin_file_name + " is missing plugin.pck file, skipping...", ID)
 		return ERR_INVALID_DATA
 
@@ -478,7 +478,7 @@ func load_plugin(plugin_id):
 			!_loaded_plugin_scripts[plugin_id].has_method("start")
 			and _loaded_plugin_scripts[plugin_id].has_method("stop")
 		):
-			Debug.error(( "Plugin with id: " + plugin_id + " does not have required start and stop methods, didn't load" ), ID)
+			Debug.error( "Plugin with id: " + plugin_id + " does not have required start and stop methods, didn't load" , ID)
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
@@ -494,7 +494,7 @@ func load_plugin(plugin_id):
 			!_loaded_plugin_scripts[plugin_id].has_method("start")
 			and _loaded_plugin_scripts[plugin_id].has_method("stop")
 		):
-			Debug.error(( "Plugin with id: " + plugin_id + " does not have required start and stop methods, didn't load" ), ID)
+			Debug.error( "Plugin with id: " + plugin_id + " does not have required start and stop methods, didn't load" , ID)
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
@@ -555,7 +555,7 @@ func save_data():
 
 func get_plugin_script(plugin_id: String):
 	if !is_plugin_loaded(plugin_id):
-		Debug.warn(( "A process attempted to get the script of a plugin with id: " + plugin_id + " but it isn't loaded" ), ID)
+		Debug.warn( "A process attempted to get the script of a plugin with id: " + plugin_id + " but it isn't loaded" , ID)
 		return ERR_DOES_NOT_EXIST
 	return _loaded_plugin_scripts[plugin_id]
 
@@ -598,13 +598,13 @@ func scan_for_updates():
 
 		match _response:
 			404:
-				(Debug . error( ( "Plugin " + plugin_name + " provided an invalid repository for version control, update check failed (404)" ), ID ))
+				Debug.error("Plugin " + plugin_name + " provided an invalid repository for version control, update check failed (404)", ID )
 				continue
 			403:
-				(Debug . error( ( "Plugin " + plugin_name + " appears to have it's repository private or restricted, update check failed (403)" ), ID ))
+				Debug.error("Plugin " + plugin_name + " appears to have it's repository private or restricted, update check failed (403)", ID )
 				continue
 			null:
-				Debug.error(( plugin_name + " plugin's repository sent an invalid respons update check failed" ), ID)
+				Debug.error( plugin_name + " plugin's repository sent an invalid respons update check failed" , ID)
 				continue
 			000:
 				Debug.error("Plugin " + plugin_name + " update check failed, unknown error", ID)
@@ -630,15 +630,15 @@ func scan_for_updates():
 							latest_compatible_version = version
 							break
 					if latest_compatible_version == "":
-						Debug.log(( "Encountered an error while checking for updates for plugin " + plugin_name + ", no compatible version found" ), ID)
+						Debug.log( "Encountered an error while checking for updates for plugin " + plugin_name + ", no compatible version found" , ID)
 					elif latest_compatible_version == plugin_version:
-						Debug.log(( "No compatible updates found for plugin " + plugin_name + ", it is up to date for this version of Tasker" ), ID)
+						Debug.log( "No compatible updates found for plugin " + plugin_name + ", it is up to date for this version of Tasker" , ID)
 					else:
 						outdated_plugins.append(plugin_id)
 						_outdated_plugin_latest_tags[plugin_id] = latest_compatible_tag
-						Debug.log(( "Plugin " + plugin_name + " has an update available! Current version: " + plugin_version + ", Latest version: " + latest_compatible_version ), ID)
+						Debug.log( "Plugin " + plugin_name + " has an update available! Current version: " + plugin_version + ", Latest version: " + latest_compatible_version , ID)
 				else:
-					Debug.log(( "Plugin " + plugin_name + " is up to date! Current version: " + plugin_version ), ID)
+					Debug.log( "Plugin " + plugin_name + " is up to date! Current version: " + plugin_version , ID)
 
 	var result := []
 	for item in outdated_plugins:
@@ -690,14 +690,14 @@ func get_outdated_plugins():
 
 func get_plugin_latest_version(plugin_id: String):
 	if !outdated_plugins.has(plugin_id):
-		Debug.warn(( "A process attempted to get the latest version of a plugin with id: " + plugin_id + " but it isn't outdated" ), ID)
+		Debug.warn( "A process attempted to get the latest version of a plugin with id: " + plugin_id + " but it isn't outdated" , ID)
 		return ERR_DOES_NOT_EXIST
 	return _outdated_plugin_latest_tags[plugin_id].split("_")[0]
 
 
 func get_plugin_latest_tag(plugin_id: String):
 	if !outdated_plugins.has(plugin_id):
-		Debug.warn(( "A process attempted to get the latest tag of a plugin with id: " + plugin_id + " but it isn't outdated" ), ID)
+		Debug.warn( "A process attempted to get the latest tag of a plugin with id: " + plugin_id + " but it isn't outdated" , ID)
 		return ERR_DOES_NOT_EXIST
 	return _outdated_plugin_latest_tags[plugin_id]
 
@@ -713,7 +713,7 @@ func update_plugin(plugin_id: String):
 		load_again = true
 		unload_plugin(plugin_id)
 	if !outdated_plugins.has(plugin_id):
-		Debug.warn(( "A process attempted to update a plugin with id: " + plugin_id + " but it isn't outdated" ), ID)
+		Debug.warn( "A process attempted to update a plugin with id: " + plugin_id + " but it isn't outdated" , ID)
 		return ERR_DOES_NOT_EXIST
 
 	var http_request = HTTPRequest.new()
@@ -734,20 +734,20 @@ func update_plugin(plugin_id: String):
 	var code = response[1]
 	var body = JSON.parse_string(response[3].get_string_from_utf8())
 	if code == 404:
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " provided an invalid repository for version control, update check failed (404)" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " provided an invalid repository for version control, update check failed (404)" , ID)
 		return ERR_DOES_NOT_EXIST
 	elif code == 403:
 		if JSON.parse_string(response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
 			rate_limited = true
 			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail", ID)
 			return ERR_LOCKED
-		(Debug . error( ( "Plugin " + get_plugin_name(plugin_id) + " appears to have it's repository private or restricted, update check failed (403)" ), ID ))
+		Debug.error("Plugin " + get_plugin_name(plugin_id) + " appears to have it's repository private or restricted, update check failed (403)", ID )
 		return ERR_FILE_NO_PERMISSION
 	elif code != 200:
 		Debug.error("Plugin " + get_plugin_name(plugin_id) + " update check failed, unknown error", ID)
 		return ERR_CANT_CONNECT
 	elif body == null:
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update check failed, server sent invalid response" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update check failed, server sent invalid response" , ID)
 		return ERR_INVALID_DATA
 
 	var download_url := ""
@@ -757,7 +757,7 @@ func update_plugin(plugin_id: String):
 			break
 
 	if download_url == "":
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update check failed, no plugin.zip asset found in release" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update check failed, no plugin.zip asset found in release" , ID)
 		return ERR_CANT_ACQUIRE_RESOURCE
 
 	var download_http = HTTPRequest.new()
@@ -770,17 +770,17 @@ func update_plugin(plugin_id: String):
 
 	var download_code: int = download_response[1]
 	if download_code == 404:
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update download failed, plugin.zip asset not found (404)" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update download failed, plugin.zip asset not found (404)" , ID)
 		return ERR_DOES_NOT_EXIST
 	elif download_code == 403:
 		if JSON.parse_string(download_response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
 			rate_limited = true
 			Debug.warn("GitHub API rate limit exceeded, some plugin update downloads will fail", ID)
 			return ERR_LOCKED
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update download failed, access to plugin.zip asset denied (403)" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update download failed, access to plugin.zip asset denied (403)" , ID)
 		return ERR_FILE_NO_PERMISSION
 	elif download_code != 200:
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update download failed, unknown error (%s)" % download_code ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update download failed, unknown error (%s)" % download_code , ID)
 		return ERR_CANT_CONNECT
 
 	Debug.log("Plugin " + get_plugin_name(plugin_id) + " update downloaded successfully, extracting...", ID)
@@ -788,7 +788,7 @@ func update_plugin(plugin_id: String):
 
 	var error = zip.open("user://plugin.zip")
 	if error != OK:
-		Debug.error(( "Plugin " + get_plugin_name(plugin_id) + " update extraction failed, unable to open zip file" ), ID)
+		Debug.error( "Plugin " + get_plugin_name(plugin_id) + " update extraction failed, unable to open zip file" , ID)
 		return ERR_CANT_OPEN
 
 	for path in zip.get_files():
@@ -816,7 +816,7 @@ func update_plugin(plugin_id: String):
 	if DirAccess.dir_exists_absolute(existing_plugin_path):
 		var delete_dir_err = OS.move_to_trash(ProjectSettings.globalize_path(existing_plugin_path))
 		if delete_dir_err != OK:
-			(Debug . error( "Failed to move old plugin directory to trash after update, additional clean-up needed", ID ))
+			Debug.error("Failed to move old plugin directory to trash after update, additional clean-up needed", ID )
 			return ERR_CANT_RESOLVE
 
 	var source_path = "user://%s" % _plugins[plugin_id]
@@ -833,6 +833,6 @@ func update_plugin(plugin_id: String):
 		return
 	if load_again:
 		load_plugin(plugin_id)
-	Debug.log(( "Plugin " + get_plugin_name(plugin_id) + " updated successfully to version " + get_plugin_latest_version(plugin_id) ), ID)
+	Debug.log( "Plugin " + get_plugin_name(plugin_id) + " updated successfully to version " + get_plugin_latest_version(plugin_id) , ID)
 	outdated_plugins.erase(plugin_id)
 	return OK
