@@ -15,7 +15,7 @@
 
 [node name="PluginInstalled" type="Control" unique_id=804456938]
 clip_children = 2
-custom_minimum_size = Vector2(512, 256)
+custom_minimum_size = Vector2(512, 265)
 layout_mode = 3
 anchors_preset = 0
 focus_mode = 1
@@ -27,7 +27,7 @@ anchors_preset = 0
 anchor_right = 0.0
 anchor_bottom = 0.0
 offset_right = 512.0
-offset_bottom = 256.0
+offset_bottom = 265.0
 grow_horizontal = 1
 grow_vertical = 1
 focus_mode = 1
@@ -39,6 +39,8 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = -4.5
+offset_bottom = 4.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 18
@@ -135,9 +137,10 @@ modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("7_tsylt")
-text = "Descriptions"
+text = "Description"
 autowrap_mode = 2
 clip_text = true
+text_overrun_behavior = 3
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=461467623]
 layout_mode = 2

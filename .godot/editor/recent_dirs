@@ -1,3 +1,4 @@
+res://MainView/
 res://Popups/Popup2/
 res://Popups/Popup0/
 res://Popups/
@@ -5,7 +6,6 @@ res://addons/RoseGarden/components/Tooltip/
 res://Settings/CoreOptions/Integrations/GitHub/
 res://
 res://PluginView/
-res://Settings/CoreOptions/General/GitHubAuth/
 res://PluginView/UpdatesPopup/
 res://Globals/
 res://addons/RoseGarden/components/Container/

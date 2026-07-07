@@ -1,0 +1,167 @@
+[gd_scene format=3 uid="uid://d0bp42mwnlh8k"]
+
+[ext_resource type="Script" uid="uid://bk8spn3t4x7v5" path="res://MainView/UpdateAvailablePopup.gd" id="1_5gmnu"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_lbhiq"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_uj4o1"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_phfv3"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="4_7dey2"]
+[ext_resource type="Texture2D" uid="uid://tntf1yfr0fxi" path="res://Icons/Calendar.svg" id="5_5gmnu"]
+[ext_resource type="Texture2D" uid="uid://n2ywrmwbodx3" path="res://Icons/Disk.svg" id="6_3v6ft"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="8_3v6ft"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="9_3q8r2"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="10_c8jsp"]
+
+[node name="UpdateAvailablePopup" type="Control" unique_id=1802145557]
+custom_minimum_size = Vector2(760, 540)
+layout_mode = 3
+anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_5gmnu")
+
+[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_lbhiq")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("2_uj4o1")
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=300095719]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=95919993]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=297634722]
+layout_mode = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1441818660]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_phfv3")]
+custom_minimum_size = Vector2(262, 45)
+layout_mode = 2
+script = ExtResource("4_7dey2")
+text = "Update Available"
+font_size = "Large"
+horizontal_alignment = "Center"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=1145386602]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VersionName" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1019943191 instance=ExtResource("3_phfv3")]
+custom_minimum_size = Vector2(163, 34)
+layout_mode = 2
+script = ExtResource("4_7dey2")
+text = "Version Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=163614603]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=1574508694]
+layout_mode = 2
+texture = ExtResource("5_5gmnu")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="ReleaseDate" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer" unique_id=1117913635 instance=ExtResource("3_phfv3")]
+custom_minimum_size = Vector2(126, 28)
+layout_mode = 2
+script = ExtResource("4_7dey2")
+text = "Release Date"
+font_size = "Secondary"
+rounded = true
+vertical_alignment = "Center"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1212982249]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=1843922836]
+layout_mode = 2
+texture = ExtResource("6_3v6ft")
+expand_mode = 2
+stretch_mode = 5
+
+[node name="Size" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HBoxContainer2" unique_id=408269500 instance=ExtResource("3_phfv3")]
+custom_minimum_size = Vector2(38, 28)
+layout_mode = 2
+text = "Size"
+font_size = "Secondary"
+rounded = true
+vertical_alignment = "Center"
+
+[node name="Description" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=441304985]
+layout_mode = 2
+theme = ExtResource("8_3v6ft")
+bbcode_enabled = true
+text = "[color=acacac]Mock Description: This new release brings quality features to Tasker, to improve your experience with our app. Introducing: the plugin store where you can discover and download new plugins from the comfort of your app. Tasker 1.1 also bring integrations allowing you to connect your favourite apps to Tasker and use them in tandem with our productivity features. Lastly plugins can now communicate with each other, forming powerful synergies across the app. Read the full changelog here"
+fit_content = true
+autowrap_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=853167920]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_right = 80
+
+[node name="Legal" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1513796254]
+layout_mode = 2
+theme = ExtResource("8_3v6ft")
+bbcode_enabled = true
+text = "[color=acacac]By using and/or updating Tasker you automatically agree to our [color=f5f5f5][url=https://github.com/Firepixel85/Tasker-Labs/blob/main/LICENSE.md]Terms of Use[/url]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=2109510904]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1902243422]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Cancel" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("9_3q8r2")]
+custom_minimum_size = Vector2(257, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("10_c8jsp")
+text = "Maybe Later"
+metadata/_edit_use_anchors_ = true
+
+[node name="Update" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=589379779 instance=ExtResource("9_3q8r2")]
+custom_minimum_size = Vector2(207, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("10_c8jsp")
+color = "Purple"
+text = "Update"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="meta_clicked" from="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/Description" to="." method="_on_meta_clicked"]
+[connection signal="meta_clicked" from="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer/Legal" to="." method="_on_meta_clicked"]

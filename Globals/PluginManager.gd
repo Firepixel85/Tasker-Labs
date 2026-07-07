@@ -196,7 +196,7 @@ func is_plugin_version_controlled(plugin_id:String):
 		return plugin_info.has("repo")
 
 func scan_available_plugins():
-	Debug.log("Scanning for scan_available_plugins...",ID)
+	Debug.log("Scanning for available plugins...",ID)
 	_plugins.clear()
 	_developer_plugins.clear()
 	outdated_plugins = null

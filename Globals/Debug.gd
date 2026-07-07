@@ -2,6 +2,7 @@ extends Node
 
 var logs = []
 var log_type = []
+var logger_ids = []
 var log_seconds = []
 
 var log_count:int = 0

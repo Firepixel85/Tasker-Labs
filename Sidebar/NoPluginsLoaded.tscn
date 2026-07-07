@@ -35,7 +35,7 @@ stretch_mode = 2
 layout_mode = 2
 
 [node name="RGText" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_lhvij")]
-custom_minimum_size = Vector2(267, 39)
+custom_minimum_size = Vector2(297, 45)
 layout_mode = 2
 text = "No Plugins Enabled"
 font_size = "Large"
@@ -43,14 +43,14 @@ horizontal_alignment = "Center"
 vertical_alignment = "Center"
 
 [node name="RGText2" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=1313482361 instance=ExtResource("2_lhvij")]
-custom_minimum_size = Vector2(440, 29)
+custom_minimum_size = Vector2(503, 34)
 layout_mode = 2
 text = "Tasker is fully plugin powered. Install some "
 color = "Secondary"
 horizontal_alignment = "Center"
 
 [node name="RGText3" parent="CenterContainer/VBoxContainer/VBoxContainer" unique_id=2038337301 instance=ExtResource("2_lhvij")]
-custom_minimum_size = Vector2(227, 29)
+custom_minimum_size = Vector2(260, 34)
 layout_mode = 2
 text = "plugins to get started. "
 color = "Secondary"
@@ -62,12 +62,12 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="RGButton" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_ki1yt")]
-custom_minimum_size = Vector2(231, 60)
+custom_minimum_size = Vector2(248, 60)
 layout_mode = 2
 text = "Learn More"
 
 [node name="RGButton2" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=855787370 instance=ExtResource("4_ki1yt")]
-custom_minimum_size = Vector2(232, 60)
+custom_minimum_size = Vector2(245, 60)
 layout_mode = 2
 color = "White"
 text = "Get Plugins"
