@@ -1,0 +1,152 @@
+[gd_scene format=3 uid="uid://b2dfi3cvpwio2"]
+
+[ext_resource type="Script" uid="uid://bs7jhiiu8n7ps" path="res://DeveloperPlugins/Console/ConsoleFilterPopup.gd" id="1_x047c"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="2_7e6k2"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="3_stxng"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_i1e8s"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="5_qq3ko"]
+[ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="6_htgf7"]
+[ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://addons/RoseGarden/components/DropDown/RGDropDown.gd" id="7_3xwy5"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_2o342"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="9_ngica"]
+[ext_resource type="Texture2D" uid="uid://bram8qdapso3u" path="res://Icons/Eraser.svg" id="10_7e6k2"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="11_i1e8s"]
+[ext_resource type="Script" uid="uid://bgbxminyyyang" path="res://addons/RoseGarden/components/Toggle/RGToggle.gd" id="12_qq3ko"]
+
+[node name="ConsoleFilterPopup" type="Control" unique_id=2117878783]
+custom_minimum_size = Vector2(600, 306)
+layout_mode = 3
+anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_x047c")
+
+[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("2_7e6k2")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("3_stxng")
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=1084026826]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=535208041]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=854165223]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=746494098]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("4_i1e8s")]
+custom_minimum_size = Vector2(158, 34)
+layout_mode = 2
+script = ExtResource("5_qq3ko")
+text = "Console Filter"
+horizontal_alignment = "Center"
+vertical_alignment = "Center"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=2056203444]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=867976626]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=28870528 instance=ExtResource("4_i1e8s")]
+custom_minimum_size = Vector2(126, 28)
+layout_mode = 2
+script = ExtResource("5_qq3ko")
+text = "Logger Filter:"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="LoggerDDM" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1673271566 instance=ExtResource("6_htgf7")]
+z_index = 1
+custom_minimum_size = Vector2(256, 60)
+layout_mode = 2
+size_flags_horizontal = 0
+script = ExtResource("7_3xwy5")
+
+[node name="Clear" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("8_2o342")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("9_ngica")
+text = ""
+icon = ExtResource("10_7e6k2")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer" unique_id=1462932946]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=765795922 instance=ExtResource("4_i1e8s")]
+custom_minimum_size = Vector2(146, 28)
+layout_mode = 2
+script = ExtResource("5_qq3ko")
+text = "Exclude logger:"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2" unique_id=1463284362]
+layout_mode = 2
+alignment = 1
+
+[node name="ExcludeLogger" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer2/VBoxContainer" unique_id=1372621177 instance=ExtResource("11_i1e8s")]
+custom_minimum_size = Vector2(64, 36)
+layout_mode = 2
+script = ExtResource("12_qq3ko")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=53064222]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Cancel" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1182886457 instance=ExtResource("8_2o342")]
+custom_minimum_size = Vector2(201, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+script = ExtResource("9_ngica")
+text = "Cancel"
+metadata/_edit_use_anchors_ = true
+
+[node name="Apply" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=942235282 instance=ExtResource("8_2o342")]
+custom_minimum_size = Vector2(191, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_mode = 2
+script = ExtResource("9_ngica")
+color = "Purple"
+text = "Apply"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/VBoxContainer/HBoxContainer/Clear" to="." method="_on_clear_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Cancel" to="." method="_on_cancel_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Apply" to="." method="_on_apply_pressed"]

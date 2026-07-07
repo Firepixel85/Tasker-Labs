@@ -12,11 +12,13 @@ var error_count:int = 0
 var run_seconds:int = 0##How many seconds the program has been running for, used for log timestamps
 
 signal logs_changed
+
 func log(message:String, logger_id:String="unknown"):
 	print(Main.get_process_name(logger_id)+" INFO: "+message)
 	logs.append(Main.get_process_name(logger_id)+" INFO: "+message)
 	log_seconds.append(run_seconds)
 	log_type.append("Info")
+	logger_ids.append(logger_id)
 	log_count +=1
 	logs_changed.emit()
 
@@ -25,6 +27,7 @@ func warn(message:String,logger_id:String="unknown"):
 	logs.append(Main.get_process_name(logger_id)+" WARN: "+message)
 	log_seconds.append(run_seconds)
 	log_type.append("Warn")
+	logger_ids.append(logger_id)
 	warn_count +=1
 	logs_changed.emit()
 
@@ -33,6 +36,7 @@ func error(message:String,logger_id:String="unknown"):
 	logs.append(Main.get_process_name(logger_id)+" ERROR: "+message)
 	log_seconds.append(run_seconds)
 	log_type.append("Error")
+	logger_ids.append(logger_id)
 	error_count +=1
 	logs_changed.emit()
 

@@ -1,13 +1,13 @@
+VBoxContainer
 HBoxContainer
-Control
+CenterContainer
 MarginContainer
+Control
 RichTextLabel
 Label
 TextureRect
-VBoxContainer
 CanvasLayer
 ScrollContainer
-CenterContainer
 NinePatchRect
 GridContainer
 Container

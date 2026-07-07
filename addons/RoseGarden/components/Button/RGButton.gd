@@ -50,6 +50,13 @@ class_name RGButton
 		toggle_mode = new_value
 		_update()
 
+@export_category("Tooltip")
+@export var show_tooltip:bool = false
+@export var tooltip_display_text:String = "Tooltip"
+@export var tooltip_delay:float = 1.0
+@export var show_keybind:bool = false
+@export var keybind_text:String = "⌘K"
+
 signal button_down
 signal button_up
 signal pressed
@@ -228,6 +235,15 @@ func _on_mouse_entered() -> void:
 		modulate = RoseGarden.Colors.COLOR_HOVERED
 	if toggle_mode and is_pressed:
 		modulate = RoseGarden.Colors.COLOR_PRESSED
+	if !show_tooltip:
+		return
+	await get_tree().create_timer(tooltip_delay).timeout
+	if is_hovered():
+		var tooltip = RGTooltip.new()
+		tooltip.set_text(tooltip_display_text)
+		if show_keybind:
+			tooltip.set_keybind(keybind_text)
+		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
 
 func _on_mouse_exited() -> void:
 	_hovered = false
@@ -238,6 +254,7 @@ func _on_mouse_exited() -> void:
 		modulate = RoseGarden.Colors.COLOR_NORMAL
 	if toggle_mode and is_pressed:
 		modulate = RoseGarden.Colors.COLOR_PRESSED
+	RoseGarden.clear_tooltips()
 
 func _update_themes():
 	label.theme = load(RoseGarden._theme_path+"Secondary.tres")

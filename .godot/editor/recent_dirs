@@ -1,3 +1,4 @@
+res://DeveloperPlugins/Console/
 res://MainView/
 res://Popups/Popup2/
 res://Popups/Popup0/
@@ -20,4 +21,3 @@ res://Settings/CoreOptions/RoseGarden/tooltipAppearance/
 res://Settings/CoreOptions/RoseGarden/togglePress/
 res://Settings/CoreOptions/RoseGarden/toastAppearance/
 res://Settings/CoreOptions/RoseGarden/svChange/
-res://Settings/CoreOptions/RoseGarden/sgSelection/

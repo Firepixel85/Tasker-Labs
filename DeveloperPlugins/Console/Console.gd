@@ -17,6 +17,11 @@ extends Control
 var show_logs:bool = true
 var show_warns:bool = true
 var show_errors:bool = true
+
+var logger_filter = []
+var logger_exclude:bool = false
+var all_loggers = []
+
 const ID = "com.rosepen.console"
 func _ready() -> void:
 	Debug.logs_changed.connect(_update_logs)
@@ -41,6 +46,12 @@ func _ready() -> void:
 func _update_logs():
 	text.clear()
 	for i in Debug.get_logs().size():
+		if logger_exclude:
+			if logger_filter != [] and logger_filter.has(Debug.logger_ids[i]):
+				continue
+		else:
+			if logger_filter != [] and !logger_filter.has(Debug.logger_ids[i]):
+				continue
 		var log_string:String
 		if Settings.get_option_value("com.rosepen.console/show_timestamps"):
 			log_string = "["+Debug.get_formated_time(Debug.log_seconds[i])+"] "+Debug.get_logs()[i]
@@ -71,33 +82,46 @@ func _update_logs():
 		NotificationManager.queue_notification("New Error In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
 	if Settings.get_option_value(ID+"/notify_warns") and Debug.log_type[Debug.get_logs().size()-1] == "Warn":
 		NotificationManager.queue_notification("New Warning In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
-
+	
+	all_loggers = []
+	var temp_array := []
+	for logger in Debug.logger_ids:
+		if temp_array.has(logger):
+			continue
+		temp_array.append(logger)
+	all_loggers = temp_array
 
 func _on_toggle_logs_pressed() -> void:
 	if show_logs:
 		show_logs = false
 		log_toggle.set_color("Gray")
+		log_toggle.tooltip_display_text = "Show logs"
 	else:
 		show_logs = true
 		log_toggle.set_color("Yellow")
+		log_toggle.tooltip_display_text = "Hide logs"
 	_update_logs()
 
 func _on_toggle_warns_pressed() -> void:
 	if show_warns:
 		show_warns = false
 		warn_toggle.set_color("Gray")
+		warn_toggle.tooltip_display_text = "Show warnings"
 	else:
 		show_warns = true
 		warn_toggle.set_color("Orange")
+		warn_toggle.tooltip_display_text = "Hide warnings"
 	_update_logs()
 
 func _on_toggle_errors_pressed() -> void:
 	if show_errors:
 		show_errors = false
 		error_toggle.set_color("Gray")
+		error_toggle.tooltip_display_text = "Show errors"
 	else:
 		show_errors = true
 		error_toggle.set_color("Red")
+		error_toggle.tooltip_display_text = "Hide errors"
 	_update_logs()
 
 func _on_clear_pressed() -> void:
@@ -109,3 +133,20 @@ func get_value():
 
 func set_value():
 	pass
+
+func _on_filters_pressed() -> void:
+	Popups.create_popup(preload("res://DeveloperPlugins/Console/ConsoleFilterPopup.tscn"))
+	await Popups.popup_created
+	var popup = Popups.get_popup()
+	if all_loggers == []:
+		for logger in Debug.logger_ids:
+			if all_loggers.has(logger):
+				continue
+			all_loggers.append(logger)
+	var selected
+	if logger_filter == []:
+		selected = "No Filter"
+	else:
+		selected = logger_filter[0]
+	popup.console = self
+	popup.setup(all_loggers,selected)

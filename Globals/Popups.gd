@@ -26,6 +26,7 @@ func clear_popup():
 	if popup == null:
 		Debug.error("Attempted to remove popup when no popup is active",ID)
 		return ERR_DOES_NOT_EXIST
+	popup.grab_focus()
 	var tween = create_tween()
 	tween.parallel().tween_property(popup,"scale",Vector2(0.8,0.8),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)

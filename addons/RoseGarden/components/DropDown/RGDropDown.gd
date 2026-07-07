@@ -15,6 +15,10 @@ var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
 var open:bool = false
+var canvas_layer_index:int = 0:
+	set(new_value):
+		canvas_layer_index = new_value
+		canvas_layer.layer = new_value
 signal new_selection(selection:String)
 signal opened
 signal closed
@@ -114,6 +118,7 @@ func _find_index(array:Array,item):
 
 func _open():
 	open = true
+	grab_focus()
 	menu_container.position = global_position
 	for child in menu_item_container.get_children():
 		child._update()
@@ -152,7 +157,6 @@ func _on_focus_exited() -> void:
 			return
 	if !has_focus():
 		_close()
-
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
