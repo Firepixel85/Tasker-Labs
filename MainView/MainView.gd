@@ -43,6 +43,8 @@ func _ready():
 	RoseGarden.set_toast_layer(toast_layer)
 	CommandBar.load_commands()
 	PluginManager._send_errors()
+	if Settings.get_option_value("core.general/update_notify"):
+		Network.Updates.check_for_updates()
 
 	#Add settings:
 

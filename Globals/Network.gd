@@ -3,6 +3,8 @@ extends Node
 signal auth_completed(token: String)
 signal auth_failed(reason: String)
 
+signal check_for_updates(latest_version: String, is_outdated: bool)
+
 const ID = "core.network"
 
 class GitHubAuth:
@@ -128,6 +130,89 @@ class GitHubAuth:
 		if err == OK:
 			access_token = ""
 		return err
+
+class Updates:
+	const ID = "core.network.updates"
+	static var latest_version: String
+	static var is_outdated: bool = false
+
+	static func check_for_updates() -> void:
+		Debug.log("Checking for updates...",ID)
+		var http = HTTPRequest.new()
+		Network.add_child(http)
+		var headers: Array
+		if Network.GitHubAuth.is_authorized():
+			headers = [
+				"User-Agent: Tasker",
+				"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
+				"Accept: application/vnd.github+json",
+				"X-GitHub-Api-Version: 2022-11-28"
+			]
+		else:
+			headers = ["User-Agent: Tasker"]
+		var url:String
+		if Main.get_version_sufix().begins_with("beta"):
+			url = "https://api.github.com/repos/Firepixel85/Tasker-Labs/releases/latest"
+		else:
+			url = "https://api.github.com/repos/Rosepen-Studios/Tasker/releases/latest"
+		http.request(url,headers)
+		var response = await http.request_completed
+		http.queue_free()
+		match response[1]:
+			404:
+				Debug.log("Update check failed: Repository is missing, please report this issue (404)",ID)
+				NotificationManager.queue_notification(
+					"Update Check Failed","Repository is missing, please report this issue by clicking this notification",
+					true,
+					OS.shell_open,
+					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
+					0.0
+				)
+				return
+			403:
+				Debug.log("Update check failed: Rate limit exceeded, please authorize with GitHub to continue (403)",ID)
+				NotificationManager.queue_notification(
+					"Update Check Failed","Rate limit exceeded, please authorize with GitHub to continue. Click here to authorize.",
+					true,
+					Network.GitHubAuth.authorize,
+					[],
+					0.0
+				)
+				return
+			200:
+				var response_body: PackedByteArray = response[3]
+				var json = JSON.parse_string(response_body.get_string_from_utf8())
+				if json == null or not json.has("tag_name"):
+					Debug.log("Update check failed: Invalid response from GitHub",ID)
+					NotificationManager.queue_notification(
+						"Update Check Failed","Invalid response from GitHub, please report this issue by clicking this notification",
+						true,
+						OS.shell_open,
+						["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
+						0.0
+					)
+					return
+				latest_version = json["tag_name"]
+				if latest_version != Main.get_version():
+					is_outdated = true
+					Debug.log("Update available: %s" % latest_version,ID)
+					NotificationManager.queue_notification(
+						"Update Available","A new version of Tasker is available: %s. Click here to download." % latest_version,
+						false,
+						Popups.create_popup,
+						[preload("res://MainView/UpdateAvailablePopup.tscn")],
+						6.0
+					)
+					Network.check_for_updates.emit(latest_version, true)
+			_:
+				Debug.log("Update check failed: HTTP error %d" % response[1],ID)
+				NotificationManager.queue_notification(
+					"Update Check Failed","HTTP error %d while checking for updates, please report this issue by clicking this notification" % response[1],
+					true,
+					OS.shell_open,
+					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
+					0.0
+				)
 
 func save() -> void:
 	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")

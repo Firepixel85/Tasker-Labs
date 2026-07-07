@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpyeqq0aqf166" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.tscn" id="1_hi4tc"]
 [ext_resource type="Script" uid="uid://cwaqp8pd36ix6" path="res://MainView/MainView.gd" id="1_u8cj3"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="2_hi4tc"]
-[ext_resource type="Script" path="res://MainView/DragZone.gd" id="2_m4t2q"]
+[ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://MainView/DragZone.gd" id="2_m4t2q"]
 [ext_resource type="Script" uid="uid://crxnkn327ll0e" path="res://Sidebar/SidebarClient.gd" id="2_qlysq"]
 [ext_resource type="Texture2D" uid="uid://y3k8vua7s2kr" path="res://MainView/Sidebar Selection.svg" id="2_yduse"]
 [ext_resource type="Texture2D" uid="uid://dye14bkbxhv4b" path="res://Icons/User.svg" id="4_jqlkf"]
@@ -229,14 +229,6 @@ size_flags_horizontal = 3
 layout_mode = 2
 theme_override_constants/separation = -4
 
-[node name="Update" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=965926932]
-modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
-layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
-icon = ExtResource("7_rirya")
-flat = true
-script = ExtResource("14_qlysq")
-
 [node name="Plugins" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=345576706]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
@@ -250,6 +242,14 @@ modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
 icon = ExtResource("9_burg1")
+flat = true
+script = ExtResource("14_qlysq")
+
+[node name="Update" type="Button" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Control Bar/MarginContainer/VBoxContainer/HBoxContainer/Indications" unique_id=965926932]
+visible = false
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yduse")
+icon = ExtResource("7_rirya")
 flat = true
 script = ExtResource("14_qlysq")
 

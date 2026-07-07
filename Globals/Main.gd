@@ -7,7 +7,7 @@ class window:
 	static var position := Vector2(0,0)
 
 const version:String = "2.0"
-const version_sufix:String = "pb2"
+const version_sufix:String = "beta1"
 const plugin_api_version:String = "1.0"
 signal view_changed
 
@@ -52,6 +52,8 @@ func get_process_name(process_id:String):
 			return "Network"
 		"core.network.githubauth":
 			return "Network/GitHubAuth"
+		"core.network.updates":
+			return "Network/Updates"
 		"unknown":
 			return "Unknown"
 		_:
