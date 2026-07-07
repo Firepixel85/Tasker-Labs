@@ -236,38 +236,8 @@ func refresh(toast:bool = true) -> void:
 	if toast:
 		RoseGarden.create_toast("Plugins Refreshed","Green",2.0)
 
-
 func _on_folder_pressed() -> void:
 	OS.shell_show_in_file_manager(OS.get_user_data_dir()+"/plugins")
-
-
-func _on_resfresh_hovered() -> void:
-	await get_tree().create_timer(1).timeout
-	if refresh_button.is_hovered():
-		var tooltip = RGTooltip.new()
-		tooltip.set_text("Refresh shown plugins")
-		tooltip.set_keybind("⌘⇧R")
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
-
-func _on_folder_hovered() -> void:
-	await get_tree().create_timer(1).timeout
-	if folder_button.is_hovered():
-		var tooltip = RGTooltip.new()
-		tooltip.set_text("Open plugins folder")
-		tooltip.set_keybind("⌘⇧O")
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
-
-func _on_updates_hovered() -> void:
-	await get_tree().create_timer(1).timeout
-	if updates_button.is_hovered():
-		var tooltip = RGTooltip.new()
-		tooltip.set_text("Plugin updates")
-		tooltip.set_keybind("⌘⇧U")
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
-
-func _clear_tooltips() -> void:
-	RoseGarden.clear_tooltips()
-
 
 func _on_updates_pressed() -> void:
 	Popups.create_popup(preload("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))

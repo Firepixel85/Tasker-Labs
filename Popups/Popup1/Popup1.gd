@@ -38,3 +38,7 @@ func setup(title:String,description:String,new_action:Callable,new_action_params
 	container.get_parent()._update()
 	title_text._update()
 	container.position = Vector2(0,0)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_confirm"):
+		action_button.press()

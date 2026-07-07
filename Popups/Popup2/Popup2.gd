@@ -49,3 +49,7 @@ func _on_action1_pressed() -> void:
 func _on_action_2_pressed() -> void:
 	action2.callv(action2_params)
 	Popups.clear_popup()
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_confirm"):
+		action2_button.press()

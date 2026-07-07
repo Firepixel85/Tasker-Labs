@@ -140,25 +140,31 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("8_ffun4")
+show_tooltip = true
+tooltip_display_text = "Refresh shown plugins"
+show_keybind = true
+keybind_text = "⌘⇧R"
 
 [node name="Updates" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=845587459 instance=ExtResource("5_6qbsv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("9_wi5hg")
+show_tooltip = true
+tooltip_display_text = "Plugin updates"
+show_keybind = true
+keybind_text = "⌘⇧U"
 
 [node name="Folder" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1122550386 instance=ExtResource("5_6qbsv")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("9_ccaag")
+show_tooltip = true
+tooltip_display_text = "Open plugins folder"
+show_keybind = true
+keybind_text = "⌘⇧O"
 
-[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_clear_tooltips"]
-[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_resfresh_hovered"]
 [connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="refresh"]
-[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_clear_tooltips"]
-[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_on_updates_hovered"]
 [connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Updates" to="." method="_on_updates_pressed"]
-[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_clear_tooltips"]
-[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_hovered"]
 [connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_pressed"]

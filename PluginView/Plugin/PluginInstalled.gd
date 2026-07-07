@@ -150,9 +150,13 @@ func _on_toggle_dehovered() -> void:
 	RoseGarden.clear_tooltips()
 
 func _on_uninstall_pressed() -> void:
-	Popups.create_popup(load("res://PluginView/DeletePopup.tscn"))
-	await Popups.popup_added
-	Popups.get_popup().plugin_id = plugin_id
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.DOUBLE_ACTION)
+	popup.set_title("Are you sure?")
+	popup.set_description("This is a permenant action that will immediately delete all files asscoiated with this plugin. Are you sure?")
+	popup.add_action(empty,"Cancel",[],"Gray")
+	popup.add_action(empty,"Uninstall",[],"Red")
+	Popups.create_prefab_popup(popup)
 
 func copy_id():
 	DisplayServer.clipboard_set(plugin_id)
@@ -177,3 +181,6 @@ func hide_keybind():
 		icon.texture = PluginManager.get_plugin_icon(plugin_id)
 	else:
 		icon.hide()
+
+func empty(): #Like my brain
+	pass

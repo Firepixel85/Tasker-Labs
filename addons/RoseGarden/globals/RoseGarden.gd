@@ -332,10 +332,6 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 		target_position.y = position.y - tooltip_object.size.y
 	if target_position.x +tooltip_object.size.x > DisplayServer.window_get_size().x-16:
 		target_position.x = position.x - tooltip_object.size.x
-		if !tooltip.show_keybind:
-			target_position.x += 64
-	elif !tooltip.show_keybind:
-		target_position.x -= 64
 
 	tooltip_object.position = target_position
 	tooltip_object.show()

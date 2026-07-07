@@ -31,7 +31,7 @@ func _ready() -> void:
 		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate())
 
 func _on_close_pressed() -> void:
-	Popups.remove_popup()
+	Popups.clear_popup()
 
 func _on_view_selector_item_selected(_item_name: String) -> void:
 	_ready()
