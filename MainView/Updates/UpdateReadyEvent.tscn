@@ -1,9 +1,12 @@
 [gd_scene format=3 uid="uid://v1mhu3gr5swu"]
 
+[ext_resource type="Script" uid="uid://c2bevqtt0iy48" path="res://MainView/Updates/UpdateReadyEvent.gd" id="1_bpr8o"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_c1pb6"]
 [ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="2_bpr8o"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_jn200"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="4_68akt"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jn200"]
 
 [node name="Control" type="Control" unique_id=779974786]
 custom_minimum_size = Vector2(448, 168)
@@ -11,6 +14,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 448.0
 offset_bottom = 168.0
+script = ExtResource("1_bpr8o")
 
 [node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_c1pb6")]
 layout_mode = 1
@@ -59,3 +63,15 @@ layout_mode = 2
 theme = ExtResource("4_68akt")
 text = "Tasker is ready to update. Save your progress and click here to continue."
 autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=640312713]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jn200")
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

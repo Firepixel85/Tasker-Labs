@@ -135,6 +135,7 @@ class Updates:
 	const ID = "core.network.updates"
 	static var latest_version: String
 	static var is_outdated: bool = false
+	static var helper_version: String = ""
 
 	static func check_for_updates() -> void:
 		Debug.log("Checking for updates...",ID)
@@ -195,9 +196,9 @@ class Updates:
 				latest_version = json["tag_name"]
 				if latest_version != Main.get_version():
 					is_outdated = true
-					Debug.log("Update available: %s" % latest_version,ID)
 					EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
 					Network.check_for_updates.emit(latest_version, true)
+					Debug.log("Update available: %s" % latest_version,ID)
 			_:
 				Debug.log("Update check failed: HTTP error %d" % response[1],ID)
 				NotificationManager.queue_notification(
@@ -207,11 +208,9 @@ class Updates:
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
 					0.0
 				)
+
 	static func update():
 		Debug.log("Updating Tasker",ID)
-		if EventManager.event_exists(ID):
-			EventManager.remove_event(ID)
-		EventManager.add_event(ID,load("res://MainView/Updates/HelperDownloadingEvent.tscn"),Icons.DOWNLOAD)
 		var popup = TSKPopup.new()
 		if helper_exist():
 			popup.set_type(TSKPopup.DOUBLE_ACTION)
@@ -219,24 +218,150 @@ class Updates:
 			popup.set_description("Tasker is now ready to update. If you have unsaved progress, close this popup, save your work and click on the update event on the bottom left of your screen. Otherwise, click on 'Update Now' to start the update process. Tasker will automatically close and a helper app will open.")
 			popup.add_action(empty,"Not Now",[],"Gray")
 			popup.add_action(_open_helper,"Update Now",[],Settings.get_option_value("core.appearance/accent_color"))
+			EventManager.remove_event(ID)
+			if EventManager.event_exists(ID):
+				EventManager.remove_event(ID)
+			EventManager.add_event(ID,load("res://MainView/Updates/UpdateReadyEvent.tscn"),Icons.DOWNLOAD)
 		else:
 			popup.set_type(TSKPopup.SINGLE_ACTION)
 			popup.set_title("Downloading Helper")
 			popup.set_description("Tasker is now downloading a helper app to update. You can continue using the app normaly until the download is complete. Please do not close the app.")
 			popup.add_action(empty,"Got it")
-		Popups.clear_popup()
-		await Popups.popup_cleared
+			if EventManager.event_exists(ID):
+				EventManager.remove_event(ID)
+			EventManager.add_event(ID,load("res://MainView/Updates/HelperDownloadingEvent.tscn"),Icons.DOWNLOAD)
+		if Popups.is_popup_active():
+			Popups.clear_popup()
+			await Popups.popup_cleared
+		Popups.create_prefab_popup(popup)
+		if !helper_exist():
+			var err = await _download_helper()
+			if err != OK:
+				Debug.error("Failed to download helper app, update aborted",ID)
+				NotificationManager.queue_notification(
+					"Update Failed","Failed to download helper app, please report this issue by clicking this notification. Update canceled.",
+					true,
+					OS.shell_open,
+					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
+					0.0
+				)
+				EventManager.remove_event(ID)
+				return
+		EventManager.remove_event(ID)
+		EventManager.add_event(ID,load("res://MainView/Updates/UpdateReadyEvent.tscn"),Icons.DOWNLOAD)
+		popup = TSKPopup.new()
+		popup.set_type(TSKPopup.DOUBLE_ACTION)
+		popup.set_title("Ready to Update")
+		popup.set_description("Tasker is now ready to update. If you have unsaved progress, close this popup, save your work and click on the update event on the bottom left of your screen. Otherwise, click on 'Update Now' to start the update process. Tasker will automatically close and a helper app will open.")
+		popup.add_action(empty,"Not Now",[],"Gray")
+		popup.add_action(_open_helper,"Update Now",[],Settings.get_option_value("core.appearance/accent_color"))
+		if Popups.is_popup_active():
+			Popups.clear_popup()
+			await Popups.popup_cleared
 		Popups.create_prefab_popup(popup)
 
 	static func helper_exist():
-		return FileAccess.file_exists("user://TaskerUpdater.app")
-	
+		return DirAccess.dir_exists_absolute("user://TaskerUpdater.app")
+
 	static func _open_helper():
 		if !helper_exist():
+			NotificationManager.queue_notification(
+				"Update Failed","Helper app is missing, please report this issue by clicking this notification. Update canceled.",
+				true,
+				OS.shell_open,
+				["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
+				0.0
+			)
 			Debug.error("Attempting to open helper app to update, but it doesn't exist")
 			return
-		OS.shell_open(OS.get_user_data_dir()+"/TaskerUpdater")
+		OS.shell_open(OS.get_user_data_dir()+"/TaskerUpdater.app")
 		Network.get_tree().quit()
+
+	static func _download_helper():
+		Debug.log("Downloading helper...",ID)
+		var http = HTTPRequest.new()
+		Network.add_child(http)
+		var headers: Array
+		if Network.GitHubAuth.is_authorized():
+			headers = [
+				"User-Agent: Tasker",
+				"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
+				"Accept: application/vnd.github+json",
+				"X-GitHub-Api-Version: 2022-11-28"
+			]
+		else:
+			headers = ["User-Agent: Tasker"]
+		var url:String = "https://api.github.com/repos/Rosepen-Studios/Tasker-Updater/releases/latest"
+		http.request(url,headers)
+		var response = await http.request_completed
+		http.queue_free()
+		match response[1]:
+			404:
+				Debug.log("Helper download failed: Repository is missing, please report this issue (404)",ID)
+				return ERR_CONNECTION_ERROR
+			403:
+				Debug.log("Helper download failed: Rate limit exceeded, please authorize with GitHub to continue (403)",ID)
+				return ERR_CONNECTION_ERROR
+			200:
+				var response_body: PackedByteArray = response[3]
+				var json = JSON.parse_string(response_body.get_string_from_utf8())
+				if json == null or !json.has("assets") or  !json.has("tag_name"):
+					Debug.log("Helper download failed: Invalid response from GitHub",ID)
+					return ERR_CONNECTION_ERROR
+				if !helper_exist() or helper_version != json["tag_name"]:
+					if helper_exist():
+						DirAccess.remove_absolute("user://TaskerUpdater.app")
+					if FileAccess.file_exists("user://TaskerUpdater.zip"):
+						DirAccess.remove_absolute("user://TaskerUpdater.zip")
+
+					var download_url := ""
+					for asset in json["assets"]:
+						if asset["name"] == "TaskerUpdater.zip":
+							download_url = asset["browser_download_url"]
+							break
+					if download_url == "":
+						Debug.log("Helper download failed: No download URL found for TaskerUpdater.zip",ID)
+						return ERR_CONNECTION_ERROR
+
+					var download_http = HTTPRequest.new()
+					Network.add_child(download_http)
+					download_http.download_file = "user://TaskerUpdater.zip"
+					download_http.request(download_url, headers)
+					var download_response = await download_http.request_completed
+					download_http.queue_free()
+
+					if download_response[1] != 200:
+						Debug.log("Helper download failed: HTTP error %d while downloading TaskerUpdater.zip" % download_response[1],ID)
+						return ERR_CONNECTION_ERROR
+
+					Debug.log("Helper download complete, extracting...",ID)
+
+					var real_zip_path := ProjectSettings.globalize_path("user://TaskerUpdater.zip")
+					var real_output_dir := ProjectSettings.globalize_path("user://")
+
+					var output := []
+					var exit_code := OS.execute("ditto", ["-xk", real_zip_path, real_output_dir], output, true)
+
+					if exit_code != 0:
+						Debug.error("Helper extraction failed (ditto exit code %d): %s" % [exit_code, output], ID)
+						return ERR_CANT_OPEN
+
+					var dir = DirAccess.open("user://")
+					if dir == null:
+						Debug.error("Failed to open user directory for deleting zip file",ID)
+						return ERR_CANT_OPEN
+
+					var delete_err = dir.remove("TaskerUpdater.zip")
+					if delete_err != OK:
+						Debug.error("Failed to delete TaskerUpdater.zip after extraction, additional clean-up needed",ID)
+					helper_version = json["tag_name"]
+					Network.save()
+					Debug.log("Helper download complete",ID)
+					return OK
+			_:
+				Debug.log("Helper download failed: HTTP error %d" % response[1],ID)
+				return ERR_CONNECTION_ERROR
+
 
 	static func empty(): #I challenge you to find all empty functions in the codebase
 		pass
@@ -244,6 +369,9 @@ class Updates:
 func save() -> void:
 	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
 	Data.save_file("Core/Secrets")
+	Data.save_to("helper_version", Updates.helper_version, "Core/UpdateData")
+	Data.save_to("version", Main.get_version(), "Core/UpdateData")
+	Data.save_file("Core/UpdateData")
 
 func _ready() -> void:
 	GitHubAuth.CLIENT_ID = Vault.GITHUB_CLIENT_ID
@@ -254,6 +382,13 @@ func _ready() -> void:
 			GitHubAuth.access_token = data["access_token"]
 	else:
 		Data.make_file("Secrets","Core")
+		save()
+	if Data.file_exists("Core/UpdateData"):
+		var data = Data.load_file("Core/UpdateData")
+		if data.has("helper_version"):
+			Updates.helper_version = data["helper_version"]
+	else:
+		Data.make_file("UpdateData","Core")
 		save()
 	Main.view_changed.connect(_on_view_changed)
 

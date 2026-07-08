@@ -124,7 +124,7 @@ vertical_alignment = "Center"
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme = ExtResource("4_vcnc6")
-text = "A helper application to update Tasker is dowloading. Please keep the app open."
+text = "A helper application to update Tasker is downloading. Please keep the app open."
 autowrap_mode = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RGContainer" unique_id=112871973]

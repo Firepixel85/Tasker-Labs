@@ -122,7 +122,7 @@ func get_plugin_repo_site(plugin_id:String):
 	var headers
 	if Network.GitHubAuth.is_authorized():
 		headers = [
-			"User-Agent: MyGodotApp",
+			"User-Agent: Tasker",
 			"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
 			"Accept: application/vnd.github+json",
 			"X-GitHub-Api-Version: 2022-11-28"
@@ -395,7 +395,7 @@ func scan_for_updates():
 		var headers
 		if Network.GitHubAuth.is_authorized():
 			headers = [
-				"User-Agent: MyGodotApp",
+				"User-Agent: Tasker",
 				"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
 				"Accept: application/vnd.github+json",
 				"X-GitHub-Api-Version: 2022-11-28"
@@ -524,7 +524,7 @@ func update_plugin(plugin_id:String):
 	var headers
 	if Network.GitHubAuth.is_authorized():
 		headers = [
-			"User-Agent: MyGodotApp",
+			"User-Agent: Tasker",
 			"Authorization: Bearer %s" % Network.GitHubAuth.get_access_token(),
 			"Accept: application/vnd.github+json",
 			"X-GitHub-Api-Version: 2022-11-28"
@@ -600,7 +600,7 @@ func update_plugin(plugin_id:String):
 			DirAccess.make_dir_recursive_absolute("user://%s" % dir_path)
 		var output_file = FileAccess.open("user://%s" % path, FileAccess.WRITE)
 		if output_file == null:
-			push_error("Failed to write file: %s" % path)
+			Debug.error("Failed to write file: %s" % path,ID)
 			continue
 		output_file.store_buffer(file_data)
 		output_file.close()

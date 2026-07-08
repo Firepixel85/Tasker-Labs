@@ -1,5 +1,5 @@
-AnimationPlayer
 Button
+AnimationPlayer
 TextureProgressBar
 VBoxContainer
 Label
@@ -12,4 +12,3 @@ RichTextLabel
 CanvasLayer
 ScrollContainer
 NinePatchRect
-GridContainer
