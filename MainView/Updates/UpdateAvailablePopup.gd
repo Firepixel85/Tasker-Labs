@@ -12,6 +12,8 @@ func _on_meta_clicked(meta: Variant) -> void:
 func _ready() -> void:
 	update_button.set_color(Settings.get_option_value("core.appearance/accent_color"))
 
-
 func _on_cancel_pressed() -> void:
 	Popups.clear_popup()
+
+func _on_update_pressed() -> void:
+	Network.Updates.update()

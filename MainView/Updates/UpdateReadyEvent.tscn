@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://v1mhu3gr5swu"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_c1pb6"]
+[ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="2_bpr8o"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_jn200"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="4_68akt"]
+
+[node name="Control" type="Control" unique_id=779974786]
+custom_minimum_size = Vector2(448, 168)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 448.0
+offset_bottom = 168.0
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_c1pb6")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=1990496351]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=1451587037]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=988163273]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2061843156]
+layout_mode = 2
+texture = ExtResource("2_bpr8o")
+stretch_mode = 2
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("3_jn200")]
+custom_minimum_size = Vector2(190, 34)
+layout_mode = 2
+text = "Ready to update"
+vertical_alignment = "Center"
+
+[node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=148350410]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_68akt")
+text = "Tasker is ready to update. Save your progress and click here to continue."
+autowrap_mode = 2

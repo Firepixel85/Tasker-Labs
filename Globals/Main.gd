@@ -7,9 +7,9 @@ class window:
 	static var position := Vector2(0,0)
 
 const version:String = "2.0"
-const version_sufix:String = "beta1"
+const version_sufix:String = "pb1"
 const plugin_api_version:String = "1.0"
-signal view_changed
+signal view_changed(new_view:String)
 
 func save_window_data():
 	while true:
@@ -84,3 +84,11 @@ func get_main_view():
 	if main_view == null:
 		return ERR_BUSY
 	return main_view
+
+func _ready() -> void:
+	if main_view == null:
+		return
+	main_view.view_changed.connect(_on_view_changed)
+
+func _on_view_changed(new_view) -> void:
+	view_changed.emit(new_view)

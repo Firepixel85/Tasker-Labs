@@ -25,9 +25,10 @@ var view_nodes := {
 	"plugins":null
 }
 signal view_changed(new_view:String)
-
+ 
 func _ready():
 	Main.main_view = self
+	Main._ready()
 	DisplayServer.window_set_min_size(Vector2i(1280, 960))
 	Popups.popup_container = popup_container
 	Popups.popup_fade = popup_fade

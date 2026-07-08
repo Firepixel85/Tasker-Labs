@@ -84,6 +84,7 @@ alignment = 2
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="VBoxContainer" unique_id=917092365]
 layout_mode = 2
+step = 0.1
 value = 100.0
 nine_patch_stretch = true
 stretch_margin_left = 36

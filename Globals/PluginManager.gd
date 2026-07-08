@@ -92,7 +92,7 @@ func get_plugin_filepath(plugin_id:String):
 		Debug.warn("A process attempted to get the filepath of a plugin with id: "+plugin_id+" but it doesn't exist",ID)
 		return ERR_DOES_NOT_EXIST
 	if _plugins.has(plugin_id):
-		return "user://Plugins/"+_plugins[plugin_id]+"/"
+		return "res://Plugins/"+_plugins[plugin_id]+"/"
 	elif _developer_plugins.has(plugin_id):
 		return "res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/"
 

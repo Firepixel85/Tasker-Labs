@@ -38,7 +38,7 @@ func _mouse_exited():
 
 func _pressed() -> void:
 	if name == "Update":
-		Popups.create_popup(preload("res://MainView/UpdateAvailablePopup.tscn"))
+		Popups.create_popup(preload("res://MainView/Updates/UpdateAvailablePopup.tscn"))
 		return
 	Input.action_press(view_keys[name])
 	Input.action_release(view_keys[name])

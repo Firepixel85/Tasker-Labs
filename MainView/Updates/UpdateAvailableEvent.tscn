@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://fdix8jblhjpi"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_kn5mj"]
+[ext_resource type="Script" uid="uid://cdk0xfnxk0wii" path="res://MainView/Updates/UpdateAvailableEvent.gd" id="1_y0bqm"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_y0bqm"]
+[ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="3_jf8up"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_j0cd7"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="5_057fe"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="6_vmryw"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jf8up"]
+
+[node name="Control" type="Control" unique_id=498634280]
+custom_minimum_size = Vector2(448, 168)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 448.0
+offset_bottom = 168.0
+script = ExtResource("1_y0bqm")
+
+[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_kn5mj")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("2_y0bqm")
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=1023173841]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=828959926]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=149977851]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1516606256]
+layout_mode = 2
+texture = ExtResource("3_jf8up")
+stretch_mode = 2
+
+[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("4_j0cd7")]
+custom_minimum_size = Vector2(195, 34)
+layout_mode = 2
+script = ExtResource("5_057fe")
+text = "Update available"
+vertical_alignment = "Center"
+
+[node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1705300122]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("6_vmryw")
+text = "An new version of Tasker is available for dowload. Click Here to update."
+autowrap_mode = 2
+
+[node name="Button" type="Button" parent="." unique_id=1655723975]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jf8up")
+flat = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

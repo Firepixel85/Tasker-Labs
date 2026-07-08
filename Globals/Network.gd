@@ -151,7 +151,7 @@ class Updates:
 		else:
 			headers = ["User-Agent: Tasker"]
 		var url:String
-		if Main.get_version_sufix().begins_with("beta"):
+		if Main.get_version_sufix().begins_with("beta") or Main.get_version_sufix().begins_with("pb"):
 			url = "https://api.github.com/repos/Firepixel85/Tasker-Labs/releases/latest"
 		else:
 			url = "https://api.github.com/repos/Rosepen-Studios/Tasker/releases/latest"
@@ -196,13 +196,7 @@ class Updates:
 				if latest_version != Main.get_version():
 					is_outdated = true
 					Debug.log("Update available: %s" % latest_version,ID)
-					NotificationManager.queue_notification(
-						"Update Available","A new version of Tasker is available: %s. Click here to download." % latest_version,
-						false,
-						Popups.create_popup,
-						[preload("res://MainView/UpdateAvailablePopup.tscn")],
-						6.0
-					)
+					EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
 					Network.check_for_updates.emit(latest_version, true)
 			_:
 				Debug.log("Update check failed: HTTP error %d" % response[1],ID)
@@ -213,6 +207,39 @@ class Updates:
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
 					0.0
 				)
+	static func update():
+		Debug.log("Updating Tasker",ID)
+		if EventManager.event_exists(ID):
+			EventManager.remove_event(ID)
+		EventManager.add_event(ID,load("res://MainView/Updates/HelperDownloadingEvent.tscn"),Icons.DOWNLOAD)
+		var popup = TSKPopup.new()
+		if helper_exist():
+			popup.set_type(TSKPopup.DOUBLE_ACTION)
+			popup.set_title("Ready to Update")
+			popup.set_description("Tasker is now ready to update. If you have unsaved progress, close this popup, save your work and click on the update event on the bottom left of your screen. Otherwise, click on 'Update Now' to start the update process. Tasker will automatically close and a helper app will open.")
+			popup.add_action(empty,"Not Now",[],"Gray")
+			popup.add_action(_open_helper,"Update Now",[],Settings.get_option_value("core.appearance/accent_color"))
+		else:
+			popup.set_type(TSKPopup.SINGLE_ACTION)
+			popup.set_title("Downloading Helper")
+			popup.set_description("Tasker is now downloading a helper app to update. You can continue using the app normaly until the download is complete. Please do not close the app.")
+			popup.add_action(empty,"Got it")
+		Popups.clear_popup()
+		await Popups.popup_cleared
+		Popups.create_prefab_popup(popup)
+
+	static func helper_exist():
+		return FileAccess.file_exists("user://TaskerUpdater.app")
+	
+	static func _open_helper():
+		if !helper_exist():
+			Debug.error("Attempting to open helper app to update, but it doesn't exist")
+			return
+		OS.shell_open(OS.get_user_data_dir()+"/TaskerUpdater")
+		Network.get_tree().quit()
+
+	static func empty(): #I challenge you to find all empty functions in the codebase
+		pass
 
 func save() -> void:
 	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
@@ -228,3 +255,11 @@ func _ready() -> void:
 	else:
 		Data.make_file("Secrets","Core")
 		save()
+	Main.view_changed.connect(_on_view_changed)
+
+func _on_view_changed(new_view:String) -> void:
+	if new_view != "settings" or Settings.get_option_value("core.general/update_notify"):
+		return
+	var new_setting = await Settings.setting_changed
+	if new_setting[0] == "core.general/update_notify" and new_setting[1] == true:
+		Updates.check_for_updates()
