@@ -54,12 +54,14 @@ func _input(event: InputEvent) -> void:
 			get_viewport().set_input_as_handled()
 
 func _highlighted(pos_y):
-	create_tween().tween_property(highlight,"position:y",pos_y,0.07*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var tween = create_tween()
+	tween.tween_property(highlight,"position:y",pos_y,0.07*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	highlight.show()
+	await tween.finished
 
 func _select(pos_y):
 	var tween = create_tween()
-	tween.tween_property(selection,"position:y",pos_y,0.12*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(selection,"position:y",pos_y,0.12*int(!RoseGarden.Accessibility.disableAnimations)*int(Settings.get_option_value("core.appearance/more_animations"))).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	input.edit()
 
@@ -72,7 +74,7 @@ func command_has_focus() -> bool:#Checking if the command bar has focus will ret
 
 func _process(_delta: float) -> void:
 	if !visible:return
-	if get_global_mouse_position().y<position.y or get_global_mouse_position().x<position.x or get_global_mouse_position().y>position.y+size.y or get_global_mouse_position().x>position.x+size.x:
+	if get_global_mouse_position().y<get_global_transform().origin.y or get_global_mouse_position().x<get_global_transform().origin.x or get_global_mouse_position().x > get_global_transform().origin.x+container.size.x or get_global_mouse_position().y>get_global_transform().origin.y+container.size.y:
 		highlight.hide()
 	elif selection.visible:
 		highlight.show()

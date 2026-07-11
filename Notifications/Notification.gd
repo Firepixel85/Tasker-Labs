@@ -50,18 +50,18 @@ func setup(new_title:String,new_description:String,error:=false,new_action=null,
 
 func close(was_desmised:bool):
 	var tween = create_tween().set_parallel(true)
-	tween.tween_property(self,"modulate",Color(1,1,1,0),0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"modulate",Color(1,1,1,0),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	if was_desmised:
-		tween.tween_property(self,"scale",Vector2(0,0),0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"scale",Vector2(0,0),0.5*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
-		tween.tween_property(self,"position:x",-448,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.tween_property(self,"position:x",-448,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	closed.emit()
 
 func enter():
 	position = Vector2(-448,0)
 	var tween = create_tween()
-	tween.tween_property(self,"position:x",0,0.3).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self,"position:x",0,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	
 func _on_button_pressed() -> void:
 	if action != null:

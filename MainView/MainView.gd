@@ -56,6 +56,8 @@ func _ready():
 		Settings.add_option("core.general","display_name","res://Settings/CoreOptions/General/DisplayName/CoreOption_DisplayName.tscn","Name")
 	if !Settings.option_exists("core.general/update_notify"):
 		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
+	if !Settings.option_exists("core.general/plugin_notify"):
+		Settings.add_option("core.general","plugin_notify","res://Settings/CoreOptions/General/PluginNotify/CoreOption_PluginNotify.tscn",true)
 	if !Settings.option_exists("core.general/command_amount"):
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
 

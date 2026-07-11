@@ -32,8 +32,27 @@ func load_settings():
 	if option_exists("core.accessibility/increase_contrast"):
 		_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
 	await PluginManager.scan_available_plugins()
-	PluginManager.scan_for_updates()
+	await PluginManager.scan_for_updates()
+	if PluginManager.get_outdated_plugins().size() > 0:
+		if !option_exists("core.plugins/plugin_notify"):
+			NotificationManager.queue_notification(
+				"Outdated Plugins Found",
+				"Some of your plugins are outdated, click here to update them.",
+				false,
+				_open_plugin_update_menu,
+				[],
+				6.0
+			)
 	return OK
+
+func _open_plugin_update_menu(): #Supprt function used for the notification that is sent when outdated plugins are found
+	Input.action_press("plugin_open")
+	Input.action_release("plugin_open")
+	await get_tree().create_timer(0.15).timeout
+	var press_event = InputEventAction.new()
+	press_event.action = "plugins_updates"
+	press_event.pressed = true
+	Input.parse_input_event(press_event)
 
 func save_settings():
 	Data.save_to("settings_list",_settings_list,"Core/SettingsData")
