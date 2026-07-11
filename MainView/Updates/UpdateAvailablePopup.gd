@@ -11,6 +11,10 @@ func _on_meta_clicked(meta: Variant) -> void:
 
 func _ready() -> void:
 	update_button.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	version_name.text = Network.Updates.latest_version_name
+	size_text.text = "%sMB"%Network.Updates.latest_version_size
+	release_date.text = Network.Updates.latest_version_release_date
+	description.text = Network.Updates.latest_version_description
 
 func _on_cancel_pressed() -> void:
 	Popups.clear_popup()

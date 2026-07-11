@@ -1,3 +1,4 @@
+res://Settings/CoreOptions/General/UpdateNotify/
 res://MainView/Updates/
 res://DeveloperPlugins/Console/
 res://MainView/
@@ -20,4 +21,3 @@ res://Sidebar/
 res://DeveloperPlugins/Console/Settings/ShowTimestamps/
 res://Settings/CoreOptions/RoseGarden/tooltipAppearance/
 res://Settings/CoreOptions/RoseGarden/togglePress/
-res://Settings/CoreOptions/RoseGarden/toastAppearance/

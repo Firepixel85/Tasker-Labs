@@ -29,7 +29,8 @@ func _ready() -> void:
 	await get_tree().process_frame
 	if plugin_container.get_child_count() == 0:
 		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate())
-
+	plugin_container.get_parent().get_v_scroll_bar().value_changed.connect(_check_scroll_fade)
+	
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
@@ -39,3 +40,10 @@ func _on_view_selector_item_selected(_item_name: String) -> void:
 func _update_complete() -> void:
 	_ready()
 	updated.emit(false)
+
+func _check_scroll_fade(_value: float):
+	var bar:VScrollBar = plugin_container.get_parent().get_v_scroll_bar()
+	if bar.value >= bar.max_value - bar.page - 1.0:
+		fade.hide()
+	else:
+		fade.show()

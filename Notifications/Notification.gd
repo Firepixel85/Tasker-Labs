@@ -77,3 +77,6 @@ func _on_close_icon_mouse_exited() -> void:
 func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("notification_dismiss"):
 		close(true)
+
+func _on_close_pressed() -> void:
+	close(true)

@@ -139,6 +139,10 @@ class Updates:
 	static var latest_helper_version: String = ""
 	static var latest_helper_download_url: String = ""
 	static var updating:bool = false
+	static var latest_version_description: String = ""
+	static var latest_version_size: String = ""
+	static var latest_version_release_date: String = ""
+	static var latest_version_name: String = ""
 
 	static func check_for_updates() -> void:
 		Debug.log("Checking for updates...",ID)
@@ -197,9 +201,33 @@ class Updates:
 					)
 					return
 				latest_version = json["tag_name"]
+				latest_version_release_date = json["published_at"].split("T")[0].replacen("-","/")
+				latest_version_name = json["name"]
+				var description_url = ""
+				for asset in json["assets"]:
+					if asset["name"] == "Tasker.zip":
+						latest_version_size = str(roundi(asset["size"]/1048576))
+					if asset["name"] == "Description.txt":
+						description_url = asset["browser_download_url"]
+				if description_url != "":
+					var desc_http = HTTPRequest.new()
+					Network.add_child(desc_http)
+					desc_http.download_file = "user://Description.txt"
+					desc_http.request(description_url,headers)
+					var desc_response = await desc_http.request_completed
+					desc_http.queue_free()
+					if desc_response[1] == 200:
+						var desc_file = FileAccess.open("user://Description.txt",FileAccess.READ)
+						latest_version_description = desc_file.get_as_text()
+						desc_file.close()
+						DirAccess.remove_absolute("user://Description.txt")
+					else:
+						Debug.log("Failed to download description file: HTTP error %d" % desc_response[1],ID)
+						latest_version_description = "[color=D72D2C]Failed to download description file: HTTP error %d" % desc_response[1]
 				if latest_version != Main.get_version():
 					is_outdated = true
-					EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
+					if Settings.get_option_value("core.general/update_notify"):
+						EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
 					Network.check_for_updates.emit(latest_version, true)
 					Debug.log("Update available: %s" % latest_version,ID)
 			_:
@@ -304,7 +332,6 @@ class Updates:
 		if FileAccess.file_exists("user://TaskerUpdater.zip"):
 			if dir.remove("user://TaskerUpdater.zip") != OK:
 				Debug.error("Failed to delete existing TaskerUpdater.zip, future updates may fail",ID)
-			#DirAccess.remove_absolute("user://TaskerUpdater.zip")
 
 		if latest_helper_download_url == "":
 			Debug.log("Helper download failed: No download URL found for TaskerUpdater.zip",ID)
@@ -328,7 +355,7 @@ class Updates:
 		download_http.queue_free()
 
 		if download_response[1] != 200:
-			Debug.log("Helper download failed: HTTP error %d while downloading TaskerUpdater.zip" % download_response[1],ID)
+			Debug.log("Helper download failed: HTTP error %d while downloading helper" % download_response[1],ID)
 			return ERR_CONNECTION_ERROR
 
 		Debug.log("Helper download complete, extracting...",ID)
@@ -412,11 +439,20 @@ class Updates:
 		dir.list_dir_end()
 		return DirAccess.remove_absolute(path)
 
+	static func _settings_update(option_path,new_value):
+		if option_path != "core.general/update_notify":
+			return
+		if new_value == true:
+			Updates.check_for_updates()
+		elif EventManager.event_exists(ID):
+			EventManager.remove_event(ID)
+
 func save() -> void:
 	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
 	Data.save_file("Core/Secrets")
 	Data.save_to("helper_version", Updates.helper_version, "Core/UpdateData")
 	Data.save_to("version", Main.get_version(), "Core/UpdateData")
+	Data.save_to("version_sufix", Main.get_version_sufix(), "Core/UpdateData")
 	Data.save_file("Core/UpdateData")
 
 func _ready() -> void:
@@ -438,6 +474,7 @@ func _ready() -> void:
 		save()
 	Main.view_changed.connect(_on_view_changed)
 	Updates._get_helper_latest_version()
+	Settings.setting_changed.connect(Updates._settings_update)
 
 func _on_view_changed(new_view:String) -> void:
 	if new_view != "settings" or Settings.get_option_value("core.general/update_notify"):

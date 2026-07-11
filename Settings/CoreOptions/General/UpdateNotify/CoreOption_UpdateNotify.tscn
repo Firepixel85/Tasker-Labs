@@ -1,8 +1,8 @@
-[gd_scene format=3 uid="uid://c2bp0nmq3uy4n"]
+[gd_scene format=3 uid="uid://dgemf3s666d46"]
 
-[ext_resource type="Script" uid="uid://cyoa70jk1c4qs" path="res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.gd" id="1_1wj4a"]
-[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_kughk"]
-[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_vd5r2"]
+[ext_resource type="Script" uid="uid://b1jq3bab00rqh" path="res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.gd" id="1_up0fd"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_6n8ry"]
+[ext_resource type="PackedScene" uid="uid://cw8a3ogvdskiq" path="res://addons/RoseGarden/components/Toggle/RGToggle.tscn" id="3_n2t1l"]
 
 [node name="ToggleOption" type="Control" unique_id=506169743]
 custom_minimum_size = Vector2(0, 60)
@@ -10,7 +10,7 @@ layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
-script = ExtResource("1_1wj4a")
+script = ExtResource("1_up0fd")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=872462836]
 layout_mode = 1
@@ -20,8 +20,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_kughk")]
-custom_minimum_size = Vector2(287, 29)
+[node name="RGText" parent="HBoxContainer" unique_id=85953319 instance=ExtResource("2_6n8ry")]
+custom_minimum_size = Vector2(325, 34)
 layout_mode = 2
 text = "Get notified of new versions"
 vertical_alignment = "Center"
@@ -34,7 +34,7 @@ size_flags_horizontal = 3
 layout_mode = 2
 alignment = 1
 
-[node name="Toggle" parent="HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("3_vd5r2")]
+[node name="Toggle" parent="HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("3_n2t1l")]
 layout_mode = 2
 
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggled"]

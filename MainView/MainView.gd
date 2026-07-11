@@ -25,7 +25,7 @@ var view_nodes := {
 	"plugins":null
 }
 signal view_changed(new_view:String)
- 
+
 func _ready():
 	Main.main_view = self
 	Main._ready()

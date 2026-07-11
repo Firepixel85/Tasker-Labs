@@ -1,9 +1,9 @@
+TextureRect
 Button
 AnimationPlayer
 TextureProgressBar
 VBoxContainer
 Label
-TextureRect
 HBoxContainer
 MarginContainer
 CenterContainer

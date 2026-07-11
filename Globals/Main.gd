@@ -7,7 +7,7 @@ class window:
 	static var position := Vector2(0,0)
 
 const version:String = "2.0"
-const version_sufix:String = "pb1"
+const version_sufix:String = "pb2"
 const plugin_api_version:String = "1.0"
 signal view_changed(new_view:String)
 

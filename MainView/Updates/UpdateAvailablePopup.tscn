@@ -111,7 +111,7 @@ layout_mode = 2
 theme = ExtResource("8_3v6ft")
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
-text = "[color=acacac]Mock Description: This new release brings quality features to Tasker, to improve your experience with our app. Introducing: the plugin store where you can discover and download new plugins from the comfort of your app. Tasker 1.1 also bring integrations allowing you to connect your favourite apps to Tasker and use them in tandem with our productivity features. Lastly plugins can now communicate with each other, forming powerful synergies across the app. Read the full changelog here"
+text = "[color=acacac]This new release brings quality features to Tasker, to improve your experience with our app. Introducing: the plugin store where you can discover and download new plugins from the comfort of your app. Tasker 1.1 also bring integrations allowing you to connect your favorite apps to Tasker and use them in tandem with our productivity features. Lastly plugins can now communicate with each other, forming powerful synergies across the app. Read the full changelog here"
 fit_content = true
 autowrap_mode = 2
 
