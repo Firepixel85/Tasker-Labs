@@ -311,8 +311,29 @@ func load_plugin(plugin_id):
 		return OK
 	elif is_developer_plugin(plugin_id) and Settings.get_option_value("core.developer/dev_tools"):
 		Debug.log("Loading developer plugin: "+get_plugin_name(plugin_id),ID)
+		if !FileAccess.file_exists("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/plugin.gd"):
+			NotificationManager.queue_notification(
+				"Couldn't load plugin: %s"%get_plugin_name(plugin_id),
+				"The plugin is missing the required script for it to be loaded. Please report this to the author.",
+				true,
+				null,
+				[],
+				0.0
+			)
+			if Main.get_current_view() != "mainview":
+				RoseGarden.create_toast("Couldn't load plugin","Red")
+			Debug.error("Plugin with id: "+plugin_id+" does not have required plugin.gd script, didn't load",ID)
+			return ERR_FILE_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id] = load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/plugin.gd").new()
 		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
+			NotificationManager.queue_notification(
+				"Couldn't load plugin: %s"%get_plugin_name(plugin_id),
+				"The plugin has a malformed plugin script. Please report this to the author.",
+				true,
+				null,
+				[],
+				0.0
+			)
 			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND

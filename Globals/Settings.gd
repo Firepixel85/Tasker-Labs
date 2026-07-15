@@ -33,16 +33,15 @@ func load_settings():
 		_sync_with_rg("core.accessibility/increase_contrast",get_option_value("core.accessibility/increase_contrast"))
 	await PluginManager.scan_available_plugins()
 	await PluginManager.scan_for_updates()
-	if PluginManager.get_outdated_plugins().size() > 0:
-		if !option_exists("core.plugins/plugin_notify"):
-			NotificationManager.queue_notification(
-				"Outdated Plugins Found",
-				"Some of your plugins are outdated, click here to update them.",
-				false,
-				_open_plugin_update_menu,
-				[],
-				6.0
-			)
+	if PluginManager.get_outdated_plugins().size() > 0 and get_option_value("core.general/plugin_notify"):
+		NotificationManager.queue_notification(
+			"Outdated Plugins Found",
+			"Some of your plugins are outdated, click here to update them.",
+			false,
+			_open_plugin_update_menu,
+			[],
+			8.0
+		)
 	return OK
 
 func _open_plugin_update_menu(): #Supprt function used for the notification that is sent when outdated plugins are found

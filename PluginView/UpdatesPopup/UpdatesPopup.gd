@@ -3,6 +3,7 @@ extends Control
 @onready var plugin_container: VBoxContainer = $RGContainer/MarginContainer/VBoxContainer/ScrollContainer/PluginContainer
 @onready var scroll_container: ScrollContainer = $RGContainer/MarginContainer/VBoxContainer/ScrollContainer
 @onready var fade: TextureRect = $MarginContainer/VBoxContainer/Fade
+@onready var update_all: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/UpdateAll
 
 signal updated(toast:bool)
 func _ready() -> void:
@@ -47,3 +48,13 @@ func _check_scroll_fade(_value: float):
 		fade.hide()
 	else:
 		fade.show()
+
+func _on_update_all_pressed() -> void:
+	update_all.disabled = true
+	update_all.set_text("Updating...")
+	for plugin in PluginManager.get_outdated_plugins():
+		if view_selector.get_selected() == "only_trusted" and !PluginManager.is_plugin_trusted(plugin):
+			continue
+		#await PluginManager.update_plugin(plugin)
+	RoseGarden.create_toast("All plugins updated","Green")
+	_ready()

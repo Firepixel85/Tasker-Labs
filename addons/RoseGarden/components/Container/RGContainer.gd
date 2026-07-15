@@ -56,4 +56,9 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update)
-	_update()
+	while true:
+		_update()
+		if RoseGarden.PerformanceMode.is_enabled():
+			await get_tree().create_timer(0.2).timeout
+		else:
+			await get_tree().process_frame

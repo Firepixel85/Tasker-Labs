@@ -1,0 +1,8 @@
+{
+	"name":"Focus",
+	"author":"Rosepen Studios",
+	"version":"0.1",
+	"target_api_version":"1.0",
+	"plugin_id":"com.rosepen.focus",
+	"description":"Track your time spent working and seperate it into projects, for maximum organisation"
+}

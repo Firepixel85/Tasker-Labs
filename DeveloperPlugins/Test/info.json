@@ -4,5 +4,5 @@
 	"target_api_version": "1.0",
 	"author": "Rosepen Studios",
 	"plugin_id": "com.rosepen.dev_test",
-	"description": "A built-in debugging tool, used for testing the plugin API. This plugin is part of Tasker's developer tools that can be toggled through the settings menu.",
+	"description": "A built-in debugging tool, used for testing the plugin API. This plugin is part of Tasker's developer tools that can be toggled through the settings menu."
 }

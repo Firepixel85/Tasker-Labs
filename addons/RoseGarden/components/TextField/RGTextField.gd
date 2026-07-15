@@ -156,6 +156,7 @@ func _process(_delta: float) -> void:
 			line_edit.add_theme_font_size_override("font_size",30)
 	else:
 		line_edit.add_theme_font_size_override("font_size",20)
+
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	RoseGarden.custom_textures_changed.connect(_update)

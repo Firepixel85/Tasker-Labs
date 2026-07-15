@@ -22,6 +22,7 @@ func select(item_name:String):
 	var index = _find_index(items,item_name)
 	get_tree().create_tween().tween_property(selector,"position",Vector2(56*index,selector.position.y),0.15*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.sgSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	item_selected.emit(item_name)
+	_shade_options()
 	return OK
 
 func add_item(item_name:String,item_icon:Texture2D) -> int:
@@ -52,12 +53,15 @@ func add_item(item_name:String,item_icon:Texture2D) -> int:
 func remove_item(item_name:String):
 	if !_array_has_item(items,item_name):
 		return ERR_DOES_NOT_EXIST
+	if items.size() == 1:
+		selected = ""
 	if selected == item_name:
-		return ERR_LOCKED
+		select(items[0])
 
 	items.remove_at(_find_index(items,item_name))
 	item_icons.erase(item_name)
-	for child in icon_container.get_children().size()-1:
+	for child in icon_container.get_children().size():
+		print(icon_container.get_child(child).get_child(0).item)
 		if icon_container.get_child(child).get_child(0).item == item_name:
 			icon_container.get_child(child).get_child(0).queue_free()
 			icon_container.get_child(child).queue_free()
@@ -81,6 +85,9 @@ func select_prev():
 	_shade_options()
 	return OK
 
+func get_selected():
+	return selected
+
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
@@ -91,7 +98,6 @@ func _process(_delta: float) -> void:
 		_erase_items()
 		_load_items()
 		select(items[0])
-	_update()
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
@@ -100,7 +106,12 @@ func _ready() -> void:
 			select(items[0])
 		_update()
 	RoseGarden.custom_textures_changed.connect(_update)
-	_update()
+	while true:
+		_update()
+		if RoseGarden.PerformanceMode.is_enabled():
+			await get_tree().create_timer(0.2).timeout
+		else:
+			await get_tree().process_frame
 
 func _update():
 	texture.texture = load(RoseGarden._get_file_path()+"SegmentControl/Container.svg")

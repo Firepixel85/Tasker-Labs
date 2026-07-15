@@ -9,6 +9,22 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
 
+##########################
+#### Performance Mode ####
+##########################
+
+class PerformanceMode:
+	static var enabled:bool = false
+
+	static func enable():
+		enabled = true
+
+	static func disable():
+		enabled = false
+
+	static func is_enabled():
+		return enabled
+
 #######################
 #### Accessibility ####
 #######################

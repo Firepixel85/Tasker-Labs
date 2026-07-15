@@ -58,6 +58,8 @@ func _ready():
 		Settings.add_option("core.general","update_notify","res://Settings/CoreOptions/General/UpdateNotify/CoreOption_UpdateNotify.tscn",true)
 	if !Settings.option_exists("core.general/plugin_notify"):
 		Settings.add_option("core.general","plugin_notify","res://Settings/CoreOptions/General/PluginNotify/CoreOption_PluginNotify.tscn",true)
+	if !Settings.option_exists("core.general/performance_mode"):
+		Settings.add_option("core.general","performance_mode","res://Settings/CoreOptions/General/PerformanceMode/CoreOption_PerformanceMode.tscn",false)
 	if !Settings.option_exists("core.general/command_amount"):
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
 
@@ -165,6 +167,11 @@ func _process(_delta: float) -> void:
 func _settings_changed(option_path,new_value):
 	if option_path == "core.general/display_name":
 		user_name.set_text(new_value)
+	if option_path == "core.general/performance_mode":
+		if new_value:
+			RoseGarden.PerformanceMode.enable()
+		else:
+			RoseGarden.PerformanceMode.disable()
 	if option_path == "core.developer/dev_tools":
 		for plugin_id in PluginManager.get_all_plugins():
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):

@@ -48,7 +48,7 @@ func remove_item(item_name:String):
 
 	items.remove_at(_find_index(items,item_name))
 	items_text.erase(item_name)
-	for child in text_container.get_children().size()-1:
+	for child in text_container.get_children().size():
 		if text_container.get_child(child).get_child(0).item == item_name:
 			text_container.get_child(child).get_child(0).queue_free()
 			text_container.get_child(child).queue_free()
@@ -87,6 +87,12 @@ func select_prev():
 		return ERR_DOES_NOT_EXIST
 	select(items[_find_index(items,selected)-1])
 	return OK
+
+func get_selected():
+	return selected
+
+func get_selected_text():
+	return items_text[selected]
 
 ##############
 #### STOP #### Here begin private functions that should never be called by your code

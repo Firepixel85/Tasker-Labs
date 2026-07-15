@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://ixic4nuk36iu" path="res://addons/RoseGarden/components/ProgressBar/Bottom/Bottom Red.svg" id="2_yi08q"]
 [ext_resource type="Texture2D" uid="uid://u2rbks45ftpd" path="res://addons/RoseGarden/components/ProgressBar/Top/Top Red.svg" id="3_8fg2k"]
 [ext_resource type="Texture2D" uid="uid://cbinska1er8ma" path="res://addons/RoseGarden/components/ProgressBar/Progress/Progress Red.svg" id="4_q8dc0"]
-[ext_resource type="Theme" uid="uid://dh75wc3b2014m" path="res://addons/RoseGarden/themes/Secondary.tres" id="5_7ql1a"]
+[ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="5_7ql1a"]
 
 [node name="RGProgressBar" type="Control" unique_id=1750477034]
 custom_minimum_size = Vector2(60, 60)
