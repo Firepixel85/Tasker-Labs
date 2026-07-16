@@ -47,6 +47,8 @@ func _update():
 	container.patch_margin_left = patch_margins[padding]
 	container.patch_margin_right = patch_margins[padding]
 	container.patch_margin_top = patch_margins[padding]
+	if get_tree() == null:
+		return
 	await get_tree().process_frame
 	container.size = size
 
@@ -56,9 +58,13 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update)
+	if Engine.is_editor_hint():
+		return
 	while true:
 		_update()
-		if RoseGarden.PerformanceMode.is_enabled():
+		if RoseGarden.PerformanceMode.is_enabled() and get_tree() != null:
 			await get_tree().create_timer(0.2).timeout
-		else:
+		elif get_tree() != null:
 			await get_tree().process_frame
+		elif get_tree() == null:
+			break

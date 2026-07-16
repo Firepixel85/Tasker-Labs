@@ -1,0 +1,110 @@
+[gd_scene format=3 uid="uid://7txusiutpqx5"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_mspru"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_fw4wr"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_quwvv"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="4_m42hq"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_40u05"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="6_2s0u7"]
+[ext_resource type="Texture2D" uid="uid://dkilcirdua61i" path="res://Icons/CalendarDownArrow.svg" id="7_0pa8d"]
+[ext_resource type="Texture2D" uid="uid://j1j84bt7jlx6" path="res://Icons/ThreeDots.svg" id="8_dj7k3"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="9_1p5ft"]
+[ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="10_d813n"]
+[ext_resource type="Script" uid="uid://c16036jyl7u47" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.gd" id="11_46v87"]
+
+[node name="Control" type="Control" unique_id=232270059]
+custom_minimum_size = Vector2(0, 210)
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+
+[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_mspru")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("2_fw4wr")
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=402082740]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=2063928437]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1579330214]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=650868400]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="Title" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=85953319 instance=ExtResource("3_quwvv")]
+custom_minimum_size = Vector2(62, 34)
+layout_mode = 2
+script = ExtResource("4_m42hq")
+text = "[title]"
+vertical_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=828030752]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="GoalToggle" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_40u05")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("6_2s0u7")
+text = ""
+icon = ExtResource("7_0pa8d")
+metadata/_edit_use_anchors_ = true
+
+[node name="More" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1547313199 instance=ExtResource("5_40u05")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("6_2s0u7")
+text = ""
+icon = ExtResource("8_dj7k3")
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=326694028]
+layout_mode = 2
+theme = ExtResource("9_1p5ft")
+bbcode_enabled = true
+text = "[color=acacac]Daily goal: [color=f5f5f5]2hr"
+fit_content = true
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=329722070]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="GoalProgress" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1750477034 instance=ExtResource("10_d813n")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("11_46v87")
+
+[node name="ProgressText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1229085659 instance=ExtResource("3_quwvv")]
+custom_minimum_size = Vector2(98, 28)
+layout_mode = 2
+script = ExtResource("4_m42hq")
+text = "[progress]"
+font_size = "Secondary"
+vertical_alignment = "Center"

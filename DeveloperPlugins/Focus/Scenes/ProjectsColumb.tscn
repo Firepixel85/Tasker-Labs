@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://jnrvnc4sa8ht"]
+
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_5axxj"]
+[ext_resource type="Script" uid="uid://cojtbdomrrpr1" path="res://DeveloperPlugins/Focus/Scenes/ProjectsColumb.gd" id="1_ivk7l"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="2_wyj5j"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="3_ivk7l"]
+[ext_resource type="Texture2D" uid="uid://cxy4fyrul2g5x" path="res://Icons/Plus.svg" id="4_vdpk3"]
+
+[node name="Control" type="Control" unique_id=831502943]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_ivk7l")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1206847096]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer" unique_id=413184292]
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("1_5axxj")]
+custom_minimum_size = Vector2(125, 45)
+layout_mode = 2
+text = "Projects"
+font_size = "Large"
+vertical_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1925710135]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AddProject" type="Control" parent="VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("2_wyj5j")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("3_ivk7l")
+text = ""
+icon = ExtResource("4_vdpk3")
+metadata/_edit_use_anchors_ = true
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer" unique_id=1269878978]
+layout_mode = 2
+size_flags_vertical = 3
+horizontal_scroll_mode = 0
+
+[node name="ProjectContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer" unique_id=1074844273]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddProject" to="." method="_on_add_project_pressed"]

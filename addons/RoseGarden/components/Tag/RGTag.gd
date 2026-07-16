@@ -14,7 +14,8 @@ class_name RGTag
 @export var text:String = "Tag":
 	set(new_value):
 		text = new_value
-		await get_tree().process_frame
+		if get_tree() != null:
+			await get_tree().process_frame
 		_update()
 
 func set_color(new_color:String):
@@ -63,8 +64,15 @@ func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update)
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	_update_themes()
-	await get_tree().process_frame
-	_update()
+	if Engine.is_editor_hint():
+		return
+	while true:
+		if RoseGarden.PerformanceMode.is_enabled():
+			await get_tree().create_timer(0.2).timeout
+			_update()
+		else:
+			await get_tree().process_frame
+			_update()
 
 
 func _update_themes():

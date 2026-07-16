@@ -38,6 +38,9 @@ func _update():
 	margin_container.position.y = 0
 	create_tween().tween_property(container,"size:y",size.y,0.1*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
+func _ready():
+	CommandBar._client = self
+
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed:
 		return
@@ -48,7 +51,7 @@ func _input(event: InputEvent) -> void:
 			create_tween().tween_property(selection,"position:y",selection.position.y-68,0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			get_viewport().set_input_as_handled()
 		KEY_DOWN:
-			if selection.position.y == (command_amount-1)*68:
+			if selection.position.y == (command_container.get_child_count()-1)*68:
 				return
 			create_tween().tween_property(selection,"position:y",selection.position.y+68,0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			get_viewport().set_input_as_handled()
@@ -288,9 +291,6 @@ func _get_acronym(command_name:String):
 	for word in command_name.split(" "):
 		acronym += word.split("")[0]
 	return acronym
-
-func _ready() -> void:
-	CommandBar._client = self
 
 func execute_command(path:String):
 	if !commands.has(path):
