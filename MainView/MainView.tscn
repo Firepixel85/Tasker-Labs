@@ -28,6 +28,7 @@
 [ext_resource type="PackedScene" uid="uid://jtvoo5jjc3tw" path="res://PluginView/ExploreView.tscn" id="24_2ytnv"]
 [ext_resource type="PackedScene" uid="uid://boal3cckjo2n6" path="res://PluginView/InstalledView.tscn" id="25_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://diimuetevof1f" path="res://CommandBar/ComandBar.tscn" id="27_7x8c6"]
+[ext_resource type="PackedScene" uid="uid://bbvld8xyrmxqe" path="res://Onboarding/Onboarding.tscn" id="28_28umk"]
 
 [sub_resource type="Gradient" id="Gradient_iwsuo"]
 offsets = PackedFloat32Array(0.5679348)
@@ -586,6 +587,10 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("18_5lyvq")
+
+[node name="Onboarding" parent="." unique_id=1666369379 instance=ExtResource("28_28umk")]
+visible = false
+layout_mode = 1
 
 [node name="PopupCanvasContainer" type="CanvasLayer" parent="." unique_id=1832252751]
 

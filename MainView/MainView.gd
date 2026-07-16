@@ -16,13 +16,18 @@ extends Control
 #Plugins
 @onready var plugins_view: Control = $Plugins
 
+#Onboarding
+@onready var onboarding_view: Control = $Onboarding
+
+
 const ID = "core.main_view"
 var _current_view:String = ""
 var view_nodes := {
 	"":Control.new(), #Used for startup where no view is selected
 	"mainview":null,
 	"settings":null,
-	"plugins":null
+	"plugins":null,
+	"onboarding":null
 }
 signal view_changed(new_view:String)
 
@@ -36,6 +41,7 @@ func _ready():
 	view_nodes["settings"] = settings_view
 	view_nodes["plugins"] = plugins_view
 	view_nodes["mainview"] = main_view
+	view_nodes["onboarding"] = onboarding_view
 	if Settings.option_exists("core.general/display_name"):
 		user_name.set_text(Settings.get_option_value("core.general/display_name"))
 	Settings.setting_changed.connect(_settings_changed)
@@ -125,7 +131,7 @@ func _ready():
 
 	PluginManager._load_data()
 	_update_setting_values()
-	open_view("mainview")
+	open_view("onboarding")
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):

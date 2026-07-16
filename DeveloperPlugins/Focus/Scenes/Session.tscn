@@ -1,17 +1,12 @@
 [gd_scene format=3 uid="uid://bkpbf4aa0jneb"]
 
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_2nqae"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_wrcof"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_en8ic"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_lgo2f"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="4_a3r4d"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_ttpeq"]
 [ext_resource type="PackedScene" uid="uid://yemav5jwqvo8" path="res://addons/RoseGarden/components/Tag/RGTag.tscn" id="5_16lu5"]
 [ext_resource type="Texture2D" uid="uid://clgi5cagg3oex" path="res://Icons/Pencil.svg" id="5_fb37m"]
 [ext_resource type="Texture2D" uid="uid://c2xawqsp3fqfs" path="res://Icons/Trash.svg" id="6_7iwll"]
-[ext_resource type="Script" uid="uid://b4j60wv02vq6a" path="res://addons/RoseGarden/components/Tag/RGTag.gd" id="6_u0kb7"]
 [ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="7_gni3i"]
-[ext_resource type="Script" uid="uid://c16036jyl7u47" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.gd" id="8_ebx0g"]
 
 [node name="Control" type="Control" unique_id=64349494]
 custom_minimum_size = Vector2(0, 172)
@@ -20,16 +15,14 @@ anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
 
-[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_2nqae")]
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_2nqae")]
 custom_minimum_size = Vector2(0, 172)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-script = ExtResource("2_wrcof")
+offset_right = 0.0
+offset_bottom = 0.0
 padding = "16"
 margin_number = 18
 
@@ -63,52 +56,39 @@ theme_override_constants/separation = 32
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Name" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_en8ic")]
+[node name="Name" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_en8ic")]
 custom_minimum_size = Vector2(62, 34)
 layout_mode = 2
-script = ExtResource("4_a3r4d")
 text = "[title]"
 
-[node name="Time" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=253927621 instance=ExtResource("3_en8ic")]
+[node name="Time" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=253927621 instance=ExtResource("3_en8ic")]
 custom_minimum_size = Vector2(175, 28)
 layout_mode = 2
-script = ExtResource("4_a3r4d")
 text = "Focused for [time]"
 font_size = "Secondary"
 color = "Secondary"
 
-[node name="Project" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1946555419 instance=ExtResource("5_16lu5")]
-custom_minimum_size = Vector2(0, 40)
+[node name="Project" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer/HBoxContainer" unique_id=1946555419 instance=ExtResource("5_16lu5")]
 layout_mode = 2
-size_flags_horizontal = 2
-script = ExtResource("6_u0kb7")
 text = "[project]"
 
-[node name="RGProgressBar" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1750477034 instance=ExtResource("7_gni3i")]
-custom_minimum_size = Vector2(60, 60)
+[node name="RGProgressBar" parent="RGContainer/MarginContainer/HBoxContainer/VBoxContainer" unique_id=1750477034 instance=ExtResource("7_gni3i")]
 layout_mode = 2
-script = ExtResource("8_ebx0g")
 
 [node name="Controls" type="VBoxContainer" parent="RGContainer/MarginContainer/HBoxContainer" unique_id=1664698805]
 layout_mode = 2
 size_flags_horizontal = 8
 theme_override_constants/separation = 16
 
-[node name="Edit" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/Controls" unique_id=1426858299 instance=ExtResource("3_lgo2f")]
+[node name="Edit" parent="RGContainer/MarginContainer/HBoxContainer/Controls" unique_id=1426858299 instance=ExtResource("3_lgo2f")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("4_ttpeq")
 text = ""
 icon = ExtResource("5_fb37m")
-metadata/_edit_use_anchors_ = true
 
-[node name="Delete" type="Control" parent="RGContainer/MarginContainer/HBoxContainer/Controls" unique_id=1215383883 instance=ExtResource("3_lgo2f")]
+[node name="Delete" parent="RGContainer/MarginContainer/HBoxContainer/Controls" unique_id=1215383883 instance=ExtResource("3_lgo2f")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("4_ttpeq")
 color = "Red"
 text = ""
 icon = ExtResource("6_7iwll")
-metadata/_edit_use_anchors_ = true

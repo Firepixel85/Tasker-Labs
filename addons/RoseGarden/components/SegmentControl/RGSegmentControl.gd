@@ -104,7 +104,7 @@ func _process(_delta: float) -> void:
 		_erase_items()
 		_load_items()
 		select(items[0])
-	_update()
+
 
 func _ready() -> void:
 	if !Engine.is_editor_hint():
@@ -113,6 +113,12 @@ func _ready() -> void:
 			select(items[0])
 	RoseGarden.custom_themes_changed.connect(_update_themes)
 	RoseGarden.custom_textures_changed.connect(_update)
+	while true:
+		_update()
+		if RoseGarden.PerformanceMode.is_enabled():
+			await get_tree().create_timer(0.2).timeout
+		else:
+			await get_tree().process_frame
 
 func _update():
 	texture.texture = load(RoseGarden._get_file_path()+"SegmentControl/Container.svg")

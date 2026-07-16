@@ -1,0 +1,373 @@
+[gd_scene format=3 uid="uid://bbvld8xyrmxqe"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_2knsd"]
+[ext_resource type="Script" uid="uid://dikqn1xylijwg" path="res://Onboarding/Scripts/TOU.gd" id="1_er105"]
+[ext_resource type="Script" uid="uid://b4e7ua10788qc" path="res://Onboarding/Onboarding.gd" id="1_w384u"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_e3i1i"]
+[ext_resource type="Texture2D" uid="uid://basii8uyw72ws" path="res://Onboarding/Textures/TOUContainer.svg" id="3_7jd1r"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="4_2knsd"]
+[ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="4_ggw3s"]
+[ext_resource type="FontFile" uid="uid://n0eesastugb5" path="res://CustomThemes/fonts/Regular.otf" id="5_7jd1r"]
+[ext_resource type="FontFile" uid="uid://d0qdmlqtq5rov" path="res://CustomThemes/fonts/Bold.otf" id="6_ggw3s"]
+[ext_resource type="Texture2D" uid="uid://cwciu8kk0rneo" path="res://Onboarding/Textures/Checkbox/Unselected.svg" id="7_bjctk"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="10_ptca0"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="11_cwg74"]
+[ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="13_ptca0"]
+[ext_resource type="Script" uid="uid://uutac5sy1b6g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.gd" id="14_cwg74"]
+
+[sub_resource type="Gradient" id="Gradient_eouc8"]
+offsets = PackedFloat32Array(0.56666666)
+colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_37rn5"]
+gradient = SubResource("Gradient_eouc8")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08c4x"]
+
+[sub_resource type="Gradient" id="Gradient_08c4x"]
+offsets = PackedFloat32Array(0.59761906)
+colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_eouc8"]
+gradient = SubResource("Gradient_08c4x")
+
+[node name="Onboarding" type="Control" unique_id=1666369379]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_w384u")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=720071810]
+layout_mode = 0
+offset_right = 4548.0
+offset_bottom = 1516.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="TOU" type="CenterContainer" parent="HBoxContainer" unique_id=1558223622]
+custom_minimum_size = Vector2(2272, 0)
+layout_mode = 2
+script = ExtResource("1_er105")
+
+[node name="RGContainer" type="Control" parent="HBoxContainer/TOU" unique_id=535912435 instance=ExtResource("1_2knsd")]
+custom_minimum_size = Vector2(880, 840)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_e3i1i")
+padding = "16"
+margin_number = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="Seperator" type="MarginContainer" parent="HBoxContainer/TOU/RGContainer" unique_id=402130612]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/TOU/RGContainer/Seperator" unique_id=337306531]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 2
+
+[node name="Seperator" type="TextureRect" parent="HBoxContainer/TOU/RGContainer/Seperator/VBoxContainer" unique_id=1716546638]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_37rn5")
+
+[node name="Control" type="Control" parent="HBoxContainer/TOU/RGContainer/Seperator/VBoxContainer" unique_id=1919533901]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TOU/RGContainer" unique_id=1329576044]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer" unique_id=1971472315]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="TOU" type="NinePatchRect" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer" unique_id=1180071462]
+custom_minimum_size = Vector2(0, 628)
+layout_mode = 2
+texture = ExtResource("3_7jd1r")
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/TOU" unique_id=1055335912]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/TOU/MarginContainer" unique_id=1770426148]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/TOU/MarginContainer/ScrollContainer" unique_id=1539202948]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("4_2knsd")
+theme_override_fonts/normal_font = ExtResource("5_7jd1r")
+theme_override_fonts/bold_font = ExtResource("6_ggw3s")
+theme_override_font_sizes/normal_font_size = 22
+theme_override_font_sizes/bold_font_size = 24
+bbcode_enabled = true
+text = "[b]Terms of Use for Tasker[/b]
+
+[i]Last updated: 11/06/2026[/i]
+
+Please read these Terms of Use (\"Terms\") carefully before using Tasker (the \"App\"). These Terms are entered into between you (\"you,\" \"the User\") and Rosepen Studios (\"we,\" \"us,\" \"our\").
+
+By downloading, installing, or using the App, you agree to be bound by these Terms. If you do not agree, do not use the App.
+
+[b]1. Relationship to the Tasker License Agreement[/b]
+
+Tasker is free, open-source software distributed under the [b]Tasker Free Use License Agreement[/b] (the \"License\"). The License governs your rights to view, modify, and redistribute the App's source code, and remains fully in effect.
+
+These Terms of Use govern your use of the App as a product — including your conduct while using it, your relationship with plugins, and the boundaries of our responsibility — and apply [b]in addition to[/b], not instead of, the License. Where these Terms and the License overlap (for example, the disclaimer of warranty and limitation of liability), both apply and should be read consistently; the License's Unmodifiable Section cannot be altered by these Terms.
+
+[b]2. Eligibility[/b]
+
+You must be at least 16 years old to use the App, or the minimum age of digital consent in your country of residence if higher. If you are using the App on behalf of a minor, you confirm you have the legal authority to do so.
+
+[b]3. No Cost, No Purchases Through Tasker[/b]
+
+Tasker itself is free to use and, per the License, may never be sold or commercially exploited by anyone, including us. We do not charge for the App and do not operate any in-app purchase or subscription system for Tasker's core functionality.
+
+This does not apply to third-party plugins — see Section 4.
+
+[b]4. Plugins[/b]
+
+Tasker is built around a plugin system that lets you extend the App's functionality. The following terms apply to all plugins, regardless of source.
+
+[b]4.1 No Official Plugin Store[/b]
+
+Tasker does [b]not[/b] operate a plugin store, marketplace, or any centralized directory of plugins. We do not host, distribute, curate, promote, or maintain a list of available plugins. You are entirely responsible for finding, evaluating, and choosing to install any plugin, from any source you find on your own (including but not limited to GitHub, personal websites, or direct file sharing).
+
+[b]4.2 No Review or Approval[/b]
+
+We do not review, vet, test, or approve plugins before or after you install them. A plugin's availability, popularity, or presence in any community list, forum, or repository is not an endorsement by us and carries no assurance of safety, quality, or reliability.
+
+[b]4.3 Independent Third-Party Software[/b]
+
+Each plugin is independently created, owned, and controlled by its own developer(s), who are solely responsible for the plugin's functionality, content, security, and any data practices. Plugin developers are not our agents, partners, employees, or representatives, and we have no relationship with them beyond the fact that their plugin is compatible with our App's plugin system.
+
+[b]4.4 Plugin Pricing and Payment[/b]
+
+Plugin developers may charge for their own plugins at their own discretion. Any such transaction is strictly between you and the plugin developer. We are not a party to that transaction, do not process or facilitate that payment, and are not responsible for billing disputes, refunds, or the plugin developer's conduct.
+
+[b]4.5 No Warranty or Liability for Plugins[/b]
+
+As described in our Privacy Policy, Tasker's plugin architecture grants plugins broad, unsandboxed access to your device by design, so that plugin developers are not restricted in what they can build. Plugins are provided entirely \"as is\" by their respective developers. [b]We disclaim all warranties and all liability of any kind arising from your installation or use of any plugin[/b], including but not limited to data loss, security breaches, financial loss from paid plugins, malicious code, or any damage to your device or accounts. See Section 6 and 7 below, which apply in full to plugins.
+
+[b]4.6 Your Responsibility[/b]
+
+You use plugins entirely at your own risk. We strongly recommend only installing plugins from developers you trust and reviewing any documentation or policies the plugin developer provides before installing.
+
+[b]5. Acceptable Use[/b]
+
+You agree not to:
+
+[ul]
+Use the App for any unlawful purpose or in violation of any applicable law
+Use the App's plugin system to build or distribute a plugin containing malware, spyware, or code designed to harm, deceive, or exploit other users
+Use the App to harass, defraud, or harm others
+Misrepresent a plugin as officially endorsed, reviewed, or supported by Rosepen Studios
+Use the \"Tasker\" or \"Rosepen Studios\" name, logo, or branding in a way that suggests official affiliation, sponsorship, or endorsement without our prior written permission
+[/ul]
+
+Because Tasker is open-source, modification and redistribution of the App itself is permitted, but only under the terms of the License (Section 2.2–2.3 in particular: any redistributed version must remain open-source and non-commercial).
+
+[b]6. Disclaimer of Warranty[/b]
+
+[b]THE APP IS PROVIDED \"AS IS\" AND \"AS AVAILABLE,\" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT. WE DO NOT WARRANT THAT THE APP WILL BE UNINTERRUPTED, ERROR-FREE, OR SECURE, AND WE EXPRESSLY DISCLAIM ANY WARRANTY REGARDING THE SECURITY, RELIABILITY, OR BEHAVIOR OF ANY THIRD-PARTY PLUGIN.[/b]
+
+Nothing in this section limits any statutory rights you may have as a consumer that cannot be lawfully excluded under the law of your country of residence.
+
+[b]7. Limitation of Liability[/b]
+
+[b]TO THE MAXIMUM EXTENT PERMITTED BY LAW, ROSEPEN STUDIOS SHALL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES — INCLUDING BUT NOT LIMITED TO LOSS OF DATA, LOSS OF FUNDS PAID FOR A PLUGIN, BUSINESS INTERRUPTION, OR SECURITY BREACHES — ARISING OUT OF OR IN CONNECTION WITH YOUR USE OF THE APP OR ANY PLUGIN, EVEN IF WE HAVE BEEN ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.[/b]
+
+[b]THIS LIMITATION APPLIES REGARDLESS OF WHETHER THE DAMAGE ARISES FROM THE APP ITSELF OR FROM A THIRD-PARTY PLUGIN INSTALLED THROUGH THE APP'S PLUGIN SYSTEM.[/b]
+
+Nothing in this section excludes or limits liability for death, personal injury caused by negligence, fraud, or any other liability that cannot lawfully be excluded or limited under applicable law, including mandatory consumer protection law in your country of residence.
+
+[b]8. Intellectual Property[/b]
+
+The \"Tasker\" name, associated branding, and logo are owned by Rosepen Studios. While the App's source code is open-source under the License, this does not grant you rights to our trademarks or branding beyond accurate, non-misleading reference to the project (e.g., \"built on Tasker\" or \"a Tasker plugin\").
+
+Plugin developers retain full ownership and intellectual property rights over their own plugins. Installing a plugin does not transfer any rights in that plugin to you beyond what the plugin developer grants directly.
+
+[b]9. Termination[/b]
+
+We may suspend or terminate your access to official channels we control (such as this Terms document's applicability to you) if you materially breach these Terms. Because Tasker is open-source and self-hosted on your device with no account system, termination has no practical effect on your local copy of the App beyond the terms of the License itself, which governs continued use of the source code.
+
+[b]10. Governing Law[/b]
+
+These Terms are governed by the laws of Greece, without regard to conflict of law principles. If you are a consumer resident in the EU, you may also be entitled to rely on the mandatory consumer protection laws of your own country of residence, regardless of this clause.
+
+[b]11. Changes to These Terms[/b]
+
+We may update these Terms from time to time. Material changes will be reflected by updating the \"Last updated\" date above. Continued use of the App after changes constitutes acceptance of the revised Terms.
+
+[b]12. Contact[/b]
+
+Questions about these Terms can be sent to:
+rosepen.sprt@gmail.com"
+fit_content = true
+
+[node name="CheckboxContainer" type="Control" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer" unique_id=1255666179]
+custom_minimum_size = Vector2(0, 66.88)
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer" unique_id=1509505919]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Checkbox" type="Button" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer" unique_id=154372614]
+custom_minimum_size = Vector2(433, 40)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_08c4x")
+flat = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" unique_id=149749980]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 10
+
+[node name="CheckboxTexture" type="TextureRect" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox/HBoxContainer" unique_id=589715651]
+layout_mode = 2
+texture = ExtResource("7_bjctk")
+stretch_mode = 5
+
+[node name="CheckboxText" type="Label" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox/HBoxContainer" unique_id=1673972417]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+text = "I have read and accept the Terms of Use"
+
+[node name="Spacer" type="Control" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer" unique_id=244997621]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer" unique_id=2010016110]
+layout_mode = 2
+alignment = 2
+
+[node name="Next" type="Control" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("10_ptca0")]
+modulate = Color(0.6, 0.6, 0.6, 1)
+custom_minimum_size = Vector2(183, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("11_cwg74")
+text = "Next"
+disabled = true
+metadata/_edit_use_anchors_ = true
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=150744393]
+custom_minimum_size = Vector2(2272, 0)
+layout_mode = 2
+
+[node name="RGContainer" type="Control" parent="HBoxContainer/CenterContainer" unique_id=1609882881 instance=ExtResource("1_2knsd")]
+custom_minimum_size = Vector2(884, 692)
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_e3i1i")
+padding = "16"
+margin_number = 18
+metadata/_edit_use_anchors_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer" unique_id=2116354006]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=58052801]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+
+[node name="Seperator" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=1175360810]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+texture = SubResource("GradientTexture1D_eouc8")
+
+[node name="MarginContainer2" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=1064453855]
+layout_mode = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 18
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2" unique_id=1852794379]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1284775509]
+layout_mode = 2
+alignment = 1
+
+[node name="RGSectionView" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=1182488623 instance=ExtResource("13_ptca0")]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+script = ExtResource("14_cwg74")
+sections = 6
+
+[node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1144804017]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Back" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1490918588 instance=ExtResource("10_ptca0")]
+custom_minimum_size = Vector2(183, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("11_cwg74")
+text = "Back"
+metadata/_edit_use_anchors_ = true
+
+[node name="Next" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1262361827 instance=ExtResource("10_ptca0")]
+custom_minimum_size = Vector2(183, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("11_cwg74")
+text = "Next"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="mouse_entered" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_exited"]
+[connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_pressed"]
+[connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="HBoxContainer/TOU" method="_on_next_pressed"]
+[connection signal="gui_input" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/RGSectionView" to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/RGSectionView" method="_on_gui_input"]
