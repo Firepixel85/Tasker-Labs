@@ -4,25 +4,25 @@ extends Control
 @onready var scroll_container: ScrollContainer = $CategoryButtons/ScrollContainer
 
 var categories = []
-var selected:String
+var selected: String
 var selected_node
-var past_scroll := 0
+var past_scroll : = 0
 
 signal category_selected(category_id)
 
-func _add_category(title:String,icon:Texture2D,category_id:String):
+func _add_category(title: String, icon: Texture2D, category_id: String):
 	if categories.has(category_id):
 		return ERR_ALREADY_EXISTS
 	categories.append(category_id)
 	category_container.add_child(Button.new())
-	var category:Button = category_container.get_child(category_container.get_child_count()-1)
+	var category: Button = category_container.get_child(category_container.get_child_count()-1)
 	category.set_script(preload("res://Sidebar/TabButton.gd"))
 	category.text = title
 	category.icon = icon
 	category.flat = true
 	category.alignment = HORIZONTAL_ALIGNMENT_LEFT
 	category.theme = preload("res://CustomThemes/Main.tres")
-	category.add_theme_stylebox_override("Focus",StyleBoxEmpty.new())
+	category.add_theme_stylebox_override("Focus", StyleBoxEmpty.new())
 	category.manager = self
 	category.id = category_id
 	category._ready()
@@ -34,27 +34,27 @@ func _add_category(title:String,icon:Texture2D,category_id:String):
 	return OK
 
 
-func _remove_tab(category_id:String):
+func _remove_tab(category_id: String):
 	if !categories.has(category_id):
 		return ERR_DOES_NOT_EXIST
 	for child in Settings._option_order[category_id]:
 		if child.id == category_id:
 			child.queue_free()
-			categories.remove_at(_find_index(categories,category_id))
+			categories.remove_at(_find_index(categories, category_id))
 			if selected == category_id:
 				selected = categories[0]
 			_shade_categories()
 			break
 	return OK
 
-func _find_index(array:Array,item):
+func _find_index(array: Array, item):
 	var index = 0
 	for i in array.size():
 		if array[i] == item:
 			index = i
 	return index
 
-func _select(selection_id:String):
+func _select(selection_id: String):
 	if !categories.has(selection_id):
 		return ERR_DOES_NOT_EXIST
 	selected = selection_id
@@ -63,7 +63,7 @@ func _select(selection_id:String):
 		if child.id == selection_id:
 			selected_node = child
 	await get_tree().process_frame
-	create_tween().tween_property(selection,"position:y",selected_node.get_global_transform().origin.y-116,0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(selection, "position: y", selected_node.get_global_transform().origin.y-116, 0.15*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
 	_shade_categories()
 	category_selected.emit(selection_id)
 	Sidebar.tab_selected.emit(selection_id)
@@ -76,7 +76,7 @@ func _shade_categories():
 		else:
 			child.modulate = RoseGarden.Colors.TEXT_SECONDARY
 
-func _process(_delta:float) -> void:
+func _process(_delta: float) -> void:
 	if Main.get_current_view() != "settings":
 		return
 	for i in range(9):

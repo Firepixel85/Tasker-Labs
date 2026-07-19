@@ -6,37 +6,37 @@ extends Control
 @onready var highlight: NinePatchRect = $NinePatchRect/MarginContainer/VBoxContainer2/Highlight
 
 const ID = "core.command_bar"
-var input:RGTextFieldIcon
+var input: RGTextFieldIcon
 
-var command_amount:int = 0
-var commands:Array = []
-var command_names:Dictionary = {}
-var command_icons:Dictionary = {}
-var command_actions:Dictionary = {}
-var command_params:Dictionary = {}
-var command_points:Dictionary = {}
-var command_keywords:Dictionary = {}
+var command_amount: int = 0
+var commands: Array = []
+var command_names: Dictionary = {}
+var command_icons: Dictionary = {}
+var command_actions: Dictionary = {}
+var command_params: Dictionary = {}
+var command_points: Dictionary = {}
+var command_keywords: Dictionary = {}
 
-signal command_added(path:String)
-signal command_removed(path:String)
-signal command_executed(path:String)
-signal command_hidden(path:String)
-signal command_shown(path:String)
+signal command_added(path: String)
+signal command_removed(path: String)
+signal command_executed(path: String)
+signal command_hidden(path: String)
+signal command_shown(path: String)
 
-var is_bar_open:bool = false
-func _display_command(title:String,icon_path:String,path:String):
+var is_bar_open: bool = false
+func _display_command(title: String, icon_path: String, path: String):
 	command_container.add_child(preload("res://CommandBar/Command.tscn").instantiate())
-	var target:Command = command_container.get_child(command_container.get_child_count()-1)
+	var target: Command = command_container.get_child(command_container.get_child_count()-1)
 	target.hovered.connect(_highlighted)
 	target.selected.connect(_select)
 	target.execute.connect(execute_command)
 	target.manager = self
-	target.init(title,icon_path,path)
+	target.init(title, icon_path, path)
 
 func _update():
 	size.y = margin_container.get_minimum_size().y
 	margin_container.position.y = 0
-	create_tween().tween_property(container,"size:y",size.y,0.1*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(container, "size: y", size.y, 0.1*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _ready():
 	CommandBar._client = self
@@ -48,23 +48,23 @@ func _input(event: InputEvent) -> void:
 		KEY_UP:
 			if selection.position.y == 0:
 				return
-			create_tween().tween_property(selection,"position:y",selection.position.y-68,0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			create_tween().tween_property(selection, "position: y", selection.position.y-68, 0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			get_viewport().set_input_as_handled()
 		KEY_DOWN:
 			if selection.position.y == (command_container.get_child_count()-1)*68:
 				return
-			create_tween().tween_property(selection,"position:y",selection.position.y+68,0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			create_tween().tween_property(selection, "position: y", selection.position.y+68, 0.1*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			get_viewport().set_input_as_handled()
 
 func _highlighted(pos_y):
 	var tween = create_tween()
-	tween.tween_property(highlight,"position:y",pos_y,0.07*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(highlight, "position: y", pos_y, 0.07*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	highlight.show()
 	await tween.finished
 
 func _select(pos_y):
 	var tween = create_tween()
-	tween.tween_property(selection,"position:y",pos_y,0.12*int(!RoseGarden.Accessibility.disableAnimations)*int(Settings.get_option_value("core.appearance/more_animations"))).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(selection, "position: y", pos_y, 0.12*int(!RoseGarden.Accessibility.disableAnimations)*int(Settings.get_option_value("core.appearance/more_animations"))).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	input.edit()
 
@@ -76,7 +76,7 @@ func command_has_focus() -> bool:#Checking if the command bar has focus will ret
 	return false
 
 func _process(_delta: float) -> void:
-	if !visible:return
+	if !visible: return
 	if get_global_mouse_position().y<get_global_transform().origin.y or get_global_mouse_position().x<get_global_transform().origin.x or get_global_mouse_position().x > get_global_transform().origin.x+container.size.x or get_global_mouse_position().y>get_global_transform().origin.y+container.size.y:
 		highlight.hide()
 	elif selection.visible:
@@ -89,14 +89,14 @@ func open():
 		child.queue_free()
 	var command_list = _get_relevant_commands(input.get_text())
 	for command in command_list:
-		_display_command(command_names[command],command_icons[command],command)
+		_display_command(command_names[command], command_icons[command], command)
 	await get_tree().process_frame
 	await get_tree().process_frame
 	_update()
 	show()
 	highlight.show()
 	selection.show()
-	create_tween().tween_property(self,"modulate",Color(1,1,1),0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	create_tween().tween_property(self, "modulate", Color(1, 1, 1), 0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func update_shown_commands():
 	command_amount = Settings.get_option_value("core.general/command_amount")
@@ -105,25 +105,25 @@ func update_shown_commands():
 		command_container.get_child(0).set_no_results(true)
 		selection.hide()
 		highlight.hide()
-		for i in range(1,command_container.get_child_count()):
+		for i in range(1, command_container.get_child_count()):
 			command_container.get_child(i).queue_free()
 	elif command_list.size() > command_container.get_child_count():
 		for i in range(command_container.get_child_count()):
-			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
-		for i in range(command_container.get_child_count(),command_list.size()):
-			_display_command(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+			command_container.get_child(i).init(command_names[command_list[i]], command_icons[command_list[i]], command_list[i])
+		for i in range(command_container.get_child_count(), command_list.size()):
+			_display_command(command_names[command_list[i]], command_icons[command_list[i]], command_list[i])
 		selection.show()
 		highlight.show()
 	elif command_list.size() < command_container.get_child_count():
 		for i in range(command_list.size()):
-			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
-		for i in range(command_list.size(),command_container.get_child_count()):
+			command_container.get_child(i).init(command_names[command_list[i]], command_icons[command_list[i]], command_list[i])
+		for i in range(command_list.size(), command_container.get_child_count()):
 			command_container.get_child(i).queue_free()
 		selection.show()
 		highlight.show()
 	elif command_list.size() == command_container.get_child_count():
 		for i in range(command_list.size()):
-			command_container.get_child(i).init(command_names[command_list[i]],command_icons[command_list[i]],command_list[i])
+			command_container.get_child(i).init(command_names[command_list[i]], command_icons[command_list[i]], command_list[i])
 		selection.show()
 		highlight.show()
 
@@ -134,20 +134,20 @@ func update_shown_commands():
 func close():
 	is_bar_open = false
 	var tween = create_tween()
-	tween.tween_property(self,"modulate",Color(1,1,1,0),0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(self, "modulate", Color(1, 1, 1, 0), 0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	hide()
 
-func add_command(command_name:String,id:String,icon_path:String,action:Callable,params:Array=[],keywords=[]):
+func add_command(command_name: String, id: String, icon_path: String, action: Callable, params: Array = [], keywords = []):
 	var path = id+"/"+command_name
 	if commands.has(path):
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command that already exists: "+path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command that already exists: "+path, ID)
 		return ERR_ALREADY_EXISTS
 	if !ResourceLoader.exists(icon_path):
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command with an invalid icon path: "+icon_path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command with an invalid icon path: "+icon_path, ID)
 		return ERR_FILE_NOT_FOUND
 	if !load(icon_path) is CompressedTexture2D:
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command with an icon path that isn't a texture: "+path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to add a command with an icon path that isn't a texture: "+path, ID)
 		return ERR_INVALID_DATA
 	commands.append(path)
 	command_names[path] = command_name
@@ -159,13 +159,13 @@ func add_command(command_name:String,id:String,icon_path:String,action:Callable,
 		command_points[path] = 0
 	command_added.emit(path)
 	save()
-	Debug.log("Command added by process: "+Main.get_process_name(id)+", path is: "+path,ID)
+	Debug.log("Command added by process: "+Main.get_process_name(id)+", path is: "+path, ID)
 	return path
 
-func remove_command(path:String):
+func remove_command(path: String):
 	var id = path.split("/")[0]
 	if !commands.has(path):
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to remove a command that doesn't exist: "+path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to remove a command that doesn't exist: "+path, ID)
 		return ERR_DOES_NOT_EXIST
 	commands.erase(path)
 	command_names.erase(path)
@@ -175,47 +175,47 @@ func remove_command(path:String):
 	command_points.erase(path)
 	command_removed.emit(path)
 	save()
-	Debug.log("Command removed by process: "+Main.get_process_name(id),ID)
+	Debug.log("Command removed by process: "+Main.get_process_name(id), ID)
 	return OK
 
-func hide_command(path:String):
+func hide_command(path: String):
 	var id = path.split("/")[0]
 	if !commands.has(path):
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to hide a command that doesn't exist: "+path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to hide a command that doesn't exist: "+path, ID)
 		return ERR_DOES_NOT_EXIST
 	commands.erase(path)
 	command_hidden.emit(path)
 	save()
-	Debug.log("Command hidden by process: "+Main.get_process_name(id),ID)
+	Debug.log("Command hidden by process: "+Main.get_process_name(id), ID)
 	return OK
 
-func show_command(path:String):
+func show_command(path: String):
 	var id = path.split("/")[0]
 	if commands.has(path):
-		Debug.warn("Process: "+Main.get_process_name(id)+" tried to show a command that doesn't exist: "+path,ID)
+		Debug.warn("Process: "+Main.get_process_name(id)+" tried to show a command that doesn't exist: "+path, ID)
 		return ERR_ALREADY_EXISTS
 	commands.append(path)
 	command_shown.emit(path)
 	save()
-	Debug.log("Command shown by process: "+Main.get_process_name(id),ID)
+	Debug.log("Command shown by process: "+Main.get_process_name(id), ID)
 	return OK
 
-func link_action(action:Callable,path:String):
+func link_action(action: Callable, path: String):
 	if !command_names.has(path):
-		Debug.warn("Tried to link an action to a command that doesn't exist: "+path,ID)
+		Debug.warn("Tried to link an action to a command that doesn't exist: "+path, ID)
 		return ERR_DOES_NOT_EXIST
-	Debug.log("Linked action to command: "+path,ID)
+	Debug.log("Linked action to command: "+path, ID)
 	command_actions[path] = action
 	return OK
 
-func command_has_action(path:String):
+func command_has_action(path: String):
 	return command_actions.has(path)
 
-func command_exists(path:String):
+func command_exists(path: String):
 	return command_names.has(path)
 
-func _get_relevant_commands(input_text:String):
-	var command_list:Array = []
+func _get_relevant_commands(input_text: String):
+	var command_list: Array = []
 	var command_score = []
 	if input_text == "":
 		for i in range(commands.size()):
@@ -225,12 +225,12 @@ func _get_relevant_commands(input_text:String):
 			elif command_points[command_list[command_list.size()-1]]<command_points[commands[i]]:
 				command_list[command_list.size()-1] = commands[i]
 				command_score[command_list.size()-1] = command_points[commands[i]]
-			_sort_parallel_arrays(command_score,command_list)
+			_sort_parallel_arrays(command_score, command_list)
 	else:
 		var mapped_points = _map_points()
 		for i in range(commands.size()):
 			var score = 0.0
-			var substring = float(_is_substring(command_names[commands[i]].to_lower(),input_text.to_lower()))
+			var substring = float(_is_substring(command_names[commands[i]].to_lower(), input_text.to_lower()))
 			if input_text.to_lower() == command_names[commands[i]].to_lower():
 				score = 10
 			elif command_names[commands[i]].to_lower().begins_with(input_text.to_lower()):
@@ -248,17 +248,17 @@ func _get_relevant_commands(input_text:String):
 						break
 			if score != 0:
 				score += mapped_points[commands[i]]
-				score = clamp(score,0,10)
+				score = clamp(score, 0, 10)
 				if command_list.size()<command_amount:
 					command_list.append(commands[i])
 					command_score.append(score)
 				elif command_score[command_score.size()-1]<score:
 					command_list[command_score.size()-1] = commands[i]
 					command_score[command_score.size()-1] = score
-			_sort_parallel_arrays(command_score,command_list)
+			_sort_parallel_arrays(command_score, command_list)
 	return command_list
 
-func _is_substring(haystack:String,needle:String):
+func _is_substring(haystack: String, needle: String):
 	var found_index = haystack.find(needle)
 	if found_index != -1:
 		var length_difference = haystack.length() - needle.length()
@@ -271,7 +271,7 @@ func _is_substring(haystack:String,needle:String):
 
 func _sort_parallel_arrays(values_array: Array, items_array: Array) -> void:
 	if values_array.size() != items_array.size():
-		Debug.error("Tried to sort parallel arrays of different sizes in CommandBarClient",ID)
+		Debug.error("Tried to sort parallel arrays of different sizes in CommandBarClient", ID)
 		return
 	if values_array.is_empty():
 		return
@@ -286,15 +286,15 @@ func _sort_parallel_arrays(values_array: Array, items_array: Array) -> void:
 func _compare_paired_data_by_value(a: Dictionary, b: Dictionary) -> bool:
 	return a["value"] > b["value"]
 
-func _get_acronym(command_name:String):
+func _get_acronym(command_name: String):
 	var acronym = ""
 	for word in command_name.split(" "):
 		acronym += word.split("")[0]
 	return acronym
 
-func execute_command(path:String):
+func execute_command(path: String):
 	if !commands.has(path):
-		Debug.warn("Tried to execute a command that doesn't exist: "+path,ID)
+		Debug.warn("Tried to execute a command that doesn't exist: "+path, ID)
 		return ERR_DOES_NOT_EXIST
 	command_points[path] += 1
 	command_executed.emit(path)
@@ -307,11 +307,11 @@ func get_selected():
 	for command in command_container.get_children():
 		if command.position.y == selection.position.y:
 			return command.path
-	Debug.error("No command appears to be selected",ID)
+	Debug.error("No command appears to be selected", ID)
 	return commands[0]
 
 func save():
-	Data.save_to("command_points",command_points,"Core/CommandData")
+	Data.save_to("command_points", command_points, "Core/CommandData")
 	Data.save_file("Core/CommandData")
 
 func load_commands():
@@ -319,7 +319,7 @@ func load_commands():
 		var data = Data.load_file("Core/CommandData")
 		command_points = data["command_points"]
 	else:
-		Data.make_file("CommandData","Core")
+		Data.make_file("CommandData", "Core")
 		save()
 
 func is_open():
@@ -331,7 +331,7 @@ func _map_points():
 	for command in commands:
 		if command_points[command]>max_points:
 			max_points = command_points[command]
-	var mapped_points:Dictionary = {}
+	var mapped_points: Dictionary = {}
 	if max_points == 0:
 		return command_points
 	for command in commands:

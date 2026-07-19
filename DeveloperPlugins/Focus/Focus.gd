@@ -34,9 +34,9 @@ func _ready() -> void:
 	goal_progress_small.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	start_stop_session_small.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	start_stop_session.set_color(Settings.get_option_value("core.appearance/accent_color"))
-	period_selector.add_item("day"," Day ")
-	period_selector.add_item("week"," Week ")
-	project_selector.add_item("All Projects",0)
+	period_selector.add_item("day", " Day ")
+	period_selector.add_item("week", " Week ")
+	project_selector.add_item("All Projects", 0)
 	session_columb.add_session()
 	session_columb.add_session()
 	session_columb.add_session()
@@ -80,7 +80,7 @@ func _resize_update():
 
 
 
-func _settings_update(option_path:String,new_value):
+func _settings_update(option_path: String, new_value):
 	if option_path == "core.appearance/accent_color":
 		goal_progress.set_color(new_value)
 		goal_progress_small.set_color(new_value)

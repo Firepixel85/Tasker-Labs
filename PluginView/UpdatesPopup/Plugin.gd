@@ -10,8 +10,8 @@ extends Control
 @onready var container: Control = $RGContainer
 @onready var trusted: TextureRect = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Trusted
 
-var id:String
-var trusted_hovered:bool = false
+var id: String
+var trusted_hovered: bool = false
 var url
 
 signal updated
@@ -39,7 +39,7 @@ func _on_trusted_mouse_entered() -> void:
 		return
 	var tooltip = RGTooltip.new()
 	tooltip.set_text("Trusted plugin")
-	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+	RoseGarden.create_tooltip(tooltip, get_global_mouse_position())
 
 func _on_trusted_mouse_exited() -> void:
 	trusted_hovered = false
@@ -47,10 +47,10 @@ func _on_trusted_mouse_exited() -> void:
 
 func _on_more_pressed() -> void:
 	var menu = RGmenu.new()
-	menu.add_action("View changelog",Icons.FILETEXT,OS.shell_open,[url+"/releases/tag/"+PluginManager.get_plugin_latest_tag(id)])
-	menu.add_action("View source",Icons.CODE,OS.shell_open,[url])
-	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
-	
+	menu.add_action("View changelog", Icons.FILETEXT, OS.shell_open, [url+"/releases/tag/"+PluginManager.get_plugin_latest_tag(id)])
+	menu.add_action("View source", Icons.CODE, OS.shell_open, [url])
+	RoseGarden.create_rc_menu(menu, get_global_mouse_position())
+
 
 
 func _on_update_pressed() -> void:
@@ -59,5 +59,5 @@ func _on_update_pressed() -> void:
 	await PluginManager.update_plugin(id)
 	update_button.disabled = false
 	update_button.text = "Update"
-	RoseGarden.create_toast("Plugin updated!","Green")
+	RoseGarden.create_toast("Plugin updated!", "Green")
 	updated.emit()

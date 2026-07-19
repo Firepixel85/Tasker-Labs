@@ -1,14 +1,14 @@
 extends Button
 
 @onready var parent: Control = $"../../.."
-@export var color:String = "Pink"
+@export var color: String = "Pink"
 
 var highlighted = false
 var selected = false
 func _ready() -> void:
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
-	
+
 func _mouse_entered():
 	highlighted = true
 	_update()
@@ -22,7 +22,7 @@ func _pressed() -> void:
 	parent._on_selected(color)
 	_update()
 
-func select(select_color:String):
+func select(select_color: String):
 	if color == select_color:
 		selected = true
 	else:

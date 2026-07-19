@@ -8,7 +8,7 @@ extends Control
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
-func setup(title:String,description:String,title_alignment:int):
+func setup(title: String, description: String, title_alignment: int):
 	title_text.text = title
 	description_text.text = description
 	match title_alignment:
@@ -25,4 +25,4 @@ func setup(title:String,description:String,title_alignment:int):
 	custom_minimum_size.y = container.get_minimum_size().y
 	container.get_parent()._update()
 	title_text._update()
-	container.position = Vector2(0,0)
+	container.position = Vector2(0, 0)

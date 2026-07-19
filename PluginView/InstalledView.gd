@@ -11,10 +11,10 @@ extends Control
 @onready var folder_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Folder
 @onready var refresh_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Refresh
 
-var _checked_shift_key_held:bool = false
-var _checked_option_key_held:bool = false
-var shift_keybinds_shown:bool = false
-var option_keybinds_shown:bool = false
+var _checked_shift_key_held: bool = false
+var _checked_option_key_held: bool = false
+var shift_keybinds_shown: bool = false
+var option_keybinds_shown: bool = false
 
 
 func display_plugins():
@@ -28,7 +28,7 @@ func display_plugins():
 		if PluginManager.is_developer_plugin(plugin_id) and !Settings.get_option_value("core.developer/dev_tools"):
 			return
 
-		var plugin_view:PluginInstalled = preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
+		var plugin_view: PluginInstalled = preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
 		if PluginManager.is_plugin_loaded(plugin_id):
 			enabled_container.add_child(plugin_view)
 			plugin_view = enabled_container.get_child(enabled_container.get_child_count()-1)
@@ -38,7 +38,7 @@ func display_plugins():
 		plugin_view.plugin_id = plugin_id
 		plugin_view.setup()
 		plugin_view.state_changed.connect(move_plugin)
-		plugin_view.scale = Vector2(1,1)
+		plugin_view.scale = Vector2(1, 1)
 
 	for i in enabled_container.get_children().size():
 		if i>9:
@@ -62,7 +62,7 @@ func display_plugins():
 	action_container.custom_minimum_size.x = action_container.get_child(1).get_minimum_size().x
 	action_container._update()
 
-func move_plugin(plugin_id:String):
+func move_plugin(plugin_id: String):
 	for child in enabled_container.get_children():
 		child.queue_free()
 	for child in disabled_container.get_children():
@@ -72,8 +72,8 @@ func move_plugin(plugin_id:String):
 	enabled_text.visible = true
 	disabled_container.get_parent().visible = true
 	disabled_text.visible = true
-	var plugin_enabled:PluginInstalled
-	var plugin_disabled:PluginInstalled
+	var plugin_enabled: PluginInstalled
+	var plugin_disabled: PluginInstalled
 	for plugin in PluginManager.get_all_plugins():
 		if PluginManager.is_developer_plugin(plugin_id) and !Settings.get_option_value("core.developer/dev_tools"):
 			return
@@ -83,14 +83,14 @@ func move_plugin(plugin_id:String):
 			plugin_enabled = enabled_container.get_child(enabled_container.get_child_count()-1)
 			plugin_enabled.plugin_id = plugin_id
 			plugin_enabled.setup()
-			plugin_enabled.modulate = Color(0,1,0,0)
+			plugin_enabled.modulate = Color(0, 1, 0, 0)
 			disabled_container.add_child(preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			plugin_disabled = disabled_container.get_child(disabled_container.get_child_count()-1)
 			plugin_disabled.plugin_id = plugin_id
 			plugin_disabled.setup()
-			plugin_disabled.modulate = Color(1,0,0,0)
+			plugin_disabled.modulate = Color(1, 0, 0, 0)
 		else:
-			var plugin_view:PluginInstalled = preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
+			var plugin_view: PluginInstalled = preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
 			if PluginManager.is_plugin_loaded(plugin):
 				enabled_container.add_child(plugin_view)
 				plugin_view = enabled_container.get_child(enabled_container.get_child_count()-1)
@@ -118,24 +118,24 @@ func move_plugin(plugin_id:String):
 	await anim_plugin.setup()
 	anim_plugin.position = init_pos
 	var tween = create_tween()
-	tween.tween_property(anim_plugin,"position",final_pos,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.tween_property(anim_plugin, "position", final_pos, 0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	if PluginManager.is_plugin_loaded(plugin_id):
-		plugin_enabled.custom_minimum_size = Vector2(0,256)
-		tween.parallel().tween_property(plugin_enabled,"custom_minimum_size",Vector2(512,256),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(plugin_disabled,"custom_minimum_size",Vector2(0,256),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		plugin_enabled.custom_minimum_size = Vector2(0, 256)
+		tween.parallel().tween_property(plugin_enabled, "custom_minimum_size", Vector2(512, 256), 0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(plugin_disabled, "custom_minimum_size", Vector2(0, 256), 0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
-		plugin_disabled.custom_minimum_size = Vector2(0,256)
-		tween.parallel().tween_property(plugin_disabled,"custom_minimum_size",Vector2(512,256),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-		tween.parallel().tween_property(plugin_enabled,"custom_minimum_size",Vector2(0,256),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		plugin_disabled.custom_minimum_size = Vector2(0, 256)
+		tween.parallel().tween_property(plugin_disabled, "custom_minimum_size", Vector2(512, 256), 0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		tween.parallel().tween_property(plugin_enabled, "custom_minimum_size", Vector2(0, 256), 0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	animation_layer.remove_child(anim_plugin)
 	if PluginManager.is_plugin_loaded(plugin_id):
 		plugin_disabled.queue_free()
-		plugin_enabled.modulate = Color(1,1,1,1)
+		plugin_enabled.modulate = Color(1, 1, 1, 1)
 		plugin_enabled.state_changed.connect(move_plugin)
 	else:
 		plugin_enabled.queue_free()
-		plugin_disabled.modulate = Color(1,1,1,1)
+		plugin_disabled.modulate = Color(1, 1, 1, 1)
 		plugin_disabled.state_changed.connect(move_plugin)
 
 	for i in enabled_container.get_children().size():
@@ -201,7 +201,7 @@ func _check_option_held():
 	if Input.is_key_pressed(KEY_ALT):
 		_open_keybinds(false)
 
-func _open_keybinds(enabled:bool):
+func _open_keybinds(enabled: bool):
 	var container
 	if enabled:
 		shift_keybinds_shown = true
@@ -212,10 +212,10 @@ func _open_keybinds(enabled:bool):
 	for i in range(container.get_child_count()):
 		if i>9:
 			break
-		var plugin_view:PluginInstalled = container.get_child(i)
+		var plugin_view: PluginInstalled = container.get_child(i)
 		plugin_view.show_keybind(str(i+1))
 
-func _close_keybinds(enabled:bool):
+func _close_keybinds(enabled: bool):
 	var container
 	if enabled:
 		shift_keybinds_shown = false
@@ -226,15 +226,15 @@ func _close_keybinds(enabled:bool):
 	for i in range(container.get_child_count()):
 		if i>9:
 			break
-		var plugin_view:PluginInstalled = container.get_child(i)
+		var plugin_view: PluginInstalled = container.get_child(i)
 		plugin_view.hide_keybind()
 
-func refresh(toast:bool = true) -> void:
+func refresh(toast: bool = true) -> void:
 	await PluginManager.scan_available_plugins()
 	PluginManager.scan_for_updates()
 	display_plugins()
 	if toast:
-		RoseGarden.create_toast("Plugins Refreshed","Green",2.0)
+		RoseGarden.create_toast("Plugins Refreshed", "Green", 2.0)
 
 func _on_folder_pressed() -> void:
 	OS.shell_show_in_file_manager(OS.get_user_data_dir()+"/plugins")

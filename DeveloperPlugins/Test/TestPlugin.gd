@@ -11,7 +11,7 @@ extends Control
 @onready var notification_error: RGToggle = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/VBoxContainer/NotificationError
 @onready var notification_duration_text: RGText = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/NotificationDurationText
 @onready var notification_duration_down: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/CreateNotification/HBoxContainer/HBoxContainer/NotificationDurationDown
-var notification_duration:int = 4
+var notification_duration: int = 4
 
 #Toasts
 @onready var toast_text: RGTextField = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer/ToastText
@@ -26,7 +26,7 @@ var notification_duration:int = 4
 @onready var create_sa_popup: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer3/Create_SA_popup
 @onready var create_da_popup: RGButton = $MarginContainer/ScrollContainer/VBoxContainer/HBoxContainer4/Create_DA_popup
 
-var toast_duration := 4
+var toast_duration : = 4
 var color_dic = {
 	"Red":0,
 	"Yellow":1,
@@ -41,18 +41,18 @@ var color_dic = {
 const ID = "com.rosepen.dev_test"
 
 func _on_create_event_pressed() -> void:
-	Debug.log("Creating test event",ID)
+	Debug.log("Creating test event", ID)
 	create_event.set_disabled(true)
 	remove_event.set_disabled(false)
-	var response = EventManager.add_event(ID,load(PluginManager.get_plugin_filepath(ID)+"test_event.tscn"),load(PluginManager.get_plugin_filepath(ID)+"icon.png"))
-	Debug.log("Got response from EventManager: "+error_string(response),ID)
+	var response = EventManager.add_event(ID, load(PluginManager.get_plugin_filepath(ID)+"test_event.tscn"), load(PluginManager.get_plugin_filepath(ID)+"icon.png"))
+	Debug.log("Got response from EventManager: "+error_string(response), ID)
 
 func _on_remove_event_pressed() -> void:
-	Debug.log("Removing test event",ID)
+	Debug.log("Removing test event", ID)
 	create_event.set_disabled(false)
 	remove_event.set_disabled(true)
 	var response = EventManager.remove_event(ID)
-	Debug.log("Got response from EventManager: "+error_string(response),ID)
+	Debug.log("Got response from EventManager: "+error_string(response), ID)
 
 func _ready() -> void:
 	Settings.setting_changed.connect(_update_buttons)
@@ -72,40 +72,40 @@ func _ready() -> void:
 		create_event.set_disabled(true)
 		remove_event.set_disabled(false)
 
-	toast_color.add_item("Red",0)
-	toast_color.add_item("Yellow",1)
-	toast_color.add_item("Orange",2)
-	toast_color.add_item("Green",3)
-	toast_color.add_item("Teal",4)
-	toast_color.add_item("Blue",5)
-	toast_color.add_item("Pink",6)
-	toast_color.add_item("Purple",7)
+	toast_color.add_item("Red", 0)
+	toast_color.add_item("Yellow", 1)
+	toast_color.add_item("Orange", 2)
+	toast_color.add_item("Green", 3)
+	toast_color.add_item("Teal", 4)
+	toast_color.add_item("Blue", 5)
+	toast_color.add_item("Pink", 6)
+	toast_color.add_item("Purple", 7)
 	toast_color.select(color_dic[Settings.get_option_value("core.appearance/accent_color")])
 
 	var icon_path = PluginManager.get_plugin_filepath(ID)+"icon.png"
 	if !CommandBar.command_exists(ID+"/Push Notification"):
-		CommandBar.add_command("Push Notification",ID,icon_path,_on_create_notification_pressed)
+		CommandBar.add_command("Push Notification", ID, icon_path, _on_create_notification_pressed)
 	if !CommandBar.command_exists(ID+"/Open Settings"):
-		CommandBar.add_command("Open Settings",ID,icon_path,open_settings)
+		CommandBar.add_command("Open Settings", ID, icon_path, open_settings)
 	if !CommandBar.command_exists(ID+"/Open Plugins"):
-		CommandBar.add_command("Open Plugins",ID,icon_path,open_plugins)
+		CommandBar.add_command("Open Plugins", ID, icon_path, open_plugins)
 	if !CommandBar.command_exists(ID+"/Test Command"):
-		CommandBar.add_command("Test Command",ID,icon_path,say_hi)
+		CommandBar.add_command("Test Command", ID, icon_path, say_hi)
 	if !CommandBar.command_exists(ID+"/Create Toast"):
-		CommandBar.add_command("Create Toast",ID,icon_path,_on_create_toast_pressed)
+		CommandBar.add_command("Create Toast", ID, icon_path, _on_create_toast_pressed)
 
 	if !CommandBar.command_has_action(ID+"/Push Notification"):
-		CommandBar.link_action(_on_create_notification_pressed,ID+"/Push Notification")
+		CommandBar.link_action(_on_create_notification_pressed, ID+"/Push Notification")
 	if !CommandBar.command_has_action(ID+"/Open Settings"):
-		CommandBar.link_action(open_settings,ID+"/Open Settings")
+		CommandBar.link_action(open_settings, ID+"/Open Settings")
 	if !CommandBar.command_has_action(ID+"/Open Plugins"):
-		CommandBar.link_action(open_plugins,ID+"/Open Plugins")
+		CommandBar.link_action(open_plugins, ID+"/Open Plugins")
 	if !CommandBar.command_has_action(ID+"/Test Command"):
-		CommandBar.link_action(say_hi,ID+"/Test Command")
+		CommandBar.link_action(say_hi, ID+"/Test Command")
 	if !CommandBar.command_has_action(ID+"/Create Toast"):
-		CommandBar.link_action(_on_create_toast_pressed,ID+"/Create Toast")
+		CommandBar.link_action(_on_create_toast_pressed, ID+"/Create Toast")
 
-func _update_buttons(option_path,new_value):
+func _update_buttons(option_path, new_value):
 	if option_path == "core.appearance/accent_color":
 		create_event.set_color(new_value)
 		remove_event.set_color(new_value)
@@ -117,27 +117,27 @@ func _update_buttons(option_path,new_value):
 		create_da_popup.set_color(new_value)
 
 func _on_create_notification_pressed() -> void:
-	Debug.log("Queuing notification",ID)
-	var response = NotificationManager.queue_notification(notification_title.get_text(),notification_description.get_text(),notification_error.is_toggled,null,[],notification_duration)
-	Debug.log("Got response from NotificationManager: "+error_string(response),ID)
+	Debug.log("Queuing notification", ID)
+	var response = NotificationManager.queue_notification(notification_title.get_text(), notification_description.get_text(), notification_error.is_toggled, null, [], notification_duration)
+	Debug.log("Got response from NotificationManager: "+error_string(response), ID)
 
 func _on_notification_duration_down_pressed() -> void:
 	if notification_duration == 0:
 		return
 	if notification_duration == 1:
 		notification_duration_down.disabled = true
-	notification_duration -=1
+	notification_duration -= 1
 	notification_duration_text.set_text("Duration: "+str(notification_duration)+"s")
 
 func _on_notification_duration_up_pressed() -> void:
-	notification_duration +=1
+	notification_duration += 1
 	notification_duration_down.disabled = false
 	notification_duration_text.set_text("Duration: "+str(notification_duration)+"s")
 
 func _on_create_toast_pressed() -> void:
-	Debug.log("Creating toast",ID)
-	var response = RoseGarden.create_toast(toast_text.get_text(),toast_color.get_selected_item(),toast_duration)
-	Debug.log("Got response from RoseGarden: "+error_string(response),ID)
+	Debug.log("Creating toast", ID)
+	var response = RoseGarden.create_toast(toast_text.get_text(), toast_color.get_selected_item(), toast_duration)
+	Debug.log("Got response from RoseGarden: "+error_string(response), ID)
 
 func _on_toast_duration_up_pressed() -> void:
 	toast_duration += 1
@@ -149,14 +149,14 @@ func _on_toast_duration_down_pressed() -> void:
 		return
 	if toast_duration == 1:
 		toast_duration_down.disabled = true
-	toast_duration -=1
+	toast_duration -= 1
 	toast_duration_text.set_text("Duration: "+str(toast_duration)+"s")
 
 func empty():
 	pass
 
 func say_hi():
-	Debug.log("The test worked!",ID)
+	Debug.log("The test worked!", ID)
 
 func open_settings():
 	Input.action_press("settings_open")
@@ -173,21 +173,21 @@ func _on_create_na_popup_pressed() -> void:
 	popup.set_type(TSKPopup.NO_ACTION)
 	popup.set_title("Test Popup")
 	popup.set_description("This is a test popup with no action to test the Popups API")
-	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)), ID)
 
 func _on_create_sa_popup_pressed() -> void:
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.SINGLE_ACTION)
 	popup.set_title("Test Popup")
 	popup.set_description("This is a test popup with a single action to test the Popups API")
-	popup.add_action(empty,"Empty Action")
-	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)
+	popup.add_action(empty, "Empty Action")
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)), ID)
 
 func _on_create_da_popup_pressed() -> void:
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.DOUBLE_ACTION)
 	popup.set_title("Test Popup")
 	popup.set_description("This is a test popup with two actions to test the Popups API")
-	popup.add_action(empty,"Empty1",[],"Gray")
+	popup.add_action(empty, "Empty1", [], "Gray")
 	popup.add_action(empty, "Empty2")
-	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)),ID)
+	Debug.log("Got response from Popups: "+error_string(Popups.create_prefab_popup(popup)), ID)

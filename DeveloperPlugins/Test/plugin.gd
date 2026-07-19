@@ -3,8 +3,8 @@ extends Node
 const ID = "com.rosepen.dev_test"
 
 func start():
-	Sidebar.add_tab("API Test",Icons.FLASK,load(PluginManager.get_plugin_filepath(ID)+"TestPlugin.tscn"),ID)
-	Debug.log("Loaded",ID)
+	Sidebar.add_tab("API Test", Icons.FLASK, load(PluginManager.get_plugin_filepath(ID)+"TestPlugin.tscn"), ID)
+	Debug.log("Loaded", ID)
 
 func stop():
 	if CommandBar.command_exists(ID+"/Push Notification"):
@@ -17,5 +17,5 @@ func stop():
 		CommandBar.remove_command(ID+"/Test Command")
 	if CommandBar.command_exists(ID+"/Create Toast"):
 		CommandBar.remove_command(ID+"/Create Toast")
-	Debug.log("Unloading",ID)
+	Debug.log("Unloading", ID)
 	Sidebar.remove_tab(ID)

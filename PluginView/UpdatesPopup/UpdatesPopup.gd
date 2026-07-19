@@ -5,11 +5,11 @@ extends Control
 @onready var fade: TextureRect = $MarginContainer/VBoxContainer/Fade
 @onready var update_all: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/UpdateAll
 
-signal updated(toast:bool)
+signal updated(toast: bool)
 func _ready() -> void:
 	PluginManager.scanned_for_updates.connect(_ready)
-	view_selector.add_item("all_updates","All Updates")
-	view_selector.add_item("only_trusted","Only Trusted")
+	view_selector.add_item("all_updates", "All Updates")
+	view_selector.add_item("only_trusted", "Only Trusted")
 	for child in plugin_container.get_children():
 		child.queue_free()
 	if PluginManager.is_rate_limited():
@@ -31,7 +31,7 @@ func _ready() -> void:
 	if plugin_container.get_child_count() == 0:
 		plugin_container.add_child(preload("res://PluginView/UpdatesPopup/NoResults.tscn").instantiate())
 	plugin_container.get_parent().get_v_scroll_bar().value_changed.connect(_check_scroll_fade)
-	
+
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
@@ -43,7 +43,7 @@ func _update_complete() -> void:
 	updated.emit(false)
 
 func _check_scroll_fade(_value: float):
-	var bar:VScrollBar = plugin_container.get_parent().get_v_scroll_bar()
+	var bar: VScrollBar = plugin_container.get_parent().get_v_scroll_bar()
 	if bar.value >= bar.max_value - bar.page - 1.0:
 		fade.hide()
 	else:
@@ -56,5 +56,5 @@ func _on_update_all_pressed() -> void:
 		if view_selector.get_selected() == "only_trusted" and !PluginManager.is_plugin_trusted(plugin):
 			continue
 		#await PluginManager.update_plugin(plugin)
-	RoseGarden.create_toast("All plugins updated","Green")
+	RoseGarden.create_toast("All plugins updated", "Green")
 	_ready()

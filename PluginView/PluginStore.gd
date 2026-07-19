@@ -19,7 +19,7 @@ func _on_refresh_hovered() -> void:
 		var tooltip = RGTooltip.new()
 		tooltip.set_text("Refresh shown plugins")
 		tooltip.set_keybind("⌘⇧R")
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+		RoseGarden.create_tooltip(tooltip, get_global_mouse_position())
 
 func _on_folder_hovered() -> void:
 	await get_tree().create_timer(1).timeout
@@ -27,7 +27,7 @@ func _on_folder_hovered() -> void:
 		var tooltip = RGTooltip.new()
 		tooltip.set_text("Open plugins folder")
 		tooltip.set_keybind("⌘⇧O")
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+		RoseGarden.create_tooltip(tooltip, get_global_mouse_position())
 
 func _clear_tooltips() -> void:
 	RoseGarden.clear_tooltips()

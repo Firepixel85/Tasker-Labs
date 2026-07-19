@@ -1,26 +1,26 @@
 extends Node
 
-var main_view:Control
+var main_view: Control
 
 class window:
-	static var size := Vector2(0,0)
-	static var position := Vector2(0,0)
+	static var size : = Vector2(0, 0)
+	static var position : = Vector2(0, 0)
 
-const version:String = "2.0"
-const version_sufix:String = "pb2"
-const plugin_api_version:String = "1.0"
-signal view_changed(new_view:String)
+const version: String = "2.0"
+const version_sufix: String = "pb2"
+const plugin_api_version: String = "1.0"
+signal view_changed(new_view: String)
 
 func save_window_data():
 	while true:
 		window.size = get_window().size
 		window.position = get_window().position
-		Data.save_to("size",window.size,"Core/WindowData")
-		Data.save_to("position",window.position,"Core/WindowData")
-		Data.save_file("Core/WindowData",true)
+		Data.save_to("size", window.size, "Core/WindowData")
+		Data.save_to("position", window.position, "Core/WindowData")
+		Data.save_file("Core/WindowData", true)
 		await get_tree().create_timer(1).timeout
 
-func get_process_name(process_id:String):
+func get_process_name(process_id: String):
 	match process_id:
 		"core.debug":
 			return "Debug"
@@ -77,7 +77,7 @@ func get_current_view():
 func get_view_node():
 	return main_view.view_nodes[main_view._current_view]
 
-func change_view(new_view:String):
+func change_view(new_view: String):
 	return await main_view.open_view(new_view)
 
 func get_main_view():

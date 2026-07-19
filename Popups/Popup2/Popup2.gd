@@ -7,15 +7,15 @@ extends Control
 @onready var action2_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action2
 @onready var title_spacer: Control = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TitleSpacer
 
-var action1:Callable
-var action1_params:Array
-var action2:Callable
-var action2_params:Array
+var action1: Callable
+var action1_params: Array
+var action2: Callable
+var action2_params: Array
 
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
-func setup(title:String,description:String,new_action:Array,new_action_params:Array,action_names:Array,colors:Array,title_alignment:int):
+func setup(title: String, description: String, new_action: Array, new_action_params: Array, action_names: Array, colors: Array, title_alignment: int):
 	title_text.text = title
 	description_text.text = description
 	action1 = new_action[0]
@@ -40,7 +40,7 @@ func setup(title:String,description:String,new_action:Array,new_action_params:Ar
 	custom_minimum_size.y = container.get_minimum_size().y
 	container.get_parent()._update()
 	title_text._update()
-	container.position = Vector2(0,0)
+	container.position = Vector2(0, 0)
 
 func _on_action1_pressed() -> void:
 	action1.callv(action1_params)

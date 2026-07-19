@@ -48,9 +48,9 @@ const LISTFILTER = preload("res://Icons/ListFilter.svg")
 const PLUS = preload("res://Icons/Plus.svg")
 const CALENDARDOWNARROW = preload("res://Icons/CalendarDownArrow.svg")
 
-func get_icon_path(icon:String) -> String:
+func get_icon_path(icon: String) -> String:
 	var path = "res://Icons/"+icon+".svg"
 	if !ResourceLoader.exists(path):
-		Debug.warn("A process attempted to get the path of an icon that does not exist, check the icon name and try again. Icon Name: "+icon,ID)
+		Debug.warn("A process attempted to get the path of an icon that does not exist, check the icon name and try again. Icon Name: "+icon, ID)
 		return ""
 	return path
