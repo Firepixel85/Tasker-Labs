@@ -7,9 +7,9 @@ signal hovered(pos_y)
 signal selected(pos_y)
 signal execute(path)
 
-var manager:Control
-var id:String
-var path:String
+var manager: Control
+var id: String
+var path: String
 
 var current_title
 var current_icon_path
@@ -24,7 +24,7 @@ func _on_button_pressed() -> void:
 	else:
 		selected.emit(position.y)
 
-func init(title:String,icon_path:String,command_path:String):
+func init(title: String, icon_path: String, command_path: String):
 	current_title = title
 	current_icon_path = icon_path
 	current_command_path = command_path
@@ -32,9 +32,9 @@ func init(title:String,icon_path:String,command_path:String):
 	icon_rect.texture = load(icon_path)
 	path = command_path
 
-func set_no_results(setter:bool):
+func set_no_results(setter: bool):
 	if setter:
 		label.text = "No commands found..."
 		icon_rect.texture = Icons.QUSETIONCIRCLE
 	else:
-		init(current_title,current_icon_path,current_command_path)
+		init(current_title, current_icon_path, current_command_path)

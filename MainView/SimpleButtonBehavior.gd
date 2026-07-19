@@ -1,15 +1,15 @@
 extends Button
 @onready var main_view: Control = $"../../../../../../../../../.."
 
-var keybinds := {
-	"Settings":"⌘,",
+var keybinds : = {
+	"Settings":"⌘, ",
 	"Plugins":"⌘P"
 }
-var view_keys := {
+var view_keys : = {
 	"Settings":"settings_open",
 	"Plugins":"plugin_open"
 }
-var hovered := false
+var hovered : = false
 func _ready() -> void:
 	mouse_entered.connect(_mouse_entered)
 	mouse_exited.connect(_mouse_exited)
@@ -18,7 +18,7 @@ func _ready() -> void:
 func _mouse_entered():
 	modulate = RoseGarden.Colors.TEXT_MAIN
 	if name == "Update":
-		modulate = Color(0.8,0.8,0.8)
+		modulate = Color(0.8, 0.8, 0.8)
 	hovered = true
 	await get_tree().create_timer(1).timeout
 	if !hovered or !keybinds.has(name):
@@ -27,7 +27,7 @@ func _mouse_entered():
 	tooltip.set_text(name)
 	tooltip.set_keybind(keybinds[name])
 	tooltip.set_show_keybind(true)
-	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+	RoseGarden.create_tooltip(tooltip, get_global_mouse_position())
 
 func _mouse_exited():
 	modulate = RoseGarden.Colors.TEXT_SECONDARY

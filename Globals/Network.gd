@@ -19,11 +19,11 @@ class GitHubAuth:
 	static var access_token: String = ""
 
 	static func authorize() -> void:
-		Debug.log("Attempting to authorize with GitHub",ID)
+		Debug.log("Attempting to authorize with GitHub", ID)
 		_server = TCPServer.new()
 		var err = _server.listen(PORT)
 		if err != OK:
-			Debug.log("Failed to start local server on port %d" % PORT,ID)
+			Debug.log("Failed to start local server on port %d" % PORT, ID)
 			Network.auth_failed.emit("Could not start local server")
 			return
 		_poll_timer = Timer.new()
@@ -31,7 +31,7 @@ class GitHubAuth:
 		_poll_timer.wait_time = 0.1
 		_poll_timer.timeout.connect(_poll_server)
 		_poll_timer.start()
-		var auth_url = "https://github.com/login/oauth/authorize?client_id=%s&redirect_uri=%s&scope=public_repo" % [
+		var auth_url = "https://github.com/login/oauth/authorize?client_id = %s&redirect_uri = %s&scope = public_repo" % [
 			CLIENT_ID,
 			REDIRECT_URI
 		]
@@ -59,7 +59,7 @@ class GitHubAuth:
 		_shutdown_server()
 		var code = _extract_code(raw)
 		if code.is_empty():
-			Debug.log("No code found in redirect",ID)
+			Debug.log("No code found in redirect", ID)
 			Network.auth_failed.emit("No code in redirect")
 			return
 		await _exchange_code(code)
@@ -71,7 +71,7 @@ class GitHubAuth:
 			return ""
 
 		for param in query[1].split("&"):
-			var pair = param.split("=")
+			var pair = param.split(" = ")
 			if pair.size() == 2 and pair[0] == "code":
 				return pair[1].strip_edges()
 		return ""
@@ -83,7 +83,7 @@ class GitHubAuth:
 			"Accept: application/json",
 			"Content-Type: application/x-www-form-urlencoded"
 		]
-		var body = "client_id=%s&client_secret=%s&code=%s&redirect_uri=%s" % [
+		var body = "client_id = %s&client_secret = %s&code = %s&redirect_uri = %s" % [
 			CLIENT_ID, CLIENT_SECRET, code.split(" ")[0], REDIRECT_URI
 		]
 		http.request(
@@ -108,7 +108,7 @@ class GitHubAuth:
 		access_token = json["access_token"]
 		Network.save()
 		Network.auth_completed.emit(access_token)
-		Debug.log("Authorization successful, access token obtained",ID)
+		Debug.log("Authorization successful, access token obtained", ID)
 
 	static func _shutdown_server() -> void:
 		if _poll_timer:
@@ -138,14 +138,14 @@ class Updates:
 	static var helper_version: String = ""
 	static var latest_helper_version: String = ""
 	static var latest_helper_download_url: String = ""
-	static var updating:bool = false
+	static var updating: bool = false
 	static var latest_version_description: String = ""
 	static var latest_version_size: String = ""
 	static var latest_version_release_date: String = ""
 	static var latest_version_name: String = ""
 
 	static func check_for_updates() -> void:
-		Debug.log("Checking for updates...",ID)
+		Debug.log("Checking for updates...", ID)
 		var http = HTTPRequest.new()
 		Network.add_child(http)
 		var headers: Array
@@ -158,19 +158,19 @@ class Updates:
 			]
 		else:
 			headers = ["User-Agent: Tasker"]
-		var url:String
+		var url: String
 		if Main.get_version_sufix().begins_with("beta") or Main.get_version_sufix().begins_with("pb"):
 			url = "https://api.github.com/repos/Firepixel85/Tasker-Labs/releases/latest"
 		else:
 			url = "https://api.github.com/repos/Rosepen-Studios/Tasker/releases/latest"
-		http.request(url,headers)
+		http.request(url, headers)
 		var response = await http.request_completed
 		http.queue_free()
 		match response[1]:
 			404:
-				Debug.log("Update check failed: Repository is missing, please report this issue (404)",ID)
+				Debug.log("Update check failed: Repository is missing, please report this issue (404)", ID)
 				NotificationManager.queue_notification(
-					"Update Check Failed","Repository is missing, please report this issue by clicking this notification",
+					"Update Check Failed", "Repository is missing, please report this issue by clicking this notification",
 					true,
 					OS.shell_open,
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -178,9 +178,9 @@ class Updates:
 				)
 				return
 			403:
-				Debug.log("Update check failed: Rate limit exceeded, please authorize with GitHub to continue (403)",ID)
+				Debug.log("Update check failed: Rate limit exceeded, please authorize with GitHub to continue (403)", ID)
 				NotificationManager.queue_notification(
-					"Update Check Failed","Rate limit exceeded, please authorize with GitHub to continue. Click here to authorize.",
+					"Update Check Failed", "Rate limit exceeded, please authorize with GitHub to continue. Click here to authorize.",
 					true,
 					Network.GitHubAuth.authorize,
 					[],
@@ -191,9 +191,9 @@ class Updates:
 				var response_body: PackedByteArray = response[3]
 				var json = JSON.parse_string(response_body.get_string_from_utf8())
 				if json == null or not json.has("tag_name"):
-					Debug.log("Update check failed: Invalid response from GitHub",ID)
+					Debug.log("Update check failed: Invalid response from GitHub", ID)
 					NotificationManager.queue_notification(
-						"Update Check Failed","Invalid response from GitHub, please report this issue by clicking this notification",
+						"Update Check Failed", "Invalid response from GitHub, please report this issue by clicking this notification",
 						true,
 						OS.shell_open,
 						["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -201,7 +201,7 @@ class Updates:
 					)
 					return
 				latest_version = json["tag_name"]
-				latest_version_release_date = json["published_at"].split("T")[0].replacen("-","/")
+				latest_version_release_date = json["published_at"].split("T")[0].replacen("-", "/")
 				latest_version_name = json["name"]
 				var description_url = ""
 				for asset in json["assets"]:
@@ -213,27 +213,27 @@ class Updates:
 					var desc_http = HTTPRequest.new()
 					Network.add_child(desc_http)
 					desc_http.download_file = "user://Description.txt"
-					desc_http.request(description_url,headers)
+					desc_http.request(description_url, headers)
 					var desc_response = await desc_http.request_completed
 					desc_http.queue_free()
 					if desc_response[1] == 200:
-						var desc_file = FileAccess.open("user://Description.txt",FileAccess.READ)
+						var desc_file = FileAccess.open("user://Description.txt", FileAccess.READ)
 						latest_version_description = desc_file.get_as_text()
 						desc_file.close()
 						DirAccess.remove_absolute("user://Description.txt")
 					else:
-						Debug.log("Failed to download description file: HTTP error %d" % desc_response[1],ID)
-						latest_version_description = "[color=D72D2C]Failed to download description file: HTTP error %d" % desc_response[1]
+						Debug.log("Failed to download description file: HTTP error %d" % desc_response[1], ID)
+						latest_version_description = "[color = D72D2C]Failed to download description file: HTTP error %d" % desc_response[1]
 				if latest_version != Main.get_version():
 					is_outdated = true
 					if Settings.get_option_value("core.general/update_notify"):
-						EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
+						EventManager.add_event(ID, load("res://MainView/Updates/UpdateAvailableEvent.tscn"), Icons.DOWNLOAD)
 					Network.check_for_updates.emit(latest_version, true)
-					Debug.log("Update available: %s" % latest_version,ID)
+					Debug.log("Update available: %s" % latest_version, ID)
 			_:
-				Debug.log("Update check failed: HTTP error %d" % response[1],ID)
+				Debug.log("Update check failed: HTTP error %d" % response[1], ID)
 				NotificationManager.queue_notification(
-					"Update Check Failed","HTTP error %d while checking for updates, please report this issue by clicking this notification" % response[1],
+					"Update Check Failed", "HTTP error %d while checking for updates, please report this issue by clicking this notification" % response[1],
 					true,
 					OS.shell_open,
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -242,28 +242,28 @@ class Updates:
 
 	static func update():
 		if updating:
-			Debug.log("Update already in progress, ignoring request",ID)
+			Debug.log("Update already in progress, ignoring request", ID)
 			return
 		updating = true
-		Debug.log("Updating Tasker",ID)
+		Debug.log("Updating Tasker", ID)
 		var popup = TSKPopup.new()
 		if !helper_exist() or helper_version != latest_helper_version:
 			popup.set_type(TSKPopup.SINGLE_ACTION)
 			popup.set_title("Downloading Helper")
 			popup.set_description("Tasker is now downloading a helper app to update. You can continue using the app normaly until the download is complete. Please do not close the app.")
-			popup.add_action(empty,"Got it")
+			popup.add_action(empty, "Got it")
 			if EventManager.event_exists(ID):
 				EventManager.remove_event(ID)
-			EventManager.add_event(ID,load("res://MainView/Updates/HelperDownloadingEvent.tscn"),Icons.DOWNLOAD)
+			EventManager.add_event(ID, load("res://MainView/Updates/HelperDownloadingEvent.tscn"), Icons.DOWNLOAD)
 			if Popups.is_popup_active():
 				Popups.clear_popup()
 				await Popups.popup_cleared
 				Popups.create_prefab_popup(popup)
 			var err = await _download_helper()
 			if err != OK:
-				Debug.error("Failed to download helper app, update aborted",ID)
+				Debug.error("Failed to download helper app, update aborted", ID)
 				NotificationManager.queue_notification(
-					"Update Failed","Failed to download helper app, please report this issue by clicking this notification. Update canceled.",
+					"Update Failed", "Failed to download helper app, please report this issue by clicking this notification. Update canceled.",
 					true,
 					OS.shell_open,
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -272,13 +272,13 @@ class Updates:
 				EventManager.remove_event(ID)
 				return
 		EventManager.remove_event(ID)
-		EventManager.add_event(ID,load("res://MainView/Updates/UpdateReadyEvent.tscn"),Icons.DOWNLOAD)
+		EventManager.add_event(ID, load("res://MainView/Updates/UpdateReadyEvent.tscn"), Icons.DOWNLOAD)
 		popup = TSKPopup.new()
 		popup.set_type(TSKPopup.DOUBLE_ACTION)
 		popup.set_title("Ready to Update")
 		popup.set_description("Tasker is now ready to update. If you have unsaved progress, close this popup, save your work and click on the update event on the bottom left of your screen. Otherwise, click on 'Update Now' to start the update process. Tasker will automatically close and a helper app will open.")
-		popup.add_action(empty,"Not Now",[],"Gray")
-		popup.add_action(_open_helper,"Update Now",[],Settings.get_option_value("core.appearance/accent_color"))
+		popup.add_action(empty, "Not Now", [], "Gray")
+		popup.add_action(_open_helper, "Update Now", [], Settings.get_option_value("core.appearance/accent_color"))
 		if Popups.is_popup_active():
 			Popups.clear_popup()
 			await Popups.popup_cleared
@@ -291,7 +291,7 @@ class Updates:
 	static func _open_helper():
 		if !helper_exist():
 			NotificationManager.queue_notification(
-				"Update Failed","Helper app is missing, please report this issue by clicking this notification. Update canceled.",
+				"Update Failed", "Helper app is missing, please report this issue by clicking this notification. Update canceled.",
 				true,
 				OS.shell_open,
 				["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -306,9 +306,9 @@ class Updates:
 		if latest_helper_version == "" or latest_helper_download_url == "":
 			var err = await _get_helper_latest_version()
 			if err != OK:
-				Debug.error("Failed to get latest helper version, update aborted",ID)
+				Debug.error("Failed to get latest helper version, update aborted", ID)
 				NotificationManager.queue_notification(
-					"Update Failed","Failed to get latest helper version, please report this issue by clicking this notification. Update canceled.",
+					"Update Failed", "Failed to get latest helper version, please report this issue by clicking this notification. Update canceled.",
 					true,
 					OS.shell_open,
 					["https://github.com/Rosepen-Studios/Tasker/issues/new/choose"],
@@ -316,25 +316,25 @@ class Updates:
 				)
 				return err
 
-		Debug.log("Downloading helper app version %s" % latest_helper_version,ID)
+		Debug.log("Downloading helper app version %s" % latest_helper_version, ID)
 
 		if helper_exist() and helper_version == latest_helper_version:
 			return OK
 
 		var dir = DirAccess.open("user://")
 		if dir == null:
-			Debug.error("Failed to open user directory for deleting files",ID)
+			Debug.error("Failed to open user directory for deleting files", ID)
 			return ERR_CANT_OPEN
 
 		if helper_exist():
 			if remove_recursive("user://TaskerUpdater.app") != OK:
-				Debug.error("Failed to delete existing helper app, update may fail",ID)
+				Debug.error("Failed to delete existing helper app, update may fail", ID)
 		if FileAccess.file_exists("user://TaskerUpdater.zip"):
 			if dir.remove("user://TaskerUpdater.zip") != OK:
-				Debug.error("Failed to delete existing TaskerUpdater.zip, future updates may fail",ID)
+				Debug.error("Failed to delete existing TaskerUpdater.zip, future updates may fail", ID)
 
 		if latest_helper_download_url == "":
-			Debug.log("Helper download failed: No download URL found for TaskerUpdater.zip",ID)
+			Debug.log("Helper download failed: No download URL found for TaskerUpdater.zip", ID)
 			return ERR_CONNECTION_ERROR
 
 		var download_http = HTTPRequest.new()
@@ -355,13 +355,13 @@ class Updates:
 		download_http.queue_free()
 
 		if download_response[1] != 200:
-			Debug.log("Helper download failed: HTTP error %d while downloading helper" % download_response[1],ID)
+			Debug.log("Helper download failed: HTTP error %d while downloading helper" % download_response[1], ID)
 			return ERR_CONNECTION_ERROR
 
-		Debug.log("Helper download complete, extracting...",ID)
+		Debug.log("Helper download complete, extracting...", ID)
 
-		var output := []
-		var exit_code := OS.execute("ditto", ["-xk", ProjectSettings.globalize_path("user://TaskerUpdater.zip"), ProjectSettings.globalize_path("user://")], output, true)
+		var output : = []
+		var exit_code : = OS.execute("ditto", ["-xk", ProjectSettings.globalize_path("user://TaskerUpdater.zip"), ProjectSettings.globalize_path("user://")], output, true)
 
 		if exit_code != 0:
 			Debug.error("Helper extraction failed (ditto exit code %d): %s" % [exit_code, output], ID)
@@ -370,11 +370,11 @@ class Updates:
 
 		var delete_err = dir.remove("TaskerUpdater.zip")
 		if delete_err != OK:
-			Debug.error("Failed to delete TaskerUpdater.zip after extraction, additional clean-up needed",ID)
+			Debug.error("Failed to delete TaskerUpdater.zip after extraction, additional clean-up needed", ID)
 
 		helper_version = latest_helper_version
 		Network.save()
-		Debug.log("Helper download complete",ID)
+		Debug.log("Helper download complete", ID)
 		return OK
 
 	static func _get_helper_latest_version():
@@ -390,8 +390,8 @@ class Updates:
 			]
 		else:
 			headers = ["User-Agent: Tasker"]
-		var url:String = "https://api.github.com/repos/Rosepen-Studios/Tasker-Updater/releases/latest"
-		http.request(url,headers)
+		var url: String = "https://api.github.com/repos/Rosepen-Studios/Tasker-Updater/releases/latest"
+		http.request(url, headers)
 		var response = await http.request_completed
 		http.queue_free()
 		match response[1]:
@@ -439,7 +439,7 @@ class Updates:
 		dir.list_dir_end()
 		return DirAccess.remove_absolute(path)
 
-	static func _settings_update(option_path,new_value):
+	static func _settings_update(option_path, new_value):
 		if option_path != "core.general/update_notify":
 			return
 		if new_value == true:
@@ -463,20 +463,20 @@ func _ready() -> void:
 		if data.has("access_token"):
 			GitHubAuth.access_token = data["access_token"]
 	else:
-		Data.make_file("Secrets","Core")
+		Data.make_file("Secrets", "Core")
 		save()
 	if Data.file_exists("Core/UpdateData"):
 		var data = Data.load_file("Core/UpdateData")
 		if data.has("helper_version"):
 			Updates.helper_version = data["helper_version"]
 	else:
-		Data.make_file("UpdateData","Core")
+		Data.make_file("UpdateData", "Core")
 		save()
 	Main.view_changed.connect(_on_view_changed)
 	Updates._get_helper_latest_version()
 	Settings.setting_changed.connect(Updates._settings_update)
 
-func _on_view_changed(new_view:String) -> void:
+func _on_view_changed(new_view: String) -> void:
 	if new_view != "settings" or Settings.get_option_value("core.general/update_notify"):
 		return
 	var new_setting = await Settings.setting_changed
