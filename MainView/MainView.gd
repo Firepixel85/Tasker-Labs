@@ -131,7 +131,7 @@ func _ready():
 
 	PluginManager._load_data()
 	_update_setting_values()
-	open_view("onboarding")
+	open_view("mainview")
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):

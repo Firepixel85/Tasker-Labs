@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_2knsd"]
 [ext_resource type="Script" uid="uid://dikqn1xylijwg" path="res://Onboarding/Scripts/TOU.gd" id="1_er105"]
 [ext_resource type="Script" uid="uid://b4e7ua10788qc" path="res://Onboarding/Onboarding.gd" id="1_w384u"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_e3i1i"]
 [ext_resource type="Texture2D" uid="uid://basii8uyw72ws" path="res://Onboarding/Textures/TOUContainer.svg" id="3_7jd1r"]
 [ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="4_2knsd"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="4_ggw3s"]
@@ -11,9 +10,7 @@
 [ext_resource type="FontFile" uid="uid://d0qdmlqtq5rov" path="res://CustomThemes/fonts/Bold.otf" id="6_ggw3s"]
 [ext_resource type="Texture2D" uid="uid://cwciu8kk0rneo" path="res://Onboarding/Textures/Checkbox/Unselected.svg" id="7_bjctk"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="10_ptca0"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="11_cwg74"]
 [ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="13_ptca0"]
-[ext_resource type="Script" uid="uid://uutac5sy1b6g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.gd" id="14_cwg74"]
 
 [sub_resource type="Gradient" id="Gradient_eouc8"]
 offsets = PackedFloat32Array(0.56666666)
@@ -52,14 +49,11 @@ custom_minimum_size = Vector2(2272, 0)
 layout_mode = 2
 script = ExtResource("1_er105")
 
-[node name="RGContainer" type="Control" parent="HBoxContainer/TOU" unique_id=535912435 instance=ExtResource("1_2knsd")]
+[node name="RGContainer" parent="HBoxContainer/TOU" unique_id=535912435 instance=ExtResource("1_2knsd")]
 custom_minimum_size = Vector2(880, 840)
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("2_e3i1i")
 padding = "16"
 margin_number = 18
-metadata/_edit_use_anchors_ = true
 
 [node name="Seperator" type="MarginContainer" parent="HBoxContainer/TOU/RGContainer" unique_id=402130612]
 layout_mode = 1
@@ -281,28 +275,22 @@ size_flags_vertical = 3
 layout_mode = 2
 alignment = 2
 
-[node name="Next" type="Control" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("10_ptca0")]
+[node name="Next" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("10_ptca0")]
 modulate = Color(0.6, 0.6, 0.6, 1)
 custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("11_cwg74")
 text = "Next"
 disabled = true
-metadata/_edit_use_anchors_ = true
 
 [node name="CenterContainer" type="CenterContainer" parent="HBoxContainer" unique_id=150744393]
 custom_minimum_size = Vector2(2272, 0)
 layout_mode = 2
 
-[node name="RGContainer" type="Control" parent="HBoxContainer/CenterContainer" unique_id=1609882881 instance=ExtResource("1_2knsd")]
+[node name="RGContainer" parent="HBoxContainer/CenterContainer" unique_id=1609882881 instance=ExtResource("1_2knsd")]
 custom_minimum_size = Vector2(884, 692)
 layout_mode = 2
-size_flags_horizontal = 3
-script = ExtResource("2_e3i1i")
 padding = "16"
 margin_number = 18
-metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer" unique_id=2116354006]
 layout_mode = 1
@@ -340,34 +328,25 @@ theme_override_constants/separation = 16
 layout_mode = 2
 alignment = 1
 
-[node name="RGSectionView" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=1182488623 instance=ExtResource("13_ptca0")]
-custom_minimum_size = Vector2(0, 12)
+[node name="RGSectionView" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer" unique_id=1182488623 instance=ExtResource("13_ptca0")]
 layout_mode = 2
-script = ExtResource("14_cwg74")
 sections = 6
 
 [node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1144804017]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="Back" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1490918588 instance=ExtResource("10_ptca0")]
+[node name="Back" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1490918588 instance=ExtResource("10_ptca0")]
 custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("11_cwg74")
 text = "Back"
-metadata/_edit_use_anchors_ = true
 
-[node name="Next" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1262361827 instance=ExtResource("10_ptca0")]
+[node name="Next" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1262361827 instance=ExtResource("10_ptca0")]
 custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("11_cwg74")
 text = "Next"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="mouse_entered" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_exited"]
 [connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_pressed"]
 [connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="HBoxContainer/TOU" method="_on_next_pressed"]
-[connection signal="gui_input" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/RGSectionView" to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/RGSectionView" method="_on_gui_input"]

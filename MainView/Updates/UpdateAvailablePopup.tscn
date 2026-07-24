@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_phfv3"]
 [ext_resource type="Texture2D" uid="uid://tntf1yfr0fxi" path="res://Icons/Calendar.svg" id="5_5gmnu"]
 [ext_resource type="Texture2D" uid="uid://n2ywrmwbodx3" path="res://Icons/Disk.svg" id="6_3v6ft"]
+[ext_resource type="FontFile" uid="uid://n0eesastugb5" path="res://CustomThemes/fonts/Regular.otf" id="7_mevwu"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="8_3v6ft"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="9_3q8r2"]
 
@@ -109,9 +110,10 @@ vertical_alignment = "Center"
 [node name="Description" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer" unique_id=441304985]
 layout_mode = 2
 theme = ExtResource("8_3v6ft")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("7_mevwu")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[color=acacac]Mock Descriptio: This new release brings quality features to Tasker, to improve your experience with our app. Introducing: the plugin store where you can discover and download new plugins from the comfort of your app. Tasker 1.1 also bring integrations allowing you to connect your favorite apps to Tasker and use them in tandem with our productivity features. Lastly plugins can now communicate with each other, forming powerful synergies across the app. Read the full changelog here"
+text = "[color=acacac]Mock Description: This new release brings quality features to Tasker, to improve your experience with our app. Introducing: the plugin store where you can discover and download new plugins from the comfort of your app. Tasker 1.1 also bring integrations allowing you to connect your favorite apps to Tasker and use them in tandem with our productivity features. Lastly plugins can now communicate with each other, forming powerful synergies across the app. Read the full changelog here"
 fit_content = true
 autowrap_mode = 2
 
@@ -124,7 +126,8 @@ theme_override_constants/margin_right = 80
 [node name="Legal" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=1513796254]
 layout_mode = 2
 theme = ExtResource("8_3v6ft")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_fonts/normal_font = ExtResource("7_mevwu")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[color=acacac]By using and/or updating Tasker you automatically agree to our [color=f5f5f5][url=https://github.com/Firepixel85/Tasker-Labs/blob/main/Terms of Use.md]Terms of Use[/url]"
 fit_content = true
