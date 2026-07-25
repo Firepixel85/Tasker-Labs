@@ -10,7 +10,21 @@
 [ext_resource type="FontFile" uid="uid://d0qdmlqtq5rov" path="res://CustomThemes/fonts/Bold.otf" id="6_ggw3s"]
 [ext_resource type="Texture2D" uid="uid://cwciu8kk0rneo" path="res://Onboarding/Textures/Checkbox/Unselected.svg" id="7_bjctk"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="10_ptca0"]
+[ext_resource type="Texture2D" uid="uid://46r2td2nlhgt" path="res://Onboarding/Textures/Banner1.png" id="11_ptca0"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="11_w384u"]
 [ext_resource type="PackedScene" uid="uid://n26v0vu3820g" path="res://addons/RoseGarden/components/SectionView/RGSectionView.tscn" id="13_ptca0"]
+[ext_resource type="Texture2D" uid="uid://cc6si8nshu1cs" path="res://Onboarding/Textures/Banner2.png" id="14_cwg74"]
+[ext_resource type="Script" uid="uid://boaa2schqslho" path="res://Onboarding/Scripts/Slide3.gd" id="15_37rn5"]
+[ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="15_eouc8"]
+[ext_resource type="Script" uid="uid://dns38qesuetpn" path="res://Onboarding/Scripts/Slide4.gd" id="16_rny14"]
+[ext_resource type="Script" uid="uid://c32i804txduul" path="res://Onboarding/Scripts/slide4_button.gd" id="17_nr2gn"]
+[ext_resource type="Texture2D" uid="uid://bt0c6p1uesytk" path="res://Onboarding/Textures/Color/Normal/ColorYellow.svg" id="18_rny14"]
+[ext_resource type="Texture2D" uid="uid://cokhvfv83f25n" path="res://Onboarding/Textures/Color/Normal/ColorOrange.svg" id="19_v55f5"]
+[ext_resource type="Texture2D" uid="uid://b3qj2dx7e7fny" path="res://Onboarding/Textures/Color/Normal/ColorGreen.svg" id="20_sb1eq"]
+[ext_resource type="Texture2D" uid="uid://crgkngee2rsif" path="res://Onboarding/Textures/Color/Normal/ColorTeal.svg" id="21_73l8u"]
+[ext_resource type="Texture2D" uid="uid://da7qk6snm2046" path="res://Onboarding/Textures/Color/Normal/ColorBlue.svg" id="22_a4n1h"]
+[ext_resource type="Texture2D" uid="uid://cjjy56ng8qcec" path="res://Onboarding/Textures/Color/Normal/ColorPink.svg" id="23_yer3x"]
+[ext_resource type="Texture2D" uid="uid://do5vob11mlgtj" path="res://Onboarding/Textures/Color/Normal/ColorPurple.svg" id="24_q67p1"]
 
 [sub_resource type="Gradient" id="Gradient_eouc8"]
 offsets = PackedFloat32Array(0.56666666)
@@ -20,6 +34,8 @@ colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
 gradient = SubResource("Gradient_eouc8")
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08c4x"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ral2"]
 
 [sub_resource type="Gradient" id="Gradient_08c4x"]
 offsets = PackedFloat32Array(0.59761906)
@@ -308,6 +324,265 @@ theme_override_constants/margin_left = 18
 theme_override_constants/margin_top = 18
 theme_override_constants/margin_right = 18
 
+[node name="SlideScroll" type="ScrollContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer" unique_id=209622652]
+layout_mode = 2
+mouse_filter = 2
+scroll_horizontal = 2544
+horizontal_scroll_mode = 3
+vertical_scroll_mode = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll" unique_id=1289742377]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Slide1" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=1328848743]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+theme_override_constants/separation = 80
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide1" unique_id=995413438]
+layout_mode = 2
+texture = ExtResource("11_ptca0")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide1" unique_id=770812476]
+layout_mode = 2
+
+[node name="Title" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide1/VBoxContainer" unique_id=85953319 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(356, 45)
+layout_mode = 2
+text = "Welcome to Tasker 2.0!"
+font_size = "Large"
+horizontal_alignment = "Center"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide1/VBoxContainer" unique_id=818021078]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+
+[node name="Description" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide1/VBoxContainer/MarginContainer" unique_id=1309116849]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Tasker is an all-in-one plugin powered productivity tool, designed to fit your unique use case. Click “Next” to find out how."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Slide2" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=1571455787]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide2" unique_id=31362707]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide2/VBoxContainer" unique_id=343557273 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(364, 45)
+layout_mode = 2
+size_flags_vertical = 3
+text = "How does Tasker work?"
+font_size = "Large"
+horizontal_alignment = "Center"
+vertical_alignment = "Bottom"
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide2" unique_id=302558752]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Tasker, out of the box comes with no features. We leave it up to you to decide, what productivity features (eg. Focus Tracking, Task Management, Pomodoro etc.) suit you best and allow you to install them through plugins. All of Tasker’s features are powered 100% by plugins and it’s up to you to choose what those features are!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide2" unique_id=471688928]
+layout_mode = 2
+texture = ExtResource("14_cwg74")
+
+[node name="Slide3" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=1975881157]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+theme_override_constants/separation = 8
+script = ExtResource("15_37rn5")
+
+[node name="Titles" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=1886177150]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 4
+alignment = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/Titles" unique_id=1666140631 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(397, 45)
+layout_mode = 2
+text = "Now let’s get to know you"
+font_size = "Large"
+horizontal_alignment = "Center"
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/Titles" unique_id=881539589]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Now that you know how Tasker works, we could like to know some things about you. Nothing must just a nice nickname we can call you by and some of you preferences."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=1102636208]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=2003987886 instance=ExtResource("11_w384u")]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+custom_minimum_size = Vector2(337, 28)
+layout_mode = 2
+text = "What would you like us to call you?"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=1753105534]
+layout_mode = 2
+theme_override_constants/margin_left = 192
+theme_override_constants/margin_right = 192
+
+[node name="DisplayNameField" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/MarginContainer" unique_id=1945964600 instance=ExtResource("15_eouc8")]
+layout_mode = 2
+placeholder_text = "Type your favourite nickname..."
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=598518381]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" unique_id=1374559426]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_7jd1r")
+theme_override_font_sizes/normal_font_size = 22
+bbcode_enabled = true
+text = "[color=acacac][url=https://github.com/Firepixel85/Tasker-Labs/blob/main/Privacy Policy.md]Read our Privacy Policy[/url]"
+fit_content = true
+horizontal_alignment = 1
+
+[node name="Slide4" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=1306763197]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+script = ExtResource("16_rny14")
+
+[node name="TitleContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4" unique_id=1405671411]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/TitleContainer" unique_id=475365685 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(347, 45)
+layout_mode = 2
+text = "How about some color"
+font_size = "Large"
+horizontal_alignment = "Center"
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/TitleContainer" unique_id=1659581085]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Choose your favourite color and we will adapt the apps interface to it, so you can feel right at home!"
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4" unique_id=1434594604]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer" unique_id=1883324863]
+layout_mode = 2
+size_flags_vertical = 3
+alignment = 1
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer" unique_id=1889764029 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(116, 28)
+layout_mode = 2
+text = "Pick a color:"
+font_size = "Secondary"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer" unique_id=389033015]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Button" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1185998134]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("18_rny14")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Yellow"
+
+[node name="Button2" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=350034309]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("19_v55f5")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Orange"
+
+[node name="Button3" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=2127554910]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("20_sb1eq")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Green"
+
+[node name="Button4" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1592983263]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("21_73l8u")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Teal"
+
+[node name="Button5" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1160892537]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("22_a4n1h")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Blue"
+
+[node name="Button6" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1737876399]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("23_yer3x")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Pink"
+
+[node name="Button7" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4/CenterContainer/VBoxContainer/HBoxContainer" unique_id=928233750]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_0ral2")
+icon = ExtResource("24_q67p1")
+flat = true
+script = ExtResource("17_nr2gn")
+color = "Purple"
+
+[node name="Slide5" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=701433628]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5" unique_id=746567712 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(101, 45)
+layout_mode = 2
+text = "Slide 3"
+font_size = "Large"
+horizontal_alignment = "Center"
+
 [node name="Seperator" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=1175360810]
 custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
@@ -346,7 +621,14 @@ custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
 text = "Next"
 
+[connection signal="next_slide_selected" from="." to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" method="_on_next_slide_selected"]
+[connection signal="next_slide_selected" from="." to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4" method="_on_onboarding_next_slide_selected"]
 [connection signal="mouse_entered" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_exited"]
 [connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_pressed"]
 [connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Next" to="HBoxContainer/TOU" method="_on_next_pressed"]
+[connection signal="text_changed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/MarginContainer/DisplayNameField" to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" method="_on_display_name_field_text_changed"]
+[connection signal="text_submitted" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/MarginContainer/DisplayNameField" to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" method="_on_display_name_field_text_submitted"]
+[connection signal="meta_clicked" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/RichTextLabel" to="." method="_on_meta_clicked"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Back" to="." method="prev_slide"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Next" to="." method="next_slide"]

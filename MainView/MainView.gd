@@ -131,7 +131,7 @@ func _ready():
 
 	PluginManager._load_data()
 	_update_setting_values()
-	open_view("mainview")
+	open_view("onboardingx")
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):
@@ -166,7 +166,7 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("plugin_open") and !_current_view == "plugins":
 		open_view("plugins")
 		RoseGarden._delete_all_menus()
-	if Input.is_action_just_pressed("view_close") and !_current_view == "mainview":
+	if Input.is_action_just_pressed("view_close") and !_current_view == "mainview" and !_current_view == "onboarding":
 		open_view("mainview")
 		RoseGarden._delete_all_menus()
 

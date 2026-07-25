@@ -1,4 +1,5 @@
 res://Onboarding/Scripts/
+res://MainView/
 res://Onboarding/Textures/Checkbox/
 res://Onboarding/
 res://DeveloperPlugins/Focus/Scenes/
@@ -8,7 +9,6 @@ res://Settings/CoreOptions/General/PluginNotify/
 res://Settings/CoreOptions/General/UpdateNotify/
 res://MainView/Updates/
 res://DeveloperPlugins/Console/
-res://MainView/
 res://Popups/Popup2/
 res://Popups/Popup0/
 res://Popups/

@@ -620,6 +620,7 @@ layer = 3
 [node name="ToastLayer" type="CanvasLayer" parent="." unique_id=1968475343]
 
 [node name="CommandBar" type="CanvasLayer" parent="." unique_id=2110537838]
+visible = false
 
 [node name="Control" type="Control" parent="CommandBar" unique_id=15699609]
 layout_mode = 3

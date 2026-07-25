@@ -1,13 +1,20 @@
 extends Control
 @onready var slide_container: HBoxContainer = $HBoxContainer
 @onready var next: RGButton = $HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Next
+@onready var back: RGButton = $HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Back
 @onready var tou_next: RGButton = $HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Next
+@onready var slide_scroll: ScrollContainer = $HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll
+@onready var section_view: RGSectionView = $HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/VBoxContainer/RGSectionView
 
 var slide:int = 0
+
+signal next_slide_selected
+signal prev_slide_selected
 func _ready() -> void:
+	slide_scroll.scroll_horizontal = 0.0
 	get_tree().root.size_changed.connect(_resize_slides)
 	next.set_color("Tasker")
-	
+
 func _resize_slides():
 	for child in slide_container.get_children():
 		child.custom_minimum_size = size
@@ -19,9 +26,32 @@ func _resize_slides():
 func next_slide():
 	RoseGarden.clear_tooltips()
 	var tween = create_tween()
-	if slide == 0:
-		tween.tween_property(slide_container,"position:x",-size.x,0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	slide += 1
+	if slide != 1:
+		section_view.select_next()
+		back.show()
+	else:
+		back.hide()
+	if slide-1 == 0:
+		tween.tween_property(slide_container,"position:x",-size.x,0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	else:
+		tween.tween_property(slide_scroll,"scroll_horizontal",(slide-1)*slide_scroll.size.x,0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	next_slide_selected.emit()
+
+func prev_slide():
+	RoseGarden.clear_tooltips()
+	var tween = create_tween()
+	if slide == 1:
+		return
+	slide -= 1
+	if slide != 1:
+		back.show()
+	else:
+		back.hide()
+	tween.tween_property(slide_scroll,"scroll_horizontal",(slide-1)*slide_scroll.size.x,0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	enable_next()
+	section_view.select_prev()
+	prev_slide_selected.emit()
 
 func _process(_delta: float) -> void:
 	if !visible:
@@ -31,3 +61,12 @@ func _process(_delta: float) -> void:
 			tou_next.press()
 		else:
 			next.press()
+
+func disable_next():
+	next.disabled = true
+
+func enable_next():
+	next.disabled = false
+
+func _on_meta_clicked(meta: Variant) -> void:
+	OS.shell_open(meta)
