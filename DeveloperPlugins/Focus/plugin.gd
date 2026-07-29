@@ -8,3 +8,4 @@ func start():
 	
 func stop():
 	Debug.log("Unloading",ID)
+	Sidebar.remove_tab(ID)

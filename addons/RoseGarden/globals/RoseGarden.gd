@@ -152,6 +152,10 @@ class Themes:
 		Info = load(RoseGarden._theme_path+"Info.tres")
 		FinePrint = load(RoseGarden._theme_path+"FinePrint.tres")
 
+###############
+#### Flags ####
+###############
+
 class Flags:
 	static var accessible_toggles:bool = false
 

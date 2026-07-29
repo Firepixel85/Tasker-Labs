@@ -59,7 +59,7 @@ func _input(event: InputEvent) -> void:
 func _highlighted(pos_y):
 	var tween = create_tween()
 	tween.tween_property(highlight,"position:y",pos_y,0.07*int(Settings.get_option_value("core.appearance/more_animations"))*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	highlight.show()
+	if selection.visible: highlight.show()
 	await tween.finished
 
 func _select(pos_y):
@@ -208,9 +208,6 @@ func link_action(action:Callable,path:String):
 	command_actions[path] = action
 	return OK
 
-func command_has_action(path:String):
-	return command_actions.has(path)
-
 func command_exists(path:String):
 	return command_names.has(path)
 
@@ -293,6 +290,8 @@ func _get_acronym(command_name:String):
 	return acronym
 
 func execute_command(path:String):
+	if !selection.visible:
+		return
 	if !commands.has(path):
 		Debug.warn("Tried to execute a command that doesn't exist: "+path,ID)
 		return ERR_DOES_NOT_EXIST

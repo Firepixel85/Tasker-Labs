@@ -35,6 +35,7 @@ func _ready():
 	Main.main_view = self
 	Main._ready()
 	DisplayServer.window_set_min_size(Vector2i(1280, 960))
+	CommandBar.load_commands()
 	Popups.popup_container = popup_container
 	Popups.popup_fade = popup_fade
 	Popups._ready()
@@ -48,7 +49,6 @@ func _ready():
 	RoseGarden.set_menu_layer(rcm_container)
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	RoseGarden.set_toast_layer(toast_layer)
-	CommandBar.load_commands()
 	PluginManager._send_errors()
 	if Settings.get_option_value("core.general/update_notify"):
 		Network.Updates.check_for_updates()
@@ -104,6 +104,8 @@ func _ready():
 		Settings.add_option("core.developer","reset_command_points","res://Settings/CoreOptions/Developer/ResetCommandPoints/CoreOption_ResetCommandPoints.tscn",true)
 	if !Settings.option_exists("core.developer/reset_window_size"):
 		Settings.add_option("core.developer","reset_window_size","res://Settings/CoreOptions/Developer/ResetWindowSize/CoreOption_ResetWindowSize.tscn",true)
+	if !Settings.option_exists("core.developer/restart_onboarding"):
+		Settings.add_option("core.developer","restart_onboarding","res://Settings/CoreOptions/Developer/RestartOnboarding/CoreOption_RestartOnboarding.tscn",true)
 
 	#Rose Garden
 	if !Settings.category_exists("core.rose_garden"):
@@ -131,7 +133,12 @@ func _ready():
 
 	PluginManager._load_data()
 	_update_setting_values()
-	open_view("onboardingx")
+	var data = Data.load_file("Core/UpdateData")
+	if !data.has("onboarding_complete") or data["onboarding_complete"] == false:
+		open_view("onboarding")
+	else:
+		open_view("mainview")
+
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):

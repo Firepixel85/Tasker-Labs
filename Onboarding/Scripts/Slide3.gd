@@ -3,10 +3,10 @@ extends VBoxContainer
 @onready var display_name_field: RGTextField = $MarginContainer/DisplayNameField
 
 func _on_next_slide_selected() -> void:
-	if onboarding.slide != 3:
-		return
 	if onboarding.slide == 4:
 		Settings.set_option_value("core.general/display_name",display_name_field.get_text())
+	if onboarding.slide != 3:
+		return
 	display_name_field.edit()
 	if display_name_field.text.is_empty():
 		onboarding.disable_next()
@@ -26,4 +26,3 @@ func _on_display_name_field_text_submitted(new_text: String) -> void:
 		display_name_field.incorrect = false
 		display_name_field.edit()
 		return
-	onboarding.next_slide()

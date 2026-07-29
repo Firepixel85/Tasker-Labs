@@ -20,3 +20,6 @@ func stop():
 	Debug.log("Unloading",ID)
 	Sidebar.remove_tab(ID)
 	Settings.hide_category(ID)
+
+func empty():
+	pass

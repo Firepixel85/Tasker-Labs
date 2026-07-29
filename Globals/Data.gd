@@ -69,6 +69,7 @@ func file_exists(file_name):
 	return false
 
 func _ready() -> void:
+	Debug.log("Log data/time is: %s"%Time.get_datetime_string_from_system(),"core.main")
 	if FileAccess.file_exists("user://Core/Data.json"):
 		var data = JSON.parse_string(FileAccess.open("user://Core/Data.json",FileAccess.READ).get_as_text())
 		actual_file_path = data["actual_file_path"]

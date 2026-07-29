@@ -6,6 +6,7 @@ class window:
 	static var size := Vector2(0,0)
 	static var position := Vector2(0,0)
 
+const ID = "core.main"
 const version:String = "2.0"
 const version_sufix:String = "pb2"
 const plugin_api_version:String = "1.0"

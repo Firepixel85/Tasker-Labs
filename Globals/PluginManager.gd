@@ -337,6 +337,7 @@ func load_plugin(plugin_id):
 			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
+
 		_loaded_plugin_scripts[plugin_id].start()
 		_loaded_plugins.append(plugin_id)
 		save_data()

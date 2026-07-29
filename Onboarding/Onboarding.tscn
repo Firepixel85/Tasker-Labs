@@ -25,6 +25,10 @@
 [ext_resource type="Texture2D" uid="uid://da7qk6snm2046" path="res://Onboarding/Textures/Color/Normal/ColorBlue.svg" id="22_a4n1h"]
 [ext_resource type="Texture2D" uid="uid://cjjy56ng8qcec" path="res://Onboarding/Textures/Color/Normal/ColorPink.svg" id="23_yer3x"]
 [ext_resource type="Texture2D" uid="uid://do5vob11mlgtj" path="res://Onboarding/Textures/Color/Normal/ColorPurple.svg" id="24_q67p1"]
+[ext_resource type="Script" uid="uid://tf1i4nno6ips" path="res://Onboarding/Scripts/Slide5.gd" id="25_73l8u"]
+[ext_resource type="Script" uid="uid://dfepmu01k4jm7" path="res://Onboarding/Scripts/acc_feature.gd" id="25_sb1eq"]
+[ext_resource type="Texture2D" uid="uid://qma7mdmkjst7" path="res://Onboarding/Textures/Rocket.png" id="28_q67p1"]
+[ext_resource type="Texture2D" uid="uid://cqrq5ynfq8bx0" path="res://Icons/Left.svg" id="31_nhsng"]
 
 [sub_resource type="Gradient" id="Gradient_eouc8"]
 offsets = PackedFloat32Array(0.56666666)
@@ -36,6 +40,8 @@ gradient = SubResource("Gradient_eouc8")
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_08c4x"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0ral2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a4n1h"]
 
 [sub_resource type="Gradient" id="Gradient_08c4x"]
 offsets = PackedFloat32Array(0.59761906)
@@ -315,7 +321,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 10
 
 [node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=58052801]
 layout_mode = 2
@@ -327,7 +333,6 @@ theme_override_constants/margin_right = 18
 [node name="SlideScroll" type="ScrollContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer" unique_id=209622652]
 layout_mode = 2
 mouse_filter = 2
-scroll_horizontal = 2544
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 
@@ -575,13 +580,225 @@ color = "Purple"
 [node name="Slide5" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=701433628]
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 2
+theme_override_constants/separation = 16
+script = ExtResource("25_73l8u")
 
-[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5" unique_id=746567712 instance=ExtResource("11_w384u")]
-custom_minimum_size = Vector2(101, 45)
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5" unique_id=763208769]
+custom_minimum_size = Vector2(0, 128)
 layout_mode = 2
-text = "Slide 3"
+theme_override_constants/separation = 2
+alignment = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer" unique_id=391293065 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(452, 45)
+layout_mode = 2
+text = "We take your needs seriously"
 font_size = "Large"
 horizontal_alignment = "Center"
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer" unique_id=1722616155]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Tasker provides you with accessibility options so you can use our app even with vision impairments."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer" unique_id=53727281]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="AccOptions" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer" unique_id=1766664085]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions" unique_id=1836380852]
+custom_minimum_size = Vector2(848, 90)
+layout_mode = 2
+script = ExtResource("25_sb1eq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control" unique_id=1336076674]
+layout_mode = 0
+offset_right = 848.0
+offset_bottom = 90.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control/HBoxContainer" unique_id=934440730]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control/HBoxContainer/MarginContainer" unique_id=1224427320]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1550378952]
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Disable Animations"
+
+[node name="Label2" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1108152976]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+text = "Enable this if you experience dizziness, seizures or other problems with excessive motion."
+autowrap_mode = 2
+
+[node name="Checkbox" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control/HBoxContainer" unique_id=300937040]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture = ExtResource("7_bjctk")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control" unique_id=1871665999]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a4n1h")
+flat = true
+
+[node name="Control2" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions" unique_id=182624482]
+custom_minimum_size = Vector2(848, 90)
+layout_mode = 2
+script = ExtResource("25_sb1eq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2" unique_id=962658743]
+layout_mode = 0
+offset_right = 848.0
+offset_bottom = 90.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2/HBoxContainer" unique_id=1439145648]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2/HBoxContainer/MarginContainer" unique_id=2107105617]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2/HBoxContainer/MarginContainer/VBoxContainer" unique_id=454134747]
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Increase Contrast"
+
+[node name="Label2" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1764326326]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+text = "Enable this if you struggle to see some colors or have difficulty reading low contrast text."
+autowrap_mode = 2
+
+[node name="Checkbox" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2/HBoxContainer" unique_id=243498616]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture = ExtResource("7_bjctk")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control2" unique_id=1227794263]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a4n1h")
+flat = true
+
+[node name="Control3" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions" unique_id=1960716855]
+custom_minimum_size = Vector2(848, 90)
+layout_mode = 2
+script = ExtResource("25_sb1eq")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3" unique_id=1434524780]
+layout_mode = 0
+offset_right = 848.0
+offset_bottom = 90.0
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3/HBoxContainer" unique_id=1827347155]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_left = 16
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3/HBoxContainer/MarginContainer" unique_id=204313331]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 4
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3/HBoxContainer/MarginContainer/VBoxContainer" unique_id=1641833158]
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "Symbol Indicators"
+
+[node name="Label2" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3/HBoxContainer/MarginContainer/VBoxContainer" unique_id=496168157]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+text = "Enable this if you have partial or full color blindness and cannot rely on color alone to identify the state of something."
+autowrap_mode = 2
+
+[node name="Checkbox" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3/HBoxContainer" unique_id=1867532054]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+texture = ExtResource("7_bjctk")
+stretch_mode = 3
+
+[node name="Button" type="Button" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5/VBoxContainer/AccOptions/Control3" unique_id=639233847]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_a4n1h")
+flat = true
+
+[node name="Slide6" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer" unique_id=1960634118]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6" unique_id=570294378]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="RGText" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6/VBoxContainer" unique_id=352604614 instance=ExtResource("11_w384u")]
+custom_minimum_size = Vector2(438, 45)
+layout_mode = 2
+text = "All set and ready for takeoff!"
+font_size = "Large"
+horizontal_alignment = "Center"
+
+[node name="MarginContainer" type="MarginContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6/VBoxContainer" unique_id=1384145342]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+
+[node name="Label" type="Label" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6/VBoxContainer/MarginContainer" unique_id=748115267]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
+layout_mode = 2
+theme = ExtResource("4_ggw3s")
+theme_override_font_sizes/font_size = 24
+text = "You are ready to transform your productivity workflow forever. Just click launch! "
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6" unique_id=1513242940]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide6" unique_id=904895891]
+layout_mode = 2
+texture = ExtResource("28_q67p1")
+stretch_mode = 3
 
 [node name="Seperator" type="TextureRect" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer" unique_id=1175360810]
 custom_minimum_size = Vector2(0, 2)
@@ -621,8 +838,41 @@ custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
 text = "Next"
 
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2" unique_id=969941790]
+visible = false
+layout_mode = 2
+
+[node name="Back" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2" unique_id=1399891842 instance=ExtResource("10_ptca0")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("31_nhsng")
+
+[node name="Spacer" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2" unique_id=209926694]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2" unique_id=567860884]
+custom_minimum_size = Vector2(280, 0)
+layout_mode = 2
+
+[node name="Launch" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer" unique_id=1113736618 instance=ExtResource("10_ptca0")]
+custom_minimum_size = Vector2(207, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Launch"
+
+[node name="Spacer3" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2" unique_id=1758858676]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Spacer2" type="Control" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2" unique_id=1254305892]
+custom_minimum_size = Vector2(60, 0)
+layout_mode = 2
+
 [connection signal="next_slide_selected" from="." to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3" method="_on_next_slide_selected"]
 [connection signal="next_slide_selected" from="." to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide4" method="_on_onboarding_next_slide_selected"]
+[connection signal="next_slide_selected" from="." to="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide5" method="_on_onboarding_next_slide_selected"]
 [connection signal="mouse_entered" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_entered"]
 [connection signal="mouse_exited" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_mouse_exited"]
 [connection signal="pressed" from="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/CheckboxContainer/CenterContainer/Checkbox" to="HBoxContainer/TOU" method="_on_checkbox_pressed"]
@@ -632,3 +882,5 @@ text = "Next"
 [connection signal="meta_clicked" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer/SlideScroll/HBoxContainer/Slide3/RichTextLabel" to="." method="_on_meta_clicked"]
 [connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Back" to="." method="prev_slide"]
 [connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer/Next" to="." method="next_slide"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2/Back" to="." method="prev_slide"]
+[connection signal="pressed" from="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer/Launch" to="." method="next_slide"]

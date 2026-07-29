@@ -26,22 +26,18 @@ const ID = "com.rosepen.console"
 func _ready() -> void:
 	Debug.logs_changed.connect(_update_logs)
 	_update_logs()
+	var icon_path = PluginManager.get_plugin_filepath(ID)+"icon.png"
 	if !CommandBar.command_exists(ID+"/Clear Console"):
-		CommandBar.add_command("Clear Console",ID,Icons.get_icon_path("Terminal"),_on_clear_pressed,[],["console"])
+		CommandBar.add_command("Clear Console", ID,icon_path, _on_clear_pressed, [], ["console"])
 	if !CommandBar.command_exists(ID+"/Toggle Logs"):
-		CommandBar.add_command("Toggle Logs",ID,Icons.get_icon_path("Terminal"),_on_toggle_logs_pressed,[],["console"])
+		CommandBar.add_command("Toggle Logs",ID,icon_path,_on_toggle_logs_pressed,[],["console"])
 	if !CommandBar.command_exists(ID+"/Toggle Warns"):
-		CommandBar.add_command("Toggle Warns",ID,Icons.get_icon_path("Terminal"),_on_toggle_warns_pressed,[],["console"])
+		CommandBar.add_command("Toggle Warns",ID,icon_path,_on_toggle_warns_pressed,[],["console"])
 	if !CommandBar.command_exists(ID+"/Toggle Errors"):
-		CommandBar.add_command("Toggle Errors",ID,Icons.get_icon_path("Terminal"),_on_toggle_errors_pressed,[],["console"])
+		CommandBar.add_command("Toggle Errors",ID,icon_path,_on_toggle_errors_pressed,[],["console"])
 
-	if !CommandBar.command_has_action(ID+"/Clear Console"):
-		CommandBar.link_action(_on_clear_pressed,ID+"/Clear Console")
-	if !CommandBar.command_has_action(ID+"/Toggle Logs"):
-		CommandBar.link_action(_on_toggle_logs_pressed,ID+"/Toggle Logs")
-	if !CommandBar.command_has_action(ID+"/Toggle Warns"):
-		CommandBar.link_action(_on_toggle_warns_pressed,ID+"/Toggle Warns")
-		CommandBar.link_action(_on_toggle_errors_pressed,ID+"/Toggle Errors")
+func _on_create_toast_pressed() -> void:
+	Debug.log("Clearing logs",ID)
 
 func _update_logs():
 	text.clear()
@@ -82,7 +78,7 @@ func _update_logs():
 		NotificationManager.queue_notification("New Error In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
 	if Settings.get_option_value(ID+"/notify_warns") and Debug.log_type[Debug.get_logs().size()-1] == "Warn":
 		NotificationManager.queue_notification("New Warning In Console",Debug.get_logs()[Debug.get_logs().size()-1],false,Sidebar.select_tab,[ID],4)
-	
+
 	all_loggers = []
 	var temp_array := []
 	for logger in Debug.logger_ids:

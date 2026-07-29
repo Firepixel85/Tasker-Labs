@@ -1,6 +1,8 @@
+/Users/max/Documents/Godot Builds/Tasker 2.0/
+res://Settings/CoreOptions/Developer/RestartOnboarding/
 res://Onboarding/Scripts/
-res://MainView/
 res://Onboarding/Textures/Checkbox/
+res://MainView/
 res://Onboarding/
 res://DeveloperPlugins/Focus/Scenes/
 res://DeveloperPlugins/Focus/
@@ -19,6 +21,4 @@ res://PluginView/
 res://PluginView/UpdatesPopup/
 res://Globals/
 res://addons/RoseGarden/components/Container/
-/Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Settings/CoreOptions/Developer/ResetCommandPoints/
-res://Settings/CoreOptions/General/CommandAmount/

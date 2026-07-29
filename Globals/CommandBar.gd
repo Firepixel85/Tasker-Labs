@@ -42,12 +42,6 @@ func link_action(action:Callable,path:String):
 		return ERR_BUSY
 	return _client.link_action(action,path)
 
-func command_has_action(path:String):
-	if _client == null:
-		Debug.warn("Process: "+Main.get_process_name(path.split("/")[0])+" attempted to check if a command has an action while the client was not ready, action discarded. Command Path: "+path,ID)
-		return ERR_BUSY
-	return _client.command_has_action(path)
-
 func command_exists(path:String):
 	if _client == null:
 		Debug.warn("Process: "+Main.get_process_name(path.split("/")[0])+" attempted to check if a command exists while the client was not ready, action discarded. Command Path: "+path,ID)

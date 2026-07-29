@@ -94,17 +94,6 @@ func _ready() -> void:
 	if !CommandBar.command_exists(ID+"/Create Toast"):
 		CommandBar.add_command("Create Toast",ID,icon_path,_on_create_toast_pressed)
 
-	if !CommandBar.command_has_action(ID+"/Push Notification"):
-		CommandBar.link_action(_on_create_notification_pressed,ID+"/Push Notification")
-	if !CommandBar.command_has_action(ID+"/Open Settings"):
-		CommandBar.link_action(open_settings,ID+"/Open Settings")
-	if !CommandBar.command_has_action(ID+"/Open Plugins"):
-		CommandBar.link_action(open_plugins,ID+"/Open Plugins")
-	if !CommandBar.command_has_action(ID+"/Test Command"):
-		CommandBar.link_action(say_hi,ID+"/Test Command")
-	if !CommandBar.command_has_action(ID+"/Create Toast"):
-		CommandBar.link_action(_on_create_toast_pressed,ID+"/Create Toast")
-
 func _update_buttons(option_path,new_value):
 	if option_path == "core.appearance/accent_color":
 		create_event.set_color(new_value)
