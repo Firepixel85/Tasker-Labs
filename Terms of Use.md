@@ -12,7 +12,7 @@ By downloading, installing, or using the App, you agree to be bound by these Ter
 
 Tasker is free, open-source software distributed under the **Tasker Free Use License Agreement** (the "License"). The License governs your rights to view, modify, and redistribute the App's source code, and remains fully in effect.
 
-These Terms of Use govern your use of the App as a product — including your conduct while using it, your relationship with plugins, and the boundaries of our responsibility — and apply **in addition to**, not instead of, the License. Where these Terms and the License overlap (for example, the disclaimer of warranty and limitation of liability), both apply and should be read consistently; the License's Unmodifiable Section cannot be altered by these Terms.
+These Terms of Use govern your use of the App as a product including your conduct while using it, your relationship with plugins, and the boundaries of our responsibility and apply **in addition to**, not instead of, the License. Where these Terms and the License overlap (for example, the disclaimer of warranty and limitation of liability), both apply and should be read consistently; the License's Unmodifiable Section cannot be altered by these Terms.
 
 ---
 
@@ -26,7 +26,7 @@ You must be at least 16 years old to use the App, or the minimum age of digital 
 
 Tasker itself is free to use and, per the License, may never be sold or commercially exploited by anyone, including us. We do not charge for the App and do not operate any in-app purchase or subscription system for Tasker's core functionality.
 
-This does not apply to third-party plugins — see Section 4.
+This does not apply to third-party plugins, see Section 4.
 
 ---
 
