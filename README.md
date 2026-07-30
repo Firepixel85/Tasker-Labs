@@ -12,7 +12,7 @@
 Tasker is a productivity powerhouse, designed to be fully plugin driven, allowing you to customize and extend its functionality to suit your unique workflow. Choose the features that suit you best and ignore the rest, making Tasker your own personal productivity dashboard.
 
 ### A message to HackClub reviewers
-Tasker is in a beta state, while all features are implemented, there are no external plugins developed to take full advantage of those features. That being said the app is fully functional and has some built in developer plugins so you can test out its capabilities. I have written a guide on how to enable and use these plugins, which you can read [here](https://github.com/Firepixel85/Tasker-Labs/blob/main/developerPluginGuide.md)
+Tasker is in a beta state, while all features are implemented, there are no external plugins developed to take full advantage of those features. That being said the app is fully functional and has some built in developer plugins so you can test out its capabilities. I have written a guide on how to enable and use these plugins, which you can read [here](https://github.com/Firepixel85/Tasker-Labs/blob/main/DeveloperPluginGuide.md)
 
 ### Installation
 Tasker 2.0 is currently in development. However, since this is an open-source project and we believe in always giving you options you can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest test build to try for yourself. Please note that these builds are not stable and may contain bugs, so we recommend using them for testing purposes only. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. To install the latest build:
