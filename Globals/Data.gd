@@ -38,35 +38,33 @@ func make_file(file_name:String,exclusive_folder:=""):
 		return OK
 
 func save_to(data_name:String,data_value,file_name:String):
-	if !FileAccess.file_exists(actual_file_path[file_name]):
+	if !FileAccess.file_exists("user://%s.json"%file_name):
 		Debug.warn("A process attempted to save data to a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
 	all_data[file_name][data_name] = data_value
 
 func save_file(file_name:String,silent=false):
-	if !FileAccess.file_exists(actual_file_path[file_name]):
+	if !FileAccess.file_exists("user://%s.json"%file_name):
 		Debug.warn("A process attempted to save a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
-	var file = FileAccess.open(actual_file_path[file_name],FileAccess.WRITE)
+	var file = FileAccess.open("user://%s.json"%file_name,FileAccess.WRITE)
 	file.store_string(JSON.stringify(all_data[file_name]))
 	file.close()
 	if !silent:
 		Debug.log("File saved: "+file_name,ID)
 
 func load_file(file_name:String):
-	if !FileAccess.file_exists(actual_file_path[file_name]):
+	if !FileAccess.file_exists("user://%s.json"%file_name):
 		Debug.warn("A process attempted to load a file that does not exist: "+file_name,ID)
 		return ERR_FILE_NOT_FOUND
-	var file = FileAccess.open(actual_file_path[file_name],FileAccess.READ)
+	var file = FileAccess.open("user://%s.json"%file_name,FileAccess.READ)
 	var data = JSON.parse_string(file.get_as_text())
 	all_data[file_name] = data
 	Debug.log("File loaded: "+file_name,ID)
 	return data
 
 func file_exists(file_name):
-	if actual_file_path.has(file_name):
-		return FileAccess.file_exists(actual_file_path[file_name])
-	return false
+	return FileAccess.file_exists("user://%s.json"%file_name)
 
 func _ready() -> void:
 	Debug.log("Log data/time is: %s"%Time.get_datetime_string_from_system(),"core.main")

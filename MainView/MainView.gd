@@ -134,10 +134,10 @@ func _ready():
 		Settings.add_option("core.rose_garden","tooltip_appearance","res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.tscn",true)
 
 	#Add CommandBar commands:
-	CommandBar.add_command("Open Settings",ID,Icons.get_icon_path("Gear"),_open_settings)
-	CommandBar.add_command("Open Plugins",ID,Icons.get_icon_path("Puzzle"),_open_plugins)
-	CommandBar.add_command("Plugin Updates",ID,Icons.get_icon_path("Download"),_show_plugin_updates)
-	CommandBar.add_command("Open Plugins Folder",ID,Icons.get_icon_path("Folder"),_open_plugins_folder)
+	CommandBar.add_command("Open Settings",ID,"res://Icons/Gear.svg",_open_settings)
+	CommandBar.add_command("Open Plugins",ID,"res://Icons/Puzzle.svg",_open_plugins)
+	CommandBar.add_command("Plugin Updates",ID,"res://Icons/Download.svg",_show_plugin_updates)
+	CommandBar.add_command("Open Plugins Folder",ID,"res://Icons/Folder.svg",_open_plugins_folder)
 	if Settings.get_option_value("core.general/show_categories"):
 		for category in Settings._category_list:
 			CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])

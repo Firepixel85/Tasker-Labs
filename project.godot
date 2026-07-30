@@ -21,8 +21,8 @@ config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/stretch_mode=4
 boot_splash/image="uid://c5wjk18sgal2g"
-config/icon="uid://jlvjwu2xdj7u"
-config/macos_native_icon="res://AppIcons/Labs Logo.icns"
+config/icon="uid://ciigag1c1iplc"
+config/macos_native_icon="res://AppIcons/Icon.icns"
 
 [autoload]
 
@@ -47,8 +47,8 @@ file_logging/enable_file_logging=true
 
 [display]
 
-window/size/viewport_width=2272
-window/size/viewport_height=1516
+window/size/viewport_width=960
+window/size/viewport_height=480
 window/size/initial_position_type=4
 window/size/resizable=false
 window/size/extend_to_title=true

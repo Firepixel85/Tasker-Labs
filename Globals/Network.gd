@@ -224,12 +224,14 @@ class Updates:
 					else:
 						Debug.log("Failed to download description file: HTTP error %d" % desc_response[1],ID)
 						latest_version_description = "[color=D72D2C]Failed to download description file: HTTP error %d" % desc_response[1]
-				if latest_version != Main.get_version():
+				if latest_version != Main.get_version()+Main.get_version_sufix():
 					is_outdated = true
 					if Settings.get_option_value("core.general/update_notify"):
 						EventManager.add_event(ID,load("res://MainView/Updates/UpdateAvailableEvent.tscn"),Icons.DOWNLOAD)
 					Network.check_for_updates.emit(latest_version, true)
 					Debug.log("Update available: %s" % latest_version,ID)
+				else:
+					Debug.log("No updates available, current version is up to date",ID)
 			_:
 				Debug.log("Update check failed: HTTP error %d" % response[1],ID)
 				NotificationManager.queue_notification(
@@ -289,6 +291,7 @@ class Updates:
 		return DirAccess.dir_exists_absolute("user://TaskerUpdater.app")
 
 	static func _open_helper():
+		Network.save()
 		if !helper_exist():
 			NotificationManager.queue_notification(
 				"Update Failed","Helper app is missing, please report this issue by clicking this notification. Update canceled.",

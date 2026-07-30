@@ -8,7 +8,7 @@ class window:
 
 const ID = "core.main"
 const version:String = "2.0"
-const version_sufix:String = "pb2"
+const version_sufix:String = "beta1"
 const plugin_api_version:String = "1.0"
 signal view_changed(new_view:String)
 
