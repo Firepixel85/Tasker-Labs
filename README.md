@@ -41,7 +41,12 @@ On the bottom of the page, you will find a stamp that says "No AI". We would lik
 
 <br>
 <div align="center">
-  
+
+[License](https://github.com/Firepixel85/Tasker-Labs/blob/main/LICENSE.md) | [Terms of Use](https://github.com/Firepixel85/Tasker-Labs/blob/main/Terms%20of%20Use.md) | [Privacy Policy](https://github.com/Firepixel85/Tasker-Labs/blob/main/Privacy%20Policy.md)
+
+<br>
+<div align="center">
+	
 <img width="192" height="192" alt="No AI Stamp Github" src="https://github.com/user-attachments/assets/16c80169-de83-4ce8-9a30-1ef9bf5fe235" />
 
 Developed by Rosepen Studios
