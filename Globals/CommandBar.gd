@@ -1,7 +1,10 @@
 extends Node
 
 var _client:Control
+
 const ID = "core.command_bar"
+
+signal client_ready
 
 func add_command(command_name:String,id:String,icon_path:String,action:Callable,params:Array=[],keywords=[]):
 	if _client == null:

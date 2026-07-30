@@ -32,7 +32,6 @@ func _process(delta: float) -> void:
 	if Engine.is_editor_hint():
 		_update()
 
-
 func _on_button_pressed() -> void:
 	RoseGarden.clear_toast()
 

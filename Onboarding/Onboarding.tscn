@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_2knsd"]
 [ext_resource type="Script" uid="uid://dikqn1xylijwg" path="res://Onboarding/Scripts/TOU.gd" id="1_er105"]
 [ext_resource type="Script" uid="uid://b4e7ua10788qc" path="res://Onboarding/Onboarding.gd" id="1_w384u"]
+[ext_resource type="Script" uid="uid://cabl14o0jf8dq" path="res://MainView/DragZone.gd" id="2_yer3x"]
 [ext_resource type="Texture2D" uid="uid://basii8uyw72ws" path="res://Onboarding/Textures/TOUContainer.svg" id="3_7jd1r"]
 [ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="4_2knsd"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="4_ggw3s"]
@@ -65,6 +66,7 @@ offset_right = 4548.0
 offset_bottom = 1516.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
+script = ExtResource("2_yer3x")
 
 [node name="TOU" type="CenterContainer" parent="HBoxContainer" unique_id=1558223622]
 custom_minimum_size = Vector2(2272, 0)

@@ -76,6 +76,8 @@ func add_category(display_name:String,icon_path:String,category_id:String):
 	_category_names[category_id] = display_name
 	_category_icons[category_id] = icon_path
 	category_added.emit(category_id)
+	if Settings.get_option_value("core.general/show_categories"):
+		CommandBar.add_command(display_name,ID,icon_path,open_category,[category_id])
 	Debug.log("Category added with id: "+category_id,ID)
 	save_settings()
 	return OK
@@ -103,6 +105,8 @@ func hide_category(category_id):
 		Debug.warn("A process attempted to hide a category with id: "+category_id+" but it is already hidden",ID)
 		return ERR_DOES_NOT_EXIST
 	_category_list.erase(category_id)
+	if Settings.get_option_value("core.general/show_categories"):
+		CommandBar.remove_command(ID+"/"+category_id)
 	Debug.log("Category hidden with id: "+category_id,ID)
 	return OK
 
@@ -114,6 +118,8 @@ func show_category(category_id):
 		Debug.warn("A process attempted to show a category with id: "+category_id+" but it is already shown",ID)
 		return ERR_ALREADY_EXISTS
 	_category_list.append(category_id)
+	if Settings.get_option_value("core.general/show_categories"):
+		CommandBar.add_command(_category_names[category_id],ID,_category_icons[category_id],open_category,[category_id])
 	Debug.log("Category shown with id: "+category_id,ID)
 	return OK
 

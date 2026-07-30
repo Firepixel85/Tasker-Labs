@@ -67,7 +67,15 @@ func _select(selection_id:String):
 	_shade_categories()
 	category_selected.emit(selection_id)
 	Sidebar.tab_selected.emit(selection_id)
+	_reposition_selection() #Sometimes the selection doesn't reposition correctly, so we call this function to fix it after a short delay
 	return OK
+
+func _reposition_selection():
+	if Settings.get_option_value("core.appearance/more_animations"):
+		await get_tree().process_frame
+	else:
+		await get_tree().create_timer(0.15).timeout
+	selection.position.y = selected_node.get_global_transform().origin.y-116
 
 func _shade_categories():
 	for child in category_container.get_children():

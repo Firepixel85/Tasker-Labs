@@ -3,7 +3,7 @@ extends Control
 @onready var auth: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Auth
 
 func _on_pp_meta_clicked(_meta: Variant) -> void:
-	OS.shell_open("https://taskerapp.framer.website/privacy-pledge")
+	OS.shell_open("https://github.com/Firepixel85/Tasker-Labs/blob/main/Privacy Policy.md")
 
 func _on_account_meta_clicked(_meta: Variant) -> void:
 	OS.shell_open("https://github.com/signup")

@@ -85,10 +85,6 @@ func _ready() -> void:
 	var icon_path = PluginManager.get_plugin_filepath(ID)+"icon.png"
 	if !CommandBar.command_exists(ID+"/Push Notification"):
 		CommandBar.add_command("Push Notification",ID,icon_path,_on_create_notification_pressed)
-	if !CommandBar.command_exists(ID+"/Open Settings"):
-		CommandBar.add_command("Open Settings",ID,icon_path,open_settings)
-	if !CommandBar.command_exists(ID+"/Open Plugins"):
-		CommandBar.add_command("Open Plugins",ID,icon_path,open_plugins)
 	if !CommandBar.command_exists(ID+"/Test Command"):
 		CommandBar.add_command("Test Command",ID,icon_path,say_hi)
 	if !CommandBar.command_exists(ID+"/Create Toast"):

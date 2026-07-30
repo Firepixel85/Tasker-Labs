@@ -12,6 +12,7 @@ class_name Notification
 var action
 var action_params
 var duration
+var tween:Tween
 
 signal closed
 signal sized
@@ -42,27 +43,27 @@ func setup(new_title:String,new_description:String,error:=false,new_action=null,
 	enter()
 	if duration == 0:
 		return OK
-	var tween = create_tween()
+	tween = create_tween()
 	tween.tween_property(progress,"value",0,duration)
 	await tween.finished
 	close(false)
 	return OK
 
 func close(was_desmised:bool):
-	var tween = create_tween().set_parallel(true)
-	tween.tween_property(self,"modulate",Color(1,1,1,0),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	var anim_tween = create_tween().set_parallel(true)
+	anim_tween.tween_property(self,"modulate",Color(1,1,1,0),0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	if was_desmised:
-		tween.tween_property(self,"scale",Vector2(0,0),0.5*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		anim_tween.tween_property(self,"scale",Vector2(0,0),0.5*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
-		tween.tween_property(self,"position:x",-448,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	await tween.finished
+		anim_tween.tween_property(self,"position:x",-448,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await anim_tween.finished
 	closed.emit()
 
 func enter():
 	position = Vector2(-448,0)
-	var tween = create_tween()
-	tween.tween_property(self,"position:x",0,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	
+	var anim_tween = create_tween()
+	anim_tween.tween_property(self,"position:x",0,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
 func _on_button_pressed() -> void:
 	if action != null:
 		action.callv(action_params)
@@ -80,3 +81,11 @@ func _process(_delta: float) -> void:
 
 func _on_close_pressed() -> void:
 	close(true)
+
+func _on_mouse_entered() -> void:
+	if tween != null:
+		tween.pause()
+
+func _on_mouse_exited() -> void:
+	if tween != null:
+		tween.play()

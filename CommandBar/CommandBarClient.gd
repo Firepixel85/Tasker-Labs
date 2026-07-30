@@ -40,6 +40,8 @@ func _update():
 
 func _ready():
 	CommandBar._client = self
+	CommandBar.client_ready.emit()
+	Debug.log("CommandBarClient ready",ID)
 
 func _input(event: InputEvent) -> void:
 	if not (event is InputEventKey) or not event.pressed:
@@ -298,6 +300,7 @@ func execute_command(path:String):
 	command_points[path] += 1
 	command_executed.emit(path)
 	command_actions[path].callv(command_params[path])
+	Debug.log("Executed command: %s"%path,ID)
 	input.close()
 	save()
 	return OK

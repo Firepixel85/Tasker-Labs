@@ -448,12 +448,16 @@ class Updates:
 			EventManager.remove_event(ID)
 
 func save() -> void:
-	Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
-	Data.save_file("Core/Secrets")
-	Data.save_to("helper_version", Updates.helper_version, "Core/UpdateData")
-	Data.save_to("version", Main.get_version(), "Core/UpdateData")
-	Data.save_to("version_sufix", Main.get_version_sufix(), "Core/UpdateData")
-	Data.save_file("Core/UpdateData")
+	if Data.file_exists("Core/Secrets"):
+		Data.load_file("Core/Secrets")
+		Data.save_to("access_token", GitHubAuth.access_token, "Core/Secrets")
+		Data.save_file("Core/Secrets")
+	if Data.file_exists("Core/UpdateData"):
+		Data.load_file("Core/UpdateData")
+		Data.save_to("helper_version", Updates.helper_version, "Core/UpdateData")
+		Data.save_to("version", Main.get_version(), "Core/UpdateData")
+		Data.save_to("version_sufix", Main.get_version_sufix(), "Core/UpdateData")
+		Data.save_file("Core/UpdateData")
 
 func _ready() -> void:
 	GitHubAuth.CLIENT_ID = Vault.GITHUB_CLIENT_ID

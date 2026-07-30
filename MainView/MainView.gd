@@ -68,6 +68,8 @@ func _ready():
 		Settings.add_option("core.general","performance_mode","res://Settings/CoreOptions/General/PerformanceMode/CoreOption_PerformanceMode.tscn",false)
 	if !Settings.option_exists("core.general/command_amount"):
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
+	if !Settings.option_exists("core.general/show_categories"):
+		Settings.add_option("core.general","show_categories","res://Settings/CoreOptions/General/ShowCategories/CoreOption_ShowCategories.tscn",true)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
@@ -130,6 +132,15 @@ func _ready():
 		Settings.add_option("core.rose_garden","toast_appearance","res://Settings/CoreOptions/RoseGarden/toastAppearance/CoreOption_toastAppearance.tscn",true)
 	if !Settings.option_exists("core.rose_garden/tooltip_appearance"):
 		Settings.add_option("core.rose_garden","tooltip_appearance","res://Settings/CoreOptions/RoseGarden/tooltipAppearance/CoreOption_tooltipAppearance.tscn",true)
+
+	#Add CommandBar commands:
+	CommandBar.add_command("Open Settings",ID,Icons.get_icon_path("Gear"),_open_settings)
+	CommandBar.add_command("Open Plugins",ID,Icons.get_icon_path("Puzzle"),_open_plugins)
+	CommandBar.add_command("Plugin Updates",ID,Icons.get_icon_path("Download"),_show_plugin_updates)
+	CommandBar.add_command("Open Plugins Folder",ID,Icons.get_icon_path("Folder"),_open_plugins_folder)
+	if Settings.get_option_value("core.general/show_categories"):
+		for category in Settings._category_list:
+			CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])
 
 	PluginManager._load_data()
 	_update_setting_values()
@@ -217,7 +228,15 @@ func _settings_changed(option_path,new_value):
 			Settings.show_category("core.rose_garden")
 		else:
 			Settings.hide_category("core.rose_garden")
-
+	if option_path == "core.general/show_categories":
+		if new_value:
+			for category in Settings._category_list:
+				if !CommandBar.command_exists("core.settings"+"/"+Settings._category_names[category]):
+					CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])
+		else:
+			for category in Settings._category_list:
+				if CommandBar.command_exists("core.settings"+"/"+Settings._category_names[category]):
+					CommandBar.remove_command("core.settings"+"/"+Settings._category_names[category])
 
 func _update_setting_values():
 	if Settings.option_exists("core.general/display_name"):
@@ -239,3 +258,19 @@ func _update_setting_values():
 		RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.rose_garden/ddm_selection")
 		RoseGarden.Animations.toastAppearance = Settings.get_option_value("core.rose_garden/toast_appearance")
 		RoseGarden.Animations.tooltipAppearance = Settings.get_option_value("core.rose_garden/tooltip_appearance")
+
+#CommandBar helper functions
+func _open_settings():
+	Input.action_press("settings_open")
+	Input.action_release("settings_open")
+
+func _open_plugins():
+	Input.action_press("plugin_open")
+	Input.action_release("plugin_open")
+
+func _show_plugin_updates():
+	PluginManager.scan_for_updates()
+	Popups.create_popup(load("res://PluginView/UpdatesPopup/UpdatesPopup.tscn"))
+
+func _open_plugins_folder():
+	OS.shell_show_in_file_manager(OS.get_user_data_dir()+"/plugins")

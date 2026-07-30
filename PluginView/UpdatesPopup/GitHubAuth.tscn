@@ -8,7 +8,7 @@
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="9_ynu5c"]
 
 [node name="Control" type="Control" unique_id=1557221229]
-custom_minimum_size = Vector2(449, 366)
+custom_minimum_size = Vector2(449, 442)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 449.0
@@ -17,7 +17,7 @@ pivot_offset_ratio = Vector2(0.5, 0.5)
 script = ExtResource("1_s7mmo")
 
 [node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_6283l")]
-custom_minimum_size = Vector2(449, 366)
+custom_minimum_size = Vector2(449, 442)
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
@@ -71,13 +71,16 @@ icon = ExtResource("8_shktf")
 [node name="Account" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1982475238]
 layout_mode = 2
 theme = ExtResource("9_ynu5c")
+theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
 text = "[color=acacac]If you are getting rate limited too often, you can connect a GitHub account to avoid this issue. If you don’t have an account you can create one[color=f5f5f5] [url={link}]here[/url][color=acacac]. We will not access any of your data if you connect your account.[/color]"
 fit_content = true
+horizontal_alignment = 1
 
 [node name="PP" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=83120040]
 layout_mode = 2
 theme = ExtResource("9_ynu5c")
+theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[color=acacac][url={link}]Read our Privacy Policy[/url]"
 fit_content = true

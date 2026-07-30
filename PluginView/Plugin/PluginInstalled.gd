@@ -17,11 +17,13 @@ var trusted_tag_hovered:bool = false
 @onready var version_controlled_tag: Button = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VersionControlledTag
 var version_controlled_tag_hovered:bool = false
 
+var manager:Control
 var plugin_id:String = ""
 var keybind_number:int##The number associated with the shown keybind to toggle this plugin
 signal state_changed(plugin_id:String)
 
-func setup():
+func setup(new_manager:Control):
+	manager = new_manager
 	display_name.set_text(PluginManager.get_plugin_name(plugin_id))
 	version.set_text("v"+PluginManager.get_plugin_version(plugin_id))
 	description.text = PluginManager.get_plugin_description(plugin_id)
@@ -155,8 +157,16 @@ func _on_uninstall_pressed() -> void:
 	popup.set_title("Are you sure?")
 	popup.set_description("This is a permenant action that will immediately delete all files asscoiated with this plugin. Are you sure?")
 	popup.add_action(empty,"Cancel",[],"Gray")
-	popup.add_action(empty,"Uninstall",[],"Red")
+	popup.add_action(delete_plugin,"Uninstall",[],"Red")
 	Popups.create_prefab_popup(popup)
+
+func delete_plugin():
+	var err = PluginManager.delete_plugin(plugin_id)
+	if err != OK:
+		RoseGarden.create_toast("Failed to delete plugin","Red")
+		return
+	RoseGarden.create_toast("Plugin deleted succesfully","Green")
+	manager.refresh()
 
 func copy_id():
 	DisplayServer.clipboard_set(plugin_id)

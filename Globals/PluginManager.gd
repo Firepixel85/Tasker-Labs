@@ -663,3 +663,46 @@ func update_plugin(plugin_id:String):
 	Debug.log("Plugin "+get_plugin_name(plugin_id)+" updated successfully to version "+get_plugin_latest_version(plugin_id),ID)
 	outdated_plugins.erase(plugin_id)
 	return OK
+
+func delete_plugin(plugin_id:String):
+	if _developer_plugins.has(plugin_id):
+		Debug.error("Plugin %s can't be deleted because it's a developer plugin"%get_plugin_name(plugin_id),ID)
+		return ERR_LOCKED
+	if !_plugins.has(plugin_id):
+		Debug.error("Plugin id %s can't be deleted because it doesn't exist"%plugin_id,ID)
+		return ERR_DOES_NOT_EXIST
+
+	if is_plugin_loaded(plugin_id):
+		unload_plugin(plugin_id)
+
+	var plugin_name = get_plugin_name(plugin_id)
+	var err = _remove_plugin_dir("user://plugins/"+_plugins[plugin_id])
+	if err != OK:
+		Debug.error("Failed to delete plugin %s, error code: "%plugin_name+error_string(err),ID)
+		return err
+	_plugins.erase(plugin_id)
+	Debug.log("Plugin %s deleted successfully"%plugin_name,ID)
+	return OK
+
+##Helper func:
+func _remove_plugin_dir(path: String) -> Error:
+	var dir = DirAccess.open(path)
+	if dir == null:
+		return DirAccess.get_open_error()
+
+	dir.list_dir_begin()
+	var file_name = dir.get_next()
+	while file_name != "":
+		if file_name != "." and file_name != "..":
+			var full_path = path.path_join(file_name)
+			if dir.current_is_dir():
+				var err = _remove_plugin_dir(full_path)
+				if err != OK:
+					return err
+			else:
+				var err = DirAccess.remove_absolute(full_path)
+				if err != OK:
+					return err
+		file_name = dir.get_next()
+	dir.list_dir_end()
+	return OS.move_to_trash(ProjectSettings.globalize_path(path))

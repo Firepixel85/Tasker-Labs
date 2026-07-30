@@ -1,8 +1,9 @@
+res://Settings/CoreOptions/General/ShowCategories/
+res://MainView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Settings/CoreOptions/Developer/RestartOnboarding/
 res://Onboarding/Scripts/
 res://Onboarding/Textures/Checkbox/
-res://MainView/
 res://Onboarding/
 res://DeveloperPlugins/Focus/Scenes/
 res://DeveloperPlugins/Focus/
@@ -21,4 +22,3 @@ res://PluginView/
 res://PluginView/UpdatesPopup/
 res://Globals/
 res://addons/RoseGarden/components/Container/
-res://Settings/CoreOptions/Developer/ResetCommandPoints/

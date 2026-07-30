@@ -36,7 +36,7 @@ func display_plugins():
 			disabled_container.add_child(plugin_view)
 			plugin_view = disabled_container.get_child(disabled_container.get_child_count()-1)
 		plugin_view.plugin_id = plugin_id
-		plugin_view.setup()
+		plugin_view.setup(self)
 		plugin_view.state_changed.connect(move_plugin)
 		plugin_view.scale = Vector2(1,1)
 
@@ -82,12 +82,12 @@ func move_plugin(plugin_id:String):
 			enabled_container.add_child(preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			plugin_enabled = enabled_container.get_child(enabled_container.get_child_count()-1)
 			plugin_enabled.plugin_id = plugin_id
-			plugin_enabled.setup()
+			plugin_enabled.setup(self)
 			plugin_enabled.modulate = Color(0,1,0,0)
 			disabled_container.add_child(preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate())
 			plugin_disabled = disabled_container.get_child(disabled_container.get_child_count()-1)
 			plugin_disabled.plugin_id = plugin_id
-			plugin_disabled.setup()
+			plugin_disabled.setup(self)
 			plugin_disabled.modulate = Color(1,0,0,0)
 		else:
 			var plugin_view:PluginInstalled = preload("res://PluginView/Plugin/PluginInstalled.tscn").instantiate()
@@ -98,7 +98,7 @@ func move_plugin(plugin_id:String):
 				disabled_container.add_child(plugin_view)
 				plugin_view = disabled_container.get_child(disabled_container.get_child_count()-1)
 			plugin_view.plugin_id = plugin
-			plugin_view.setup()
+			plugin_view.setup(self)
 			plugin_view.state_changed.connect(move_plugin)
 
 
@@ -115,7 +115,7 @@ func move_plugin(plugin_id:String):
 	animation_layer.add_child(anim_plugin)
 	anim_plugin = animation_layer.get_child(animation_layer.get_child_count()-1)
 	anim_plugin.plugin_id = plugin_id
-	await anim_plugin.setup()
+	await anim_plugin.setup(self)
 	anim_plugin.position = init_pos
 	var tween = create_tween()
 	tween.tween_property(anim_plugin,"position",final_pos,0.3*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
