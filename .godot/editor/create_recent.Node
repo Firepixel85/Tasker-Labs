@@ -1,11 +1,12 @@
-Control
+res://addons/RoseGarden/components/DropDown/RGDropDown.gd
 HBoxContainer
 TextureRect
+CenterContainer
+Control
 MarginContainer
 Label
 VBoxContainer
 Button
-CenterContainer
 RichTextLabel
 ScrollContainer
 NinePatchRect

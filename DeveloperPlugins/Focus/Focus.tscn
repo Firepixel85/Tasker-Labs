@@ -7,9 +7,10 @@
 [ext_resource type="PackedScene" uid="uid://c8014ryhcbbsw" path="res://addons/RoseGarden/components/DonutGraph/RGDonutGraph.tscn" id="5_erm8j"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="5_xbl6g"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="7_kfoae"]
-[ext_resource type="PackedScene" uid="uid://bp6xjbn7s7ofy" path="res://DeveloperPlugins/Focus/Scenes/SessionsColumb.tscn" id="9_0x2a1"]
+[ext_resource type="Script" uid="uid://bpjr3spdqv0wa" path="res://addons/RoseGarden/components/DropDown/RGDropDown.gd" id="8_f2hkj"]
+[ext_resource type="PackedScene" uid="uid://bp6xjbn7s7ofy" path="res://DeveloperPlugins/Focus/Scenes/Session/SessionsColumb.tscn" id="9_0x2a1"]
 [ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="10_f2hkj"]
-[ext_resource type="PackedScene" uid="uid://jnrvnc4sa8ht" path="res://DeveloperPlugins/Focus/Scenes/ProjectsColumb.tscn" id="10_kfoae"]
+[ext_resource type="PackedScene" uid="uid://jnrvnc4sa8ht" path="res://DeveloperPlugins/Focus/Scenes/Project/ProjectsColumb.tscn" id="10_kfoae"]
 
 [node name="Focus" type="Control" unique_id=88678720]
 layout_mode = 3
@@ -69,6 +70,7 @@ theme_override_constants/margin_bottom = 18
 layout_mode = 2
 
 [node name="PeriodSelector" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer" unique_id=973767052 instance=ExtResource("3_pcy85")]
+visible = false
 layout_mode = 2
 
 [node name="Spacer" type="Control" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer" unique_id=288955427]
@@ -101,10 +103,11 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Hours" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer" unique_id=1329336243]
+custom_minimum_size = Vector2(59, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pcy85")
 theme_override_font_sizes/font_size = 48
-text = "03"
+text = "00"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer" unique_id=1224903386]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
@@ -126,10 +129,11 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Minutes" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer2" unique_id=442802230]
+custom_minimum_size = Vector2(59, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pcy85")
 theme_override_font_sizes/font_size = 48
-text = "11"
+text = "00"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer2" unique_id=365341357]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
@@ -151,10 +155,11 @@ layout_mode = 2
 theme_override_constants/separation = 0
 
 [node name="Seconds" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer3" unique_id=1899344944]
+custom_minimum_size = Vector2(59, 0)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("4_pcy85")
 theme_override_font_sizes/font_size = 48
-text = "34"
+text = "00"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/TotalTimeContainer/CenterContainer/HBoxContainer/VBoxContainer3" unique_id=1224652250]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
@@ -191,9 +196,13 @@ theme_override_constants/separation = 16
 alignment = 1
 
 [node name="PauseUnpauseSession" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("7_kfoae")]
+visible = false
 custom_minimum_size = Vector2(194, 60)
 layout_mode = 2
 text = "Pause"
+
+[node name="ProjectSelect" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=921161848 instance=ExtResource("5_xbl6g")]
+layout_mode = 2
 
 [node name="StartStopSession" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer" unique_id=1008917611 instance=ExtResource("7_kfoae")]
 custom_minimum_size = Vector2(192, 60)
@@ -233,10 +242,17 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="PauseUnpauseSession" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1622470203 instance=ExtResource("7_kfoae")]
+visible = false
 custom_minimum_size = Vector2(194, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Pause"
+
+[node name="ProjectSelect" type="Control" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer" unique_id=807141062 instance=ExtResource("5_xbl6g")]
+z_index = 1
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("8_f2hkj")
 
 [node name="StartStopSession" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer" unique_id=125174923 instance=ExtResource("7_kfoae")]
 custom_minimum_size = Vector2(192, 60)
@@ -272,3 +288,16 @@ size_flags_vertical = 3
 [node name="ProjectColumb" parent="MarginContainer/HBoxContainer/Columb3/VBoxContainer" unique_id=831502943 instance=ExtResource("10_kfoae")]
 unique_name_in_owner = true
 layout_mode = 2
+
+[connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_dehovered"]
+[connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_hovered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_pressed"]
+[connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_start_stop_dehovered"]
+[connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_start_stop_hovered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_on_start_stop_session_pressed"]
+[connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_dehovered"]
+[connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_hovered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_pressed"]
+[connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_start_stop_dehovered"]
+[connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_start_stop_hovered"]
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainerSmall/MarginContainer/VBoxContainer/HBoxContainer/StartStopSession" to="." method="_on_start_stop_session_pressed"]

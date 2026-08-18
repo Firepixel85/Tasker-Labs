@@ -5,6 +5,7 @@ extends Control
 @onready var toast_layer: CanvasLayer = $ToastLayer
 @onready var popup_container: CenterContainer = $PopupCanvasContainer/PopupContainer
 @onready var popup_fade: TextureRect = $PopupCanvasContainer/PopupFade
+@onready var tde: RGText = $MainView/VBoxContainer2/TopBar/MarginContainer/CenterContainer/TDE
 
 #MainView
 @onready var main_view: HBoxContainer = $MainView
@@ -149,6 +150,10 @@ func _ready():
 		open_view("onboarding")
 	else:
 		open_view("mainview")
+	if Main.is_dev_kit():
+		tde.show()
+	if Main.is_dev_kit() and !Settings.get_option_value("core.developer/dev_tools"):
+		Settings.set_option_value("core.developer/dev_tools",true)
 
 
 func open_view(view_name:String):

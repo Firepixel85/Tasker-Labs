@@ -30,7 +30,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(123, 29)
+custom_minimum_size = Vector2(138, 34)
 layout_mode = 2
 text = "App version"
 vertical_alignment = "Center"
@@ -40,7 +40,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="App Version" parent="VBoxContainer/HBoxContainer" unique_id=1783896512 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(35, 29)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 text = "2.0"
 vertical_alignment = "Center"
@@ -50,7 +50,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer2" unique_id=113582502 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(79, 29)
+custom_minimum_size = Vector2(90, 34)
 layout_mode = 2
 text = "Build ID"
 vertical_alignment = "Center"
@@ -60,7 +60,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Build ID" parent="VBoxContainer/HBoxContainer2" unique_id=121091451 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(73, 29)
+custom_minimum_size = Vector2(78, 34)
 layout_mode = 2
 text = "2.0pb1"
 vertical_alignment = "Center"
@@ -70,7 +70,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer3" unique_id=1659064629 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(116, 29)
+custom_minimum_size = Vector2(130, 34)
 layout_mode = 2
 text = "API version"
 vertical_alignment = "Center"
@@ -80,7 +80,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="API Version" parent="VBoxContainer/HBoxContainer3" unique_id=1622091120 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(32, 29)
+custom_minimum_size = Vector2(34, 34)
 layout_mode = 2
 text = "1.0"
 vertical_alignment = "Center"
@@ -90,7 +90,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer4" unique_id=658456251 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(173, 29)
+custom_minimum_size = Vector2(195, 34)
 layout_mode = 2
 text = "Available plugins"
 vertical_alignment = "Center"
@@ -100,7 +100,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Available Plugins" parent="VBoxContainer/HBoxContainer4" unique_id=1664700552 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(15, 29)
+custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
 vertical_alignment = "Center"
@@ -110,7 +110,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer5" unique_id=1455293752 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(158, 29)
+custom_minimum_size = Vector2(175, 34)
 layout_mode = 2
 text = "Loaded plugins"
 vertical_alignment = "Center"
@@ -120,7 +120,27 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Loaded plugins" parent="VBoxContainer/HBoxContainer5" unique_id=436930821 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(15, 29)
+custom_minimum_size = Vector2(14, 34)
+layout_mode = 2
+text = "0"
+vertical_alignment = "Center"
+
+[node name="HBoxContainer8" type="HBoxContainer" parent="VBoxContainer" unique_id=1107749749]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="RGText" parent="VBoxContainer/HBoxContainer8" unique_id=575051459 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(300, 34)
+layout_mode = 2
+text = "Is Developer Environment"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="VBoxContainer/HBoxContainer8" unique_id=526630823]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="IsDevelopmentEnvironment" parent="VBoxContainer/HBoxContainer8" unique_id=180081618 instance=ExtResource("2_cy7fj")]
+custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
 vertical_alignment = "Center"
@@ -130,7 +150,7 @@ custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 
 [node name="RGText" parent="VBoxContainer/HBoxContainer6" unique_id=959284475 instance=ExtResource("2_cy7fj")]
-custom_minimum_size = Vector2(267, 29)
+custom_minimum_size = Vector2(302, 34)
 layout_mode = 2
 text = "Open app_userdata folder"
 vertical_alignment = "Center"
@@ -140,7 +160,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Open User Folder" parent="VBoxContainer/HBoxContainer6" unique_id=1426858299 instance=ExtResource("4_0hufl")]
-custom_minimum_size = Vector2(183, 60)
+custom_minimum_size = Vector2(189, 60)
 layout_mode = 2
 text = "Open"
 
@@ -153,7 +173,7 @@ layout_mode = 2
 alignment = 1
 
 [node name="Open Love Letter" parent="VBoxContainer/HBoxContainer7" unique_id=366409557 instance=ExtResource("4_0hufl")]
-custom_minimum_size = Vector2(280, 60)
+custom_minimum_size = Vector2(303, 60)
 layout_mode = 2
 text = "Open Love Letter"
 

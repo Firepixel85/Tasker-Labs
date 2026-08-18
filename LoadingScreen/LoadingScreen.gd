@@ -1,7 +1,11 @@
 extends Control
+@onready var bg: TextureRect = $TextureRect
 
 func _ready() -> void:
 	get_window().size = Vector2(960,540)
+	if Main.is_dev_kit():
+		bg.texture = load("res://LoadingScreen/LoadingScreen DE.png")
+	#await get_tree().create_timer(5).timeout
 	while !Data._ready_to_load:
 		pass
 	await get_tree().create_timer(0.3).timeout

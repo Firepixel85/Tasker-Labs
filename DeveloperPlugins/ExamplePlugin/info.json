@@ -1,0 +1,9 @@
+{
+	"name":"[Plugin name]",
+	"author":"[Your name]",
+	"version":"0.1",
+	"target_api_version":"1.0",
+	"plugin_id":"com.[your_name].[plugin_name]",
+	"description":"Describe what your plugin does",
+	"repo":"https://api.github.com/repos/[your_github_username]/[your_plugin_repo_name]"
+}

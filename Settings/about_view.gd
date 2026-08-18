@@ -5,6 +5,7 @@ extends Control
 @onready var api_version: RGText = $"VBoxContainer/HBoxContainer3/API Version"
 @onready var available_plugins: RGText = $"VBoxContainer/HBoxContainer4/Available Plugins"
 @onready var loaded_plugins: RGText = $"VBoxContainer/HBoxContainer5/Loaded plugins"
+@onready var is_development_environment: RGText = $VBoxContainer/HBoxContainer8/IsDevelopmentEnvironment
 
 @onready var options: VBoxContainer = $VBoxContainer
 @onready var love_letter: TextureRect = $TextureRect
@@ -16,6 +17,11 @@ func _ready() -> void:
 	api_version.set_text(Main.get_plugin_api_version())
 	available_plugins.set_text(str((PluginManager.get_all_plugins().size())))
 	loaded_plugins.set_text(str(PluginManager._loaded_plugins.size()))
+	if Main.is_dev_kit():
+		is_development_environment.set_text("Yes")
+	else:
+		is_development_environment.set_text("No")
+	
 
 func _on_open_user_folder_pressed() -> void:
 	OS.shell_show_in_file_manager(OS.get_user_data_dir())

@@ -47,6 +47,7 @@ const CALENDAR = preload("res://Icons/Calendar.svg")
 const LISTFILTER = preload("res://Icons/ListFilter.svg")
 const PLUS = preload("res://Icons/Plus.svg")
 const CALENDARDOWNARROW = preload("res://Icons/CalendarDownArrow.svg")
+const PAUSE = preload("res://Icons/Pause.svg")
 
 func get_icon_path(icon:String) -> String:
 	var path = "res://Icons/"+icon+".svg"

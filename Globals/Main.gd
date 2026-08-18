@@ -10,6 +10,7 @@ const ID = "core.main"
 const version:String = "2.0"
 const version_sufix:String = "beta1"
 const plugin_api_version:String = "1.0"
+const dev_kit:bool = true
 signal view_changed(new_view:String)
 
 func save_window_data():
@@ -93,3 +94,6 @@ func _ready() -> void:
 
 func _on_view_changed(new_view) -> void:
 	view_changed.emit(new_view)
+
+func is_dev_kit():
+	return dev_kit

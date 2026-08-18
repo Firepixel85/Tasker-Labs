@@ -8,7 +8,7 @@ class_name RGProgressBar
 
 @export var value: float = 0.0:
 	set(new_value):
-		if new_value < 0 or new_value > 100:
+		if new_value < 0:
 			return
 		if bar == null:
 			return
@@ -64,10 +64,10 @@ func get_color():
 	return color
 
 func tween_value(new_value:float, duration:float,trans := Tween.TRANS_SINE,ease := Tween.EASE_IN_OUT):
+	if new_value < 0:
+		return ERR_INVALID_PARAMETER
 	var tween = create_tween()
 	tween.tween_property(self, "value", new_value, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(ease) .set_trans(trans)
-	if new_value < 0 or new_value > 100:
-		return ERR_INVALID_PARAMETER
 	return OK
 
 ##############
@@ -111,7 +111,8 @@ func _on_texture_progress_bar_value_changed(value: float) -> void:
 	value_changed.emit(value)
 
 func _value_update():
-	value = clamp(value,0,100)
+	if value < 0:
+		value = 0
 	bar.value = value
 	value_text.text = str(int(value))+"%"
 	if color == "White" or ((color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):

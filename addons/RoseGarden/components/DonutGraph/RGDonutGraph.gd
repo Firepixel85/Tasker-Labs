@@ -5,11 +5,11 @@ class_name RGDonutGraph
 @onready var value_label: Label = $TextureProgressBar/CenterContainer/VBoxContainer/Label
 @onready var value_name_label: RGText = $TextureProgressBar/CenterContainer/VBoxContainer/RGText
 
-@export var value: int = 0:
+@export var value: float = 0.0:
 	set(new_value):
 		if bar == null:
 			return
-		if (new_value < 0 or new_value > 100) and mode == "Percentage":
+		if new_value < 0 and mode == "Percentage":
 			return
 		value = new_value
 		if mode == "Percentage":
@@ -40,11 +40,11 @@ class_name RGDonutGraph
 	set(new_value):
 		value_name = new_value
 		_update()
-@export var percentage:int = 0:
+@export var percentage:float = 0.0:
 	set(new_value):
 		if bar == null:
 			return
-		if (new_value < 0 or new_value > 100):
+		if new_value < 0:
 			return
 		percentage = new_value
 		if mode == "Percentage":
@@ -59,7 +59,7 @@ signal value_changed(new_value:float)
 signal mode_chnaged(new_mode:String)
 
 func set_value(new_value:float):
-	if new_value < 0 or new_value > 100:
+	if new_value < 0:
 		return ERR_INVALID_PARAMETER
 	value = new_value
 	bar.value = new_value
@@ -95,18 +95,18 @@ func set_value_name(new_name:String):
 	return OK
 
 func set_percentage(new_per:int):
-	if (new_per < 0 or new_per > 100) and mode == "Percentage":
+	if new_per < 0 and mode == "Percentage":
 		return ERR_INVALID_PARAMETER
 	percentage = new_per
 	_update()
 	return OK
 
 func tween_value(new_value:int, duration:float,new_perc:int=percentage,trans := Tween.TRANS_SINE,ease := Tween.EASE_IN_OUT):
+	if new_value < 0:
+		return ERR_INVALID_PARAMETER
 	var tween = create_tween()
 	tween.parallel().tween_property(self, "value", new_value, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(ease).set_trans(trans)
 	tween.parallel().tween_property(self, "percentage", new_perc, duration*int(!RoseGarden.Accessibility.get_disable_animations())).set_ease(ease).set_trans(trans)
-	if new_value < 0 or new_value > 100:
-		return ERR_INVALID_PARAMETER
 	return OK
 
 func _ready() -> void:
@@ -130,8 +130,10 @@ func _update():
 			_value_update()
 
 func _value_update():
-	value = clamp(value,0,100)
-	percentage = clamp(percentage,0,100)
+	if value < 0.0:
+		value = 0.0
+	if percentage < 0.0:
+		percentage = 0.0
 
 	if mode == "Percentage":
 		bar.value = value

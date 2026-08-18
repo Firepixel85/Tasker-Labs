@@ -106,9 +106,13 @@ func get_plugin_repo(plugin_id:String):
 
 	if _plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
+		if !plugin_info["repo"].begins_with("https://api.github.com/repos/"):
+			return ""
 		return plugin_info["repo"]
 	elif _developer_plugins.has(plugin_id):
 		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
+		if !plugin_info["repo"].begins_with("https://api.github.com/repos/"):
+			return ""
 		return plugin_info["repo"]
 
 func get_plugin_repo_site(plugin_id:String):
@@ -188,12 +192,17 @@ func is_plugin_version_controlled(plugin_id:String):
 		Debug.warn("A process attempted to check if a plugin with id: "+plugin_id+" is version controlled but it doesn't exist",ID)
 		return false
 
+	var plugin_info:Dictionary
 	if _plugins.has(plugin_id):
-		var plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
-		return plugin_info.has("repo")
+		plugin_info = JSON.parse_string(FileAccess.open("user://plugins/"+_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
 	elif _developer_plugins.has(plugin_id):
-		var plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
-		return plugin_info.has("repo")
+		plugin_info = JSON.parse_string(FileAccess.open("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/info.json",FileAccess.READ).get_as_text())
+
+	if !plugin_info.has("repo"):
+		return false
+	if !plugin_info["repo"].begins_with("https://api.github.com/repos/"):
+		return false
+	return true
 
 func scan_available_plugins():
 	Debug.log("Scanning for available plugins...",ID)
@@ -240,7 +249,8 @@ func _load_data():
 func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 	if !FileAccess.file_exists(file_path+plugin_file_name+"/info.json"):
 		Debug.log("Plugin "+plugin_file_name+" is missing info.json file, skipping...",ID)
-		return
+		_error_queue.append("Couldn't load "+plugin_file_name+" because it is missing the required info.json file")
+		return ERR_INVALID_DATA
 
 	var file = FileAccess.open(file_path+plugin_file_name+"/info.json",FileAccess.READ)
 	var plugin_info:Dictionary = JSON.parse_string(file.get_as_text())
@@ -301,8 +311,16 @@ func load_plugin(plugin_id):
 		Debug.log("Loading plugin: "+get_plugin_name(plugin_id),ID)
 		ProjectSettings.load_resource_pack("user://plugins/"+_plugins[plugin_id]+"/plugin.pck")
 		_loaded_plugin_scripts[plugin_id] = load("res://Plugins/"+_plugins[plugin_id]+"/plugin.gd").new()
-		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
-			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
+		if !_loaded_plugin_scripts[plugin_id].has_method("start") or !_loaded_plugin_scripts[plugin_id].has_method("stop"):
+			Debug.error("Plugin with id: "+plugin_id+" does not have the required start and stop methods, didn't load",ID)
+			NotificationManager.queue_notification(
+				"Couldn't load plugin: %s"%get_plugin_name(plugin_id),
+				"The plugin has a malformed plugin script. Please report this to the author.",
+				true,
+				null,
+				[],
+				0.0
+			)
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id].start()
@@ -322,10 +340,10 @@ func load_plugin(plugin_id):
 			)
 			if Main.get_current_view() != "mainview":
 				RoseGarden.create_toast("Couldn't load plugin","Red")
-			Debug.error("Plugin with id: "+plugin_id+" does not have required plugin.gd script, didn't load",ID)
+			Debug.error("Plugin with id: "+plugin_id+" does not have the required plugin.gd script, didn't load",ID)
 			return ERR_FILE_NOT_FOUND
 		_loaded_plugin_scripts[plugin_id] = load("res://DeveloperPlugins/"+_developer_plugins[plugin_id]+"/plugin.gd").new()
-		if !_loaded_plugin_scripts[plugin_id].has_method("start") and _loaded_plugin_scripts[plugin_id].has_method("stop"):
+		if !_loaded_plugin_scripts[plugin_id].has_method("start") or !_loaded_plugin_scripts[plugin_id].has_method("stop"):
 			NotificationManager.queue_notification(
 				"Couldn't load plugin: %s"%get_plugin_name(plugin_id),
 				"The plugin has a malformed plugin script. Please report this to the author.",
@@ -335,6 +353,8 @@ func load_plugin(plugin_id):
 				0.0
 			)
 			Debug.error("Plugin with id: "+plugin_id+" does not have required start and stop methods, didn't load",ID)
+			if Main.get_current_view() != "mainview":
+				RoseGarden.create_toast("Couldn't load plugin","Red")
 			_loaded_plugin_scripts.erase(plugin_id)
 			return ERR_METHOD_NOT_FOUND
 
@@ -441,7 +461,6 @@ func scan_for_updates():
 				Debug.error("Plugin "+plugin_name+" update check failed, unknown error",ID)
 				continue
 			_:
-				#latest_version = response["tag_name"]
 				var tags = []
 				for release in _response:
 					tags.append(release["tag_name"])

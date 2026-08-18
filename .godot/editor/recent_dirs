@@ -1,6 +1,9 @@
+res://DeveloperPlugins/Focus/Scenes/Project/
+res://DeveloperPlugins/Focus/Scenes/Session/
+res://AppIcons/
+res://LoadingScreen/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta1/
 /Users/max/Documents/Godot Builds/Tasker 2.0/pb2/
-res://AppIcons/
 res://Settings/CoreOptions/General/ShowCategories/
 res://MainView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
@@ -21,6 +24,3 @@ res://Popups/
 res://addons/RoseGarden/components/Tooltip/
 res://Settings/CoreOptions/Integrations/GitHub/
 res://
-res://PluginView/
-res://PluginView/UpdatesPopup/
-res://Globals/

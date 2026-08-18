@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://671t7dvcl80"]
+
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_spqaa"]
+
+[node name="ExampleScene" type="Control" unique_id=1358846238]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1446882952]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="RGText" parent="CenterContainer" unique_id=85953319 instance=ExtResource("1_spqaa")]
+custom_minimum_size = Vector2(498, 34)
+layout_mode = 2
+text = "This is an example scene to get you started"

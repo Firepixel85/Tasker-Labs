@@ -82,7 +82,11 @@ func _ready() -> void:
 
 func _update():
 	if !Engine.is_editor_hint():
-		size.x = menu_item_container._get_min_size()
+		if size_flags_horizontal != SIZE_EXPAND_FILL:
+			size.x = menu_item_container._get_min_size()
+			menu_container.custom_minimum_size.x = size.x
+		else:
+			custom_minimum_size.x = 0
 		if !_array_has_item(item_ids,selected) and item_ids !=[]:
 			selected = item_ids[0]
 
@@ -94,7 +98,6 @@ func _update():
 	menu_container.size = size
 	custom_minimum_size = size
 	create_tween().tween_property(menu_container,"size",Vector2(size.x,(menu_item_container.get_child_count()*52)+12),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmAppearance)).set_trans(Tween.TRANS_SINE)
-	menu_container.custom_minimum_size.x = size.x
 	button.custom_minimum_size = size
 	if !items.size()==0:
 		label.text = items[_find_index(item_ids,selected)]

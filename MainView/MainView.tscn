@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://uxqjlt6pd6n5" path="res://Icons/Gear.svg" id="9_burg1"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="11_a7d7b"]
 [ext_resource type="Script" uid="uid://c62p4grvevb2b" path="res://MainView/SimpleButtonBehavior.gd" id="14_qlysq"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="15_1gtwi"]
 [ext_resource type="Script" uid="uid://djr8cefm3s8g2" path="res://Settings/SettingsClient.gd" id="16_5lyvq"]
 [ext_resource type="Script" uid="uid://cvlj523oh4mwf" path="res://CommandBar/CommandBarInput.gd" id="16_30ete"]
 [ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="16_42b22"]
@@ -276,6 +277,17 @@ theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 16
+
+[node name="CenterContainer" type="CenterContainer" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=623485241]
+layout_mode = 2
+
+[node name="TDE" type="Control" parent="MainView/VBoxContainer2/TopBar/MarginContainer/CenterContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
+visible = false
+custom_minimum_size = Vector2(297, 34)
+layout_mode = 2
+focus_mode = 1
+script = ExtResource("15_1gtwi")
+text = "Development Enviroment"
 
 [node name="CommandBar" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
 z_index = 10
