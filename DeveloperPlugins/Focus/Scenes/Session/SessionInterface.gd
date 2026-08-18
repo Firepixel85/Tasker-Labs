@@ -55,6 +55,7 @@ func _update_time(new_time:int):
 	else:
 		time_text.set_text("Focused for " + hours_str+ ":" + minutes_str + ":" + seconds_str)
 	time_text._update()
+	@warning_ignore("integer_division")
 	progress_bar.tween_value(100*new_time/session.get_project().daily_goal,0.2,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
 
 func _session_started():

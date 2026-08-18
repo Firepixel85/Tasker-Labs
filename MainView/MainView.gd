@@ -183,6 +183,8 @@ func _process(_delta: float) -> void:
 		return
 	elif Popups.is_popup_active():
 		return
+	if Input.is_key_pressed(KEY_SHIFT):
+		return
 	if Input.is_action_just_pressed("settings_open") and !_current_view == "settings":
 		open_view("settings")
 		RoseGarden._delete_all_menus()

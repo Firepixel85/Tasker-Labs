@@ -48,12 +48,12 @@ func _ready() -> void:
 	period_selector.add_item("day"," Day ")
 	period_selector.add_item("week"," Week ")
 	project_selector.add_item("All Projects",0)
-	
+
 	project_select.add_item("None",0)
 	project_select_small.add_item("None",0)
 	project_select.add_item("Test",1)
 	project_select_small.add_item("Test",1)
-	
+
 	main_project = FocusProject.new()
 	main_project.set_as_main()
 	main_project.set_color(Settings.get_option_value("core.appearance/accent_color"))
@@ -105,6 +105,7 @@ func _settings_update(option_path:String,new_value):
 			start_stop_session.set_color(new_value)
 
 func _on_start_stop_session_pressed() -> void:
+	RoseGarden.clear_tooltips()
 	if current_session == null:
 		current_session = FocusSession.new()
 		current_session.attach_project(main_project)
@@ -115,6 +116,8 @@ func _on_start_stop_session_pressed() -> void:
 		current_session_interface.setup(current_session)
 		start_stop_session.set_text("Done")
 		start_stop_session_small.set_text("Done")
+		start_stop_session.tooltip_display_text = "Stop session"
+		start_stop_session_small.tooltip_display_text = "Stop session"
 		pause_unpause_session.set_color("Gray")
 		pause_unpause_session_small.set_color("Gray")
 		project_select.hide()
@@ -130,6 +133,8 @@ func _on_start_stop_session_pressed() -> void:
 		current_session_time = 0
 		start_stop_session.set_text("Focus")
 		start_stop_session_small.set_text("Focus")
+		start_stop_session.tooltip_display_text = "Start session"
+		start_stop_session_small.tooltip_display_text = "Start session"
 		pause_unpause_session.set_text("Pause")
 		pause_unpause_session_small.set_text("Pause")
 		pause_unpause_session.hide()
@@ -162,19 +167,24 @@ func _pause_unpause_dehovered():
 	pause_unpause_session_small.set_color("Gray")
 
 func _pause_unpause_pressed():
+	RoseGarden.clear_tooltips()
 	if current_session.is_running():
 		pause_unpause_session.set_text("Resume")
 		pause_unpause_session_small.set_text("Resume")
+		pause_unpause_session.tooltip_display_text = "Resume session"
+		pause_unpause_session_small.tooltip_display_text = "Resume session"
 		current_session.stop()
 	else:
 		pause_unpause_session.set_text("Pause")
 		pause_unpause_session_small.set_text("Pause")
+		pause_unpause_session.tooltip_display_text = "Pause session"
+		pause_unpause_session_small.tooltip_display_text = "Pause session"
 		current_session.start()
 
 func _update_time(new_time):
 	total_time += new_time - current_session_time
 	current_session_time = new_time
-	
+
 	@warning_ignore("integer_division")
 	var hours = total_time / 3600
 	@warning_ignore("integer_division")
@@ -195,8 +205,36 @@ func _update_time(new_time):
 		seconds_str = "0" + str(seconds)
 	else:
 		seconds_str = str(seconds)
-	
+
 	tt_hours.text = hours_str
 	tt_minutes.text = minutes_str
 	tt_seconds.text = seconds_str
 	goal_progress.tween_value(int(100*total_time/goal),0.2,0,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+
+func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("focus_start_stop_session"):
+		if session_controls_container.visible:
+			start_stop_session.press()
+		else:
+			start_stop_session_small.press()
+		if current_session == null:
+			start_stop_session.set_color("Gray")
+			start_stop_session_small.set_color("Gray")
+		else:
+			start_stop_session.set_color(Settings.get_option_value("core.appearance/accent_color"))
+			start_stop_session_small.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	if Input.is_action_just_pressed("focus_pause_unpause_session"):
+		if current_session == null:
+			return
+		if session_controls_container.visible:
+			pause_unpause_session.press()
+		else:
+			pause_unpause_session_small.press()
+		if current_session.is_running():
+			pause_unpause_session.set_color(Settings.get_option_value("core.appearance/accent_color"))
+			pause_unpause_session_small.set_color(Settings.get_option_value("core.appearance/accent_color"))
+		else:
+			pause_unpause_session.set_color("Gray")
+			pause_unpause_session_small.set_color("Gray")
+	if Input.is_action_just_pressed("focus_create_project"):
+		pass
