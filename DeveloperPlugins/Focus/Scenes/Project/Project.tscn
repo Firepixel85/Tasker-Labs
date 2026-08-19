@@ -81,7 +81,11 @@ icon = ExtResource("6_47eev")
 show_tooltip = true
 tooltip_display_text = "Show options"
 
-[node name="GoalText" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=326694028]
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1080170584]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+
+[node name="GoalText" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=326694028]
 layout_mode = 2
 focus_mode = 1
 theme = ExtResource("7_0oub6")

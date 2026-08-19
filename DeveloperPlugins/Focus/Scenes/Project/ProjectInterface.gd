@@ -2,7 +2,7 @@ extends Control
 @onready var goal_progress: RGProgressBar = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/GoalProgress
 @onready var progress_text: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/HBoxContainer/ProgressText
 @onready var title: RGText = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Title
-@onready var goal_text: RichTextLabel = $RGContainer/MarginContainer/VBoxContainer/GoalText
+@onready var goal_text: RichTextLabel = $RGContainer/MarginContainer/VBoxContainer/MarginContainer/GoalText
 @onready var mode_toggle: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/ModeToggle
 
 var project:FocusProject
@@ -16,8 +16,15 @@ func setup(new_project:FocusProject):
 	project = new_project
 	title.text = project.display_name
 	project.tracked_time_updated.connect(_update_tracked_time)
+	project.info_updated.connect(_project_info_changed)
 	goal_progress.set_color(project.color)
 	_set_goal_text()
+
+func _project_info_changed():
+	title.text = project.display_name
+	goal_progress.set_color(project.color)
+	_set_goal_text()
+	_update_tracked_time()
 
 func _update_tracked_time():
 	var hrs_str:String
@@ -42,7 +49,6 @@ func _update_tracked_time():
 			min_str = "0" + min_str
 		if sec < 10:
 			sec_str = "0" + sec_str
-
 	else:
 		@warning_ignore("integer_division")
 		goal_progress.tween_value(int(project.tracked_time*100/project.goal),0.2,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
@@ -104,7 +110,7 @@ func empty():
 
 func _on_more_pressed() -> void:
 	var menu = RGmenu.new()
-	menu.add_action("Edit",Icons.PENCIL,empty)
+	menu.add_action("Edit",Icons.PENCIL,edit)
 	menu.add_action("Delete",Icons.TRASH,delete,[],true)
 	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
 	
@@ -126,3 +132,8 @@ func delete_confirmed():
 	tween.tween_property(self,"modulate",Color(1,1,1,0),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	queue_free()
+
+func edit():
+	Popups.create_popup(load(PluginManager.get_plugin_filepath("com.rosepen.focus")+"Popups/EditProject.tscn"))
+	await get_tree().process_frame
+	Popups.get_popup().setup(project)

@@ -61,6 +61,17 @@ func select(item_id:int):
 	_update()
 	return OK
 
+func rename_item(item_id:int,new_name:String):
+	if !_array_has_item(item_ids,item_id):
+		return Error.ERR_DOES_NOT_EXIST
+	items[_find_index(item_ids,item_id)] = new_name
+	for child in menu_item_container.get_children():
+		if child.id == item_id:
+			child.option_name = new_name
+			child._update()
+	_update()
+	return OK
+
 func get_selected():
 	return selected
 
