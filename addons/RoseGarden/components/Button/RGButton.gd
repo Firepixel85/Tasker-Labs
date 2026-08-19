@@ -178,6 +178,7 @@ func _ready() -> void:
 
 func _on_button_down() -> void:
 	button_down.emit()
+	RoseGarden.clear_tooltips() #Clears tooltips on button press to prevent outdated tooltips being shows
 	if !is_pressed and toggle_mode:
 		is_pressed = true
 	elif  is_pressed and toggle_mode:

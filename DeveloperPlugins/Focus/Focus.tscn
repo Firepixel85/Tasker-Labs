@@ -75,7 +75,7 @@ layout_mode = 2
 text = ""
 icon = ExtResource("5_kgdfp")
 show_tooltip = true
-tooltip_display_text = "Edit goals"
+tooltip_display_text = "Set daily goal"
 
 [node name="PeriodSelector" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer" unique_id=973767052 instance=ExtResource("3_pcy85")]
 visible = false

@@ -11,6 +11,7 @@ signal started
 signal stopped
 signal time_updated(new_time:int)
 signal info_updated
+@warning_ignore("unused_signal")
 signal tracked
 
 func attach_project(new_project:FocusProject):
@@ -28,6 +29,7 @@ func start():
 		if !running:
 			return
 		tracked_time += 1
+		project.add_time(1)
 		time_updated.emit(tracked_time)
 
 func stop():

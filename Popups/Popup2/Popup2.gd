@@ -6,6 +6,7 @@ extends Control
 @onready var action1_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action1
 @onready var action2_button: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Action2
 @onready var title_spacer: Control = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/TitleSpacer
+@onready var close: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close
 
 var action1:Callable
 var action1_params:Array
@@ -15,18 +16,18 @@ var action2_params:Array
 func _on_close_pressed() -> void:
 	Popups.clear_popup()
 
-func setup(title:String,description:String,new_action:Array,new_action_params:Array,action_names:Array,colors:Array,title_alignment:int):
-	title_text.text = title
-	description_text.text = description
-	action1 = new_action[0]
-	action1_params = new_action_params[1]
-	action2 = new_action[1]
-	action2_params = new_action_params[1]
-	action1_button.set_color(colors[0])
-	action2_button.set_color(colors[1])
-	action1_button.set_text(action_names[0])
-	action2_button.set_text(action_names[1])
-	match title_alignment:
+func setup(prefab:TSKPopup):
+	title_text.text = prefab.title
+	description_text.text = prefab.description
+	action1 = prefab.actions[0]
+	action1_params = prefab.action_params[0]
+	action2 = prefab.actions[1]
+	action2_params = prefab.action_params[1]
+	action1_button.set_text(prefab.action_names[0])
+	action2_button.set_text(prefab.action_names[1])
+	action1_button.set_color(prefab.colors[0])
+	action2_button.set_color(prefab.colors[1])
+	match prefab.title_alignment:
 		0:
 			title_text.horizontal_alignment = "Left"
 		1:
@@ -35,6 +36,17 @@ func setup(title:String,description:String,new_action:Array,new_action_params:Ar
 		2:
 			title_spacer.visible = false
 			title_text.horizontal_alignment = "Right"
+	match prefab.description_alignment:
+		0:
+			description_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_LEFT
+		1:
+			description_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		2:
+			description_text.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+
+	if !prefab.show_close_button:
+		close.hide()
+		title_spacer.hide()
 	await get_tree().process_frame
 	await get_tree().process_frame
 	custom_minimum_size.y = container.get_minimum_size().y

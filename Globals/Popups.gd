@@ -76,17 +76,7 @@ func create_prefab_popup(prefab_popup:TSKPopup):
 		return ERR_INVALID_PARAMETER
 	RoseGarden.clear_tooltips()
 	popup_container.visible = true
-	match prefab_popup.type:
-		TSKPopup.NO_ACTION:
-			var popup_node = preload("res://Popups/Popup0/Popup0.tscn").instantiate()
-			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.title_alignment)
-		TSKPopup.SINGLE_ACTION:
-			var popup_node = preload("res://Popups/Popup1/Popup1.tscn").instantiate()
-			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions[0],prefab_popup.action_params[0],prefab_popup.action_names[0],prefab_popup.colors[0],prefab_popup.title_alignment)
-		TSKPopup.DOUBLE_ACTION:
-			var popup_node = preload("res://Popups/Popup2/Popup2.tscn").instantiate()
-			popup_container.add_child(popup_node)
-			popup_node.setup(prefab_popup.title,prefab_popup.description,prefab_popup.actions,prefab_popup.action_params,prefab_popup.action_names,prefab_popup.colors,prefab_popup.title_alignment)
+	var popup_node = load("res://Popups/Popup"+str(prefab_popup.type)+"/Popup"+str(prefab_popup.type)+".tscn").instantiate()
+	popup_container.add_child(popup_node)
+	popup_node.setup(prefab_popup)
 	return OK

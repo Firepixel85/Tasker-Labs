@@ -25,6 +25,7 @@ func setup(new_session:FocusSession):
 func _update():
 	color = session.get_project().get_color()
 	project_tag.set_color(color)
+	project_tag.set_text(session.get_project().display_name)
 	progress_bar.set_color(color)
 	display_name.text = session.display_name
 

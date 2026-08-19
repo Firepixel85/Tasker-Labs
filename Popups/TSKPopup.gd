@@ -5,9 +5,10 @@ const NO_ACTION:int = 0
 const SINGLE_ACTION:int = 1
 const DOUBLE_ACTION:int = 2
 
-const TITLE_ALIGNMENT_LEFT:int = 0
-const TITLE_ALIGNMENT_CENTER:int = 1
-const TITLE_ALIGNMENT_RIGHT:int = 2
+const ALIGNMENT_LEFT:int = 0
+const ALIGNMENT_CENTER:int = 1
+const ALIGNMENT_RIGHT:int = 2
+
 
 var type:int = 0:
 	set(value):
@@ -56,11 +57,17 @@ var colors:Array = []:
 			if RoseGarden.Colors.verify_color(color) != OK:
 				return
 		colors = value
-var title_alignment:int = TITLE_ALIGNMENT_CENTER:
+var title_alignment:int = ALIGNMENT_CENTER:
 	set(value):
-		if value < TITLE_ALIGNMENT_LEFT or value > TITLE_ALIGNMENT_RIGHT:
+		if value < ALIGNMENT_LEFT or value > ALIGNMENT_RIGHT:
 			return
 		title_alignment = value
+var description_alignment:int = ALIGNMENT_LEFT:
+	set(value):
+		if value < ALIGNMENT_LEFT or value > ALIGNMENT_RIGHT:
+			return
+		description_alignment = value
+var show_close_button:bool = true
 
 func set_title(text:String):
 	title = text
@@ -74,6 +81,10 @@ func set_type(p_type:int):
 	if p_type < NO_ACTION or p_type > DOUBLE_ACTION:
 		return ERR_INVALID_PARAMETER
 	type = p_type
+	return OK
+
+func hide_close_button():
+	show_close_button = false
 	return OK
 
 func add_action(action:Callable, name:String, params:Array=[], color:String="White"):
@@ -107,6 +118,8 @@ func _init():
 	action_params = []
 	action_names = []
 	colors = []
-	title_alignment = TITLE_ALIGNMENT_CENTER
+	title_alignment = ALIGNMENT_CENTER
+	description_alignment = ALIGNMENT_LEFT
+	show_close_button = true
 	title = ""
 	description = ""

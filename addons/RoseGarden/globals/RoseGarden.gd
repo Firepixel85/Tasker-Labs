@@ -359,6 +359,8 @@ func create_tooltip(tooltip:RGTooltip,position:Vector2):
 	return OK
 
 func clear_tooltips(no_animation:bool = false):
+	if tooltip_layer == null:
+		return
 	for child in tooltip_layer.get_children():
 		var tween = create_tween()
 		tween.tween_property(child,"modulate",Color(1,1,1,0),0.09*int(!RoseGarden.Accessibility.get_disable_animations())*int(Animations.tooltipAppearance)*int(!no_animation))

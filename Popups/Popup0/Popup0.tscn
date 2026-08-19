@@ -52,7 +52,6 @@ text = ""
 icon = ExtResource("4_uwaae")
 
 [node name="Title" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("5_lj6nh")]
-custom_minimum_size = Vector2(50, 34)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Title"

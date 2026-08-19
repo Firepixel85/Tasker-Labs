@@ -5,7 +5,12 @@ class_name RGText
 @onready var label: Label = $Label
 
 @export_category("Appearence")
-@export var text:String = "Text"
+@export var text:String = "Text":
+	set(new_value):
+		text = new_value
+		if label == null:
+			return
+		_update()
 @export_enum("Large","Main","Secondary","Info","FinePrint") var font_size = "Main"
 @export var rounded:bool = false
 @export_enum("Main","Secondary","Dark","Custom") var color = "Main"

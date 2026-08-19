@@ -29,6 +29,8 @@ extends Control
 @onready var project_columb: Control = %ProjectColumb
 
 var main_project:FocusProject
+var projects:Dictionary = {}
+var project_ids:Dictionary = {}
 
 var current_session:FocusSession
 var current_session_interface
@@ -37,6 +39,7 @@ var current_session_time:int = 0
 var total_time:int = 0
 var goal:float = 100.0
 
+const ID = "com.rosepen.focus"
 func _ready() -> void:
 	get_tree().root.size_changed.connect(_resize_update)
 	Settings.setting_changed.connect(_settings_update)
@@ -47,17 +50,21 @@ func _ready() -> void:
 	start_stop_session.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	period_selector.add_item("day"," Day ")
 	period_selector.add_item("week"," Week ")
-	project_selector.add_item("All Projects",0)
 
-	project_select.add_item("None",0)
-	project_select_small.add_item("None",0)
-	project_select.add_item("Test",1)
-	project_select_small.add_item("Test",1)
 
 	main_project = FocusProject.new()
 	main_project.set_as_main()
 	main_project.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	main_project.display_name = "None"
+	projects[main_project.display_name] = main_project
+	project_ids[main_project.display_name] = project_ids.size()
+	project_selector.add_item("All Projects",project_ids[main_project.display_name])
+	project_select.add_item("None",project_ids[main_project.display_name])
+	
+	@warning_ignore("narrowing_conversion")
 	main_project.daily_goal = goal
+	
+	project_columb.add_project.pressed.connect(_add_project_pressed)
 
 func _resize_update():
 	if get_window().size.y < 1100:
@@ -108,7 +115,7 @@ func _on_start_stop_session_pressed() -> void:
 	RoseGarden.clear_tooltips()
 	if current_session == null:
 		current_session = FocusSession.new()
-		current_session.attach_project(main_project)
+		current_session.attach_project(projects[project_select.get_selected_item()])
 		current_session.set_display_name("Session at %s"%Time.get_time_string_from_system().split(":")[0]+":"+Time.get_time_string_from_system().split(":")[1])
 		current_session.time_updated.connect(_update_time)
 		add_child(current_session)
@@ -210,8 +217,11 @@ func _update_time(new_time):
 	tt_minutes.text = minutes_str
 	tt_seconds.text = seconds_str
 	goal_progress.tween_value(int(100*total_time/goal),0.2,0,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
+	goal_progress_small.tween_value(int(100*total_time/goal),0.2,Tween.TRANS_SINE,Tween.EASE_IN_OUT)
 
 func _process(_delta: float) -> void:
+	if Sidebar.get_selected_tab() != ID or Popups.is_popup_active():
+		return
 	if Input.is_action_just_pressed("focus_start_stop_session"):
 		if session_controls_container.visible:
 			start_stop_session.press()
@@ -237,4 +247,14 @@ func _process(_delta: float) -> void:
 			pause_unpause_session.set_color("Gray")
 			pause_unpause_session_small.set_color("Gray")
 	if Input.is_action_just_pressed("focus_create_project"):
-		pass
+		project_columb.add_project.press()
+
+func _add_project_pressed():
+	Popups.create_popup(load(PluginManager.get_plugin_filepath(ID)+"Popups/NewProject.tscn"))
+	await Popups.popup_created
+	var project = await Popups.get_popup().project_created
+	projects[project.display_name] = project
+	project_ids[project.display_name] = project_ids.size()
+	project_selector.add_item(project.display_name,project_ids[project.display_name])
+	project_select.add_item(project.display_name,project_ids[project.display_name])
+	project_columb.add_project_interface(project)
