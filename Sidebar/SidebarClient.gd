@@ -120,3 +120,8 @@ func _process(_delta:float) -> void:
 	if past_scroll != scroll_container.scroll_vertical:
 		selection.position.y = selected_node.get_global_transform().origin.y-116
 	past_scroll = scroll_container.scroll_vertical
+
+func _get_tab(tab_id:String):
+	if !_tab_scene_nodes.has(tab_id):
+		return ERR_DOES_NOT_EXIST
+	return _tab_scene_nodes[tab_id]

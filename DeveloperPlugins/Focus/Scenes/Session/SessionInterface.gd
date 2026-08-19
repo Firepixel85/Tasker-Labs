@@ -18,8 +18,7 @@ func setup(new_session:FocusSession):
 	session.stopped.connect(_session_stopped)
 	session.started.connect(_session_started)
 	session.tracked.connect(_session_tracked)
-	if session.get_project().is_main():
-		project_tag.hide()
+	session.project_attached.connect(_update)
 	_update()
 
 func _update():
@@ -28,6 +27,8 @@ func _update():
 	project_tag.set_text(session.get_project().display_name)
 	progress_bar.set_color(color)
 	display_name.text = session.display_name
+	if session.get_project().is_main():
+		project_tag.hide()
 
 func _update_time(new_time:int):
 	@warning_ignore("integer_division")

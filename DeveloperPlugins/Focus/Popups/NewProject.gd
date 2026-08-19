@@ -3,6 +3,7 @@ extends Control
 @onready var name_field: RGTextField = $RGContainer/MarginContainer/VBoxContainer/NameContainer/NameField
 @onready var color_menu: RGDropDown = $RGContainer/MarginContainer/VBoxContainer/ColorContainer/ColorMenu
 @onready var create: RGButton = $RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Create
+@onready var error_message: RGText = $RGContainer/MarginContainer/VBoxContainer/ErrorMessage
 
 @onready var goal_field: RGTextField = $RGContainer/MarginContainer/VBoxContainer/GoalContainer/HBoxContainer2/GoalField
 @onready var goal_down: RGButton = $RGContainer/MarginContainer/VBoxContainer/GoalContainer/HBoxContainer2/HBoxContainer/GoalDown
@@ -140,9 +141,14 @@ func _on_daily_goal_min_up_pressed() -> void:
 
 func _on_create_pressed() -> void:
 	if name_is_empty() or name_field.get_text().split("").size() > 16:
+		show_error_message("Name field can't be empty")
 		name_field.incorrect = true
-		await get_tree().create_timer(1).timeout
-		name_field.incorrect = false
+		name_field.edit()
+		return
+	if Sidebar.get_tab("com.rosepen.focus").projects.has(name_field.get_text()):
+		show_error_message("Project already exists")
+		name_field.incorrect = true
+		name_field.edit()
 		return
 	var project = FocusProject.new()
 	project.display_name = name_field.get_text()
@@ -151,6 +157,10 @@ func _on_create_pressed() -> void:
 	project.daily_goal = daily_goal_hrs*3600 + daily_goal_min*60
 	project_created.emit(project)
 	Popups.clear_popup()
+
+func show_error_message(message:String):
+	error_message.modulate = Color(1,1,1,1)
+	error_message.set_text(message)
 
 func _on_cancel_pressed() -> void:
 	Popups.clear_popup()
@@ -163,6 +173,10 @@ func name_is_empty():
 			return false
 	return true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("ui_confirm"):
 		create.press()
+
+func _on_name_field_text_changed(_new_text: String) -> void:
+	error_message.modulate = Color(1,1,1,0)
+	name_field.incorrect = false

@@ -16,7 +16,8 @@ signal tracked
 
 func attach_project(new_project:FocusProject):
 	project = new_project
-	project_attached.emit(project)
+	project.deleted.connect(_project_deleted)
+	project_attached.emit()
 
 func get_project() -> FocusProject:
 	return project
@@ -45,3 +46,6 @@ func init():
 func set_display_name(new_name:String):
 	display_name = new_name
 	info_updated.emit()
+
+func _project_deleted(_project:FocusProject):
+	attach_project(Sidebar.get_tab("com.rosepen.focus").main_project)

@@ -12,6 +12,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
+focus_mode = 1
 script = ExtResource("1_gattr")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=1499746209]

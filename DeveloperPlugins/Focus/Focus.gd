@@ -31,6 +31,7 @@ extends Control
 var main_project:FocusProject
 var projects:Dictionary = {}
 var project_ids:Dictionary = {}
+var last_given_project_id:int = 0
 
 var current_session:FocusSession
 var current_session_interface
@@ -252,9 +253,17 @@ func _process(_delta: float) -> void:
 func _add_project_pressed():
 	Popups.create_popup(load(PluginManager.get_plugin_filepath(ID)+"Popups/NewProject.tscn"))
 	await Popups.popup_created
-	var project = await Popups.get_popup().project_created
+	var project:FocusProject = await Popups.get_popup().project_created
 	projects[project.display_name] = project
-	project_ids[project.display_name] = project_ids.size()
+	last_given_project_id += 1
+	project_ids[project.display_name] = last_given_project_id
+	project.deleted.connect(_project_deleted)
 	project_selector.add_item(project.display_name,project_ids[project.display_name])
 	project_select.add_item(project.display_name,project_ids[project.display_name])
 	project_columb.add_project_interface(project)
+
+func _project_deleted(project:FocusProject):
+	project_select.remove_item(project_ids[project.display_name])
+	project_selector.remove_item(project_ids[project.display_name])
+	projects.erase(project.display_name)
+	project_ids.erase(project.display_name)

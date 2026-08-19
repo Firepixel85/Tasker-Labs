@@ -24,11 +24,12 @@ var display_name:String:
 		display_name = new_value
 		info_updated.emit()
 
-var tracked_time:int = 67
+var tracked_time:int = 0
 var tracked_time_today:int = 0
 
 signal info_updated
 signal tracked_time_updated(new_time:int)
+signal deleted(project:FocusProject)
 
 func set_color(new_color:String):
 	if !RoseGarden.Colors.verify_color(new_color) == OK:
@@ -63,3 +64,6 @@ func remove_time(time:int):
 	tracked_time -= time
 	tracked_time_today -= time
 	tracked_time_updated.emit()
+
+func delete():
+	deleted.emit(self)

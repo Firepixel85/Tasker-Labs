@@ -43,6 +43,7 @@ theme_override_constants/margin_bottom = 18
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=2063928437]
 layout_mode = 2
+focus_mode = 1
 theme_override_constants/separation = 14
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1579330214]
@@ -62,6 +63,7 @@ vertical_alignment = "Center"
 [node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=828030752]
 layout_mode = 2
 size_flags_horizontal = 3
+focus_mode = 1
 
 [node name="ModeToggle" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_k64sv")]
 custom_minimum_size = Vector2(60, 60)
@@ -76,9 +78,12 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("6_47eev")
+show_tooltip = true
+tooltip_display_text = "Show options"
 
 [node name="GoalText" type="RichTextLabel" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=326694028]
 layout_mode = 2
+focus_mode = 1
 theme = ExtResource("7_0oub6")
 theme_override_fonts/normal_font = ExtResource("8_d4ope")
 theme_override_font_sizes/normal_font_size = 20
@@ -103,8 +108,9 @@ alignment = 2
 custom_minimum_size = Vector2(52, 28)
 layout_mode = 2
 script = ExtResource("10_xax1i")
-text = "88:88:88"
+text = "00:00"
 font_size = "Secondary"
 vertical_alignment = "Center"
 
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/ModeToggle" to="." method="_on_mode_toggle_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/More" to="." method="_on_more_pressed"]

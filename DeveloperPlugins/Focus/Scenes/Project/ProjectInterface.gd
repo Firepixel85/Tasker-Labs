@@ -98,3 +98,31 @@ func _set_goal_text():
 		@warning_ignore("integer_division")
 		var hrs = floor(project.goal/3600)
 		goal_text.text = "[color=acacac]Goal: [color=f5f5f5] %sh"%hrs
+
+func empty():
+	pass
+
+func _on_more_pressed() -> void:
+	var menu = RGmenu.new()
+	menu.add_action("Edit",Icons.PENCIL,empty)
+	menu.add_action("Delete",Icons.TRASH,delete,[],true)
+	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
+	
+func delete():
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.DOUBLE_ACTION)
+	popup.set_title("Are you sure?")
+	popup.title_alignment = TSKPopup.ALIGNMENT_CENTER
+	popup.set_description("Deleting this project is a permanent action, that can not be undone. All sessions attached to this project will be detached.")
+	popup.description_alignment = TSKPopup.ALIGNMENT_CENTER
+	popup.hide_close_button()
+	popup.add_action(empty,"Cancel",[],"Gray")
+	popup.add_action(delete_confirmed,"Delete",[],"Red")
+	Popups.create_prefab_popup(popup)
+	
+func delete_confirmed():
+	project.delete()
+	var tween = create_tween()
+	tween.tween_property(self,"modulate",Color(1,1,1,0),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	queue_free()

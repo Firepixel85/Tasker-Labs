@@ -14,6 +14,7 @@ offset_right = 400.0
 offset_bottom = 400.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
+focus_mode = 1
 script = ExtResource("1_e5xb5")
 
 [node name="TextureProgressBar" type="TextureProgressBar" parent="." unique_id=690631529]

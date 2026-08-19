@@ -12,6 +12,7 @@ offset_bottom = 0.5999985
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
+focus_mode = 1
 script = ExtResource("1_mrphe")
 metadata/_edit_use_anchors_ = true
 

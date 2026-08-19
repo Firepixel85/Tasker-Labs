@@ -28,5 +28,12 @@ func select_tab(selection_id:String):
 func get_selected_tab():
 	if _client == null:
 		Debug.warn("A process attempted to get the selected tab while the sidebar client was not ready, action discarded. Returning empty string.",ID)
-		return ""
+		return ERR_BUSY
 	return _client.selected
+
+func get_tab(tab_id:String):
+	if _client == null:
+		Debug.warn("A process attempted to get a tab while the sidebar client was not ready, action discarded. Returning empty string.",ID)
+		return ERR_BUSY
+	return _client._get_tab(tab_id)
+	

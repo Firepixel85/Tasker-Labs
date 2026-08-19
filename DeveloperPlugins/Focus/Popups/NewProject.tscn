@@ -6,11 +6,12 @@
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="5_4u0r3"]
 [ext_resource type="PackedScene" uid="uid://5e0n7poog6ky" path="res://addons/RoseGarden/components/DropDown/RGDropDown.tscn" id="7_acwxo"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="9_3xmn8"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="9_r3knx"]
 [ext_resource type="Texture2D" uid="uid://cdfqxmvucwk6i" path="res://Icons/Down.svg" id="11_iepjc"]
 [ext_resource type="Texture2D" uid="uid://doxcvlyim7fft" path="res://Icons/Up.svg" id="12_m4sp6"]
 
 [node name="Control" type="Control" unique_id=1085529456]
-custom_minimum_size = Vector2(616, 660)
+custom_minimum_size = Vector2(616, 690)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_r3knx")
@@ -219,9 +220,19 @@ text = ""
 icon = ExtResource("12_m4sp6")
 connection = "Left"
 
-[node name="Spacer2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=772448518]
+[node name="ErrorMessage" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1545101430 instance=ExtResource("3_acwxo")]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(55, 28)
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 1
+script = ExtResource("9_r3knx")
+text = "Error!"
+font_size = "Secondary"
+color = "Custom"
+custom_color = Color(0.90588236, 0.2784314, 0.2784314, 1)
+horizontal_alignment = "Center"
+vertical_alignment = "Center"
 
 [node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1064570240]
 layout_mode = 2
@@ -240,6 +251,7 @@ size_flags_horizontal = 3
 color = "Purple"
 text = "Create"
 
+[connection signal="text_changed" from="RGContainer/MarginContainer/VBoxContainer/NameContainer/NameField" to="." method="_on_name_field_text_changed"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/GoalContainer/HBoxContainer2/HBoxContainer/GoalDown" to="." method="_on_goal_down_pressed"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/GoalContainer/HBoxContainer2/HBoxContainer/GoalUp" to="." method="_on_goal_up_pressed"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/DailyGoalContainer/HBoxContainer2/HBoxContainer/DailyGoalHrsDown" to="." method="_on_daily_goal_hrs_down_pressed"]
