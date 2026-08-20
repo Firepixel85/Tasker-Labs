@@ -33,6 +33,7 @@ var color_dic := {
 }
 
 func _ready() -> void:
+	edit.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	color_menu.add_item("Yellow",0)
 	color_menu.add_item("Orange",1)
 	color_menu.add_item("Green",2)

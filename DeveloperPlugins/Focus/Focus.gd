@@ -52,7 +52,6 @@ func _ready() -> void:
 	period_selector.add_item("day"," Day ")
 	period_selector.add_item("week"," Week ")
 
-
 	main_project = FocusProject.new()
 	main_project.set_as_main()
 	main_project.set_color(Settings.get_option_value("core.appearance/accent_color"))
@@ -135,6 +134,7 @@ func _on_start_stop_session_pressed() -> void:
 		current_session.start()
 	else:
 		current_session.stop()
+		current_session.time_updated.disconnect(_update_time)
 		current_session.tracked.emit()
 		current_session = null
 		current_session_interface = null
@@ -192,7 +192,9 @@ func _pause_unpause_pressed():
 func _update_time(new_time):
 	total_time += new_time - current_session_time
 	current_session_time = new_time
+	_display_time()
 
+func _display_time():
 	@warning_ignore("integer_division")
 	var hours = total_time / 3600
 	@warning_ignore("integer_division")
@@ -267,3 +269,19 @@ func _project_deleted(project:FocusProject):
 	project_selector.remove_item(project_ids[project.display_name])
 	projects.erase(project.display_name)
 	project_ids.erase(project.display_name)
+
+func add_time(time:int):
+	if time < 0:
+		return ERR_INVALID_PARAMETER
+	total_time += time
+	_display_time()
+	return OK
+
+func remove_time(time:int):
+	if time < 0:
+		return ERR_INVALID_PARAMETER
+	total_time -= time
+	if total_time < 0:
+		total_time = 0
+	_display_time()
+	return 

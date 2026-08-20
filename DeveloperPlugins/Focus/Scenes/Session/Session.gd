@@ -15,9 +15,23 @@ signal info_updated
 signal tracked
 
 func attach_project(new_project:FocusProject):
+	if project != null:
+		return ERR_ALREADY_EXISTS
 	project = new_project
 	project.deleted.connect(_project_deleted)
 	project_attached.emit()
+	return OK
+
+func change_project(new_project:FocusProject):
+	if project == new_project:
+		return ERR_ALREADY_EXISTS
+	project.deleted.disconnect(_project_deleted)
+	project.remove_time(tracked_time)
+	project = new_project
+	project.deleted.connect(_project_deleted)
+	project.add_time(tracked_time)
+	project_attached.emit()
+	return OK
 
 func get_project() -> FocusProject:
 	return project
@@ -48,4 +62,26 @@ func set_display_name(new_name:String):
 	info_updated.emit()
 
 func _project_deleted(_project:FocusProject):
-	attach_project(Sidebar.get_tab("com.rosepen.focus").main_project)
+	change_project(Sidebar.get_tab("com.rosepen.focus").main_project)
+
+func add_time(time:int):
+	if time < 0:
+		return ERR_INVALID_PARAMETER
+	tracked_time += time
+	project.add_time(time)
+	Sidebar.get_tab("com.rosepen.focus").add_time(time)
+	time_updated.emit(tracked_time)
+	return OK
+
+func remove_time(time:int):
+	if time < 0:
+		return ERR_INVALID_PARAMETER
+	tracked_time -= time
+	project.remove_time(time)
+	Sidebar.get_tab("com.rosepen.focus").remove_time(time)
+	time_updated.emit(tracked_time)
+	return OK
+
+func delete():
+	project.remove_time(tracked_time)
+	Sidebar.get_tab("com.rosepen.focus").remove_time(tracked_time)

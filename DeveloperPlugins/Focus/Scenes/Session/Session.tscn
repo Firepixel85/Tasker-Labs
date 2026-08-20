@@ -100,6 +100,8 @@ custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
 icon = ExtResource("7_0641i")
+show_tooltip = true
+tooltip_display_text = "Edit"
 
 [node name="Delete" parent="RGContainer/MarginContainer/HBoxContainer/ControlsContainer" unique_id=1215383883 instance=ExtResource("6_5qbwm")]
 custom_minimum_size = Vector2(60, 60)
@@ -107,3 +109,8 @@ layout_mode = 2
 color = "Red"
 text = ""
 icon = ExtResource("8_d8bes")
+show_tooltip = true
+tooltip_display_text = "Delete"
+
+[connection signal="pressed" from="RGContainer/MarginContainer/HBoxContainer/ControlsContainer/Edit" to="." method="_on_edit_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/HBoxContainer/ControlsContainer/Delete" to="." method="_on_delete_pressed"]

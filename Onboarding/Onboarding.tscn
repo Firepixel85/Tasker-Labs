@@ -493,7 +493,7 @@ modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme = ExtResource("4_ggw3s")
 theme_override_font_sizes/font_size = 24
-text = "Choose your favourite color and we will adapt the apps interface to it, so you can feel right at home!"
+text = "Choose your favourite color and we will adapt the app's interface to it, so you can feel right at home!"
 horizontal_alignment = 1
 autowrap_mode = 2
 

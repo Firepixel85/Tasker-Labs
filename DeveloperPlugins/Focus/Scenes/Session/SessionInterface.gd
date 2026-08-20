@@ -8,17 +8,19 @@ extends Control
 
 
 var session:FocusSession
+var project:FocusProject
 var color:String
 
 func setup(new_session:FocusSession):
 	session = new_session
-	session.get_project().info_updated.connect(_update)
+	project = session.get_project()
+	project.info_updated.connect(_update)
 	session.info_updated.connect(_update)
 	session.time_updated.connect(_update_time)
 	session.stopped.connect(_session_stopped)
 	session.started.connect(_session_started)
 	session.tracked.connect(_session_tracked)
-	session.project_attached.connect(_update)
+	session.project_attached.connect(_project_attached)
 	_update()
 
 func _update():
@@ -29,7 +31,15 @@ func _update():
 	display_name.text = session.display_name
 	if session.get_project().is_main():
 		project_tag.hide()
+	_update_time(session.tracked_time)
 
+func _project_attached():
+	project.info_updated.disconnect(_update)
+	project = session.get_project()
+	project.info_updated.connect(_update)
+	_update()
+
+	_update()
 func _update_time(new_time:int):
 	@warning_ignore("integer_division")
 	var hours = new_time / 3600
@@ -69,3 +79,30 @@ func _session_stopped():
 func _session_tracked():
 	pause_icon.hide()
 	controls_container.show()
+
+func _on_edit_pressed() -> void:
+	Popups.create_popup(load(PluginManager.get_plugin_filepath("com.rosepen.focus")+"Popups/EditSession.tscn"))
+	await get_tree().process_frame
+	Popups.get_popup().setup(session)
+
+func _on_delete_pressed() -> void:
+	var popup = TSKPopup.new()
+	popup.set_type(TSKPopup.DOUBLE_ACTION)
+	popup.set_title("Are you sure?")
+	popup.title_alignment = TSKPopup.ALIGNMENT_CENTER
+	popup.set_description("Deleting this session is a permanent action, that can not be undone. Are you sure you want to delete it?")
+	popup.description_alignment = TSKPopup.ALIGNMENT_CENTER
+	popup.hide_close_button()
+	popup.add_action(empty,"Cancel",[],"Gray")
+	popup.add_action(delete,"Delete",[],"Red")
+	Popups.create_prefab_popup(popup)
+
+func empty(): #Is the empty function like an easter egg at this point?
+	pass
+
+func delete():
+	session.delete()
+	var tween = create_tween()
+	tween.tween_property(self,"modulate",Color(1,1,1,0),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	await tween.finished
+	queue_free()

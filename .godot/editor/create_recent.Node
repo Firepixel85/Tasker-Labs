@@ -1,9 +1,10 @@
-MarginContainer
 HBoxContainer
-Control
-VBoxContainer
-TextureRect
+MarginContainer
 CenterContainer
+VBoxContainer
+Control
+ColorRect
+TextureRect
 Label
 Button
 RichTextLabel
@@ -11,4 +12,3 @@ ScrollContainer
 NinePatchRect
 HScrollBar
 AnimationPlayer
-TextureProgressBar
