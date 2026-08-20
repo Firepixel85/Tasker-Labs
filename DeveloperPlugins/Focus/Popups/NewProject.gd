@@ -141,8 +141,13 @@ func _on_daily_goal_min_up_pressed() -> void:
 	_update_values()
 
 func _on_create_pressed() -> void:
-	if name_is_empty() or name_field.get_text().split("").size() > 16:
+	if name_is_empty():
 		show_error_message("Name field can't be empty")
+		name_field.incorrect = true
+		name_field.edit()
+		return
+	elif name_field.get_text().split("").size() > 16:
+		show_error_message("Name is to long, it must be less than 17 characters")
 		name_field.incorrect = true
 		name_field.edit()
 		return

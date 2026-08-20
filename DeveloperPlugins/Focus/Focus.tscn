@@ -69,7 +69,7 @@ theme_override_constants/margin_bottom = 18
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer" unique_id=1782909051]
 layout_mode = 2
 
-[node name="Settings" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("7_kfoae")]
+[node name="SetGoal" parent="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("7_kfoae")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
 text = ""
@@ -311,6 +311,7 @@ size_flags_vertical = 3
 unique_name_in_owner = true
 layout_mode = 2
 
+[connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer/SetGoal" to="." method="_on_set_goal_pressed"]
 [connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_dehovered"]
 [connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_hovered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_pressed"]

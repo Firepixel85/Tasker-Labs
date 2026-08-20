@@ -38,7 +38,7 @@ var current_session_interface
 var current_session_time:int = 0
 
 var total_time:int = 0
-var goal:float = 100.0
+var goal:float = 300.0
 
 const ID = "com.rosepen.focus"
 func _ready() -> void:
@@ -285,3 +285,13 @@ func remove_time(time:int):
 		total_time = 0
 	_display_time()
 	return 
+
+func _on_set_goal_pressed() -> void:
+	Popups.create_popup(load(PluginManager.get_plugin_filepath(ID)+"Popups/SetGoal.tscn"))
+	await get_tree().process_frame
+	Popups.get_popup().setup(int(goal))
+
+func change_goal(new_goal:int):
+	goal = new_goal
+	main_project.daily_goal = goal
+	_display_time()
