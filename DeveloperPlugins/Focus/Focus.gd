@@ -32,13 +32,14 @@ var main_project:FocusProject
 var projects:Dictionary = {}
 var project_ids:Dictionary = {}
 var last_given_project_id:int = 0
+var sessions:Array = []
 
 var current_session:FocusSession
 var current_session_interface
 var current_session_time:int = 0
 
 var total_time:int = 0
-var goal:float = 300.0
+var goal:int = 5400
 
 const ID = "com.rosepen.focus"
 func _ready() -> void:
@@ -60,11 +61,28 @@ func _ready() -> void:
 	project_ids[main_project.display_name] = project_ids.size()
 	project_selector.add_item("All Projects",project_ids[main_project.display_name])
 	project_select.add_item("None",project_ids[main_project.display_name])
-	
 	@warning_ignore("narrowing_conversion")
 	main_project.daily_goal = goal
-	
 	project_columb.add_project.pressed.connect(_add_project_pressed)
+
+	if !Data.file_exists(ID+"/FocusData"):
+		Data.make_file("FocusData",ID)
+		save()
+	else:
+		var data = Data.load_file(ID+"/FocusData")
+		project_ids = data["project_ids"]
+		sessions = data["sessions"]
+		last_given_project_id = data["last_given_project_id"]
+		goal = data["goal"]
+		@warning_ignore("narrowing_conversion")
+		main_project.daily_goal = goal
+
+func save():
+	Data.save_to("project_ids",project_ids,ID+"/FocusData")
+	Data.save_to("sessions",sessions,ID+"/FocusData")
+	Data.save_to("last_given_project_id",last_given_project_id,ID+"/FocusData")
+	Data.save_to("goal",goal,ID+"/FocusData")
+	Data.save_file(ID+"/FocusData")
 
 func _resize_update():
 	if get_window().size.y < 1100:
@@ -263,6 +281,7 @@ func _add_project_pressed():
 	project_selector.add_item(project.display_name,project_ids[project.display_name])
 	project_select.add_item(project.display_name,project_ids[project.display_name])
 	project_columb.add_project_interface(project)
+	save()
 
 func _project_deleted(project:FocusProject):
 	project_select.remove_item(project_ids[project.display_name])
@@ -284,7 +303,7 @@ func remove_time(time:int):
 	if total_time < 0:
 		total_time = 0
 	_display_time()
-	return 
+	return
 
 func _on_set_goal_pressed() -> void:
 	Popups.create_popup(load(PluginManager.get_plugin_filepath(ID)+"Popups/SetGoal.tscn"))
@@ -293,5 +312,32 @@ func _on_set_goal_pressed() -> void:
 
 func change_goal(new_goal:int):
 	goal = new_goal
+	@warning_ignore("narrowing_conversion")
 	main_project.daily_goal = goal
 	_display_time()
+	save()
+
+
+func _on_project_selector_new_selection(selection: String) -> void:
+	session_columb.update_session_visibility(selection)
+	project_columb.update_project_visibility(selection)
+
+func get_project_uid(project_name:String):
+	if !project_ids.has(project_name):
+		Debug.error("A process attempted to get the UID of a non-existant project",ID)
+		return ERR_DOES_NOT_EXIST
+	return project_ids[project_name]
+
+func register_session(session_handle:String):
+	if sessions.has(session_handle):
+		return ERR_ALREADY_EXISTS
+	sessions.append(session_handle)
+	save()
+	return OK
+
+func delete_session(session_handle:String):
+	if !sessions.has(session_handle):
+		return ERR_DOES_NOT_EXIST
+	sessions.erase(session_handle)
+	save()
+	return OK

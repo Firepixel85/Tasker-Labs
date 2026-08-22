@@ -2,14 +2,11 @@
 
 [ext_resource type="Script" uid="uid://bqe36wo4kpdlg" path="res://DeveloperPlugins/Focus/Popups/SetGoal.gd" id="1_5yq04"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_nlpw8"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_5yq04"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_qi7qy"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="4_sljbh"]
 [ext_resource type="PackedScene" uid="uid://dsglmabt3tp60" path="res://addons/RoseGarden/components/TextField/RGTextField.tscn" id="5_xsodb"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="6_5dtsd"]
 [ext_resource type="Texture2D" uid="uid://cdfqxmvucwk6i" path="res://Icons/Down.svg" id="7_b1l0t"]
 [ext_resource type="Texture2D" uid="uid://doxcvlyim7fft" path="res://Icons/Up.svg" id="8_fvabv"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="9_ppjen"]
 
 [node name="Control" type="Control" unique_id=1783179445]
 custom_minimum_size = Vector2(454, 350)
@@ -17,16 +14,13 @@ layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_5yq04")
 
-[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_nlpw8")]
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_nlpw8")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-focus_mode = 1
-script = ExtResource("2_5yq04")
+offset_right = 0.0
+offset_bottom = 0.0
 padding = "16"
 margin_number = 18
 
@@ -46,11 +40,9 @@ theme_override_constants/margin_bottom = 18
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="RGText" type="Control" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_qi7qy")]
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_qi7qy")]
 custom_minimum_size = Vector2(153, 34)
 layout_mode = 2
-focus_mode = 1
-script = ExtResource("4_sljbh")
 text = "Set daily goal"
 horizontal_alignment = "Center"
 
@@ -140,24 +132,18 @@ size_flags_vertical = 3
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Cancel" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=508479836 instance=ExtResource("6_5dtsd")]
+[node name="Cancel" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=508479836 instance=ExtResource("6_5dtsd")]
 custom_minimum_size = Vector2(201, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-script = ExtResource("9_ppjen")
 text = "Cancel"
-metadata/_edit_use_anchors_ = true
 
-[node name="Set" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1335932316 instance=ExtResource("6_5dtsd")]
+[node name="Set" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1335932316 instance=ExtResource("6_5dtsd")]
 custom_minimum_size = Vector2(167, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_mode = 2
-script = ExtResource("9_ppjen")
 color = "Purple"
 text = "Set"
-metadata/_edit_use_anchors_ = true
 
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Hrs/Hours2/HrsDown" to="." method="_on_hrs_down_pressed"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Hrs/Hours2/HrsUp" to="." method="_on_hrs_up_pressed"]

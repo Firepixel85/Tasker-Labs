@@ -312,6 +312,7 @@ unique_name_in_owner = true
 layout_mode = 2
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer/SetGoal" to="." method="_on_set_goal_pressed"]
+[connection signal="new_selection" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/ControlsContainer/MarginContainer/HBoxContainer/ProjectSelector" to="." method="_on_project_selector_new_selection"]
 [connection signal="de_hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_dehovered"]
 [connection signal="hovered" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_hovered"]
 [connection signal="pressed" from="MarginContainer/HBoxContainer/Columb1/VBoxContainer/SessionControlsContainer/CenterContainer/VBoxContainer/HBoxContainer/PauseUnpauseSession" to="." method="_pause_unpause_pressed"]

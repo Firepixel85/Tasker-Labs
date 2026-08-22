@@ -14,6 +14,7 @@ var mode:String = "daily":
 
 func setup(new_project:FocusProject):
 	project = new_project
+	project._ready()
 	title.text = project.display_name
 	project.tracked_time_updated.connect(_update_tracked_time)
 	project.info_updated.connect(_project_info_changed)
@@ -113,7 +114,7 @@ func _on_more_pressed() -> void:
 	menu.add_action("Edit",Icons.PENCIL,edit)
 	menu.add_action("Delete",Icons.TRASH,delete,[],true)
 	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
-	
+
 func delete():
 	var popup = TSKPopup.new()
 	popup.set_type(TSKPopup.DOUBLE_ACTION)
@@ -125,7 +126,7 @@ func delete():
 	popup.add_action(empty,"Cancel",[],"Gray")
 	popup.add_action(delete_confirmed,"Delete",[],"Red")
 	Popups.create_prefab_popup(popup)
-	
+
 func delete_confirmed():
 	project.delete()
 	var tween = create_tween()
@@ -137,3 +138,13 @@ func edit():
 	Popups.create_popup(load(PluginManager.get_plugin_filepath("com.rosepen.focus")+"Popups/EditProject.tscn"))
 	await get_tree().process_frame
 	Popups.get_popup().setup(project)
+
+func update_visibility(project_name: String):
+	if project_name == "All Projects":
+		show()
+		return
+	if project.display_name == project_name:
+		show()
+		return
+	hide()
+	return

@@ -106,3 +106,16 @@ func delete():
 	tween.tween_property(self,"modulate",Color(1,1,1,0),0.2).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	await tween.finished
 	queue_free()
+
+func update_visibility(project_name: String):
+	if project_name == "All Projects":
+		show()
+		return
+	if project.display_name == project_name:
+		show()
+		return
+	if session.is_running():
+		show()
+		return
+	hide()
+	return
