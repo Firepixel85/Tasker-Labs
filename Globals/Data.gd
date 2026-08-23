@@ -92,4 +92,11 @@ func remove_file(file_name:String):
 	if dir == null:
 		return ERR_CANT_OPEN
 	var delete_err = dir.remove(actual_file_path[file_name].split("user://")[1])
+	if delete_err == OK:
+		all_data.erase(file_name)
+		actual_file_path.erase(file_name)
+		_save()
+		Debug.log("File deleted: "+file_name,ID)
+	else:
+		Debug.warn("A process attempted to delete a file that does not exist: "+file_name,ID)
 	return delete_err

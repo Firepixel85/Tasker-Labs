@@ -173,7 +173,7 @@ layout_mode = 2
 
 [node name="Events" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1215686585]
 visible = false
-custom_minimum_size = Vector2(0, 168)
+custom_minimum_size = Vector2(0, 172)
 layout_mode = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
@@ -631,6 +631,7 @@ layer = 3
 [node name="CommandBar" type="CanvasLayer" parent="." unique_id=2110537838]
 
 [node name="Control" type="Control" parent="CommandBar" unique_id=15699609]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

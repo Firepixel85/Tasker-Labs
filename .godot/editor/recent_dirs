@@ -1,3 +1,4 @@
+res://DeveloperPlugins/Focus/Scenes/
 res://DeveloperPlugins/Focus/Popups/
 res://DeveloperPlugins/Focus/Scenes/Project/
 res://DeveloperPlugins/Focus/Scenes/Session/
@@ -12,7 +13,6 @@ res://Settings/CoreOptions/Developer/RestartOnboarding/
 res://Onboarding/Scripts/
 res://Onboarding/Textures/Checkbox/
 res://Onboarding/
-res://DeveloperPlugins/Focus/Scenes/
 res://DeveloperPlugins/Focus/
 /Users/max/Documents/Godot Projects/tasker-2.0/DeveloperPlugins/Focus/
 res://Settings/CoreOptions/General/PluginNotify/

@@ -1,10 +1,10 @@
 HBoxContainer
-Control
 VBoxContainer
-MarginContainer
-CenterContainer
-ColorRect
 TextureRect
+CenterContainer
+MarginContainer
+Control
+ColorRect
 Label
 Button
 RichTextLabel

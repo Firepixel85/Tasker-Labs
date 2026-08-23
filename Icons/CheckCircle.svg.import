@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5wf80nmu1epn"
-path="res://.godot/imported/icon.png-08252779179b84c44fcd877fe3890d86.ctex"
+uid="uid://71w0fh5teeqq"
+path="res://.godot/imported/CheckCircle.svg-f32f2e7ef7cd0e2f5d4b45e32ed68603.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://DeveloperPlugins/Focus/icon.png"
-dest_files=["res://.godot/imported/icon.png-08252779179b84c44fcd877fe3890d86.ctex"]
+source_file="res://Icons/CheckCircle.svg"
+dest_files=["res://.godot/imported/CheckCircle.svg-f32f2e7ef7cd0e2f5d4b45e32ed68603.ctex"]
 
 [params]
 
@@ -38,3 +38,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

@@ -34,8 +34,9 @@ func _add_tab(title:String,icon:Texture2D,scene:Resource,tab_id:String):
 	tab.id = tab_id
 
 	tab._ready()
-	scene_container.add_child(scene.instantiate())
-	_tab_scene_nodes[tab_id] = scene_container.get_child(scene_container.get_child_count()-1)
+	var child_scene = scene.instantiate()
+	_tab_scene_nodes[tab_id] = child_scene
+	scene_container.add_child(child_scene)
 	_tab_scene_nodes[tab_id].hide()
 	if selected == "":
 		selected_node = tab
