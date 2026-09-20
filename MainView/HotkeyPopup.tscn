@@ -1,0 +1,150 @@
+[gd_scene format=3 uid="uid://b4crmvs0h8ev5"]
+
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_w26yl"]
+[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_1rldm"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_ox4ph"]
+[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_u015h"]
+[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="5_7entp"]
+[ext_resource type="PackedScene" uid="uid://cpyeqq0aqf166" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.tscn" id="6_2m4ag"]
+[ext_resource type="Script" uid="uid://ctgyan3gnkrp0" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.gd" id="7_jrgnk"]
+[ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="8_kgheu"]
+[ext_resource type="PackedScene" uid="uid://bmfwl8y6v3uka" path="res://MainView/Hotkey.tscn" id="9_1rldm"]
+
+[sub_resource type="Gradient" id="Gradient_ox4ph"]
+offsets = PackedFloat32Array(0.24277456, 0.9653179)
+colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 1, 0.11372549, 0.11372549, 0.11372549, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u015h"]
+gradient = SubResource("Gradient_ox4ph")
+height = 40
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_7entp"]
+offsets = PackedFloat32Array(0.011560693, 0.783237)
+colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 0, 0.11372549, 0.11372549, 0.11372549, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_2m4ag"]
+gradient = SubResource("Gradient_7entp")
+height = 40
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+
+[node name="Control" type="Control" unique_id=1024396193]
+custom_minimum_size = Vector2(676, 540)
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_w26yl")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+focus_mode = 1
+script = ExtResource("2_1rldm")
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=224313093]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=924361138]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1203572548]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Close" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("3_ox4ph")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+focus_mode = 2
+script = ExtResource("4_u015h")
+text = ""
+icon = ExtResource("5_7entp")
+metadata/_edit_use_anchors_ = true
+
+[node name="Search" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=212265237 instance=ExtResource("6_2m4ag")]
+custom_minimum_size = Vector2(320, 60)
+layout_mode = 2
+script = ExtResource("7_jrgnk")
+placeholder_text = "Search hotkeys..."
+icon = ExtResource("8_kgheu")
+emoji_menu_enabled = false
+context_menu = false
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=999055273]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 2
+
+[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=606105802]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1621148224]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+
+[node name="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1924013357 instance=ExtResource("9_1rldm")]
+layout_mode = 2
+
+[node name="Control2" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1962709731 instance=ExtResource("9_1rldm")]
+layout_mode = 2
+
+[node name="Control3" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1030006128 instance=ExtResource("9_1rldm")]
+layout_mode = 2
+
+[node name="Control4" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1571121604 instance=ExtResource("9_1rldm")]
+layout_mode = 2
+
+[node name="Control5" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=260686199 instance=ExtResource("9_1rldm")]
+layout_mode = 2
+
+[node name="MarginContainer2" type="MarginContainer" parent="RGContainer" unique_id=1186484128]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 94
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer2" unique_id=222406821]
+layout_mode = 2
+
+[node name="FadeTop" type="TextureRect" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=76917178]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_u015h")
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=391752018]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="FadeBottom" type="TextureRect" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=1775304582]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+texture = SubResource("GradientTexture2D_2m4ag")

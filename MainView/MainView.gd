@@ -6,6 +6,7 @@ extends Control
 @onready var popup_container: CenterContainer = $PopupCanvasContainer/PopupContainer
 @onready var popup_fade: TextureRect = $PopupCanvasContainer/PopupFade
 @onready var tde: RGText = $MainView/VBoxContainer2/TopBar/MarginContainer/CenterContainer/TDE
+@onready var hotkeys_timer: Timer = $HotkeysTimer
 
 #MainView
 @onready var main_view: HBoxContainer = $MainView
@@ -142,7 +143,14 @@ func _ready():
 	if Settings.get_option_value("core.general/show_categories"):
 		for category in Settings._category_list:
 			CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])
-
+	
+	#Register Hotkeys:
+	HotkeyManager.register_hotkey("Open settings","⌘,",null)
+	HotkeyManager.register_hotkey("Open plugins","⌘P",null)
+	HotkeyManager.register_hotkey("Scroll events left","⌥←",null)
+	HotkeyManager.register_hotkey("Scroll events right","⌥→",null)
+	HotkeyManager.register_hotkey("Open CommandBar","⌘K",null)
+	
 	PluginManager._load_data()
 	_update_setting_values()
 	var data = Data.load_file("Core/UpdateData")
@@ -154,7 +162,7 @@ func _ready():
 		tde.show()
 	if Main.is_dev_kit() and !Settings.get_option_value("core.developer/dev_tools"):
 		Settings.set_option_value("core.developer/dev_tools",true)
-	RoseGarden.enable_custom_textures("res://WhiteTheme")
+	#RoseGarden.enable_custom_textures("res://WhiteTheme")
 
 
 func open_view(view_name:String):
@@ -178,6 +186,12 @@ func open_view(view_name:String):
 	return OK
 
 func _process(_delta: float) -> void:
+	if Input.is_key_pressed(KEY_META) and hotkeys_timer.is_stopped():
+		hotkeys_timer.start()
+		_await_hotkey_timer()
+	if !Input.is_key_pressed(KEY_META) and !hotkeys_timer.is_stopped():
+		hotkeys_timer.stop()
+	
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
 		Popups.clear_popup()
 		RoseGarden._delete_all_menus()
@@ -196,6 +210,11 @@ func _process(_delta: float) -> void:
 		open_view("mainview")
 		RoseGarden._delete_all_menus()
 
+func _await_hotkey_timer():
+	await hotkeys_timer.timeout
+	Debug.error("It works!",ID)
+	hotkeys_timer.stop()
+	
 func _settings_changed(option_path,new_value):
 	if option_path == "core.general/display_name":
 		user_name.set_text(new_value)

@@ -1,3 +1,5 @@
+res://MainView/
+res://Globals/
 res://
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta2/
 res://LoadingScreen/
@@ -5,7 +7,6 @@ res://AppIcons/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta1/
 /Users/max/Documents/Godot Builds/Tasker 2.0/pb2/
 res://Settings/CoreOptions/General/ShowCategories/
-res://MainView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/
 res://Settings/CoreOptions/Developer/RestartOnboarding/
 res://Onboarding/Scripts/

@@ -56,6 +56,8 @@ func get_process_name(process_id:String):
 			return "Network/GitHubAuth"
 		"core.network.updates":
 			return "Network/Updates"
+		"core.hotkey_manager":
+			return "HotkeyManager"
 		"unknown":
 			return "Unknown"
 		_:
