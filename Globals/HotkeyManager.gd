@@ -29,11 +29,9 @@ func unregister_hotkey(hotkey_id:String):
 	if not hotkeys.has(hotkey_id):
 		Debug.log("A process tried to unregister a hotkey that doesn't exist: %s" % hotkey_id,ID)
 		return ERR_DOES_NOT_EXIST
-	hotkeys.erase(hotkey_id)
-	if hotkeys[hotkey_id]["event"] == null:
-		return OK
-	if InputMap.has_action(hotkey_id):
+	if hotkeys[hotkey_id]["event"] != null and InputMap.has_action(hotkey_id):
 		InputMap.erase_action(hotkey_id)
+	hotkeys.erase(hotkey_id)
 	return OK
 
 func get_hotkey_name(hotkey_id:String) -> String:
@@ -59,3 +57,9 @@ func get_tab_specific_id(hotkey_id:String) -> String:
 		Debug.log("A process tried to get the tab specific id of a hotkey that doesn't exist: %s" % hotkey_id,ID)
 		return ""
 	return hotkeys[hotkey_id]["tab_specific_id"]
+
+func get_hotkey_list() -> Array:
+	return hotkeys.keys()
+
+func hotkey_exists(hotkey_id:String) -> bool:
+	return hotkeys.has(hotkey_id)

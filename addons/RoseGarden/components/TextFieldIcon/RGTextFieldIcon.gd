@@ -88,6 +88,8 @@ func set_hint(new_hint:String):
 func edit():
 	line_edit.grab_focus()
 	line_edit.edit()
+	await get_tree().process_frame
+	line_edit.caret_column = line_edit.text.length()
 	return OK
 
 func exit():

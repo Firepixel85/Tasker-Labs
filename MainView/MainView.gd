@@ -143,14 +143,7 @@ func _ready():
 	if Settings.get_option_value("core.general/show_categories"):
 		for category in Settings._category_list:
 			CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])
-	
-	#Register Hotkeys:
-	HotkeyManager.register_hotkey("Open settings","⌘,",null)
-	HotkeyManager.register_hotkey("Open plugins","⌘P",null)
-	HotkeyManager.register_hotkey("Scroll events left","⌥←",null)
-	HotkeyManager.register_hotkey("Scroll events right","⌥→",null)
-	HotkeyManager.register_hotkey("Open CommandBar","⌘K",null)
-	
+
 	PluginManager._load_data()
 	_update_setting_values()
 	var data = Data.load_file("Core/UpdateData")
@@ -168,10 +161,38 @@ func _ready():
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):
 		return ERR_DOES_NOT_EXIST
+	HotkeyManager.register_hotkey("Open settings","⌘,",null)
+	HotkeyManager.register_hotkey("Open plugins","⌘P",null)
+	HotkeyManager.register_hotkey("Open main view","esc",null)
 	if view_name == "settings":
 		settings_view.setup()
+		HotkeyManager.register_hotkey("Select category [n]","⌘[n]",null)
+		HotkeyManager.register_hotkey("Change option [n]","⇧[n]",null)
+		HotkeyManager.unregister_hotkey("open_settings")
+	else:
+		HotkeyManager.unregister_hotkey("select_category_[n]")
+		HotkeyManager.unregister_hotkey("change_option_[n]")
 	if view_name == "plugins":
 		plugins_view.setup()
+		HotkeyManager.register_hotkey("Enable plugin [n]","⌥[n]",null)
+		HotkeyManager.register_hotkey("Disable plugin [n]","⇧[n]",null)
+		HotkeyManager.unregister_hotkey("open_plugins")
+	else:
+		HotkeyManager.unregister_hotkey("enable_plugin_[n]")
+		HotkeyManager.unregister_hotkey("disable_plugin_[n]")
+	if view_name == "mainview":
+		HotkeyManager.register_hotkey("Scroll events left","⌥←",null)
+		HotkeyManager.register_hotkey("Scroll events right","⌥→",null)
+		HotkeyManager.register_hotkey("Open CommandBar","⌘K",null)
+		HotkeyManager.register_hotkey("Open tab [n]","⌘[n]",null)
+		HotkeyManager.register_hotkey("Dismiss notification","⌃W",null)
+		HotkeyManager.unregister_hotkey("open_main_view")
+	else:
+		HotkeyManager.unregister_hotkey("scroll_events_left")
+		HotkeyManager.unregister_hotkey("scroll_events_right")
+		HotkeyManager.unregister_hotkey("open_commandbar")
+		HotkeyManager.unregister_hotkey("open_tab_[n]")
+		HotkeyManager.unregister_hotkey("dismiss_notification")
 	view_nodes[view_name].modulate = Color(1,1,1,0)
 	view_nodes[view_name].visible = true
 	view_changed.emit(view_name)
@@ -191,7 +212,7 @@ func _process(_delta: float) -> void:
 		_await_hotkey_timer()
 	if !Input.is_key_pressed(KEY_META) and !hotkeys_timer.is_stopped():
 		hotkeys_timer.stop()
-	
+
 	if Popups.is_popup_active() and Input.is_action_just_pressed("view_close"):
 		Popups.clear_popup()
 		RoseGarden._delete_all_menus()
@@ -210,11 +231,16 @@ func _process(_delta: float) -> void:
 		open_view("mainview")
 		RoseGarden._delete_all_menus()
 
+var is_awaiting_hotkey_timer:bool = false
 func _await_hotkey_timer():
+	if is_awaiting_hotkey_timer:
+		return
+	is_awaiting_hotkey_timer = true
 	await hotkeys_timer.timeout
-	Debug.error("It works!",ID)
+	Popups.create_popup(preload("res://MainView/HotkeyPopup.tscn"))
 	hotkeys_timer.stop()
-	
+	is_awaiting_hotkey_timer = false
+
 func _settings_changed(option_path,new_value):
 	if option_path == "core.general/display_name":
 		user_name.set_text(new_value)

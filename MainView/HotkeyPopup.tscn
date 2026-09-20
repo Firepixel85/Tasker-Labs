@@ -1,14 +1,11 @@
 [gd_scene format=3 uid="uid://b4crmvs0h8ev5"]
 
+[ext_resource type="Script" uid="uid://clpwkjbppthiv" path="res://MainView/HotkeyPopup.gd" id="1_03pn0"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_w26yl"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_1rldm"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_ox4ph"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="4_u015h"]
 [ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="5_7entp"]
 [ext_resource type="PackedScene" uid="uid://cpyeqq0aqf166" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.tscn" id="6_2m4ag"]
-[ext_resource type="Script" uid="uid://ctgyan3gnkrp0" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.gd" id="7_jrgnk"]
 [ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="8_kgheu"]
-[ext_resource type="PackedScene" uid="uid://bmfwl8y6v3uka" path="res://MainView/Hotkey.tscn" id="9_1rldm"]
 
 [sub_resource type="Gradient" id="Gradient_ox4ph"]
 offsets = PackedFloat32Array(0.24277456, 0.9653179)
@@ -36,17 +33,15 @@ metadata/_snap_enabled = true
 custom_minimum_size = Vector2(676, 540)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_03pn0")
 
-[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_w26yl")]
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_w26yl")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-focus_mode = 1
-script = ExtResource("2_1rldm")
+offset_right = 0.0
+offset_bottom = 0.0
 padding = "16"
 margin_number = 18
 
@@ -70,29 +65,25 @@ theme_override_constants/separation = 16
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Close" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("3_ox4ph")]
+[node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("3_ox4ph")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
-focus_mode = 2
-script = ExtResource("4_u015h")
 text = ""
 icon = ExtResource("5_7entp")
-metadata/_edit_use_anchors_ = true
 
-[node name="Search" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=212265237 instance=ExtResource("6_2m4ag")]
+[node name="Search" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=212265237 instance=ExtResource("6_2m4ag")]
 custom_minimum_size = Vector2(320, 60)
 layout_mode = 2
-script = ExtResource("7_jrgnk")
 placeholder_text = "Search hotkeys..."
 icon = ExtResource("8_kgheu")
 emoji_menu_enabled = false
 context_menu = false
-metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=999055273]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 2
 
@@ -105,21 +96,6 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
 
-[node name="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1924013357 instance=ExtResource("9_1rldm")]
-layout_mode = 2
-
-[node name="Control2" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1962709731 instance=ExtResource("9_1rldm")]
-layout_mode = 2
-
-[node name="Control3" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1030006128 instance=ExtResource("9_1rldm")]
-layout_mode = 2
-
-[node name="Control4" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=1571121604 instance=ExtResource("9_1rldm")]
-layout_mode = 2
-
-[node name="Control5" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/VBoxContainer" unique_id=260686199 instance=ExtResource("9_1rldm")]
-layout_mode = 2
-
 [node name="MarginContainer2" type="MarginContainer" parent="RGContainer" unique_id=1186484128]
 layout_mode = 1
 anchors_preset = 15
@@ -127,24 +103,32 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 32
-theme_override_constants/margin_top = 94
+theme_override_constants/margin_top = 102
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 2
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer2" unique_id=222406821]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="FadeTop" type="TextureRect" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=76917178]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_u015h")
 
 [node name="Spacer" type="Control" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=391752018]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="FadeBottom" type="TextureRect" parent="RGContainer/MarginContainer2/VBoxContainer" unique_id=1775304582]
 modulate = Color(1, 1, 1, 0)
 layout_mode = 2
+mouse_filter = 2
 texture = SubResource("GradientTexture2D_2m4ag")
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
+[connection signal="text_changed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Search" to="." method="_on_search_text_changed"]

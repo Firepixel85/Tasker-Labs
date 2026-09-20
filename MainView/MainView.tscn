@@ -682,7 +682,6 @@ frame = 53
 frame_progress = 0.7498504
 
 [node name="HotkeysTimer" type="Timer" parent="." unique_id=304260970]
-wait_time = 1.5
 
 [connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]

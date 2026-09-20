@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bmfwl8y6v3uka"]
 
 [ext_resource type="Texture2D" uid="uid://bbhi37uwjkvb5" path="res://MainView/Hotkey.svg" id="1_8yngy"]
+[ext_resource type="Script" uid="uid://dmo55rnac6pc1" path="res://MainView/Hotkey.gd" id="1_q0bc5"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_q0bc5"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="3_8ud4i"]
 
 [node name="Control" type="Control" unique_id=1924013357]
 custom_minimum_size = Vector2(0, 40)
@@ -10,12 +10,15 @@ layout_mode = 3
 anchors_preset = 10
 anchor_right = 1.0
 grow_horizontal = 2
+script = ExtResource("1_q0bc5")
 
 [node name="SymbolContainer" type="NinePatchRect" parent="." unique_id=83074156]
 custom_minimum_size = Vector2(56, 0)
-layout_mode = 0
-offset_right = 56.0
-offset_bottom = 40.0
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 24.0
+grow_vertical = 2
 texture = ExtResource("1_8yngy")
 patch_margin_left = 12
 patch_margin_top = 12
@@ -36,21 +39,17 @@ layout_mode = 2
 theme_override_constants/margin_left = 12
 theme_override_constants/margin_right = 12
 
-[node name="HotkeySymbol" type="Control" parent="HBoxContainer/MarginContainer" unique_id=85953319 instance=ExtResource("2_q0bc5")]
+[node name="HotkeySymbol" parent="HBoxContainer/MarginContainer" unique_id=85953319 instance=ExtResource("2_q0bc5")]
 custom_minimum_size = Vector2(32, 28)
 layout_mode = 2
-focus_mode = 1
-script = ExtResource("3_8ud4i")
 text = "⌘K"
 font_size = "Secondary"
 rounded = true
 vertical_alignment = "Center"
 
-[node name="HotkeyName" type="Control" parent="HBoxContainer" unique_id=1838490023 instance=ExtResource("2_q0bc5")]
+[node name="HotkeyName" parent="HBoxContainer" unique_id=1838490023 instance=ExtResource("2_q0bc5")]
 custom_minimum_size = Vector2(191, 28)
 layout_mode = 2
-focus_mode = 1
-script = ExtResource("3_8ud4i")
 text = "Open CommandBar"
 font_size = "Secondary"
 vertical_alignment = "Center"
