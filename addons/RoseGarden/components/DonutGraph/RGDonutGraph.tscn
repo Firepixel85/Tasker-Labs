@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://2dw4xo6ssnks" path="res://addons/RoseGarden/components/DonutGraph/RGDonutGraph.gd" id="1_e5xb5"]
 [ext_resource type="Texture2D" uid="uid://btuke4i2x4tcm" path="res://addons/RoseGarden/components/DonutGraph/Base/BaseRed.svg" id="2_eie0l"]
 [ext_resource type="Texture2D" uid="uid://cwolmcf0cja1g" path="res://addons/RoseGarden/components/DonutGraph/Progress/ProgressRed.svg" id="3_grscc"]
-[ext_resource type="Theme" uid="uid://dw45wy4ir66dr" path="res://addons/RoseGarden/themes/Main.tres" id="4_grscc"]
+[ext_resource type="Theme" uid="uid://c05fdk6xb1vos" path="res://CustomThemes/Main.tres" id="4_eie0l"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_ku0bt"]
 
 [node name="RGDonutGraph" type="Control" unique_id=1144614823]
@@ -44,7 +44,7 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="TextureProgressBar/CenterContainer/VBoxContainer" unique_id=1772111470]
 layout_mode = 2
-theme = ExtResource("4_grscc")
+theme = ExtResource("4_eie0l")
 theme_override_font_sizes/font_size = 40
 text = "0%"
 horizontal_alignment = 1

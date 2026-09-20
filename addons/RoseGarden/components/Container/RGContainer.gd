@@ -42,7 +42,7 @@ func set_padding(new_padding:String):
 func _update():
 	if container == null:
 		return
-	container.texture = load(RoseGarden._file_path+"Container/Container"+padding+".svg")
+	container.texture = load(RoseGarden._get_file_path()+"Container/Container"+padding+".svg")
 	container.patch_margin_bottom = patch_margins[padding]
 	container.patch_margin_left = patch_margins[padding]
 	container.patch_margin_right = patch_margins[padding]
@@ -58,6 +58,7 @@ func _process(_delta: float) -> void:
 
 func _ready() -> void:
 	RoseGarden.custom_themes_changed.connect(_update)
+	RoseGarden.custom_textures_changed.connect(_update)
 	if Engine.is_editor_hint():
 		return
 	while true:

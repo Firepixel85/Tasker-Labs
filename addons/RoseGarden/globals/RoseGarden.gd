@@ -198,7 +198,7 @@ func enable_custom_textures(file_path:String):
 	useCustomTextures = true
 	if !FileAccess.file_exists(file_path):
 		push_error("RoseGarden: The provided custom texture path does not exist.")
-	customTexturePath = file_path+"/"
+	_file_path = file_path+"/"
 	custom_textures_changed.emit()
 
 ######################

@@ -154,6 +154,7 @@ func _ready():
 		tde.show()
 	if Main.is_dev_kit() and !Settings.get_option_value("core.developer/dev_tools"):
 		Settings.set_option_value("core.developer/dev_tools",true)
+	RoseGarden.enable_custom_textures("res://WhiteTheme")
 
 
 func open_view(view_name:String):

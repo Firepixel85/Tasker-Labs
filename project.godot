@@ -20,7 +20,7 @@ run/disable_stderr=true
 config/features=PackedStringArray("4.6", "GL Compatibility")
 boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/stretch_mode=4
-boot_splash/image="uid://buy8upv67e7ou"
+boot_splash/image="uid://c5wjk18sgal2g"
 config/icon="uid://jlvjwu2xdj7u"
 config/macos_native_icon="res://AppIcons/Labs Logo.icns"
 

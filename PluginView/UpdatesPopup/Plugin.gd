@@ -30,6 +30,7 @@ func setup():
 	if PluginManager.is_plugin_trusted(id): trusted.show()
 	container._update()
 	url = await PluginManager.get_plugin_repo_site(id)
+	print(id,await PluginManager.get_plugin_repo_site((id)))
 
 
 func _on_trusted_mouse_entered() -> void:
@@ -50,8 +51,6 @@ func _on_more_pressed() -> void:
 	menu.add_action("View changelog",Icons.FILETEXT,OS.shell_open,[url+"/releases/tag/"+PluginManager.get_plugin_latest_tag(id)])
 	menu.add_action("View source",Icons.CODE,OS.shell_open,[url])
 	RoseGarden.create_rc_menu(menu,get_global_mouse_position())
-	
-
 
 func _on_update_pressed() -> void:
 	update_button.disabled = true

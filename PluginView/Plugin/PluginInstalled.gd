@@ -158,6 +158,8 @@ func _on_uninstall_pressed() -> void:
 	popup.set_description("This is a permenant action that will immediately delete all files asscoiated with this plugin. Are you sure?")
 	popup.add_action(empty,"Cancel",[],"Gray")
 	popup.add_action(delete_plugin,"Uninstall",[],"Red")
+	popup.description_alignment = TSKPopup.ALIGNMENT_CENTER
+	popup.hide_close_button()
 	Popups.create_prefab_popup(popup)
 
 func delete_plugin():

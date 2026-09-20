@@ -34,8 +34,6 @@ func _update():
 	button.size=size
 	_updated.emit()
 
-
-
 func _ready() -> void:
 	get_parent()._highlighted.connect(change_highlight)
 	RoseGarden.custom_textures_changed.connect(_update)
@@ -46,7 +44,6 @@ func _ready() -> void:
 func _pressed() -> void:
 	manager.select(id)
 	manager._close()
-
 
 func _on_mouse_entered() -> void:
 	highlighted = true

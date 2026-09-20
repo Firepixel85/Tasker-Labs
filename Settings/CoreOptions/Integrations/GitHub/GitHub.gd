@@ -35,6 +35,8 @@ func _on_action_pressed() -> void:
 		popup.set_description("Are you sure you want to disconnect your GitHub account?")
 		popup.add_action(empty,"Cancel",[],"Gray")
 		popup.add_action(disconnect_auth,"Disconnect",[],"Red")
+		popup.description_alignment = TSKPopup.ALIGNMENT_CENTER
+		popup.hide_close_button()
 		Popups.create_prefab_popup(popup)
 	else:
 		Popups.create_popup(load("res://PluginView/UpdatesPopup/GitHubAuth.tscn"))

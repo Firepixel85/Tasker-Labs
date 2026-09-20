@@ -71,6 +71,8 @@ focus_mode = 0
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ir1hl")
 flat = true
 
+[node name="TooltipTimer" type="Timer" parent="." unique_id=1184708469]
+
 [connection signal="button_down" from="Button" to="." method="_on_button_down"]
 [connection signal="button_up" from="Button" to="." method="_on_button_up"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_mouse_entered"]

@@ -122,7 +122,6 @@ func get_plugin_repo_site(plugin_id:String):
 		return repo_url
 	var http_request = HTTPRequest.new()
 	add_child(http_request)
-	http_request.request_completed.connect(_on_request_url_completed)
 	var headers
 	if Network.GitHubAuth.is_authorized():
 		headers = [
@@ -134,8 +133,23 @@ func get_plugin_repo_site(plugin_id:String):
 	else:
 		headers = ["User-Agent: Tasker"]
 	http_request.request(repo_url,headers)
-	await _request_url_completed
-	return _url_response["html_url"]
+	var response = await http_request.request_completed
+	var response_code = response[1]
+	var body = response[3]
+	if response_code == 404:
+		Debug.warn("Failed to fetch plugin repo site, response code: 404",ID)
+		return ERR_DOES_NOT_EXIST
+	if response_code == 403:
+		if JSON.parse_string(body.get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
+			rate_limited = true
+			Debug.warn("GitHub API rate limit exceeded, failed to fetch plugin repo site",ID)
+			return ERR_BUSY
+		Debug.warn("Failed to fetch plugin repo site, response code: 403",ID)
+		return ERR_UNAUTHORIZED
+	if response_code != 200:
+		Debug.warn("Failed to fetch plugin repo site, response code: "+str(response_code),ID)
+		return ERR_CANT_CONNECT
+	return JSON.parse_string(body.get_string_from_utf8())["html_url"]
 
 var _url_response
 signal _request_url_completed
@@ -583,14 +597,18 @@ func update_plugin(plugin_id:String):
 		if JSON.parse_string(response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
 			rate_limited = true
 			Debug.warn("GitHub API rate limit exceeded, some plugin update checks will fail",ID)
+			RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 			return ERR_LOCKED
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" appears to have it's repository private or restricted, update check failed (403)",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_FILE_NO_PERMISSION
 	elif code != 200:
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, unknown error",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_CANT_CONNECT
 	elif body == null:
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, server sent invalid response",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_INVALID_DATA
 
 	var download_url := ""
@@ -600,7 +618,8 @@ func update_plugin(plugin_id:String):
 			break
 
 	if download_url == "":
-		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update check failed, no plugin.zip asset found in release",ID)
+		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, no plugin.zip asset found in release",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_CANT_ACQUIRE_RESOURCE
 
 	var download_http = HTTPRequest.new()
@@ -614,16 +633,20 @@ func update_plugin(plugin_id:String):
 	var download_code: int = download_response[1]
 	if download_code == 404:
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, plugin.zip asset not found (404)",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_DOES_NOT_EXIST
 	elif download_code == 403:
 		if JSON.parse_string(download_response[3].get_string_from_utf8())["message"].begins_with("API rate limit exceeded"):
 			rate_limited = true
 			Debug.warn("GitHub API rate limit exceeded, some plugin update downloads will fail",ID)
+			RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 			return ERR_LOCKED
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, access to plugin.zip asset denied (403)",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_FILE_NO_PERMISSION
 	elif download_code != 200:
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update download failed, unknown error (%s)"%download_code,ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_CANT_CONNECT
 
 	Debug.log("Plugin "+get_plugin_name(plugin_id)+" update downloaded successfully, extracting...",ID)
@@ -632,6 +655,7 @@ func update_plugin(plugin_id:String):
 	var error  = zip.open("user://plugin.zip")
 	if error != OK:
 		Debug.error("Plugin "+get_plugin_name(plugin_id)+" update extraction failed, unable to open zip file",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_CANT_OPEN
 
 	for path in zip.get_files():
@@ -650,6 +674,7 @@ func update_plugin(plugin_id:String):
 	var dir = DirAccess.open("user://")
 	if dir == null:
 		Debug.error("Failed to open user directory for deleting zip file",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return ERR_CANT_OPEN
 
 	var delete_err = dir.remove("plugin.zip")
@@ -660,11 +685,13 @@ func update_plugin(plugin_id:String):
 		var delete_dir_err = OS.move_to_trash(ProjectSettings.globalize_path(existing_plugin_path))
 		if delete_dir_err != OK:
 			Debug.error("Failed to move old plugin directory to trash after update, additional clean-up needed",ID)
+			RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 			return ERR_CANT_RESOLVE
 
 	var source_path = "user://%s" % _plugins[plugin_id]
 	if not DirAccess.dir_exists_absolute(source_path):
 		Debug.error("Failed to locate extracted plugin directory after update, update failed",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return
 
 	if not DirAccess.dir_exists_absolute("user://plugins"):
@@ -676,6 +703,7 @@ func update_plugin(plugin_id:String):
 	)
 	if move_err != OK:
 		Debug.error("Failed to move updated plugin directory to plugins folder, update failed",ID)
+		RoseGarden.create_toast("Failed to update: %s "%get_plugin_name(plugin_id),"Red")
 		return
 	if load_again:
 		load_plugin(plugin_id)

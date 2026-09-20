@@ -21,7 +21,7 @@ func set_color(new_color:String):
 	return OK
 
 func _update():
-	base.texture = load(RoseGarden._get_file_path()+"Toast/Base/Base"+color+".png")
+	base.texture = load(RoseGarden._file_path+"Toast/Base/Base"+color+".png")
 	label.text = text
 	base.size.x = label.get_minimum_size().x + 120
 	size = base.size

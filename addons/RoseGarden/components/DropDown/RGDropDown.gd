@@ -144,7 +144,7 @@ func _open():
 	opened.emit()
 
 func _close(invisible:bool=false):
-	var open = false
+	open = false
 	var tween = create_tween()
 	selection.hide()
 	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
@@ -163,7 +163,17 @@ func _on_menu_item_highlighted(id: int) -> void:
 	selection.visible = true
 	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
-
+func _select_item(id: int):
+	selection.visible = true
+	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	selected = id
+	for item in menu_item_container.get_children():
+		if item.id == id:
+			item.highlighted = true
+		else:
+			item.highlighted = false
+		item._update()
+	
 func _on_focus_exited() -> void:
 	await get_tree().process_frame
 	for child in menu_item_container.get_children():
@@ -194,3 +204,10 @@ func _process(delta: float) -> void:
 	if !open:
 		return
 	menu_container.position = global_position
+	if Input.is_action_just_pressed("ui_up") and _find_index(item_ids,get_selected()) > 0:
+		_select_item(item_ids[_find_index(item_ids,get_selected())-1])
+	if Input.is_action_just_pressed("ui_down") and _find_index(item_ids,get_selected()) < item_ids.size()-1:
+		_select_item(item_ids[_find_index(item_ids,get_selected())+1])
+	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_cancel"):
+		await get_tree().process_frame
+		_close()

@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://boal3cckjo2n6" path="res://PluginView/InstalledView.tscn" id="25_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://diimuetevof1f" path="res://CommandBar/ComandBar.tscn" id="27_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://bbvld8xyrmxqe" path="res://Onboarding/Onboarding.tscn" id="28_28umk"]
+[ext_resource type="SpriteFrames" uid="uid://demly8uj70hia" path="res://FlameRed.tres" id="31_5yfv4"]
 
 [sub_resource type="Gradient" id="Gradient_iwsuo"]
 offsets = PackedFloat32Array(0.5679348)
@@ -631,7 +632,6 @@ layer = 3
 [node name="CommandBar" type="CanvasLayer" parent="." unique_id=2110537838]
 
 [node name="Control" type="Control" parent="CommandBar" unique_id=15699609]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -645,6 +645,10 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -6.0
+offset_top = -10.0
+offset_right = -6.0
+offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -657,6 +661,25 @@ layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 0
 metadata/_edit_use_anchors_ = true
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("2_hi4tc")]
+visible = false
+layout_mode = 1
+anchor_left = 0.29445422
+anchor_top = 0.19788918
+anchor_right = 0.43620777
+anchor_bottom = 0.5187335
+padding = "16"
+margin_number = 18
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=258079972]
+visible = false
+position = Vector2(830, 401)
+scale = Vector2(0.5, 0.5)
+sprite_frames = ExtResource("31_5yfv4")
+animation = &"loop"
+frame = 53
+frame_progress = 0.7498504
 
 [connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]

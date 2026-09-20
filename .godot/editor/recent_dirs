@@ -1,9 +1,7 @@
-res://DeveloperPlugins/Focus/Scenes/
-res://DeveloperPlugins/Focus/Popups/
-res://DeveloperPlugins/Focus/Scenes/Project/
-res://DeveloperPlugins/Focus/Scenes/Session/
-res://AppIcons/
+res://
+/Users/max/Documents/Godot Builds/Tasker 2.0/beta2/
 res://LoadingScreen/
+res://AppIcons/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta1/
 /Users/max/Documents/Godot Builds/Tasker 2.0/pb2/
 res://Settings/CoreOptions/General/ShowCategories/
@@ -13,8 +11,6 @@ res://Settings/CoreOptions/Developer/RestartOnboarding/
 res://Onboarding/Scripts/
 res://Onboarding/Textures/Checkbox/
 res://Onboarding/
-res://DeveloperPlugins/Focus/
-/Users/max/Documents/Godot Projects/tasker-2.0/DeveloperPlugins/Focus/
 res://Settings/CoreOptions/General/PluginNotify/
 res://Settings/CoreOptions/General/UpdateNotify/
 res://MainView/Updates/

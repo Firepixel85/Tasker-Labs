@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_hy75m"]
 
 [node name="RGTooltip" type="Control" unique_id=352779523]
+modulate = Color(1, 1, 1, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 133.0

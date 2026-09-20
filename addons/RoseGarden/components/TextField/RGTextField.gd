@@ -72,7 +72,6 @@ func set_hint(new_hint:String):
 	_update()
 	return OK
 
-
 func edit():
 	line_edit.grab_focus()
 	line_edit.edit()

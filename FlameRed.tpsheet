@@ -1,0 +1,1467 @@
+{
+	"textures": [
+		{
+			"image": "FlameRed-0.png",
+			"size": {
+				"w": 1808,
+				"h": 1808
+			},
+			"sprites": [
+				{
+					"filename": "FlameRedGary00086400.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086401.png",
+					"region": {
+						"x": 1,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086402.png",
+					"region": {
+						"x": 1,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086403.png",
+					"region": {
+						"x": 1,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086404.png",
+					"region": {
+						"x": 1,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086405.png",
+					"region": {
+						"x": 1,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086406.png",
+					"region": {
+						"x": 1,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086407.png",
+					"region": {
+						"x": 259,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086408.png",
+					"region": {
+						"x": 517,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086409.png",
+					"region": {
+						"x": 775,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086410.png",
+					"region": {
+						"x": 1033,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086411.png",
+					"region": {
+						"x": 1291,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086412.png",
+					"region": {
+						"x": 1549,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086413.png",
+					"region": {
+						"x": 259,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086414.png",
+					"region": {
+						"x": 259,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086415.png",
+					"region": {
+						"x": 259,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086416.png",
+					"region": {
+						"x": 259,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086417.png",
+					"region": {
+						"x": 259,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086418.png",
+					"region": {
+						"x": 259,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086419.png",
+					"region": {
+						"x": 517,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086420.png",
+					"region": {
+						"x": 775,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086421.png",
+					"region": {
+						"x": 1033,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086422.png",
+					"region": {
+						"x": 1291,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086423.png",
+					"region": {
+						"x": 1549,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086424.png",
+					"region": {
+						"x": 517,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086425.png",
+					"region": {
+						"x": 517,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086426.png",
+					"region": {
+						"x": 517,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086427.png",
+					"region": {
+						"x": 517,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086428.png",
+					"region": {
+						"x": 517,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086429.png",
+					"region": {
+						"x": 775,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086430.png",
+					"region": {
+						"x": 1033,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086431.png",
+					"region": {
+						"x": 1291,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086432.png",
+					"region": {
+						"x": 1549,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086433.png",
+					"region": {
+						"x": 775,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086434.png",
+					"region": {
+						"x": 775,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086435.png",
+					"region": {
+						"x": 775,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086436.png",
+					"region": {
+						"x": 775,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086437.png",
+					"region": {
+						"x": 1033,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086438.png",
+					"region": {
+						"x": 1291,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086439.png",
+					"region": {
+						"x": 1549,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086440.png",
+					"region": {
+						"x": 1033,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086441.png",
+					"region": {
+						"x": 1033,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086442.png",
+					"region": {
+						"x": 1033,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086443.png",
+					"region": {
+						"x": 1291,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086444.png",
+					"region": {
+						"x": 1549,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086445.png",
+					"region": {
+						"x": 1291,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086446.png",
+					"region": {
+						"x": 1291,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086447.png",
+					"region": {
+						"x": 1549,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086448.png",
+					"region": {
+						"x": 1549,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		},
+		{
+			"image": "FlameRed-1.png",
+			"size": {
+				"w": 1808,
+				"h": 1808
+			},
+			"sprites": [
+				{
+					"filename": "FlameRedGary00086449.png",
+					"region": {
+						"x": 1,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086450.png",
+					"region": {
+						"x": 1,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086451.png",
+					"region": {
+						"x": 1,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086452.png",
+					"region": {
+						"x": 1,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086453.png",
+					"region": {
+						"x": 1,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086454.png",
+					"region": {
+						"x": 1,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086455.png",
+					"region": {
+						"x": 1,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086456.png",
+					"region": {
+						"x": 259,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086457.png",
+					"region": {
+						"x": 517,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086458.png",
+					"region": {
+						"x": 775,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086459.png",
+					"region": {
+						"x": 1033,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086460.png",
+					"region": {
+						"x": 1291,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086461.png",
+					"region": {
+						"x": 1549,
+						"y": 1,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086462.png",
+					"region": {
+						"x": 259,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086463.png",
+					"region": {
+						"x": 259,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086464.png",
+					"region": {
+						"x": 259,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086465.png",
+					"region": {
+						"x": 259,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086466.png",
+					"region": {
+						"x": 259,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086467.png",
+					"region": {
+						"x": 259,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086468.png",
+					"region": {
+						"x": 517,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086469.png",
+					"region": {
+						"x": 775,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086470.png",
+					"region": {
+						"x": 1033,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086471.png",
+					"region": {
+						"x": 1291,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086472.png",
+					"region": {
+						"x": 1549,
+						"y": 259,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086473.png",
+					"region": {
+						"x": 517,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086474.png",
+					"region": {
+						"x": 517,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086475.png",
+					"region": {
+						"x": 517,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086476.png",
+					"region": {
+						"x": 517,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086477.png",
+					"region": {
+						"x": 517,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086478.png",
+					"region": {
+						"x": 775,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086479.png",
+					"region": {
+						"x": 1033,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086480.png",
+					"region": {
+						"x": 1291,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086481.png",
+					"region": {
+						"x": 1549,
+						"y": 517,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086482.png",
+					"region": {
+						"x": 775,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086483.png",
+					"region": {
+						"x": 775,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086484.png",
+					"region": {
+						"x": 775,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086485.png",
+					"region": {
+						"x": 775,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086486.png",
+					"region": {
+						"x": 1033,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086487.png",
+					"region": {
+						"x": 1291,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086488.png",
+					"region": {
+						"x": 1549,
+						"y": 775,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086489.png",
+					"region": {
+						"x": 1033,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086490.png",
+					"region": {
+						"x": 1033,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086491.png",
+					"region": {
+						"x": 1033,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086492.png",
+					"region": {
+						"x": 1291,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086493.png",
+					"region": {
+						"x": 1549,
+						"y": 1033,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086494.png",
+					"region": {
+						"x": 1291,
+						"y": 1291,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				},
+				{
+					"filename": "FlameRedGary00086495.png",
+					"region": {
+						"x": 1291,
+						"y": 1549,
+						"w": 256,
+						"h": 256
+					},
+					"margin": {
+						"x": 0,
+						"y": 0,
+						"w": 0,
+						"h": 0
+					}
+				}
+			]
+		}
+	],
+	"meta": {
+		"app": "https://www.codeandweb.com/texturepacker",
+		"version": "1.1",
+		"smartupdate": "$TexturePacker:SmartUpdate:39d18371a84fd791e10b386a820847c1:81a84b8880e5efb1442aed32368eed74:a188a3f2a4af4282c54069a7ffc37091$"
+	}
+}

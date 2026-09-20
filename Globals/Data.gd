@@ -90,7 +90,11 @@ func _save():
 func remove_file(file_name:String):
 	var dir = DirAccess.open("user://")
 	if dir == null:
+		Debug.error("Failed to delete file: %s DirAccess won't open"%file_name)
 		return ERR_CANT_OPEN
+	if !actual_file_path.has(file_name):
+		Debug.warn("A process tried to delete a non-existant file: %s"%file_name)
+		return ERR_DOES_NOT_EXIST
 	var delete_err = dir.remove(actual_file_path[file_name].split("user://")[1])
 	if delete_err == OK:
 		all_data.erase(file_name)

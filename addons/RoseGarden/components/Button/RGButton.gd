@@ -7,8 +7,9 @@ class_name RGButton
 @onready var button: Button = $Button
 @onready var texture: TextureRect = $HBoxContainer/VBoxContainer/MarginContainer/VBoxContainer/TextureRect
 @onready var content_margin: MarginContainer = $HBoxContainer/VBoxContainer/MarginContainer
+@onready var tooltip_timer: Timer = $TooltipTimer
 
-@export_category("Appearence")
+@export_category("Appearance")
 @export_enum("Gray","White","Red","Orange","Yellow","Green","Teal","Blue","Pink","Purple") var color := "Gray":
 	set(new_value):
 		if !Engine.is_editor_hint() and RoseGarden.Colors.verify_color(new_value,true) != OK:
@@ -132,7 +133,7 @@ func _update():
 		return
 	label.text = text
 	texture.texture = icon
-	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
+	base.texture = load(RoseGarden._file_path+"Button/Base"+connection+"/Base"+color+".svg")
 	custom_minimum_size.x = label.size.x+texture.size.x+136
 	label.visible = true
 	content_margin.add_theme_constant_override("margin_left",64)
@@ -205,6 +206,12 @@ func _on_button_up() -> void:
 	if is_pressed and toggle_mode:
 		return
 	if disabled:
+		modulate = RoseGarden.Colors.COLOR_DISABLED_HOVERED
+	else:
+		modulate = RoseGarden.Colors.COLOR_HOVERED
+	if toggle_mode and is_pressed:
+		modulate = RoseGarden.Colors.COLOR_PRESSED
+	if disabled:
 		if is_hovered():
 			modulate = RoseGarden.Colors.COLOR_DISABLED_HOVERED
 		else:
@@ -227,6 +234,7 @@ func _on_pressed() -> void:
 func _on_toggled(toggled_on: bool) -> void:
 	toggled.emit(toggled_on)
 
+
 func _on_mouse_entered() -> void:
 	_hovered = true
 	hovered.emit()
@@ -238,15 +246,18 @@ func _on_mouse_entered() -> void:
 		modulate = RoseGarden.Colors.COLOR_PRESSED
 	if !show_tooltip:
 		return
-	await get_tree().create_timer(tooltip_delay).timeout
-	if is_hovered():
-		var tooltip = RGTooltip.new()
-		tooltip.set_text(tooltip_display_text)
-		if show_keybind:
-			tooltip.set_keybind(keybind_text)
-		RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
+	tooltip_timer.start(tooltip_delay)
+	await tooltip_timer.timeout
+	if !is_hovered():
+		return
+	var tooltip = RGTooltip.new()
+	tooltip.set_text(tooltip_display_text)
+	if show_keybind:
+		tooltip.set_keybind(keybind_text)
+	RoseGarden.create_tooltip(tooltip,get_global_mouse_position())
 
 func _on_mouse_exited() -> void:
+	tooltip_timer.stop()
 	_hovered = false
 	de_hovered.emit()
 	if disabled:
@@ -256,6 +267,7 @@ func _on_mouse_exited() -> void:
 	if toggle_mode and is_pressed:
 		modulate = RoseGarden.Colors.COLOR_PRESSED
 	RoseGarden.clear_tooltips()
+	await get_tree().create_timer(1).timeout
 
 func _update_themes():
 	label.theme = load(RoseGarden._theme_path+"Secondary.tres")
