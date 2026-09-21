@@ -98,6 +98,7 @@ func _open_keybinds():
 		keybind.set_text(str(new_i))
 		keybind._update()
 		keybind.position = Vector2(0,option_handler.get_child(i).position.y+10)
+		keybind.modulate = Color(1,1,1,1)
 	await get_tree().process_frame
 	for keybind in keybind_spacer.get_children():
 		keybind.visible = true
