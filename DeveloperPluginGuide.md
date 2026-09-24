@@ -1,4 +1,4 @@
-w# Using Developer Plugins
+# Using Developer Plugins
 
 ## What are Developer Plugins?
 Developer plugins are a special type of plugin that comes pre-installed with Tasker and is often used for development purposes. They are not meant to be used by end-users and are typically used for testing debugging and developing consumer plugins. 
