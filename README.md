@@ -15,12 +15,19 @@ Tasker is a productivity powerhouse, designed to be fully plugin driven, allowin
 Tasker is currently in beta. All planned features are implemented. I am currently in the process of creating plugins for Tasker, as without plugins it doesn't do much **useful** stuff. The first of those plugins is available for you to test now. It is a time/focus tracker that uses project and goals to keep you organized. You can view the plugin's repo [here](https://github.com/Rosepen-Studios/Focus) or follow the installation instructions I provide in the [latest release](https://github.com/Firepixel85/tasker-labs/releases/latest). 
 
 ### Installation
-Tasker 2.0 is currently in development. However, since this is an open-source project and we believe in always giving you options you can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest test build to try for yourself. Please note that these builds are not stable and may contain bugs, so we recommend using them for testing purposes only. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. To install the latest build:
+Tasker 2.0 is currently in development. However, since this is an open-source project and we believe in always giving you options you can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest test build to try for yourself. Please note that these builds are not fully tested and may contain minor bugs. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. Please note that for now Tasker is exclusively available on Apple Silicon powered devices running MacOS 11.00+. To install the latest build:
 1) Go to the [latest release](https://github.com/Firepixel85/Tasker-Labs/releases/latest)
-2) Download the “Tasker.zip" file
-3) Extract the contents of the zip file
-4) Move the “Tasker” app to your Mac’s Applications folder
-5) Run the app!
+2) Download the <code>Tasker.dmg</code> file from the assets
+3) Open the <code>.dmg</code> file you downloaded and drag Tasker into the Applications folder as the arrow indicates
+4) Run Tasker
+
+If the app is blocked by Gatekeeper:
+
+1) Open System Settings
+2) Go to Privacy & Security
+3) Scroll down to where Tasker is displayed as blocked
+4) Click "Open anyway"
+5) Follow the popups clicking "Allow anyway" and authenticating with your Touch-ID/Password
 
 ### Documentation
 As Tasker is still in development, we have not yet created comprehensive documentation. However, we are actively working on it and plan to have it available soon.
@@ -32,6 +39,18 @@ Tasker is built with developers in mind, and we want to make it as easy as possi
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 9 56 35 PM" src="https://github.com/user-attachments/assets/0d72c042-3528-4eb3-9143-8905b95366ee" />
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 9 57 19 PM" src="https://github.com/user-attachments/assets/a30265a5-04c5-4037-b1b9-62115d49b9ae" />
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 10 00 02 PM" src="https://github.com/user-attachments/assets/30c31216-9692-4bd1-a5db-1ddaf0c826e1" />
+
+### Tech Stack
+Tasker is build in Godot 4.6 and is currently only targeting apple silicon. The following tools and plugins were used in development:
+
+| Tool | Author  | Use | 
+| ---- | ------- | ------- |
+| Godot | Juan Linietsky & Contributors | Main engine |
+| Rose Garden | _M2x (Me) | UI Library |
+| Zed | Zed Industries & Contributors | Script Editing |
+| Lucid Icons | Eric Fennis & Contributors | Icon Library |
+| Figma | The Figma Team | UI Design |
+| Linear | The Linear Team | Organization |
 
 ### License
 We use a custom license for Tasker called FUL (Free Use License), which you can view [here](https://github.com/Firepixel85/Tasker-Labs/blob/main/LICENSE.md). This license gives you the freedom to use, modify, and distribute Tasker as you see fit, while also ensuring that our code may never be used to generate cash profit for anyone. We believe in the power of open-source software and want to make sure that Tasker remains free and accessible to everyone.
@@ -46,8 +65,6 @@ On the bottom of the page, you will find a stamp that says "No AI". We would lik
 
 <br>
 <div align="center">
-	
-<img width="192" height="192" alt="No AI Stamp Github" src="https://github.com/user-attachments/assets/16c80169-de83-4ce8-9a30-1ef9bf5fe235" />
 
 Developed by Rosepen Studios
 </div>
