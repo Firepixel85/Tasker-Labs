@@ -13,7 +13,7 @@ Opening Tasker for the first time, developer plugins will not be available. To e
 
 ## What developer plugins are available?
 Currently, we have the following developer plugins available:
+- **FocusCore**: The full Focus plugin just integrated into Tasker, mainly used for demo and review purposes to avoid the install process
 - **Console**: A plugins that shows all logs, warnings and errors that Tasker produces. Use it to get an idea of how Tasker works.
 - **API Test**: A selection of various actions, that allow you to trigger and test various features of Tasker such as creating an event or pushing a notification. Use it to test out Tasker's features and see how they work.
 - **App Demo**: This plugin simply displays images and is used for taking screenshots of future plugin interfaces. Currently it displays how the Focus plugin will look when development is finished. An very early version of the Focus plugin is also available as a Developer Plugin.
-- **FocusCore**: The full Focus plugin just integrated into Tasker, mainly used for demo and review purposes to avoid the install process
