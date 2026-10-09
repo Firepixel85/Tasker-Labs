@@ -221,7 +221,7 @@ class Updates:
 					desc_http.request(description_url,headers)
 					var desc_response = await desc_http.request_completed
 					desc_http.queue_free()
-					if desc_response[1] == 200:
+					if desc_response[1] == 200 and FileAccess.file_exists("user://Description.txt"):
 						var desc_file = FileAccess.open("user://Description.txt",FileAccess.READ)
 						latest_version_description = desc_file.get_as_text()
 						desc_file.close()
