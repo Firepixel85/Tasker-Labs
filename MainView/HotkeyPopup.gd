@@ -8,9 +8,14 @@ extends Control
 
 func _ready() -> void:
 	for hotkey in HotkeyManager.get_hotkey_list():
+		if HotkeyManager.get_tab_specific_id(hotkey) != "" and HotkeyManager.get_tab_specific_id(hotkey) != Sidebar.get_selected_tab() and !HotkeyManager.get_tab_specific_id(hotkey).begins_with("core."):
+			continue
 		var hotkey_node = preload("res://MainView/Hotkey.tscn").instantiate()
 		hotkey_container.add_child(hotkey_node)
 		hotkey_node.setup(hotkey)
+	var spacer := Control.new()
+	spacer.custom_minimum_size.y = 20
+	hotkey_container.add_child(spacer)
 	search.edit()
 
 func _on_close_pressed() -> void:
@@ -23,10 +28,15 @@ func _on_search_text_changed(new_text: String) -> void:
 	for hotkey in ranked_hotkeys.keys():
 		if ranked_hotkeys[hotkey] == 0 and new_text != "":
 			continue
+		if HotkeyManager.get_tab_specific_id(hotkey) != "" and HotkeyManager.get_tab_specific_id(hotkey) != Sidebar.get_selected_tab() and !HotkeyManager.get_tab_specific_id(hotkey).begins_with("core."):
+			continue
 		var hotkey_node = preload("res://MainView/Hotkey.tscn").instantiate()
 		hotkey_container.add_child(hotkey_node)
 		hotkey_node.setup(hotkey)
-	
+	var spacer := Control.new()
+	spacer.custom_minimum_size.y = 20
+	hotkey_container.add_child(spacer)
+
 func rank_hotkeys(input:String):
 	var hotkeys := {}
 	for hotkey in HotkeyManager.get_hotkey_list():
@@ -61,7 +71,7 @@ func score_hotkey(hotkey_id:String,input:String):
 	elif input == _get_acronym(hotkey):
 		return 4
 	return 0
-	
+
 func _is_substring(haystack:String,needle:String):
 	var found_index = haystack.find(needle)
 	if found_index != -1:
@@ -72,7 +82,7 @@ func _is_substring(haystack:String,needle:String):
 			return length_difference
 	else:
 		return false
-		
+
 func _get_acronym(command_name:String):
 	var acronym = ""
 	for word in command_name.split(" "):

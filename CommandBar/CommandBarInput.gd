@@ -33,7 +33,14 @@ func _on_line_edit_focus_exited() -> void:
 
 func open():
 	command_bar.open()
-	edit()
+	super.edit()
+	while line_edit.has_focus():
+		if caret_blink:
+			caret_animation.play("loop")
+			await caret_animation.animation_finished
+		else:
+			line_edit.add_theme_color_override("caret_color",Color(1,1,1,1))
+			await get_tree().create_timer(1).timeout
 
 func close(execute:=false):
 	if execute:

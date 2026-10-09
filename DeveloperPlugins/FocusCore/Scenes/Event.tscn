@@ -1,0 +1,134 @@
+[gd_scene format=3 uid="uid://clgac2ccvxgcp"]
+
+[ext_resource type="Script" uid="uid://c2p2esi13p777" path="res://DeveloperPlugins/Focus/Scenes/Event.gd" id="1_k07gs"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_wylj5"]
+[ext_resource type="PackedScene" uid="uid://1nk7n70h8a72" path="res://addons/RoseGarden/components/ProgressBar/RGProgressBar.tscn" id="3_0tyy3"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_rt2iq"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="7_1v8sv"]
+[ext_resource type="Texture2D" uid="uid://71w0fh5teeqq" path="res://Icons/CheckCircle.svg" id="10_0tyy3"]
+
+[node name="Event" type="Control" unique_id=901116723]
+custom_minimum_size = Vector2(448, 172)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k07gs")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_wylj5")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="Content" type="MarginContainer" parent="RGContainer" unique_id=1963531735]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/Content" unique_id=673765879]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Control" type="Control" parent="RGContainer/Content/VBoxContainer" unique_id=1012776895]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+
+[node name="ProgressBar" parent="RGContainer/Content/VBoxContainer/Control" unique_id=1750477034 instance=ExtResource("3_0tyy3")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+text_alignment = "Right"
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/Content/VBoxContainer/Control" unique_id=527882982]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 16
+
+[node name="ProgressText" parent="RGContainer/Content/VBoxContainer/Control/MarginContainer" unique_id=85953319 instance=ExtResource("5_rt2iq")]
+custom_minimum_size = Vector2(52, 28)
+layout_mode = 2
+text = "00:00"
+font_size = "Secondary"
+rounded = true
+vertical_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/Content/VBoxContainer" unique_id=781259835]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="PauseUnpause" parent="RGContainer/Content/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("7_1v8sv")]
+custom_minimum_size = Vector2(194, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Pause"
+show_tooltip = true
+tooltip_display_text = "Pause session"
+show_keybind = true
+keybind_text = "⌘⇧P"
+
+[node name="StartStop" parent="RGContainer/Content/VBoxContainer/HBoxContainer" unique_id=21703664 instance=ExtResource("7_1v8sv")]
+custom_minimum_size = Vector2(188, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Done"
+show_tooltip = true
+tooltip_display_text = "Stop session"
+show_keybind = true
+keybind_text = "⌘⏎"
+
+[node name="Celebration" type="CenterContainer" parent="RGContainer" unique_id=1679679345]
+visible = false
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="RGContainer/Celebration" unique_id=147398104]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/Celebration/HBoxContainer" unique_id=1961904551]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/Celebration/HBoxContainer/HBoxContainer" unique_id=194865094]
+layout_mode = 2
+texture = ExtResource("10_0tyy3")
+stretch_mode = 2
+
+[node name="RGText" parent="RGContainer/Celebration/HBoxContainer" unique_id=1795713214 instance=ExtResource("5_rt2iq")]
+custom_minimum_size = Vector2(242, 28)
+layout_mode = 2
+text = "Session logged, good job!"
+font_size = "Secondary"
+vertical_alignment = "Center"
+
+[connection signal="de_hovered" from="RGContainer/Content/VBoxContainer/HBoxContainer/PauseUnpause" to="." method="_on_pause_unpause_de_hovered"]
+[connection signal="hovered" from="RGContainer/Content/VBoxContainer/HBoxContainer/PauseUnpause" to="." method="_on_pause_unpause_hovered"]
+[connection signal="pressed" from="RGContainer/Content/VBoxContainer/HBoxContainer/PauseUnpause" to="." method="_on_pause_unpause_pressed"]
+[connection signal="de_hovered" from="RGContainer/Content/VBoxContainer/HBoxContainer/StartStop" to="." method="_on_start_stop_de_hovered"]
+[connection signal="hovered" from="RGContainer/Content/VBoxContainer/HBoxContainer/StartStop" to="." method="_on_start_stop_hovered"]
+[connection signal="pressed" from="RGContainer/Content/VBoxContainer/HBoxContainer/StartStop" to="." method="_on_start_stop_pressed"]

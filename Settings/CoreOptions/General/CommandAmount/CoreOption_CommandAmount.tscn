@@ -37,8 +37,10 @@ size_flags_horizontal = 3
 [node name="RGTextField" parent="HBoxContainer" unique_id=808777957 instance=ExtResource("3_c2s64")]
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 2
+text_alignment = "Center"
 editable = false
 appear_uneditable = false
+text_margin = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer" unique_id=377167543]
 layout_mode = 2

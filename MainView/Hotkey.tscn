@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bbhi37uwjkvb5" path="res://MainView/Hotkey.svg" id="1_8yngy"]
 [ext_resource type="Script" uid="uid://dmo55rnac6pc1" path="res://MainView/Hotkey.gd" id="1_q0bc5"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_q0bc5"]
+[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="4_q0bc5"]
 
 [node name="Control" type="Control" unique_id=1924013357]
 custom_minimum_size = Vector2(0, 40)
@@ -48,8 +49,26 @@ rounded = true
 vertical_alignment = "Center"
 
 [node name="HotkeyName" parent="HBoxContainer" unique_id=1838490023 instance=ExtResource("2_q0bc5")]
-custom_minimum_size = Vector2(191, 28)
+custom_minimum_size = Vector2(69, 28)
 layout_mode = 2
-text = "Open CommandBar"
+text = "[name]"
 font_size = "Secondary"
 vertical_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="HBoxContainer" unique_id=1918831478]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Process" type="Control" parent="HBoxContainer" unique_id=624917005 instance=ExtResource("2_q0bc5")]
+custom_minimum_size = Vector2(88, 28)
+layout_mode = 2
+focus_mode = 1
+script = ExtResource("4_q0bc5")
+text = "[process]"
+font_size = "Secondary"
+color = "Secondary"
+vertical_alignment = "Center"
+
+[node name="Control" type="Control" parent="HBoxContainer" unique_id=1468697638]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2

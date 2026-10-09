@@ -37,6 +37,12 @@ class_name RGButton
 	set(new_value):
 		connection = new_value
 		_update()
+@export var margins:int = 64:
+	set(new_value):
+		if new_value < 0:
+			return
+		margins = new_value
+		_update()
 
 @export_category("Button Controls")
 @export var disabled:bool = false:
@@ -134,17 +140,19 @@ func _update():
 	label.text = text
 	texture.texture = icon
 	base.texture = load(RoseGarden._file_path+"Button/Base"+connection+"/Base"+color+".svg")
-	custom_minimum_size.x = label.size.x+texture.size.x+136
-	label.visible = true
-	content_margin.add_theme_constant_override("margin_left",64)
-	content_margin.add_theme_constant_override("margin_right",64)
-	label.get_parent().add_theme_constant_override("separation",8)
+	label.show()
+	texture.show()
+	content_margin.add_theme_constant_override("margin_left",margins)
+	content_margin.add_theme_constant_override("margin_right",margins)
 	if text == "":
 		label.get_parent().add_theme_constant_override("separation",0)
 		content_margin.add_theme_constant_override("margin_left",6)
 		content_margin.add_theme_constant_override("margin_right",6)
-		custom_minimum_size.x = 60
 		label.visible = false
+	if icon == null:
+		texture.hide()
+	custom_minimum_size.x = label.get_parent().get_minimum_size().x+content_margin.get_theme_constant("margin_left")+content_margin.get_theme_constant("margin_right")
+	#label.get_parent().add_theme_constant_override("separation",8)
 	if get_parent().is_class("BoxContainer") and !(size_flags_horizontal & Control.SIZE_EXPAND):
 		size = custom_minimum_size
 	text_container.size.x = size.x
@@ -166,6 +174,7 @@ func _update():
 		"Down":
 			pivot_offset = Vector2(size.x/2,size.y)
 	set_color(color)
+
 
 func _ready() -> void:
 	set_color(color)

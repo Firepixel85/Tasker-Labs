@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="3_ox4ph"]
 [ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="5_7entp"]
 [ext_resource type="PackedScene" uid="uid://cpyeqq0aqf166" path="res://addons/RoseGarden/components/TextFieldIcon/RGTextFieldIcon.tscn" id="6_2m4ag"]
+[ext_resource type="Script" uid="uid://bc5w4fxujsn0e" path="res://MainView/ScrollFade.gd" id="7_aoegw"]
 [ext_resource type="Texture2D" uid="uid://bcjyma7qmvdvl" path="res://Icons/Search.svg" id="8_kgheu"]
 
 [sub_resource type="Gradient" id="Gradient_ox4ph"]
@@ -13,7 +14,7 @@ colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 1, 0.11372549, 0.1
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_u015h"]
 gradient = SubResource("Gradient_ox4ph")
-height = 40
+height = 80
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
@@ -24,7 +25,7 @@ colors = PackedColorArray(0.11372549, 0.11372549, 0.11372549, 0, 0.11372549, 0.1
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_2m4ag"]
 gradient = SubResource("Gradient_7entp")
-height = 40
+height = 60
 fill_from = Vector2(0.5, 0)
 fill_to = Vector2(0.5, 1)
 metadata/_snap_enabled = true
@@ -87,8 +88,11 @@ theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 16
 theme_override_constants/margin_bottom = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=606105802]
+[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=606105802 node_paths=PackedStringArray("top_texture", "bottom_texture")]
 layout_mode = 2
+script = ExtResource("7_aoegw")
+top_texture = NodePath("../../../../MarginContainer2/VBoxContainer/FadeTop")
+bottom_texture = NodePath("../../../../MarginContainer2/VBoxContainer/FadeBottom")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer" unique_id=1621148224]
 layout_mode = 2

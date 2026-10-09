@@ -31,8 +31,10 @@ func _on_open_love_letter_pressed():
 	love_letter.visible = true
 	close_ll_container.visible = true
 
-
 func _on_close_ll_pressed() -> void:
 	options.visible = true
 	love_letter.visible = false
 	close_ll_container.visible = false
+
+func interact():
+	_on_open_user_folder_pressed()

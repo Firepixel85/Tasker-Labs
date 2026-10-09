@@ -40,7 +40,7 @@ func _ready():
 	CommandBar.load_commands()
 	Popups.popup_container = popup_container
 	Popups.popup_fade = popup_fade
-	Popups._ready()
+	#Popups._ready()
 	view_nodes["settings"] = settings_view
 	view_nodes["plugins"] = plugins_view
 	view_nodes["mainview"] = main_view
@@ -72,6 +72,10 @@ func _ready():
 		Settings.add_option("core.general","command_amount","res://Settings/CoreOptions/General/CommandAmount/CoreOption_CommandAmount.tscn",4)
 	if !Settings.option_exists("core.general/show_categories"):
 		Settings.add_option("core.general","show_categories","res://Settings/CoreOptions/General/ShowCategories/CoreOption_ShowCategories.tscn",true)
+	if !Settings.option_exists("core.general/hotkey_enabled"):
+		Settings.add_option("core.general","hotkey_enabled","res://Settings/CoreOptions/General/HotkeyEnabled/CoreOption_HotkeyEnabled.tscn",true)
+	if !Settings.option_exists("core.general/hotkey_delay"):
+		Settings.add_option("core.general","hotkey_delay","res://Settings/CoreOptions/General/HotkeyDelay/CoreOption_HotkeyDelay.tscn",1.5)
 
 	#Appearance
 	if !Settings.category_exists("core.appearance"):
@@ -157,35 +161,37 @@ func _ready():
 		Settings.set_option_value("core.developer/dev_tools",true)
 	#RoseGarden.enable_custom_textures("res://WhiteTheme")
 
+	HotkeyManager.register_hotkey("Quit","⌘Q",null,[],"core.tasker")
+	HotkeyManager.register_hotkey("Close popup","esc",null,[],"core.tasker")
 
 func open_view(view_name:String):
 	if !view_nodes.has(view_name):
 		return ERR_DOES_NOT_EXIST
-	HotkeyManager.register_hotkey("Open settings","⌘,",null)
-	HotkeyManager.register_hotkey("Open plugins","⌘P",null)
-	HotkeyManager.register_hotkey("Open main view","esc",null)
+	HotkeyManager.register_hotkey("Open settings","⌘,",null,[],"core.tasker")
+	HotkeyManager.register_hotkey("Open plugins","⌘P",null,[],"core.tasker")
+	HotkeyManager.register_hotkey("Open main view","esc",null,[],"core.tasker")
 	if view_name == "settings":
 		settings_view.setup()
-		HotkeyManager.register_hotkey("Select category [n]","⌘[n]",null)
-		HotkeyManager.register_hotkey("Change option [n]","⇧[n]",null)
+		HotkeyManager.register_hotkey("Select category [n]","⌘[n]",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Change option [n]","⇧[n]",null,[],"core.tasker")
 		HotkeyManager.unregister_hotkey("open_settings")
 	else:
 		HotkeyManager.unregister_hotkey("select_category_[n]")
 		HotkeyManager.unregister_hotkey("change_option_[n]")
 	if view_name == "plugins":
 		plugins_view.setup()
-		HotkeyManager.register_hotkey("Enable plugin [n]","⌥[n]",null)
-		HotkeyManager.register_hotkey("Disable plugin [n]","⇧[n]",null)
+		HotkeyManager.register_hotkey("Enable plugin [n]","⌥[n]",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Disable plugin [n]","⇧[n]",null,[],"core.tasker")
 		HotkeyManager.unregister_hotkey("open_plugins")
 	else:
 		HotkeyManager.unregister_hotkey("enable_plugin_[n]")
 		HotkeyManager.unregister_hotkey("disable_plugin_[n]")
 	if view_name == "mainview":
-		HotkeyManager.register_hotkey("Scroll events left","⌥←",null)
-		HotkeyManager.register_hotkey("Scroll events right","⌥→",null)
-		HotkeyManager.register_hotkey("Open CommandBar","⌘K",null)
-		HotkeyManager.register_hotkey("Open tab [n]","⌘[n]",null)
-		HotkeyManager.register_hotkey("Dismiss notification","⌃W",null)
+		HotkeyManager.register_hotkey("Scroll events left","⌥←",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Scroll events right","⌥→",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Open CommandBar","⌘K",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Open tab [n]","⌘[n]",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Dismiss notification","⌃W",null,[],"core.tasker")
 		HotkeyManager.unregister_hotkey("open_main_view")
 	else:
 		HotkeyManager.unregister_hotkey("scroll_events_left")
@@ -207,7 +213,7 @@ func open_view(view_name:String):
 	return OK
 
 func _process(_delta: float) -> void:
-	if Input.is_key_pressed(KEY_META) and hotkeys_timer.is_stopped():
+	if Input.is_key_pressed(KEY_META) and hotkeys_timer.is_stopped() and Settings.get_option_value("core.general/hotkey_enabled"):
 		hotkeys_timer.start()
 		_await_hotkey_timer()
 	if !Input.is_key_pressed(KEY_META) and !hotkeys_timer.is_stopped():
@@ -233,7 +239,7 @@ func _process(_delta: float) -> void:
 
 var is_awaiting_hotkey_timer:bool = false
 func _await_hotkey_timer():
-	if is_awaiting_hotkey_timer:
+	if is_awaiting_hotkey_timer or !Settings.get_option_value("core.general/hotkey_enabled"):
 		return
 	is_awaiting_hotkey_timer = true
 	await hotkeys_timer.timeout
@@ -290,10 +296,14 @@ func _settings_changed(option_path,new_value):
 			for category in Settings._category_list:
 				if CommandBar.command_exists("core.settings"+"/"+Settings._category_names[category]):
 					CommandBar.remove_command("core.settings"+"/"+Settings._category_names[category])
+	if option_path == "core.general/hotkey_delay":
+		hotkeys_timer.wait_time = new_value
 
 func _update_setting_values():
 	if Settings.option_exists("core.general/display_name"):
 		user_name.set_text(Settings.get_option_value("core.general/display_name"))
+	if Settings.option_exists("core.general/hotkey_enabled"):
+		hotkeys_timer.wait_time = Settings.get_option_value("core.general/hotkey_delay")
 	RoseGarden.Animations.rcmSelection = Settings.get_option_value("core.appearance/more_animations")
 	RoseGarden.Animations.ddmSelection = Settings.get_option_value("core.appearance/more_animations")
 	if Settings.get_option_value("core.developer/rg_options"):

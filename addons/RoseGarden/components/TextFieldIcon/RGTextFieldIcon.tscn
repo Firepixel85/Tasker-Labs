@@ -7,6 +7,44 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ypgaa"]
 
+[sub_resource type="Animation" id="Animation_tvk61"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/LineEdit:theme_override_colors/caret_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0.95, 0.95, 0.95, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_l4s1n"]
+resource_name = "loop"
+length = 1.1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MarginContainer/LineEdit:theme_override_colors/caret_color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.7, 0.8, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(0.95, 0.95, 0.95, 1), Color(1, 1, 1, 1), Color(0.9607843, 0.9607843, 0.9607843, 0), Color(0.9490196, 0.9490196, 0.9490196, 0), Color(0.95, 0.95, 0.95, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_op0kf"]
+_data = {
+&"RESET": SubResource("Animation_tvk61"),
+&"loop": SubResource("Animation_l4s1n")
+}
+
 [node name="RGTextFieldIcon" type="Control" unique_id=212265237]
 custom_minimum_size = Vector2(128, 60)
 layout_mode = 3
@@ -96,7 +134,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 5.605011
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 58
@@ -107,18 +144,22 @@ layout_mode = 2
 theme = ExtResource("3_0lceu")
 theme_override_colors/font_color = Color(0.9607843, 0.9607843, 0.9607843, 1)
 theme_override_colors/font_uneditable_color = Color(0.8745098, 0.8745098, 0.8745098, 0.5019608)
+theme_override_colors/caret_color = Color(0.95, 0.95, 0.95, 1)
 theme_override_colors/selection_color = Color(0.28627452, 0.53333336, 0.68235296, 1)
+theme_override_constants/minimum_character_width = 1
 theme_override_font_sizes/font_size = 20
 theme_override_styles/focus = SubResource("StyleBoxEmpty_ypgaa")
 context_menu_enabled = false
 flat = true
-caret_blink = true
 secret_character = "*"
 
-[connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
+[node name="CaretAnimation" type="AnimationPlayer" parent="." unique_id=100837253]
+libraries/ = SubResource("AnimationLibrary_op0kf")
+
 [connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_update"]
-[connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
+[connection signal="focus_entered" from="MarginContainer/LineEdit" to="." method="_on_line_edit_focus_entered"]
 [connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_update"]
+[connection signal="focus_exited" from="MarginContainer/LineEdit" to="." method="_on_line_edit_focus_exited"]
 [connection signal="gui_input" from="MarginContainer/LineEdit" to="." method="_on_gui_input"]
 [connection signal="mouse_entered" from="MarginContainer/LineEdit" to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="MarginContainer/LineEdit" to="." method="_on_mouse_exited"]

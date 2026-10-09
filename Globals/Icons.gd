@@ -50,6 +50,10 @@ const CALENDARDOWNARROW = preload("res://Icons/CalendarDownArrow.svg")
 const PAUSE = preload("res://Icons/Pause.svg")
 const SLIDERS = preload("res://Icons/Sliders.svg")
 const CHECKCIRCLE = preload("res://Icons/CheckCircle.svg")
+const DATABASESEARCH = preload("res://Icons/DatabaseSearch.svg")
+const SAVE = preload("res://Icons/Save.svg")
+const SAVECHECK = preload("res://Icons/SaveCheck.svg")
+const FOLDEROPEN = preload("res://Icons/FolderOpen.svg")
 
 func get_icon_path(icon:String) -> String:
 	var path = "res://Icons/"+icon+".svg"

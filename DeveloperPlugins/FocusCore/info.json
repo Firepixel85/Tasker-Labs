@@ -1,0 +1,8 @@
+{
+	"name":"FocusCore",
+	"author":"Rosepen Studios",
+	"version":"0.2",
+	"target_api_version":"1.0",
+	"plugin_id":"com.rosepen.focus_core",
+	"description":"Thsi is a built-in version of the Focus plugin, used for demo purposes."
+}

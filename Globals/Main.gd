@@ -8,9 +8,9 @@ class window:
 
 const ID = "core.main"
 const version:String = "2.0"
-const version_sufix:String = "beta2"
+const version_sufix:String = "beta3_v2"
 const plugin_api_version:String = "1.0"
-const dev_kit:bool = false
+const dev_kit:bool = true
 signal view_changed(new_view:String)
 
 func save_window_data():
@@ -26,6 +26,8 @@ func get_process_name(process_id:String):
 	match process_id:
 		"core.debug":
 			return "Debug"
+		"core.tasker":
+			return "Tasker"
 		"core.main":
 			return "Main"
 		"core.plugin_manager":

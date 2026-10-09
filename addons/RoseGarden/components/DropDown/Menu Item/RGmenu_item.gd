@@ -43,7 +43,7 @@ func _ready() -> void:
 
 func _pressed() -> void:
 	manager.select(id)
-	manager._close()
+	manager.close()
 
 func _on_mouse_entered() -> void:
 	highlighted = true

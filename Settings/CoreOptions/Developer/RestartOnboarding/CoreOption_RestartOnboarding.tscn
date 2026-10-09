@@ -35,9 +35,10 @@ layout_mode = 2
 alignment = 1
 
 [node name="Restart" parent="HBoxContainer/VBoxContainer" unique_id=1426858299 instance=ExtResource("3_8qn5u")]
-custom_minimum_size = Vector2(207, 60)
+custom_minimum_size = Vector2(183, 60)
 layout_mode = 2
 text = "Restart"
+margins = 56
 
 [connection signal="de_hovered" from="HBoxContainer/VBoxContainer/Restart" to="." method="_on_reset_de_hovered"]
 [connection signal="hovered" from="HBoxContainer/VBoxContainer/Restart" to="." method="_on_reset_hovered"]

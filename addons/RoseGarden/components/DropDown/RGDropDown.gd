@@ -14,7 +14,8 @@ var items:Array = []
 var item_ids:Array = []
 var last_given_id:int = -1
 var selected:int = 0
-var open:bool = false
+var _is_open:bool = false
+var _hovered:bool = false
 var canvas_layer_index:int = 0:
 	set(new_value):
 		canvas_layer_index = new_value
@@ -36,8 +37,8 @@ func add_item(item_name:String,item_id:int):
 	target._ready()
 	_update()
 	menu_container.modulate = Color(1,1,1,0)
-	_open()
-	_close(true)
+	open()
+	close(true)
 	menu_container.modulate = Color(1,1,1,1)
 	return OK
 
@@ -79,11 +80,47 @@ func get_selected_item():
 	return items[_find_index(item_ids,selected)]
 
 func is_open():
-	return open
+	return _is_open
+
+var selected_when_opened:int = 0
+func open():
+	if _is_open:
+		return
+	selected_when_opened = selected
+	_is_open = true
+	grab_focus()
+	menu_container.position = global_position
+	for child in menu_item_container.get_children():
+		if child.id == selected:
+			child.selected = true
+		if child.id == selected and !_hovered:
+			child.highlighted = true
+		if child.id == item_ids[0] and _hovered:
+			child.highlighted = true
+		child._update()
+	if _hovered:
+		create_tween().tween_property(selection,"position:y",0,0.01*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	else:
+		_on_menu_item_highlighted(selected)
+	_update()
+	menu_container.visible=true
+	selection.visible = true
+	opened.emit()
+
+func close(invisible:bool=false):
+	_is_open = false
+	var tween = create_tween()
+	selection.hide()
+	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
+	await get_tree().create_timer(0.07*int(!invisible)).timeout
+	menu_container.hide()
+	closed.emit()
 
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
+
+
 
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update)
@@ -104,6 +141,7 @@ func _update():
 	arrow.texture = load(RoseGarden._file_path+"DropDown/Arrow.svg")
 	menu_container.texture = load(RoseGarden._file_path+"DropDown/Container.svg")
 	selection.texture = load(RoseGarden._file_path+"DropDown/Selection.svg")
+	selection.custom_minimum_size.x = menu_container.size.x-12
 	container.size = size
 	menu_container.size = size
 	custom_minimum_size = size
@@ -130,30 +168,9 @@ func _find_index(array:Array,item):
 			index = i
 	return index
 
-func _open():
-	open = true
-	grab_focus()
-	menu_container.position = global_position
-	for child in menu_item_container.get_children():
-		child._update()
-		if _find_index(item_ids,child.id) == 0:
-			child.highlighted = true
-	menu_container.visible=true
-	_update()
-	selection.visible = true
-	opened.emit()
-
-func _close(invisible:bool=false):
-	open = false
-	var tween = create_tween()
-	selection.hide()
-	tween.tween_property(menu_container,"size",size,0.07*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_SINE)
-	await get_tree().create_timer(0.07*int(!invisible)).timeout
-	menu_container.hide()
-	closed.emit()
 
 func _pressed() -> void:
-	_open()
+	open()
 
 func _new_menu_item(node: Node) -> void:
 	await node._updated
@@ -173,20 +190,22 @@ func _select_item(id: int):
 		else:
 			item.highlighted = false
 		item._update()
-	
+
 func _on_focus_exited() -> void:
 	await get_tree().process_frame
 	for child in menu_item_container.get_children():
 		if child.button.has_focus():
 			return
 	if !has_focus():
-		_close()
+		close()
 
 func _on_mouse_entered() -> void:
+	_hovered = true
 	modulate = RoseGarden.Colors.COLOR_HOVERED
 
 
 func _on_mouse_exited() -> void:
+	_hovered = false
 	modulate = RoseGarden.Colors.COLOR_NORMAL
 
 
@@ -201,13 +220,27 @@ func _update_themes():
 	label.theme = RoseGarden.Themes.Secondary
 
 func _process(delta: float) -> void:
-	if !open:
+	if !_is_open:
 		return
 	menu_container.position = global_position
-	if Input.is_action_just_pressed("ui_up") and _find_index(item_ids,get_selected()) > 0:
+
+func _input(event: InputEvent) -> void:
+	if !_is_open or !(event is InputEventKey) or event.pressed:
+		return
+	if event.keycode == KEY_UP and _find_index(item_ids,get_selected()) > 0:
 		_select_item(item_ids[_find_index(item_ids,get_selected())-1])
-	if Input.is_action_just_pressed("ui_down") and _find_index(item_ids,get_selected()) < item_ids.size()-1:
+		get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_DOWN and _find_index(item_ids,get_selected()) < item_ids.size()-1:
 		_select_item(item_ids[_find_index(item_ids,get_selected())+1])
-	if Input.is_action_just_pressed("ui_accept") or Input.is_action_just_pressed("ui_cancel"):
+		get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_ENTER:
 		await get_tree().process_frame
-		_close()
+		close()
+		label.text = items[_find_index(item_ids,selected)]
+		get_viewport().set_input_as_handled()
+	elif event.keycode == KEY_ESCAPE:
+		_select_item(selected_when_opened)
+		await get_tree().process_frame
+		close()
+		label.text = items[_find_index(item_ids,selected)]
+		get_viewport().set_input_as_handled()

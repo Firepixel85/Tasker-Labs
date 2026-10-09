@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://b5intoxnk6bwd" path="res://PluginView/Plugin/Version Controlled.svg" id="3_8c80u"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_g3lmw"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_8c80u"]
-[ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="5_is50w"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="6_7mmro"]
 
 [node name="Control" type="Control" unique_id=560581757]
@@ -46,6 +45,7 @@ theme_override_constants/separation = 36
 layout_mode = 2
 
 [node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=450719860]
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 texture = ExtResource("3_8c80u")
 stretch_mode = 5
@@ -59,26 +59,15 @@ layout_mode = 2
 theme_override_constants/separation = 2
 
 [node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("3_g3lmw")]
-custom_minimum_size = Vector2(190, 29)
+custom_minimum_size = Vector2(293, 34)
 layout_mode = 2
-text = "Version Controlled"
+size_flags_vertical = 3
+text = "Version Controlled Plugin"
 vertical_alignment = "Center"
-
-[node name="RGText2" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=796463862 instance=ExtResource("3_g3lmw")]
-custom_minimum_size = Vector2(64, 29)
-layout_mode = 2
-text = "Plugin"
-horizontal_alignment = "Center"
 
 [node name="Spacer2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=328389435]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="Close" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_8c80u")]
-custom_minimum_size = Vector2(60, 60)
-layout_mode = 2
-text = ""
-icon = ExtResource("5_is50w")
 
 [node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=330830410]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
@@ -98,5 +87,4 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Got it!"
 
-[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Close" to="." method="_on_close_pressed"]

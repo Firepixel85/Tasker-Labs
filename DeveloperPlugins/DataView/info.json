@@ -1,0 +1,8 @@
+{
+	"name":"DataView",
+	"author":"Rosepen Studios",
+	"version":"0.1",
+	"target_api_version":"1.0",
+	"plugin_id":"com.rosepen.dataview",
+	"description":"A built-in debugging tool, used for all data tracked by Tasker. This plugin is part of Tasker's developer tools that can be toggled through the settings menu."
+}

@@ -6,6 +6,7 @@ class_name RGTextField
 @onready var hint_text: Label = $MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect/MarginContainer/Label
 @onready var hint_texture: NinePatchRect = $MarginContainer2/VBoxContainer/HBoxContainer/NinePatchRect
 @onready var hint_container: MarginContainer = $MarginContainer2
+@onready var caret_animation: AnimationPlayer = $CaretAnimation
 
 @export var text:String = "":
 	set(new_value):
@@ -17,6 +18,12 @@ class_name RGTextField
 	set(new_value):
 		placeholder_text = new_value
 		_mirror_to_line_edit()
+@export_enum("Left","Center","Right","Fill") var text_alignment = "Left":
+	set(new_value):
+		if new_value != "Left" and new_value != "Center" and new_value != "Right" and new_value != "Fill":
+			return
+		text_alignment = new_value
+		_update()
 @export var editable:bool = true:
 	set(new_value):
 		editable = new_value
@@ -54,6 +61,12 @@ class_name RGTextField
 	set(new_value):
 		needs_focus = new_value
 		_update()
+@export var text_margin:int = 12:
+	set(new_value):
+		if new_value < 0:
+			return
+		text_margin = int(new_value)
+		_update()
 
 signal text_changed(new_text:String)
 signal text_submitted(new_text:String)
@@ -77,6 +90,7 @@ func edit():
 	line_edit.edit()
 	await get_tree().process_frame
 	line_edit.caret_column = line_edit.text.length()
+	_on_focus_entered()
 	return OK
 
 func cut():
@@ -125,6 +139,9 @@ func _update():
 	line_edit.get_parent().size.x = size.x
 	hint_texture.custom_minimum_size.x = hint_text.size.x + 16
 	line_edit.secret = secret
+	line_edit.get_parent().position = Vector2(0,0)
+	line_edit.get_parent().add_theme_constant_override("margin_right", text_margin)
+	line_edit.get_parent().add_theme_constant_override("margin_left", text_margin)
 
 	if line_edit.has_focus():
 		create_tween().tween_property(hint_container,"modulate",Color(0,0,0,0),0.1*int(!RoseGarden.Accessibility.get_disable_animations())).set_trans(Tween.TRANS_BOUNCE)
@@ -147,7 +164,8 @@ func _update():
 		line_edit.add_theme_color_override("font_uneditable_color",Color("f5f5f5"))
 
 	_mirror_to_line_edit()
-	line_edit.caret_blink = !RoseGarden.Accessibility.get_disable_animations()
+	if RoseGarden.Accessibility.get_disable_animations():
+		caret_blink = false
 
 func _process(_delta: float) -> void:
 	if secret:
@@ -176,8 +194,16 @@ func _mirror_to_line_edit():
 	line_edit.placeholder_text = placeholder_text
 	line_edit.editable = editable
 	line_edit.emoji_menu_enabled = emoji_menu_enabled
-	line_edit.caret_blink = caret_blink
 	line_edit.secret = secret
+	match text_alignment:
+		"Left":
+			line_edit.alignment = HORIZONTAL_ALIGNMENT_LEFT
+		"Center":
+			line_edit.alignment = HORIZONTAL_ALIGNMENT_CENTER
+		"Right":
+			line_edit.alignment = HORIZONTAL_ALIGNMENT_RIGHT
+		"Fill":
+			line_edit.alignment = HORIZONTAL_ALIGNMENT_FILL
 
 func _on_mouse_entered() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
@@ -201,6 +227,13 @@ func _on_focus_exited() -> void:
 
 func _on_focus_entered() -> void:
 	focus_entered.emit()
+	while line_edit.has_focus():
+		if caret_blink:
+			caret_animation.play("loop")
+			await caret_animation.animation_finished
+		else:
+			line_edit.add_theme_color_override("caret_color",Color(1,1,1,1))
+			await get_tree().create_timer(1).timeout
 
 func _on_gui_input(event: InputEvent) -> void:
 	if !context_menu:

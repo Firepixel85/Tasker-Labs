@@ -11,7 +11,7 @@ signal value_changed(option_id,new_value)
 
 func set_value(value:int):
 	number = value
-	text_field.set_text(" "+str(number))
+	text_field.set_text(str(number))
 
 func get_value():
 	return number
@@ -33,7 +33,7 @@ func _on_down_pressed() -> void:
 	if number == 2:
 		down.set_disabled(true)
 	number -= 1
-	text_field.set_text(" "+str(number))
+	text_field.set_text(str(number))
 	up.set_disabled(false)
 	value_changed.emit(name,number)
 
@@ -43,6 +43,6 @@ func _on_up_pressed() -> void:
 	if number == 9:
 		up.set_disabled(true)
 	number += 1
-	text_field.set_text(" "+str(number))
+	text_field.set_text(str(number))
 	down.set_disabled(false)
 	value_changed.emit(name,number)

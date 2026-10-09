@@ -30,8 +30,8 @@ func setup():
 	if PluginManager.is_plugin_trusted(id): trusted.show()
 	container._update()
 	url = await PluginManager.get_plugin_repo_site(id)
-	print(id,await PluginManager.get_plugin_repo_site((id)))
-
+	update_button.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	
 
 func _on_trusted_mouse_entered() -> void:
 	trusted_hovered = true

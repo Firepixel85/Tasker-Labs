@@ -17,10 +17,26 @@ func create_popup(popup_scene:Resource):
 		Debug.error("Attempted to add popup with resource that is not a PackedScene",ID)
 		return ERR_INVALID_PARAMETER
 	RoseGarden.clear_tooltips()
-	popup_container.visible = true
-	popup_container.add_child(popup_scene.instantiate())
+	popup_container.show()
+	popup = popup_scene.instantiate()
+	popup_container.add_child(popup)
+	await get_tree().process_frame
+	popup.pivot_offset_ratio = Vector2(0.5,0.5)
+	popup.scale = Vector2(0.8,0.8)
+	popup_fade.modulate = Color(0,0,0,0)
+	popup_fade.show()
+	var tween = create_tween()
+	tween.parallel().tween_property(popup,"scale",Vector2(1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0.5),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(popup,"modulate",Color(1,1,1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	popup_created.emit(popup)
+	Debug.log("Popup created",ID)
 	return OK
 
+
+#func _animate_popup(popup_node):
+#	await get_tree().process_frame
+#	popup = popup_node
 
 func clear_popup():
 	if popup == null:
@@ -47,25 +63,10 @@ func get_popup():
 func is_popup_active():
 	return popup != null
 
-func _ready():
-	if popup_container == null:
-		return
-	popup_container.child_entered_tree.connect(_animate_popup)
-
-func _animate_popup(popup_node):
-	await get_tree().process_frame
-	popup = popup_node
-	popup.pivot_offset_ratio = Vector2(0.5,0.5)
-	popup.scale = Vector2(0.8,0.8)
-	popup_fade.modulate = Color(0,0,0,0)
-	popup_fade.modulate = Color(0,0,0,0)
-	popup_fade.visible = true
-	var tween = create_tween()
-	tween.parallel().tween_property(popup,"scale",Vector2(1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0.5),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	tween.parallel().tween_property(popup,"modulate",Color(1,1,1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
-	popup_created.emit(popup)
-	Debug.log("Popup created",ID)
+#func _ready():
+#	if popup_container == null:
+#		return
+#	popup_container.child_entered_tree.connect(_animate_popup)
 
 func create_prefab_popup(prefab_popup:TSKPopup):
 	if popup != null:
@@ -75,8 +76,19 @@ func create_prefab_popup(prefab_popup:TSKPopup):
 		Debug.error("Attempted to add popup with resource that is not a TSKPopup",ID)
 		return ERR_INVALID_PARAMETER
 	RoseGarden.clear_tooltips()
-	popup_container.visible = true
-	var popup_node = load("res://Popups/Popup"+str(prefab_popup.type)+"/Popup"+str(prefab_popup.type)+".tscn").instantiate()
-	popup_container.add_child(popup_node)
-	popup_node.setup(prefab_popup)
+	popup_container.show()
+	popup = load("res://Popups/Popup"+str(prefab_popup.type)+"/Popup"+str(prefab_popup.type)+".tscn").instantiate()
+	popup_container.add_child(popup)
+	popup.setup(prefab_popup)
+	await get_tree().process_frame
+	popup.pivot_offset_ratio = Vector2(0.5,0.5)
+	popup.scale = Vector2(0.8,0.8)
+	popup_fade.modulate = Color(0,0,0,0)
+	popup_fade.show()
+	var tween = create_tween()
+	tween.parallel().tween_property(popup,"scale",Vector2(1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(popup_fade,"modulate",Color(0,0,0,0.5),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	tween.parallel().tween_property(popup,"modulate",Color(1,1,1,1),ANIMATION_TIME*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	popup_created.emit(popup)
+	Debug.log("Popup prefab created",ID)
 	return OK
