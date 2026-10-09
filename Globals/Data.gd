@@ -73,6 +73,8 @@ func _ready() -> void:
 		actual_file_path = data["actual_file_path"]
 		all_data["Core/Data"] = data
 	else:
+		if !DirAccess.dir_exists_absolute(OS.get_user_data_dir()+"/Core"):
+			DirAccess.make_dir_absolute(OS.get_user_data_dir()+"/Core")
 		var file = FileAccess.open("user://Core/Data.json",FileAccess.WRITE)
 		file.store_string(JSON.stringify({}))
 		file.close()

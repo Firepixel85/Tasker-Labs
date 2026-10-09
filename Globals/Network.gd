@@ -8,8 +8,8 @@ signal check_for_updates(latest_version: String, is_outdated: bool)
 const ID = "core.network"
 
 class GitHubAuth:
-	static var CLIENT_ID
-	static var CLIENT_SECRET
+	static var CLIENT_ID = null
+	static var CLIENT_SECRET = null
 	const REDIRECT_URI = "http://localhost:7458/callback"
 	const PORT = 7458
 	const ID = "core.network.githubauth"
@@ -20,6 +20,11 @@ class GitHubAuth:
 
 	static func authorize() -> void:
 		Debug.log("Attempting to authorize with GitHub",ID)
+		Network.get_github_info()
+		if Vault == null or CLIENT_ID == null:
+			RoseGarden.create_toast("Auth failed: run in engine","Red")
+			Debug.error("Missing GitHub app info, please try this on an official version of the app",ID)
+			return
 		_server = TCPServer.new()
 		var err = _server.listen(PORT)
 		if err != OK:
@@ -463,8 +468,6 @@ func save() -> void:
 		Data.save_file("Core/UpdateData")
 
 func _ready() -> void:
-	GitHubAuth.CLIENT_ID = Vault.GITHUB_CLIENT_ID
-	GitHubAuth.CLIENT_SECRET = Vault.GITHUB_CLIENT_SECRET
 	if Data.file_exists("Core/Secrets"):
 		var data = Data.load_file("Core/Secrets")
 		if data.has("access_token"):
@@ -489,3 +492,8 @@ func _on_view_changed(new_view:String) -> void:
 	var new_setting = await Settings.setting_changed
 	if new_setting[0] == "core.general/update_notify" and new_setting[1] == true:
 		Updates.check_for_updates()
+
+func get_github_info():
+	if Vault != null:
+		GitHubAuth.CLIENT_ID = Vault.GITHUB_CLIENT_ID
+		GitHubAuth.CLIENT_SECRET = Vault.GITHUB_CLIENT_SECRET
