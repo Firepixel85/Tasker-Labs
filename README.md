@@ -11,9 +11,6 @@
 ### Introduction
 Tasker 2.0 is a productivity powerhouse, designed to be fully plugin driven, allowing you to customize and extend its functionality to suit your unique workflow. Choose the features that suit you best and ignore the rest, making Tasker your own personal productivity dashboard.
 
-### A message to HackClub reviewers
-Tasker 2.0 is currently in beta. All planned features are implemented. I am currently in the process of creating plugins for Tasker, as without plugins it doesn't do much **useful** stuff. The first of those plugins is available for you to test now. It is a time/focus tracker that uses project and goals to keep you organized. You can view the plugin's repo [here](https://github.com/Rosepen-Studios/Focus) or follow the installation instructions I provide in the [latest release](https://github.com/Firepixel85/tasker-labs/releases/latest). Last time this project was rejected for the following reason: <code>hi! while i was testing your app. the core plugins didn't seem to actually do anything. while we acknowledge that it's a wip project, we expect core plugins to work as it's shipped for over 100 hours.</code> This issue has been addressed by creating an external plugin you can actually use in your daily life, so you can imagine how Tasker will work when more plugins are available. The plugin in question is the Focus plugin mentioned above.
-
 ### About running the app from source
 You will need a device running MacOS 11.00+ and Godot 4.6 stable. After downloading and importing the source code to Godot running the project shouldn't produce any fatal errors, that being said any errors  that force the engine to break should be resolved by hitting <code>F12</code> (Continue). Note that due to security reasons you won't be able to use GitHub OAuth with any version of Tasker not exported by me, as the secrets required for the OAuth are not tracked by Git for obvious security reasons. Commit [18c0e5d](https://github.com/Firepixel85/Tasker-Labs/commit/18c0e5dabeb4a203a0d1a07b0552ecc3a15e1b29) adds a fix that allows the app to run event if the GitHub OAuth secrets are missing. Please note that source is ahead of the current release and has new untested features like the DataView plugin.
 
@@ -42,9 +39,6 @@ Tasker is built with developers in mind, and we want to make it as easy as possi
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 9 56 35 PM" src="https://github.com/user-attachments/assets/0d72c042-3528-4eb3-9143-8905b95366ee" />
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 9 57 19 PM" src="https://github.com/user-attachments/assets/a30265a5-04c5-4037-b1b9-62115d49b9ae" />
 <img width="1248" height="870" alt="Screenshot 2026-07-30 at 10 00 02 PM" src="https://github.com/user-attachments/assets/30c31216-9692-4bd1-a5db-1ddaf0c826e1" />
-
-### Development Story
-During development it became apparent that I needed to create Tasker's systems to be as extensible as possible, which was quite different then what I was used to. It meant creating a whole new UI library that allowed for the creation of consistent, customizable, accessible & most importantly: good looking UI. Also I needed to figure out how to split the app into multiple independent systems that could work in isolation or together, making sure Tasker is resilient to error states. But the hardest part was designing all those systems to also be usable, by someone who doesn't know how Tasker works I.E. the plugins developers, so every API needed to be simple, easy-to-use, powerful & error resistant, while also being able to function in different environments (in-engine, developer plugin, exported plugin, etc.)
 
 ### Tech Stack
 Tasker is built in Godot 4.6 and is currently only targeting apple silicon. The following tools and plugins were used in development:
