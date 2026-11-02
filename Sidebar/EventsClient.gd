@@ -1,7 +1,10 @@
 extends ScrollContainer
 
 @onready var container: HBoxContainer = $"Event Container"
-@onready var selection: RGSegmentControlIcon = $"../EventSelection"
+@onready var selection: RGSegmentControlIcon = $"../../../EventSelection"
+@onready var blur_anim: AnimationPlayer = $"../../../AnimationPlayer"
+@onready var viewport: SubViewportContainer = $"../.."
+
 
 const ID = "core.event_manager"
 var events:Dictionary = {}
@@ -53,15 +56,23 @@ func _ready() -> void:
 func _update():
 	if events.size() == 0:
 		visible = false
+		viewport.hide()
 		selection.visible = false
 	elif events.size() == 1:
 		visible = true
+		viewport.show()
 		selection.visible = false
 	else:
 		selection.visible = true
 
 func _on_event_selected(item_name: String) -> void:
+	if container.get_child_count() == 1:
+		return
 	create_tween().tween_property(self,"scroll_horizontal",event_nodes[item_name].position.x,0.2*int(!RoseGarden.Accessibility.disableAnimations)).set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	if event_nodes[item_name].position.x > scroll_horizontal:
+		blur_anim.play("right")
+	else:
+		blur_anim.play("left")
 
 func _process(_delta: float) -> void:
 	if Main.get_current_view() != "mainview":

@@ -1,6 +1,6 @@
 extends GridContainer
 
-const CHILD_WIDTH: float = 512.0
+@export var  CHILD_WIDTH: float = 512.0
 
 func _ready() -> void:
 	resized.connect(_update_columns)

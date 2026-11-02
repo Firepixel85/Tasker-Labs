@@ -146,3 +146,22 @@ func _on_filters_pressed() -> void:
 		selected = logger_filter[0]
 	popup.console = self
 	popup.setup(all_loggers,selected)
+
+func _input(event: InputEvent) -> void:
+	if Sidebar.get_selected_tab() != ID:
+		return
+	if Input.is_action_just_pressed("toggle_logs"):
+		_on_toggle_logs_pressed()
+		get_viewport().set_input_as_handled()
+	elif Input.is_action_just_pressed("toggle_warns"):
+		_on_toggle_warns_pressed()
+		get_viewport().set_input_as_handled()
+	elif Input.is_action_just_pressed("toggle_errors"):
+		_on_toggle_errors_pressed()
+		get_viewport().set_input_as_handled()
+	elif Input.is_action_just_pressed("clear_console"):
+		_on_clear_pressed()
+		get_viewport().set_input_as_handled()
+	elif Input.is_action_just_pressed("open_filters"):
+		_on_filters_pressed()
+		get_viewport().set_input_as_handled()

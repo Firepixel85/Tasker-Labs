@@ -115,7 +115,7 @@ func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update)
 	while true:
 		_update()
-		if RoseGarden.PerformanceMode.is_enabled():
+		if RoseGarden.Flags.performance_mode:
 			await get_tree().create_timer(0.2).timeout
 		else:
 			await get_tree().process_frame

@@ -1,0 +1,8 @@
+{
+	"name": "Habits",
+	"version": "0.1",
+	"target_api_version": "1.0",
+	"author": "Rosepen Studios",
+	"plugin_id": "com.rosepen.habits",
+	"description": "Create new habits and track your progress using streaks!"
+}

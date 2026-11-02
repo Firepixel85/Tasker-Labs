@@ -9,22 +9,6 @@ func _ready() -> void:
 	await get_tree().create_timer(0.1).timeout
 	custom_themes_changed.emit()
 
-##########################
-#### Performance Mode ####
-##########################
-
-class PerformanceMode:
-	static var enabled:bool = false
-
-	static func enable():
-		enabled = true
-
-	static func disable():
-		enabled = false
-
-	static func is_enabled():
-		return enabled
-
 #######################
 #### Accessibility ####
 #######################
@@ -158,12 +142,15 @@ class Themes:
 
 class Flags:
 	static var accessible_toggles:bool = false
+	static var performance_mode:bool = false
 
 	static func change_flag(flag_name:String,value:bool):
 		match flag_name:
 			"accessible_toggles":
 				accessible_toggles = value
 				RoseGarden.update_components.emit()
+			"performance_mode":
+				performance_mode = value
 			_:
 				return ERR_INVALID_PARAMETER
 		RoseGarden.flags_changed.emit(flag_name,value)
@@ -273,6 +260,9 @@ func create_rc_menu(menu_layout:RGmenu,target_position:Vector2):
 	menu.position = position
 	menu._custom_ready()
 	return OK
+
+func rcm_menu_exists():
+	return menu_layer.get_child_count() > 0
 
 func _create_rc_submenu(menu_layout:RGmenu,target_position:Vector2):
 	if menu_layer == null:

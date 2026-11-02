@@ -1,0 +1,21 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://24gcfvo5xdcf"]
+
+[ext_resource type="Shader" uid="uid://bqueupmg3luae" path="res://DeveloperPlugins/Habits/Flames/Flame.gdshader" id="1_wdgvj"]
+
+[resource]
+shader = ExtResource("1_wdgvj")
+shader_parameter/outer_color = Color(0.85, 0.08, 0.02, 1)
+shader_parameter/mid_color = Color(1, 0.45, 0.04, 1)
+shader_parameter/core_color = Color(1, 0.88, 0.3, 1)
+shader_parameter/brightness = 1.55999996513088
+shader_parameter/glow = 0.0
+shader_parameter/flame_size = 1.0
+shader_parameter/flame_width = 0.2
+shader_parameter/flame_height = 0.4
+shader_parameter/base_position = Vector2(0.5, 0.92)
+shader_parameter/speed = 1.0
+shader_parameter/sway = 0.05
+shader_parameter/turbulence = 0.10999999754128
+shader_parameter/flicker = 0.15
+shader_parameter/edge_softness = 0.05499999877064
+shader_parameter/corner_softness = 0.0999999977648

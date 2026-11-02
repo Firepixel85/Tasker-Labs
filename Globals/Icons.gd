@@ -54,6 +54,9 @@ const DATABASESEARCH = preload("res://Icons/DatabaseSearch.svg")
 const SAVE = preload("res://Icons/Save.svg")
 const SAVECHECK = preload("res://Icons/SaveCheck.svg")
 const FOLDEROPEN = preload("res://Icons/FolderOpen.svg")
+const FLAME = preload("res://Icons/Flame.svg")
+const SNOWFLAKE = preload("res://Icons/Snowflake.svg")
+const COMMAND = preload("res://Icons/Command.svg")
 
 func get_icon_path(icon:String) -> String:
 	var path = "res://Icons/"+icon+".svg"

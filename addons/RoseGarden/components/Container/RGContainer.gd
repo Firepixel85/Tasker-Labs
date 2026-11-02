@@ -63,7 +63,7 @@ func _ready() -> void:
 		return
 	while true:
 		_update()
-		if RoseGarden.PerformanceMode.is_enabled() and get_tree() != null:
+		if RoseGarden.Flags.performance_mode and get_tree() != null:
 			await get_tree().create_timer(0.2).timeout
 		elif get_tree() != null:
 			await get_tree().process_frame

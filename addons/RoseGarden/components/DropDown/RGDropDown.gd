@@ -102,6 +102,7 @@ func open():
 		create_tween().tween_property(selection,"position:y",0,0.01*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	else:
 		_on_menu_item_highlighted(selected)
+	size.x = max(size.x,menu_item_container._get_min_size() + 16)
 	_update()
 	menu_container.visible=true
 	selection.visible = true
@@ -119,8 +120,6 @@ func close(invisible:bool=false):
 ##############
 #### STOP #### Here begin private functions that should never be called by your code
 ##############
-
-
 
 func _ready() -> void:
 	RoseGarden.custom_textures_changed.connect(_update)
@@ -168,7 +167,6 @@ func _find_index(array:Array,item):
 			index = i
 	return index
 
-
 func _pressed() -> void:
 	open()
 
@@ -177,11 +175,11 @@ func _new_menu_item(node: Node) -> void:
 	_update()
 
 func _on_menu_item_highlighted(id: int) -> void:
-	selection.visible = true
+	create_tween().tween_property(selection,"modulate",Color(1,1,1,1),0.1*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_trans(Tween.TRANS_SINE)
 	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 
 func _select_item(id: int):
-	selection.visible = true
+	create_tween().tween_property(selection,"modulate",Color(1,1,1,1),0.1*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_trans(Tween.TRANS_SINE)
 	create_tween().tween_property(selection,"position",Vector2(selection.position.x,52*_find_index(item_ids,id)),0.07*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 	selected = id
 	for item in menu_item_container.get_children():
@@ -203,15 +201,12 @@ func _on_mouse_entered() -> void:
 	_hovered = true
 	modulate = RoseGarden.Colors.COLOR_HOVERED
 
-
 func _on_mouse_exited() -> void:
 	_hovered = false
 	modulate = RoseGarden.Colors.COLOR_NORMAL
 
-
 func _on_button_up() -> void:
 	modulate = RoseGarden.Colors.COLOR_HOVERED
-
 
 func _on_button_down() -> void:
 	modulate = RoseGarden.Colors.COLOR_PRESSED
@@ -237,6 +232,7 @@ func _input(event: InputEvent) -> void:
 		await get_tree().process_frame
 		close()
 		label.text = items[_find_index(item_ids,selected)]
+		new_selection.emit(items[_find_index(item_ids,selected)])
 		get_viewport().set_input_as_handled()
 	elif event.keycode == KEY_ESCAPE:
 		_select_item(selected_when_opened)

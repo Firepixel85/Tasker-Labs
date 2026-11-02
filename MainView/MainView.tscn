@@ -29,6 +29,7 @@
 [ext_resource type="PackedScene" uid="uid://boal3cckjo2n6" path="res://PluginView/InstalledView.tscn" id="25_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://diimuetevof1f" path="res://CommandBar/ComandBar.tscn" id="27_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://bbvld8xyrmxqe" path="res://Onboarding/Onboarding.tscn" id="28_28umk"]
+[ext_resource type="Shader" uid="uid://br6j7as108iws" path="res://MainView/DirBlur.gdshader" id="30_y8cp8"]
 
 [sub_resource type="Gradient" id="Gradient_iwsuo"]
 offsets = PackedFloat32Array(0.5679348)
@@ -36,6 +37,121 @@ colors = PackedColorArray(1, 0, 0, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_wi7n6"]
 gradient = SubResource("Gradient_iwsuo")
+
+[sub_resource type="Animation" id="Animation_y8cp8"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/dir:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:material:shader_parameter/dir:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:material:shader_parameter/quality")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [10]
+}
+
+[sub_resource type="Animation" id="Animation_5yfv4"]
+resource_name = "left"
+length = 0.2
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/dir:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, -0.2, -0.01666667, 0.033333335, 0, 0, 0, -0.016666666, -0.033333335, 0, 0),
+"times": PackedFloat32Array(0, 0.10000001, 0.2)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:material:shader_parameter/dir:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, -0.01666667, 0, 0, 0, 0, -0.016666666, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.10000001, 0.2)
+}
+
+[sub_resource type="Animation" id="Animation_qbx6f"]
+resource_name = "right"
+length = 0.2
+step = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("../..:material:shader_parameter/dir:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0.2, -0.016666666, -0.033333335, 0, 0, 0, -0.016666666, 0.033333335, 0, 0),
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("../..:material:shader_parameter/dir:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2, 2),
+"points": PackedFloat32Array(0, -0.1, 0, 0.1, 0, 0, -0.016666666, 0, 0, 0, 0, -0.016666666, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.099999994, 0.19999999)
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../..:material:shader_parameter/quality")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.001, 0.199, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 10, 10, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_sr1dg"]
+_data = {
+&"RESET": SubResource("Animation_y8cp8"),
+&"left": SubResource("Animation_5yfv4"),
+&"right": SubResource("Animation_qbx6f")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5yfv4"]
+shader = ExtResource("30_y8cp8")
+shader_parameter/dir = Vector2(0, 0)
+shader_parameter/quality = 10
+shader_parameter/mask_rect = Vector4(0, 0, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yduse"]
 
@@ -80,6 +196,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_u8cj3")
 
+[node name="ColorRect" type="ColorRect" parent="." unique_id=720582283]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 1
+color = Color(0.011764706, 0.011764706, 0.011764706, 1)
+
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
 layout_mode = 1
 anchors_preset = 15
@@ -102,6 +228,7 @@ script = ExtResource("2_m4t2q")
 [node name="Sidebar Bottom" type="MarginContainer" parent="MainView/Sidebar" unique_id=196451527]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 1
 theme_override_constants/margin_left = 16
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_right = 16
@@ -171,15 +298,35 @@ texture = SubResource("GradientTexture1D_wi7n6")
 visible = false
 layout_mode = 2
 
-[node name="Events" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1215686585]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=859197404]
+root_node = NodePath("../SubViewportContainer/SubViewport/Events")
+libraries/ = SubResource("AnimationLibrary_sr1dg")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer" unique_id=1969799936]
+visible = false
+material = SubResource("ShaderMaterial_5yfv4")
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/SubViewportContainer" unique_id=674241315]
+disable_3d = true
+handle_input_locally = false
+size = Vector2i(448, 172)
+render_target_update_mode = 0
+
+[node name="Events" type="ScrollContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/SubViewportContainer/SubViewport" unique_id=1215686585]
 visible = false
 custom_minimum_size = Vector2(0, 172)
-layout_mode = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 horizontal_scroll_mode = 3
 vertical_scroll_mode = 0
 script = ExtResource("6_42b22")
 
-[node name="Event Container" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" unique_id=526174092]
+[node name="Event Container" type="HBoxContainer" parent="MainView/Sidebar/Sidebar Bottom/VBoxContainer/SubViewportContainer/SubViewport/Events" unique_id=526174092]
+custom_minimum_size = Vector2(448, 172)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -282,9 +429,9 @@ layout_mode = 2
 
 [node name="TDE" parent="MainView/VBoxContainer2/TopBar/MarginContainer/CenterContainer" unique_id=85953319 instance=ExtResource("5_v5kho")]
 visible = false
-custom_minimum_size = Vector2(151, 34)
+custom_minimum_size = Vector2(260, 34)
 layout_mode = 2
-text = "Hi reviewers!"
+text = "Developer Enviroment"
 
 [node name="CommandBar" parent="MainView/VBoxContainer2/TopBar/MarginContainer" unique_id=212265237 instance=ExtResource("1_hi4tc")]
 z_index = 10
@@ -306,6 +453,7 @@ texture = SubResource("GradientTexture1D_hi4tc")
 [node name="SceneContainer" type="Control" parent="MainView/VBoxContainer2" unique_id=1351976390]
 layout_mode = 2
 size_flags_vertical = 3
+focus_mode = 1
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
 visible = false
@@ -645,10 +793,6 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_top = -10.0
-offset_right = -6.0
-offset_bottom = -10.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -665,7 +809,7 @@ metadata/_edit_use_anchors_ = true
 [node name="HotkeysTimer" type="Timer" parent="." unique_id=304260970]
 wait_time = 1.5
 
-[connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/Events" method="_on_event_selected"]
+[connection signal="item_selected" from="MainView/Sidebar/Sidebar Bottom/VBoxContainer/EventSelection" to="MainView/Sidebar/Sidebar Bottom/VBoxContainer/SubViewportContainer/SubViewport/Events" method="_on_event_selected"]
 [connection signal="category_selected" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/Categories" to="Settings" method="_on_category_selected"]
 [connection signal="pressed" from="Settings/Sidebar/Sidebar Bottom/VBoxContainer/AboutButton" to="Settings" method="_on_about_button_pressed"]
 [connection signal="pressed" from="Settings/VBoxContainer2/TopBar/MarginContainer/HBoxContainer/CloseButton" to="Settings" method="_on_close_button_pressed"]

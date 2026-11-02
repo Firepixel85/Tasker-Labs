@@ -37,4 +37,10 @@ alignment = 1
 [node name="Toggle" parent="HBoxContainer/VBoxContainer" unique_id=1372621177 instance=ExtResource("3_vog2i")]
 layout_mode = 2
 
+[connection signal="mouse_entered" from="HBoxContainer/RGText" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/RGText" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Control" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/Control" to="." method="_on_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/VBoxContainer/Toggle" to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="HBoxContainer/VBoxContainer/Toggle" to="." method="_on_mouse_exited"]
 [connection signal="toggled" from="HBoxContainer/VBoxContainer/Toggle" to="." method="_on_toggled"]

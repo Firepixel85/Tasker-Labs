@@ -54,6 +54,8 @@ func clear_popup():
 	popup_container.visible = false
 	popup = null
 	popup_cleared.emit()
+	if RoseGarden.rcm_menu_exists():
+		RoseGarden._delete_all_menus()
 	Debug.log("Popup cleared",ID)
 	return OK
 

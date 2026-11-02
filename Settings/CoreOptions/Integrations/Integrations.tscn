@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://cxypmt0wvca17" path="res://PluginView/grid_container.gd" id="1_cb7ox"]
 [ext_resource type="Script" uid="uid://2aiuu4oxgg1l" path="res://Settings/CoreOptions/Integrations/Integrations.gd" id="1_nhe0l"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="2_nhe0l"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="3_nhe0l"]
 [ext_resource type="Texture2D" uid="uid://diixg71haqyco" path="res://Settings/CoreOptions/Integrations/GitHub/Icon.png" id="4_y4aov"]
 [ext_resource type="Script" uid="uid://b5p8tmthlyblr" path="res://Settings/CoreOptions/Integrations/GitHub/GitHub.gd" id="5_1c2r2"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="5_qjo4o"]
@@ -23,15 +22,14 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_nhe0l")
 
-[node name="RGText" type="Control" parent="." unique_id=85953319 instance=ExtResource("5_qjo4o")]
+[node name="RGText" parent="." unique_id=85953319 instance=ExtResource("5_qjo4o")]
 custom_minimum_size = Vector2(395, 34)
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
+offset_right = 0.0
 offset_bottom = 459.0
 grow_horizontal = 2
-focus_mode = 1
-script = ExtResource("3_nhe0l")
 text = "More Inetegrations coming soon..."
 horizontal_alignment = "Center"
 vertical_alignment = "Bottom"
@@ -158,9 +156,10 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Action" parent="ScrollContainer/GridContainer/GitHub/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1426858299 instance=ExtResource("9_riro0")]
-custom_minimum_size = Vector2(216, 60)
+custom_minimum_size = Vector2(176, 60)
 layout_mode = 2
 text = "Connect"
+margins = 48
 
 [connection signal="de_hovered" from="ScrollContainer/GridContainer/GitHub/MarginContainer/VBoxContainer/HBoxContainer2/Action" to="ScrollContainer/GridContainer/GitHub/MarginContainer" method="_on_action_de_hovered"]
 [connection signal="hovered" from="ScrollContainer/GridContainer/GitHub/MarginContainer/VBoxContainer/HBoxContainer2/Action" to="ScrollContainer/GridContainer/GitHub/MarginContainer" method="_on_action_hovered"]

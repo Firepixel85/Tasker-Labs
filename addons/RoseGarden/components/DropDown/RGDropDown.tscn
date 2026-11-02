@@ -111,6 +111,7 @@ theme_override_constants/margin_right = 6
 layout_mode = 2
 
 [node name="Selection" type="NinePatchRect" parent="CanvasLayer/NinePatchRect2/SelectionContainer/Container" unique_id=116794163]
+custom_minimum_size = Vector2(152, 0)
 layout_mode = 1
 offset_right = 52.0
 offset_bottom = 52.0

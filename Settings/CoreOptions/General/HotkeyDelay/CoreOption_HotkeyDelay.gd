@@ -11,7 +11,6 @@ signal value_changed(option_id,new_value)
 
 func set_value(value:float):
 	number = value
-	print(value)
 	text_field.set_text(str(number)+"s")
 
 func get_value():

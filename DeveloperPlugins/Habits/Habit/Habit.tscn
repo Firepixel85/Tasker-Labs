@@ -1,0 +1,210 @@
+[gd_scene format=3 uid="uid://c73ku11ys2ohh"]
+
+[ext_resource type="Script" uid="uid://wbj040u4jjy6" path="res://DeveloperPlugins/Habits/Habit/Habit.gd" id="1_sveut"]
+[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_v66k6"]
+[ext_resource type="PackedScene" uid="uid://ctjoa6a2sbnuh" path="res://DeveloperPlugins/Habits/Flames/Flame.tscn" id="3_6sadc"]
+[ext_resource type="Texture2D" uid="uid://byw50ccqis6hj" path="res://DeveloperPlugins/Habits/Flame.png" id="3_hjw4o"]
+[ext_resource type="Script" uid="uid://d25qlfr2gkdxy" path="res://DeveloperPlugins/Habits/Habit/ValueGrammarCheck.gd" id="4_k2js0"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_xbwrm"]
+[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_sveut"]
+[ext_resource type="Texture2D" uid="uid://j1j84bt7jlx6" path="res://Icons/ThreeDots.svg" id="7_xbwrm"]
+[ext_resource type="Texture2D" uid="uid://drfa23tb30we0" path="res://DeveloperPlugins/Habits/Keybinds/Keybind1.svg" id="9_xbwrm"]
+
+[node name="Control" type="Control" unique_id=1772220582]
+custom_minimum_size = Vector2(452, 458)
+layout_mode = 3
+anchors_preset = 0
+pivot_offset_ratio = Vector2(0.5, 0.5)
+script = ExtResource("1_sveut")
+
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_v66k6")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+padding = "16"
+margin_number = 18
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=45094154]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 3.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 18
+theme_override_constants/margin_top = 18
+theme_override_constants/margin_right = 18
+theme_override_constants/margin_bottom = 18
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer" unique_id=1816752005]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/separation = 32
+
+[node name="CenterContainer" type="CenterContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1419635980]
+layout_mode = 2
+
+[node name="Flame" parent="RGContainer/MarginContainer/VBoxContainer/CenterContainer" unique_id=972562167 instance=ExtResource("3_6sadc")]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1117578296]
+visible = false
+custom_minimum_size = Vector2(0, 150)
+layout_mode = 2
+texture = ExtResource("3_hjw4o")
+stretch_mode = 5
+
+[node name="Name" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(82, 34)
+layout_mode = 2
+text = "[name]"
+horizontal_alignment = "Center"
+
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1787510199]
+layout_mode = 2
+theme_override_constants/margin_left = 28
+theme_override_constants/margin_right = 28
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=365318213]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/separation = 32
+alignment = 1
+
+[node name="StreakContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=950530132]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StreakContainer" unique_id=552127222 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(63, 28)
+layout_mode = 2
+text = "Streak"
+font_size = "Secondary"
+color = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StreakContainer" unique_id=124574386]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Streak" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StreakContainer" unique_id=1528930072 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(58, 28)
+layout_mode = 2
+text = "[num]"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="RGText3" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/StreakContainer" unique_id=890824297 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(45, 28)
+layout_mode = 2
+script = ExtResource("4_k2js0")
+text = "days"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="ColorRect" type="ColorRect" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=672601085]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+
+[node name="BSContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1828045931]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/BSContainer" unique_id=1893896711 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(110, 28)
+layout_mode = 2
+text = "Best Streak"
+font_size = "Secondary"
+color = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/BSContainer" unique_id=1344461871]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="BestStreak" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/BSContainer" unique_id=1533519593 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(58, 28)
+layout_mode = 2
+text = "[num]"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="RGText3" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/BSContainer" unique_id=533701011 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(45, 28)
+layout_mode = 2
+script = ExtResource("4_k2js0")
+text = "days"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="ColorRect2" type="ColorRect" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1709670288]
+custom_minimum_size = Vector2(2, 0)
+layout_mode = 2
+color = Color(0.25490198, 0.25490198, 0.25490198, 1)
+
+[node name="GoalContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer" unique_id=1599334393]
+layout_mode = 2
+theme_override_constants/separation = -4
+
+[node name="RGText" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GoalContainer" unique_id=552902988 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(44, 28)
+layout_mode = 2
+text = "Goal"
+font_size = "Secondary"
+color = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GoalContainer" unique_id=777162396]
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 2
+
+[node name="Goal" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GoalContainer" unique_id=398755675 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(58, 28)
+layout_mode = 2
+text = "[num]"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="RGText2" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer/HBoxContainer/GoalContainer" unique_id=505558029 instance=ExtResource("4_xbwrm")]
+custom_minimum_size = Vector2(45, 28)
+layout_mode = 2
+script = ExtResource("4_k2js0")
+text = "days"
+font_size = "Secondary"
+horizontal_alignment = "Center"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1000827320]
+layout_mode = 2
+focus_mode = 1
+theme_override_constants/separation = 16
+
+[node name="More" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("5_sveut")]
+custom_minimum_size = Vector2(60, 60)
+layout_mode = 2
+text = ""
+icon = ExtResource("7_xbwrm")
+
+[node name="CheckIn" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2078189545 instance=ExtResource("5_sveut")]
+custom_minimum_size = Vector2(211, 60)
+layout_mode = 2
+size_flags_horizontal = 3
+color = "White"
+text = "Check In"
+tooltip_display_text = "Unfreeze this habit to check in"
+
+[node name="Keybind" type="TextureRect" parent="RGContainer/MarginContainer" unique_id=571386168]
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("9_xbwrm")
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/More" to="." method="_on_more_pressed"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/CheckIn" to="." method="_on_check_in_pressed"]

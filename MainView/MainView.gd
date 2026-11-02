@@ -144,6 +144,7 @@ func _ready():
 	CommandBar.add_command("Open Plugins",ID,"res://Icons/Puzzle.svg",_open_plugins)
 	CommandBar.add_command("Plugin Updates",ID,"res://Icons/Download.svg",_show_plugin_updates)
 	CommandBar.add_command("Open Plugins Folder",ID,"res://Icons/Folder.svg",_open_plugins_folder)
+	CommandBar.add_command("Show Keybinds",ID,"res://Icons/Command.svg",_show_keybinds)
 	if Settings.get_option_value("core.general/show_categories"):
 		for category in Settings._category_list:
 			CommandBar.add_command(Settings._category_names[category],"core.settings",Settings._category_icons[category],Settings.open_category,[category])
@@ -251,10 +252,7 @@ func _settings_changed(option_path,new_value):
 	if option_path == "core.general/display_name":
 		user_name.set_text(new_value)
 	if option_path == "core.general/performance_mode":
-		if new_value:
-			RoseGarden.PerformanceMode.enable()
-		else:
-			RoseGarden.PerformanceMode.disable()
+		RoseGarden.Flags.change_flag("performance_mode",new_value)
 	if option_path == "core.developer/dev_tools":
 		for plugin_id in PluginManager.get_all_plugins():
 			if PluginManager.is_plugin_loaded(plugin_id) and PluginManager.is_developer_plugin(plugin_id):
@@ -337,3 +335,6 @@ func _show_plugin_updates():
 
 func _open_plugins_folder():
 	OS.shell_show_in_file_manager(OS.get_user_data_dir()+"/plugins")
+
+func _show_keybinds():
+	Popups.create_popup(load('res://MainView/HotkeyPopup.tscn'))

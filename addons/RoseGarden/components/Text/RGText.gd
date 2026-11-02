@@ -11,6 +11,7 @@ class_name RGText
 		if label == null:
 			return
 		_update()
+		text_changed.emit(new_value)
 @export_enum("Large","Main","Secondary","Info","FinePrint") var font_size = "Main"
 @export var rounded:bool = false
 @export_enum("Main","Secondary","Dark","Custom") var color = "Main"
@@ -35,6 +36,8 @@ var font_sizes:Array = [
 	"FinePrint"
 ]
 
+signal text_changed(new_text:String)
+
 func set_color(new_color:String):
 	if !colors.has(new_color):
 		return ERR_INVALID_PARAMETER
@@ -58,6 +61,9 @@ func set_text(new_text:String):
 	text = new_text
 	_update()
 	return OK
+	
+func get_text():
+	return text
 
 ##############
 #### STOP #### Here begin private function that should never be called by your code
@@ -70,6 +76,8 @@ func _ready():
 	_update()
 
 func _update():
+	if label == null:
+		return
 	var theme_path = str(RoseGarden._theme_path)+font_size
 	if rounded:
 		theme_path += "Round.tres"

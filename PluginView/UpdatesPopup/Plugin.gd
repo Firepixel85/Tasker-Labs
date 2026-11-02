@@ -20,6 +20,7 @@ func setup():
 	title.text = PluginManager.get_plugin_name(id)
 	author.text = PluginManager.get_plugin_author(id)
 	version_diff.text = PluginManager.get_plugin_version(id) + " → " + PluginManager.get_plugin_latest_version(id)
+	update_button.set_color(Settings.get_option_value("core.appearance/accent_color"))
 	await get_tree().process_frame
 	version_diff_container.custom_minimum_size.x = version_diff.get_parent().get_minimum_size().x
 	version_diff_container._update()
@@ -30,7 +31,7 @@ func setup():
 	if PluginManager.is_plugin_trusted(id): trusted.show()
 	container._update()
 	url = await PluginManager.get_plugin_repo_site(id)
-	update_button.set_color(Settings.get_option_value("core.appearance/accent_color"))
+	
 	
 
 func _on_trusted_mouse_entered() -> void:

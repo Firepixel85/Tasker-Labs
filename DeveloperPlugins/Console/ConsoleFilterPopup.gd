@@ -32,6 +32,7 @@ func _on_apply_pressed() -> void:
 	Popups.clear_popup()
 
 func _on_cancel_pressed() -> void:
+	logger_ddm.close()
 	Popups.clear_popup()
 
 func _on_clear_pressed() -> void:

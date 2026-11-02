@@ -90,6 +90,7 @@ theme_override_constants/margin_bottom = 2
 
 [node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=606105802 node_paths=PackedStringArray("top_texture", "bottom_texture")]
 layout_mode = 2
+vertical_scroll_mode = 3
 script = ExtResource("7_aoegw")
 top_texture = NodePath("../../../../MarginContainer2/VBoxContainer/FadeTop")
 bottom_texture = NodePath("../../../../MarginContainer2/VBoxContainer/FadeBottom")

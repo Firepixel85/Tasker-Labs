@@ -51,7 +51,7 @@ func _on_mouse_entered() -> void:
 	_update()
 
 func _on_mouse_exited() -> void:
-	manager.selection.visible = false
+	create_tween().tween_property(manager.selection,"modulate",Color(1,1,1,0),0.1*int(!RoseGarden.Accessibility.get_disable_animations())*int(RoseGarden.Animations.ddmSelection)).set_trans(Tween.TRANS_SINE)
 	highlighted = false
 	_update()
 
@@ -63,3 +63,6 @@ func change_highlight(new_id:int):
 
 func _update_themes():
 	text.theme = RoseGarden.Themes.Secondary
+
+func get_min_size():
+	return min_size_setter.get_minimum_size().x+12
