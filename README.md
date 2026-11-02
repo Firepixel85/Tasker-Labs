@@ -11,11 +11,8 @@
 ### Introduction
 Tasker 2.0 is a productivity powerhouse, designed to be fully plugin driven, allowing you to customize and extend its functionality to suit your unique workflow. Choose the features that suit you best and ignore the rest, making Tasker your own personal productivity dashboard.
 
-### About running the app from source
-You will need a device running MacOS 11.00+ and Godot 4.6 stable. After downloading and importing the source code to Godot running the project shouldn't produce any fatal errors, that being said any errors  that force the engine to break should be resolved by hitting <code>F12</code> (Continue). Note that due to security reasons you won't be able to use GitHub OAuth with any version of Tasker not exported by me, as the secrets required for the OAuth are not tracked by Git for obvious security reasons. Commit [18c0e5d](https://github.com/Firepixel85/Tasker-Labs/commit/18c0e5dabeb4a203a0d1a07b0552ecc3a15e1b29) adds a fix that allows the app to run event if the GitHub OAuth secrets are missing. Please note that source is ahead of the current release and has new untested features like the DataView plugin.
-
 ### Installation
-Tasker 2.0 is currently in late development with a running beta. You can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest beta build to try for yourself. Please note that these builds are not fully tested and may contain minor bugs. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. Please note that for now Tasker is exclusively available on Apple Silicon powered devices running MacOS 11.00+. To install the latest build:
+Tasker 2.0 is currently in late development with a running beta. You can now go to our [releases page](https://github.com/Firepixel85/Tasker-Labs/releases) and grab the latest beta build to try it for yourself. Please note that these builds are not fully tested and may contain minor bugs. Feel free to [report](https://github.com/Firepixel85/Tasker-Labs/issues) any bugs you find. For now Tasker is exclusively available on Apple Silicon powered devices running MacOS 11.00+. To install the latest build:
 1) Go to the [latest release](https://github.com/Firepixel85/Tasker-Labs/releases/latest)
 2) Download the <code>Tasker.dmg</code> file from the assets
 3) Open the <code>.dmg</code> file you downloaded and drag Tasker into the Applications folder as the arrow indicates
@@ -45,8 +42,8 @@ Tasker is built in Godot 4.6 and is currently only targeting apple silicon. The 
 
 | Tool | Author  | Use | 
 | ---- | ------- | ------- |
-| Godot | Juan Linietsky & Contributors | Main engine |
-| Rose Garden | _M2x (Me) | UI Library |
+| Godot | Juan Linietsky & Contributors | Main Engine |
+| Rose Garden | Rosepen Studios | UI Library |
 | Zed | Zed Industries & Contributors | Script Editing |
 | Lucid Icons | Eric Fennis & Contributors | Icon Library |
 | Figma | The Figma Team | UI Design |
