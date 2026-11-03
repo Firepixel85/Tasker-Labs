@@ -5,7 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_c7lns"]
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="6_c1ou8"]
 [ext_resource type="Texture2D" uid="uid://c51b7eau5dndo" path="res://Icons/X.svg" id="6_c7lns"]
-[ext_resource type="Script" uid="uid://bc5w4fxujsn0e" path="res://MainView/ScrollFade.gd" id="6_ydk5x"]
+[ext_resource type="Script" uid="uid://ma7mebr8qhl3" path="res://MainView/SmoothScrollFade.gd" id="6_tvuk1"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="7_c1ou8"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="8_tvuk1"]
 
 [sub_resource type="Gradient" id="Gradient_lccfv"]
@@ -14,6 +15,15 @@ colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_xn812"]
 gradient = SubResource("Gradient_lccfv")
+
+[sub_resource type="Resource" id="Resource_lccfv"]
+script = ExtResource("7_c1ou8")
+friction = 6.0
+minimum_velocity = 6.0
+rebound_strength = 14.0
+
+[sub_resource type="Resource" id="Resource_xn812"]
+script = ExtResource("7_c1ou8")
 
 [sub_resource type="Gradient" id="Gradient_rsoip"]
 offsets = PackedFloat32Array(0.1491228, 1)
@@ -94,12 +104,16 @@ custom_minimum_size = Vector2(0, 2)
 layout_mode = 2
 texture = SubResource("GradientTexture1D_xn812")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=413124850 node_paths=PackedStringArray("top_texture", "bottom_texture")]
+[node name="ScrollContainer" type="ScrollContainer" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=114177082 node_paths=PackedStringArray("top_texture", "bottom_texture")]
 layout_mode = 2
 size_flags_vertical = 3
-script = ExtResource("6_ydk5x")
+script = ExtResource("6_tvuk1")
 top_texture = NodePath("../../../../MarginContainer/VBoxContainer/FadeTop")
 bottom_texture = NodePath("../../../../MarginContainer/VBoxContainer/FadeBottom")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_lccfv")
+dragging_scroll_damper = SubResource("Resource_xn812")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="PluginContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/ScrollContainer" unique_id=1986443099]
 layout_mode = 2
@@ -107,6 +121,7 @@ size_flags_horizontal = 3
 size_flags_vertical = 3
 focus_mode = 1
 theme_override_constants/separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="RGContainer" unique_id=1894222937]
 layout_mode = 1

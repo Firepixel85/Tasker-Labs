@@ -77,14 +77,34 @@ var is_pressed:bool = false
 func set_color(new_color:String):
 	if !Engine.is_editor_hint() and RoseGarden.Colors.verify_color(new_color,true) != OK:
 		return ERR_INVALID_PARAMETER
-	color = new_color
-	base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+color+".svg")
-	if color == "White" or ((color == "Yellow" or color == "Green" or color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
-		label.modulate = Color(0,0,0)
-		texture.modulate = Color(0,0,0)
+	if !RoseGarden.Animations.buttonColor or RoseGarden.Accessibility.disableAnimations:
+		base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg")
+		if new_color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
+			label.modulate = Color(0,0,0)
+			texture.modulate = Color(0,0,0)
+		else:
+			label.modulate = Color(1,1,1)
+			texture.modulate = Color(1,1,1)
 	else:
-		label.modulate = Color(1,1,1)
-		texture.modulate = Color(1,1,1)
+		var anim_time = 0.12
+		base.material.set_shader_parameter("target_image",load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg"))
+		base.material.set_shader_parameter("fade",0.0)
+		var tween = create_tween()
+		tween.set_parallel(true)
+
+		if color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
+			tween.tween_property(label,"modulate",Color(0,0,0),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			tween.tween_property(texture,"modulate",Color(0,0,0),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+		else:
+			tween.tween_property(label,"modulate",Color(1,1,1),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+			tween.tween_property(texture,"modulate",Color(1,1,1),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+		tween.tween_property(base.material,"shader_parameter/fade",1.0,anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+
+		await tween.finished
+		base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg")
+		base.material.set_shader_parameter("fade",0.0)
+	color = new_color
 	return OK
 
 func set_icon(new_icon:Texture2D):
@@ -177,6 +197,9 @@ func _update():
 
 
 func _ready() -> void:
+	var mat = ShaderMaterial.new()
+	mat.shader = load(RoseGarden._get_file_path()+"Button/ColorTrans.gdshader")
+	base.material = mat
 	set_color(color)
 	_update()
 	RoseGarden.custom_textures_changed.connect(_update)

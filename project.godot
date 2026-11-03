@@ -48,8 +48,8 @@ file_logging/enable_file_logging=true
 
 [display]
 
-window/size/viewport_width=960
-window/size/viewport_height=480
+window/size/viewport_width=2272
+window/size/viewport_height=1516
 window/size/initial_position_type=4
 window/size/resizable=false
 window/size/extend_to_title=true
@@ -58,7 +58,7 @@ window/vsync/vsync_mode=0
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/RoseGarden/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
+enabled=PackedStringArray("res://addons/RoseGarden/plugin.cfg", "res://addons/SmoothScroll/plugin.cfg", "res://addons/godot_super-wakatime/plugin.cfg")
 
 [input]
 

@@ -6,6 +6,20 @@
 [ext_resource type="Texture2D" uid="uid://bwcgff2b3yjya" path="res://Icons/Save.svg" id="4_cvtrs"]
 [ext_resource type="Texture2D" uid="uid://c2xawqsp3fqfs" path="res://Icons/Trash.svg" id="5_fatm4"]
 [ext_resource type="FontFile" uid="uid://dqlkwjd2kccs" path="res://CustomThemes/fonts/SFMonoMedium.otf" id="6_5raey"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="6_cvtrs"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="7_fatm4"]
+
+[sub_resource type="Resource" id="Resource_cvtrs"]
+script = ExtResource("7_fatm4")
+friction = 6.0
+minimum_velocity = 6.0
+rebound_strength = 14.0
+metadata/_custom_type_script = "uid://b7h0k2h2qwlqv"
+
+[sub_resource type="Resource" id="Resource_fhcs6"]
+script = ExtResource("7_fatm4")
+minimum_velocity = 6.0
+rebound_strength = 10.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5raey"]
 content_margin_left = 16.0
@@ -91,15 +105,21 @@ theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2" unique_id=1641052592]
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer2" unique_id=1842530939]
 layout_mode = 2
 horizontal_scroll_mode = 0
+script = ExtResource("6_cvtrs")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_cvtrs")
+dragging_scroll_damper = SubResource("Resource_fhcs6")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer2/ScrollContainer" unique_id=1652702576]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_constants/separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="MarginContainer3" type="MarginContainer" parent="VBoxContainer" unique_id=1548815207]
 visible = false

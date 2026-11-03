@@ -1,8 +1,13 @@
 [gd_scene format=3 uid="uid://bb73lbvti8wp6"]
 
 [ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="1_pa7x6"]
+[ext_resource type="Shader" uid="uid://do4it540hgj3c" path="res://addons/RoseGarden/components/Button/ColorTrans.gdshader" id="2_5f15a"]
 [ext_resource type="Texture2D" uid="uid://cmj5vysrpsml7" path="res://addons/RoseGarden/components/Button/BaseNone/BaseGray.svg" id="3_uaxtl"]
 [ext_resource type="Theme" uid="uid://dcjb0tugy43pc" path="res://addons/RoseGarden/themes/Secondary.tres" id="4_uaxtl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l1mem"]
+shader = ExtResource("2_5f15a")
+shader_parameter/fade = 0.0
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ir1hl"]
 
@@ -18,6 +23,7 @@ script = ExtResource("1_pa7x6")
 metadata/_edit_use_anchors_ = true
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=885916875]
+material = SubResource("ShaderMaterial_l1mem")
 custom_minimum_size = Vector2(60, 60)
 layout_mode = 0
 offset_right = 195.0

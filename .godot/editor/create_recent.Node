@@ -1,3 +1,5 @@
+res://addons/SmoothScroll/smooth_scroll_container.gd
+ScrollContainer
 Control
 HBoxContainer
 VBoxContainer
@@ -10,5 +12,4 @@ AnimationPlayer
 AnimatedSprite2D
 Label
 HFlowContainer
-ScrollContainer
 GridContainer

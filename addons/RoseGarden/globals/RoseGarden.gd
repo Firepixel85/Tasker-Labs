@@ -103,6 +103,7 @@ class Colors:
 
 class Animations:
 	static var buttonPress:bool = true
+	static var buttonColor:bool = true
 	static var togglePress:bool = true
 	static var sgSelection:bool = true #sg: SegmentedControl
 	static var svChange:bool = true #sv: SectionView

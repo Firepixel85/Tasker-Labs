@@ -27,7 +27,7 @@ func setup(prefab:TSKPopup):
 	action = prefab.actions[0]
 	action_params = prefab.action_params[0]
 	action_button.set_text(prefab.action_names[0])
-	action_button.set_color(prefab.colors[0])
+	action_button.color = prefab.colors[0]
 	match prefab.title_alignment:
 		0:
 			title_text.horizontal_alignment = "Left"

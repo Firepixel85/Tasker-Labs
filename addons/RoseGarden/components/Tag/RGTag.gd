@@ -67,7 +67,7 @@ func _ready() -> void:
 	if Engine.is_editor_hint():
 		return
 	while true:
-		if RoseGarden.PerformanceMode.is_enabled():
+		if RoseGarden.Flags.performance_mode:
 			await get_tree().create_timer(0.2).timeout
 			_update()
 		else:

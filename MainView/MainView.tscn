@@ -26,7 +26,9 @@
 [ext_resource type="PackedScene" uid="uid://c247fa4u6vknm" path="res://addons/RoseGarden/components/SegmentControl/RGSegmentControl.tscn" id="20_52bp6"]
 [ext_resource type="Script" uid="uid://btugn3kwhhhsh" path="res://PluginView/PluginsClient.gd" id="20_a7d7b"]
 [ext_resource type="PackedScene" uid="uid://jtvoo5jjc3tw" path="res://PluginView/ExploreView.tscn" id="24_2ytnv"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="24_5yfv4"]
 [ext_resource type="PackedScene" uid="uid://boal3cckjo2n6" path="res://PluginView/InstalledView.tscn" id="25_7x8c6"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="25_qbx6f"]
 [ext_resource type="PackedScene" uid="uid://diimuetevof1f" path="res://CommandBar/ComandBar.tscn" id="27_7x8c6"]
 [ext_resource type="PackedScene" uid="uid://bbvld8xyrmxqe" path="res://Onboarding/Onboarding.tscn" id="28_28umk"]
 [ext_resource type="Shader" uid="uid://br6j7as108iws" path="res://MainView/DirBlur.gdshader" id="30_y8cp8"]
@@ -171,6 +173,12 @@ colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
 gradient = SubResource("Gradient_kuljs")
 width = 2
 
+[sub_resource type="Resource" id="Resource_sr1dg"]
+script = ExtResource("25_qbx6f")
+
+[sub_resource type="Resource" id="Resource_lfuyc"]
+script = ExtResource("25_qbx6f")
+
 [sub_resource type="Gradient" id="Gradient_h0v64"]
 offsets = PackedFloat32Array(0.59117645)
 colors = PackedColorArray(0.25490198, 0.25490198, 0.25490198, 1)
@@ -207,6 +215,7 @@ focus_mode = 1
 color = Color(0.011764706, 0.011764706, 0.011764706, 1)
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -456,7 +465,6 @@ size_flags_vertical = 3
 focus_mode = 1
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -606,9 +614,13 @@ theme_override_constants/separation = 0
 [node name="KeybindSpacer" type="Control" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=1312218204]
 layout_mode = 2
 
-[node name="ScrollContainer" type="ScrollContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=648055431]
+[node name="ScrollContainer" type="ScrollContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer" unique_id=1971023852]
 layout_mode = 2
 size_flags_horizontal = 3
+script = ExtResource("24_5yfv4")
+wheel_scroll_damper = SubResource("Resource_sr1dg")
+dragging_scroll_damper = SubResource("Resource_lfuyc")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="OptionHandler" type="VBoxContainer" parent="Settings/VBoxContainer2/SceneContainer/MarginContainer/HBoxContainer/ScrollContainer" unique_id=84552781]
 layout_mode = 2
@@ -617,6 +629,7 @@ size_flags_vertical = 3
 focus_mode = 1
 theme_override_constants/separation = 16
 script = ExtResource("19_h0v64")
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="Plugins" type="Control" parent="." unique_id=971450490]
 visible = false

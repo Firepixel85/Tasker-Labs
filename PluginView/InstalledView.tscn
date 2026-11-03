@@ -3,11 +3,28 @@
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="1_f23au"]
 [ext_resource type="Script" uid="uid://dsb743hj1413a" path="res://PluginView/InstalledView.gd" id="1_ygubm"]
 [ext_resource type="Script" uid="uid://cxypmt0wvca17" path="res://PluginView/grid_container.gd" id="3_hqcmk"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="3_wi5hg"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="4_6qbsv"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="4_ccaag"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="5_6qbsv"]
 [ext_resource type="Texture2D" uid="uid://dodjb42ct6m3l" path="res://Icons/Refresh.svg" id="8_ffun4"]
 [ext_resource type="Texture2D" uid="uid://bf02cuihtrvdm" path="res://Icons/Folder.svg" id="9_ccaag"]
 [ext_resource type="Texture2D" uid="uid://clfejkpi8471h" path="res://Icons/Download.svg" id="9_wi5hg"]
+
+[sub_resource type="Resource" id="Resource_1vkyk"]
+script = ExtResource("4_ccaag")
+friction = 6.0
+minimum_velocity = 6.0
+rebound_strength = 14.0
+
+[sub_resource type="Resource" id="Resource_e1lqs"]
+script = ExtResource("4_ccaag")
+
+[sub_resource type="Resource" id="Resource_mhk3c"]
+script = ExtResource("4_ccaag")
+
+[sub_resource type="Resource" id="Resource_rj8k8"]
+script = ExtResource("4_ccaag")
 
 [sub_resource type="Gradient" id="Gradient_ffun4"]
 offsets = PackedFloat32Array(0.37134504, 0.69590646, 1)
@@ -50,11 +67,16 @@ custom_minimum_size = Vector2(100, 34)
 layout_mode = 2
 text = "Enabled:"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=1807283876]
+[node name="ScrollContainer" type="ScrollContainer" parent="HBoxContainer/VBoxContainer" unique_id=61124047]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 3
+script = ExtResource("3_wi5hg")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_1vkyk")
+dragging_scroll_damper = SubResource("Resource_e1lqs")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer/ScrollContainer" unique_id=1200791974]
 layout_mode = 2
@@ -63,6 +85,7 @@ size_flags_vertical = 3
 theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 script = ExtResource("3_hqcmk")
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer" unique_id=35612041]
 layout_mode = 2
@@ -74,11 +97,16 @@ custom_minimum_size = Vector2(107, 34)
 layout_mode = 2
 text = "Disabled:"
 
-[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=137012813]
+[node name="ScrollContainer2" type="ScrollContainer" parent="HBoxContainer/VBoxContainer2" unique_id=1127133308]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_scroll_mode = 3
+script = ExtResource("3_wi5hg")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_mhk3c")
+dragging_scroll_damper = SubResource("Resource_rj8k8")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
 [node name="GridContainer" type="GridContainer" parent="HBoxContainer/VBoxContainer2/ScrollContainer2" unique_id=494687914]
 layout_mode = 2
@@ -88,6 +116,7 @@ theme_override_constants/h_separation = 16
 theme_override_constants/v_separation = 16
 columns = 2
 script = ExtResource("3_hqcmk")
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1633290228]
 
