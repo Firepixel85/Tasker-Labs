@@ -1,11 +1,10 @@
-res://addons/SmoothScroll/smooth_scroll_container.gd
+ColorRect
 ScrollContainer
 Control
 HBoxContainer
 VBoxContainer
 MarginContainer
 TextureRect
-ColorRect
 Timer
 CenterContainer
 AnimationPlayer

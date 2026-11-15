@@ -26,7 +26,7 @@ func _on_create_button_pressed() -> void:
 	await Popups.popup_created
 	Popups.get_popup().habit_created.connect(_habit_created)
 
-func _input(_event: InputEvent) -> void:
+func _process(_delta: float) -> void:
 	if Sidebar.get_selected_tab() != ID:
 		return
 	if Input.is_action_just_pressed("create_new_habit"):

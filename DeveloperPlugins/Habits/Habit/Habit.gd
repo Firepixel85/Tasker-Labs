@@ -39,14 +39,14 @@ func _update():
 	goal_text.set_text(str(habit.get_goal()))
 	check_in_button.set_disabled(false)
 	if habit.get_checked_in():
-		check_in_button.set_color("Gray")
+		await check_in_button.set_color("Gray")
 		check_in_button.set_text("Check Out")
 	else:
-		check_in_button.set_color("White")
+		await check_in_button.set_color("White")
 		check_in_button.set_text("Check In")
 	if habit.get_frozen():
 		check_in_button.set_disabled(true)
-		check_in_button.set_color("Blue")
+		await check_in_button.set_color("Blue")
 		check_in_button.set_text("Frozen")
 	Sidebar.get_tab("com.rosepen.habits").save_habit(id)
 	

@@ -78,17 +78,15 @@ layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="Action1" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=985925374 instance=ExtResource("3_5yjpq")]
-custom_minimum_size = Vector2(198, 60)
+custom_minimum_size = Vector2(190, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-color = "White"
 text = "Action"
 
 [node name="Action2" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=306562383 instance=ExtResource("3_5yjpq")]
-custom_minimum_size = Vector2(209, 60)
+custom_minimum_size = Vector2(201, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-color = "White"
 text = "Action2"
 
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

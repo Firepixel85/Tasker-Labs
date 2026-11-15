@@ -215,7 +215,6 @@ focus_mode = 1
 color = Color(0.011764706, 0.011764706, 0.011764706, 1)
 
 [node name="MainView" type="HBoxContainer" parent="." unique_id=2091975710]
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -465,6 +464,7 @@ size_flags_vertical = 3
 focus_mode = 1
 
 [node name="Settings" type="HBoxContainer" parent="." unique_id=2021703880]
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0

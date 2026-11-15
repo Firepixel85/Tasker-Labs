@@ -41,6 +41,8 @@ func _update():
 		text_container.visible = false
 	else:
 		text_container.visible = true
+	#if !show_keybind:
+		#$HBoxContainer.alignment = BoxContainer.ALIGNMENT_END
 	return OK
 
 func _update_textures():

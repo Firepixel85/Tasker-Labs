@@ -299,12 +299,12 @@ func _verify_plugin(plugin_file_name:String,file_path:String="user://plugins/"):
 		_error_queue.append("Couldn't load "+plugin_name+" because it is missing plugin_id info")
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].begins_with("com."):
-		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id field in info.json file, skipping...",ID)
-		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id (must begin with com.)")
+		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id field in info.json file (must begin with com), skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id")
 		return ERR_INVALID_DATA
 	if !plugin_info["plugin_id"].split(".").size() == 3:
-		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id filed in info.json, skipping...",ID)
-		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id (must be in format com.author.plugin_name)")
+		Debug.error("Plugin "+plugin_file_name+" has invalid plugin_id filed in info.json (must be in format com.author.plugin_name), skipping...",ID)
+		_error_queue.append("Couldn't load "+plugin_name+" because it has an invalid plugin_id")
 		return ERR_INVALID_DATA
 	if _plugins.has(plugin_info["plugin_id"]):
 		Debug.error("Plugin "+plugin_file_name+" has the same id as a previous plugin",ID)

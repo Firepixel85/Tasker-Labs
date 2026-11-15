@@ -8,7 +8,7 @@ class window:
 
 const ID = "core.main"
 const version:String = "2.0"
-const version_sufix:String = "beta3_v4"
+const version_sufix:String = "beta3"
 const plugin_api_version:String = "1.0"
 const dev_kit:bool = false
 signal view_changed(new_view:String)

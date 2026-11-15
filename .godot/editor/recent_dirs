@@ -1,5 +1,6 @@
-res://MainView/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta3/
+res://Settings/CoreOptions/Appearance/AccentColor/
+res://MainView/
 res://DeveloperPlugins/Habits/Popups/
 res://DeveloperPlugins/Habits/Flames/
 res://DeveloperPlugins/Habits/Habit/

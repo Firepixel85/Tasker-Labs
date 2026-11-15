@@ -77,10 +77,9 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="Action" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=985925374 instance=ExtResource("4_sxm7v")]
-custom_minimum_size = Vector2(198, 60)
+custom_minimum_size = Vector2(190, 60)
 layout_mode = 2
 size_flags_horizontal = 3
-color = "White"
 text = "Action"
 
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/Close" to="." method="_on_close_pressed"]

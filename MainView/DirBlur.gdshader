@@ -23,6 +23,7 @@ float insideRect(vec2 v, vec2 lo, vec2 hi) {
 }
 
 void fragment() {
+	vec4 tint = COLOR;
 	vec4 sum = vec4(0.0);
 	float numSamples = 0.0;
 	int q = max(quality, 1);
@@ -37,6 +38,7 @@ void fragment() {
 	COLOR = sum;
 	COLOR.rgb /= max(numSamples, 1.0);
 	COLOR.a /= float(q) + 1.0;
+	COLOR.a *= tint.a;
 
 	// Mask: discard anything outside the bounding box
 	COLOR *= insideRect(UV, mask_rect.xy, mask_rect.zw);

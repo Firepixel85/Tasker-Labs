@@ -74,9 +74,19 @@ signal de_hovered
 var _hovered:bool = false
 var is_pressed:bool = false
 
+var _color_tween: Tween # ADDED
+var _target_color := "" # ADDED
+
 func set_color(new_color:String):
 	if !Engine.is_editor_hint() and RoseGarden.Colors.verify_color(new_color,true) != OK:
 		return ERR_INVALID_PARAMETER
+
+	if _color_tween and _color_tween.is_valid(): # ADDED
+		_color_tween.kill() # ADDED
+		base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+_target_color+".svg") # ADDED
+		base.material.set_shader_parameter("fade",0.0) # ADDED
+	_target_color = new_color # ADDED
+
 	if !RoseGarden.Animations.buttonColor or RoseGarden.Accessibility.disableAnimations:
 		base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg")
 		if new_color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
@@ -90,9 +100,10 @@ func set_color(new_color:String):
 		base.material.set_shader_parameter("target_image",load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg"))
 		base.material.set_shader_parameter("fade",0.0)
 		var tween = create_tween()
+		_color_tween = tween # ADDED
 		tween.set_parallel(true)
 
-		if color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
+		if new_color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()): # CHANGED (color -> new_color)
 			tween.tween_property(label,"modulate",Color(0,0,0),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 			tween.tween_property(texture,"modulate",Color(0,0,0),anim_time).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
 		else:
@@ -193,7 +204,8 @@ func _update():
 			pivot_offset = Vector2(size.x/2,0)
 		"Down":
 			pivot_offset = Vector2(size.x/2,size.y)
-	set_color(color)
+	if !(_color_tween and _color_tween.is_valid()):
+		set_color(color)
 
 
 func _ready() -> void:

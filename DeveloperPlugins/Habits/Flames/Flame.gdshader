@@ -77,6 +77,7 @@ float flame_shape(vec2 q, float t, float w, float hgt, float soft, float seed) {
 }
 
 void fragment() {
+	vec4 tint = COLOR;
 	float t = TIME * speed;
 
 	// Flicker: slight height and brightness variation over time
@@ -103,6 +104,5 @@ void fragment() {
 	float alpha = max(outer, halo * (1.0 - outer));
 	vec3 halo_col = outer_color.rgb * brightness;
 	col = mix(halo_col, col, outer);
-
-	COLOR = vec4(col, alpha);
+	COLOR = vec4(col, alpha) * tint;
 }
