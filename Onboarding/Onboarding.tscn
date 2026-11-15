@@ -301,7 +301,7 @@ alignment = 2
 
 [node name="Next" parent="HBoxContainer/TOU/RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("10_ptca0")]
 modulate = Color(0.6, 0.6, 0.6, 1)
-custom_minimum_size = Vector2(183, 60)
+custom_minimum_size = Vector2(175, 60)
 layout_mode = 2
 text = "Next"
 disabled = true
@@ -466,7 +466,7 @@ layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("5_7jd1r")
 theme_override_font_sizes/normal_font_size = 22
 bbcode_enabled = true
-text = "[color=acacac][url=https://github.com/Firepixel85/Tasker-Labs/blob/main/Privacy Policy.md]Read our Privacy Policy[/url]"
+text = "[color=acacac][url=https://try-tasker.github.io/legal/privacy-policy.html]Read our Privacy Policy[/url]"
 fit_content = true
 horizontal_alignment = 1
 
@@ -831,12 +831,12 @@ layout_mode = 2
 size_flags_horizontal = 3
 
 [node name="Back" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1490918588 instance=ExtResource("10_ptca0")]
-custom_minimum_size = Vector2(183, 60)
+custom_minimum_size = Vector2(175, 60)
 layout_mode = 2
 text = "Back"
 
 [node name="Next" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer" unique_id=1262361827 instance=ExtResource("10_ptca0")]
-custom_minimum_size = Vector2(183, 60)
+custom_minimum_size = Vector2(175, 60)
 layout_mode = 2
 text = "Next"
 
@@ -859,7 +859,7 @@ custom_minimum_size = Vector2(280, 0)
 layout_mode = 2
 
 [node name="Launch" parent="HBoxContainer/CenterContainer/RGContainer/VBoxContainer/MarginContainer2/HBoxContainer2/HBoxContainer" unique_id=1113736618 instance=ExtResource("10_ptca0")]
-custom_minimum_size = Vector2(207, 60)
+custom_minimum_size = Vector2(199, 60)
 layout_mode = 2
 size_flags_horizontal = 3
 text = "Launch"
