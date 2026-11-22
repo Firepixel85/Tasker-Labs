@@ -40,7 +40,6 @@ func _ready():
 	CommandBar.load_commands()
 	Popups.popup_container = popup_container
 	Popups.popup_fade = popup_fade
-	#Popups._ready()
 	view_nodes["settings"] = settings_view
 	view_nodes["plugins"] = plugins_view
 	view_nodes["mainview"] = main_view
@@ -52,6 +51,8 @@ func _ready():
 	RoseGarden.set_tooltip_layer(tooltip_container)
 	RoseGarden.set_toast_layer(toast_layer)
 	PluginManager._send_errors()
+	StoreManager._load_plugin_list()
+
 	if Settings.get_option_value("core.general/update_notify"):
 		Network.Updates.check_for_updates()
 

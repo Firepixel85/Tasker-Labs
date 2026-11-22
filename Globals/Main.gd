@@ -60,6 +60,8 @@ func get_process_name(process_id:String):
 			return "Network/Updates"
 		"core.hotkey_manager":
 			return "HotkeyManager"
+		"core.store_manager":
+			return "StoreManager"
 		"unknown":
 			return "Unknown"
 		_:

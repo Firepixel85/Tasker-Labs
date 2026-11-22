@@ -1,3 +1,4 @@
+@tool
 extends SmoothScrollContainer
 
 @export var top_texture: TextureRect
