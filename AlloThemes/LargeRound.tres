@@ -1,0 +1,13 @@
+[gd_resource type="Theme" format=3 uid="uid://dcvcbsv2gsnd4"]
+
+[ext_resource type="FontVariation" uid="uid://201ycgc5vdu0" path="res://AlloThemes/fonts/RoundedBold.tres" id="1_qodkn"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_qodkn")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_qodkn")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_qodkn")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_qodkn")

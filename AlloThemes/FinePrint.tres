@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://b3ulu0vlfm5ss"]
+
+[ext_resource type="FontFile" uid="uid://o5n7xk2wbxyx" path="res://AlloThemes/fonts/Light.otf" id="1_a5257"]
+
+[resource]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_a5257")
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_a5257")
+LineEdit/font_sizes/font_size = 12
+LineEdit/fonts/font = ExtResource("1_a5257")

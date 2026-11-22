@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://dp85hcv8dijgk"]
+
+[ext_resource type="FontVariation" uid="uid://clifw78lh07ow" path="res://AlloThemes/fonts/RoundedMedium.tres" id="1_3dg5p"]
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_3dg5p")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_3dg5p")
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_3dg5p")

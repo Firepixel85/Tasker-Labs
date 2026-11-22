@@ -21,7 +21,7 @@ func _ready() -> void:
 		start_app(true)
 
 func start_app(window_data_available:bool):
-	RoseGarden.enable_custom_themes("res://CustomThemes")
+	RoseGarden.enable_custom_themes("res://AlloThemes")
 	Settings.load_settings()#Plugin scanning is done in settings loading since it needs to check if dev tools are enabled
 
 	if window_data_available:

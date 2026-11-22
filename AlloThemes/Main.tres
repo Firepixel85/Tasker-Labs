@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://ddullpv66jnmh"]
+
+[ext_resource type="FontVariation" uid="uid://b5seyl35jx6v7" path="res://AlloThemes/fonts/Medium.tres" id="1_irq5q"]
+
+[resource]
+Button/font_sizes/font_size = 24
+Button/fonts/font = ExtResource("1_irq5q")
+Label/font_sizes/font_size = 24
+Label/fonts/font = ExtResource("1_irq5q")
+LineEdit/font_sizes/font_size = 24
+LineEdit/fonts/font = ExtResource("1_irq5q")

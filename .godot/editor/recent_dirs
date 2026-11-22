@@ -1,3 +1,4 @@
+res://AlloThemes/fonts/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta3/
 res://Settings/CoreOptions/Appearance/AccentColor/
 res://MainView/
@@ -26,4 +27,3 @@ res://Onboarding/Textures/Checkbox/
 res://Onboarding/
 res://Settings/CoreOptions/General/PluginNotify/
 res://Settings/CoreOptions/General/UpdateNotify/
-res://MainView/Updates/

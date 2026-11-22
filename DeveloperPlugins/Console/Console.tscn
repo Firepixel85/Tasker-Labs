@@ -108,6 +108,7 @@ tooltip_display_text = "Hide logs"
 custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
+rounded = true
 horizontal_alignment = "Center"
 vertical_alignment = "Center"
 
@@ -124,6 +125,7 @@ tooltip_display_text = "Hide warnings"
 custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
+rounded = true
 horizontal_alignment = "Center"
 vertical_alignment = "Center"
 
@@ -140,6 +142,7 @@ tooltip_display_text = "Hide errors"
 custom_minimum_size = Vector2(14, 34)
 layout_mode = 2
 text = "0"
+rounded = true
 horizontal_alignment = "Center"
 vertical_alignment = "Center"
 

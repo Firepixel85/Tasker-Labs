@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://c60ocuwf31ym6"]
+
+[ext_resource type="FontFile" uid="uid://c2v1awrv6oips" path="res://AlloThemes/fonts/RoundedRegular.otf" id="1_fv36j"]
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_fv36j")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_fv36j")
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("1_fv36j")

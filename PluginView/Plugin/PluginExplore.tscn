@@ -1,34 +1,33 @@
 [gd_scene format=3 uid="uid://dmb3nj2uuoyyx"]
 
+[ext_resource type="Script" uid="uid://b6woif6lt70sa" path="res://PluginView/Plugin/PluginExplore.gd" id="1_aqqg1"]
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_d565q"]
-[ext_resource type="Script" uid="uid://mxwwf4er7372" path="res://addons/RoseGarden/components/Container/RGContainer.gd" id="2_4271p"]
 [ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="3_oe0l5"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_httj6"]
-[ext_resource type="Script" uid="uid://cqjtjy1gogp1l" path="res://addons/RoseGarden/components/Text/RGText.gd" id="5_tt2wk"]
 [ext_resource type="Texture2D" uid="uid://c7yuanhdy8u5c" path="res://PluginView/Plugin/Developer.svg" id="6_05308"]
 [ext_resource type="Texture2D" uid="uid://bk23k06rso3e3" path="res://PluginView/Plugin/Trusted.svg" id="7_jsw16"]
 [ext_resource type="Texture2D" uid="uid://b5intoxnk6bwd" path="res://PluginView/Plugin/Version Controlled.svg" id="8_e72pb"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="9_fgyh8"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="10_r475b"]
-[ext_resource type="Script" uid="uid://26r68w8cvdt6" path="res://addons/RoseGarden/components/Button/RGButton.gd" id="11_76o63"]
 
 [node name="Control" type="Control" unique_id=826832991]
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 3
 anchors_preset = 0
+script = ExtResource("1_aqqg1")
 
-[node name="RGContainer" type="Control" parent="." unique_id=535912435 instance=ExtResource("1_d565q")]
+[node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_d565q")]
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 1
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
 offset_right = 512.0
 offset_bottom = 256.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 3
-script = ExtResource("2_4271p")
+grow_horizontal = 1
+grow_vertical = 1
 padding = "16"
 margin_number = 18
-metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="RGContainer" unique_id=101857993]
 layout_mode = 1
@@ -55,20 +54,18 @@ layout_mode = 2
 texture = ExtResource("3_oe0l5")
 stretch_mode = 2
 
-[node name="Name" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("4_httj6")]
-custom_minimum_size = Vector2(63, 29)
+[node name="Name" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("4_httj6")]
+custom_minimum_size = Vector2(66, 34)
 layout_mode = 2
-script = ExtResource("5_tt2wk")
 text = "Focus"
 vertical_alignment = "Center"
 
 [node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=405359467]
 layout_mode = 2
 
-[node name="Version" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=121805701 instance=ExtResource("4_httj6")]
-custom_minimum_size = Vector2(47, 29)
+[node name="Version" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=121805701 instance=ExtResource("4_httj6")]
+custom_minimum_size = Vector2(47, 34)
 layout_mode = 2
-script = ExtResource("5_tt2wk")
 text = "v0.3"
 rounded = true
 color = "Secondary"
@@ -108,10 +105,10 @@ size_flags_vertical = 3
 layout_mode = 2
 alignment = 2
 
-[node name="RGButton" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1426858299 instance=ExtResource("10_r475b")]
-custom_minimum_size = Vector2(185, 60)
+[node name="Install" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1426858299 instance=ExtResource("10_r475b")]
+custom_minimum_size = Vector2(188, 60)
 layout_mode = 2
-script = ExtResource("11_76o63")
 color = "Purple"
 text = "Install"
-metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Install" to="." method="_on_install_pressed"]

@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://b2yqeo0lciy43"]
+
+[ext_resource type="FontFile" uid="uid://ba82try18abxu" path="res://AlloThemes/fonts/RoundedLight.otf" id="1_etivt"]
+
+[resource]
+Button/font_sizes/font_size = 12
+Button/fonts/font = ExtResource("1_etivt")
+Label/font_sizes/font_size = 12
+Label/fonts/font = ExtResource("1_etivt")
+LineEdit/font_sizes/font_size = 12
+LineEdit/fonts/font = ExtResource("1_etivt")

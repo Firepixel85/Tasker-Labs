@@ -1,0 +1,21 @@
+[gd_resource type="Theme" format=3 uid="uid://b83yba1tjjgtb"]
+
+[ext_resource type="FontVariation" uid="uid://coqxqonmt5l3k" path="res://AlloThemes/fonts/Bold.tres" id="1_sk0te"]
+
+[resource]
+Button/font_sizes/font_size = 32
+Button/fonts/font = ExtResource("1_sk0te")
+Label/font_sizes/font_size = 32
+Label/fonts/font = ExtResource("1_sk0te")
+LineEdit/font_sizes/font_size = 32
+LineEdit/fonts/font = ExtResource("1_sk0te")
+ProgressBar/font_sizes/font_size = 32
+ProgressBar/fonts/font = ExtResource("1_sk0te")
+TabBar/font_sizes/font_size = 32
+TabBar/fonts/font = ExtResource("1_sk0te")
+TextEdit/font_sizes/font_size = 32
+TextEdit/fonts/font = ExtResource("1_sk0te")
+Tree/font_sizes/font_size = 32
+Tree/font_sizes/title_button_font_size = 32
+Tree/fonts/font = ExtResource("1_sk0te")
+Tree/fonts/title_button_font = null

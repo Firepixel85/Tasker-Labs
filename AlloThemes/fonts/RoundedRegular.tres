@@ -1,0 +1,11 @@
+[gd_resource type="FontVariation" format=3 uid="uid://cj3fqtuo3lnsj"]
+
+[ext_resource type="FontFile" uid="uid://bndu06h6g8lqu" path="res://AlloThemes/fonts/AlloVariable.ttf" id="1_b5vqa"]
+
+[resource]
+base_font = ExtResource("1_b5vqa")
+variation_opentype = {
+1380929092: 100,
+1869640570: 14,
+2003265652: 400
+}

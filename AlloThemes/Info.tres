@@ -1,0 +1,11 @@
+[gd_resource type="Theme" format=3 uid="uid://m6xgufrdcib5"]
+
+[ext_resource type="FontFile" uid="uid://c4fxm46iy48fv" path="res://AlloThemes/fonts/Regular.otf" id="1_f6q1k"]
+
+[resource]
+Button/font_sizes/font_size = 16
+Button/fonts/font = ExtResource("1_f6q1k")
+Label/font_sizes/font_size = 16
+Label/fonts/font = ExtResource("1_f6q1k")
+LineEdit/font_sizes/font_size = 16
+LineEdit/fonts/font = ExtResource("1_f6q1k")

@@ -1,12 +1,26 @@
 [gd_scene format=3 uid="uid://jtvoo5jjc3tw"]
 
-[ext_resource type="Script" uid="uid://btjiid8lcfkvt" path="res://PluginView/PluginStore.gd" id="1_s3a17"]
-[ext_resource type="Texture2D" uid="uid://de3svriutb4pv" path="res://Sidebar/Puzzle.svg" id="2_n4n60"]
-[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="2_wqxkm"]
-[ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="4_s3a17"]
-[ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="5_3ah6t"]
-[ext_resource type="Texture2D" uid="uid://dodjb42ct6m3l" path="res://Icons/Refresh.svg" id="6_2eevg"]
-[ext_resource type="Texture2D" uid="uid://bf02cuihtrvdm" path="res://Icons/Folder.svg" id="8_s3kr8"]
+[ext_resource type="Script" uid="uid://bgqglerkcylxx" path="res://addons/SmoothScroll/smooth_scroll_container.gd" id="1_u1j6t"]
+[ext_resource type="Script" uid="uid://b7h0k2h2qwlqv" path="res://addons/SmoothScroll/scroll_damper/expo_scroll_damper.gd" id="2_wqxkm"]
+[ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="3_n4n60"]
+[ext_resource type="PackedScene" uid="uid://dmb3nj2uuoyyx" path="res://PluginView/Plugin/PluginExplore.tscn" id="4_n4n60"]
+
+[sub_resource type="Resource" id="Resource_n4n60"]
+script = ExtResource("2_wqxkm")
+
+[sub_resource type="Resource" id="Resource_b47fu"]
+script = ExtResource("2_wqxkm")
+friction = 6.0
+minimum_velocity = 6.0
+rebound_strength = 14.0
+
+[sub_resource type="Resource" id="Resource_s3a17"]
+script = ExtResource("2_wqxkm")
+friction = 6.0
+rebound_strength = 14.0
+
+[sub_resource type="Resource" id="Resource_d4w08"]
+script = ExtResource("2_wqxkm")
 
 [node name="ExploreView" type="Control" unique_id=951042587]
 layout_mode = 3
@@ -15,105 +29,111 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_s3a17")
 
-[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1139832357]
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="." unique_id=742810221]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_u1j6t")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_n4n60")
+dragging_scroll_damper = SubResource("Resource_b47fu")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer" unique_id=1368935184]
+[node name="VBoxContainer" type="VBoxContainer" parent="SmoothScrollContainer" unique_id=36103565]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/separation = 32
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="TaskManagement" type="VBoxContainer" parent="SmoothScrollContainer/VBoxContainer" unique_id=561908973]
 layout_mode = 2
 theme_override_constants/separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="TextureRect" type="TextureRect" parent="CenterContainer/VBoxContainer" unique_id=309036549]
+[node name="Title" parent="SmoothScrollContainer/VBoxContainer/TaskManagement" unique_id=85953319 instance=ExtResource("3_n4n60")]
+custom_minimum_size = Vector2(213, 34)
 layout_mode = 2
-texture = ExtResource("2_n4n60")
-stretch_mode = 5
+mouse_filter = 1
+text = "Task Management"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="RGText" parent="CenterContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(306, 45)
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="SmoothScrollContainer/VBoxContainer/TaskManagement" unique_id=995435724]
+custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
-text = "No Plugins Installed"
-font_size = "Large"
-horizontal_alignment = "Center"
+script = ExtResource("1_u1j6t")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_s3a17")
+dragging_scroll_damper = SubResource("Resource_d4w08")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="RGText2" parent="CenterContainer/VBoxContainer" unique_id=1864255225 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(528, 34)
+[node name="HFlowContainer" type="HFlowContainer" parent="SmoothScrollContainer/VBoxContainer/TaskManagement/SmoothScrollContainer" unique_id=863055091]
+custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
-text = "Install some plugins to start taking advantage"
-horizontal_alignment = "Center"
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="RGText3" parent="CenterContainer/VBoxContainer" unique_id=1981497466 instance=ExtResource("2_wqxkm")]
-custom_minimum_size = Vector2(344, 34)
+[node name="Control" parent="SmoothScrollContainer/VBoxContainer/TaskManagement/SmoothScrollContainer/HFlowContainer" unique_id=826832991 instance=ExtResource("4_n4n60")]
 layout_mode = 2
-text = "of Tasker's powerful features."
-horizontal_alignment = "Center"
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="Seperator" type="Control" parent="CenterContainer/VBoxContainer" unique_id=722396492]
-custom_minimum_size = Vector2(0, 16)
+[node name="Control2" parent="SmoothScrollContainer/VBoxContainer/TaskManagement/SmoothScrollContainer/HFlowContainer" unique_id=453361388 instance=ExtResource("4_n4n60")]
 layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CenterContainer/VBoxContainer" unique_id=1978521195]
+[node name="Control3" parent="SmoothScrollContainer/VBoxContainer/TaskManagement/SmoothScrollContainer/HFlowContainer" unique_id=64253496 instance=ExtResource("4_n4n60")]
 layout_mode = 2
-alignment = 1
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="RGButton" parent="CenterContainer/VBoxContainer/HBoxContainer" unique_id=1426858299 instance=ExtResource("4_s3a17")]
-custom_minimum_size = Vector2(189, 60)
+[node name="Time Management" type="VBoxContainer" parent="SmoothScrollContainer/VBoxContainer" unique_id=786638871]
 layout_mode = 2
-color = "White"
-text = "How?"
+theme_override_constants/separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="ActionContainer" parent="." unique_id=535912435 instance=ExtResource("5_3ah6t")]
-custom_minimum_size = Vector2(465, 80)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -0.93603516
-offset_top = -0.5999756
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="MarginContainer" type="MarginContainer" parent="ActionContainer" unique_id=1701290463]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="HBoxContainer" type="HBoxContainer" parent="ActionContainer/MarginContainer" unique_id=1862363373]
+[node name="Title" parent="SmoothScrollContainer/VBoxContainer/Time Management" unique_id=430533985 instance=ExtResource("3_n4n60")]
+custom_minimum_size = Vector2(213, 34)
 layout_mode = 2
-theme_override_constants/separation = 8
+mouse_filter = 1
+text = "Task Management"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="Refresh" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1859599717 instance=ExtResource("4_s3a17")]
-custom_minimum_size = Vector2(60, 60)
+[node name="SmoothScrollContainer" type="ScrollContainer" parent="SmoothScrollContainer/VBoxContainer/Time Management" unique_id=723040857]
+custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
-text = ""
-icon = ExtResource("6_2eevg")
+script = ExtResource("1_u1j6t")
+speed = 1200.0
+wheel_scroll_damper = SubResource("Resource_s3a17")
+dragging_scroll_damper = SubResource("Resource_d4w08")
+metadata/_custom_type_script = "uid://bgqglerkcylxx"
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[node name="Folder" parent="ActionContainer/MarginContainer/HBoxContainer" unique_id=1247102221 instance=ExtResource("4_s3a17")]
-custom_minimum_size = Vector2(60, 60)
+[node name="HFlowContainer" type="HFlowContainer" parent="SmoothScrollContainer/VBoxContainer/Time Management/SmoothScrollContainer" unique_id=1678173242]
+custom_minimum_size = Vector2(0, 256)
 layout_mode = 2
-text = ""
-icon = ExtResource("8_s3kr8")
+size_flags_horizontal = 3
+theme_override_constants/h_separation = 16
+metadata/_smooth_scroll_default_mouse_filter_set = true
 
-[connection signal="pressed" from="CenterContainer/VBoxContainer/HBoxContainer/RGButton" to="." method="_on_rg_button_pressed"]
-[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_clear_tooltips"]
-[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_refresh_hovered"]
-[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Refresh" to="." method="_on_refresh_pressed"]
-[connection signal="de_hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_clear_tooltips"]
-[connection signal="hovered" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_hovered"]
-[connection signal="pressed" from="ActionContainer/MarginContainer/HBoxContainer/Folder" to="." method="_on_folder_pressed"]
+[node name="Control" parent="SmoothScrollContainer/VBoxContainer/Time Management/SmoothScrollContainer/HFlowContainer" unique_id=1518281479 instance=ExtResource("4_n4n60")]
+layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="Control2" parent="SmoothScrollContainer/VBoxContainer/Time Management/SmoothScrollContainer/HFlowContainer" unique_id=865070245 instance=ExtResource("4_n4n60")]
+layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true
+
+[node name="Control3" parent="SmoothScrollContainer/VBoxContainer/Time Management/SmoothScrollContainer/HFlowContainer" unique_id=775467301 instance=ExtResource("4_n4n60")]
+layout_mode = 2
+mouse_filter = 1
+metadata/_smooth_scroll_default_mouse_filter_set = true

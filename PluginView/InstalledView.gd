@@ -5,6 +5,7 @@ extends Control
 @onready var enabled_text: RGText = $HBoxContainer/VBoxContainer/RGText
 @onready var animation_layer: CanvasLayer = $CanvasLayer
 @onready var action_container: Control = $ActionContainer
+@onready var nothing_installed: Control = $NothingInstalled
 
 #Actions
 @onready var updates_button: RGButton = $ActionContainer/MarginContainer/HBoxContainer/Updates
@@ -18,6 +19,10 @@ var option_keybinds_shown:bool = false
 
 
 func display_plugins():
+	if PluginManager.get_all_plugins().size() == 0:
+		nothing_installed.show()
+	else:
+		nothing_installed.hide()
 	for child in enabled_container.get_children():
 		child.queue_free()
 	for child in disabled_container.get_children():
@@ -244,3 +249,6 @@ func _on_updates_pressed() -> void:
 	await get_tree().process_frame
 	await get_tree().process_frame
 	Popups.get_popup().updated.connect(refresh)
+
+func _on_get_plugins_pressed() -> void:
+	RoseGarden.create_toast("f(u)","Red")
