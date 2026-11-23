@@ -4,14 +4,14 @@
 [ext_resource type="PackedScene" uid="uid://cpa268pl5g27a" path="res://addons/RoseGarden/components/Container/RGContainer.tscn" id="1_d565q"]
 [ext_resource type="Texture2D" uid="uid://dg4y5aa7xcpcx" path="res://Icons/CheckBook.svg" id="3_oe0l5"]
 [ext_resource type="PackedScene" uid="uid://cmdymajcng2jt" path="res://addons/RoseGarden/components/Text/RGText.tscn" id="4_httj6"]
-[ext_resource type="Texture2D" uid="uid://c7yuanhdy8u5c" path="res://PluginView/Plugin/Developer.svg" id="6_05308"]
-[ext_resource type="Texture2D" uid="uid://bk23k06rso3e3" path="res://PluginView/Plugin/Trusted.svg" id="7_jsw16"]
-[ext_resource type="Texture2D" uid="uid://b5intoxnk6bwd" path="res://PluginView/Plugin/Version Controlled.svg" id="8_e72pb"]
+[ext_resource type="Texture2D" uid="uid://dwe0vi0kcf2e0" path="res://Icons/ICircle.svg" id="6_k64c5"]
 [ext_resource type="Theme" uid="uid://de3ryv4cfrd7r" path="res://CustomThemes/Secondary.tres" id="9_fgyh8"]
 [ext_resource type="PackedScene" uid="uid://bb73lbvti8wp6" path="res://addons/RoseGarden/components/Button/RGButton.tscn" id="10_r475b"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aqqg1"]
+
 [node name="Control" type="Control" unique_id=826832991]
-custom_minimum_size = Vector2(512, 256)
+custom_minimum_size = Vector2(512, 288)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_aqqg1")
@@ -19,13 +19,11 @@ script = ExtResource("1_aqqg1")
 [node name="RGContainer" parent="." unique_id=535912435 instance=ExtResource("1_d565q")]
 custom_minimum_size = Vector2(512, 256)
 layout_mode = 1
-anchors_preset = 0
-anchor_right = 0.0
-anchor_bottom = 0.0
-offset_right = 512.0
-offset_bottom = 256.0
-grow_horizontal = 1
-grow_vertical = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
 padding = "16"
 margin_number = 18
 
@@ -52,45 +50,40 @@ theme_override_constants/separation = 8
 [node name="Icon" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=265642607]
 layout_mode = 2
 texture = ExtResource("3_oe0l5")
-stretch_mode = 2
+stretch_mode = 3
 
-[node name="Name" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=85953319 instance=ExtResource("4_httj6")]
-custom_minimum_size = Vector2(66, 34)
-layout_mode = 2
-text = "Focus"
-vertical_alignment = "Center"
-
-[node name="Spacer" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=405359467]
+[node name="VBoxContainer" type="VBoxContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=626992076]
 layout_mode = 2
 
-[node name="Version" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=121805701 instance=ExtResource("4_httj6")]
-custom_minimum_size = Vector2(47, 34)
+[node name="Name" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=85953319 instance=ExtResource("4_httj6")]
+custom_minimum_size = Vector2(82, 34)
 layout_mode = 2
-text = "v0.3"
-rounded = true
+text = "[name]"
+
+[node name="Author" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer" unique_id=1660752577 instance=ExtResource("4_httj6")]
+custom_minimum_size = Vector2(79, 28)
+layout_mode = 2
+text = "[author]"
+font_size = "Secondary"
 color = "Secondary"
-vertical_alignment = "Center"
 
 [node name="Spacer2" type="Control" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=352842275]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="DeveloperTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=2130215393]
+[node name="MarginContainer" type="MarginContainer" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=1342595615]
 layout_mode = 2
-texture = ExtResource("6_05308")
-stretch_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_bottom = 8
 
-[node name="TrustedTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=958145198]
+[node name="Info" type="Button" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer" unique_id=781579775]
+modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
-texture = ExtResource("7_jsw16")
-stretch_mode = 2
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aqqg1")
+icon = ExtResource("6_k64c5")
+flat = true
 
-[node name="VersionControlledTag" type="TextureRect" parent="RGContainer/MarginContainer/VBoxContainer/HBoxContainer" unique_id=81679272]
-layout_mode = 2
-texture = ExtResource("8_e72pb")
-stretch_mode = 2
-
-[node name="Label" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1728111469]
+[node name="Description" type="Label" parent="RGContainer/MarginContainer/VBoxContainer" unique_id=1728111469]
 modulate = Color(0.6745098, 0.6745098, 0.6745098, 1)
 layout_mode = 2
 theme = ExtResource("9_fgyh8")
@@ -110,5 +103,13 @@ custom_minimum_size = Vector2(188, 60)
 layout_mode = 2
 color = "Purple"
 text = "Install"
+show_tooltip = true
 
+[connection signal="button_down" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Info" to="." method="_on_info_button_down"]
+[connection signal="button_up" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Info" to="." method="_on_info_button_up"]
+[connection signal="mouse_entered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Info" to="." method="_on_info_mouse_entered"]
+[connection signal="mouse_exited" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Info" to="." method="_on_info_mouse_exited"]
+[connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer/MarginContainer/Info" to="." method="_on_info_pressed"]
+[connection signal="de_hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Install" to="." method="_on_install_de_hovered"]
+[connection signal="hovered" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Install" to="." method="_on_install_hovered"]
 [connection signal="pressed" from="RGContainer/MarginContainer/VBoxContainer/HBoxContainer2/Install" to="." method="_on_install_pressed"]

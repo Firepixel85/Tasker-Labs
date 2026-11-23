@@ -25,6 +25,7 @@ class_name RGButton
 		else:
 			label.modulate = Color(1,1,1)
 			texture.modulate = Color(1,1,1)
+		_update()
 @export var text := "Button":
 	set(new_value):
 		text = new_value
@@ -77,7 +78,7 @@ var is_pressed:bool = false
 var _color_tween: Tween # ADDED
 var _target_color := "" # ADDED
 
-func set_color(new_color:String):
+func set_color(new_color:String,no_animation:bool=false):
 	if !Engine.is_editor_hint() and RoseGarden.Colors.verify_color(new_color,true) != OK:
 		return ERR_INVALID_PARAMETER
 
@@ -87,7 +88,7 @@ func set_color(new_color:String):
 		base.material.set_shader_parameter("fade",0.0) # ADDED
 	_target_color = new_color # ADDED
 
-	if !RoseGarden.Animations.buttonColor or RoseGarden.Accessibility.disableAnimations:
+	if !RoseGarden.Animations.buttonColor or RoseGarden.Accessibility.disableAnimations or no_animation:
 		base.texture = load(RoseGarden._get_file_path()+"Button/Base"+connection+"/Base"+new_color+".svg")
 		if new_color == "White" or ((new_color == "Yellow" or new_color == "Green" or new_color == "Teal") and RoseGarden.Accessibility.get_increase_contrast()):
 			label.modulate = Color(0,0,0)

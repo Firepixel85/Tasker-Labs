@@ -1,3 +1,4 @@
+res://PluginView/
 res://Globals/
 res://AlloThemes/fonts/
 /Users/max/Documents/Godot Builds/Tasker 2.0/beta3/
@@ -7,7 +8,6 @@ res://DeveloperPlugins/Habits/Popups/
 res://DeveloperPlugins/Habits/Flames/
 res://DeveloperPlugins/Habits/Habit/
 res://addons/RoseGarden/components/Text/
-res://PluginView/
 res://LoadingScreen/
 res://DeveloperPlugins/DataView/
 /Users/max/Documents/Godot Projects/tasker-2.0/DeveloperPlugins/DataView/

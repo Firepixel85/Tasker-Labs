@@ -184,10 +184,12 @@ func open_view(view_name:String):
 		plugins_view.setup()
 		HotkeyManager.register_hotkey("Enable plugin [n]","⌥[n]",null,[],"core.tasker")
 		HotkeyManager.register_hotkey("Disable plugin [n]","⇧[n]",null,[],"core.tasker")
+		HotkeyManager.register_hotkey("Show view [n]","⌘[n]",null,["plugin","plugins"],"core.tasker")
 		HotkeyManager.unregister_hotkey("open_plugins")
 	else:
 		HotkeyManager.unregister_hotkey("enable_plugin_[n]")
 		HotkeyManager.unregister_hotkey("disable_plugin_[n]")
+		HotkeyManager.unregister_hotkey("show_view_[n]")
 	if view_name == "mainview":
 		HotkeyManager.register_hotkey("Scroll events left","⌥←",null,[],"core.tasker")
 		HotkeyManager.register_hotkey("Scroll events right","⌥→",null,[],"core.tasker")

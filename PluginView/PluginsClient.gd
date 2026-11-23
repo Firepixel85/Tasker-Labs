@@ -10,9 +10,13 @@ extends  Control
 
 var selected_tab := "explore"
 
+var populated_store:bool = false
 func setup():
 	installed_view.refresh(false)
 	_resize_views()
+	if !populated_store:
+		explore_view.setup()
+		populated_store = true
 
 func _resize_views():
 	await get_tree().process_frame
@@ -34,9 +38,11 @@ func _on_close_pressed() -> void:
 	main_view.open_view("mainview")
 
 
+
 func _on_view_selected(tab_name: String) -> void:
 	if tab_name == selected_tab:
 		return
+
 	if tab_name == "installed":
 		#installed_view.show()
 		var tween = create_tween()

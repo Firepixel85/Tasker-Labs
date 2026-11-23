@@ -38,10 +38,10 @@ func _load_plugin_list():
 			return ERR_UNAVAILABLE
 	return OK
 
-func get_plugin_for_category(category:String) -> Array:
+func get_plugins_for_category(category:String) -> Array:
 	var list = []
 	for plugin in plugin_list:
-		if plugin["category"] == category:
+		if plugin_list[plugin]["category"] == category:
 			list.append(plugin)
 	return list
 
