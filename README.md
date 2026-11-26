@@ -58,7 +58,7 @@ No generative AI was used to create textures, code or any other assets for the a
 <br>
 <div align="center">
 
-[License](https://github.com/Firepixel85/Tasker-Labs/blob/main/LICENSE.md) | [Terms of Use](https://github.com/Firepixel85/Tasker-Labs/blob/main/Terms%20of%20Use.md) | [Privacy Policy](https://github.com/Firepixel85/Tasker-Labs/blob/main/Privacy%20Policy.md)
+[License](https://try-tasker.github.io/legal/license.html) | [Terms of Use](https://try-tasker.github.io/legal/terms-of-use.html) | [Privacy Policy](https://try-tasker.github.io/legal/privacy-policy.html)
 
 <br>
 <div align="center">
